@@ -1,0 +1,33 @@
+<RCC>
+  <qresource prefix="asd">
+    <file>icons/fast-forwards-arrow-48.png</file>
+    <file>icons/icons8-arrow-48.png</file>
+    <file>icons/icons8-camera-50.svg</file>
+    <file>icons/icons8-check-50.png</file>
+    <file>icons/icons8-circularity-50.png</file>
+    <file>icons/icons8-close-50.png</file>
+    <file>icons/icons8-connection-50.svg</file>
+    <file>icons/icons8-connection-white-50.png</file>
+    <file>icons/icons8-dash-50.png</file>
+    <file>icons/icons8-disconnect-50.png</file>
+    <file>icons/icons8-disconnect-white-50.png</file>
+    <file>icons/icons8-downtriangle-48.png</file>
+    <file>icons/icons8-draw-pen-50.png</file>
+    <file>icons/icons8-draw-pencil50.png</file>
+    <file>icons/icons8-headlight-50.svg</file>
+    <file>icons/icons8-home-50.png</file>
+    <file>icons/icons8-minimizing-web-browser-tab-isolated-on-white-background-50.png</file>
+    <file>icons/icons8-plus-50.png</file>
+    <file>icons/icons8-plus-white-50.png</file>
+    <file>icons/icons8-question-50.png</file>
+    <file>icons/icons8-ruler-50.png</file>
+    <file>icons/icons8-settings-50.png</file>
+    <file>icons/icons8-thermometer-50-_1_.svg</file>
+    <file>icons/icons8-uptriangle-48.png</file>
+    <file>icons/icons8-users-50.png</file>
+    <file>icons/icons8-video-call-50.png</file>
+    <file>icons/play-48.png</file>
+    <file>icons/report-48.png</file>
+    <file>icons/stop50.png</file>
+  </qresource>
+</RCC>

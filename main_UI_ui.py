@@ -23,7 +23,6 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComb
     QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -638,6 +637,7 @@ class Ui_MainWindow(object):
         icon11.addFile(u":/assets/Assets/icons/icons8-draw-pen-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_drawing_checkbox.setIcon(icon11)
         self.mainpage_drawing_checkbox.setIconSize(QSize(35, 35))
+        self.mainpage_drawing_checkbox.setChecked(True)
 
         self.horizontalLayout_23.addWidget(self.mainpage_drawing_checkbox)
 
@@ -747,19 +747,55 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setHorizontalSpacing(5)
         self.gridLayout_12.setVerticalSpacing(0)
         self.gridLayout_12.setContentsMargins(-1, 10, -1, 6)
-        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
+        self.label_5 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 0, 1, 1, 1)
+        self.gridLayout_12.addWidget(self.label_5, 1, 0, 1, 1)
+
+        self.horizontalSpacer_30 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_30, 1, 2, 1, 1)
+
+        self.horizontalSpacer_42 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_42, 3, 5, 1, 1)
+
+        self.label_35 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_35.setObjectName(u"label_35")
+
+        self.gridLayout_12.addWidget(self.label_35, 3, 4, 1, 1)
+
+        self.label_37 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_37.setObjectName(u"label_37")
+
+        self.gridLayout_12.addWidget(self.label_37, 3, 7, 1, 1)
+
+        self.mainpage_fps_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 1, 1, 1)
+
+        self.label_12 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+
+        self.gridLayout_12.addWidget(self.label_12, 1, 3, 1, 1)
+
+        self.label_34 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_34.setObjectName(u"label_34")
+        self.label_34.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+
+        self.gridLayout_12.addWidget(self.label_34, 3, 3, 1, 1)
 
         self.mainpage_std_lbl = QLabel(self.mainpage_informaition_groupBox)
         self.mainpage_std_lbl.setObjectName(u"mainpage_std_lbl")
 
         self.gridLayout_12.addWidget(self.mainpage_std_lbl, 1, 4, 1, 1)
-
-        self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_31, 1, 5, 1, 1)
 
         self.label_33 = QLabel(self.mainpage_informaition_groupBox)
         self.label_33.setObjectName(u"label_33")
@@ -769,12 +805,31 @@ class Ui_MainWindow(object):
 
         self.gridLayout_12.addWidget(self.label_33, 3, 0, 1, 1)
 
-        self.label_12 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;")
+        self.horizontalSpacer_40 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_12.addWidget(self.label_12, 1, 3, 1, 1)
+        self.gridLayout_12.addItem(self.horizontalSpacer_40, 1, 8, 1, 1)
+
+        self.label_36 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_36.setObjectName(u"label_36")
+        self.label_36.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;\n"
+"")
+
+        self.gridLayout_12.addWidget(self.label_36, 3, 6, 1, 1)
+
+        self.mainpage_avrage_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_avrage_lbl.setObjectName(u"mainpage_avrage_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_avrage_lbl, 1, 1, 1, 1)
+
+        self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_31, 1, 5, 1, 1)
+
+        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 1, 7, 1, 1)
 
         self.label_3 = QLabel(self.mainpage_informaition_groupBox)
         self.label_3.setObjectName(u"label_3")
@@ -783,29 +838,11 @@ class Ui_MainWindow(object):
 "")
         self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.label_3, 0, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.label_3, 1, 6, 1, 1)
 
-        self.mainpage_fps_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
+        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 1, 1, 1)
-
-        self.horizontalSpacer_30 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_30, 1, 2, 1, 1)
-
-        self.label_5 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;")
-        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_12.addWidget(self.label_5, 1, 0, 1, 1)
-
-        self.mainpage_avrage_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_avrage_lbl.setObjectName(u"mainpage_avrage_lbl")
-
-        self.gridLayout_12.addWidget(self.mainpage_avrage_lbl, 1, 1, 1, 1)
+        self.gridLayout_12.addItem(self.horizontalSpacer_41, 3, 2, 1, 1)
 
 
         self.verticalLayout_5.addWidget(self.mainpage_informaition_groupBox)
@@ -899,23 +936,15 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QGridLayout(self.groupBox_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(-1, -1, -1, 0)
-        self.label_10 = QLabel(self.groupBox_2)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setAlignment(Qt.AlignCenter)
+        self.mainpage_illumination_warning_btn = QPushButton(self.groupBox_2)
+        self.mainpage_illumination_warning_btn.setObjectName(u"mainpage_illumination_warning_btn")
+        self.mainpage_illumination_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
+        icon15 = QIcon()
+        icon15.addFile(u":/assets/Assets/icons/icons8-headlight-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.mainpage_illumination_warning_btn.setIcon(icon15)
+        self.mainpage_illumination_warning_btn.setIconSize(QSize(40, 40))
 
-        self.gridLayout_2.addWidget(self.label_10, 2, 1, 1, 1)
-
-        self.label_11 = QLabel(self.groupBox_2)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_11, 2, 2, 1, 1)
-
-        self.label_14 = QLabel(self.groupBox_2)
-        self.label_14.setObjectName(u"label_14")
-        self.label_14.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_2.addWidget(self.label_14, 2, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.mainpage_illumination_warning_btn, 0, 1, 1, 1)
 
         self.label_4 = QLabel(self.groupBox_2)
         self.label_4.setObjectName(u"label_4")
@@ -923,27 +952,35 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.label_4, 2, 0, 1, 1)
 
+        self.label_11 = QLabel(self.groupBox_2)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_11, 2, 2, 1, 1)
+
         self.mainpage_tempreture_warning_btn = QPushButton(self.groupBox_2)
         self.mainpage_tempreture_warning_btn.setObjectName(u"mainpage_tempreture_warning_btn")
         self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(134, 60))
         self.mainpage_tempreture_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.mainpage_tempreture_warning_btn.setStyleSheet(u"")
-        icon15 = QIcon()
-        icon15.addFile(u":/assets/Assets/icons/icons8-thermometer-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.mainpage_tempreture_warning_btn.setIcon(icon15)
+        icon16 = QIcon()
+        icon16.addFile(u":/assets/Assets/icons/icons8-thermometer-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.mainpage_tempreture_warning_btn.setIcon(icon16)
         self.mainpage_tempreture_warning_btn.setIconSize(QSize(40, 40))
 
         self.gridLayout_2.addWidget(self.mainpage_tempreture_warning_btn, 0, 0, 1, 1)
 
-        self.mainpage_illumination_warning_btn = QPushButton(self.groupBox_2)
-        self.mainpage_illumination_warning_btn.setObjectName(u"mainpage_illumination_warning_btn")
-        self.mainpage_illumination_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon16 = QIcon()
-        icon16.addFile(u":/assets/Assets/icons/icons8-headlight-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.mainpage_illumination_warning_btn.setIcon(icon16)
-        self.mainpage_illumination_warning_btn.setIconSize(QSize(40, 40))
+        self.label_10 = QLabel(self.groupBox_2)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.mainpage_illumination_warning_btn, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.label_10, 2, 1, 1, 1)
+
+        self.label_14 = QLabel(self.groupBox_2)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_14, 2, 3, 1, 1)
 
         self.mainpage_camera_connection_warning_btn = QPushButton(self.groupBox_2)
         self.mainpage_camera_connection_warning_btn.setObjectName(u"mainpage_camera_connection_warning_btn")
@@ -969,8 +1006,19 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.groupBox_2)
 
+        self.mainpage_warning_massage_lbl = QLabel(self.mainpage_warnings_frame)
+        self.mainpage_warning_massage_lbl.setObjectName(u"mainpage_warning_massage_lbl")
+        self.mainpage_warning_massage_lbl.setStyleSheet(u"color:rgb(255, 204, 2);\n"
+"padding-left:15px;")
+
+        self.verticalLayout_7.addWidget(self.mainpage_warning_massage_lbl)
+
 
         self.left_main_page_.addWidget(self.mainpage_warnings_frame)
+
+        self.verticalSpacer_18 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.left_main_page_.addItem(self.verticalSpacer_18)
 
         self.label = QLabel(self.mainpage_right_frame)
         self.label.setObjectName(u"label")
@@ -1007,29 +1055,40 @@ class Ui_MainWindow(object):
 
         self.left_main_page_.addWidget(self.widget_2)
 
-        self.tableWidget = QTableWidget(self.mainpage_right_frame)
-        if (self.tableWidget.columnCount() < 7):
-            self.tableWidget.setColumnCount(7)
-        if (self.tableWidget.rowCount() < 3):
-            self.tableWidget.setRowCount(3)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setMaximumSize(QSize(16777215, 200))
-        self.tableWidget.setStyleSheet(u"QHeaderView::section {\n"
-"    background-color:rgb(57, 57, 57);\n"
-"	color: #ffffff;\n"
-"    padding: 4px;\n"
-"    font-size: 14pt;\n"
-"    border-style: none;\n"
-"    border-right: 2px solid rgba(255, 255, 255,50);\n"
-"	\n"
-"}\n"
-"\n"
-"\n"
-"\n"
+        self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.left_main_page_.addItem(self.verticalSpacer_17)
+
+        self.horizontalLayout_26 = QHBoxLayout()
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.mainpage_statistics_tabel = QTableWidget(self.mainpage_right_frame)
+        if (self.mainpage_statistics_tabel.columnCount() < 7):
+            self.mainpage_statistics_tabel.setColumnCount(7)
+        if (self.mainpage_statistics_tabel.rowCount() < 3):
+            self.mainpage_statistics_tabel.setRowCount(3)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.mainpage_statistics_tabel.setItem(0, 1, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.mainpage_statistics_tabel.setItem(1, 1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.mainpage_statistics_tabel.setItem(2, 1, __qtablewidgetitem2)
+        self.mainpage_statistics_tabel.setObjectName(u"mainpage_statistics_tabel")
+        self.mainpage_statistics_tabel.setEnabled(True)
+        self.mainpage_statistics_tabel.setMaximumSize(QSize(16777215, 16777215))
+        self.mainpage_statistics_tabel.setSizeIncrement(QSize(0, 0))
+        self.mainpage_statistics_tabel.setBaseSize(QSize(0, 0))
+        font1 = QFont()
+        font1.setFamilies([u"Arial"])
+        font1.setBold(False)
+        font1.setItalic(False)
+        self.mainpage_statistics_tabel.setFont(font1)
+        self.mainpage_statistics_tabel.setFocusPolicy(Qt.NoFocus)
+        self.mainpage_statistics_tabel.setStyleSheet(u"\n"
 "QHeaderView::section {\n"
 "    background-color: #646464;\n"
+"	color: #ffffff;\n"
 "    padding: 4px;\n"
-"    font-size: 14pt;\n"
+"    font-size: 10pt;\n"
 "    border-style: none;\n"
 "    border-bottom: 1px solid #fffff8;\n"
 "    border-right: 1px solid #fffff8;\n"
@@ -1043,11 +1102,28 @@ class Ui_MainWindow(object):
 "QHeaderView::section:vertical\n"
 "{\n"
 "    border-left: 1px solid #fffff8;\n"
-"}")
-        self.tableWidget.setRowCount(3)
-        self.tableWidget.setColumnCount(7)
+"}\n"
+"\n"
+"")
+        self.mainpage_statistics_tabel.setFrameShadow(QFrame.Raised)
+        self.mainpage_statistics_tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.mainpage_statistics_tabel.setAlternatingRowColors(False)
+        self.mainpage_statistics_tabel.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.mainpage_statistics_tabel.setTextElideMode(Qt.ElideMiddle)
+        self.mainpage_statistics_tabel.setGridStyle(Qt.SolidLine)
+        self.mainpage_statistics_tabel.setWordWrap(True)
+        self.mainpage_statistics_tabel.setRowCount(3)
+        self.mainpage_statistics_tabel.setColumnCount(7)
+        self.mainpage_statistics_tabel.horizontalHeader().setMinimumSectionSize(50)
+        self.mainpage_statistics_tabel.horizontalHeader().setDefaultSectionSize(180)
+        self.mainpage_statistics_tabel.verticalHeader().setVisible(False)
+        self.mainpage_statistics_tabel.verticalHeader().setDefaultSectionSize(40)
+        self.mainpage_statistics_tabel.verticalHeader().setHighlightSections(True)
 
-        self.left_main_page_.addWidget(self.tableWidget)
+        self.horizontalLayout_26.addWidget(self.mainpage_statistics_tabel)
+
+
+        self.left_main_page_.addLayout(self.horizontalLayout_26)
 
 
         self.horizontalLayout_2.addWidget(self.mainpage_right_frame)
@@ -1316,7 +1392,7 @@ class Ui_MainWindow(object):
 
         self.settingpage_grading_add_range_btn = QPushButton(self.groupBox_4)
         self.settingpage_grading_add_range_btn.setObjectName(u"settingpage_grading_add_range_btn")
-        self.settingpage_grading_add_range_btn.setMinimumSize(QSize(0, 40))
+        self.settingpage_grading_add_range_btn.setMinimumSize(QSize(200, 40))
         self.settingpage_grading_add_range_btn.setStyleSheet(u"#settingpage_pelletizing_add_range_btn{\n"
 "background-color:rgba(34, 132, 50,0);\n"
 "color: white;\n"
@@ -1914,21 +1990,17 @@ class Ui_MainWindow(object):
             self.calibrationpage_last_calib_tabel.setColumnCount(4)
         if (self.calibrationpage_last_calib_tabel.rowCount() < 1):
             self.calibrationpage_last_calib_tabel.setRowCount(1)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 3, __qtablewidgetitem3)
+        self.calibrationpage_last_calib_tabel.setItem(0, 0, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 1, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 2, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 3, __qtablewidgetitem6)
         self.calibrationpage_last_calib_tabel.setObjectName(u"calibrationpage_last_calib_tabel")
         self.calibrationpage_last_calib_tabel.setEnabled(True)
         self.calibrationpage_last_calib_tabel.setSizeIncrement(QSize(0, 0))
-        font1 = QFont()
-        font1.setFamilies([u"Arial"])
-        font1.setBold(False)
-        font1.setItalic(False)
         self.calibrationpage_last_calib_tabel.setFont(font1)
         self.calibrationpage_last_calib_tabel.setMouseTracking(False)
         self.calibrationpage_last_calib_tabel.setStyleSheet(u"QHeaderView::section {\n"
@@ -2318,26 +2390,38 @@ class Ui_MainWindow(object):
         self.mainpage_faststart_btn.setText(QCoreApplication.translate("MainWindow", u"Fast Start", None))
         self.mainpage_stop_btn.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.mainpage_informaition_groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Informations", None))
-        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"78%", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
+        self.label_37.setText(QCoreApplication.translate("MainWindow", u"25", None))
+        self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"11", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
+        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Time:", None))
         self.mainpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"1.6mm", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"FPS:", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Mean Oval:", None))
-        self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"11", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Cam Tempreture(\u00b0C):", None))
         self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"12.8 mm", None))
+        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"78%", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Mean Oval:", None))
         self.mainpage_report_button.setText(QCoreApplication.translate("MainWindow", u"Report", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"System Status", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Ilumination", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Camera Connection", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Camera Grabbing", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Tempreture", None))
-        self.mainpage_tempreture_warning_btn.setText("")
         self.mainpage_illumination_warning_btn.setText("")
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Tempreture", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Camera Connection", None))
+        self.mainpage_tempreture_warning_btn.setText("")
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Ilumination", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Camera Grabbing", None))
         self.mainpage_camera_connection_warning_btn.setText("")
         self.mainpage_camera_grabbing_warning_btn.setText("")
+        self.mainpage_warning_massage_lbl.setText(QCoreApplication.translate("MainWindow", u"!", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Grading Chart", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Ovality Chart", None))
+
+        __sortingEnabled = self.mainpage_statistics_tabel.isSortingEnabled()
+        self.mainpage_statistics_tabel.setSortingEnabled(False)
+        ___qtablewidgetitem = self.mainpage_statistics_tabel.item(0, 1)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"6", None));
+        self.mainpage_statistics_tabel.setSortingEnabled(__sortingEnabled)
+
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Interface Setting", None))
         self.label_25.setText(QCoreApplication.translate("MainWindow", u"App Color", None))
         self.settingpage_general_language_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
@@ -2398,15 +2482,15 @@ class Ui_MainWindow(object):
         self.calibrationpage_step3_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 3", None))
         self.calibrationpage_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Start Calibration", None))
 
-        __sortingEnabled = self.calibrationpage_last_calib_tabel.isSortingEnabled()
+        __sortingEnabled1 = self.calibrationpage_last_calib_tabel.isSortingEnabled()
         self.calibrationpage_last_calib_tabel.setSortingEnabled(False)
-        ___qtablewidgetitem = self.calibrationpage_last_calib_tabel.item(0, 0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
-        ___qtablewidgetitem1 = self.calibrationpage_last_calib_tabel.item(0, 1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
-        ___qtablewidgetitem2 = self.calibrationpage_last_calib_tabel.item(0, 2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
-        self.calibrationpage_last_calib_tabel.setSortingEnabled(__sortingEnabled)
+        ___qtablewidgetitem1 = self.calibrationpage_last_calib_tabel.item(0, 0)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
+        ___qtablewidgetitem2 = self.calibrationpage_last_calib_tabel.item(0, 1)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
+        ___qtablewidgetitem3 = self.calibrationpage_last_calib_tabel.item(0, 2)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
+        self.calibrationpage_last_calib_tabel.setSortingEnabled(__sortingEnabled1)
 
         self.calibrationpage_last_calib_tabel.setProperty("Date", "")
         self.calibrationpage_liveimage_lbl.setText("")

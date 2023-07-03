@@ -955,6 +955,9 @@ max-width:150px;
                      <height>35</height>
                     </size>
                    </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -1146,77 +1149,17 @@ QLabel{
                     <property name="verticalSpacing">
                      <number>0</number>
                     </property>
-                    <item row="0" column="1">
-                     <widget class="QLabel" name="mainpage_mean_oval_lbl">
-                      <property name="text">
-                       <string>78%</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="4">
-                     <widget class="QLabel" name="mainpage_std_lbl">
-                      <property name="text">
-                       <string>1.6mm</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="5">
-                     <spacer name="horizontalSpacer_31">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="3" column="0">
-                     <widget class="QLabel" name="label_33">
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_5">
                       <property name="styleSheet">
                        <string notr="true">color: rgb(4, 55, 93);
 font-weight: bold;</string>
                       </property>
                       <property name="text">
-                       <string>FPS:</string>
+                       <string>Avrage:</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="3">
-                     <widget class="QLabel" name="label_12">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(4, 55, 93);
-font-weight: bold;</string>
-                      </property>
-                      <property name="text">
-                       <string>STD:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_3">
-                      <property name="styleSheet">
-                       <string notr="true">color: rgb(4, 55, 93);
-font-weight: bold;
-</string>
-                      </property>
-                      <property name="text">
-                       <string>Mean Oval:</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="3" column="1">
-                     <widget class="QLabel" name="mainpage_fps_lbl">
-                      <property name="text">
-                       <string>11</string>
                       </property>
                      </widget>
                     </item>
@@ -1233,17 +1176,105 @@ font-weight: bold;
                       </property>
                      </spacer>
                     </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_5">
+                    <item row="3" column="5">
+                     <spacer name="horizontalSpacer_42">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="3" column="4">
+                     <widget class="QLabel" name="label_35">
+                      <property name="text">
+                       <string>05:31</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="7">
+                     <widget class="QLabel" name="label_37">
+                      <property name="text">
+                       <string>25</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLabel" name="mainpage_fps_lbl">
+                      <property name="text">
+                       <string>11</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="3">
+                     <widget class="QLabel" name="label_12">
                       <property name="styleSheet">
                        <string notr="true">color: rgb(4, 55, 93);
 font-weight: bold;</string>
                       </property>
                       <property name="text">
-                       <string>Avrage:</string>
+                       <string>STD:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="3">
+                     <widget class="QLabel" name="label_34">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(4, 55, 93);
+font-weight: bold;</string>
+                      </property>
+                      <property name="text">
+                       <string>Time:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="4">
+                     <widget class="QLabel" name="mainpage_std_lbl">
+                      <property name="text">
+                       <string>1.6mm</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="label_33">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(4, 55, 93);
+font-weight: bold;</string>
+                      </property>
+                      <property name="text">
+                       <string>FPS:</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="8">
+                     <spacer name="horizontalSpacer_40">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="3" column="6">
+                     <widget class="QLabel" name="label_36">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(4, 55, 93);
+font-weight: bold;
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Cam Tempreture(°C):</string>
                       </property>
                      </widget>
                     </item>
@@ -1253,6 +1284,54 @@ font-weight: bold;</string>
                        <string>12.8 mm</string>
                       </property>
                      </widget>
+                    </item>
+                    <item row="1" column="5">
+                     <spacer name="horizontalSpacer_31">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="1" column="7">
+                     <widget class="QLabel" name="mainpage_mean_oval_lbl">
+                      <property name="text">
+                       <string>78%</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="6">
+                     <widget class="QLabel" name="label_3">
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(4, 55, 93);
+font-weight: bold;
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Mean Oval:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="2">
+                     <spacer name="horizontalSpacer_41">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
                     </item>
                    </layout>
                   </widget>
@@ -1376,10 +1455,30 @@ QPushButton
                     <property name="bottomMargin">
                      <number>0</number>
                     </property>
-                    <item row="2" column="1">
-                     <widget class="QLabel" name="label_10">
+                    <item row="0" column="1">
+                     <widget class="QPushButton" name="mainpage_illumination_warning_btn">
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
                       <property name="text">
-                       <string>Ilumination</string>
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="Assets.qrc">
+                        <normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>40</width>
+                        <height>40</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_4">
+                      <property name="text">
+                       <string>Tempreture</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1390,26 +1489,6 @@ QPushButton
                      <widget class="QLabel" name="label_11">
                       <property name="text">
                        <string>Camera Connection</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="3">
-                     <widget class="QLabel" name="label_14">
-                      <property name="text">
-                       <string>Camera Grabbing</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_4">
-                      <property name="text">
-                       <string>Tempreture</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignCenter</set>
@@ -1445,23 +1524,23 @@ QPushButton
                       </property>
                      </widget>
                     </item>
-                    <item row="0" column="1">
-                     <widget class="QPushButton" name="mainpage_illumination_warning_btn">
-                      <property name="cursor">
-                       <cursorShape>PointingHandCursor</cursorShape>
-                      </property>
+                    <item row="2" column="1">
+                     <widget class="QLabel" name="label_10">
                       <property name="text">
-                       <string/>
+                       <string>Ilumination</string>
                       </property>
-                      <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</iconset>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
                       </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>40</width>
-                        <height>40</height>
-                       </size>
+                     </widget>
+                    </item>
+                    <item row="2" column="3">
+                     <widget class="QLabel" name="label_14">
+                      <property name="text">
+                       <string>Camera Grabbing</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
                       </property>
                      </widget>
                     </item>
@@ -1511,8 +1590,35 @@ QPushButton
                    </layout>
                   </widget>
                  </item>
+                 <item>
+                  <widget class="QLabel" name="mainpage_warning_massage_lbl">
+                   <property name="styleSheet">
+                    <string notr="true">color:rgb(255, 204, 2);
+padding-left:15px;</string>
+                   </property>
+                   <property name="text">
+                    <string>!</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_18">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>15</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
               <item>
                <widget class="QLabel" name="label">
@@ -1558,30 +1664,61 @@ color:rgb(52, 52, 52)</string>
                <widget class="QWidget" name="widget_2" native="true"/>
               </item>
               <item>
-               <widget class="QTableWidget" name="tableWidget">
-                <property name="maximumSize">
+               <spacer name="verticalSpacer_17">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
                  <size>
-                  <width>16777215</width>
-                  <height>200</height>
+                  <width>20</width>
+                  <height>40</height>
                  </size>
                 </property>
-                <property name="styleSheet">
-                 <string notr="true">QHeaderView::section {
-    background-color:rgb(57, 57, 57);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 14pt;
-    border-style: none;
-    border-right: 2px solid rgba(255, 255, 255,50);
-	
-}
-
-
-
+               </spacer>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_26">
+                <item>
+                 <widget class="QTableWidget" name="mainpage_statistics_tabel">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="sizeIncrement">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="baseSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Arial</family>
+                    <weight>50</weight>
+                    <italic>false</italic>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="focusPolicy">
+                   <enum>Qt::NoFocus</enum>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">
 QHeaderView::section {
     background-color: #646464;
+	color: #ffffff;
     padding: 4px;
-    font-size: 14pt;
+    font-size: 10pt;
     border-style: none;
     border-bottom: 1px solid #fffff8;
     border-right: 1px solid #fffff8;
@@ -1595,25 +1732,80 @@ QHeaderView::section:horizontal
 QHeaderView::section:vertical
 {
     border-left: 1px solid #fffff8;
-}</string>
-                </property>
-                <property name="rowCount">
-                 <number>3</number>
-                </property>
-                <property name="columnCount">
-                 <number>7</number>
-                </property>
-                <row/>
-                <row/>
-                <row/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
-                <column/>
-               </widget>
+}
+
+</string>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="alternatingRowColors">
+                   <bool>false</bool>
+                  </property>
+                  <property name="selectionBehavior">
+                   <enum>QAbstractItemView::SelectRows</enum>
+                  </property>
+                  <property name="textElideMode">
+                   <enum>Qt::ElideMiddle</enum>
+                  </property>
+                  <property name="gridStyle">
+                   <enum>Qt::SolidLine</enum>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                  <property name="rowCount">
+                   <number>3</number>
+                  </property>
+                  <property name="columnCount">
+                   <number>7</number>
+                  </property>
+                  <attribute name="horizontalHeaderMinimumSectionSize">
+                   <number>50</number>
+                  </attribute>
+                  <attribute name="horizontalHeaderDefaultSectionSize">
+                   <number>180</number>
+                  </attribute>
+                  <attribute name="verticalHeaderVisible">
+                   <bool>false</bool>
+                  </attribute>
+                  <attribute name="verticalHeaderDefaultSectionSize">
+                   <number>40</number>
+                  </attribute>
+                  <attribute name="verticalHeaderHighlightSections">
+                   <bool>true</bool>
+                  </attribute>
+                  <row/>
+                  <row/>
+                  <row/>
+                  <column/>
+                  <column/>
+                  <column/>
+                  <column/>
+                  <column/>
+                  <column/>
+                  <column/>
+                  <item row="0" column="1">
+                   <property name="text">
+                    <string>6</string>
+                   </property>
+                  </item>
+                  <item row="1" column="1">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                  <item row="2" column="1">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </widget>
@@ -2083,7 +2275,7 @@ min-width: 50px;</string>
                      <widget class="QPushButton" name="settingpage_grading_add_range_btn">
                       <property name="minimumSize">
                        <size>
-                        <width>0</width>
+                        <width>200</width>
                         <height>40</height>
                        </size>
                       </property>
@@ -3741,7 +3933,6 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
-  <include location="../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

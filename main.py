@@ -1,4 +1,5 @@
 import os
+import typing
 os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"')
 
 from PyQt5 import QtWidgets, uic, QtCore, QtGui, QtSvg 
@@ -10,8 +11,8 @@ import Assets
 
 from PySide6.QtSvg import *
 from PyQt5.QtChart import QChart, QChartView, QBarSet,QPercentBarSeries
-
-
+from PyQt5.QtCore import QObject, pyqtSignal , pyqtSlot, QThread
+import time
 
 main_ui_file = 'main_UI.ui'
 
@@ -65,7 +66,9 @@ class Ui(QtWidgets.QMainWindow):
         
 
 
-
+    def set_wgt_visible(self, wgt:QtWidgets.QWidget, status:bool):
+        wgt.setVisible(status)
+        
 
 
 
@@ -112,8 +115,47 @@ class Ui(QtWidgets.QMainWindow):
     #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
     def get_input_value(self, inpt: QtWidgets.QSpinBox):
         return inpt.value()
+    
+
+    #--------------------------------- GLOBAL Tabel FUNCTIONs ---------------------------------
+    def set_tabel_dim(self, tabel: QtWidgets.QTableWidget, row:int , col:int):
+        if col is not None:
+            tabel.setColumnCount(col)
         
-    #-----------------------------------------------------------------------------------
+        if row is not None:
+            tabel.setRowCount(row)
+
+    #headers = ['title1', 'title2',...]
+    def set_tabel_cheaders(self, tabel: QtWidgets.QTableWidget, headers):
+        tabel.setHorizontalHeaderLabels(headers)
+
+    
+    def set_tabel_cell_color(self, tabel: QtWidgets.QTableWidget, index:tuple, color=None, bg_color=None):
+        if bg_color is not None:
+            tabel.item(*index).setBackground(QtGui.QColor(*bg_color))
+
+        if color is not None:
+            tabel.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
+        
+    
+    def set_tabel_cell_widget(self,tabel: QtWidgets.QTableWidget, widget):
+        tabel.mainpage_statistics_tabel.setCellWidget(0, 0, widget)
+
+    def set_tabel_cell_value(self,tabel: QtWidgets.QTableWidget,index:tuple, value):
+        item = QtWidgets.QTableWidgetItem(str(value))
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        tabel.setItem(*index, item )
+        
+    def set_tabel_row(self,tabel: QtWidgets.QTableWidget, row:int, values:list):
+        for i,value in enumerate(values):
+            self.set_tabel_cell_value(tabel,(row,i), value)
+    
+    def set_tabel_datas(self,tabel: QtWidgets.QTableWidget, datas:list[list]):
+        for row, row_datas in enumerate(datas):
+            self.set_tabel_row(tabel, row, row_datas)
+
+        
+    #-------------------------------------------------------------------------------------------
 
 
     def startup_settings(self):
@@ -317,10 +359,15 @@ class mainPage:
         }
 
         self.current_status = 'stop'
+        self.statistics_tabel = self.ui.mainpage_statistics_tabel
+        self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
+
+
 
 
         #Startup operations-----------------
         self.player_buttons_connect_internal()
+        self.ui.set_wgt_visible(self.warning_msg_lbl, False)
 
 
 
@@ -357,7 +404,6 @@ class mainPage:
             self.ui.set_button_icon(self.warning_btns[name]['btn'],
                                      self.warning_btns[name]['warning-icon'])
             
-
     
     def report_btn_connector(self, func):
         self.ui.button_connector(self.ui.mainpage_stop_btn, func)
@@ -366,16 +412,58 @@ class mainPage:
         self.ui.checkbox_connector(self.ui.mainpage_liveview_checkbox, func('live-view'))
         self.ui.checkbox_connector(self.ui.mainpage_drawing_checkbox, func('drawing'))
     
-    {'ovality': 0.7}
 
     def set_information(self, data):
         for name, value in data.items():
             self.ui.set_label_text( self.informations[name],
                                     str(value) 
                                     )
-        
+    
+    def set_statistics_tabel_datas(self, datas):
+        cols_count = len(datas[0])
+        #set cols count
+        self.ui.set_tabel_dim(self.statistics_tabel, None, col=cols_count)
+        #insert datas into tabel
+        self.ui.set_tabel_datas(self.statistics_tabel, datas)
 
+        #set first column ( row headers) color diffrence
+        for row in range(len(datas)):
+            self.ui.set_tabel_cell_color(self.statistics_tabel, (row,0), bg_color=(6, 76, 130), color=(255,255,255))
 
+    def set_statistics_tabel_headers(self, headers):
+        #first columns should be empty for rows header
+        headers = [''] + headers
+        self.ui.set_tabel_cheaders(self.statistics_tabel, headers)
+
+    def set_warning_massage(self, text):
+        text = "Warning: " + text
+        self.warning_msg_lbl.setText(text)
+        self.ui.set_wgt_visible(self.warning_msg_lbl, True)
+      
+        # self.worker = timerThread()
+        # self.thread = QThread()
+
+        # #self.worker.progress.connect(self.update_progress)
+        # #self.worker.completed.connect(self.complete)
+        # self.worker.moveToThread(self.thread)
+        # self.thread.started.connect(self.worker.wait('test', 5, 0.5))
+
+        # self.thread.start()
+        # print("DDDD")
+
+        self.thread = QThread()
+        # Step 3: Create a worker object
+        self.worker = timerThread()
+        self.worker.add('test')
+        # Step 4: Move worker to the thread
+        self.worker.moveToThread(self.thread)
+        # Step 5: Connect signals and slots
+        self.thread.started.connect(lambda :self.worker.wait('test',5,0.5))
+        self.worker.completed.connect(self.thread.quit)
+        self.worker.completed.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        # Step 6: Start the thread
+        self.thread.start()
 
 class gradingSetting:
 
@@ -398,13 +486,68 @@ class gradingSetting:
         self.ui.button_connector( self.ui.settingpage_grading_add_range_btn, func(data) )
         
         
-        
-        
+
+
+class timerThread(QObject):
+    completed =  pyqtSignal()
+
+    def __init__(self,) -> None:
+        super().__init__()
+        self.ts = {}
+        self.on_threads_flag = {}
+
+    def wait(self,name, wait_time, step=1):
+        #set value into ts and flag 
+        self.on_threads_flag[name] = True
+        self.ts[name] = 0
+
+        #wait untile timer is lower than wait_time
+        while self.ts[name] < wait_time:
+            time.sleep(step)
+            self.ts[name] += step
+            print( self.ts[name] )
+
+        self.on_threads_flag[name] = False
+        self.completed.emit()
+
+
+    def is_thread_running(self, name):
+        return self.on_threads_flag[name]
+    
+    def reset_wait_timer(self, name):
+        self.ts[name] = 0
+
+    def add(self, name):
+        self.ts[name] = 0
+        self.on_threads_flag[name] = False
+
         
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = Ui()
     main_page = mainPage(window)
+    #-------------------
+    main_page.set_warning_buttons_status('camera_connection', False)
+    main_page.set_warning_buttons_status('camera_grabbing', False)
     main_page.set_warning_buttons_status('illumination', False)
+    main_page.set_warning_buttons_status('tempreture', False)
+
+
+
+    main_page.set_statistics_tabel_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
+    main_page.set_statistics_tabel_datas(datas=[['MEAN', 1,2,3,4],
+                                          ['STD', 5,1,5,4],
+                                          ['ovality', 5,1,5,4]
+                                          ])
+    
+    
+    
+    main_page.player_buttons_connect('start', lambda :main_page.set_warning_massage('dama balast'))
+    
+    #-------------------
     window.show()
+    
+
     app.exec_()
+
+    

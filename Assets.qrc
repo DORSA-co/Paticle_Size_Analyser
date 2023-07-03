@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="assets">
+    <file>Assets/icons/icons8-headlight-red-50.png</file>
     <file>Assets/icons/icons8-camera-green-50.png</file>
     <file>Assets/icons/icons8-camera-red-50.png</file>
     <file>Assets/icons/icons8-connection-green-50.png</file>
@@ -7,8 +8,8 @@
     <file>Assets/icons/icons8-headlight-green-50.png</file>
     <file>Assets/icons/icons8-headlight-red-50.png</file>
     <file>Assets/icons/icons8-thermometer-green-50.png</file>
-    <file>Assets/icons/icons8-thermometer-red-50 .png</file>
     <file>Assets/icons/icons8-video-call-50.png</file>
+    <file>Assets/icons/icons8-thermometer-red-50.png</file>
     <file>Assets/icons/icons8-draw-pen-50.png</file>
     <file>Assets/images/camera-error-500.png</file>
     <file>Assets/images/camera-error.png</file>

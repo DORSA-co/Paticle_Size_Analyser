@@ -1636,6 +1636,16 @@ color:rgb(52, 52, 52)</string>
                </widget>
               </item>
               <item>
+               <layout class="QHBoxLayout" name="mainpage_grading_chart_frame">
+                <property name="leftMargin">
+                 <number>9</number>
+                </property>
+                <property name="topMargin">
+                 <number>15</number>
+                </property>
+               </layout>
+              </item>
+              <item>
                <widget class="QWidget" name="widget" native="true"/>
               </item>
               <item>
@@ -1659,9 +1669,6 @@ color:rgb(52, 52, 52)</string>
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget_2" native="true"/>
               </item>
               <item>
                <spacer name="verticalSpacer_17">
@@ -1871,7 +1878,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
               <enum>QTabWidget::Rounded</enum>
              </property>
              <property name="currentIndex">
-              <number>3</number>
+              <number>2</number>
              </property>
              <property name="documentMode">
               <bool>false</bool>

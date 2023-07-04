@@ -1029,6 +1029,12 @@ class Ui_MainWindow(object):
 
         self.left_main_page_.addWidget(self.label)
 
+        self.mainpage_grading_chart_frame = QHBoxLayout()
+        self.mainpage_grading_chart_frame.setObjectName(u"mainpage_grading_chart_frame")
+        self.mainpage_grading_chart_frame.setContentsMargins(9, 15, -1, -1)
+
+        self.left_main_page_.addLayout(self.mainpage_grading_chart_frame)
+
         self.widget = QWidget(self.mainpage_right_frame)
         self.widget.setObjectName(u"widget")
 
@@ -1049,11 +1055,6 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(Qt.AlignCenter)
 
         self.left_main_page_.addWidget(self.label_2)
-
-        self.widget_2 = QWidget(self.mainpage_right_frame)
-        self.widget_2.setObjectName(u"widget_2")
-
-        self.left_main_page_.addWidget(self.widget_2)
 
         self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -2351,7 +2352,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.main_pages_stackw.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.settingpage_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(1)
 
 

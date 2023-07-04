@@ -1,39 +1,49 @@
 import os
 import typing
-os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"')
-
-from PyQt5 import QtWidgets, uic, QtCore, QtGui, QtSvg 
+#os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
+os.system('CMD /C pyside6-rcc Assets.qrc -o Assets.py')#PySide
+#from PyQt5 import uic
+from PySide6 import QtWidgets, QtCore, QtGui 
+from PySide6.QtUiTools import QUiLoader
 import sys
 import webbrowser
 from functools import partial
 import texts
 import Assets
 
-from PySide6.QtSvg import *
-from PyQt5.QtChart import QChart, QChartView, QBarSet,QPercentBarSeries
-from PyQt5.QtCore import QObject, pyqtSignal , pyqtSlot, QThread
+#from PySide6.QtChart import QChart, QChartView, QBarSet,QPercentBarSeries
+#from PyQt5.QtCore import QObject, pyqtSignal , pyqtSlot, QThread
 import time
+from Charts.BarChart import BarChart
+
 
 main_ui_file = 'main_UI.ui'
 
-class Ui(QtWidgets.QMainWindow):
+class GlobalUI():
     """this class is used to build class for mainwindow to load GUI application
 
     :param QtWidgets: _description_
     """
 
-    def __init__(self):
+    def __init__(self, ui):
         """this function is used to laod ui file and build GUI application
         """
         
-        super(Ui, self).__init__()
+        self.ui = ui
+
+
+
+
         
         # app language
         self.language = 'en'
 
         # load ui file
-        uic.loadUi(main_ui_file, self)
-        self.setWindowFlags(QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint))
+        #uic.loadUi(main_ui_file, self)
+
+
+
+        self.ui.setWindowFlags(QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint))
 
         #
         self._old_pos = None
@@ -66,93 +76,7 @@ class Ui(QtWidgets.QMainWindow):
         
 
 
-    def set_wgt_visible(self, wgt:QtWidgets.QWidget, status:bool):
-        wgt.setVisible(status)
-        
-
-
-
-    #--------------------------------- GLOBAL BUTTON FUNCTIONs ---------------------------------
-    def button_connector(self, btn: QtWidgets.QPushButton, func):
-        btn.clicked.connect(partial( func ))
-
-    def button_disable(self,  btn: QtWidgets.QPushButton ):
-        btn.setDisabled(True)
-
-    def button_enable(self,  btn: QtWidgets.QPushButton ):
-        btn.setDisabled(False)
-
-    def button_background(self, btn: QtWidgets.QPushButton, color):
-        #convert rgb to rgba
-        if len(color) == 3:
-            color+= (255,)
-
-        btn.setStyleSheet(f'background-color: rgba{color}')
-
-    def set_button_icon(self, btn: QtWidgets.QPushButton, path):
-        #load from resources
-        if path[0] == ':':
-            icon = QtGui.QIcon( path )
-        
-        #load from file
-        else:
-            pixmap = QtGui.QPixmap(path)
-            icon = QtGui.QIcon( pixmap )
-        
-        btn.setIcon(icon)
     
-    #--------------------------------- GLOBAL CheckBoc FUNCTIONs ---------------------------------
-    def get_checkbox_value(self, chbox: QtWidgets.QCheckBox):
-        return chbox.isChecked()
-    
-    def checkbox_connector(self, chbox: QtWidgets.QCheckBox, func):
-        chbox.stateChanged.connect(partial( func ))
-
-    #--------------------------------- GLOBAL CheckBoc FUNCTIONs ---------------------------------
-    def set_label_text(self, lbl: QtWidgets.QLabel, text:str):
-        lbl.setText(text)
-
-    #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
-    def get_input_value(self, inpt: QtWidgets.QSpinBox):
-        return inpt.value()
-    
-
-    #--------------------------------- GLOBAL Tabel FUNCTIONs ---------------------------------
-    def set_tabel_dim(self, tabel: QtWidgets.QTableWidget, row:int , col:int):
-        if col is not None:
-            tabel.setColumnCount(col)
-        
-        if row is not None:
-            tabel.setRowCount(row)
-
-    #headers = ['title1', 'title2',...]
-    def set_tabel_cheaders(self, tabel: QtWidgets.QTableWidget, headers):
-        tabel.setHorizontalHeaderLabels(headers)
-
-    
-    def set_tabel_cell_color(self, tabel: QtWidgets.QTableWidget, index:tuple, color=None, bg_color=None):
-        if bg_color is not None:
-            tabel.item(*index).setBackground(QtGui.QColor(*bg_color))
-
-        if color is not None:
-            tabel.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
-        
-    
-    def set_tabel_cell_widget(self,tabel: QtWidgets.QTableWidget, widget):
-        tabel.mainpage_statistics_tabel.setCellWidget(0, 0, widget)
-
-    def set_tabel_cell_value(self,tabel: QtWidgets.QTableWidget,index:tuple, value):
-        item = QtWidgets.QTableWidgetItem(str(value))
-        item.setTextAlignment(QtCore.Qt.AlignCenter)
-        tabel.setItem(*index, item )
-        
-    def set_tabel_row(self,tabel: QtWidgets.QTableWidget, row:int, values:list):
-        for i,value in enumerate(values):
-            self.set_tabel_cell_value(tabel,(row,i), value)
-    
-    def set_tabel_datas(self,tabel: QtWidgets.QTableWidget, datas:list[list]):
-        for row, row_datas in enumerate(datas):
-            self.set_tabel_row(tabel, row, row_datas)
 
         
     #-------------------------------------------------------------------------------------------
@@ -166,21 +90,21 @@ class Ui(QtWidgets.QMainWindow):
     def header_button_connector(self):
         """this function is used to connect ui buttons to their functions
         """
-        self.button_connector( self.minimize_btn, self.minimize_win )
-        self.button_connector( self.maximize_btn, self.maxmize_minimize )
-        self.button_connector( self.close_btn, self.close_app )
+        GUIManager.button_connector( self.ui.minimize_btn, self.minimize_win )
+        GUIManager.button_connector( self.ui.maximize_btn, self.maxmize_minimize )
+        GUIManager.button_connector( self.ui.close_btn, self.close_app )
         # bottom window buttens
-        self.dorsa_url_btn.clicked.connect(partial(lambda: webbrowser.open("https://dorsa-co.ir/")))
+        #self.dorsa_url_btn.clicked.connect(partial(lambda: webbrowser.open("https://dorsa-co.ir/")))
         return
     
 
     def sidebar_button_connector(self):
-        self.button_connector( self.sidebar_main_btn, self.sidebar_menu_handler('main') )
-        self.button_connector( self.sidebar_report_btn, self.sidebar_menu_handler('report'))
-        self.button_connector( self.sidebar_settings_btn, self.sidebar_menu_handler('settings') )
-        self.button_connector( self.sidebar_calib_btn, self.sidebar_menu_handler('calibration') )
-        self.button_connector( self.sidebar_users_btn, self.sidebar_menu_handler('user') )
-        self.button_connector( self.sidebar_help_btn, self.sidebar_menu_handler('help') )
+        GUIManager.button_connector( self.ui.sidebar_main_btn, self.sidebar_menu_handler('main') )
+        GUIManager.button_connector( self.ui.sidebar_report_btn, self.sidebar_menu_handler('report'))
+        GUIManager.button_connector( self.ui.sidebar_settings_btn, self.sidebar_menu_handler('settings') )
+        GUIManager.button_connector( self.ui.sidebar_calib_btn, self.sidebar_menu_handler('calibration') )
+        GUIManager.button_connector( self.ui.sidebar_users_btn, self.sidebar_menu_handler('user') )
+        GUIManager.button_connector( self.ui.sidebar_help_btn, self.sidebar_menu_handler('help') )
 
         
         
@@ -188,7 +112,7 @@ class Ui(QtWidgets.QMainWindow):
 
     def sidebar_menu_handler(self, pagename):
         def func():
-            self.main_pages_stackw.setCurrentIndex(self.pages_index[pagename])
+            GUIManager.set_stack_widget_idx( self.ui.main_pages_stackw, self.pages_index[pagename] )
         
         return func
     
@@ -206,7 +130,7 @@ class Ui(QtWidgets.QMainWindow):
             self.app_close_flag = True
 
             # close app window and exit the program
-            self.close()
+            self.ui.close()
             sys.exit()
 
     def maxmize_minimize(self):
@@ -215,11 +139,11 @@ class Ui(QtWidgets.QMainWindow):
         Inputs: None
         Returns: None
         """
-        if self.isMaximized():
-            self.showNormal()
+        if self.ui.isMaximized():
+            self.ui.showNormal()
 
         else:
-            self.showMaximized()
+            self.ui.showMaximized()
 
     def minimize_win(self):
         """
@@ -227,7 +151,7 @@ class Ui(QtWidgets.QMainWindow):
         Inputs: None
         Returns: None
         """
-        self.showMinimized()
+        self.ui.showMinimized()
     
     def show_alert_window(self, title, message, need_confirm=False, level=0):
         """this function is used to create a confirm window
@@ -275,48 +199,281 @@ class Ui(QtWidgets.QMainWindow):
             return True if returnValue == QtWidgets.QMessageBox.Ok else False
 
 
-    def mousePressEvent(self, event):
-        """mouse press event for moving window
+    # def mousePressEvent(self, event):
+    #     """mouse press event for moving window
 
-        :param event: _description_
-        """
+    #     :param event: _description_
+    #     """
 
-        # accept event only on top and side bars and on top bar
-        if event.button() == QtCore.Qt.LeftButton and not self.isMaximized() and event.pos().y()<=self.header.height():
-            self._old_pos = event.globalPos()
-
-
-    def mouseReleaseEvent(self, event):
-        """mouse release event for stop moving window
-
-        :param event: _description_
-        """
-
-        if event.button() == QtCore.Qt.LeftButton:
-            self._old_pos = None
+    #     # accept event only on top and side bars and on top bar
+    #     if event.button() == QtCore.Qt.LeftButton and not self.isMaximized() and event.pos().y()<=self.header.height():
+    #         self._old_pos = event.globalPos()
 
 
-    def mouseMoveEvent(self, event):
-        """mouse move event for moving window
+    # def mouseReleaseEvent(self, event):
+    #     """mouse release event for stop moving window
 
-        :param event: _description_
-        """
+    #     :param event: _description_
+    #     """
 
-        if self._old_pos is None:
-            return
+    #     if event.button() == QtCore.Qt.LeftButton:
+    #         self._old_pos = None
 
-        delta = QtCore.QPoint(event.globalPos() - self._old_pos)
-        self.move(self.x() + delta.x(), self.y() + delta.y())
-        self._old_pos = event.globalPos()
+
+    # def mouseMoveEvent(self, event):
+    #     """mouse move event for moving window
+
+    #     :param event: _description_
+    #     """
+
+    #     if self._old_pos is None:
+    #         return
+
+    #     delta = QtCore.QPoint(event.globalPos() - self._old_pos)
+    #     self.move(self.x() + delta.x(), self.y() + delta.y())
+    #     self._old_pos = event.globalPos()
 
 
     
+class GUIManager:
+
+    @staticmethod
+    def set_wgt_visible( wgt:QtWidgets.QWidget, status:bool):
+        """changes visibility of a given Qt widget
+
+        Args:
+            wgt (QtWidgets.QWidget): a Qt widget like QPushButton
+            status (bool): True of visible and False for hide
+        """
+        wgt.setVisible(status)
+            
+
+
+
+    #--------------------------------- GLOBAL BUTTON FUNCTIONs ---------------------------------
+    @staticmethod
+    def button_connector( btn: QtWidgets.QPushButton, func):
+        """Connects a PyQt Button clicked event into a function
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+            func (_type_): function that execute when event happend
+        """
+        btn.clicked.connect(partial( func ))
+
+    @staticmethod
+    def button_disable( btn: QtWidgets.QPushButton ):
+        """disables a PyQt Button
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+        """
+        btn.setDisabled(True)
+
+
+    @staticmethod
+    def button_enable( btn: QtWidgets.QPushButton ):
+        """enables a PyQt Button
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+        """
+        btn.setDisabled(False)
+
+    @staticmethod
+    def button_background( btn: QtWidgets.QPushButton, color):
+        """changes background color of button
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+            color (tuple): color of background in format of 'rgb' or 'rgba'
+        """
+        #convert rgb to rgba
+        if len(color) == 3:
+            color+= (255,)
+
+        btn.setStyleSheet(f'background-color: rgba{color}')
+
+    @staticmethod
+    def set_button_icon( btn: QtWidgets.QPushButton, path):
+        """sets icon of PyQt button
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+            path (_type_): path of icon's file or url of recource's icon
+        """
+        #load from resources
+        if path[0] == ':':
+            icon = QtGui.QIcon( path )
         
+        #load from file
+        else:
+            pixmap = QtGui.QPixmap(path)
+            icon = QtGui.QIcon( pixmap )
+        
+        btn.setIcon(icon)
+    
+    
+    #--------------------------------- GLOBAL CheckBoc FUNCTIONs ---------------------------------
+    @staticmethod
+    def get_checkbox_value(chbox: QtWidgets.QCheckBox) -> bool:
+        """returns state of Qt checkbox
+
+        Args:
+            chbox (QtWidgets.QCheckBox): Qt CheckBox object
+
+        Returns:
+            bool: return True if checked. else return False
+        """
+        return chbox.isChecked()
+    
+    @staticmethod
+    def checkbox_connector(chbox: QtWidgets.QCheckBox, func):
+        """connects a function to event of Qt checkbox change state
+
+        Args:
+            chbox (QtWidgets.QCheckBox): Qt CheckBox object
+            func (_type_): name of funtion
+        """
+        chbox.stateChanged.connect(partial( func ))
+
+    #--------------------------------- GLOBAL CheckBoc FUNCTIONs ---------------------------------
+    @staticmethod
+    def set_label_text(lbl: QtWidgets.QLabel, text:str):
+        """sets a text into the given Qt Label
+
+        Args:
+            lbl (QtWidgets.QLabel): Qt label object
+            text (str): text that you want show in label
+        """
+        lbl.setText(text)
+
+    #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
+    @staticmethod
+    def get_input_value( inpt: QtWidgets.QSpinBox)-> float:
+        """return value of a given spinbox
+
+        Args:
+            inpt (QtWidgets.QSpinBox): Qt label object
+
+        Returns:
+            float: value of spinbox
+        """
+        return inpt.value()
+    
+
+    #--------------------------------- GLOBAL Tabel FUNCTIONs ---------------------------------
+    @staticmethod
+    def set_tabel_dim(tabel: QtWidgets.QTableWidget, row:int , col:int):
+        """sets number of column and row of given Qt tabel
+        if pass 'None' into row or col, it dosen't changed
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            row (int): numbr fo row
+            col (int): number of col
+        """
+        if col is not None:
+            tabel.setColumnCount(col)
+        
+        if row is not None:
+            tabel.setRowCount(row)
+
+    #headers = ['title1', 'title2',...]
+    @staticmethod
+    def set_tabel_cheaders(tabel: QtWidgets.QTableWidget, headers:list[str]):
+        """sets headers of given Qt tabel
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            headers (list[str]): list of headers. like headers = ['title1', 'title2',...]
+        """
+        tabel.setHorizontalHeaderLabels(headers)
+
+
+    @staticmethod
+    def set_tabel_cell_color(tabel: QtWidgets.QTableWidget, index:tuple, color=None, bg_color=None):
+        """changes text color and background color of custom cell of a given Qt tabel
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            index (tuple): position of cell (row_idx, col_idx)
+            color (_type_, optional): color of text. if pass None, color doesn't change. Defaults to None.
+            bg_color (_type_, optional): background color of cell. if pass None, color doesn't change. Defaults to None.
+        """
+        if bg_color is not None:
+            tabel.item(*index).setBackground(QtGui.QColor(*bg_color))
+
+        if color is not None:
+            tabel.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
+        
+    @staticmethod
+    def set_tabel_cell_widget(tabel: QtWidgets.QTableWidget, idx: tuple, widget):
+        """insert a Qt widget (like QPushButton) into a custom cell of given Qt tabel
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            idx (tuple): position of cell (row_idx, col_idx)
+            widget (_type_): Qt widget that you want insert into cell of tabel
+        """
+        tabel.mainpage_statistics_tabel.setCellWidget(*idx, widget)
+
+    @staticmethod
+    def set_tabel_cell_value(tabel: QtWidgets.QTableWidget,index:tuple, value):
+        """sets a text or number into custom cell of given Qt table
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            index (tuple): position of cell (row_idx, col_idx)
+            value (_type_): a text or number  that you want set into cell of tabel
+        """
+        item = QtWidgets.QTableWidgetItem(str(value))
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        tabel.setItem(*index, item )
+
+    
+    
+    @staticmethod
+    def set_tabel_row(tabel: QtWidgets.QTableWidget, row:int, values:list):
+        """sets a row data into specific row of a given Qt tabel
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            row (int): index of row that you want insert data into it
+            values (list): list of text or number
+        """
+        for i,value in enumerate(values):
+            GUIManager.set_tabel_cell_value(tabel,(row,i), value)
+    
+    @staticmethod
+    def set_tabel_datas(tabel: QtWidgets.QTableWidget, datas:list[list]):
+        """sets given data into specific row of a given Qt tabel
+
+        Args:
+            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            datas (list[list]): data of tabel. like [ ['ali','184'], ['hamid', '193']]
+        """
+        for row, row_datas in enumerate(datas):
+            GUIManager.set_tabel_row(tabel, row, row_datas)        
+
+
+
+    #--------------------------------- GLOBAL StackWidget FUNCTIONs ---------------------------------
+    @staticmethod
+    def set_stack_widget_idx(stw: QtWidgets.QStackedWidget, idx ):
+        """change current index of given Qt stack widget
+
+        Args:
+            stw (QtWidgets.QStackedWidget): Qt stack widget object
+            idx (_type_): custom index to set as current index
+        """
+        stw.setCurrentIndex(idx)
+
 
 
 class mainPage:
     
-    def __init__(self, ui: Ui):
+    def __init__(self, ui):
         self.ui = ui
         
         self.warning_btns = {
@@ -358,87 +515,108 @@ class mainPage:
             'fast_start': self.ui.mainpage_faststart_btn
         }
 
+
+        self.bar_chart_widget = BarChart(
+                    chart_title = 'Grading',
+                    chart_title_color = 'white',
+                    axisX_label = 'Rages',
+                    axisY_label = 'Percents',
+                    chart_background_color = 'black',
+                    bar_color = '#0c1a66',
+                    axis_color = 'white',
+                    axis_grid=False,
+                    axisY_range = (0, 100),
+                    axisY_tickCount = 10,
+                    animation = True,
+                    bar_width = 1,
+                )
+
+
         self.current_status = 'stop'
         self.statistics_tabel = self.ui.mainpage_statistics_tabel
         self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
-
+        #self.ui.mainpage_grading_chart_frame
 
 
 
         #Startup operations-----------------
         self.player_buttons_connect_internal()
-        self.ui.set_wgt_visible(self.warning_msg_lbl, False)
+        GUIManager.set_wgt_visible(self.warning_msg_lbl, False)
+
+        
+        
+        # self.ui.mainpage_right_frame.addWidget(self.chart1)
 
 
 
-
+    
     def player_buttons_status(self,state):
         def func():
             if state in ['start', 'fast_start']:
-                self.ui.button_disable(self.player_btns['start'])
-                self.ui.button_disable(self.player_btns['fast_start'])
-                self.ui.button_enable(self.player_btns['stop'])
+                GUIManager.button_disable(self.player_btns['start'])
+                GUIManager.button_disable(self.player_btns['fast_start'])
+                GUIManager.button_enable(self.player_btns['stop'])
                 self.current_status = 'start'
             
             else:
-                self.ui.button_enable(self.player_btns['start'])
-                self.ui.button_enable(self.player_btns['fast_start'])
-                self.ui.button_disable(self.player_btns['stop'])
+                GUIManager.button_enable(self.player_btns['start'])
+                GUIManager.button_enable(self.player_btns['fast_start'])
+                GUIManager.button_disable(self.player_btns['stop'])
                 self.current_status = 'stop'
         return func
         
 
     def player_buttons_connect(self,name:str,  func):
-        self.ui.button_connector( self.player_btns[ name ], func)
+        GUIManager.button_connector( self.player_btns[ name ], func)
 
     
     def player_buttons_connect_internal(self):
         for state, btn in self.player_btns.items():
-            self.ui.button_connector(btn, self.player_buttons_status(state) )
+            GUIManager.button_connector(btn, self.player_buttons_status(state) )
 
     def set_warning_buttons_status(self, name, status):
         if status:
-            self.ui.set_button_icon(self.warning_btns[name]['btn'],
+            GUIManager.set_button_icon(self.warning_btns[name]['btn'],
                                      self.warning_btns[name]['ok-icon'])
         else:
-            self.ui.set_button_icon(self.warning_btns[name]['btn'],
+            GUIManager.set_button_icon(self.warning_btns[name]['btn'],
                                      self.warning_btns[name]['warning-icon'])
             
     
     def report_btn_connector(self, func):
-        self.ui.button_connector(self.ui.mainpage_stop_btn, func)
+        GUIManager.button_connector(self.ui.mainpage_stop_btn, func)
 
     def toolbox_connector(self, func):
-        self.ui.checkbox_connector(self.ui.mainpage_liveview_checkbox, func('live-view'))
-        self.ui.checkbox_connector(self.ui.mainpage_drawing_checkbox, func('drawing'))
+        GUIManager.checkbox_connector(self.ui.mainpage_liveview_checkbox, func('live-view'))
+        GUIManager.checkbox_connector(self.ui.mainpage_drawing_checkbox, func('drawing'))
     
 
     def set_information(self, data):
         for name, value in data.items():
-            self.ui.set_label_text( self.informations[name],
+            GUIManager.set_label_text( self.informations[name],
                                     str(value) 
                                     )
     
     def set_statistics_tabel_datas(self, datas):
         cols_count = len(datas[0])
         #set cols count
-        self.ui.set_tabel_dim(self.statistics_tabel, None, col=cols_count)
+        GUIManager.set_tabel_dim(self.statistics_tabel, None, col=cols_count)
         #insert datas into tabel
-        self.ui.set_tabel_datas(self.statistics_tabel, datas)
+        GUIManager.set_tabel_datas(self.statistics_tabel, datas)
 
         #set first column ( row headers) color diffrence
         for row in range(len(datas)):
-            self.ui.set_tabel_cell_color(self.statistics_tabel, (row,0), bg_color=(6, 76, 130), color=(255,255,255))
+            GUIManager.set_tabel_cell_color(self.statistics_tabel, (row,0), bg_color=(6, 76, 130), color=(255,255,255))
 
     def set_statistics_tabel_headers(self, headers):
         #first columns should be empty for rows header
         headers = [''] + headers
-        self.ui.set_tabel_cheaders(self.statistics_tabel, headers)
+        GUIManager.set_tabel_cheaders(self.statistics_tabel, headers)
 
     def set_warning_massage(self, text):
         text = "Warning: " + text
         self.warning_msg_lbl.setText(text)
-        self.ui.set_wgt_visible(self.warning_msg_lbl, True)
+        GUIManager.set_wgt_visible(self.warning_msg_lbl, True)
       
         # self.worker = timerThread()
         # self.thread = QThread()
@@ -451,19 +629,26 @@ class mainPage:
         # self.thread.start()
         # print("DDDD")
 
-        self.thread = QThread()
-        # Step 3: Create a worker object
-        self.worker = timerThread()
-        self.worker.add('test')
-        # Step 4: Move worker to the thread
-        self.worker.moveToThread(self.thread)
-        # Step 5: Connect signals and slots
-        self.thread.started.connect(lambda :self.worker.wait('test',5,0.5))
-        self.worker.completed.connect(self.thread.quit)
-        self.worker.completed.connect(self.worker.deleteLater)
-        self.thread.finished.connect(self.thread.deleteLater)
-        # Step 6: Start the thread
-        self.thread.start()
+        # self.thread = QThread()
+        # # Step 3: Create a worker object
+        # self.worker = timerThread()
+        # self.worker.add('test')
+        # # Step 4: Move worker to the thread
+        # self.worker.moveToThread(self.thread)
+        # # Step 5: Connect signals and slots
+        # self.thread.started.connect(self.worker.wait)
+        # self.worker.completed.connect(self.thread.quit)
+        # self.worker.completed.connect(self.worker.deleteLater)
+        # self.thread.finished.connect(self.thread.deleteLater)
+        # # Step 6: Start the thread
+        # self.thread.start()
+
+
+
+
+
+
+
 
 class gradingSetting:
 
@@ -475,6 +660,8 @@ class gradingSetting:
             'upper': self.ui.settingpage_grading_up_limit_spinbox
         }
 
+        self.defined_ranges_tabel = self.ui.settingpage_grading_ranges_tabel
+        selfdefined_ranges_tabel_editor_function = lambda x: None
     
     def add_range_button_connector(self, func):
         data = {}
@@ -483,48 +670,61 @@ class gradingSetting:
                 self.ranges_input[key]
              )
         
-        self.ui.button_connector( self.ui.settingpage_grading_add_range_btn, func(data) )
+        GUIManager.button_connector( self.ui.settingpage_grading_add_range_btn, func(data) )
         
-        
-
-
-class timerThread(QObject):
-    completed =  pyqtSignal()
-
-    def __init__(self,) -> None:
-        super().__init__()
-        self.ts = {}
-        self.on_threads_flag = {}
-
-    def wait(self,name, wait_time, step=1):
-        #set value into ts and flag 
-        self.on_threads_flag[name] = True
-        self.ts[name] = 0
-
-        #wait untile timer is lower than wait_time
-        while self.ts[name] < wait_time:
-            time.sleep(step)
-            self.ts[name] += step
-            print( self.ts[name] )
-
-        self.on_threads_flag[name] = False
-        self.completed.emit()
-
-
-    def is_thread_running(self, name):
-        return self.on_threads_flag[name]
     
-    def reset_wait_timer(self, name):
-        self.ts[name] = 0
+    def defined_ranges_tabel_connector(self, func):
+        self.defined_ranges_tabel_editor_function = func
 
-    def add(self, name):
-        self.ts[name] = 0
-        self.on_threads_flag[name] = False
+    
+    def set_ranges_tabel_data(self, datas):
+        for row_data in datas:
+            pass
+
+
+# class timerThread(QObject):
+#     completed =  pyqtSignal()
+
+#     def __init__(self,) -> None:
+#         super().__init__()
+#         self.ts = {}
+#         self.on_threads_flag = {}
+
+#     def wait(self,name, wait_time, step=1):
+#         #set value into ts and flag 
+#         self.on_threads_flag[name] = True
+#         self.ts[name] = 0
+
+#         #wait untile timer is lower than wait_time
+#         while self.ts[name] < wait_time:
+#             time.sleep(step)
+#             self.ts[name] += step
+#             print( self.ts[name] )
+
+#         self.on_threads_flag[name] = False
+#         self.completed.emit()
+
+
+#     def is_thread_running(self, name):
+#         return self.on_threads_flag[name]
+    
+#     def reset_wait_timer(self, name):
+#         self.ts[name] = 0
+
+#     def add(self, name):
+#         self.ts[name] = 0
+#         self.on_threads_flag[name] = False
 
         
 if __name__ == '__main__':
+
+    loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
-    window = Ui()
+
+    window = loader.load(main_ui_file, None)
+    global_ui = GlobalUI(window)
+
+    # #window = Ui()
     main_page = mainPage(window)
     #-------------------
     main_page.set_warning_buttons_status('camera_connection', False)
@@ -534,15 +734,15 @@ if __name__ == '__main__':
 
 
 
-    main_page.set_statistics_tabel_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
-    main_page.set_statistics_tabel_datas(datas=[['MEAN', 1,2,3,4],
-                                          ['STD', 5,1,5,4],
-                                          ['ovality', 5,1,5,4]
-                                          ])
+    # main_page.set_statistics_tabel_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
+    # main_page.set_statistics_tabel_datas(datas=[['MEAN', 1,2,3,4],
+    #                                       ['STD', 5,1,5,4],
+    #                                       ['ovality', 5,1,5,4]
+    #                                       ])
     
     
     
-    main_page.player_buttons_connect('start', lambda :main_page.set_warning_massage('dama balast'))
+    # #main_page.player_buttons_connect('start', lambda :main_page.set_warning_massage('dama balast'))
     
     #-------------------
     window.show()

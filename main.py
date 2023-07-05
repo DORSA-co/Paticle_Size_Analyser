@@ -10,12 +10,10 @@ import webbrowser
 from functools import partial
 import texts
 import Assets
-
 #from PySide6.QtChart import QChart, QChartView, QBarSet,QPercentBarSeries
-#from PyQt5.QtCore import QObject, pyqtSignal , pyqtSlot, QThread
 import time
 from Charts.BarChart import BarChart
-
+import GUIComponents
 
 main_ui_file = 'main_UI.ui'
 
@@ -49,13 +47,13 @@ class GlobalUI():
         self._old_pos = None
         self.app_close_flag = False
 
-        # webbrowser
-        chrome_path_win = "C://Program Files//Google//Chrome//Application//chrome.exe"
-        chrome_path_linux = '/usr/bin/google-chrome %s'
-        if sys.platform.startswith('win'):
-            webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path_win))
-        elif sys.platform.startswith('linux'):
-            webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path_linux))
+        webbrowser
+        # chrome_path_win = "C://Program Files//Google//Chrome//Application//chrome.exe"
+        # chrome_path_linux = '/usr/bin/google-chrome %s'
+        # if sys.platform.startswith('win'):
+            # webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path_win))
+        # elif sys.platform.startswith('linux'):
+            # webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path_linux))
 
         # button connector
         self.header_button_connector()
@@ -90,21 +88,21 @@ class GlobalUI():
     def header_button_connector(self):
         """this function is used to connect ui buttons to their functions
         """
-        GUIManager.button_connector( self.ui.minimize_btn, self.minimize_win )
-        GUIManager.button_connector( self.ui.maximize_btn, self.maxmize_minimize )
-        GUIManager.button_connector( self.ui.close_btn, self.close_app )
+        GUIBackend.button_connector( self.ui.minimize_btn, self.minimize_win )
+        GUIBackend.button_connector( self.ui.maximize_btn, self.maxmize_minimize )
+        GUIBackend.button_connector( self.ui.close_btn, self.close_app )
         # bottom window buttens
         #self.dorsa_url_btn.clicked.connect(partial(lambda: webbrowser.open("https://dorsa-co.ir/")))
         return
     
 
     def sidebar_button_connector(self):
-        GUIManager.button_connector( self.ui.sidebar_main_btn, self.sidebar_menu_handler('main') )
-        GUIManager.button_connector( self.ui.sidebar_report_btn, self.sidebar_menu_handler('report'))
-        GUIManager.button_connector( self.ui.sidebar_settings_btn, self.sidebar_menu_handler('settings') )
-        GUIManager.button_connector( self.ui.sidebar_calib_btn, self.sidebar_menu_handler('calibration') )
-        GUIManager.button_connector( self.ui.sidebar_users_btn, self.sidebar_menu_handler('user') )
-        GUIManager.button_connector( self.ui.sidebar_help_btn, self.sidebar_menu_handler('help') )
+        GUIBackend.button_connector( self.ui.sidebar_main_btn, self.sidebar_menu_handler('main') )
+        GUIBackend.button_connector( self.ui.sidebar_report_btn, self.sidebar_menu_handler('report'))
+        GUIBackend.button_connector( self.ui.sidebar_settings_btn, self.sidebar_menu_handler('settings') )
+        GUIBackend.button_connector( self.ui.sidebar_calib_btn, self.sidebar_menu_handler('calibration') )
+        GUIBackend.button_connector( self.ui.sidebar_users_btn, self.sidebar_menu_handler('user') )
+        GUIBackend.button_connector( self.ui.sidebar_help_btn, self.sidebar_menu_handler('help') )
 
         
         
@@ -112,7 +110,7 @@ class GlobalUI():
 
     def sidebar_menu_handler(self, pagename):
         def func():
-            GUIManager.set_stack_widget_idx( self.ui.main_pages_stackw, self.pages_index[pagename] )
+            GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw, self.pages_index[pagename] )
         
         return func
     
@@ -235,7 +233,8 @@ class GlobalUI():
 
 
     
-class GUIManager:
+class GUIBackend:
+
 
     @staticmethod
     def set_wgt_visible( wgt:QtWidgets.QWidget, status:bool):
@@ -247,6 +246,38 @@ class GUIManager:
         """
         wgt.setVisible(status)
             
+
+
+    def add_widget( parent:QtWidgets.QLayout, widget):
+        """insert a new widget into parent widget
+
+        Args:
+            parent (QtWidgets.QLayout): parent widget that is a QLayout
+            widget (_type_): Qt widget that you want insert into parent
+        """
+        parent.addWidget(widget)
+
+    
+    #--------------------------------- GLOBAL GET ALL INPUT TyPE ---------------------------------
+    @staticmethod
+    def get_input(wgt):
+        """get value of all inputs widget like ComboBox, SpinBox and LineEdit
+
+        Args:
+            wgt (_type_): Qt input Widgt
+
+        Returns:
+            _type_: value of input
+        """
+        if isinstance(wgt, QtWidgets.QComboBox):
+            return GUIBackend.get_combobox_selected(wgt)
+        
+        if isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
+            return GUIBackend.get_input_spinbox_value(wgt)
+        
+        if isinstance(wgt, QtWidgets.QLineEdit):
+            return GUIBackend.get_input_text(wgt)
+        
 
 
 
@@ -313,8 +344,41 @@ class GUIManager:
         
         btn.setIcon(icon)
     
+    #--------------------------------- GLOBAL ComboBox FUNCTIONs ---------------------------------
+    @staticmethod
+    def get_combobox_selected( combo: QtWidgets.QComboBox)->str :
+        """returns curent combobox text
+
+        Args:
+            combo (QtWidgets.QComboBox): Qt comboBox object
+
+        Returns:
+            str: current text
+        """
+        return combo.currentText()
     
-    #--------------------------------- GLOBAL CheckBoc FUNCTIONs ---------------------------------
+    @staticmethod
+    def set_combobox_items(combo: QtWidgets.QComboBox, items:list[str]):
+        """clear and set items into combobox
+
+        Args:
+            combo (QtWidgets.QComboBox): Qt comboBox object
+            items (list[str]): list of string items
+        """
+        combo.clear()
+        combo.insertItems(0, items)
+
+    @staticmethod
+    def add_combobox_item( combo: QtWidgets.QComboBox, item: str):
+        """add new item into combobox
+
+        Args:
+            combo (QtWidgets.QComboBox): Qt comboBox object
+            item (str): string item
+        """
+        combo.insertItems(0, item)
+
+    #--------------------------------- GLOBAL CheckBox FUNCTIONs ---------------------------------
     @staticmethod
     def get_checkbox_value(chbox: QtWidgets.QCheckBox) -> bool:
         """returns state of Qt checkbox
@@ -337,7 +401,7 @@ class GUIManager:
         """
         chbox.stateChanged.connect(partial( func ))
 
-    #--------------------------------- GLOBAL CheckBoc FUNCTIONs ---------------------------------
+    #--------------------------------- GLOBAL Label FUNCTIONs ---------------------------------
     @staticmethod
     def set_label_text(lbl: QtWidgets.QLabel, text:str):
         """sets a text into the given Qt Label
@@ -350,111 +414,166 @@ class GUIManager:
 
     #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
     @staticmethod
-    def get_input_value( inpt: QtWidgets.QSpinBox)-> float:
+    def get_input_spinbox_value( inpt: QtWidgets.QSpinBox)-> float:
         """return value of a given spinbox
 
         Args:
-            inpt (QtWidgets.QSpinBox): Qt label object
+            inpt (QtWidgets.QSpinBox): Qt spinbox object
 
         Returns:
             float: value of spinbox
         """
         return inpt.value()
     
+    def set_spinbox_value(inpt: QtWidgets.QSpinBox, value):
+        """set a value into spinbox
 
-    #--------------------------------- GLOBAL Tabel FUNCTIONs ---------------------------------
+        Args:
+            inpt (QtWidgets.QSpinBox): Qt spinbox object
+            value (_type_): custom value
+        """
+        inpt.setValue(value)
+
+
+    #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------    
+    def get_input_text(inpt:QtWidgets.QLineEdit)-> str:
+        """returns text of an input box
+
+        Args:
+            inpt (QtWidgets.QLineEdit): Qt Line edit object
+
+        Returns:
+            str: text of input
+        """
+        return inpt.text()
+
+    def set_input_text(inpt:QtWidgets.QLineEdit, txt:str):
+        """returns text of an input box
+
+        Args:
+            inpt (QtWidgets.QLineEdit): Qt Line edit object
+            txt (str): 
+
+        """
+        inpt.setText(txt)
+
+    #--------------------------------- GLOBAL table FUNCTIONs ---------------------------------
     @staticmethod
-    def set_tabel_dim(tabel: QtWidgets.QTableWidget, row:int , col:int):
-        """sets number of column and row of given Qt tabel
+    def set_table_dim(table: QtWidgets.QTableWidget, row:int , col:int):
+        """sets number of column and row of given Qt table
         if pass 'None' into row or col, it dosen't changed
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            table (QtWidgets.QTableWidget): Qt tableWidget object
             row (int): numbr fo row
             col (int): number of col
         """
         if col is not None:
-            tabel.setColumnCount(col)
+            table.setColumnCount(col)
         
         if row is not None:
-            tabel.setRowCount(row)
+            table.setRowCount(row)
 
-    #headers = ['title1', 'title2',...]
-    @staticmethod
-    def set_tabel_cheaders(tabel: QtWidgets.QTableWidget, headers:list[str]):
-        """sets headers of given Qt tabel
+    
+    def clear_table(table: QtWidgets.QTableWidget, clear_header=False):
+        """_summary_
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            table (QtWidgets.QTableWidget): _description_
+            clear_header (bool, optional): _description_. Defaults to False.
+        """
+        while (table.rowCount() > 0):
+            table.removeRow(table.rowCount()-1);
+
+    
+    @staticmethod
+    def add_table_row(table: QtWidgets.QTableWidget, row_position=None):
+        """add a row in custom position into given Qt tabel
+
+        Args:
+            table (QtWidgets.QTableWidget): Qt tableWidget object
+            row_position (_type_, optional): position of new row. if None, row whould be added at the end. Defaults to None.
+        """
+        if not row_position:
+            row_position = table.rowCount()
+        table.insertRow(row_position)
+
+
+    @staticmethod
+    def set_table_cheaders(table: QtWidgets.QTableWidget, headers:list[str]):
+        """sets headers of given Qt table
+
+        Args:
+            table (QtWidgets.QTableWidget): Qt tableWidget object
             headers (list[str]): list of headers. like headers = ['title1', 'title2',...]
         """
-        tabel.setHorizontalHeaderLabels(headers)
+        table.setHorizontalHeaderLabels(headers)
 
 
     @staticmethod
-    def set_tabel_cell_color(tabel: QtWidgets.QTableWidget, index:tuple, color=None, bg_color=None):
-        """changes text color and background color of custom cell of a given Qt tabel
+    def set_table_cell_color(table: QtWidgets.QTableWidget, index:tuple, color=None, bg_color=None):
+        """changes text color and background color of custom cell of a given Qt table
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            table (QtWidgets.QTableWidget): Qt tableWidget object
             index (tuple): position of cell (row_idx, col_idx)
             color (_type_, optional): color of text. if pass None, color doesn't change. Defaults to None.
             bg_color (_type_, optional): background color of cell. if pass None, color doesn't change. Defaults to None.
         """
         if bg_color is not None:
-            tabel.item(*index).setBackground(QtGui.QColor(*bg_color))
+            table.item(*index).setBackground(QtGui.QColor(*bg_color))
 
         if color is not None:
-            tabel.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
+            table.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
         
     @staticmethod
-    def set_tabel_cell_widget(tabel: QtWidgets.QTableWidget, idx: tuple, widget):
-        """insert a Qt widget (like QPushButton) into a custom cell of given Qt tabel
+    def set_table_cell_widget(table: QtWidgets.QTableWidget, idx: tuple, widget):
+        """insert a Qt widget (like QPushButton) into a custom cell of given Qt table
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            table (QtWidgets.QTableWidget): Qt tableWidget object
             idx (tuple): position of cell (row_idx, col_idx)
-            widget (_type_): Qt widget that you want insert into cell of tabel
+            widget (_type_): Qt widget that you want insert into cell of table
         """
-        tabel.mainpage_statistics_tabel.setCellWidget(*idx, widget)
+        table.setCellWidget(*idx, widget)
 
     @staticmethod
-    def set_tabel_cell_value(tabel: QtWidgets.QTableWidget,index:tuple, value):
+    def set_table_cell_value(table: QtWidgets.QTableWidget,index:tuple, value):
         """sets a text or number into custom cell of given Qt table
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            table (QtWidgets.QTableWidget): Qt tableWidget object
             index (tuple): position of cell (row_idx, col_idx)
-            value (_type_): a text or number  that you want set into cell of tabel
+            value (_type_): a text or number  that you want set into cell of table
         """
         item = QtWidgets.QTableWidgetItem(str(value))
         item.setTextAlignment(QtCore.Qt.AlignCenter)
-        tabel.setItem(*index, item )
+        table.setItem(*index, item )
 
     
     
     @staticmethod
-    def set_tabel_row(tabel: QtWidgets.QTableWidget, row:int, values:list):
-        """sets a row data into specific row of a given Qt tabel
+    def set_table_row(table: QtWidgets.QTableWidget, row:int, values:list):
+        """sets a row data into specific row of a given Qt table
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
+            table (QtWidgets.QTableWidget): Qt tableWidget object
             row (int): index of row that you want insert data into it
             values (list): list of text or number
         """
         for i,value in enumerate(values):
-            GUIManager.set_tabel_cell_value(tabel,(row,i), value)
+            GUIBackend.set_table_cell_value(table,(row,i), value)
     
     @staticmethod
-    def set_tabel_datas(tabel: QtWidgets.QTableWidget, datas:list[list]):
-        """sets given data into specific row of a given Qt tabel
+    def set_table_datas(table: QtWidgets.QTableWidget, datas:list[list]):
+        """sets given data into specific row of a given Qt table
 
         Args:
-            tabel (QtWidgets.QTableWidget): Qt tabelWidget object
-            datas (list[list]): data of tabel. like [ ['ali','184'], ['hamid', '193']]
+            table (QtWidgets.QTableWidget): Qt tableWidget object
+            datas (list[list]): data of table. like [ ['ali','184'], ['hamid', '193']]
         """
         for row, row_datas in enumerate(datas):
-            GUIManager.set_tabel_row(tabel, row, row_datas)        
+            GUIBackend.set_table_row(table, row, row_datas)        
 
 
 
@@ -516,32 +635,39 @@ class mainPage:
         }
 
 
-        self.bar_chart_widget = BarChart(
-                    chart_title = 'Grading',
-                    chart_title_color = 'white',
+        self.grading_chart = BarChart(
+                    chart_title = None,
+                    chart_title_color = '#404040',
                     axisX_label = 'Rages',
                     axisY_label = 'Percents',
-                    chart_background_color = 'black',
-                    bar_color = '#0c1a66',
-                    axis_color = 'white',
-                    axis_grid=False,
+                    chart_background_color = '#ffffff',
+                    bar_color = '#4caf50',
+                    axis_color = '#404040',
+                    axis_grid=True,
                     axisY_range = (0, 100),
                     axisY_tickCount = 10,
                     animation = True,
                     bar_width = 1,
                 )
+        
+        categoris = ['a', 'b', 'c', 'd', 'e', 'f']
+        values = [5, 10, 20, 40, 60, 80]
+        self.grading_chart.update_chart(axisX_ranges=categoris, axisY_values=values)
 
+        
+        
 
         self.current_status = 'stop'
-        self.statistics_tabel = self.ui.mainpage_statistics_tabel
+        self.statistics_table = self.ui.mainpage_statistics_table
         self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
-        #self.ui.mainpage_grading_chart_frame
-
+        
+        GUIBackend.add_widget( self.ui.mainpage_grading_chart_frame, self.grading_chart )
+        #GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.second_chart )
 
 
         #Startup operations-----------------
-        self.player_buttons_connect_internal()
-        GUIManager.set_wgt_visible(self.warning_msg_lbl, False)
+        self.__player_buttons_connect_internal__()
+        GUIBackend.set_wgt_visible(self.warning_msg_lbl, False)
 
         
         
@@ -550,73 +676,125 @@ class mainPage:
 
 
     
-    def player_buttons_status(self,state):
+    def __player_buttons_status__(self,state:str):
+        """manage enable and disable, player buttons in diffent state.
+        THIS FUNCTION ONLY IS USED IN CLASS
+
+        Args:
+            state (str): state of playing. it could be one of 'start' , 'fast_start' and 'stop'
+        """
         def func():
             if state in ['start', 'fast_start']:
-                GUIManager.button_disable(self.player_btns['start'])
-                GUIManager.button_disable(self.player_btns['fast_start'])
-                GUIManager.button_enable(self.player_btns['stop'])
+                GUIBackend.button_disable(self.player_btns['start'])
+                GUIBackend.button_disable(self.player_btns['fast_start'])
+                GUIBackend.button_enable(self.player_btns['stop'])
                 self.current_status = 'start'
             
             else:
-                GUIManager.button_enable(self.player_btns['start'])
-                GUIManager.button_enable(self.player_btns['fast_start'])
-                GUIManager.button_disable(self.player_btns['stop'])
+                GUIBackend.button_enable(self.player_btns['start'])
+                GUIBackend.button_enable(self.player_btns['fast_start'])
+                GUIBackend.button_disable(self.player_btns['stop'])
                 self.current_status = 'stop'
         return func
         
 
     def player_buttons_connect(self,name:str,  func):
-        GUIManager.button_connector( self.player_btns[ name ], func)
+        """connect click event of start or fast_start or stop button into a function
+
+        Args:
+            name (str): name of button. it could be one of the 'start', 'fast_start' and 'stop' 
+            func (_type_): event function for click
+        """
+        GUIBackend.button_connector( self.player_btns[ name ], func)
 
     
-    def player_buttons_connect_internal(self):
+    def __player_buttons_connect_internal__(self):
+        """connect player buttons into player_buttons_status for manage enble and disable buttons
+        THIS FUNCTION ONLY IS USED IN CLASS
+        """
         for state, btn in self.player_btns.items():
-            GUIManager.button_connector(btn, self.player_buttons_status(state) )
+            GUIBackend.button_connector(btn, self.__player_buttons_status__(state) )
 
-    def set_warning_buttons_status(self, name, status):
+
+    def set_warning_buttons_status(self, name: str, status: bool):
+        """change situation of warning buttons and set them in ok (green) or warning (red) state
+
+        Args:
+            name (str): name of warning that could be one of ['camera_connection', 'camera_grabbing', 'illumination', 'tempreture']
+            status (bool): 'True' for ok and 'False' for warning
+        """
+        assert name in self.warning_btns.keys(), f" {name} warning doesn't exist. it could be only ['camera_connection', 'camera_grabbing', 'illumination', 'tempreture']"
         if status:
-            GUIManager.set_button_icon(self.warning_btns[name]['btn'],
+            GUIBackend.set_button_icon(self.warning_btns[name]['btn'],
                                      self.warning_btns[name]['ok-icon'])
         else:
-            GUIManager.set_button_icon(self.warning_btns[name]['btn'],
+            GUIBackend.set_button_icon(self.warning_btns[name]['btn'],
                                      self.warning_btns[name]['warning-icon'])
             
     
     def report_btn_connector(self, func):
-        GUIManager.button_connector(self.ui.mainpage_stop_btn, func)
+        """connect a function to clicked event of report button
+
+        Args:
+            func (_type_): function
+        """
+        GUIBackend.button_connector(self.ui.mainpage_stop_btn, func)
 
     def toolbox_connector(self, func):
-        GUIManager.checkbox_connector(self.ui.mainpage_liveview_checkbox, func('live-view'))
-        GUIManager.checkbox_connector(self.ui.mainpage_drawing_checkbox, func('drawing'))
+        """connect a function to change event of toolbox checkboxes of main page
+
+        Args:
+            func (_type_): this function should be have one argumant. the value of this argument would be 'live-view' or 'drawing'.
+        """
+        GUIBackend.checkbox_connector(self.ui.mainpage_liveview_checkbox, func('live-view'))
+        GUIBackend.checkbox_connector(self.ui.mainpage_drawing_checkbox, func('drawing'))
     
 
-    def set_information(self, data):
+    def set_information(self, data:dict):
+        """set data into information box of main page
+
+        Args:
+            data (dict): data is a dictionary that it keys are name of info and values are value of that infos.
+            allowable are 'ovality', 'avrage', 'std', 'fps'
+        """
         for name, value in data.items():
-            GUIManager.set_label_text( self.informations[name],
+            GUIBackend.set_label_text( self.informations[name],
                                     str(value) 
                                     )
+            
+        self.set_statistics_table_datas()
     
-    def set_statistics_tabel_datas(self, datas):
+    def set_statistics_table_datas(self, datas: list[list]):
+        """set data into statistics table of mainpage. 
+
+        Args:
+            datas (list[list]): list of row list. first item in each row sould be name of row. 
+            - for e.g [ ['avrage', 12, 13.5, ...], ['std', 0.5, 0.76, ...]]
+        """
         cols_count = len(datas[0])
         #set cols count
-        GUIManager.set_tabel_dim(self.statistics_tabel, None, col=cols_count)
-        #insert datas into tabel
-        GUIManager.set_tabel_datas(self.statistics_tabel, datas)
+        GUIBackend.set_table_dim(self.statistics_table, None, col=cols_count)
+        #insert datas into table
+        GUIBackend.set_table_datas(self.statistics_table, datas)
 
         #set first column ( row headers) color diffrence
         for row in range(len(datas)):
-            GUIManager.set_tabel_cell_color(self.statistics_tabel, (row,0), bg_color=(6, 76, 130), color=(255,255,255))
+            GUIBackend.set_table_cell_color(self.statistics_table, (row,0), bg_color=(6, 76, 130), color=(255,255,255))
 
-    def set_statistics_tabel_headers(self, headers):
+    def set_statistics_table_headers(self, headers:list[str]):
+        """set heaaders of statistics table in mainpage. these are ranges of particles
+
+        Args:
+            headers (list[str]): list of headers like: [ '<6mm', '6mm-8mm' ,...]
+        """
         #first columns should be empty for rows header
         headers = [''] + headers
-        GUIManager.set_tabel_cheaders(self.statistics_tabel, headers)
+        GUIBackend.set_table_cheaders(self.statistics_table, headers)
 
     def set_warning_massage(self, text):
         text = "Warning: " + text
         self.warning_msg_lbl.setText(text)
-        GUIManager.set_wgt_visible(self.warning_msg_lbl, True)
+        GUIBackend.set_wgt_visible(self.warning_msg_lbl, True)
       
         # self.worker = timerThread()
         # self.thread = QThread()
@@ -645,12 +823,193 @@ class mainPage:
 
 
 
+class CalibrationPage:
+
+    def __init__(self, ui) -> None:
+        self.ui = ui
+
+        self.check_btn = self.ui.calibrationpage_check_btn
+        self.start_calib_btn = self.ui.calibrationpage_calib_btn
+        self.calib_type_combobox = self.ui.calibrationpage_calib_type_combobox
+        self.calib_itrs_spinbox = self.ui.calibrationpage_calib_itrs_spinbox
+        self.liveimage_lbl = self.ui.calibrationpage_liveimage_lbl
+        self.calib_tabel = self.ui.calibrationpage_last_calib_tabel
+        self.new_acc_lbl = self.ui.calibrationpage_new_acc_lbl
+        self.old_acc_lbl = self.ui.calibrationpage_prev_acc_lbl
+        self.result_box = self.ui.calibrationpage_result_groupbox
+
+        self.tabel_headers = ['date', 'time', 'accuracy (mm)', 'type', 'iterations']
+        
+        GUIBackend.set_table_dim(self.calib_tabel, 1, len(self.tabel_headers))
+        GUIBackend.set_table_cheaders(self.calib_tabel, self.tabel_headers)
+        self.show_calib_result(False)
+
+    def check_button_connector(self, func):
+        """Connect a function into check button clicled
+        """
+        GUIBackend.button_connector(self.check_btn, func)
+
+    def start_button_connector(self, func):
+        """Connect a function into start button clicled
+        """
+        GUIBackend.button_connector(self.start_calib_btn, func)
+
+    def get_settings(self,)-> dict:
+        """returns calibration settings
+
+        Returns:
+            dict: {'type': xxxx, 'iterations':n}
+        """
+        settings = {}
+        settings['type'] = GUIBackend.get_combobox_selected(self.calib_type_combobox)
+        settings['iterations'] = GUIBackend.get_input_spinbox_value(self.calib_itrs_spinbox)
+        return settings
+    
+    def set_calib_tabel(self, datas):
+        GUIBackend.set_table_row(self.calib_tabel, 0, datas)
+
+    def write_calib_result(self, old_acc, new_acc):
+        """show calibration results
+
+        Args:
+            old_acc (_type_): accuracy defor calibration
+            new_acc (_type_): accuracy after calibration
+        """
+        old_acc = str( old_acc ) + " mm"
+        new_acc = str( new_acc ) + " mm"
+
+        GUIBackend.set_label_text(self.new_acc_lbl, new_acc)
+        GUIBackend.set_label_text(self.old_acc_lbl, old_acc)
+
+        #show result
+        self.show_calib_result(True)
+    
+    def show_calib_result(self, status:bool):
+        """show and hide result box
+        """
+        GUIBackend.set_wgt_visible(self.result_box, status)
+
+    
+    def show_live(self,img):
+        pass
+
+
+class RegisterUserTab:
+
+    def __init__(self, ui) -> None:
+        self.ui = ui
+
+        self.register_error_lbl = self.ui.userspage_register_error_lbl
+        self.register_btn = self.ui.userspage_add_user_btn
+
+        self.register_users_field = {
+            'username' : self.ui.userpage_username_inpt,
+            'password' : self.ui.userpage_password_inpt,
+            'password_confirm': self.ui.userpage_confirm_password_inpt,
+            'role': self.ui.userpage_user_role_combobox
+        }
+
+    def register_button_connector(self, func):
+        """connect function into register button clicked event
+        """
+        GUIBackend.button_connector(self.register_btn, func)
+    
+    def get_register_fields(self)-> dict:
+        """returns register fields in dictionary type
+
+        Returns:
+            dict: infos in format {
+            'username':xxxx,
+            'password':xxxx,
+            'password_confirm':xxxx,
+            'role':xxxx,}
+        """
+        infos = {}
+        for name, field in self.register_users_field.items():
+            infos[name] = GUIBackend.get_input(field)
+        return infos
+    
+    def write_register_error(self, txt:str):
+        """Write Errors message in Register
+
+        Args:
+            txt (str): error message
+        """
+        GUIBackend.set_label_text(self.register_error_lbl, txt)
+
+
+
+class AllUserTab:
+
+    def __init__(self, ui) -> None:
+        self.ui = ui
+        self.users_table = self.ui.userpage_all_users_table
+        self.__table_external_event_function__ = None
+
+        self.users_table_headers = ['username', 'password', 'role', 'edit', 'delete']
+        GUIBackend.set_table_dim(self.users_table, row=10, col=len(self.users_table_headers))
+        GUIBackend.set_table_cheaders(self.users_table, self.users_table_headers)
+
+
+    def table_external_event_connector(self, func):
+        """connect edit and delete button of each record in users tabel to a function
+
+        Args:
+            func (_type_): function should have foure arguments,  ( row idx, user info dic, 'edit' or 'delete' flag, button )
+        """
+        self.__table_external_event_function__ = func
+    
+    def table_event_connector(self,idx, user_info, status, btn):
+        """this function exec when edit or delete button clicked on defined ranges table
+
+        Args:
+            idx (_type_): row index that its button clicked
+            user_info (_type_): user info dictionary in format {'username':****, 'password':****', 'role':****}
+            status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
+            btn (_type_): button object that clicked
+        """
+        def func():
+            #
+            # Write Internal Code Here
+            #
+            self.__table_external_event_function__(idx, user_info, status, btn)
+        return func
+
+    def set_users_table(self,users:list[dict]):
+        """insert users info into table
+        Args:
+            datas (list[list]): list of users info
+        """
+        assert self.__table_external_event_function__ is not None, "ERROR: First determine an event Function for edit and delete button by 'AllUserTab.table_event_connector' method "
+        
+        #set row count
+        users_count = len(users)
+        GUIBackend.set_table_dim(self.users_table, row=users_count, col=None)
+        info_count = len(users[0])
+
+        for row, user in enumerate(users):
+            for info_name in user.keys():
+                col = self.users_table_headers.index(info_name)
+                GUIBackend.set_table_cell_value(self.users_table, (row, col), value=user[info_name])
+
+            #define edit and delete button
+            edit_btn = GUIComponents.editButton()
+            del_btn = GUIComponents.deleteButton()
+
+            #connect buttons to event function 
+            GUIBackend.button_connector( edit_btn, self.table_event_connector(row, user, 'edit',  edit_btn) )
+            GUIBackend.button_connector( del_btn, self.table_event_connector(row, user, 'delete',  del_btn ) )
+
+            #insert buttons into table
+            GUIBackend.set_table_cell_widget(self.users_table, (row, info_count), edit_btn)
+            GUIBackend.set_table_cell_widget(self.users_table, (row, info_count+1), del_btn)
 
 
 
 
 
-class gradingSetting:
+
+class gradingSettingPage:
 
     def __init__(self, ui) -> None:
         self.ui = ui
@@ -660,26 +1019,104 @@ class gradingSetting:
             'upper': self.ui.settingpage_grading_up_limit_spinbox
         }
 
-        self.defined_ranges_tabel = self.ui.settingpage_grading_ranges_tabel
-        selfdefined_ranges_tabel_editor_function = lambda x: None
+        self.ranges_table = self.ui.settingpage_grading_ranges_table
+        self.standards_table = self.ui.settingpage_grading_standards_table
+        self.range_name_input = self.ui.settingpage_grading_name_inpt
+        self.ranges_table_event_function = None
+
+
+        self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'edit', 'delete']
+        GUIBackend.set_table_dim(self.ranges_table, 1 , len(self.ranges_table_headers))
+        GUIBackend.set_table_cheaders(self.ranges_table, headers=self.ranges_table_headers)
+        GUIBackend.button_connector(self.ui.settingpage_grading_cancel_btn, self.__clear_settings__)
+
+
+    def __clear_settings__(self):
+        #clear 
+        for wdgt in self.ranges_input.values():
+            GUIBackend.set_spinbox_value(wdgt, 0)
+
+        GUIBackend.set_input_text(self.range_name_input,"")
+        #clear tabel
+        GUIBackend.clear_table( self.ranges_table )
+        #insert an empty row for better ui
+        GUIBackend.set_table_dim(self.ranges_table, 1 , len(self.ranges_table_headers))
     
+
     def add_range_button_connector(self, func):
+        """connect add new range button into a function
+
+        Args:
+            func (_type_): clicked event function
+        """
         data = {}
         for key in self.ranges_input.keys():
-            data[key] = self.ui.get_input_value( 
+            data[key] = self.ui.get_input_spinbox_value( 
                 self.ranges_input[key]
              )
         
-        GUIManager.button_connector( self.ui.settingpage_grading_add_range_btn, func(data) )
+        GUIBackend.button_connector( self.ui.settingpage_grading_add_range_btn, func(data) )
         
     
-    def defined_ranges_tabel_connector(self, func):
-        self.defined_ranges_tabel_editor_function = func
+    def external_ranges_table_connector(self, func):
+        """connect edit and delete button of each record in defined ranges tabel to a function
+
+        Args:
+            func (_type_): function should have foure arguments,  ( row idx, row data, 'edit' or 'delete' flag, button )
+        """
+        self.ranges_table_external_event_function = func
 
     
-    def set_ranges_tabel_data(self, datas):
-        for row_data in datas:
-            pass
+    def ranges_table_event(self, idx, data, status, btn):
+        """this function exec when edit or delete button clicked on defined ranges table
+
+        Args:
+            idx (_type_): row index that its button clicked
+            data (_type_): row datas that its button clicked
+            status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
+            btn (_type_): button object that clicked
+        """
+        def func():
+            #
+            # Write Internal Code Here
+            #
+            self.ranges_table_external_event_function(idx, data, status, btn)
+        return func
+
+
+    
+    def set_ranges_table_data(self, datas:list[list]):
+        """insert ranges tnto defined ranges table
+        Args:
+            datas (list[list]): list of row lits datas
+        """
+        assert self.ranges_table_external_event_function is not None, "ERROR: First determine an event Function for edit and delete button by 'gradingSettingPage.external_ranges_table_connector' method "
+        
+        #set row count
+        records_count = len(datas)
+        GUIBackend.set_table_dim(self.ranges_table, row=records_count, col=None)
+        
+        for i, row_data in enumerate(datas):
+            GUIBackend.set_table_row(self.ranges_table, row=i, values=row_data)
+
+            #define edit and delete button
+            edit_btn = GUIComponents.editButton()
+            del_btn = GUIComponents.deleteButton()
+
+
+            #connect buttons to event function 
+            GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
+            GUIBackend.button_connector( del_btn, self.ranges_table_event(i, datas[i], 'delete',  del_btn ) )
+
+            #insert buttons into table
+            item_count = len(row_data)
+            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count), edit_btn)
+            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count+1), del_btn)
+
+
+
+    def set_standards_table_data(self, datas:list[list]):
+       pass
 
 
 # class timerThread(QObject):
@@ -723,10 +1160,11 @@ if __name__ == '__main__':
 
     window = loader.load(main_ui_file, None)
     global_ui = GlobalUI(window)
-
-    # #window = Ui()
     main_page = mainPage(window)
-    #-------------------
+    grading_setting_page = gradingSettingPage(window)
+    calib_page = CalibrationPage(window)
+    all_users_tab = AllUserTab(window)
+    #------------------------------------------------------------
     main_page.set_warning_buttons_status('camera_connection', False)
     main_page.set_warning_buttons_status('camera_grabbing', False)
     main_page.set_warning_buttons_status('illumination', False)
@@ -734,20 +1172,41 @@ if __name__ == '__main__':
 
 
 
-    # main_page.set_statistics_tabel_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
-    # main_page.set_statistics_tabel_datas(datas=[['MEAN', 1,2,3,4],
-    #                                       ['STD', 5,1,5,4],
-    #                                       ['ovality', 5,1,5,4]
-    #                                       ])
+    main_page.set_statistics_table_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
+    main_page.set_statistics_table_datas(datas=[['MEAN', 1,2,3,4],
+                                          ['STD', 5,1,5,4],
+                                          ['ovality', 5,1,5,4]
+                                          ])
     
     
-    
+    #------------------------------------------------------------
     # #main_page.player_buttons_connect('start', lambda :main_page.set_warning_massage('dama balast'))
+    def test_func(idx, data, status, btn):
+            print(idx, data, status)
     
-    #-------------------
+    grading_setting_page.external_ranges_table_connector(test_func)
+    grading_setting_page.set_ranges_table_data([[1,4,6],[2,6,8]])
+    #------------------------------------------------------------
+
+    calib_page.set_calib_tabel(['2022/12/01','18:30', '0.1', 'mean', '5'])
+    calib_page.write_calib_result(0.2, 0.1)
+    settings = calib_page.get_settings()
+    print(settings)
+
+    #------------------------------------------------------------
+    def test_users_func(idx, users, status, btn):
+        print(users, status)
+
+    all_users_tab.table_external_event_connector(test_users_func)
+    
+    all_users_tab.set_users_table([{'username':'amir', 'password':'******', 'role': 'user'},
+                                    {'username':'its.big', 'password':'********', 'role': 'admin'}])
+    #------------------------------------------------------------
+    
+    #------------------------------------------------------------
     window.show()
     
 
-    app.exec_()
+    app.exec()
 
     

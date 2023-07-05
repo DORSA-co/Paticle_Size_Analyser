@@ -1,12 +1,17 @@
 <RCC>
   <qresource prefix="assets">
+    <file>Assets/icons/icons8-eye-50.png</file>
+    <file>Assets/icons/icons8-check-green-box-50.png</file>
+    <file>Assets/icons/icons8-edit-hover-table-50.png</file>
+    <file>Assets/icons/icons8-remove-hover-table-50.png</file>
+    <file>Assets/icons/icons8-edit-table-50.png</file>
+    <file>Assets/icons/icons8-remove-table-50.png</file>
     <file>Assets/icons/icons8-headlight-red-50.png</file>
     <file>Assets/icons/icons8-camera-green-50.png</file>
     <file>Assets/icons/icons8-camera-red-50.png</file>
     <file>Assets/icons/icons8-connection-green-50.png</file>
     <file>Assets/icons/icons8-connection-red-50.png</file>
     <file>Assets/icons/icons8-headlight-green-50.png</file>
-    <file>Assets/icons/icons8-headlight-red-50.png</file>
     <file>Assets/icons/icons8-thermometer-green-50.png</file>
     <file>Assets/icons/icons8-video-call-50.png</file>
     <file>Assets/icons/icons8-thermometer-red-50.png</file>

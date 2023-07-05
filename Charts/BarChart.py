@@ -24,6 +24,11 @@ class BarChart(QtCharts.QChartView):
 
         self.chart = QtCharts.QChart()
         super().__init__(self.chart, parent)
+
+
+        self.axisX_label = axisX_label
+        self.axisY_label = axisX_label
+        
         self.chart.legend().setVisible(False)
 
         self.series = QtCharts.QBarSeries()
@@ -93,14 +98,12 @@ class BarChart(QtCharts.QChartView):
         self.chart.setAxisY(self.axisY, self.series)
 
     def set_axisX_label(self, label):
-        self.axisX_label = label
-        if self.axisX_label and hasattr(self, 'axisX'):
-            self.axisX.setTitleText(self.axisX_label)
+        if label and hasattr(self, 'axisX'):
+            self.axisX.setTitleText(label)
 
     def set_axisY_label(self, label):
-        self.axisY_label = label
-        if self.axisY_label and hasattr(self, 'axisY'):
-            self.axisY.setTitleText(self.axisY_label)
+        if label and hasattr(self, 'axisY'):
+            self.axisY.setTitleText(label)
 
     def set_axis_color(self, color):
         self.axis_color = color

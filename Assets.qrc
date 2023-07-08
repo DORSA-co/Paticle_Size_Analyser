@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="assets">
+    <file>Assets/icons/icons8-next-50.png</file>
+    <file>Assets/icons/icons8-previous-50.png</file>
+    <file>Assets/icons/icons8-export-48.png</file>
+    <file>Assets/icons/icons8-back-48.png</file>
+    <file>Assets/icons/icons8-login-50.png</file>
     <file>Assets/icons/icons8-eye-50.png</file>
     <file>Assets/icons/icons8-check-green-box-50.png</file>
     <file>Assets/icons/icons8-edit-hover-table-50.png</file>
@@ -17,7 +22,6 @@
     <file>Assets/icons/icons8-thermometer-red-50.png</file>
     <file>Assets/icons/icons8-draw-pen-50.png</file>
     <file>Assets/images/camera-error-500.png</file>
-    <file>Assets/images/camera-error.png</file>
     <file>Assets/icons/icons8-circularity-50.png</file>
     <file>Assets/general/close.png</file>
     <file>Assets/general/dorsa_white.png</file>

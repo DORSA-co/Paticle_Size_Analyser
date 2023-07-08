@@ -14,7 +14,7 @@ import Assets
 import time
 from Charts.BarChart import BarChart
 import GUIComponents
-
+import cv2
 main_ui_file = 'main_UI.ui'
 
 class GlobalUI():
@@ -56,11 +56,6 @@ class GlobalUI():
             # webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path_linux))
 
         # button connector
-        self.header_button_connector()
-        self.sidebar_button_connector()
-
-        # startup settings
-        self.startup_settings()
 
         self.pages_index = {
             'main'       : 0,
@@ -72,7 +67,23 @@ class GlobalUI():
         }
 
         
+        self.sidebar_buttons = {
+            'main': self.ui.sidebar_main_btn,
+            'report': self.ui.sidebar_report_btn,
+            'settings': self.ui.sidebar_settings_btn,
+            'calibration': self.ui.sidebar_calib_btn,
+            'user': self.ui.sidebar_users_btn,
+            'help': self.ui.sidebar_help_btn,
+        }
 
+
+        self.header_button_connector()
+        self.sidebar_button_connector()
+
+        # startup settings
+        self.startup_settings()
+
+        
 
     
 
@@ -97,12 +108,9 @@ class GlobalUI():
     
 
     def sidebar_button_connector(self):
-        GUIBackend.button_connector( self.ui.sidebar_main_btn, self.sidebar_menu_handler('main') )
-        GUIBackend.button_connector( self.ui.sidebar_report_btn, self.sidebar_menu_handler('report'))
-        GUIBackend.button_connector( self.ui.sidebar_settings_btn, self.sidebar_menu_handler('settings') )
-        GUIBackend.button_connector( self.ui.sidebar_calib_btn, self.sidebar_menu_handler('calibration') )
-        GUIBackend.button_connector( self.ui.sidebar_users_btn, self.sidebar_menu_handler('user') )
-        GUIBackend.button_connector( self.ui.sidebar_help_btn, self.sidebar_menu_handler('help') )
+        for page_name in self.sidebar_buttons.keys():
+            GUIBackend.button_connector( self.sidebar_buttons[page_name], self.sidebar_menu_handler(page_name) )
+        
 
         
         
@@ -111,7 +119,10 @@ class GlobalUI():
     def sidebar_menu_handler(self, pagename):
         def func():
             GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw, self.pages_index[pagename] )
-        
+            for btn in self.sidebar_buttons.values():
+                btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
+            
+            self.sidebar_buttons[pagename].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
         return func
     
 
@@ -236,6 +247,14 @@ class GlobalUI():
 class GUIBackend:
 
 
+    #----------------------------------------------------------------
+    @staticmethod
+    def is_spinbox(wgt):
+        """check an object is spinBox or Not
+        """
+        return isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox)
+
+    #----------------------------------------------------------------
     @staticmethod
     def set_wgt_visible( wgt:QtWidgets.QWidget, status:bool):
         """changes visibility of a given Qt widget
@@ -245,7 +264,38 @@ class GUIBackend:
             status (bool): True of visible and False for hide
         """
         wgt.setVisible(status)
-            
+
+    
+
+    @staticmethod
+    def set_disable( wdgt: QtWidgets ):
+        """disables a PyQt widget
+
+        Args:
+            wdgt (QtWidgets): PyQt widget object
+        """
+        wdgt.setDisabled(True)
+
+
+    @staticmethod
+    def set_enable( wdgt: QtWidgets ):
+        """enables a PyQt widget
+
+        Args:
+            wdgt (QtWidgets): PyQt widget object
+        """
+        wdgt.setDisabled(False)
+
+    
+    @staticmethod
+    def set_disable_enable( wdgt: QtWidgets, status ):
+        """enable or disables a PyQt widget
+
+        Args:
+            wdgt (QtWidgets): PyQt widget object
+            status: enable if True, and disable if False 
+        """
+        wdgt.setDisabled(status)
 
 
     def add_widget( parent:QtWidgets.QLayout, widget):
@@ -256,6 +306,16 @@ class GUIBackend:
             widget (_type_): Qt widget that you want insert into parent
         """
         parent.addWidget(widget)
+
+    @staticmethod
+    def set_style( btn: QtWidgets.QPushButton, style:str):
+        """set style to an object
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+            style (tuple): string Qt style sheet
+        """
+        btn.setStyleSheet(style)
 
     
     #--------------------------------- GLOBAL GET ALL INPUT TyPE ---------------------------------
@@ -277,7 +337,27 @@ class GUIBackend:
         
         if isinstance(wgt, QtWidgets.QLineEdit):
             return GUIBackend.get_input_text(wgt)
+    
+
+
+    @staticmethod
+    def set_input(wgt, value):
+        """set value to a input widget in any type like ComboBox, SpinBox and LineEdit
+
+        Args:
+            wgt (_type_): Qt input Widgt
+            value (_type_): input value to set
+
+
+        """
+        if isinstance(wgt, QtWidgets.QComboBox):
+            return GUIBackend.set_combobox_current_item(wgt, value)
         
+        if isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
+            return GUIBackend.set_spinbox_value(wgt, value)
+        
+        if isinstance(wgt, QtWidgets.QLineEdit):
+            return GUIBackend.set_input_text(wgt, value)
 
 
 
@@ -324,6 +404,7 @@ class GUIBackend:
             color+= (255,)
 
         btn.setStyleSheet(f'background-color: rgba{color}')
+
 
     @staticmethod
     def set_button_icon( btn: QtWidgets.QPushButton, path):
@@ -378,6 +459,17 @@ class GUIBackend:
         """
         combo.insertItems(0, item)
 
+    
+    @staticmethod
+    def set_combobox_current_item( combo: QtWidgets.QComboBox, item: str):
+        """set cobobox selected item to a custom item
+
+        Args:
+            combo (QtWidgets.QComboBox): Qt comboBox object
+            item (str): string item
+        """
+        combo.setCurrentText(item)
+
     #--------------------------------- GLOBAL CheckBox FUNCTIONs ---------------------------------
     @staticmethod
     def get_checkbox_value(chbox: QtWidgets.QCheckBox) -> bool:
@@ -412,6 +504,23 @@ class GUIBackend:
         """
         lbl.setText(text)
 
+    
+    @staticmethod
+    def set_label_image(lbl: QtWidgets.QLabel, image):
+        qformat =QtGui.QImage.Format_Indexed8
+        if len(image.shape)==3:
+            if image.shape[2] ==4:
+                qformat=QtGui.QImage.Format_RGBA8888
+            else:
+                qformat=QtGui.QImage.Format_RGB888
+            img = QtGui.QImage(image.data,
+                image.shape[1],
+                image.shape[0], 
+                image.strides[0], # <--- +++
+                qformat)
+            img = img.rgbSwapped()
+            lbl.setPixmap(QtGui.QPixmap.fromImage(img))
+            lbl.setAlignment(QtCore.Qt.AlignCenter)
     #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
     @staticmethod
     def get_input_spinbox_value( inpt: QtWidgets.QSpinBox)-> float:
@@ -433,6 +542,15 @@ class GUIBackend:
             value (_type_): custom value
         """
         inpt.setValue(value)
+
+    def spinbox_connector(inpt: QtWidgets.QSpinBox, func):
+        """connect a function to change value event
+
+        Args:
+            inpt (QtWidgets.QSpinBox): Qt spinbox object
+            func (): 
+        """
+        inpt.valueChanged.connect(func)
 
 
     #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------    
@@ -684,6 +802,7 @@ class mainPage:
             state (str): state of playing. it could be one of 'start' , 'fast_start' and 'stop'
         """
         def func():
+
             if state in ['start', 'fast_start']:
                 GUIBackend.button_disable(self.player_btns['start'])
                 GUIBackend.button_disable(self.player_btns['fast_start'])
@@ -1007,9 +1126,165 @@ class AllUserTab:
 
 
 
+class cameraSettingTab:
+
+    def __init__(self, ui) -> None:
+        self.ui = ui
+
+        self.devices_combobox = self.ui.settingpage_camera_device_combobox
+        self.fps_spinbox = self.ui.settingpage_camera_fps_spinbox
+        self.camera_start_btn = self.ui.settingpage_camera_start_btn
+        self.save_btn = self.ui.settingpage_camera_save_btn
+        self.restor_btn = self.ui.settingpage_camera_restore_btn
+        self.__is_start__ = False
+        self.__connection_event_function__ = None
+        self.__change_setting_event_function__ = None
 
 
-class gradingSettingPage:
+        
+        self.settings = {
+            #features that can't be changed in grabbing
+            'width': self.ui.settingpage_camera_width_spinbox,
+            'height': self.ui.settingpage_camera_height_spinbox,
+            'gain': self.ui.settingpage_camera_gain_spinbox,
+            'exposure': self.ui.settingpage_camera_exposure_spinbox
+            }
+
+        self.start_stop_icon = {
+            True: ":/assets/Assets/icons/stop50.png",
+            False: ":/assets/Assets/icons/play-48.png"
+        }
+
+        self.fields_enable_status = {
+            True: ['gain', 'exposure'],
+            False: ['width','height' ]
+        }
+
+        GUIBackend.button_connector(self.camera_start_btn, self.__internal_start_event__)
+        self.__mange_fields_enable__()
+        self.__settings_change_connector__()
+    
+
+    def start_stop_event_connector(self, func):
+        """connect a function to start and stop button vlick event
+
+        Args:
+            func (_type_): a function with one argument that would be True in start and False in Stop
+        """
+        self.__connection_event_function__ = func
+
+    def change_setting_event_connector(self, func):
+        """connect a function to change setting event
+
+        Args:
+            func (_type_): a function with one argument that whould be a dictionary whit key setting name and its value
+        """
+        self.__change_setting_event_function__ = func
+
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
+
+    def restor_button_connector(self, func):
+        GUIBackend.button_connector(self.restor_btn, func)
+
+    def __settings_change_connector__(self,):
+        """connect all input fields of setting into an internal function
+        """
+        for key, field in self.settings.items():
+            if GUIBackend.is_spinbox(field):
+                GUIBackend.spinbox_connector(field, self.__internal_change_setting_event__(key))
+
+
+    
+    def __internal_change_setting_event__(self, setting_name):
+        """got setting that changed and pass it to external function self.__change_setting_event_function__ as an event
+        this function connected to change setting input fields and calledc automaticly
+
+        Args:
+            setting_name (_type_): name of setting that changed.
+        """
+        def func():
+            #assert self.change_setting_event_connector is not None, "No Function Event determind. use cameraSettingTab.change_setting_event_connector method to do it"
+            value = GUIBackend.get_input(self.settings[setting_name])
+            arg = {setting_name:value}
+            if self.__change_setting_event_function__ is not None:
+                self.__change_setting_event_function__(arg)
+        return func
+
+
+    
+    def __internal_start_event__(self,):
+        """this function called when the start button clicked. this function calls manage disable and enable fields and call external function
+        """
+        #change flag. (True for grabbing)
+        self.__is_start__ = not(self.__is_start__)
+        #change button icon
+        GUIBackend.set_button_icon(self.camera_start_btn, self.start_stop_icon[self.__is_start__])
+        #enable and disable setting fields
+        self.__mange_fields_enable__()
+        #call exteral function as event
+        if self.__connection_event_function__ is not None:
+            self.__connection_event_function__(self.__is_start__)
+
+
+    def __mange_fields_enable__(self):
+        """mange which fields be enable when change start, stop
+        """
+        #enable fields corespond to __is_srart__
+        for fields_name in self.fields_enable_status[self.__is_start__]:
+            GUIBackend.set_enable(self.settings[fields_name])
+
+        #disable other fields corespond to __is_srart__
+        for fields_name in self.fields_enable_status[not(self.__is_start__)]:
+            GUIBackend.set_disable(self.settings[fields_name])
+
+        GUIBackend.set_disable_enable( self.devices_combobox, self.__is_start__ )
+
+    
+    def set_camera_devices(self, devices:list):
+        """set camera divices comboBox items
+
+        Args:
+            devices (list): list of camera devices
+        """
+        GUIBackend.set_combobox_items(self.devices_combobox, devices)
+
+
+    def get_camera_device(self,):
+        """returns camera diveces that selected in combobox
+        """
+        return GUIBackend.get_combobox_selected(self.devices_combobox)
+    
+    
+    def get_fps(self):
+        return GUIBackend.get_input_spinbox_value(self.fps_spinbox)
+    
+    def get_settings(self)-> dict:
+        """return settings in dictionary format
+
+        Returns:
+            dict: a dictionary like {'gain': 50 ,...}
+        """
+        res = {}
+        for sname, sfield in self.settings.items():
+            res[sname] = GUIBackend.get_input(sfield)
+        
+        return res
+
+    def set_settings(self, settings:dict):
+        """set defualt values to input's fields of settings
+
+        Args:
+            settings (dict): settings paramaeters. this is a dictionary like {'gain': 50 ,...}
+        """
+        for key , value in settings.items():
+            GUIBackend.set_input( self.settings[key], value )
+
+
+
+        
+
+class gradingSettingTab:
 
     def __init__(self, ui) -> None:
         self.ui = ui
@@ -1157,13 +1432,21 @@ if __name__ == '__main__':
 
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
-
     window = loader.load(main_ui_file, None)
     global_ui = GlobalUI(window)
     main_page = mainPage(window)
-    grading_setting_page = gradingSettingPage(window)
+    grading_setting_page = gradingSettingTab(window)
     calib_page = CalibrationPage(window)
     all_users_tab = AllUserTab(window)
+    camera_setting_tab = cameraSettingTab(window)
+
+    screen = app.primaryScreen()
+    print('Screen: %s' % screen.name())
+    size = screen.size()
+    print('Size: %d x %d' % (size.width(), size.height()))
+    rect = screen.availableGeometry()
+    print('Available: %d x %d' % (rect.width(), rect.height()))
+
     #------------------------------------------------------------
     main_page.set_warning_buttons_status('camera_connection', False)
     main_page.set_warning_buttons_status('camera_grabbing', False)
@@ -1203,6 +1486,15 @@ if __name__ == '__main__':
                                     {'username':'its.big', 'password':'********', 'role': 'admin'}])
     #------------------------------------------------------------
     
+    #------------------------------------------------------------
+    def test_change_cam_setting(arg):
+        print(arg)
+    camera_setting_tab.change_setting_event_connector(test_change_cam_setting)
+
+    #------------------------------------------------------------
+    #------------------------------------------------------------
+    #------------------------------------------------------------
+    #------------------------------------------------------------
     #------------------------------------------------------------
     window.show()
     

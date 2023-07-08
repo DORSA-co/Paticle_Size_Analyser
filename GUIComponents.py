@@ -11,6 +11,40 @@ TABEL_BUTTON_STYLE = """
         } 
     """
 
+SIDEBAR_BUTTON_SELECTED_STYLE = """
+QPushButton{
+	color: #ffffff;
+	min-height: 40px;
+	text-align: left;
+    margin-left:15px;
+	icon-size:25px;
+	background-color:rgb(0,0,0,0);
+
+    color:rgb(255, 205, 5);
+    font-size:14px;
+    font-weight:bold;
+    }
+
+"""
+
+
+SIDEBAR_BUTTON_STYLE = """
+QPushButton{
+	color: #ffffff;
+	min-height: 40px;
+	text-align: left;
+    margin-left:15px;
+	icon-size:25px;
+	background-color:rgb(0,0,0,0);
+    }
+
+    QPushButton:hover{
+    font-size:14px; 
+    font-weight:bold;
+}
+"""
+
+
 
 
 class editButton(QtWidgets.QPushButton):
@@ -51,6 +85,3 @@ class deleteButton(QtWidgets.QPushButton):
 
 
 
-
-def deleteButton2():
-    return QtWidgets.QPushButton('d')

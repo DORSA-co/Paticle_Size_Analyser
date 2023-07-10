@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="assets">
+    <file>Assets/icons/icons8-next-white-50.png</file>
+    <file>Assets/icons/icons8-previous-white-50.png</file>
     <file>Assets/icons/icons8-next-50.png</file>
     <file>Assets/icons/icons8-previous-50.png</file>
     <file>Assets/icons/icons8-export-48.png</file>

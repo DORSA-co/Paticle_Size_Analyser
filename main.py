@@ -1456,9 +1456,10 @@ if __name__ == '__main__':
 
 
     main_page.set_statistics_table_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
-    main_page.set_statistics_table_datas(datas=[['MEAN', 1,2,3,4],
+    main_page.set_statistics_table_datas(datas=[['Avrage', 1,2,3,4],
                                           ['STD', 5,1,5,4],
-                                          ['ovality', 5,1,5,4]
+                                          ['ovality', 5,1,5,4],
+                                          ['Variance', 5,1,5,4],
                                           ])
     
     

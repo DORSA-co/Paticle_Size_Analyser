@@ -1,4 +1,12 @@
-class userPage:
+import os
+import sys
+sys.path.append( os.getcwd() + "/uiUtils" )
+from guiBackend import GUIBackend
+
+
+
+
+class usersPageUI:
     def __init__(self, ui):
         self.registerTab = RegisterUserTab(ui)
         self.allUserTab = AllUserTab(ui)

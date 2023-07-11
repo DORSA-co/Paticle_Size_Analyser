@@ -4,7 +4,9 @@ import sys
 
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
 os.system('CMD /C pyside6-rcc Assets.qrc -o Assets.py')#PySide
-sys.path.append( os.getcwd() + "/pages_UI" )
+sys.path.append( os.getcwd() + "/pagesUI" )
+sys.path.append( os.getcwd() + "/uiUtils" )
+main_ui_file = 'main_UI.ui'
 
 #from PyQt5 import uic
 from PySide6 import QtWidgets, QtCore, QtGui 
@@ -15,16 +17,26 @@ import texts
 import Assets
 #from PySide6.QtChart import QChart, QChartView, QBarSet,QPercentBarSeries
 import time
-from Charts.BarChart import BarChart
 import GUIComponents
 import cv2
-main_ui_file = 'main_UI.ui'
 
-from settingUI import settingUI
 
-class UiHandeler:
+#Import Pages UI------------------------------------------
+from settingPageUI import settingPageUI
+from mainPageUI import mainPageUI
+from calibrationPageUI import calibrationPageUI
+from usersPageUI import usersPageUI
+#---------------------------------------------------------
+from guiBackend import GUIBackend
+
+class UIs:
     def __init__(self, ui):
-        self.setting = settingUI(ui)
+        self.__global_setting__ = GlobalUI(ui)
+
+        self.settingPage = settingPageUI(ui)
+        self.mainPage = mainPageUI(ui)
+        self.calibrationPage = calibrationPageUI(ui)
+        self.usersPage = usersPageUI(ui)
 
 class GlobalUI():
     """this class is used to build class for mainwindow to load GUI application
@@ -56,7 +68,7 @@ class GlobalUI():
         self._old_pos = None
         self.app_close_flag = False
 
-        webbrowser
+        
         # chrome_path_win = "C://Program Files//Google//Chrome//Application//chrome.exe"
         # chrome_path_linux = '/usr/bin/google-chrome %s'
         # if sys.platform.startswith('win'):
@@ -65,6 +77,8 @@ class GlobalUI():
             # webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path_linux))
 
         # button connector
+
+        self.current_page = ('main', 0)
 
         self.pages_index = {
             'main'       : 0,
@@ -128,6 +142,7 @@ class GlobalUI():
     def sidebar_menu_handler(self, pagename):
         def func():
             GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw, self.pages_index[pagename] )
+            self.current_page = (pagename, self.pages_index[pagename])
             for btn in self.sidebar_buttons.values():
                 btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
             
@@ -217,6 +232,8 @@ class GlobalUI():
             return True if returnValue == QtWidgets.QMessageBox.Ok else False
 
 
+    def get_current_page(self,):
+        return self.current_page
     # def mousePressEvent(self, event):
     #     """mouse press event for moving window
 
@@ -281,64 +298,59 @@ if __name__ == '__main__':
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
     window = loader.load(main_ui_file, None)
-    global_ui = GlobalUI(window)
-    main_page = mainPage(window)
-    grading_setting_page = gradingSettingTab(window)
-    calib_page = CalibrationPage(window)
-    all_users_tab = AllUserTab(window)
-    camera_setting_tab = cameraSettingTab(window)
-
-    screen = app.primaryScreen()
-    print('Screen: %s' % screen.name())
-    size = screen.size()
-    print('Size: %d x %d' % (size.width(), size.height()))
-    rect = screen.availableGeometry()
-    print('Available: %d x %d' % (rect.width(), rect.height()))
-
-    #------------------------------------------------------------
-    main_page.set_warning_buttons_status('camera_connection', False)
-    main_page.set_warning_buttons_status('camera_grabbing', False)
-    main_page.set_warning_buttons_status('illumination', False)
-    main_page.set_warning_buttons_status('tempreture', False)
+    #global_ui = GlobalUI(window)
+    all_uis = UIs(window)
 
 
 
-    main_page.set_statistics_table_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
-    main_page.set_statistics_table_datas(datas=[['Avrage', 1,2,3,4],
+    # screen = app.primaryScreen()
+    # print('Screen: %s' % screen.name())
+    # size = screen.size()
+    # print('Size: %d x %d' % (size.width(), size.height()))
+    # rect = screen.availableGeometry()
+    # print('Available: %d x %d' % (rect.width(), rect.height()))
+
+    # #------------------------------------------------------------
+    all_uis.mainPage.set_warning_buttons_status('camera_connection', False)
+    all_uis.mainPage.set_warning_buttons_status('camera_grabbing', False)
+    all_uis.mainPage.set_warning_buttons_status('illumination', False)
+    all_uis.mainPage.set_warning_buttons_status('tempreture', False)
+
+    all_uis.mainPage.set_statistics_table_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
+    all_uis.mainPage.set_statistics_table_datas(datas=[['Avrage', 1,2,3,4],
                                           ['STD', 5,1,5,4],
                                           ['ovality', 5,1,5,4],
                                           ['Variance', 5,1,5,4],
                                           ])
     
     
-    #------------------------------------------------------------
-    # #main_page.player_buttons_connect('start', lambda :main_page.set_warning_massage('dama balast'))
+    # #------------------------------------------------------------
     def test_func(idx, data, status, btn):
-            print(idx, data, status)
+             print(idx, data, status)
     
-    grading_setting_page.external_ranges_table_connector(test_func)
-    grading_setting_page.set_ranges_table_data([[1,4,6],[2,6,8]])
-    #------------------------------------------------------------
+    all_uis.settingPage.gradingSettingTab.external_ranges_table_connector(test_func)
+    all_uis.settingPage.gradingSettingTab.set_ranges_table_data([[1,4,6],[2,6,8]])
+    # #------------------------------------------------------------
 
-    calib_page.set_calib_tabel(['2022/12/01','18:30', '0.1', 'mean', '5'])
-    calib_page.write_calib_result(0.2, 0.1)
-    settings = calib_page.get_settings()
+    all_uis.calibrationPage.set_calib_tabel(['2022/12/01','18:30', '0.1', 'mean', '5'])
+    all_uis.calibrationPage.write_calib_result(0.2, 0.1)
+    settings = all_uis.calibrationPage.get_settings()
     print(settings)
 
-    #------------------------------------------------------------
-    def test_users_func(idx, users, status, btn):
-        print(users, status)
+    # #------------------------------------------------------------
+    # def test_users_func(idx, users, status, btn):
+    #     print(users, status)
 
-    all_users_tab.table_external_event_connector(test_users_func)
+    # all_users_tab.table_external_event_connector(test_users_func)
     
-    all_users_tab.set_users_table([{'username':'amir', 'password':'******', 'role': 'user'},
-                                    {'username':'its.big', 'password':'********', 'role': 'admin'}])
-    #------------------------------------------------------------
+    # all_users_tab.set_users_table([{'username':'amir', 'password':'******', 'role': 'user'},
+    #                                 {'username':'its.big', 'password':'********', 'role': 'admin'}])
+    # #------------------------------------------------------------
     
-    #------------------------------------------------------------
-    def test_change_cam_setting(arg):
-        print(arg)
-    camera_setting_tab.change_setting_event_connector(test_change_cam_setting)
+    # #------------------------------------------------------------
+    # def test_change_cam_setting(arg):
+    #     print(arg)
+    # camera_setting_tab.change_setting_event_connector(test_change_cam_setting)
 
     #------------------------------------------------------------
     #------------------------------------------------------------
@@ -348,39 +360,8 @@ if __name__ == '__main__':
 
     from main_API import main_API
 
-    api = main_API(global_ui)
-    #collector = Collector()
-
-    #get avialble cameras That Are GigE
-
-    #-----------------------------------------------------------------
-    # #get all avialble cameras 
-    # all_cameras = collector.get_all_cameras(camera_class=None)
-    # print(all_cameras)
-
-    # #-----------------------------------------------------------------
-    # #get specific camera
-    # cam = collector.get_camera_by_serial('23804186')
-    # print(cam)
-    # cam.Operations.start_grabbing()
-    # #define your ideal pixel_type, defualt is BGR8
-    # cam.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
-    # #-----------------------------------------------------------------
-    # img = cam.getPictures()
-    # cv2.imshow('img', img)
-    # cv2.waitKey(20)
-
-    
-
-    # cth = cameraThread(cam)
-    # thread = QThread()
-    # cth.moveToThread(thread)
-    # thread.started.connect(cth.grabber)
-    # cth.success_grab_signal.connect(test)
-    # thread.start()
-
-
-
+    api = main_API(all_uis)
+   
 
     window.show()
     

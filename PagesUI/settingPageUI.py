@@ -1,7 +1,13 @@
+import os
+import sys
+sys.path.append( os.getcwd() + "/uiUtils" )
+from guiBackend import GUIBackend
+import GUIComponents
 
-class settingUI:
+
+class settingPageUI:
     def __init__(self, ui) -> None:
-        self.camera_setting_ui = cameraSettingTab(ui)
+        self.cameraSettingTab = cameraSettingTab(ui)
         self.gradingSettingTab = gradingSettingTab(ui)
 
 
@@ -18,6 +24,7 @@ class cameraSettingTab:
         self.camera_start_btn = self.ui.settingpage_camera_start_btn
         self.save_btn = self.ui.settingpage_camera_save_btn
         self.restor_btn = self.ui.settingpage_camera_restore_btn
+        self.live_img_lbl = self.ui.settingpage_camera_live_lbl
         self.__is_start__ = False
         self.__connection_event_function__ = None
         self.__change_setting_event_function__ = None
@@ -164,7 +171,13 @@ class cameraSettingTab:
 
 
 
+    def set_settings_spinbox_ranges(self, args: dict):
+        for name, allowable_range in args.items():
+            GUIBackend.set_spinbox_range( self.settings[name], allowable_range )
 
+
+    def show_live_image(self, img):
+        GUIBackend.set_label_image( self.live_img_lbl, img )
 
 
 

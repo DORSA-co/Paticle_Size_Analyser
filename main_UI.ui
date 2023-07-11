@@ -857,7 +857,7 @@ Line{
 </string>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1575,7 +1575,7 @@ QPushButton
                      <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
                       <property name="minimumSize">
                        <size>
-                        <width>114</width>
+                        <width>112</width>
                         <height>40</height>
                        </size>
                       </property>
@@ -2688,7 +2688,14 @@ background-color:rgb(175, 175, 175);
                       </widget>
                      </item>
                      <item row="0" column="2">
-                      <widget class="QSpinBox" name="settingpage_camera_exposure_spinbox"/>
+                      <widget class="QSpinBox" name="settingpage_camera_exposure_spinbox">
+                       <property name="maximum">
+                        <number>20000</number>
+                       </property>
+                       <property name="value">
+                        <number>10000</number>
+                       </property>
+                      </widget>
                      </item>
                      <item row="0" column="3">
                       <spacer name="horizontalSpacer_13">
@@ -2762,10 +2769,27 @@ background-color:rgb(175, 175, 175);
                       </widget>
                      </item>
                      <item row="1" column="2">
-                      <widget class="QSpinBox" name="settingpage_camera_height_spinbox"/>
+                      <widget class="QSpinBox" name="settingpage_camera_height_spinbox">
+                       <property name="maximum">
+                        <number>5000</number>
+                       </property>
+                       <property name="value">
+                        <number>2000</number>
+                       </property>
+                      </widget>
                      </item>
                      <item row="0" column="2">
-                      <widget class="QSpinBox" name="settingpage_camera_width_spinbox"/>
+                      <widget class="QSpinBox" name="settingpage_camera_width_spinbox">
+                       <property name="maximum">
+                        <number>5000</number>
+                       </property>
+                       <property name="singleStep">
+                        <number>10</number>
+                       </property>
+                       <property name="value">
+                        <number>2400</number>
+                       </property>
+                      </widget>
                      </item>
                      <item row="0" column="3">
                       <spacer name="horizontalSpacer_14">
@@ -2910,13 +2934,13 @@ max-height : 800px;
                      <widget class="QLabel" name="label_13">
                       <property name="minimumSize">
                        <size>
-                        <width>47</width>
+                        <width>46</width>
                         <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>47</width>
+                        <width>46</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -2929,13 +2953,13 @@ max-height : 800px;
                      <widget class="QLabel" name="label_15">
                       <property name="minimumSize">
                        <size>
-                        <width>47</width>
+                        <width>46</width>
                         <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>47</width>
+                        <width>46</width>
                         <height>16777215</height>
                        </size>
                       </property>
@@ -4124,9 +4148,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-54</y>
-                <width>1143</width>
-                <height>1519</height>
+                <y>0</y>
+                <width>1147</width>
+                <height>1503</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -4602,14 +4626,14 @@ QHeaderView::section:vertical
                    <property name="columnCount">
                     <number>5</number>
                    </property>
-                   <attribute name="horizontalHeaderMinimumSectionSize">
-                    <number>50</number>
-                   </attribute>
                    <attribute name="horizontalHeaderDefaultSectionSize">
                     <number>180</number>
                    </attribute>
                    <attribute name="horizontalHeaderHighlightSections">
                     <bool>true</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderMinimumSectionSize">
+                    <number>50</number>
                    </attribute>
                    <attribute name="horizontalHeaderStretchLastSection">
                     <bool>false</bool>

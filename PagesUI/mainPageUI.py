@@ -1,4 +1,13 @@
-class mainPage:
+import os
+import sys
+sys.path.append( os.getcwd() + "/uiUtils" )
+from guiBackend import GUIBackend
+import Charts
+
+
+
+
+class mainPageUI:
     
     def __init__(self, ui):
         self.ui = ui
@@ -43,7 +52,7 @@ class mainPage:
         }
 
 
-        self.grading_chart = BarChart(
+        self.grading_chart = Charts.BarChart(
                     chart_title = None,
                     chart_title_color = '#404040',
                     axisX_label = 'Rages',

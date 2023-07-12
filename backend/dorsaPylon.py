@@ -334,6 +334,12 @@ class CameraParms:
     
     def __get_available_value__(self, parameter):
         return parameter.Symbolics
+
+    def __get_value_range__(self, parameter):
+        max_v = parameter.Max
+        min_v = parameter.Min
+        return min_v, max_v
+
     
 
 
@@ -412,6 +418,22 @@ class CameraParms:
         node = self.camera_object.camera_device.NodeMap.GetNode(node_name)
         return self.__get_available_value__(node)
 
+    def get_node_range(self, node_name:str) -> tuple:
+        """returns range of allowable values for specific numberical node by its name
+        Examples: 
+            >>> camera.Parms.allowable('gainRaw')
+            >>> (0, 200)
+
+        Args:
+            node_name (str): node name. you can find it by search in camera nodes using 
+            ```Camera.search_in_nodes ``` method 
+        Returns:
+            tuple: (low, high) range
+        """
+        node = self.camera_object.camera_device.NodeMap.GetNode(node_name)
+        return self.__get_value_range__(node)
+
+
     def set_gain(self, gain: int) -> None:
         """set gain of camera"""
         if self.camera_object.Infos.is_PRO():
@@ -426,6 +448,12 @@ class CameraParms:
         else:
             return self.__get_value__( self.camera_object.camera_device.GainRaw)
 
+    def get_gain_range(self) -> tuple[int, int]:
+        """get allowable range of gain of camera"""
+        if self.camera_object.Infos.is_PRO():
+            return self.__get_value_range__( self.camera_object.camera_device.Gain)
+        else:
+            return self.__get_value_range__( self.camera_object.camera_device.GainRaw)
 
 
     def set_exposureTime(self, exposure: int) -> None:
@@ -441,6 +469,13 @@ class CameraParms:
             return self.__get_value__( self.camera_object.camera_device.ExposureTime)
         else:
             return self.__get_value__(self.camera_object.camera_device.ExposureTimeAbs)
+
+    def get_exposureTime_range(self) -> tuple [int, int]:
+        """get allowable range of ExposureTime of camera"""
+        if self.camera_object.Infos.is_PRO():
+            return self.__get_value_range__( self.camera_object.camera_device.ExposureTime)
+        else:
+            return self.__get_value_range__(self.camera_object.camera_device.ExposureTimeAbs)
 
 
     def set_roi(self, height: int, width: int, offset_x: int, offset_y: int) -> None:
@@ -469,14 +504,26 @@ class CameraParms:
         """return roi parameters of camera
 
         Returns:
-            tuple[ int, int, int, int]: offset_x, offset_y, h, w
+            tuple[ int, int, int, int]: h, w, offset_x, offset_y
         """
         w = self.__get_value__( self.camera_object.camera_device.Width)
         h = self.__get_value__( self.camera_object.camera_device.Height)
         offset_x = self.__get_value__( self.camera_object.camera_device.OffsetX)
         offset_y = self.__get_value__( self.camera_object.camera_device.OffsetY)
-        return offset_x, offset_y, h, w
+        return h, w, offset_x, offset_y
 
+
+    def get_roi_range(self,) -> tuple[ tuple, tuple, tuple, tuple]:
+        """return allowable range of roi parameters of camera
+
+        Returns:
+            tuple[ tuple, tuple, tuple, tuple]: __get_value_range__
+        """
+        w_range = self.__get_value_range__( self.camera_object.camera_device.Width)
+        h_range = self.__get_value_range__( self.camera_object.camera_device.Height)
+        offset_x_range = self.__get_value_range__( self.camera_object.camera_device.OffsetX)
+        offset_y_range = self.__get_value_range__( self.camera_object.camera_device.OffsetY)
+        return h_range, w_range, offset_x_range, offset_y_range 
     
     def set_trigger_option(self, source: str, selector = Trigger.selector.frame_start) -> None:
         """setup trigger option ( trigger source and trigger selector) 
@@ -686,8 +733,8 @@ class Collector:
         cameras = self.get_all_cameras()
         serial_list = []
         for cam in cameras:
-            device_info = cam.GetDeviceInfo()
-            serial_list.append(device_info.GetSerialNumber())
+            sn = cam.Infos.get_serialnumber()
+            serial_list.append(sn)
         return serial_list
 
 

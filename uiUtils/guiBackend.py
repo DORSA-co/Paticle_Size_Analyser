@@ -1,3 +1,6 @@
+from PySide6 import QtWidgets, QtCore, QtGui 
+from functools import partial
+
 class GUIBackend:
 
 
@@ -305,6 +308,15 @@ class GUIBackend:
             func (): 
         """
         inpt.valueChanged.connect(func)
+
+    def set_spinbox_range(inpt, value_range: tuple[int, int]):
+        """set range of spinbox
+
+        Args:
+            inpt (QtWidgets.QSpinBox): Qt spinbox object
+            value_range (tuple[int, int]): (low_range, highe_range )
+        """
+        inpt.setRange(*value_range)
 
 
     #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------    

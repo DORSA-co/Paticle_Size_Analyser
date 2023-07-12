@@ -1,14 +1,20 @@
+import os
+import sys
+sys.path.append( os.getcwd() + "/uiUtils" )
+from guiBackend import GUIBackend
+import GUIComponents
 
-class settingUI:
+
+class settingPageUI:
     def __init__(self, ui) -> None:
-        self.camera_setting_ui = cameraSettingTab(ui)
-        self.gradingSettingTab = gradingSettingTab(ui)
+        self.cameraSettingTab = cameraSettingTabUI(ui)
+        self.gradingSettingTab = gradingSettingTabUI(ui)
 
 
 
 
 
-class cameraSettingTab:
+class cameraSettingTabUI:
 
     def __init__(self, ui) -> None:
         self.ui = ui
@@ -18,6 +24,7 @@ class cameraSettingTab:
         self.camera_start_btn = self.ui.settingpage_camera_start_btn
         self.save_btn = self.ui.settingpage_camera_save_btn
         self.restor_btn = self.ui.settingpage_camera_restore_btn
+        self.live_img_lbl = self.ui.settingpage_camera_live_lbl
         self.__is_start__ = False
         self.__connection_event_function__ = None
         self.__change_setting_event_function__ = None
@@ -164,6 +171,13 @@ class cameraSettingTab:
 
 
 
+    def set_settings_spinbox_ranges(self, args: dict):
+        for name, allowable_range in args.items():
+            GUIBackend.set_spinbox_range( self.settings[name], allowable_range )
+
+
+    def show_live_image(self, img):
+        GUIBackend.set_label_image( self.live_img_lbl, img )
 
 
 
@@ -176,8 +190,7 @@ class cameraSettingTab:
 
 
 
-
-class gradingSettingTab:
+class gradingSettingTabUI:
 
     def __init__(self, ui) -> None:
         self.ui = ui
@@ -190,19 +203,36 @@ class gradingSettingTab:
         self.ranges_table = self.ui.settingpage_grading_ranges_table
         self.standards_table = self.ui.settingpage_grading_standards_table
         self.range_name_input = self.ui.settingpage_grading_name_inpt
+        self.add_range_btn = self.ui.settingpage_pelletizing_add_range_btn
+        self.cancel_btn = self.ui.settingpage_grading_cancel_btn
+        self.warning_lbl = self.ui.settingpage_grading_warning_lbl
+
         self.ranges_table_event_function = None
+        
 
 
         self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'edit', 'delete']
         GUIBackend.set_table_dim(self.ranges_table, 1 , len(self.ranges_table_headers))
         GUIBackend.set_table_cheaders(self.ranges_table, headers=self.ranges_table_headers)
-        GUIBackend.button_connector(self.ui.settingpage_grading_cancel_btn, self.__clear_settings__)
+        GUIBackend.button_connector(self.cancel_btn, self.__clear_settings__)
+        GUIBackend.spinbox_connector( self.ranges_input['lower'] , self.__validation_input_ranges__ )
 
+        #hide warning
+        self.show_warning_massage(None)
+
+    def show_warning_massage(self, txt):
+        """show warning in ui
+            - hide warning by pass 'None' to text
+        """
+        if txt is None:
+            GUIBackend.set_wgt_visible(self.warning_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.warning_lbl, True)
+            GUIBackend.set_label_text( self.warning_lbl, txt)
 
     def __clear_settings__(self):
         #clear 
-        for wdgt in self.ranges_input.values():
-            GUIBackend.set_spinbox_value(wdgt, 0)
+        self.clear_input_ranges()
 
         GUIBackend.set_input_text(self.range_name_input,"")
         #clear tabel
@@ -216,14 +246,33 @@ class gradingSettingTab:
 
         Args:
             func (_type_): clicked event function
+        """        
+        GUIBackend.button_connector( self.add_range_btn, func )
+
+    
+    def get_range_inputs(self)-> dict:
+        """returns low and upper input fields
+
+        Returns:
+            dict: {'lower': low_value, 'upper': up_value}
         """
         data = {}
         for key in self.ranges_input.keys():
-            data[key] = self.ui.get_input_spinbox_value( 
+            data[key] = GUIBackend.get_input_spinbox_value( 
                 self.ranges_input[key]
              )
-        
-        GUIBackend.button_connector( self.ui.settingpage_grading_add_range_btn, func(data) )
+        return data
+
+    def clear_input_ranges(self):
+        for wdgt in self.ranges_input.values():
+            GUIBackend.set_spinbox_value(wdgt, 0)
+
+    
+    def __validation_input_ranges__(self):
+        """make upper input ranges from (lower, 2500)
+        """
+        low = GUIBackend.get_input_spinbox_value( self.ranges_input['lower']) 
+        GUIBackend.set_spinbox_range(self.ranges_input['upper'], (low, 1e5))
         
     
     def external_ranges_table_connector(self, func):
@@ -265,12 +314,19 @@ class gradingSettingTab:
         GUIBackend.set_table_dim(self.ranges_table, row=records_count, col=None)
         
         for i, row_data in enumerate(datas):
-            GUIBackend.set_table_row(self.ranges_table, row=i, values=row_data)
+            
+            
+            #set number of record
+            GUIBackend.set_table_cell_value(self.ranges_table, (i, 0), i + 1)
+            
+            #set row datas
+            for j in range(len(row_data)):
+                GUIBackend.set_table_cell_value(self.ranges_table, (i, j+1), row_data[j])
+            
 
             #define edit and delete button
             edit_btn = GUIComponents.editButton()
             del_btn = GUIComponents.deleteButton()
-
 
             #connect buttons to event function 
             GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
@@ -278,8 +334,8 @@ class gradingSettingTab:
 
             #insert buttons into table
             item_count = len(row_data)
-            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count), edit_btn)
-            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count+1), del_btn)
+            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 1), edit_btn)
+            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 2), del_btn)
 
 
 

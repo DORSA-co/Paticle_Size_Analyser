@@ -325,12 +325,6 @@ if __name__ == '__main__':
     
     
     # #------------------------------------------------------------
-    def test_func(idx, data, status, btn):
-             print(idx, data, status)
-    
-    all_uis.settingPage.gradingSettingTab.external_ranges_table_connector(test_func)
-    all_uis.settingPage.gradingSettingTab.set_ranges_table_data([[1,4,6],[2,6,8]])
-    # #------------------------------------------------------------
 
     all_uis.calibrationPage.set_calib_tabel(['2022/12/01','18:30', '0.1', 'mean', '5'])
     all_uis.calibrationPage.write_calib_result(0.2, 0.1)
@@ -346,11 +340,6 @@ if __name__ == '__main__':
     # all_users_tab.set_users_table([{'username':'amir', 'password':'******', 'role': 'user'},
     #                                 {'username':'its.big', 'password':'********', 'role': 'admin'}])
     # #------------------------------------------------------------
-    
-    # #------------------------------------------------------------
-    # def test_change_cam_setting(arg):
-    #     print(arg)
-    # camera_setting_tab.change_setting_event_connector(test_change_cam_setting)
 
     #------------------------------------------------------------
     #------------------------------------------------------------

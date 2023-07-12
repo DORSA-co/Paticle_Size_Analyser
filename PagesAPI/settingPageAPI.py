@@ -2,21 +2,24 @@ import os, sys
 sys.path.append( os.getcwd() + "/pages_UI" )
 sys.path.append( os.getcwd() + "/backend" )
 from dorsaPylon import Collector
+
 from settingPageUI import settingPageUI
 
 class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database, camera):
         self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database, camera)
+        self.gradingSetting = gradingSettingTabAPI(ui.gradingSettingTab)
 
 
 class cameraSettingTabAPI:
 
-    def __init__(self, ui: settingPageUI ,database, camera):
+    def __init__(self, ui ,database, camera):
         self.ui = ui
         self.database = database
         self.camera = camera
         self.camera_collector  = Collector()
         self.is_playing = False
+
         
         self.set_camera_parms_funcs = {
             'gain': self.camera.Parms.set_gain,
@@ -67,8 +70,6 @@ class cameraSettingTabAPI:
         
         else:
             self.camera.Operations.stop_grabbing()
-        
-        
 
     
     def show_live_image(self, img):
@@ -76,3 +77,48 @@ class cameraSettingTabAPI:
             self.ui.show_live_image(img)
 
         
+class gradingSettingTabAPI:
+
+    def __init__(self, ui, ):
+        self.ui = ui
+        self.new_standard_ranges = []
+
+        self.ui.add_range_button_connector(self.add_range)
+        self.ui.external_ranges_table_connector(self.modify_new_standard_range)
+
+    
+    def add_range(self,):
+        range_data = self.ui.get_range_inputs()
+        low = range_data['lower']
+        high = range_data['upper']
+
+        if low != high:
+            for _range_ in self.new_standard_ranges:
+                if ( low < _range_[1] and high >= _range_[1] ) or ( low <= _range_[0] and high > _range_[0] ):
+                    self.ui.show_warning_massage("Warning: Ranges cannot overlap")
+                    return
+
+            self.new_standard_ranges.append( [ low, high ])
+            self.new_standard_ranges.sort( key= lambda x:x[0])
+
+            self.ui.clear_input_ranges()
+            self.ui.set_ranges_table_data(self.new_standard_ranges)
+
+            self.ui.show_warning_massage(None)
+
+        else:
+            self.ui.show_warning_massage("Warning: Lower and Upper couldn't be equal")
+
+
+    
+    def modify_new_standard_range(self,idx, data, status, btn):
+        if status == 'delete':
+            #remove range from list
+            self.new_standard_ranges.pop(idx)
+            #refresh table
+            self.ui.clear_input_ranges()
+            self.ui.set_ranges_table_data(self.new_standard_ranges)
+
+        
+        elif status =='edit':
+            print('e')

@@ -332,10 +332,7 @@ if __name__ == '__main__':
     print(settings)
 
     #------------------------------------------------------------
-    standards = [
-        {'name': 'gondle1', 'ranges':[[6,8], [8,10], [10,12], [12,14]]}
-    ]
-    all_uis.settingPage.gradingSettingTab.set_standards_table_data(standards)
+    
 
     # #------------------------------------------------------------
     # def test_users_func(idx, users, status, btn):

@@ -2350,7 +2350,8 @@ QHeaderView::section {
     background-color: rgb(6, 76, 130);
 	color: #ffffff;
     padding: 4px;
-    font-size: 10pt;
+    font-size: 16pt;
+	font-weight:bold;
     border-style: none;
     border-bottom: 1px solid #fffff8;
     border-right: 1px solid #fffff8;
@@ -2363,9 +2364,19 @@ QHeaderView::section:horizontal
 
 QHeaderView::section:vertical
 {
-    border-left: 1px solid #fffff8;
+    border-left: 1px solid #fffff8;	
 }
 
+
+QTableWidget{
+	font-size: 16px;
+	color:rgb(50, 50, 50);
+}
+
+QTableWidget::item
+{
+   padding: 10px;
+}
 </string>
                       </property>
                       <property name="frameShape">
@@ -2518,6 +2529,12 @@ QHeaderView::section:vertical
                </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_3">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="title">
                   <string>Standards</string>
                  </property>
@@ -2530,7 +2547,8 @@ QHeaderView::section {
     background-color: rgb(6, 76, 130);
 	color: #ffffff;
     padding: 4px;
-    font-size: 10pt;
+    font-size: 16pt;
+	font-weight:bold;
     border-style: none;
     border-bottom: 1px solid #fffff8;
     border-right: 1px solid #fffff8;
@@ -2543,13 +2561,23 @@ QHeaderView::section:horizontal
 
 QHeaderView::section:vertical
 {
-    border-left: 1px solid #fffff8;
+    border-left: 1px solid #fffff8;	
 }
 
+
+QTableWidget{
+	font-size: 16px;
+	color:rgb(50, 50, 50);
+}
+
+QTableWidget::item
+{
+   padding: 10px;
+}
 </string>
                     </property>
                     <property name="sizeAdjustPolicy">
-                     <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
                     </property>
                     <property name="editTriggers">
                      <set>QAbstractItemView::NoEditTriggers</set>
@@ -2563,6 +2591,9 @@ QHeaderView::section:vertical
                     <attribute name="horizontalHeaderDefaultSectionSize">
                      <number>100</number>
                     </attribute>
+                    <attribute name="horizontalHeaderMinimumSectionSize">
+                     <number>60</number>
+                    </attribute>
                     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                      <bool>false</bool>
                     </attribute>
@@ -2575,8 +2606,14 @@ QHeaderView::section:vertical
                     <attribute name="verticalHeaderCascadingSectionResizes">
                      <bool>false</bool>
                     </attribute>
+                    <attribute name="verticalHeaderDefaultSectionSize">
+                     <number>40</number>
+                    </attribute>
                     <attribute name="verticalHeaderHighlightSections">
                      <bool>true</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderMinimumSectionSize">
+                     <number>23</number>
                     </attribute>
                     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
                      <bool>false</bool>

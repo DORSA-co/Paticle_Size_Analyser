@@ -358,6 +358,21 @@ class GUIBackend:
         if row is not None:
             table.setRowCount(row)
 
+    def set_cell_width_content_adjust(table: QtWidgets.QTableWidget, indexes:list[int] = None):
+        """adjust cell width based on its content
+
+        Args:
+            table (QtWidgets.QTableWidget): Qt tableWidget object
+            indexes (list[int]): columns indexes that you want adjust. if None, all columns size policy whould be change
+        """
+        headers = table.horizontalHeader()
+        hcount = headers.count()
+
+        if indexes is None:
+            indexes = range(hcount)
+
+        for i in indexes:
+            headers.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents )
     
     def clear_table(table: QtWidgets.QTableWidget, clear_header=False):
         """_summary_

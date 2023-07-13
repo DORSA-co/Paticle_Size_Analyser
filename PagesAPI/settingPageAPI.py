@@ -81,13 +81,24 @@ class gradingSettingTabAPI:
     def __init__(self, ui, ):
         self.ui = ui
         self.new_standard_ranges = []
+        #SHOULD BE CHANGED !
+        self.standards_list = [
+        {'name': 'gondle1', 'ranges':[[6,8], [8,10], [10,12], [12,14]]}
+        ]
+        self.ui.external_standards_table_connector(self.modify_standards_range) #Delete This line
+        self.ui.set_standards_table_data(self.standards_list)
+        #SHOULD BE CHANGED !
         
 
         self.ui.add_range_button_connector(self.add_range)
+        self.ui.cancel_button_connector(self.cancel_define_new_standard)
         self.ui.external_ranges_table_connector(self.modify_new_standard_range)
+        self.ui.external_standards_table_connector(self.modify_standards_range)
 
 
-    
+    def cancel_define_new_standard(self,):
+        self.new_standard_ranges = []
+
     def add_range(self,):
         range_data = self.ui.get_range_inputs()
         low = range_data['lower']
@@ -119,6 +130,20 @@ class gradingSettingTabAPI:
             #refresh table
             self.ui.clear_input_ranges()
             self.ui.set_ranges_table_data(self.new_standard_ranges)
+
+        
+        elif status =='edit':
+            print('e')
+
+
+
+    def modify_standards_range(self,idx, data, status, btn):
+        if status == 'delete':
+            print('d')
+            #remove range from list
+            self.standards_list.pop(idx)
+            #refresh table
+            self.ui.set_standards_table_data(self.standards_list)
 
         
         elif status =='edit':

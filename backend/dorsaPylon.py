@@ -187,21 +187,22 @@ class Camera:
             np.ndarray: captured image
         """
         res_img = None
-        #-------------------------------------------------------------
-        if grabResult is None:
-            if self.Status.is_grabbing():
-                grabResult = self.camera_device.RetrieveResult(self.timeout, pylon.TimeoutHandling_ThrowException)
+        if self.Status.is_grabbing():
+            #-------------------------------------------------------------
+            if grabResult is None:
+                if self.Status.is_grabbing():
+                    grabResult = self.camera_device.RetrieveResult(self.timeout, pylon.TimeoutHandling_ThrowException)
+                else:
+                    print(ErrorAndWarnings.not_grabbing())
+            #-------------------------------------------------------------
+            if grabResult is not None and grabResult.GrabSucceeded():
+                image = self.converter.Convert(grabResult)
+                res_img = image.Array
+            elif grabResult is not None:
+                print( ErrorAndWarnings.grab_error(grabResult.ErrorCode, grabResult.ErrorDescription))
             else:
                 print(ErrorAndWarnings.not_grabbing())
-        #-------------------------------------------------------------
-        if grabResult is not None and grabResult.GrabSucceeded():
-            image = self.converter.Convert(grabResult)
-            res_img = image.Array
-        elif grabResult is not None:
-            print( ErrorAndWarnings.grab_error(grabResult.ErrorCode, grabResult.ErrorDescription))
-        else:
-            print(ErrorAndWarnings.not_grabbing())
-        #-------------------------------------------------------------
+            #-------------------------------------------------------------
         if res_img is None:
             if img_when_error == 'zero':
                 res_img = self.build_zero_image()

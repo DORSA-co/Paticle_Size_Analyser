@@ -310,7 +310,7 @@ if __name__ == '__main__':
     # rect = screen.availableGeometry()
     # print('Available: %d x %d' % (rect.width(), rect.height()))
 
-    # #------------------------------------------------------------
+    #------------------------------------------------------------
     all_uis.mainPage.set_warning_buttons_status('camera_connection', False)
     all_uis.mainPage.set_warning_buttons_status('camera_grabbing', False)
     all_uis.mainPage.set_warning_buttons_status('illumination', False)
@@ -330,6 +330,12 @@ if __name__ == '__main__':
     all_uis.calibrationPage.write_calib_result(0.2, 0.1)
     settings = all_uis.calibrationPage.get_settings()
     print(settings)
+
+    #------------------------------------------------------------
+    standards = [
+        {'name': 'gondle1', 'ranges':[[6,8], [8,10], [10,12], [12,14]]}
+    ]
+    all_uis.settingPage.gradingSettingTab.set_standards_table_data(standards)
 
     # #------------------------------------------------------------
     # def test_users_func(idx, users, status, btn):

@@ -70,7 +70,6 @@ class cameraSettingTabAPI:
         
         else:
             self.camera.Operations.stop_grabbing()
-
     
     def show_live_image(self, img):
         if self.is_playing:
@@ -82,9 +81,11 @@ class gradingSettingTabAPI:
     def __init__(self, ui, ):
         self.ui = ui
         self.new_standard_ranges = []
+        
 
         self.ui.add_range_button_connector(self.add_range)
         self.ui.external_ranges_table_connector(self.modify_new_standard_range)
+
 
     
     def add_range(self,):

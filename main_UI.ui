@@ -1826,7 +1826,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
               <enum>QTabWidget::Rounded</enum>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>1</number>
              </property>
              <property name="documentMode">
               <bool>false</bool>
@@ -2524,9 +2524,74 @@ QHeaderView::section:vertical
                  <layout class="QVBoxLayout" name="verticalLayout_17">
                   <item>
                    <widget class="QTableWidget" name="settingpage_grading_standards_table">
+                    <property name="styleSheet">
+                     <string notr="true">
+QHeaderView::section {
+    background-color: rgb(6, 76, 130);
+	color: #ffffff;
+    padding: 4px;
+    font-size: 10pt;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+    border-right: 1px solid #fffff8;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fffff8;
+}
+
+</string>
+                    </property>
+                    <property name="sizeAdjustPolicy">
+                     <enum>QAbstractScrollArea::AdjustToContents</enum>
+                    </property>
                     <property name="editTriggers">
                      <set>QAbstractItemView::NoEditTriggers</set>
                     </property>
+                    <property name="rowCount">
+                     <number>2</number>
+                    </property>
+                    <property name="columnCount">
+                     <number>4</number>
+                    </property>
+                    <attribute name="horizontalHeaderDefaultSectionSize">
+                     <number>100</number>
+                    </attribute>
+                    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="horizontalHeaderStretchLastSection">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderVisible">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderCascadingSectionResizes">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderHighlightSections">
+                     <bool>true</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                     <bool>false</bool>
+                    </attribute>
+                    <row/>
+                    <row/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <item row="0" column="0">
+                     <property name="text">
+                      <string>dddddddddddddddddddddddddddddddd</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                  </layout>
@@ -4178,7 +4243,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>790</width>
+                <width>1147</width>
                 <height>1503</height>
                </rect>
               </property>

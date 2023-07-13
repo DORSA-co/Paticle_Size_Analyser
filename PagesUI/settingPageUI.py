@@ -209,16 +209,23 @@ class gradingSettingTabUI:
 
         self.ranges_table_event_function = None
         
-
-
         self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'edit', 'delete']
+        self.standards_table_headers = ['no', 'name', 'ranges', 'edit', 'delete']
+
+        #set tables dim
         GUIBackend.set_table_dim(self.ranges_table, 1 , len(self.ranges_table_headers))
+        GUIBackend.set_table_dim(self.standards_table, 1 , len(self.standards_table_headers))
+
+        #set tables headers
         GUIBackend.set_table_cheaders(self.ranges_table, headers=self.ranges_table_headers)
+        GUIBackend.set_table_cheaders(self.standards_table, headers=self.standards_table_headers)
+
         GUIBackend.button_connector(self.cancel_btn, self.__clear_settings__)
         GUIBackend.spinbox_connector( self.ranges_input['lower'] , self.__validation_input_ranges__ )
 
         #hide warning
         self.show_warning_massage(None)
+
 
     def show_warning_massage(self, txt):
         """show warning in ui
@@ -338,6 +345,51 @@ class gradingSettingTabUI:
             GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 2), del_btn)
 
 
-
     def set_standards_table_data(self, datas:list[list]):
-       pass
+        """insert standards range into table
+        Args:
+            datas (list[list]): list of row lits datas
+        """
+        #assert self.ranges_table_external_event_function is not None, "ERROR: First determine an event Function for edit and delete button by 'gradingSettingPage.external_ranges_table_connector' method "
+        
+        #set row count
+        records_count = len(datas)
+        GUIBackend.set_table_dim(self.standards_table, row=records_count, col=None)
+        
+        prepared_datas = []
+        for standard in datas:
+            res_standard = {}
+            res_standard['name'] = standard['name']
+            
+            ranges_txt = ""
+            for range_ in standard['ranges']:
+                ranges_txt += f"({range_[0]}mm, {range_[1]}mm) - "
+            
+            res_standard['ranges'] = ranges_txt
+            
+            prepared_datas.append([ standard['name'], ranges_txt ])
+
+
+        for i, row_data in enumerate(prepared_datas):
+            
+            #set number of record
+            GUIBackend.set_table_cell_value(self.standards_table, (i, 0), i + 1)
+            
+            #set row datas
+            for j in range(len(row_data)):
+                GUIBackend.set_table_cell_value(self.standards_table, (i, j+1), row_data[j])
+            
+
+            #define edit and delete button
+            edit_btn = GUIComponents.editButton()
+            del_btn = GUIComponents.deleteButton()
+
+            #connect buttons to event function 
+            #GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
+            #GUIBackend.button_connector( del_btn, self.ranges_table_event(i, datas[i], 'delete',  del_btn ) )
+
+            #insert buttons into table
+            item_count = len(row_data)
+            GUIBackend.set_table_cell_widget(self.standards_table, (i, item_count + 1), edit_btn)
+            GUIBackend.set_table_cell_widget(self.standards_table, (i, item_count + 2), del_btn)
+

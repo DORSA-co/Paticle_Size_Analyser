@@ -15,12 +15,16 @@ class cameraThread(QObject):
     
     def __grabber__(self,):
         while True:
-            if self.camera.Status.is_grabbing():
-                img = self.camera.getPictures(img_when_error=None)
-                if img is not None:
-                    self.success_grab_signal.emit()
-                time.sleep(0.05)
+            try:
+                if self.camera.Status.is_grabbing():
+                    img = self.camera.getPictures(img_when_error=None)
+                    if img is not None:
+                        self.success_grab_signal.emit()
+                time.sleep(0.01)
 
+            except:
+                print('camera Error happend in thread while !')
+            
     def connect_success_grab_to_function(self, func):
         self.func = func
     

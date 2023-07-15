@@ -1,6 +1,3 @@
-import os, sys
-sys.path.append( os.getcwd() + "/pages_UI" )
-sys.path.append( os.getcwd() + "/backend" )
 from dorsaPylon import Collector
 
 from settingPageUI import settingPageUI
@@ -9,6 +6,9 @@ class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database, camera):
         self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database, camera)
         self.gradingSetting = gradingSettingTabAPI(ui.gradingSettingTab)
+
+    def startup(self,):
+        self.cameraSetting.startup()
 
 
 class cameraSettingTabAPI:
@@ -39,6 +39,9 @@ class cameraSettingTabAPI:
         self.ui.start_stop_event_connector( self.play_stop_camera )
         self.set_allowed_values_camera_setting()
 
+    def startup(self):
+        print('cameraTabApi startup')
+        self.ui.reset()
 
     def update_camera_setting(self, settings = None):
         #when event happend, settings got value from ui

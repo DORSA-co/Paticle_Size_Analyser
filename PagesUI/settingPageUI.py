@@ -1,6 +1,3 @@
-import os
-import sys
-sys.path.append( os.getcwd() + "/uiUtils" )
 from guiBackend import GUIBackend
 import GUIComponents
 
@@ -53,6 +50,12 @@ class cameraSettingTabUI:
         self.__mange_fields_enable__()
         self.__settings_change_connector__()
     
+    def reset(self):
+        self.__is_start__ = False
+        #change button icon
+        GUIBackend.set_button_icon(self.camera_start_btn, self.start_stop_icon[self.__is_start__])
+        #enable and disable setting fields
+        self.__mange_fields_enable__()
 
     def start_stop_event_connector(self, func):
         """connect a function to start and stop button vlick event
@@ -329,7 +332,7 @@ class gradingSettingTabUI:
         
         #set row count
         records_count = len(datas)
-        GUIBackend.set_table_dim(self.ranges_table, row=max(1, records_count), col=None)
+        GUIBackend.set_table_dim(self.ranges_table, row = records_count, col=None)
         
         for i, row_data in enumerate(datas):
             
@@ -390,7 +393,7 @@ class gradingSettingTabUI:
         
         #set row count
         records_count = len(datas)
-        GUIBackend.set_table_dim(self.standards_table, row=max(1, records_count), col=None)
+        GUIBackend.set_table_dim(self.standards_table, row=records_count, col=None)
         
         prepared_datas = []
         #make ranges into text format like (0mm , 6mm) - ,...
@@ -401,7 +404,7 @@ class gradingSettingTabUI:
                 ranges_txt += f"( {range_[0]}mm , {range_[1]}mm )  -  "
                         
             #remove lats " - " charecter
-            prepared_datas[:-4]
+            ranges_txt = ranges_txt[:-5]
             prepared_datas.append([ standard['name'], ranges_txt ])
 
 

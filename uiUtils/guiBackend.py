@@ -1,6 +1,7 @@
 from PySide6 import QtWidgets, QtCore, QtGui 
 from functools import partial
-
+import cv2 
+from datetime import datetime
 class GUIBackend:
 
 
@@ -264,20 +265,35 @@ class GUIBackend:
     
     @staticmethod
     def set_label_image(lbl: QtWidgets.QLabel, image):
-        qformat =QtGui.QImage.Format_Indexed8
+
+        #resie image to fix in label
+        img_h, img_w = image.shape[:2]
+        lbl_h, lbl_w = lbl.height(), lbl.width()
+        
+        scale = min(lbl_h/img_h, lbl_w/img_w)
+        image = cv2.resize(image, None, fx= scale, fy=scale)
+
+        #color image
         if len(image.shape)==3:
+            #alpha channel image
             if image.shape[2] ==4:
                 qformat=QtGui.QImage.Format_RGBA8888
             else:
-                qformat=QtGui.QImage.Format_RGB888
-            img = QtGui.QImage(image.data,
-                image.shape[1],
-                image.shape[0], 
-                image.strides[0], # <--- +++
-                qformat)
-            img = img.rgbSwapped()
-            lbl.setPixmap(QtGui.QPixmap.fromImage(img))
-            lbl.setAlignment(QtCore.Qt.AlignCenter)
+                qformat=QtGui.QImage.Format_RGB888          
+
+        #grayscale image
+        if len(image.shape) == 2:
+            qformat=QtGui.QImage.Format_Grayscale8
+
+        img = QtGui.QImage(image.data,
+            image.shape[1],
+            image.shape[0], 
+            image.strides[0], # <--- +++
+            qformat)
+        
+        img = img.rgbSwapped()
+        lbl.setPixmap(QtGui.QPixmap.fromImage(img))
+        lbl.setAlignment(QtCore.Qt.AlignCenter)
     #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
     @staticmethod
     def get_input_spinbox_value( inpt: QtWidgets.QSpinBox)-> float:
@@ -486,3 +502,67 @@ class GUIBackend:
             idx (_type_): custom index to set as current index
         """
         stw.setCurrentIndex(idx)
+
+    @staticmethod
+    def get_stack_widget_idx(stw: QtWidgets.QStackedWidget ) -> int:
+        """get current index of given Qt stack widget
+
+        Args:
+            stw (QtWidgets.QStackedWidget): Qt stack widget object
+        
+        Returns:
+            int: current index
+        """
+        return stw.currentIndex()
+    
+    #--------------------------------- GLOBAL GroupBox FUNCTIONs ---------------------------------
+    @staticmethod
+    def groupbox_checkbox_connector(gp: QtWidgets.QGroupBox, func):
+        """connect a function to groubox toggle
+
+        Args:
+            gp (QtWidgets.QGroupBox): Qt GroupBox Widget Object
+            func (_type_): python function
+        """
+        gp.toggled.connect(func)
+
+
+    @staticmethod
+    def is_groupbox_checked(gp: QtWidgets.QGroupBox) -> bool:
+        """returns True when a groupbox's checkbox is checked
+
+        Args:
+            gp (QtWidgets.QGroupBox): Qt GroupBox Widget Object
+        
+        Returns:
+            (bool) : True if checked and False if not
+        """
+        return gp.isChecked()
+
+    #--------------------------------- GLOBAL Frame FUNCTIONs ---------------------------------
+    @staticmethod
+    def set_frame_max_size( frame: QtWidgets.QFrame, w:int, h:int):
+        """set maximum width and height of a frame.
+
+        Args:
+            frame (QtWidgets.QFrame): Qt Frame Widget Object
+            w (int): maximum width. ignore if be None
+            h (int): maximum height. ignore if be None
+        """
+        if h is not None:
+            frame.setMaximumHeight(h)
+        if w is not None:
+            frame.setMaximumWidth(w)
+
+    
+    #--------------------------------- GLOBAL DateEdit FUNCTIONs ---------------------------------
+    def get_date_input( obj: QtWidgets.QDateEdit) -> datetime:
+        """returns date of QDateEdit
+
+        Args:
+            obj (QtWidgets.QDateEdit): Qt DateEdit Widget Object
+
+        Returns:
+            datetime: value in format if python datetime
+        """
+        return obj.date().toPython()

@@ -2,20 +2,27 @@ import os
 import typing
 import sys
 
+#----------------------Compile Resource File-----------------------
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
 os.system('CMD /C pyside6-rcc Assets.qrc -o Assets.py')#PySide
+
+#----------------------Add Lib Files to path-----------------------
 sys.path.append( os.getcwd() + "/pagesUI" )
 sys.path.append( os.getcwd() + "/uiUtils" )
+sys.path.append( os.getcwd() + "/backend" )
+sys.path.append( os.getcwd() + "/backend/Camera" )
+sys.path.append( os.getcwd() + "/PagesAPI" )
+sys.path.append( os.getcwd() + "/PagesUI" )
+#------------------------------------------------------------------
 main_ui_file = 'main_UI.ui'
 
-#from PyQt5 import uic
+#----------------------Load Madouls -------------------------------
 from PySide6 import QtWidgets, QtCore, QtGui 
 from PySide6.QtUiTools import QUiLoader
 import webbrowser
 from functools import partial
 import texts
 import Assets
-#from PySide6.QtChart import QChart, QChartView, QBarSet,QPercentBarSeries
 import time
 import GUIComponents
 import cv2
@@ -26,6 +33,7 @@ from settingPageUI import settingPageUI
 from mainPageUI import mainPageUI
 from calibrationPageUI import calibrationPageUI
 from usersPageUI import usersPageUI
+from reportsPageUI import reportsPageUI
 #---------------------------------------------------------
 from guiBackend import GUIBackend
 
@@ -34,6 +42,7 @@ class UIs:
         self.__global_setting__ = GlobalUI(ui)
 
         self.settingPage = settingPageUI(ui)
+        self.reportsPage = reportsPageUI(ui)
         self.mainPage = mainPageUI(ui)
         self.calibrationPage = calibrationPageUI(ui)
         self.usersPage = usersPageUI(ui)
@@ -106,13 +115,20 @@ class GlobalUI():
         # startup settings
         self.startup_settings()
 
+        self.external_change_page_event = None
+
         
 
     
 
         
     #-------------------------------------------------------------------------------------------
+    def change_page_connector(self,func):
+        self.external_change_page_event = func
 
+    def internal_change_page_event(self, name, idx):
+        if self.external_change_page_event is not None:
+            self.external_change_page_event(name, idx)
 
     def startup_settings(self):
         """this function is used to do startup settings on app start
@@ -141,12 +157,23 @@ class GlobalUI():
 
     def sidebar_menu_handler(self, pagename):
         def func():
-            GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw, self.pages_index[pagename] )
-            self.current_page = (pagename, self.pages_index[pagename])
-            for btn in self.sidebar_buttons.values():
-                btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
-            
-            self.sidebar_buttons[pagename].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
+            current_page_idx = GUIBackend.get_stack_widget_idx(self.ui.main_pages_stackw)
+            new_page_idx = self.pages_index[pagename]
+
+            if current_page_idx != new_page_idx:
+                #pass new page index and name to internal_change_page_event method
+                self.internal_change_page_event(pagename, new_page_idx)
+
+                GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
+                #save new page into an atribute for some using
+                self.current_page = (pagename, new_page_idx)
+                
+                #reset styles of all btns (actully for rest style of buttons of previous page)
+                for btn in self.sidebar_buttons.values():
+                    btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
+                
+                #set style to button of new page to make it diffrent
+                self.sidebar_buttons[pagename].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
         return func
     
 
@@ -292,6 +319,11 @@ class GlobalUI():
         # # Step 6: Start the thread
         # self.thread.start()
 
+
+    
+    
+
+        
        
 if __name__ == '__main__':
 
@@ -332,10 +364,7 @@ if __name__ == '__main__':
     print(settings)
 
     #------------------------------------------------------------
-    standards = [
-        {'name': 'gondle1', 'ranges':[[6,8], [8,10], [10,12], [12,14]]}
-    ]
-    all_uis.settingPage.gradingSettingTab.set_standards_table_data(standards)
+    
 
     # #------------------------------------------------------------
     # def test_users_func(idx, users, status, btn):
@@ -346,7 +375,7 @@ if __name__ == '__main__':
     # all_users_tab.set_users_table([{'username':'amir', 'password':'******', 'role': 'user'},
     #                                 {'username':'its.big', 'password':'********', 'role': 'admin'}])
     # #------------------------------------------------------------
-
+    all_uis.reportsPage.set_standards_filter_table_data (['Gondle1', 'Gondle2'])
     #------------------------------------------------------------
     #------------------------------------------------------------
     #------------------------------------------------------------

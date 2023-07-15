@@ -1,6 +1,3 @@
-import os
-import sys
-sys.path.append( os.getcwd() + "/uiUtils" )
 from guiBackend import GUIBackend
 import GUIComponents
 
@@ -53,6 +50,12 @@ class cameraSettingTabUI:
         self.__mange_fields_enable__()
         self.__settings_change_connector__()
     
+    def reset(self):
+        self.__is_start__ = False
+        #change button icon
+        GUIBackend.set_button_icon(self.camera_start_btn, self.start_stop_icon[self.__is_start__])
+        #enable and disable setting fields
+        self.__mange_fields_enable__()
 
     def start_stop_event_connector(self, func):
         """connect a function to start and stop button vlick event
@@ -205,9 +208,11 @@ class gradingSettingTabUI:
         self.range_name_input = self.ui.settingpage_grading_name_inpt
         self.add_range_btn = self.ui.settingpage_pelletizing_add_range_btn
         self.cancel_btn = self.ui.settingpage_grading_cancel_btn
+        self.save_btn = self.ui.settingpage_grading_save_btn
         self.warning_lbl = self.ui.settingpage_grading_warning_lbl
 
-        self.ranges_table_event_function = None
+        self.ranges_table_external_event_function = None
+        self.standards_table_external_event_function = None
         
         self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'edit', 'delete']
         self.standards_table_headers = ['no', 'name', 'ranges', 'edit', 'delete']
@@ -223,8 +228,17 @@ class gradingSettingTabUI:
         GUIBackend.button_connector(self.cancel_btn, self.__clear_settings__)
         GUIBackend.spinbox_connector( self.ranges_input['lower'] , self.__validation_input_ranges__ )
 
+        #col 1 and 2 adjust to content
+        GUIBackend.set_cell_width_content_adjust(self.standards_table, [1,2])
+
         #hide warning
         self.show_warning_massage(None)
+
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
+    
+    def cancel_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_btn, func)
 
 
     def show_warning_massage(self, txt):
@@ -318,7 +332,7 @@ class gradingSettingTabUI:
         
         #set row count
         records_count = len(datas)
-        GUIBackend.set_table_dim(self.ranges_table, row=records_count, col=None)
+        GUIBackend.set_table_dim(self.ranges_table, row = records_count, col=None)
         
         for i, row_data in enumerate(datas):
             
@@ -345,28 +359,52 @@ class gradingSettingTabUI:
             GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 2), del_btn)
 
 
+
+    def external_standards_table_connector(self, func):
+        """connect edit and delete button of each record in defined ranges tabel to a function
+
+        Args:
+            func (_type_): function should have foure arguments,  ( row idx, row data, 'edit' or 'delete' flag, button )
+        """
+        self.standards_table_external_event_function = func
+
+    def standards_table_event(self, idx, data, status, btn):
+        """this function exec when edit or delete button clicked on standards table
+
+        Args:
+            idx (_type_): row index that its button clicked
+            data (_type_): row datas that its button clicked
+            status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
+            btn (_type_): button object that clicked
+        """
+        def func():
+            #
+            # Write Internal Code Here
+            #
+            self.standards_table_external_event_function(idx, data, status, btn)
+        return func
+
     def set_standards_table_data(self, datas:list[list]):
         """insert standards range into table
         Args:
             datas (list[list]): list of row lits datas
         """
-        #assert self.ranges_table_external_event_function is not None, "ERROR: First determine an event Function for edit and delete button by 'gradingSettingPage.external_ranges_table_connector' method "
+        assert self.standards_table_external_event_function is not None, "ERROR: First determine an event Function for edit and delete button by 'gradingSettingPage.externalstandards_table_connector' method "
         
         #set row count
         records_count = len(datas)
         GUIBackend.set_table_dim(self.standards_table, row=records_count, col=None)
         
         prepared_datas = []
+        #make ranges into text format like (0mm , 6mm) - ,...
         for standard in datas:
-            res_standard = {}
-            res_standard['name'] = standard['name']
-            
+
             ranges_txt = ""
             for range_ in standard['ranges']:
-                ranges_txt += f"({range_[0]}mm, {range_[1]}mm) - "
-            
-            res_standard['ranges'] = ranges_txt
-            
+                ranges_txt += f"( {range_[0]}mm , {range_[1]}mm )  -  "
+                        
+            #remove lats " - " charecter
+            ranges_txt = ranges_txt[:-5]
             prepared_datas.append([ standard['name'], ranges_txt ])
 
 
@@ -385,8 +423,8 @@ class gradingSettingTabUI:
             del_btn = GUIComponents.deleteButton()
 
             #connect buttons to event function 
-            #GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
-            #GUIBackend.button_connector( del_btn, self.ranges_table_event(i, datas[i], 'delete',  del_btn ) )
+            GUIBackend.button_connector( edit_btn, self.standards_table_event(i, datas[i], 'edit',  edit_btn) )
+            GUIBackend.button_connector( del_btn, self.standards_table_event(i, datas[i], 'delete',  del_btn ) )
 
             #insert buttons into table
             item_count = len(row_data)

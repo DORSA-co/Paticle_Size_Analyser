@@ -18,7 +18,7 @@ QPushButton{
 	text-align: left;
     margin-left:15px;
 	icon-size:25px;
-	background-color:rgb(0,0,0,0);
+	background-color:rgba(0,0,0,0);
 
     color:rgb(255, 205, 5);
     font-size:14px;
@@ -35,7 +35,7 @@ QPushButton{
 	text-align: left;
     margin-left:15px;
 	icon-size:25px;
-	background-color:rgb(0,0,0,0);
+	background-color:rgba(0,0,0,0);
     }
 
     QPushButton:hover{
@@ -82,6 +82,24 @@ class deleteButton(QtWidgets.QPushButton):
     def leaveEvent(self, event):
         self.setIcon(self._icon_normal)
         #return super(deleteButton, self).enterEvent(event)
+
+
+
+class tabelCheckbox(QtWidgets.QCheckBox):
+
+    def __init__(self, *a, **kw):
+        super(tabelCheckbox, self).__init__(*a, **kw)
+        
+
+    def set_size(self, w, h):
+        self.setStyleSheet(f"""QCheckBox::indicator 
+                                {{
+                               width :{w}px;
+                               height :{h}px;
+                               }}""")
+
+        #self.setMaximumWidth(h+5)
+        #self.setMaximumWidth(w+5)
 
 
 

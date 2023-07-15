@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>610</width>
+    <height>210</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>610</width>
+    <height>210</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>610</width>
+    <height>210</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Edit Range</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Assets.qrc">
+    <normaloff>:/assets/Assets/icons/icons8-edit-hover-table-50.png</normaloff>:/assets/Assets/icons/icons8-edit-hover-table-50.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+	
+	font: auto &quot;Arial&quot;;
+}
+
+QDialog{
+	background-color: #ffffff;
+}
+
+/*********************************************/
+
+QLabel{
+max-width: 100px;
+font-size:14px;
+color: rgb(50, 50, 50);
+}
+/*********************************************/
+
+QPushButton{
+	border: none;
+	font-weight: bold;
+	color: #ffffff;
+	background-color:rgb(6, 76, 130);
+	min-height: 35px;
+	min-width: 150px;
+	border-radius: 5px;
+	font-size:12px;
+}
+
+QPushButton:hover{
+
+	background-color:rgb(22, 38, 76)
+
+}
+
+
+/*********************************************/
+
+QSpinBox, QDoubleSpinBox  
+{
+	border:2px solid rgb(6, 76, 130);
+    border-radius: 3px;
+    padding: 1px 18px 1px 8px;
+    min-width: 6em;
+	min-height: 35px;
+	font-size: 16px;
+}
+
+
+QSpinBox:disabled ,
+QDoubleSpinBox:disabled 
+{
+	border:2px solid rgb(200, 200, 200);
+}
+
+QSpinBox:focus , QDoubleSpinBox:focus
+{
+	background-color:red;
+}
+
+QSpinBox::up-arrow, QDoubleSpinBox::up-arrow
+{   
+	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);
+	width: 10px;
+    height: 10px;
+
+}
+
+QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
+{   
+	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
+	width: 10px;
+    height: 10px;
+
+}
+
+QSpinBox::up-button,
+QSpinBox::down-button,
+QDoubleSpinBox::up-button,
+QDoubleSpinBox::down-button   {
+    subcontrol-origin: border;
+	background-color:rgb(6, 76, 130);
+    width: 30px;
+}
+
+
+QSpinBox::up-button:disabled ,
+QSpinBox::down-button:disabled ,
+QDoubleSpinBox::up-button:disabled ,
+QDoubleSpinBox::down-button:disabled    {
+    subcontrol-origin: border;
+	background-color:rgb(209, 209, 209);
+    width: 30px;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus{
+	background: rgb(241, 241, 241);
+	/*selection-background-color: black;*/
+}
+
+
+</string>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Maximum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Lower:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="editrange_lower_spinbox"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>30</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Upper</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="editrange_upper_spinbox"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Maximum</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>10</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editrange_save_btn">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editrange_cancel_btn">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="Assets.qrc"/>
+ </resources>
+ <connections/>
+</ui>

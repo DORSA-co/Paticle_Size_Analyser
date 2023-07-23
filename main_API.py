@@ -14,8 +14,8 @@ class main_API:
     def __init__(self, ui) -> None:
         self.ui = ui
         self.camera = None
-        self.creat_camera()
-        self.run_camera_grabbing()
+        #self.creat_camera()
+        #self.run_camera_grabbing()
 
         #Pages_api------------------------------------
         self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.camera, database = None )

@@ -119,7 +119,7 @@ class Camera:
     def reset(self,):
         """Reset all camera settings
         """
-        cam1.camera_device.DeviceReset()
+        self.camera_device.DeviceReset()
         print(ErrorAndWarnings.reset())
         
     def search_in_nodes(self, *keywords) -> list[str]:
@@ -187,6 +187,7 @@ class Camera:
             np.ndarray: captured image
         """
         res_img = None
+        ret = False
         if self.Status.is_grabbing():
             #-------------------------------------------------------------
             if grabResult is None:
@@ -198,6 +199,7 @@ class Camera:
             if grabResult is not None and grabResult.GrabSucceeded():
                 image = self.converter.Convert(grabResult)
                 res_img = image.Array
+                ret = True
             elif grabResult is not None:
                 print( ErrorAndWarnings.grab_error(grabResult.ErrorCode, grabResult.ErrorDescription))
             else:
@@ -208,7 +210,7 @@ class Camera:
                 res_img = self.build_zero_image()
 
         self.image = res_img
-        return res_img
+        return ret, res_img
     
 
 class CameraInfo:
@@ -758,56 +760,56 @@ class Collector:
 
 
 
-if __name__ == "__main__":
-    time.sleep(1)
-    collector = Collector()
-    collector.enable_camera_emulation(2)
-    cameras = collector.get_all_cameras(camera_class=CamersClass.emulation)
-    cam1 = cameras[0]
-    #-----------------------------------------------------------------
-    cam1.Parms.set_gain(50000)
-    cam1.Operations.start_grabbing()
-    cam1.search_in_nodes('gain')
-    #cam1.set_image_event(func=test_event)
+# if __name__ == "__main__":
+#     time.sleep(1)
+#     collector = Collector()
+#     collector.enable_camera_emulation(2)
+#     cameras = collector.get_all_cameras(camera_class=CamersClass.emulation)
+#     cam1 = cameras[0]
+#     #-----------------------------------------------------------------
+#     cam1.Parms.set_gain(50000)
+#     cam1.Operations.start_grabbing()
+#     cam1.search_in_nodes('gain')
+#     #cam1.set_image_event(func=test_event)
     
-    #-----------------------------------------------------------------
-    cam1.Parms.set_gain(0)
-    # cam1.set_image_event(test_event)
-    # cam1.Operations.start_grabbing()
-    # cam1.software_trige_exec()
-    # cam1.getPictures()
-    # cam1.camera_device.EventSelector.SetValue('ExposureEnd')
+#     #-----------------------------------------------------------------
+#     cam1.Parms.set_gain(0)
+#     # cam1.set_image_event(test_event)
+#     # cam1.Operations.start_grabbing()
+#     # cam1.software_trige_exec()
+#     # cam1.getPictures()
+#     # cam1.camera_device.EventSelector.SetValue('ExposureEnd')
     
 
-    #-----------------------------------------------------------------------
-    #cam1.Operations.close()
-    # cam1.camera_device.RegisterConfiguration(pylon.SoftwareTriggerConfiguration(), pylon.RegistrationMode_ReplaceAll,
-    #                              pylon.Cleanup_Delete)
+#     #-----------------------------------------------------------------------
+#     #cam1.Operations.close()
+#     # cam1.camera_device.RegisterConfiguration(pylon.SoftwareTriggerConfiguration(), pylon.RegistrationMode_ReplaceAll,
+#     #                              pylon.Cleanup_Delete)
     
-    # cam1.camera_device.GrabCameraEvents.SetValue(True) #enable event handler
-    # cam1.camera_device.RegisterCameraEventHandler(handler1, "ExposureEndEventData", eMyExposureEndEvent, pylon.RegistrationMode_ReplaceAll, pylon.Cleanup_None)
+#     # cam1.camera_device.GrabCameraEvents.SetValue(True) #enable event handler
+#     # cam1.camera_device.RegisterCameraEventHandler(handler1, "ExposureEndEventData", eMyExposureEndEvent, pylon.RegistrationMode_ReplaceAll, pylon.Cleanup_None)
 
-    # cam1.Operations.open()
+#     # cam1.Operations.open()
 
-    # cam1.camera_device.EventSelector.SetValue('ExposureEnd')
-    # cam1.camera_device.EventNotification.SetValue('On')
-    #-----------------------------------------------------------------------
+#     # cam1.camera_device.EventSelector.SetValue('ExposureEnd')
+#     # cam1.camera_device.EventNotification.SetValue('On')
+#     #-----------------------------------------------------------------------
 
-    #cam1.Parms.set_trigger_option(Trigger.source.software, Trigger.selector.frame_start)
-    cam1.Operations.start_grabbing()
-    # 
+#     #cam1.Parms.set_trigger_option(Trigger.source.software, Trigger.selector.frame_start)
+#     cam1.Operations.start_grabbing()
+#     # 
 
-    # cam1.Operations.open()
-    # cam1.Operations.start_grabbing()
+#     # cam1.Operations.open()
+#     # cam1.Operations.start_grabbing()
     
     
-    #i  = cam1.getPictures()
-    cam1.software_trige_exec()
-    while True:
+#     #i  = cam1.getPictures()
+#     cam1.software_trige_exec()
+#     while True:
         
-        cam1.software_trige_exec()
-        time.sleep(0.2)
-        cam1.getPictures()
-    pass
-    #a = pylon.InstantCamera()
-    #x = pylon.InstantCamera()
+#         cam1.software_trige_exec()
+#         time.sleep(0.2)
+#         cam1.getPictures()
+#     pass
+#     #a = pylon.InstantCamera()
+#     #x = pylon.InstantCamera()

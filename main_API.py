@@ -1,10 +1,9 @@
-
 import cv2
 
-from Camera import dorsaPylon
+from Camera import dorsaPylon, PylonFlags
 from Camera.dorsaPylon import Collector, Camera
 from Camera.cameraThread import cameraThread
-
+from Database.mainDatabase import mainDatabase
 #Import Pages Ui---------------------------------------------
 from settingPageAPI import settingPageAPI
 # from settingUI import settingUI
@@ -13,9 +12,10 @@ serial_number = '23804186'
 class main_API:
     def __init__(self, ui) -> None:
         self.ui = ui
+        self.db = mainDatabase()
         self.camera = None
-        #self.creat_camera()
-        #self.run_camera_grabbing()
+        self.creat_camera()
+        self.run_camera_grabbing()
 
         #Pages_api------------------------------------
         self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.camera, database = None )
@@ -54,6 +54,10 @@ class main_API:
     def creat_camera(self)-> Camera:
         collector = Collector()
         self.camera = collector.get_camera_by_serial(serial_number)
+        if self.camera is None:
+            collector.enable_camera_emulation(1)
+            self.camera = collector.get_all_cameras(camera_class=PylonFlags.CamersClass.emulation)[0]
+        
         self.camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
 
     def run_camera_grabbing(self,):

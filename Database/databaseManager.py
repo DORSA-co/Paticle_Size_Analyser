@@ -24,15 +24,15 @@ WARNING = 2   # Print All messages
 
 Error_auto_increment = 'AUTO INCREMENT Only can set on INT type'
 
-class databaseConnector:
+class databaseManager:
     """this class used to create connection and do some functions such as : add , delete , create , etc
     """
-    def __init__(self,username,password,host,database_name,log_level=1):
+    def __init__(self,username,password,host,schema,log_level=1):
         pass
         self.user_name=username
         self.password=password
         self.host=host
-        self.data_base_name=database_name
+        self.data_base_name=schema
         self.log_level=log_level
         self.check_connection()
         
@@ -45,6 +45,11 @@ class databaseConnector:
         """
         self.log_level = num
 
+        """this function used to connect mysql with init parms
+
+        Returns:
+            object: connection of mysql
+        """
     def connect(self):
         """
         Establishes a connection to the MySQL database using the provided parameters and set self parameters for connecting.
@@ -86,30 +91,20 @@ class databaseConnector:
                 return True
 
         except Exception as e:
-            self.show_message(('Error while connecting to MySQL' ,e))
+            # schemas = self.get_all_schemas()
+            # if self.data_base_name not in schemas:
+            #     self.create_schema(self.data_base_name)
+            if e.errno == 1049:
+                ret = self.create_schema(self.data_base_name)
+                if not ret:
+                    self.show_message(('Error while connecting to MySQL' ,e))
+            else:
+                self.show_message(('Error while connecting to MySQL' ,e))
             return False
 
 
     def execute_quary(self, query):
-        """
-        Executes the specified query on the database.
-    
-        Args:
-            query (str): The SQL query to execute.
-    
-        Returns:
-            Cursor: The database cursor object.
-    
-        Raises:
-            None.
-    
-        Example:
-            To execute an SQL query "SELECT * FROM users", you can call the function like this:
-                execute_quary("SELECT * FROM users")
-    
-            This will execute the query on the database and return the cursor object.
-    
-        """
+
         try:
             if self.check_connection():
                 self.cursor.execute(query)
@@ -146,6 +141,10 @@ class databaseConnector:
         s = s[:-1]
         s = '(' + s + ')'
 
+        new_data =[]
+        for _,d in enumerate(data):
+            new_data.append(str(d))
+        data = new_data
         try:
 
             if self.check_connection():
@@ -414,17 +413,22 @@ class databaseConnector:
         try:
             if self.check_connection():
                 cursor=self.execute_quary("select * from {}".format(table_name))
-                records = cursor.fetchall()
-                field_names = [col[0] for col in cursor.description]
+                if cursor:
+                    records = cursor.fetchall()
+                    field_names = [col[0] for col in cursor.description]
 
-                if without_auto_incresment:
-                    col_name = list(self.get_auto_increment_col_name(table_name=table_name))
-                    res = []
-                    for name in field_names:
-                        if name not in col_name:
-                            res.append(name)
+                    if without_auto_incresment:
+                        col_name = list(self.get_auto_increment_col_name(table_name=table_name))
+                        res = []
+                        for name in field_names:
+                            if name not in col_name:
+                                res.append(name)
 
-                    return res
+                        return res
+                    else:
+                        return field_names
+                    
+                return []
             else:
                 self.show_message('Error in SQL Connection')
                 return []
@@ -457,7 +461,7 @@ class databaseConnector:
         """
 
         if self.check_connection():
-            cursor=self.execute_quary("select COLUMN_NAME from information_schema.columns where TABLE_SCHEMA='test2' and TABLE_NAME='users' and EXTRA like '%auto_increment%';")
+            cursor=self.execute_quary("select COLUMN_NAME from information_schema.COLUMNS where TABLE_SCHEMA='{}' and TABLE_NAME='{}' and EXTRA like '%auto_increment%';".format(self.data_base_name,table_name))
             records = cursor.fetchall()
             if records:
                 records=records[0]
@@ -504,6 +508,7 @@ class databaseConnector:
             in reverse order from the 'users' table.
 
         """
+
             
         sort_order = 'DESC' if reverse_order else 'ASC'
         try:
@@ -584,7 +589,7 @@ class databaseConnector:
         """
         try:
             if self.check_connection():
-                query = "CREATE TABLE IF NOT EXISTS {} (id INT NOT NULL PRIMARY KEY);".format(table_name)
+                query = "CREATE TABLE IF NOT EXISTS {} (id {} {} {} PRIMARY KEY);".format(table_name,INT,NOT_NULL,AUTO_INCREMENT)
                 self.execute_quary(query=query)
                 return True
             else:
@@ -622,7 +627,7 @@ class databaseConnector:
                 cursor=self.execute_quary(query=query)
                 schemas = cursor.fetchall()
                 for col in schemas:
-                    if col_name == col[3]:
+                    if col_name == col[3] and self.data_base_name == col[1]:
                         self.show_message('Column Exist')
                         return True
             else:
@@ -706,38 +711,7 @@ class databaseConnector:
             return False
 
 
-    def create_schema(self,schema_name):
-        """
-        Creates a new database schema with the specified name, if it doesn't already exist.
 
-        Args:
-            schema_name (str): The name of the schema to create.
-
-        Returns:
-            bool: True if the schema was created or already exists, False otherwise.
-
-        Raises:
-            None.
-
-        Example:
-            To create a schema named 'mydb', you can call the function like this:
-                create_schema('mydb')
-
-            This will create the 'mydb' schema if it doesn't already exist.
-            If the schema already exists, the function will return True without creating it.
-
-        """
-        try:
-            if self.check_connection():
-                query = "CREATE SCHEMA IF NOT EXISTS {};".format(schema_name)
-                self.execute_quary(query=query)
-                return True
-            else:
-                self.show_message('Error in SQL Connection')
-                return False
-        except mysql.connector.Error as e:
-            print("Error create schema ", e)
-            return False
 
 
     def get_all_schemas(self):
@@ -805,26 +779,67 @@ class databaseConnector:
 
 
 
+    def create_schema(self,schema_name):
+        """
+        Creates a new database schema with the specified name, if it doesn't already exist.
 
+        Args:
+            schema_name (str): The name of the schema to create.
+
+        Returns:
+            bool: True if the schema was created or already exists, False otherwise.
+
+        Raises:
+            None.
+
+        Example:
+            To create a schema named 'mydb', you can call the function like this:
+                create_schema('mydb')
+
+            This will create the 'mydb' schema if it doesn't already exist.
+            If the schema already exists, the function will return True without creating it.
+
+        """
+        try:
+                connection = mysql.connector.connect(host=self.host,
+                                                user=self.user_name,
+                                                password=self.password,
+                                                auth_plugin='mysql_native_password')  
+                cursor = connection.cursor()
+                query = "CREATE SCHEMA IF NOT EXISTS {};".format(schema_name)
+                cursor.execute(query)
+                return True
+        except mysql.connector.Error as e:
+            print("Error create schema ", e)
+            return False
 
 
 if __name__ == "__main__":
-    db=dataBase('root','Dorsa-1400','localhost','test2')
+
+    # create_schema(user_name='root',password='Dorsa-1400',schema_name='milad')
+
+
+    db=dataBase('root','Dorsa-1400','localhost','test8255516549845asdasd128')
+
+    
+
     db.create_table('users')   # you can dont create table
     a=db.get_all_schemas()
     db.add_column(table_name='users',col_name='first_name',type=VARCHAR,len=80,Null=NOT_NULL)
     db.add_column(table_name='users',col_name='last_name',type=VARCHAR,len=80,Null=NOT_NULL)
     db.add_column(table_name='users',col_name='email',type=VARCHAR,len=80,Null=NOT_NULL)
 
-    content=db.get_all_content('asdw2')
+    content=db.get_all_content('users')
 
-    col_name=db.get_col_name('asdw')
+    col_name=db.get_col_name('users')
+
+    print(col_name)
 
     # db.delete_column('users','id')
 
-    # data = ('milad','moltaji','m.moltaji')
-    # for _ in range(50):
-    #     ret =db.add_record('users',data='__YOUR_DATA__')
+    data = ('milad',[[7465874],[456498]],'m.moltaji')
+    for _ in range(50):
+        ret =db.add_record('users',data=data)
 
     db.get_auto_increment_col_name('users')
 
@@ -835,7 +850,6 @@ if __name__ == "__main__":
     r = db.get_all_content(table_name='users',limit=True,column_order='email')
     
     a=db.search(table_name='users',col_name='first_name',value='m')
-
 
 
 

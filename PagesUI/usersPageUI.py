@@ -5,12 +5,12 @@ from guiBackend import GUIBackend
 
 class usersPageUI:
     def __init__(self, ui):
-        self.registerTab = RegisterUserTab(ui)
-        self.allUserTab = AllUserTab(ui)
+        self.registerTab = RegisterUserTabUI(ui)
+        self.allUserTab = AllUserTabUI(ui)
 
 
 
-class RegisterUserTab:
+class RegisterUserTabUI:
 
     def __init__(self, ui) -> None:
         self.ui = ui
@@ -24,6 +24,15 @@ class RegisterUserTab:
             'password_confirm': self.ui.userpage_confirm_password_inpt,
             'role': self.ui.userpage_user_role_combobox
         }
+
+    def reset(self):
+        """reset ui to default
+        """
+        self.set_register_fields( {
+            'username' : "",
+            'password' : "",
+            'password_confirm': "",
+        })
 
     def register_button_connector(self, func):
         """connect function into register button clicked event
@@ -45,6 +54,21 @@ class RegisterUserTab:
             infos[name] = GUIBackend.get_input(field)
         return infos
     
+
+    def set_register_fields(self, data:dict):
+        """set register fields
+
+        data (dict):
+            input datas informat like {
+                'username':xxxx,
+                'password':xxxx,
+                'password_confirm':xxxx,
+        """
+        for name, value in data.items():
+            GUIBackend.set_input(self.register_users_field[name], value)
+        
+    
+    
     def write_register_error(self, txt:str):
         """Write Errors message in Register
 
@@ -55,7 +79,7 @@ class RegisterUserTab:
 
 
 
-class AllUserTab:
+class AllUserTabUI:
 
     def __init__(self, ui) -> None:
         self.ui = ui

@@ -333,7 +333,7 @@ if __name__ == '__main__':
     #global_ui = GlobalUI(window)
     all_uis = UIs(window)
 
-
+    
 
     # screen = app.primaryScreen()
     # print('Screen: %s' % screen.name())

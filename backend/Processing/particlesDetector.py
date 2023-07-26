@@ -170,7 +170,6 @@ def draw_particles(img, particles: list[Particle], color:tuple=(40, 40, 200), th
     Returns:
         _type_: drawed image
     """
-    
     if len(img.shape) == 2:
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
 

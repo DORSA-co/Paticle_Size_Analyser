@@ -102,4 +102,73 @@ class tabelCheckbox(QtWidgets.QCheckBox):
         #self.setMaximumWidth(w+5)
 
 
+CONFIRMBOX_STYLESHEET = """
+   QMessageBox{ 
+        background-color: #ffffff;
 
+    }
+    
+    QPushButton{
+        border: none;
+        font-weight: bold;
+        color: #ffffff;
+        background-color:rgb(6, 76, 130);
+        min-height: 25px;
+        border-radius: 5px;
+        min-width:100px;
+        font-size:12px;
+	
+        }
+
+    QPushButton:hover{
+	    background-color:rgb(22, 38, 76);
+    }
+"""
+
+class confirmMessageBox:
+    def __init__(self, title, text, buttons, min_height=400, min_width=700 ):
+        self.STANDARD_BUTTONS = {
+            'yes': QtWidgets.QMessageBox.Yes,
+            'no': QtWidgets.QMessageBox.No,
+            'cancel': QtWidgets.QMessageBox.Cancel,
+            'save': QtWidgets.QMessageBox.Save,
+        }
+
+        self.icon = QtGui.QIcon(':/assets/Assets/icons/icons8-question-blue-50.png')
+        self.buttons = buttons
+
+        self.msg = QtWidgets.QMessageBox( text=text)
+        self.msg.setWindowTitle(title)
+        self.msg.setStyleSheet(CONFIRMBOX_STYLESHEET)
+        self.msg.setWindowIcon(self.icon)
+        self.msg.setMinimumHeight(min_height)
+        self.msg.setMinimumWidth(min_width)
+
+        
+        #---------------------------------------------------
+        selected_buttons_obj = []
+        for btn_name in buttons:
+            btn = self.STANDARD_BUTTONS[btn_name]
+            if isinstance(selected_buttons_obj, list):
+                selected_buttons_obj = btn
+            else:
+                selected_buttons_obj = selected_buttons_obj | btn
+        self.msg.setStandardButtons(selected_buttons_obj)
+        #---------------------------------------------------
+
+    def render(self):
+        retval = self.msg.exec_()
+        for btn_name in self.buttons:
+            if self.STANDARD_BUTTONS[btn_name] == retval:
+                return btn_name
+
+
+
+if __name__ == '__main__':
+    pass
+# msg = QMessageBox()
+# msg.setIcon(QMessageBox.Information)
+# msg.setText("This is a message box")
+# msg.setInformativeText("This is additional information")
+# msg.setWindowTitle("MessageBox demo")
+# msg.setDetailedText("The details are as follows:")

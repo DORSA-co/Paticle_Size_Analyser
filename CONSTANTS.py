@@ -1,0 +1,1 @@
+MIN_PASS_LENGHT = 5

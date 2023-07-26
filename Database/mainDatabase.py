@@ -4,6 +4,7 @@ if __name__ == '__main__':
 else:
     from Database.databaseManager import databaseManager
     from Database.settingDB import settingDB
+    from Database.usersDB import usersDB
 
 class mainDatabase:
     username = 'root'
@@ -17,6 +18,7 @@ class mainDatabase:
         self.__connect__()
 
         self.setting_db = settingDB(self.dbManager)
+        self.users_db = usersDB(self.dbManager)
     
     def __connect__(self,):
         self.dbManager = databaseManager(self.username, self.password, self.HOST, self.DATABASE_NAME)

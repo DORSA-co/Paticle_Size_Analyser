@@ -1,4 +1,5 @@
-from guiBackend import GUIBackend
+from uiUtils.guiBackend import GUIBackend
+from uiUtils import GUIComponents
 
 
 
@@ -24,6 +25,7 @@ class RegisterUserTabUI:
             'password_confirm': self.ui.userpage_confirm_password_inpt,
             'role': self.ui.userpage_user_role_combobox
         }
+        self.reset()
 
     def reset(self):
         """reset ui to default
@@ -33,6 +35,7 @@ class RegisterUserTabUI:
             'password' : "",
             'password_confirm': "",
         })
+        self.write_register_error(None)
 
     def register_button_connector(self, func):
         """connect function into register button clicked event
@@ -75,7 +78,11 @@ class RegisterUserTabUI:
         Args:
             txt (str): error message
         """
-        GUIBackend.set_label_text(self.register_error_lbl, txt)
+        if txt is None:
+            GUIBackend.set_wgt_visible(self.register_error_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.register_error_lbl, True)
+            GUIBackend.set_label_text( self.register_error_lbl, txt)
 
 
 
@@ -86,7 +93,7 @@ class AllUserTabUI:
         self.users_table = self.ui.userpage_all_users_table
         self.__table_external_event_function__ = None
 
-        self.users_table_headers = ['username', 'password', 'role', 'edit', 'delete']
+        self.users_table_headers = ['id', 'username', 'password', 'role', 'edit', 'delete']
         GUIBackend.set_table_dim(self.users_table, row=10, col=len(self.users_table_headers))
         GUIBackend.set_table_cheaders(self.users_table, self.users_table_headers)
 
@@ -99,7 +106,7 @@ class AllUserTabUI:
         """
         self.__table_external_event_function__ = func
     
-    def table_event_connector(self,idx, user_info, status, btn):
+    def __table_event_connector__(self,idx, user_info, status, btn):
         """this function exec when edit or delete button clicked on defined ranges table
 
         Args:
@@ -120,7 +127,7 @@ class AllUserTabUI:
         Args:
             datas (list[list]): list of users info
         """
-        assert self.__table_external_event_function__ is not None, "ERROR: First determine an event Function for edit and delete button by 'AllUserTab.table_event_connector' method "
+        assert self.__table_external_event_function__ is not None, "ERROR: First determine an event Function for edit and delete button by 'AllUserTab.__table_event_connector__' method "
         
         #set row count
         users_count = len(users)
@@ -130,17 +137,23 @@ class AllUserTabUI:
         for row, user in enumerate(users):
             for info_name in user.keys():
                 col = self.users_table_headers.index(info_name)
-                GUIBackend.set_table_cell_value(self.users_table, (row, col), value=user[info_name])
+                value = user[info_name]
+                if info_name == 'password':
+                    value = '•'*8
+                GUIBackend.set_table_cell_value(self.users_table, (row, col), value=value)
 
             #define edit and delete button
             edit_btn = GUIComponents.editButton()
             del_btn = GUIComponents.deleteButton()
 
             #connect buttons to event function 
-            GUIBackend.button_connector( edit_btn, self.table_event_connector(row, user, 'edit',  edit_btn) )
-            GUIBackend.button_connector( del_btn, self.table_event_connector(row, user, 'delete',  del_btn ) )
+            GUIBackend.button_connector( edit_btn, self.__table_event_connector__(row, user, 'edit',  edit_btn) )
+            GUIBackend.button_connector( del_btn, self.__table_event_connector__(row, user, 'delete',  del_btn ) )
 
             #insert buttons into table
             GUIBackend.set_table_cell_widget(self.users_table, (row, info_count), edit_btn)
             GUIBackend.set_table_cell_widget(self.users_table, (row, info_count+1), del_btn)
 
+    def show_confirm_box(Self, title, massage, buttons):
+        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
+        return cmb.render()

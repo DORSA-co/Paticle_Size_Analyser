@@ -128,7 +128,7 @@ QComboBox::drop-down:disabled
 QComboBox QAbstractItemView {
     border: none;
     selection-background-color: rgb(6, 76, 130);
-	selection-color: #ffffff;
+	selection-color: rgb(6, 76, 130);
 
 
 }
@@ -986,7 +986,7 @@ Line{
 </string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -4635,7 +4635,7 @@ max-height : 800px;</string>
            <item>
             <widget class="QTabWidget" name="user_tabs">
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="tab_2">
               <attribute name="title">
@@ -4838,8 +4838,15 @@ QLineEdit
                <item>
                 <widget class="QLabel" name="userspage_register_error_lbl">
                  <property name="styleSheet">
-                  <string notr="true">color:rgb(255, 101, 96);
-font-weight:bold;</string>
+                  <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+background-color: rgb(255, 95, 84);
+padding:5px;
+
+min-width: 300px;
+max-width: 16777px;
+</string>
                  </property>
                  <property name="text">
                   <string>Username exist</string>

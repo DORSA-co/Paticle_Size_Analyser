@@ -358,10 +358,10 @@ class gradingSettingTabUI(commonSettingUI):
             status (_type_): _description_
         """
         if status:
-            
             GUIBackend.set_wgt_visible(self.edit_mode_lbl, True)
             GUIBackend.set_frame_max_size(self.standards_groupbox, w = 0, h=None)
             GUIBackend.set_groupbox_title(self.new_standards_groupbox, 'Editing')
+            
         else:
             GUIBackend.set_wgt_visible(self.edit_mode_lbl, False)
             GUIBackend.set_frame_max_size(self.standards_groupbox, w = 16777215, h=None)

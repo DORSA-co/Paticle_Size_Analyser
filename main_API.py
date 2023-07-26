@@ -6,6 +6,7 @@ from Camera.cameraThread import cameraThread
 from Database.mainDatabase import mainDatabase
 #Import Pages Ui---------------------------------------------
 from settingPageAPI import settingPageAPI
+from usersPageAPI import usersPageAPI
 # from settingUI import settingUI
 
 cameras_serial_number = {'standard': '23804186'}
@@ -19,6 +20,7 @@ class main_API:
 
         #Pages_api------------------------------------
         self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
+        self.usersAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
 
         
         self.ui.__global_setting__.change_page_connector(self.page_change)

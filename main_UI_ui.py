@@ -143,13 +143,13 @@ class Ui_MainWindow(object):
 "QComboBox QAbstractItemView {\n"
 "    border: none;\n"
 "    selection-background-color: rgb(6, 76, 130);\n"
-"	selection-color: #ffffff;\n"
+"	selection-color: rgb(6, 76, 130);\n"
 "\n"
 "\n"
 "}\n"
 "\n"
-"QComboBox QAbstractIte"
-                        "mView {\n"
+"QComboBox QAbs"
+                        "tractItemView {\n"
 "    border: none;\n"
 "}\n"
 "\n"
@@ -204,8 +204,8 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "\n"
-"QDateEdit::up-button:dis"
-                        "abled ,\n"
+"QDateEdit::up-bu"
+                        "tton:disabled ,\n"
 "QDateEdit::down-button:disabled\n"
 "    {\n"
 "    subcontrol-origin: border;\n"
@@ -252,8 +252,8 @@ class Ui_MainWindow(object):
 "{   \n"
 "	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);\n"
 "	width: 10px;\n"
-"    hei"
-                        "ght: 10px;\n"
+""
+                        "    height: 10px;\n"
 "\n"
 "}\n"
 "\n"
@@ -296,9 +296,9 @@ class Ui_MainWindow(object):
 "QCheckBox::indicator {\n"
 "    width: 25px;\n"
 "    height: 25px;\n"
-"	border:2px solid rgb(6, 76, 130);\n"
-"	"
-                        "border-radius: 3px;\n"
+"	border:2px solid rgb(6, 76, 130)"
+                        ";\n"
+"	border-radius: 3px;\n"
 "	\n"
 "}\n"
 "\n"
@@ -347,8 +347,8 @@ class Ui_MainWindow(object):
 "	font-size: 20px;\n"
 "}\n"
 "\n"
-"QTabBa"
-                        "r::tab:!selected {\n"
+""
+                        "QTabBar::tab:!selected {\n"
 "	border-left: 1px solid rgb(199, 199, 199);\n"
 "	border-right: 1px solid rgb(199, 199, 199);\n"
 "}\n"
@@ -412,9 +412,9 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "QTimeEdit:hover{\n"
-"	background: #e4f0fa;\n"
-""
-                        "}\n"
+"	background: #e4f0fa"
+                        ";\n"
+"}\n"
 "\n"
 "QTimeEdit:focus {\n"
 "	color: white;\n"
@@ -2893,8 +2893,15 @@ class Ui_MainWindow(object):
 
         self.userspage_register_error_lbl = QLabel(self.tab_2)
         self.userspage_register_error_lbl.setObjectName(u"userspage_register_error_lbl")
-        self.userspage_register_error_lbl.setStyleSheet(u"color:rgb(255, 101, 96);\n"
-"font-weight:bold;")
+        self.userspage_register_error_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"background-color: rgb(255, 95, 84);\n"
+"padding:5px;\n"
+"\n"
+"min-width: 300px;\n"
+"max-width: 16777px;\n"
+"")
 
         self.verticalLayout_10.addWidget(self.userspage_register_error_lbl)
 
@@ -3707,9 +3714,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(2)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.settingpage_tabs.setCurrentIndex(1)
-        self.user_tabs.setCurrentIndex(0)
+        self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(1)
 
 

@@ -1,4 +1,5 @@
 import bcrypt
+import CONSTANTS
 
 class passwordManager:
 
@@ -60,12 +61,16 @@ class passwordManager:
 
 
 class regiterUtils:
-
+    #CONSTANT
+    
     @staticmethod
     def is_pass_confrim( password:str, confirm:str) -> bool:
         """returns True if password and its confirm be same
         """
         return password == confirm
+    
+    def is_pass_lenght_ok(password:str) -> bool:
+        return len(password) >= CONSTANTS.MIN_PASS_LENGHT
     
 
 

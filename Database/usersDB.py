@@ -1,8 +1,8 @@
 class usersDB:
     TABLE_NAME = 'users'
-    TABLE_COLS = [ {'col_name': 'username',    'type':'VARCHAR', 'len':50},
-                   {'col_name': 'password',    'type':'VARCHAR', 'len':100},
-                   {'col_name': 'role',        'type':'VARCHAR', 'len':50},
+    TABLE_COLS = [ {'col_name': 'username',    'type':'VARCHAR(255)', 'len':50},
+                   {'col_name': 'password',    'type':'VARCHAR(255)', 'len':100},
+                   {'col_name': 'role',        'type':'VARCHAR(255)', 'len':50},
                 ]
     
     PRIMERY_KEY_COL_NAME = 'username'
@@ -48,4 +48,6 @@ class usersDB:
     def load_all(self,) -> list[dict]:
         return self.db_manager.get_all_content( self.TABLE_NAME)
     
+    def remove(self, username):
+        self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, username)
 

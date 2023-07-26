@@ -282,11 +282,15 @@ class gradingSettingTabUI(commonSettingUI):
         self.cancel_btn = self.ui.settingpage_grading_cancel_btn
         self.save_btn = self.ui.settingpage_grading_save_btn
         self.warning_lbl = self.ui.settingpage_grading_warning_lbl
+        self.standards_groupbox = self.ui.settingpage_grading_standards_groupbox
+        self.new_standards_groupbox = self.ui.settingpage_grading_new_standards_groupbox
+        self.edit_mode_lbl = self.ui.settingpage_grading_editmode_lbl
 
         self.ranges_table_external_event_function = None
         self.standards_table_external_event_function = None
         
-        self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'edit', 'delete']
+        #self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'edit', 'delete']
+        self.ranges_table_headers = ['no', 'low (mm)', 'high (mm)', 'delete']
         self.standards_table_headers = ['no', 'edit', 'delete', 'name', 'ranges']
 
         #set tables dim
@@ -309,9 +313,14 @@ class gradingSettingTabUI(commonSettingUI):
         #hide warning
         self.show_warning_massage(None)
 
+        self.enable_edit_mode(False)
+
+
+
     def save_button_connector(self, func):
         GUIBackend.button_connector(self.save_btn, func)
-    
+
+
     def cancel_button_connector(self, func):
         GUIBackend.button_connector(self.cancel_btn, func)
 
@@ -326,6 +335,7 @@ class gradingSettingTabUI(commonSettingUI):
             GUIBackend.set_wgt_visible(self.warning_lbl, True)
             GUIBackend.set_label_text( self.warning_lbl, txt)
 
+
     def clear_new_standard_inputs(self):
         #clear 
         self.clear_input_ranges()
@@ -336,6 +346,26 @@ class gradingSettingTabUI(commonSettingUI):
         #insert an empty row for better ui
         GUIBackend.set_table_dim(self.ranges_table, 1 , len(self.ranges_table_headers))
     
+
+    def set_standard_name_input(self, name):
+        GUIBackend.set_input_text(self.range_name_input,name)
+
+
+    def enable_edit_mode(self, status):
+        """changes the page appearance for editing a standard
+
+        Args:
+            status (_type_): _description_
+        """
+        if status:
+            
+            GUIBackend.set_wgt_visible(self.edit_mode_lbl, True)
+            GUIBackend.set_frame_max_size(self.standards_groupbox, w = 0, h=None)
+            GUIBackend.set_groupbox_title(self.new_standards_groupbox, 'Editing')
+        else:
+            GUIBackend.set_wgt_visible(self.edit_mode_lbl, False)
+            GUIBackend.set_frame_max_size(self.standards_groupbox, w = 16777215, h=None)
+            GUIBackend.set_groupbox_title(self.new_standards_groupbox, 'Define new Standard')
 
     def add_range_button_connector(self, func):
         """connect add new range button into a function
@@ -424,17 +454,17 @@ class gradingSettingTabUI(commonSettingUI):
             
 
             #define edit and delete button
-            edit_btn = GUIComponents.editButton()
+            #edit_btn = GUIComponents.editButton()
             del_btn = GUIComponents.deleteButton()
 
             #connect buttons to event function 
-            GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
+            #GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
             GUIBackend.button_connector( del_btn, self.ranges_table_event(i, datas[i], 'delete',  del_btn ) )
 
             #insert buttons into table
             item_count = len(row_data)
-            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 1), edit_btn)
-            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 2), del_btn)
+            #GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 1), edit_btn)
+            GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 1), del_btn)
 
 
 

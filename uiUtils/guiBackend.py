@@ -538,6 +538,10 @@ class GUIBackend:
             (bool) : True if checked and False if not
         """
         return gp.isChecked()
+    
+    def set_groupbox_title(gp: QtWidgets.QGroupBox, title):
+
+        gp.setTitle(title)
 
     #--------------------------------- GLOBAL Frame FUNCTIONs ---------------------------------
     @staticmethod

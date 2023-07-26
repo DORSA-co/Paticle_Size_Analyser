@@ -61,7 +61,6 @@ class cameraSettingTabAPI:
         
 
     def startup(self):
-        print('cameraTabApi startup')
         self.ui.reset()
 
     def update_setting_event(self, group_setting, camera_application, settings = None):
@@ -153,8 +152,10 @@ class gradingSettingTabAPI:
         self.ui = ui
         self.database = database
         self.new_standard_ranges = []
-        #SHOULD BE CHANGED !
         self.standards_list = []
+        self.on_edit_standard = {}
+        #when edit a standard , this flag would be True
+        self.edit_mode = False
 
         #load all standards from database
         self.load_standards()
@@ -170,7 +171,7 @@ class gradingSettingTabAPI:
 
         self.ui.add_range_button_connector(self.add_range)
         self.ui.cancel_button_connector(self.cancel_define_new_standard)
-        self.ui.save_button_connector(self.save_new_range)
+        self.ui.save_button_connector(self.save_standard)
         self.ui.external_ranges_table_connector(self.modify_new_standard_range)
         self.ui.external_standards_table_connector(self.modify_standards_range)
 
@@ -179,6 +180,10 @@ class gradingSettingTabAPI:
 
     def cancel_define_new_standard(self,):
         self.new_standard_ranges = []
+        if self.edit_mode:
+            self.edit_mode = False
+            self.ui.enable_edit_mode(False)
+
 
     def has_ranges_overlap(self,low, high, ranges) -> bool:
         """check new low and high has overlap with ranges
@@ -239,7 +244,9 @@ class gradingSettingTabAPI:
 
         
         elif status =='edit':
-            print('e')
+            pass
+            
+
 
 
 
@@ -256,9 +263,15 @@ class gradingSettingTabAPI:
 
         
         elif status =='edit':
-            print('e')
+            self.edit_mode = True
+            self.new_standard_ranges = data['ranges']
+            self.on_edit_standard = data.copy()
+            self.ui.set_ranges_table_data(self.new_standard_ranges)
+            self.ui.set_standard_name_input( data['name'] )
+            self.ui.enable_edit_mode(True)
 
-    def save_new_range(self, ):
+
+    def save_standard(self, ):
         data = {}
         new_range_name = self.ui.get_new_range_name()
         
@@ -273,7 +286,7 @@ class gradingSettingTabAPI:
             self.ui.show_warning_massage("Error: Standard Name should be at least 3 character")
             return
         
-        if self.database.is_exist(new_range_name):
+        if self.database.is_exist(new_range_name) and (not self.edit_mode):
             self.ui.show_warning_massage("Error: '{}' name is already exist. please choose another name".format(new_range_name))
             return
         
@@ -289,6 +302,11 @@ class gradingSettingTabAPI:
         #clear new range table
         self.ui.set_ranges_table_data([])
         #save new range into database
+        if self.edit_mode:
+            #remove old record
+            self.database.remove(self.on_edit_standard['name'])
+            self.standards_list.remove(self.on_edit_standard)
+  
         self.database.save(data)
         #append new range into other ranges
         self.standards_list.append(data)
@@ -297,3 +315,12 @@ class gradingSettingTabAPI:
         #remove tempory new list varaible
         self.new_standard_ranges = []
         self.ui.show_warning_massage(None)
+
+
+        if self.edit_mode:
+            self.edit_mode = False
+            self.on_edit_standard = {}
+            self.ui.enable_edit_mode(False)
+
+        #
+        

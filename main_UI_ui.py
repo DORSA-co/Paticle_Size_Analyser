@@ -1583,6 +1583,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_33 = QHBoxLayout()
         self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
         self.horizontalLayout_33.setContentsMargins(10, 0, 10, -1)
+        self.horizontalSpacer_63 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_33.addItem(self.horizontalSpacer_63)
+
         self.settingpage_tabs = QTabWidget(self.settings_page)
         self.settingpage_tabs.setObjectName(u"settingpage_tabs")
         self.settingpage_tabs.setAutoFillBackground(False)
@@ -1754,19 +1758,35 @@ class Ui_MainWindow(object):
         self.settingpage_grading_tab.setObjectName(u"settingpage_grading_tab")
         self.horizontalLayout_22 = QHBoxLayout(self.settingpage_grading_tab)
         self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
-        self.groupBox_4 = QGroupBox(self.settingpage_grading_tab)
-        self.groupBox_4.setObjectName(u"groupBox_4")
-        self.groupBox_4.setMaximumSize(QSize(800, 16777215))
-        self.verticalLayout_22 = QVBoxLayout(self.groupBox_4)
+        self.settingpage_grading_new_standards_groupbox = QGroupBox(self.settingpage_grading_tab)
+        self.settingpage_grading_new_standards_groupbox.setObjectName(u"settingpage_grading_new_standards_groupbox")
+        self.settingpage_grading_new_standards_groupbox.setMaximumSize(QSize(800, 16777215))
+        self.verticalLayout_22 = QVBoxLayout(self.settingpage_grading_new_standards_groupbox)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.settingpage_grading_editmode_lbl = QLabel(self.settingpage_grading_new_standards_groupbox)
+        self.settingpage_grading_editmode_lbl.setObjectName(u"settingpage_grading_editmode_lbl")
+        self.settingpage_grading_editmode_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"background-color:rgb(6, 76, 130);\n"
+"padding:5px;\n"
+"margin-bottom:20px;\n"
+"\n"
+"min-width: 300px;\n"
+"max-width: 16777px;\n"
+"")
+        self.settingpage_grading_editmode_lbl.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_22.addWidget(self.settingpage_grading_editmode_lbl)
+
         self.horizontalLayout_24 = QHBoxLayout()
         self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
-        self.label_27 = QLabel(self.groupBox_4)
+        self.label_27 = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.label_27.setObjectName(u"label_27")
 
         self.horizontalLayout_24.addWidget(self.label_27)
 
-        self.settingpage_grading_name_inpt = QLineEdit(self.groupBox_4)
+        self.settingpage_grading_name_inpt = QLineEdit(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_name_inpt.setObjectName(u"settingpage_grading_name_inpt")
         self.settingpage_grading_name_inpt.setStyleSheet(u"")
 
@@ -1785,7 +1805,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_13 = QGridLayout()
         self.gridLayout_13.setObjectName(u"gridLayout_13")
-        self.settingpage_grading_up_limit_spinbox = QDoubleSpinBox(self.groupBox_4)
+        self.settingpage_grading_up_limit_spinbox = QDoubleSpinBox(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_up_limit_spinbox.setObjectName(u"settingpage_grading_up_limit_spinbox")
         self.settingpage_grading_up_limit_spinbox.setStyleSheet(u"max-width:100px;\n"
 "min-width: 50px;")
@@ -1793,13 +1813,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_13.addWidget(self.settingpage_grading_up_limit_spinbox, 0, 4, 1, 1)
 
-        self.label_28 = QLabel(self.groupBox_4)
+        self.label_28 = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.label_28.setObjectName(u"label_28")
         self.label_28.setStyleSheet(u"max-width:300px;")
 
         self.gridLayout_13.addWidget(self.label_28, 0, 0, 1, 1)
 
-        self.settingpage_grading_low_limit_spinbox = QDoubleSpinBox(self.groupBox_4)
+        self.settingpage_grading_low_limit_spinbox = QDoubleSpinBox(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_low_limit_spinbox.setObjectName(u"settingpage_grading_low_limit_spinbox")
         self.settingpage_grading_low_limit_spinbox.setStyleSheet(u"max-width:100px;\n"
 "min-width: 50px;")
@@ -1815,13 +1835,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_13.addItem(self.horizontalSpacer_20, 0, 2, 1, 1)
 
-        self.label_29 = QLabel(self.groupBox_4)
+        self.label_29 = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.label_29.setObjectName(u"label_29")
         self.label_29.setStyleSheet(u"max-width:300px;")
 
         self.gridLayout_13.addWidget(self.label_29, 0, 3, 1, 1)
 
-        self.settingpage_pelletizing_add_range_btn = QPushButton(self.groupBox_4)
+        self.settingpage_pelletizing_add_range_btn = QPushButton(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_pelletizing_add_range_btn.setObjectName(u"settingpage_pelletizing_add_range_btn")
         self.settingpage_pelletizing_add_range_btn.setMinimumSize(QSize(0, 35))
         self.settingpage_pelletizing_add_range_btn.setStyleSheet(u"#settingpage_pelletizing_add_range_btn{\n"
@@ -1848,7 +1868,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_22.addLayout(self.gridLayout_13)
 
-        self.settingpage_grading_warning_lbl = QLabel(self.groupBox_4)
+        self.settingpage_grading_warning_lbl = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_warning_lbl.setObjectName(u"settingpage_grading_warning_lbl")
         self.settingpage_grading_warning_lbl.setStyleSheet(u"font-size: 16px;\n"
 "font-weight: bold;\n"
@@ -1866,7 +1886,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_22.addItem(self.verticalSpacer_10)
 
-        self.label_26 = QLabel(self.groupBox_4)
+        self.label_26 = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.label_26.setObjectName(u"label_26")
         self.label_26.setStyleSheet(u"max-width: 200;\n"
 "font-size:20px;\n"
@@ -1878,7 +1898,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_28 = QHBoxLayout()
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
         self.horizontalLayout_28.setContentsMargins(9, 18, -1, -1)
-        self.settingpage_grading_ranges_table = QTableWidget(self.groupBox_4)
+        self.horizontalSpacer_65 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_28.addItem(self.horizontalSpacer_65)
+
+        self.settingpage_grading_ranges_table = QTableWidget(self.settingpage_grading_new_standards_groupbox)
         if (self.settingpage_grading_ranges_table.columnCount() < 5):
             self.settingpage_grading_ranges_table.setColumnCount(5)
         if (self.settingpage_grading_ranges_table.rowCount() < 1):
@@ -1945,10 +1969,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_28.addWidget(self.settingpage_grading_ranges_table)
 
+        self.horizontalSpacer_66 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_28.addItem(self.horizontalSpacer_66)
+
 
         self.verticalLayout_22.addLayout(self.horizontalLayout_28)
 
-        self.horizontalFrame_5 = QFrame(self.groupBox_4)
+        self.horizontalFrame_5 = QFrame(self.settingpage_grading_new_standards_groupbox)
         self.horizontalFrame_5.setObjectName(u"horizontalFrame_5")
         self.horizontalFrame_5.setStyleSheet(u"color: #ffffff;")
         self.horizontalLayout_20 = QHBoxLayout(self.horizontalFrame_5)
@@ -1980,22 +2008,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_22.addItem(self.verticalSpacer_9)
 
 
-        self.horizontalLayout_22.addWidget(self.groupBox_4)
+        self.horizontalLayout_22.addWidget(self.settingpage_grading_new_standards_groupbox)
 
         self.horizontalSpacer_18 = QSpacerItem(50, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
         self.horizontalLayout_22.addItem(self.horizontalSpacer_18)
 
-        self.groupBox_3 = QGroupBox(self.settingpage_grading_tab)
-        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.settingpage_grading_standards_groupbox = QGroupBox(self.settingpage_grading_tab)
+        self.settingpage_grading_standards_groupbox.setObjectName(u"settingpage_grading_standards_groupbox")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.groupBox_3.sizePolicy().hasHeightForWidth())
-        self.groupBox_3.setSizePolicy(sizePolicy1)
-        self.verticalLayout_17 = QVBoxLayout(self.groupBox_3)
+        sizePolicy1.setHeightForWidth(self.settingpage_grading_standards_groupbox.sizePolicy().hasHeightForWidth())
+        self.settingpage_grading_standards_groupbox.setSizePolicy(sizePolicy1)
+        self.verticalLayout_17 = QVBoxLayout(self.settingpage_grading_standards_groupbox)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.settingpage_grading_standards_table = QTableWidget(self.groupBox_3)
+        self.settingpage_grading_standards_table = QTableWidget(self.settingpage_grading_standards_groupbox)
         if (self.settingpage_grading_standards_table.columnCount() < 4):
             self.settingpage_grading_standards_table.setColumnCount(4)
         if (self.settingpage_grading_standards_table.rowCount() < 2):
@@ -2055,7 +2083,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.addWidget(self.settingpage_grading_standards_table)
 
 
-        self.horizontalLayout_22.addWidget(self.groupBox_3)
+        self.horizontalLayout_22.addWidget(self.settingpage_grading_standards_groupbox)
 
         self.settingpage_tabs.addTab(self.settingpage_grading_tab, "")
         self.settingpage_camera_tab = QWidget()
@@ -2387,6 +2415,10 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.addTab(self.settingpage_algorithm_tab, "")
 
         self.horizontalLayout_33.addWidget(self.settingpage_tabs)
+
+        self.horizontalSpacer_64 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_33.addItem(self.horizontalSpacer_64)
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_33)
@@ -3774,7 +3806,8 @@ class Ui_MainWindow(object):
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Language", None))
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"Font", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_general_tab), QCoreApplication.translate("MainWindow", u"General", None))
-        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Define Ranges", None))
+        self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
+        self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Lower Limit(mm):", None))
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"Upper Limit(mm):", None))
@@ -3783,7 +3816,7 @@ class Ui_MainWindow(object):
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"Defined Ranges", None))
         self.settingpage_grading_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_grading_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
+        self.settingpage_grading_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
 
         __sortingEnabled1 = self.settingpage_grading_standards_table.isSortingEnabled()
         self.settingpage_grading_standards_table.setSortingEnabled(False)

@@ -2492,6 +2492,19 @@ color: rgb(6, 76, 130);
               <number>10</number>
              </property>
              <item>
+              <spacer name="horizontalSpacer_63">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
               <widget class="QTabWidget" name="settingpage_tabs">
                <property name="autoFillBackground">
                 <bool>false</bool>
@@ -2801,7 +2814,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 </attribute>
                 <layout class="QHBoxLayout" name="horizontalLayout_22">
                  <item>
-                  <widget class="QGroupBox" name="groupBox_4">
+                  <widget class="QGroupBox" name="settingpage_grading_new_standards_groupbox">
                    <property name="maximumSize">
                     <size>
                      <width>800</width>
@@ -2809,9 +2822,31 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                     </size>
                    </property>
                    <property name="title">
-                    <string>Define Ranges</string>
+                    <string>Define new Standard</string>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_22">
+                    <item>
+                     <widget class="QLabel" name="settingpage_grading_editmode_lbl">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+background-color:rgb(6, 76, 130);
+padding:5px;
+margin-bottom:20px;
+
+min-width: 300px;
+max-width: 16777px;
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Edit Standard</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
+                     </widget>
+                    </item>
                     <item>
                      <layout class="QHBoxLayout" name="horizontalLayout_24">
                       <item>
@@ -3032,6 +3067,19 @@ font-weight:bold;</string>
                        <number>18</number>
                       </property>
                       <item>
+                       <spacer name="horizontalSpacer_65">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
                        <widget class="QTableWidget" name="settingpage_grading_ranges_table">
                         <property name="sizePolicy">
                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -3150,6 +3198,19 @@ QTableWidget::item
                         <column/>
                        </widget>
                       </item>
+                      <item>
+                       <spacer name="horizontalSpacer_66">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
                      </layout>
                     </item>
                     <item>
@@ -3243,7 +3304,7 @@ QTableWidget::item
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QGroupBox" name="groupBox_3">
+                  <widget class="QGroupBox" name="settingpage_grading_standards_groupbox">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -3948,6 +4009,19 @@ max-height : 800px;
                 </layout>
                </widget>
               </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_64">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </item>

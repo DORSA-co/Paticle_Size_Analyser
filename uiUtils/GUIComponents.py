@@ -132,6 +132,7 @@ class confirmMessageBox:
             'no': QtWidgets.QMessageBox.No,
             'cancel': QtWidgets.QMessageBox.Cancel,
             'save': QtWidgets.QMessageBox.Save,
+            'ok': QtWidgets.QMessageBox.Ok,
         }
 
         self.icon = QtGui.QIcon(':/assets/Assets/icons/icons8-question-blue-50.png')
@@ -163,14 +164,14 @@ class confirmMessageBox:
                 return btn_name
 
 
-def signal():
-    return QtCore.Signal()
+
+def single_timer_runner( t, func):
+    timer = QtCore.QTimer()
+    timer.singleShot(t, func)
+    
+    
+    
+
 
 if __name__ == '__main__':
     pass
-# msg = QMessageBox()
-# msg.setIcon(QMessageBox.Information)
-# msg.setText("This is a message box")
-# msg.setInformativeText("This is additional information")
-# msg.setWindowTitle("MessageBox demo")
-# msg.setDetailedText("The details are as follows:")

@@ -100,10 +100,11 @@ class RegisterUserTabUI:
     def __init__(self, ui) -> None:
         self.ui = ui    
 
-        
-
         self.register_error_lbl = self.ui.userspage_register_error_lbl
+        self.register_success_lbl = self.ui.userspage_register_success_lbl
+        self.register_success_box = self.ui.userspage_register_success_frame
         self.register_btn = self.ui.userspage_add_user_btn
+
 
         self.register_users_field = {
             'username' : self.ui.userpage_username_inpt,
@@ -113,6 +114,7 @@ class RegisterUserTabUI:
         }
 
         GUIBackend.set_combobox_items(self.register_users_field['role'], CONSTANTS.USER_ROlES)
+        self.hide_success_msg()
         self.reset()
 
     def reset(self):
@@ -174,8 +176,18 @@ class RegisterUserTabUI:
             GUIBackend.set_wgt_visible(self.register_error_lbl, True)
             GUIBackend.set_label_text( self.register_error_lbl, txt)
 
+    def show_success_msg(self, txt):
+        #diologbox = GUIComponents.confirmMessageBox('congratulations', txt, buttons=['ok'])
+        #diologbox.render()
+        GUIBackend.set_wgt_visible( self.register_success_box, True)
+        GUIBackend.set_label_text( self.register_success_lbl, txt)
+        GUIComponents.single_timer_runner(3000, self.hide_success_msg)
 
 
+    def hide_success_msg(self):
+        GUIBackend.set_wgt_visible(self.register_success_box, False)
+        #hide massage affter 300 msec
+        
 class AllUserTabUI:
 
     def __init__(self, ui) -> None:
@@ -268,6 +280,8 @@ class EditUserTabUI:
         self.change_password_btn = self.ui.userpage_editprofile_change_password_btn
         self.change_password_error_lbl = self.ui.userpage_editprofile_changepass_error_lbl
         self.edit_profile_error_lbl = self.ui.userpage_editprofile_edit_error_lbl
+        self.success_msg_frame = self.ui.userspage_editprofile_success_frame
+        self.success_msg_lbl = self.ui.userspage_editprofile_success_lbl
 
         self.change_password_fields = {
             'old_password': self.ui.userpage_editprofile_old_password_inpt,
@@ -284,6 +298,7 @@ class EditUserTabUI:
 
         self.write_change_password_error(None)
         self.write_edit_profile_error(None)
+        self.hide_success_msg()
 
 
     def update_profile_button_connector(self, func):
@@ -347,3 +362,15 @@ class EditUserTabUI:
         else:
             GUIBackend.set_wgt_visible(self.edit_profile_error_lbl, True)
             GUIBackend.set_label_text( self.edit_profile_error_lbl, txt)
+
+
+    def show_success_msg(self, txt):
+        #diologbox = GUIComponents.confirmMessageBox('congratulations', txt, buttons=['ok'])
+        #diologbox.render()
+        GUIBackend.set_wgt_visible( self.success_msg_frame, True)
+        GUIBackend.set_label_text( self.success_msg_lbl, txt)
+        GUIComponents.single_timer_runner(3000, self.hide_success_msg)
+
+
+    def hide_success_msg(self):
+        GUIBackend.set_wgt_visible(self.success_msg_frame, False)

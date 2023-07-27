@@ -165,6 +165,7 @@ class RegisterUserTabAPI:
         #save in database
         self.database.save(user_inputs)
         self.ui.reset()
+        self.ui.show_success_msg('Success Register')
 
         if self.register_event_func is not None:
             self.register_event_func()
@@ -254,7 +255,7 @@ class EditUserTabAPI:
             self.logined_user[key] = value
 
         self.database.save(self.logined_user)
-
+        self.ui.show_success_msg("User Information Updated")
         if self.user_edit_event_func is not None:
             self.user_edit_event_func()
     
@@ -286,6 +287,7 @@ class EditUserTabAPI:
         
         self.ui.write_change_password_error(None)
         self.ui.clear_change_password_fields()
+        self.ui.show_success_msg("password changed")
 
         if self.user_edit_event_func is not None:
             self.user_edit_event_func()

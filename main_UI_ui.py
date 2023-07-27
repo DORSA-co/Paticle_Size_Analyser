@@ -1421,7 +1421,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 594))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 640))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2919,6 +2919,7 @@ class Ui_MainWindow(object):
 
         self.userspage_register_error_lbl = QLabel(self.tab_2)
         self.userspage_register_error_lbl.setObjectName(u"userspage_register_error_lbl")
+        self.userspage_register_error_lbl.setMinimumSize(QSize(310, 35))
         self.userspage_register_error_lbl.setStyleSheet(u"font-size: 16px;\n"
 "font-weight: bold;\n"
 "color: #ffffff;\n"
@@ -2930,6 +2931,42 @@ class Ui_MainWindow(object):
 "")
 
         self.verticalLayout_10.addWidget(self.userspage_register_error_lbl)
+
+        self.userspage_register_success_frame = QFrame(self.tab_2)
+        self.userspage_register_success_frame.setObjectName(u"userspage_register_success_frame")
+        self.userspage_register_success_frame.setStyleSheet(u"QFrame{\n"
+"background-color: rgb(58, 209, 154);\n"
+"}")
+        self.userspage_register_success_frame.setFrameShape(QFrame.StyledPanel)
+        self.userspage_register_success_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_39 = QHBoxLayout(self.userspage_register_success_frame)
+        self.horizontalLayout_39.setObjectName(u"horizontalLayout_39")
+        self.label_88 = QLabel(self.userspage_register_success_frame)
+        self.label_88.setObjectName(u"label_88")
+        self.label_88.setMaximumSize(QSize(50, 50))
+        self.label_88.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-check-150.png"))
+        self.label_88.setScaledContents(True)
+
+        self.horizontalLayout_39.addWidget(self.label_88)
+
+        self.userspage_register_success_lbl = QLabel(self.userspage_register_success_frame)
+        self.userspage_register_success_lbl.setObjectName(u"userspage_register_success_lbl")
+        self.userspage_register_success_lbl.setMinimumSize(QSize(0, 50))
+        self.userspage_register_success_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"\n"
+"")
+        self.userspage_register_success_lbl.setScaledContents(False)
+
+        self.horizontalLayout_39.addWidget(self.userspage_register_success_lbl)
+
+        self.horizontalSpacer_70 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_39.addItem(self.horizontalSpacer_70)
+
+
+        self.verticalLayout_10.addWidget(self.userspage_register_success_frame)
 
         self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -3144,6 +3181,42 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.userpage_editprofile_change_pass_groupbox)
 
+        self.userspage_editprofile_success_frame = QFrame(self.tab_3)
+        self.userspage_editprofile_success_frame.setObjectName(u"userspage_editprofile_success_frame")
+        self.userspage_editprofile_success_frame.setStyleSheet(u"QFrame{\n"
+"background-color: rgb(58, 209, 154);\n"
+"}")
+        self.userspage_editprofile_success_frame.setFrameShape(QFrame.StyledPanel)
+        self.userspage_editprofile_success_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_40 = QHBoxLayout(self.userspage_editprofile_success_frame)
+        self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
+        self.label_89 = QLabel(self.userspage_editprofile_success_frame)
+        self.label_89.setObjectName(u"label_89")
+        self.label_89.setMaximumSize(QSize(50, 50))
+        self.label_89.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-check-150.png"))
+        self.label_89.setScaledContents(True)
+
+        self.horizontalLayout_40.addWidget(self.label_89)
+
+        self.userspage_editprofile_success_lbl = QLabel(self.userspage_editprofile_success_frame)
+        self.userspage_editprofile_success_lbl.setObjectName(u"userspage_editprofile_success_lbl")
+        self.userspage_editprofile_success_lbl.setMinimumSize(QSize(0, 50))
+        self.userspage_editprofile_success_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"\n"
+"")
+        self.userspage_editprofile_success_lbl.setScaledContents(False)
+
+        self.horizontalLayout_40.addWidget(self.userspage_editprofile_success_lbl)
+
+        self.horizontalSpacer_71 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_40.addItem(self.horizontalSpacer_71)
+
+
+        self.verticalLayout_21.addWidget(self.userspage_editprofile_success_frame)
+
         self.verticalSpacer_36 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_21.addItem(self.verticalSpacer_36)
@@ -3220,55 +3293,138 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.helppage_tabs = QTabWidget(self.help_page)
         self.helppage_tabs.setObjectName(u"helppage_tabs")
-        self.helppages_about_tab = QWidget()
-        self.helppages_about_tab.setObjectName(u"helppages_about_tab")
-        self.verticalLayout_28 = QVBoxLayout(self.helppages_about_tab)
+        self.helppage_tabs.setStyleSheet(u"helppage_about_tab{\n"
+"background-color:#ffffff;\n"
+"\n"
+"}")
+        self.helppage_about_tab = QWidget()
+        self.helppage_about_tab.setObjectName(u"helppage_about_tab")
+        self.verticalLayout_28 = QVBoxLayout(self.helppage_about_tab)
         self.verticalLayout_28.setSpacing(20)
         self.verticalLayout_28.setObjectName(u"verticalLayout_28")
-        self.label_82 = QLabel(self.helppages_about_tab)
+        self.scrollArea_3 = QScrollArea(self.helppage_about_tab)
+        self.scrollArea_3.setObjectName(u"scrollArea_3")
+        self.scrollArea_3.setMaximumSize(QSize(16777215, 1000))
+        self.scrollArea_3.setStyleSheet(u"#aboutScrollArea{\n"
+"background-color:#ffffff;\n"
+"\n"
+"}\n"
+"\n"
+"    QScrollBar:vertical\n"
+"    {\n"
+"        background-color: rgb(50, 50, 50);\n"
+"        width: 20px;\n"
+"        margin: 15px 3px 15px 3px;\n"
+"        border: 1px transparent #2A2929;\n"
+"        border-radius: 4px;\n"
+"    }\n"
+"\n"
+"    QScrollBar::handle:vertical\n"
+"    {\n"
+"        background-color:rgb(21, 142, 241);\n"
+"        min-height: 5px;\n"
+"        border-radius: 4px;\n"
+"    }\n"
+"\n"
+"    QScrollBar::sub-line:vertical\n"
+"    {\n"
+"        margin: 3px 0px 3px 0px;\n"
+"        border-image: url(:/qss_icons/rc/up_arrow_disabled.png);\n"
+"        height: 10px;\n"
+"        width: 10px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"    QScrollBar::add-line:vertical\n"
+"    {\n"
+"        margin: 3px 0px 3px 0px;\n"
+"        border-image: url(:/qss_icons/rc/down_arrow_disabled.png);\n"
+"        height: 10px;\n"
+"        width: 10px;\n"
+"        subcontrol-position: bottom;\n"
+" "
+                        "       subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"    QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on\n"
+"    {\n"
+"        border-image: url(:/qss_icons/rc/up_arrow.png);\n"
+"        height: 10px;\n"
+"        width: 10px;\n"
+"        subcontrol-position: top;\n"
+"        subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"    QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on\n"
+"    {\n"
+"        border-image: url(:/qss_icons/rc/down_arrow.png);\n"
+"        height: 10px;\n"
+"        width: 10px;\n"
+"        subcontrol-position: bottom;\n"
+"        subcontrol-origin: margin;\n"
+"    }\n"
+"\n"
+"    QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical\n"
+"    {\n"
+"        background: none;\n"
+"    }\n"
+"\n"
+"    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical\n"
+"    {\n"
+"        background: none;\n"
+"    }\n"
+"")
+        self.scrollArea_3.setWidgetResizable(True)
+        self.aboutScrollArea = QWidget()
+        self.aboutScrollArea.setObjectName(u"aboutScrollArea")
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1121, 916))
+        self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
+        self.verticalLayout_29.setObjectName(u"verticalLayout_29")
+        self.label_82 = QLabel(self.aboutScrollArea)
         self.label_82.setObjectName(u"label_82")
         self.label_82.setStyleSheet(u"font-size: 18px;\n"
 "font-weight: bold;\n"
 "color: rgb(6, 76, 130);")
 
-        self.verticalLayout_28.addWidget(self.label_82)
+        self.verticalLayout_29.addWidget(self.label_82)
 
-        self.label_84 = QLabel(self.helppages_about_tab)
+        self.label_84 = QLabel(self.aboutScrollArea)
         self.label_84.setObjectName(u"label_84")
         self.label_84.setPixmap(QPixmap(u"img.jpg"))
 
-        self.verticalLayout_28.addWidget(self.label_84)
+        self.verticalLayout_29.addWidget(self.label_84)
 
-        self.label_83 = QLabel(self.helppages_about_tab)
+        self.label_83 = QLabel(self.aboutScrollArea)
         self.label_83.setObjectName(u"label_83")
         self.label_83.setWordWrap(True)
 
-        self.verticalLayout_28.addWidget(self.label_83)
+        self.verticalLayout_29.addWidget(self.label_83)
 
-        self.label_85 = QLabel(self.helppages_about_tab)
+        self.label_85 = QLabel(self.aboutScrollArea)
         self.label_85.setObjectName(u"label_85")
         self.label_85.setStyleSheet(u"font-size: 18px;\n"
 "font-weight: bold;\n"
 "color: rgb(6, 76, 130);")
 
-        self.verticalLayout_28.addWidget(self.label_85)
+        self.verticalLayout_29.addWidget(self.label_85)
 
-        self.label_87 = QLabel(self.helppages_about_tab)
+        self.label_87 = QLabel(self.aboutScrollArea)
         self.label_87.setObjectName(u"label_87")
         self.label_87.setWordWrap(True)
 
-        self.verticalLayout_28.addWidget(self.label_87)
+        self.verticalLayout_29.addWidget(self.label_87)
 
-        self.commandLinkButton = QCommandLinkButton(self.helppages_about_tab)
+        self.scrollArea_3.setWidget(self.aboutScrollArea)
+
+        self.verticalLayout_28.addWidget(self.scrollArea_3)
+
+        self.commandLinkButton = QCommandLinkButton(self.helppage_about_tab)
         self.commandLinkButton.setObjectName(u"commandLinkButton")
 
         self.verticalLayout_28.addWidget(self.commandLinkButton)
 
-        self.verticalSpacer_37 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_28.addItem(self.verticalSpacer_37)
-
-        self.helppage_tabs.addTab(self.helppages_about_tab, "")
+        self.helppage_tabs.addTab(self.helppage_about_tab, "")
         self.helppages_document_tab = QWidget()
         self.helppages_document_tab.setObjectName(u"helppages_document_tab")
         self.helppage_tabs.addTab(self.helppages_document_tab, "")
@@ -3996,7 +4152,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(6)
+        self.main_pages_stackw.setCurrentIndex(5)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
@@ -4175,6 +4331,8 @@ class Ui_MainWindow(object):
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"pasword Confirm:", None))
         self.userspage_add_user_btn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
         self.userspage_register_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
+        self.label_88.setText("")
+        self.userspage_register_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"register user", None))
         self.userpage_editprofile_edit_profile_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.userpage_editprofile_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
@@ -4190,6 +4348,8 @@ class Ui_MainWindow(object):
         self.label_86.setText(QCoreApplication.translate("MainWindow", u"Confirm new Password", None))
         self.userpage_editprofile_changepass_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
         self.userpage_editprofile_change_password_btn.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
+        self.label_89.setText("")
+        self.userspage_editprofile_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"All Users", None))
@@ -4206,9 +4366,15 @@ class Ui_MainWindow(object):
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
         self.label_87.setText(QCoreApplication.translate("MainWindow", u"Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
 "\n"
+"Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed pe"
+                        "rformed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
+"\n"
+"Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat"
+                        " branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
+"\n"
 "Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.", None))
         self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"See Other Products", None))
-        self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_about_tab), QCoreApplication.translate("MainWindow", u"About", None))
+        self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppage_about_tab), QCoreApplication.translate("MainWindow", u"About", None))
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_document_tab), QCoreApplication.translate("MainWindow", u"Document", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Export", None))

@@ -84,13 +84,7 @@ class mainUI:
         self.sidebar_button_connector()
         GUIBackend.set_win_frameless(self.ui)
 
-    
-        
-        
 
-    
-
-        
     #-------------------------------------------------------------------------------------------
     def change_page_connector(self,func):
         self.external_change_page_event = func
@@ -140,6 +134,10 @@ class mainUI:
     def get_current_page(self,):
         return self.current_page
     
+    def enable_pages(self, pages):
+        for page in pages:
+            self.headrs_button[page]
+    
 
     def close(self):
         dialog_box = GUIComponents.confirmMessageBox('close', 'Are you sure?', buttons = ['yes', 'no'])
@@ -156,12 +154,10 @@ if __name__ == '__main__':
     #load .ui files
     window = loader.load(main_ui_file, None)
     login_ui = loader.load(login_ui_file, None)
-    #global_ui = GlobalUI(window)
-
-    all_uis = mainUI(window, login_ui)
+    main_ui = mainUI(window, login_ui)
 
     
-    api = main_API(all_uis)
+    api = main_API(main_ui)
     
 
     #------------------------------------------------------------
@@ -190,9 +186,6 @@ if __name__ == '__main__':
    
 
     window.show()
-    
-    
-
     app.exec()
 
     

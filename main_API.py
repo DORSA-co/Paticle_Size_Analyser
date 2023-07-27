@@ -35,11 +35,9 @@ class main_API:
             'help': None,
             
 
+
         }
-
-
-        #------pages_API--------
-        # self.setting_api = settingAPI( settingUI  )
+        
     
     def page_change(self, pagename, idx):
         for camera in self.cameras.values():

@@ -826,6 +826,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalSpacer_67 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_67)
+
         self.mainpage_live_image_lbl = QLabel(self.mainpage_left_frame_2)
         self.mainpage_live_image_lbl.setObjectName(u"mainpage_live_image_lbl")
         self.mainpage_live_image_lbl.setMaximumSize(QSize(704, 704))
@@ -1053,6 +1057,7 @@ class Ui_MainWindow(object):
 
         self.line_9 = QFrame(self.main_page)
         self.line_9.setObjectName(u"line_9")
+        self.line_9.setSizeIncrement(QSize(5, 0))
         self.line_9.setFrameShape(QFrame.VLine)
         self.line_9.setFrameShadow(QFrame.Sunken)
 
@@ -1405,7 +1410,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 300, 590))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 594))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2922,6 +2927,216 @@ class Ui_MainWindow(object):
         self.user_tabs.addTab(self.tab_2, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
+        self.verticalLayout_21 = QVBoxLayout(self.tab_3)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.userpage_editprofile_edit_profile_groupbox = QGroupBox(self.tab_3)
+        self.userpage_editprofile_edit_profile_groupbox.setObjectName(u"userpage_editprofile_edit_profile_groupbox")
+        self.userpage_editprofile_edit_profile_groupbox.setStyleSheet(u"QLabel{\n"
+"	font-size: 16px;\n"
+"	color: rgb(52, 52, 52);\n"
+"	padding-right: 20px;\n"
+"	\n"
+"}\n"
+"\n"
+"\n"
+"QLineEdit\n"
+"{\n"
+"	max-width: 300px;\n"
+"\n"
+"}")
+        self.horizontalLayout_34 = QHBoxLayout(self.userpage_editprofile_edit_profile_groupbox)
+        self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
+        self.verticalLayout_26 = QVBoxLayout()
+        self.verticalLayout_26.setObjectName(u"verticalLayout_26")
+        self.verticalLayout_26.setContentsMargins(0, -1, -1, -1)
+        self.gridLayout_18 = QGridLayout()
+        self.gridLayout_18.setObjectName(u"gridLayout_18")
+        self.gridLayout_18.setVerticalSpacing(25)
+        self.userpage_editprofile_user_role_combobox = QComboBox(self.userpage_editprofile_edit_profile_groupbox)
+        self.userpage_editprofile_user_role_combobox.addItem("")
+        self.userpage_editprofile_user_role_combobox.setObjectName(u"userpage_editprofile_user_role_combobox")
+
+        self.gridLayout_18.addWidget(self.userpage_editprofile_user_role_combobox, 1, 1, 1, 1)
+
+        self.label_78 = QLabel(self.userpage_editprofile_edit_profile_groupbox)
+        self.label_78.setObjectName(u"label_78")
+        self.label_78.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_18.addWidget(self.label_78, 1, 0, 1, 1)
+
+        self.userpage_editprofile_username_inpt = QLineEdit(self.userpage_editprofile_edit_profile_groupbox)
+        self.userpage_editprofile_username_inpt.setObjectName(u"userpage_editprofile_username_inpt")
+
+        self.gridLayout_18.addWidget(self.userpage_editprofile_username_inpt, 0, 1, 1, 1)
+
+        self.label_79 = QLabel(self.userpage_editprofile_edit_profile_groupbox)
+        self.label_79.setObjectName(u"label_79")
+        self.label_79.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_18.addWidget(self.label_79, 0, 0, 1, 1)
+
+
+        self.verticalLayout_26.addLayout(self.gridLayout_18)
+
+        self.userpage_editprofile_edit_error_lbl = QLabel(self.userpage_editprofile_edit_profile_groupbox)
+        self.userpage_editprofile_edit_error_lbl.setObjectName(u"userpage_editprofile_edit_error_lbl")
+        self.userpage_editprofile_edit_error_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"background-color: rgb(255, 95, 84);\n"
+"padding:5px;\n"
+"\n"
+"min-width: 300px;\n"
+"max-width: 16777px;\n"
+"max-height: 30px;\n"
+"")
+
+        self.verticalLayout_26.addWidget(self.userpage_editprofile_edit_error_lbl)
+
+        self.horizontalFrame1 = QFrame(self.userpage_editprofile_edit_profile_groupbox)
+        self.horizontalFrame1.setObjectName(u"horizontalFrame1")
+        self.horizontalFrame1.setStyleSheet(u"QPushButton {\n"
+"max-width: 120px;\n"
+"}")
+        self.horizontalLayout_36 = QHBoxLayout(self.horizontalFrame1)
+        self.horizontalLayout_36.setObjectName(u"horizontalLayout_36")
+        self.horizontalLayout_36.setContentsMargins(-1, 30, -1, -1)
+        self.userpage_editprofile_update_btn = QPushButton(self.horizontalFrame1)
+        self.userpage_editprofile_update_btn.setObjectName(u"userpage_editprofile_update_btn")
+        self.userpage_editprofile_update_btn.setStyleSheet(u"")
+
+        self.horizontalLayout_36.addWidget(self.userpage_editprofile_update_btn)
+
+        self.userpage_editprofile_cancel_btn = QPushButton(self.horizontalFrame1)
+        self.userpage_editprofile_cancel_btn.setObjectName(u"userpage_editprofile_cancel_btn")
+
+        self.horizontalLayout_36.addWidget(self.userpage_editprofile_cancel_btn)
+
+
+        self.verticalLayout_26.addWidget(self.horizontalFrame1)
+
+
+        self.horizontalLayout_34.addLayout(self.verticalLayout_26)
+
+        self.horizontalSpacer_69 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_34.addItem(self.horizontalSpacer_69)
+
+        self.verticalSpacer_33 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.horizontalLayout_34.addItem(self.verticalSpacer_33)
+
+
+        self.verticalLayout_21.addWidget(self.userpage_editprofile_edit_profile_groupbox)
+
+        self.verticalSpacer_35 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.verticalLayout_21.addItem(self.verticalSpacer_35)
+
+        self.userpage_editprofile_change_pass_groupbox = QGroupBox(self.tab_3)
+        self.userpage_editprofile_change_pass_groupbox.setObjectName(u"userpage_editprofile_change_pass_groupbox")
+        self.userpage_editprofile_change_pass_groupbox.setStyleSheet(u"QLabel{\n"
+"	font-size: 16px;\n"
+"	color: rgb(52, 52, 52);\n"
+"	padding-right: 20px;\n"
+"	\n"
+"}\n"
+"\n"
+"\n"
+"QLineEdit\n"
+"{\n"
+"	max-width: 300px;\n"
+"\n"
+"}")
+        self.horizontalLayout_37 = QHBoxLayout(self.userpage_editprofile_change_pass_groupbox)
+        self.horizontalLayout_37.setObjectName(u"horizontalLayout_37")
+        self.verticalLayout_27 = QVBoxLayout()
+        self.verticalLayout_27.setObjectName(u"verticalLayout_27")
+        self.verticalLayout_27.setContentsMargins(0, -1, -1, -1)
+        self.gridLayout_22 = QGridLayout()
+        self.gridLayout_22.setObjectName(u"gridLayout_22")
+        self.gridLayout_22.setVerticalSpacing(30)
+        self.userpage_editprofile_old_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_old_password_inpt.setObjectName(u"userpage_editprofile_old_password_inpt")
+
+        self.gridLayout_22.addWidget(self.userpage_editprofile_old_password_inpt, 0, 1, 1, 1)
+
+        self.label_80 = QLabel(self.userpage_editprofile_change_pass_groupbox)
+        self.label_80.setObjectName(u"label_80")
+        self.label_80.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_22.addWidget(self.label_80, 0, 0, 1, 1)
+
+        self.userpage_editprofile_new_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_new_password_inpt.setObjectName(u"userpage_editprofile_new_password_inpt")
+
+        self.gridLayout_22.addWidget(self.userpage_editprofile_new_password_inpt, 1, 1, 1, 1)
+
+        self.label_81 = QLabel(self.userpage_editprofile_change_pass_groupbox)
+        self.label_81.setObjectName(u"label_81")
+        self.label_81.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_22.addWidget(self.label_81, 1, 0, 1, 1)
+
+        self.label_86 = QLabel(self.userpage_editprofile_change_pass_groupbox)
+        self.label_86.setObjectName(u"label_86")
+        self.label_86.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_22.addWidget(self.label_86, 2, 0, 1, 1)
+
+        self.userpage_editprofile_confirm_new_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_confirm_new_password_inpt.setObjectName(u"userpage_editprofile_confirm_new_password_inpt")
+
+        self.gridLayout_22.addWidget(self.userpage_editprofile_confirm_new_password_inpt, 2, 1, 1, 1)
+
+
+        self.verticalLayout_27.addLayout(self.gridLayout_22)
+
+        self.userpage_editprofile_changepass_error_lbl = QLabel(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_changepass_error_lbl.setObjectName(u"userpage_editprofile_changepass_error_lbl")
+        self.userpage_editprofile_changepass_error_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"background-color: rgb(255, 95, 84);\n"
+"padding:5px;\n"
+"\n"
+"min-width: 300px;\n"
+"max-width: 16777px;\n"
+"max-height: 30px;\n"
+"")
+
+        self.verticalLayout_27.addWidget(self.userpage_editprofile_changepass_error_lbl)
+
+        self.horizontalLayout_38 = QHBoxLayout()
+        self.horizontalLayout_38.setObjectName(u"horizontalLayout_38")
+        self.horizontalLayout_38.setContentsMargins(-1, 30, -1, -1)
+        self.userpage_editprofile_change_password_btn = QPushButton(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_change_password_btn.setObjectName(u"userpage_editprofile_change_password_btn")
+        self.userpage_editprofile_change_password_btn.setStyleSheet(u"max-width: 120px;")
+
+        self.horizontalLayout_38.addWidget(self.userpage_editprofile_change_password_btn)
+
+
+        self.verticalLayout_27.addLayout(self.horizontalLayout_38)
+
+
+        self.horizontalLayout_37.addLayout(self.verticalLayout_27)
+
+        self.horizontalSpacer_73 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_37.addItem(self.horizontalSpacer_73)
+
+        self.verticalSpacer_34 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.horizontalLayout_37.addItem(self.verticalSpacer_34)
+
+
+        self.verticalLayout_21.addWidget(self.userpage_editprofile_change_pass_groupbox)
+
+        self.verticalSpacer_36 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_21.addItem(self.verticalSpacer_36)
+
         self.user_tabs.addTab(self.tab_3, "")
         self.tab_4 = QWidget()
         self.tab_4.setObjectName(u"tab_4")
@@ -3010,9 +3225,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QVBoxLayout(self.single_report_page)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(-1, 5, -1, -1)
-        self.horizontalFrame1 = QFrame(self.single_report_page)
-        self.horizontalFrame1.setObjectName(u"horizontalFrame1")
-        self.horizontalFrame1.setStyleSheet(u"QPushButton{\n"
+        self.horizontalFrame2 = QFrame(self.single_report_page)
+        self.horizontalFrame2.setObjectName(u"horizontalFrame2")
+        self.horizontalFrame2.setStyleSheet(u"QPushButton{\n"
 "background-color: rgba(255, 255, 255, 0);\n"
 "color: rgb(25, 68, 105);\n"
 "font-size: 14px;\n"
@@ -3024,10 +3239,10 @@ class Ui_MainWindow(object):
 "border: 2px solid rgb(25, 68, 105);\n"
 "}\n"
 "")
-        self.horizontalLayout_19 = QHBoxLayout(self.horizontalFrame1)
+        self.horizontalLayout_19 = QHBoxLayout(self.horizontalFrame2)
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.horizontalLayout_19.setContentsMargins(-1, 1, -1, -1)
-        self.pushButton_2 = QPushButton(self.horizontalFrame1)
+        self.pushButton_2 = QPushButton(self.horizontalFrame2)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setStyleSheet(u"")
         icon23 = QIcon()
@@ -3037,14 +3252,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_19.addWidget(self.pushButton_2)
 
-        self.line_14 = QFrame(self.horizontalFrame1)
+        self.line_14 = QFrame(self.horizontalFrame2)
         self.line_14.setObjectName(u"line_14")
         self.line_14.setFrameShape(QFrame.VLine)
         self.line_14.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_14)
 
-        self.pushButton_3 = QPushButton(self.horizontalFrame1)
+        self.pushButton_3 = QPushButton(self.horizontalFrame2)
         self.pushButton_3.setObjectName(u"pushButton_3")
         icon24 = QIcon()
         icon24.addFile(u":/assets/Assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -3058,7 +3273,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_19.addItem(self.horizontalSpacer_46)
 
 
-        self.verticalLayout_8.addWidget(self.horizontalFrame1)
+        self.verticalLayout_8.addWidget(self.horizontalFrame2)
 
         self.scrollArea = QScrollArea(self.single_report_page)
         self.scrollArea.setObjectName(u"scrollArea")
@@ -3726,7 +3941,7 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(4)
         self.settingpage_tabs.setCurrentIndex(1)
-        self.user_tabs.setCurrentIndex(2)
+        self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(1)
 
 
@@ -3904,6 +4119,20 @@ class Ui_MainWindow(object):
         self.userspage_add_user_btn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
         self.userspage_register_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"register user", None))
+        self.userpage_editprofile_edit_profile_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Edit Profile", None))
+        self.userpage_editprofile_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
+
+        self.label_78.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))
+        self.label_79.setText(QCoreApplication.translate("MainWindow", u"username:", None))
+        self.userpage_editprofile_edit_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
+        self.userpage_editprofile_update_btn.setText(QCoreApplication.translate("MainWindow", u"Upade Profile", None))
+        self.userpage_editprofile_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.userpage_editprofile_change_pass_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Change Password", None))
+        self.label_80.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
+        self.label_81.setText(QCoreApplication.translate("MainWindow", u"new Password", None))
+        self.label_86.setText(QCoreApplication.translate("MainWindow", u"Confirm new Password", None))
+        self.userpage_editprofile_changepass_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
+        self.userpage_editprofile_change_password_btn.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"All Users", None))

@@ -1,6 +1,6 @@
 from dorsaPylon import Collector
 
-from PagesUI.usersPageUI import usersPageUI, RegisterUserTabUI, AllUserTabUI, LoginUserBoxUI
+from PagesUI.usersPageUI import usersPageUI, RegisterUserTabUI, AllUserTabUI, LoginUserBoxUI, EditUserTabUI
 from Database.usersDB import usersDB
 from backend.UserManager.userLoginRegister import passwordManager, regiterUtils
 import CONSTANTS
@@ -12,16 +12,34 @@ class usersPageAPI:
         self.ui = ui
         self.database = database
 
+        self.login_flag = False
+        self.logined_user = {}
+
         self.registerUser = RegisterUserTabAPI(ui.registerTab, database)
         self.allUser = AllUserTabAPI(ui.allUserTab, database)
         self.loginUser = LoginBoxAPI(self.ui.loginUserBox, self.database)
+        self.editUser = EditUserTabAPI(self.ui.editUserTab, self.database)
 
-        self.registerUser.set_register_event(self.new_user_register)
+        self.registerUser.set_register_event(self.new_user_register_event)
+        self.loginUser.set_login_event_func(self.user_login_event)
+        self.editUser.set_user_edit_event_func(self.user_edited_event)
 
     def startup(self,):
         pass
     
-    def new_user_register(self,):
+    def new_user_register_event(self,):
+        self.allUser.load_users()
+    
+    def user_login_event(self,):
+        self.login_flag = self.loginUser.login_flag
+        self.logined_user = self.loginUser.logined_user
+
+        self.editUser.set_logined_user(self.logined_user, self.login_flag)
+    
+    def user_edited_event(self):
+        edited_user = self.editUser.get_edited_user()
+        self.logined_user = edited_user
+        self.loginUser.update_logedin_user(edited_user)
         self.allUser.load_users()
 
 
@@ -33,12 +51,15 @@ class LoginBoxAPI:
 
         self.login_flag = False
         self.logined_user = {}
+        self.login_event_func = None
 
         #this button is login button on top of software
         self.ui.profile_login_logout_button_connector(self.login_logout)
         #this button is login button on login dialog box
         self.ui.login_button_connector(self.login)
 
+    def set_login_event_func(self, func):
+        self.login_event_func = func
     
     def login_logout(self):
         """this function called when loging_logout button in top of wofrware pressed
@@ -82,6 +103,9 @@ class LoginBoxAPI:
         self.ui.close_window()
         self.ui.set_toolbar_login_button_icon('logout')
 
+        if self.login_event_func is not None:
+            self.login_event_func()
+
 
 
     def logout(self):
@@ -93,9 +117,14 @@ class LoginBoxAPI:
         self.ui.set_logedin_username("")
         self.ui.set_toolbar_login_button_icon('login')
 
+        if self.login_event_func is not None:
+            self.login_event_func()
+
     
 
-            
+    def update_logedin_user(self, user) :
+        self.logined_user = user
+        self.ui.set_logedin_username(user['username'])
 
 
 
@@ -113,7 +142,7 @@ class RegisterUserTabAPI:
     def register(self,):
         user_inputs = self.ui.get_register_fields()
 
-        if len(user_inputs['username']) <3:
+        if len(user_inputs['username']) < CONSTANTS.MIN_USERNAME_LENGHT:
             self.ui.write_register_error('Username is Should be at least 3 character')
             return
         
@@ -178,3 +207,63 @@ class AllUserTabAPI:
         if flag == 'edit':
             print('edit', user)
        
+
+
+
+
+class EditUserTabAPI:
+
+    def __init__(self, ui:EditUserTabUI ,database: usersDB):
+        self.ui = ui
+        self.database = database
+        self.logined_user = {}
+        self.login_flag = False
+        self.user_edit_event_func = None
+
+        self.ui.update_profile_button_connector(self.update_profile)
+
+
+    def set_user_edit_event_func(self, func):
+        self.user_edit_event_func = func
+
+    def set_logined_user(self, user, flag):
+        self.logined_user = user
+        self.login_flag = flag
+        self.ui.set_edit_profile_fields(user)
+
+    def update_profile(self):
+        if not self.login_flag:
+            self.ui.write_edit_profile_error("Please login first")
+            return
+
+        new_info = self.ui.get_edit_profile_fields()
+
+        if len(new_info['username']) < CONSTANTS.MIN_USERNAME_LENGHT:
+            self.ui.write_edit_profile_error("Username should be at least 3 character!")
+            return
+
+        if new_info['username'] != self.logined_user['username']:
+            if self.database.is_exist(new_info['username']):
+                self.ui.write_edit_profile_error("This Username is already exist!")
+                return
+
+        self.database.remove(self.logined_user['username'])    
+
+        for key , value in new_info.items():
+            self.logined_user[key] = value
+
+        self.database.save(self.logined_user)
+
+        if self.user_edit_event_func is not None:
+            self.user_edit_event_func()
+    
+    def get_edited_user(self):
+        return self.logined_user
+        
+
+
+        
+        
+    
+
+        

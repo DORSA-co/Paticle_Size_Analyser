@@ -1182,6 +1182,19 @@ Line{
                  <number>0</number>
                 </property>
                 <item>
+                 <spacer name="horizontalSpacer_67">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
                  <widget class="QLabel" name="mainpage_live_image_lbl">
                   <property name="maximumSize">
                    <size>
@@ -1589,6 +1602,12 @@ font-weight: bold;
            </item>
            <item>
             <widget class="Line" name="line_9">
+             <property name="sizeIncrement">
+              <size>
+               <width>5</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -2123,8 +2142,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>300</width>
-                   <height>590</height>
+                   <width>306</width>
+                   <height>594</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -4652,7 +4671,7 @@ max-height : 800px;</string>
            <item>
             <widget class="QTabWidget" name="user_tabs">
              <property name="currentIndex">
-              <number>2</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="tab_2">
               <attribute name="title">
@@ -4889,6 +4908,328 @@ max-width: 16777px;
               <attribute name="title">
                <string>Edit Profile</string>
               </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_21">
+               <item>
+                <widget class="QGroupBox" name="userpage_editprofile_edit_profile_groupbox">
+                 <property name="styleSheet">
+                  <string notr="true">QLabel{
+	font-size: 16px;
+	color: rgb(52, 52, 52);
+	padding-right: 20px;
+	
+}
+
+
+QLineEdit
+{
+	max-width: 300px;
+
+}</string>
+                 </property>
+                 <property name="title">
+                  <string>Edit Profile</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_34">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_26">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <layout class="QGridLayout" name="gridLayout_18">
+                      <property name="verticalSpacing">
+                       <number>25</number>
+                      </property>
+                      <item row="1" column="1">
+                       <widget class="QComboBox" name="userpage_editprofile_user_role_combobox">
+                        <item>
+                         <property name="text">
+                          <string>admin</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="label_78">
+                        <property name="text">
+                         <string>User Role:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_username_inpt"/>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_79">
+                        <property name="text">
+                         <string>username:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="userpage_editprofile_edit_error_lbl">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+background-color: rgb(255, 95, 84);
+padding:5px;
+
+min-width: 300px;
+max-width: 16777px;
+max-height: 30px;
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Username exist</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="horizontalFrame">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {
+max-width: 120px;
+}</string>
+                      </property>
+                      <layout class="QHBoxLayout" name="horizontalLayout_36">
+                       <property name="topMargin">
+                        <number>30</number>
+                       </property>
+                       <item>
+                        <widget class="QPushButton" name="userpage_editprofile_update_btn">
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string>Upade Profile</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="userpage_editprofile_cancel_btn">
+                         <property name="text">
+                          <string>Cancel</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_69">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_33">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Maximum</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_35">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Maximum</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="userpage_editprofile_change_pass_groupbox">
+                 <property name="styleSheet">
+                  <string notr="true">QLabel{
+	font-size: 16px;
+	color: rgb(52, 52, 52);
+	padding-right: 20px;
+	
+}
+
+
+QLineEdit
+{
+	max-width: 300px;
+
+}</string>
+                 </property>
+                 <property name="title">
+                  <string>Change Password</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_37">
+                  <item>
+                   <layout class="QVBoxLayout" name="verticalLayout_27">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <layout class="QGridLayout" name="gridLayout_22">
+                      <property name="verticalSpacing">
+                       <number>30</number>
+                      </property>
+                      <item row="0" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_old_password_inpt"/>
+                      </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_80">
+                        <property name="text">
+                         <string>Password:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="1" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_new_password_inpt"/>
+                      </item>
+                      <item row="1" column="0">
+                       <widget class="QLabel" name="label_81">
+                        <property name="text">
+                         <string>new Password</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="0">
+                       <widget class="QLabel" name="label_86">
+                        <property name="text">
+                         <string>Confirm new Password</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item row="2" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_confirm_new_password_inpt"/>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="userpage_editprofile_changepass_error_lbl">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+background-color: rgb(255, 95, 84);
+padding:5px;
+
+min-width: 300px;
+max-width: 16777px;
+max-height: 30px;
+</string>
+                      </property>
+                      <property name="text">
+                       <string>Username exist</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_38">
+                      <property name="topMargin">
+                       <number>30</number>
+                      </property>
+                      <item>
+                       <widget class="QPushButton" name="userpage_editprofile_change_password_btn">
+                        <property name="styleSheet">
+                         <string notr="true">max-width: 120px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Change Password</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_73">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_34">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Maximum</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_36">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </widget>
              <widget class="QWidget" name="tab_4">
               <attribute name="title">

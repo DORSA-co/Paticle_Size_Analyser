@@ -1,1 +1,3 @@
 MIN_PASS_LENGHT = 5
+MIN_USERNAME_LENGHT = 3
+USER_ROlES = ['admin', 'user']

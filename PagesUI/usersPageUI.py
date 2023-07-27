@@ -1,6 +1,6 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
-
+import CONSTANTS
 
 
 class usersPageUI:
@@ -9,6 +9,7 @@ class usersPageUI:
         self.registerTab = RegisterUserTabUI(ui)
         self.allUserTab = AllUserTabUI(ui)
         self.loginUserBox = LoginUserBoxUI(ui, login_ui)
+        self.editUserTab = EditUserTabUI(ui)
 
 
 class LoginUserBoxUI:
@@ -45,7 +46,7 @@ class LoginUserBoxUI:
     def get_login_inputs(self):
         username = GUIBackend.get_input(self.login_ui.username_input)
         password = GUIBackend.get_input(self.login_ui.password_input)
-        return {'username':username, 'password':password}
+        return {'username':username.lower(), 'password':password}
 
     def clear_login_inputs(self):
         GUIBackend.set_input(self.login_ui.username_input, "")
@@ -95,9 +96,11 @@ class LoginUserBoxUI:
 
 
 class RegisterUserTabUI:
-
+    
     def __init__(self, ui) -> None:
         self.ui = ui    
+
+        
 
         self.register_error_lbl = self.ui.userspage_register_error_lbl
         self.register_btn = self.ui.userspage_add_user_btn
@@ -108,6 +111,8 @@ class RegisterUserTabUI:
             'password_confirm': self.ui.userpage_confirm_password_inpt,
             'role': self.ui.userpage_user_role_combobox
         }
+
+        GUIBackend.set_combobox_items(self.register_users_field['role'], CONSTANTS.USER_ROlES)
         self.reset()
 
     def reset(self):
@@ -138,6 +143,8 @@ class RegisterUserTabUI:
         infos = {}
         for name, field in self.register_users_field.items():
             infos[name] = GUIBackend.get_input(field)
+        
+        infos['username'] = infos['username'].lower()
         return infos
     
 
@@ -245,3 +252,98 @@ class AllUserTabUI:
     def show_confirm_box(Self, title, massage, buttons):
         cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
         return cmb.render()
+    
+
+
+
+
+
+class EditUserTabUI:
+
+    def __init__(self, ui) -> None:
+        self.ui = ui
+
+        self.update_profile_btn = self.ui.userpage_editprofile_update_btn
+        self.cancel_edit_profile_btn = self.ui.userpage_editprofile_cancel_btn
+        self.change_password_btn = self.ui.userpage_editprofile_change_password_btn
+        self.change_password_error_lbl = self.ui.userpage_editprofile_changepass_error_lbl
+        self.edit_profile_error_lbl = self.ui.userpage_editprofile_edit_error_lbl
+
+        self.change_password_fields = {
+            'old_password': self.ui.userpage_editprofile_old_password_inpt,
+            'new_password': self.ui.userpage_editprofile_new_password_inpt,
+            'confirm_new_password': self.ui.userpage_editprofile_confirm_new_password_inpt,
+        }
+
+        self.edit_profile_fields = {
+            'username': self.ui.userpage_editprofile_username_inpt,
+            'role': self.ui.userpage_editprofile_user_role_combobox,
+        }
+
+        GUIBackend.set_combobox_items(self.edit_profile_fields['role'], CONSTANTS.USER_ROlES)
+
+        self.write_change_password_error(None)
+        self.write_edit_profile_error(None)
+
+
+    def update_profile_button_connector(self, func):
+        GUIBackend.button_connector(self.update_profile_btn, func)
+
+    def cancel_edit_profile_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_edit_profile_btn, func)
+
+    def change_password_button_connector(self, func):
+        GUIBackend.button_connector(self.change_password_btn, func)
+
+    
+    def get_change_password_fields(self,):
+        data = {}
+        for name, filed in self.change_password_fields.items():
+            data[name] = GUIBackend.get_input(filed)
+
+        return data
+    
+    def clear_change_password_fields(self,):
+        for name, filed in self.change_password_fields.items():
+            GUIBackend.set_input(filed, "")
+
+    def get_edit_profile_fields(self,):
+        data = {}
+        for name, field in self.edit_profile_fields.items():
+            data[name] = GUIBackend.get_input(field)
+        
+        data['username'] = data['username'].lower() 
+        return data
+
+
+    def set_edit_profile_fields(self, data):
+        for name, field in self.edit_profile_fields.items():
+            GUIBackend.set_input(field, data[name])
+        
+
+    
+
+    def write_change_password_error(self, txt:str):
+        """Write Errors message in change password
+
+        Args:
+            txt (str): error message
+        """
+        if txt is None:
+            GUIBackend.set_wgt_visible(self.change_password_error_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.change_password_error_lbl, True)
+            GUIBackend.set_label_text( self.change_password_error_lbl, txt)
+
+    
+    def write_edit_profile_error(self, txt:str):
+        """Write Errors message in change password
+
+        Args:
+            txt (str): error message
+        """
+        if txt is None:
+            GUIBackend.set_wgt_visible(self.edit_profile_error_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.edit_profile_error_lbl, True)
+            GUIBackend.set_label_text( self.edit_profile_error_lbl, txt)

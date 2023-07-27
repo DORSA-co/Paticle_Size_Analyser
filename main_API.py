@@ -23,7 +23,7 @@ class main_API:
         self.usersAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
 
         
-        self.ui.__global_setting__.change_page_connector(self.page_change)
+        self.ui.change_page_connector(self.page_change)
 
         #this functions should run when each page load
         self.pages_api_dict = {

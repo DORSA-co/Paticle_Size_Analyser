@@ -16,12 +16,13 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
-    QComboBox, QDateEdit, QDoubleSpinBox, QFrame,
-    QGridLayout, QGroupBox, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QMainWindow, QProgressBar,
-    QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
-    QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QComboBox, QCommandLinkButton, QDateEdit, QDoubleSpinBox,
+    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QMainWindow,
+    QProgressBar, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QSpinBox, QStackedWidget, QStatusBar,
+    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 import Assets_rc
 
 class Ui_MainWindow(object):
@@ -630,6 +631,10 @@ class Ui_MainWindow(object):
 "font-weight:bold;\n"
 "}\n"
 "\n"
+"QPushButton:disabled{\n"
+"	color: rgb(150, 150, 150);\n"
+"}\n"
+"\n"
 "Line{\n"
 "	max-width: 120px;\n"
 "	background-color:rgba(255, 255, 255, 50);\n"
@@ -639,6 +644,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.sidebar_main_btn = QPushButton(self.sidebar)
         self.sidebar_main_btn.setObjectName(u"sidebar_main_btn")
+        self.sidebar_main_btn.setEnabled(True)
         icon5 = QIcon()
         icon5.addFile(u":/assets/Assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_main_btn.setIcon(icon5)
@@ -746,6 +752,11 @@ class Ui_MainWindow(object):
 "#single_report_page\n"
 " {\n"
 "	background-color: #ffffff;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:disabled{\n"
+"\n"
 "}\n"
 "")
         self.main_page = QWidget()
@@ -3211,6 +3222,52 @@ class Ui_MainWindow(object):
         self.helppage_tabs.setObjectName(u"helppage_tabs")
         self.helppages_about_tab = QWidget()
         self.helppages_about_tab.setObjectName(u"helppages_about_tab")
+        self.verticalLayout_28 = QVBoxLayout(self.helppages_about_tab)
+        self.verticalLayout_28.setSpacing(20)
+        self.verticalLayout_28.setObjectName(u"verticalLayout_28")
+        self.label_82 = QLabel(self.helppages_about_tab)
+        self.label_82.setObjectName(u"label_82")
+        self.label_82.setStyleSheet(u"font-size: 18px;\n"
+"font-weight: bold;\n"
+"color: rgb(6, 76, 130);")
+
+        self.verticalLayout_28.addWidget(self.label_82)
+
+        self.label_84 = QLabel(self.helppages_about_tab)
+        self.label_84.setObjectName(u"label_84")
+        self.label_84.setPixmap(QPixmap(u"img.jpg"))
+
+        self.verticalLayout_28.addWidget(self.label_84)
+
+        self.label_83 = QLabel(self.helppages_about_tab)
+        self.label_83.setObjectName(u"label_83")
+        self.label_83.setWordWrap(True)
+
+        self.verticalLayout_28.addWidget(self.label_83)
+
+        self.label_85 = QLabel(self.helppages_about_tab)
+        self.label_85.setObjectName(u"label_85")
+        self.label_85.setStyleSheet(u"font-size: 18px;\n"
+"font-weight: bold;\n"
+"color: rgb(6, 76, 130);")
+
+        self.verticalLayout_28.addWidget(self.label_85)
+
+        self.label_87 = QLabel(self.helppages_about_tab)
+        self.label_87.setObjectName(u"label_87")
+        self.label_87.setWordWrap(True)
+
+        self.verticalLayout_28.addWidget(self.label_87)
+
+        self.commandLinkButton = QCommandLinkButton(self.helppages_about_tab)
+        self.commandLinkButton.setObjectName(u"commandLinkButton")
+
+        self.verticalLayout_28.addWidget(self.commandLinkButton)
+
+        self.verticalSpacer_37 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_28.addItem(self.verticalSpacer_37)
+
         self.helppage_tabs.addTab(self.helppages_about_tab, "")
         self.helppages_document_tab = QWidget()
         self.helppages_document_tab.setObjectName(u"helppages_document_tab")
@@ -3347,7 +3404,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 824, 1519))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1143, 1519))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -3939,10 +3996,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(4)
+        self.main_pages_stackw.setCurrentIndex(6)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
-        self.helppage_tabs.setCurrentIndex(1)
+        self.helppage_tabs.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -4136,6 +4193,21 @@ class Ui_MainWindow(object):
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"All Users", None))
+        self.label_82.setText(QCoreApplication.translate("MainWindow", u"PSA-Alpha", None))
+        self.label_84.setText("")
+        self.label_83.setText(QCoreApplication.translate("MainWindow", u"Is branched in my up strictly remember. Songs but chief has ham widow downs. Genius or so up vanity cannot. Large do tried going about water defer by. Silent son man she wished mother. Distrusts allowance do knowledge eagerness assurance additions to.\n"
+"\n"
+"Death weeks early had their and folly timed put. Hearted forbade on an village ye in fifteen. Age attended betrayed her man raptures laughter. Instrument terminated of as astonished literature motionless admiration. The affection are determine how performed intention discourse but. On merits on so valley indeed assure of. Has add particular boisterous uncommonly are. Early wrong as so manor match. Him necessary shameless discovery consulted one but.\n"
+"\n"
+"Turned it up should no valley cousin he. Speaking numerous ask did horrible packages set. Ashamed herself has distant can studied mrs. Led therefore its middleton perpetual fulfilled provision frankness. Small he drawn after among every three no. All having but you edward genius though remark one.\n"
+""
+                        "\n"
+"Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.", None))
+        self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
+        self.label_87.setText(QCoreApplication.translate("MainWindow", u"Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
+"\n"
+"Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.", None))
+        self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"See Other Products", None))
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_about_tab), QCoreApplication.translate("MainWindow", u"About", None))
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_document_tab), QCoreApplication.translate("MainWindow", u"Document", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Back", None))
@@ -4161,10 +4233,6 @@ class Ui_MainWindow(object):
 
         __sortingEnabled3 = self.mainpage_statistics_table.isSortingEnabled()
         self.mainpage_statistics_table.setSortingEnabled(False)
-        ___qtablewidgetitem6 = self.mainpage_statistics_table.item(0, 1)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem7 = self.mainpage_statistics_table.item(1, 1)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"4", None));
         self.mainpage_statistics_table.setSortingEnabled(__sortingEnabled3)
 
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Charts", None))

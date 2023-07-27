@@ -2,7 +2,42 @@ from PySide6 import QtWidgets, QtCore, QtGui
 from functools import partial
 import cv2 
 from datetime import datetime
+import sys
+
+
 class GUIBackend:
+
+    @staticmethod
+    def set_win_frameless(ui):
+        ui.setWindowFlags(QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint))
+
+    @staticmethod
+    def close_app(ui ):
+        # close app window and exit the program
+        ui.close()
+        sys.exit()
+
+    @staticmethod
+    def maxmize_minimize(ui):
+        """
+        this function chages the window size of app
+        Inputs: None
+        Returns: None
+        """
+        if ui.isMaximized():
+            ui.showNormal()
+        else:
+            ui.showMaximized()
+
+    @staticmethod
+    def minimize_win(ui):
+        """
+        this function minimizes the app to taskbar
+        Inputs: None
+        Returns: None
+        """
+        ui.showMinimized()
+    #----------------------------------------------------------------
 
     @staticmethod
     def emit_signal(signal:QtCore.Signal):

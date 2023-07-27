@@ -853,6 +853,10 @@ max-width:150px;
 font-weight:bold;
 }
 
+QPushButton:disabled{
+	color: rgb(150, 150, 150);
+}
+
 Line{
 	max-width: 120px;
 	background-color:rgba(255, 255, 255, 50);
@@ -862,6 +866,9 @@ Line{
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QPushButton" name="sidebar_main_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
              <string>Main</string>
             </property>
@@ -1000,10 +1007,15 @@ Line{
  {
 	background-color: #ffffff;
 }
+
+
+QPushButton:disabled{
+
+}
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -5342,12 +5354,99 @@ QHeaderView::section:vertical
            <item>
             <widget class="QTabWidget" name="helppage_tabs">
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="helppages_about_tab">
               <attribute name="title">
                <string>About</string>
               </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_28">
+               <property name="spacing">
+                <number>20</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_82">
+                 <property name="styleSheet">
+                  <string notr="true">font-size: 18px;
+font-weight: bold;
+color: rgb(6, 76, 130);</string>
+                 </property>
+                 <property name="text">
+                  <string>PSA-Alpha</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_84">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap>img.jpg</pixmap>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_83">
+                 <property name="text">
+                  <string>Is branched in my up strictly remember. Songs but chief has ham widow downs. Genius or so up vanity cannot. Large do tried going about water defer by. Silent son man she wished mother. Distrusts allowance do knowledge eagerness assurance additions to.
+
+Death weeks early had their and folly timed put. Hearted forbade on an village ye in fifteen. Age attended betrayed her man raptures laughter. Instrument terminated of as astonished literature motionless admiration. The affection are determine how performed intention discourse but. On merits on so valley indeed assure of. Has add particular boisterous uncommonly are. Early wrong as so manor match. Him necessary shameless discovery consulted one but.
+
+Turned it up should no valley cousin he. Speaking numerous ask did horrible packages set. Ashamed herself has distant can studied mrs. Led therefore its middleton perpetual fulfilled provision frankness. Small he drawn after among every three no. All having but you edward genius though remark one.
+
+Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_85">
+                 <property name="styleSheet">
+                  <string notr="true">font-size: 18px;
+font-weight: bold;
+color: rgb(6, 76, 130);</string>
+                 </property>
+                 <property name="text">
+                  <string>Dorsa Company</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_87">
+                 <property name="text">
+                  <string>Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.
+
+Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCommandLinkButton" name="commandLinkButton">
+                 <property name="text">
+                  <string>See Other Products</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_37">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
              </widget>
              <widget class="QWidget" name="helppages_document_tab">
               <attribute name="title">
@@ -5524,7 +5623,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>824</width>
+                <width>1143</width>
                 <height>1519</height>
                </rect>
               </property>
@@ -6033,12 +6132,12 @@ QHeaderView::section:vertical
                    <column/>
                    <item row="0" column="1">
                     <property name="text">
-                     <string>test</string>
+                     <string/>
                     </property>
                    </item>
                    <item row="1" column="1">
                     <property name="text">
-                     <string>4</string>
+                     <string/>
                     </property>
                    </item>
                   </widget>

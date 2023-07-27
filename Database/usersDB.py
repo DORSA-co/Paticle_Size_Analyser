@@ -38,7 +38,7 @@ class usersDB:
         if not self.is_exist( data[self.PRIMERY_KEY_COL_NAME] ):
             self.db_manager.add_record_dict(self.TABLE_NAME, data)
         else:
-            self.db_manager.update(self.TABLE_NAME, data, id_name=self.PRIMERY_KEY_COL_NAME, id_value = data[self.PRIMERY_KEY_COL_NAME])
+            self.db_manager.update_record_dict(self.TABLE_NAME, data, id_name=self.PRIMERY_KEY_COL_NAME, id_value = data[self.PRIMERY_KEY_COL_NAME])
 
         
     def load(self, username:str) -> list[dict]:

@@ -221,6 +221,7 @@ class EditUserTabAPI:
         self.user_edit_event_func = None
 
         self.ui.update_profile_button_connector(self.update_profile)
+        self.ui.change_password_button_connector(self.change_password)
 
 
     def set_user_edit_event_func(self, func):
@@ -259,6 +260,39 @@ class EditUserTabAPI:
     
     def get_edited_user(self):
         return self.logined_user
+    
+
+    def change_password(self):
+        info = self.ui.get_change_password_fields()
+
+        if not passwordManager.check_password(info['old_password'], self.logined_user['password']):
+            self.ui.write_change_password_error('Old password is Incorect')
+            return
+        
+        if len(info['new_password']) < CONSTANTS.MIN_PASS_LENGHT:
+            self.ui.write_change_password_error("Password should be at least {} character".format(CONSTANTS.MIN_PASS_LENGHT))
+            return
+
+        
+        if info['new_password'] != info['confirm_new_password']:
+            self.ui.write_change_password_error("New password and it's confirm aren't same")
+            return
+        
+        
+        new_password = info['new_password']
+        hashed_new_password = passwordManager.hash_password(new_password)
+        self.logined_user['password'] = hashed_new_password
+        self.database.save(self.logined_user)
+        
+        self.ui.write_change_password_error(None)
+        self.ui.clear_change_password_fields()
+
+        if self.user_edit_event_func is not None:
+            self.user_edit_event_func()
+
+        
+        
+
         
 
 

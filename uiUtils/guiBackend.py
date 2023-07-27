@@ -4,6 +4,19 @@ import cv2
 from datetime import datetime
 class GUIBackend:
 
+    @staticmethod
+    def emit_signal(signal:QtCore.Signal):
+        signal.emit()
+
+    @staticmethod
+    def show_window( ui, always_on_top=False):
+        if always_on_top:
+            ui.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
+        ui.show()
+
+    @staticmethod
+    def close_window( ui):
+        ui.close()
 
     #----------------------------------------------------------------
     @staticmethod

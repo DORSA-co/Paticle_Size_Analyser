@@ -308,7 +308,7 @@ class gradingSettingTabUI(commonSettingUI):
         GUIBackend.spinbox_connector( self.ranges_input['lower'] , self.__validation_input_ranges__ )
 
         #col 1 and 2 adjust to content
-        GUIBackend.set_cell_width_content_adjust(self.standards_table, [3,4])
+        GUIBackend.set_cell_width_content_adjust(self.standards_table, [0,1,2, 3,4])
 
         #hide warning
         self.show_warning_massage(None)

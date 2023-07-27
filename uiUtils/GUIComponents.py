@@ -163,6 +163,8 @@ class confirmMessageBox:
                 return btn_name
 
 
+def signal():
+    return QtCore.Signal()
 
 if __name__ == '__main__':
     pass

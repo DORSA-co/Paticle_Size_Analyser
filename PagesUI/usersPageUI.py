@@ -3,18 +3,101 @@ from uiUtils import GUIComponents
 
 
 
-
 class usersPageUI:
-    def __init__(self, ui):
+    def __init__(self, ui, login_ui):
+        #self.login_ui = login_ui
         self.registerTab = RegisterUserTabUI(ui)
         self.allUserTab = AllUserTabUI(ui)
+        self.loginUserBox = LoginUserBoxUI(ui, login_ui)
+
+
+class LoginUserBoxUI:
+
+    def __init__(self, ui, login_ui,) -> None:
+        self.ui = ui
+        self.login_ui = login_ui
+
+
+        self.logined_username_lbl = self.ui.toolbar_logined_username_lbl
+        
+        self.toolbar_login_logout_btn = self.ui.toolbar_login_logout_btn
+        #GUIBackend.button_connector(self.login_logout_button, self.show_window)
+        
+
+        
+    def profile_login_logout_button_connector(self, func):
+        GUIBackend.button_connector(self.toolbar_login_logout_btn, func)
+    
+    def login_button_connector(self, func):
+        GUIBackend.button_connector(self.login_ui.login_btn, func)
+
+    #def register_button_connector(self, func):
+    #    GUIBackend.button_connector(self.login_ui.register_btn, func)
+
+    def show_login(self):
+        self.write_login_error(None)
+        GUIBackend.show_window(self.login_ui, always_on_top=True)
+
+    def close_window(self):
+        GUIBackend.close_window(self.login_ui)
+
+
+    def get_login_inputs(self):
+        username = GUIBackend.get_input(self.login_ui.username_input)
+        password = GUIBackend.get_input(self.login_ui.password_input)
+        return {'username':username, 'password':password}
+
+    def clear_login_inputs(self):
+        GUIBackend.set_input(self.login_ui.username_input, "")
+        GUIBackend.set_input(self.login_ui.password_input, "")
+
+    def write_login_error(self, txt:str):
+        """Write Errors message in Logun
+
+        Args:
+            txt (str): error message
+        """
+        if txt is None:
+            GUIBackend.set_wgt_visible(self.login_ui.login_error_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.login_ui.login_error_lbl, True)
+            GUIBackend.set_label_text( self.login_ui.login_error_lbl, txt)
+
+
+    def set_logedin_username(self, username):
+        if username is None:
+            GUIBackend.set_wgt_visible(self.logined_username_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.logined_username_lbl, True)
+            GUIBackend.set_label_text( self.logined_username_lbl, username)
+
+
+    def show_logout(Self, username):
+        cmb = GUIComponents.confirmMessageBox('logout', 
+                                              "{} do you want logout?".format(username), buttons = ['yes', 'no'])
+        btn = cmb.render() 
+        return btn == 'yes'
+            
+
+    def set_toolbar_login_button_icon(self, state:str):
+        """change icon of login_logout button in toolbar of top of software
+
+        Args:
+            state (str): flags that determine icon. it could be 'login' or 'logout'
+        """
+        if state == 'login':
+            GUIBackend.set_button_icon(self.toolbar_login_logout_btn, ":/assets/Assets/icons/icons8-user-50.png")
+        
+        elif state == 'logout':
+            GUIBackend.set_button_icon(self.toolbar_login_logout_btn, ":/assets/Assets/icons/icons8-logout-white-50.png")
+            
 
 
 
 class RegisterUserTabUI:
 
     def __init__(self, ui) -> None:
-        self.ui = ui
+        self.ui = ui    
 
         self.register_error_lbl = self.ui.userspage_register_error_lbl
         self.register_btn = self.ui.userspage_add_user_btn
@@ -127,11 +210,16 @@ class AllUserTabUI:
         Args:
             datas (list[list]): list of users info
         """
+        
         assert self.__table_external_event_function__ is not None, "ERROR: First determine an event Function for edit and delete button by 'AllUserTab.__table_event_connector__' method "
         
         #set row count
         users_count = len(users)
         GUIBackend.set_table_dim(self.users_table, row=users_count, col=None)
+
+        if users_count == 0:
+            return
+        
         info_count = len(users[0])
 
         for row, user in enumerate(users):

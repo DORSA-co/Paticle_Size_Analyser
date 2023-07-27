@@ -42,7 +42,7 @@ class usersDB:
 
         
     def load(self, username:str) -> list[dict]:
-        return self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, username)
+        return self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, username)[0]
     
 
     def load_all(self,) -> list[dict]:

@@ -23,7 +23,6 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
     QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -59,6 +58,10 @@ class Ui_MainWindow(object):
 "	\n"
 "}\n"
 "\n"
+"QPushButton:pressed {\n"
+"\n"
+"}\n"
+"\n"
 "QPushButton:hover{\n"
 "\n"
 "	background-color:rgb(22, 38, 76);\n"
@@ -91,10 +94,10 @@ class Ui_MainWindow(object):
 "{\n"
 "    border: 1px solid #fffff8;\n"
 "}\n"
+""
+                        "\n"
 "\n"
-"\n"
-"/*******************************"
-                        "**************/\n"
+"/*********************************************/\n"
 "\n"
 "\n"
 "\n"
@@ -143,13 +146,13 @@ class Ui_MainWindow(object):
 "QComboBox QAbstractItemView {\n"
 "    border: none;\n"
 "    selection-background-color: rgb(6, 76, 130);\n"
-"	selection-color: rgb(6, 76, 130);\n"
+"	selection-color: rgb(6, 76, 130"
+                        ");\n"
 "\n"
 "\n"
 "}\n"
 "\n"
-"QComboBox QAbs"
-                        "tractItemView {\n"
+"QComboBox QAbstractItemView {\n"
 "    border: none;\n"
 "}\n"
 "\n"
@@ -200,12 +203,12 @@ class Ui_MainWindow(object):
 "{\n"
 "    subcontrol-origin: border;\n"
 "	background-color:rgb(6, 76, 130);\n"
-"    width: 30px;\n"
+"    width: "
+                        "30px;\n"
 "}\n"
 "\n"
 "\n"
-"QDateEdit::up-bu"
-                        "tton:disabled ,\n"
+"QDateEdit::up-button:disabled ,\n"
 "QDateEdit::down-button:disabled\n"
 "    {\n"
 "    subcontrol-origin: border;\n"
@@ -250,10 +253,10 @@ class Ui_MainWindow(object):
 "\n"
 "QSpinBox::up-arrow, QDoubleSpinBox::up-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);\n"
+"	image: url(:/assets/Assets/icons/icons8"
+                        "-uptriangle-48.png);\n"
 "	width: 10px;\n"
-""
-                        "    height: 10px;\n"
+"    height: 10px;\n"
 "\n"
 "}\n"
 "\n"
@@ -295,9 +298,9 @@ class Ui_MainWindow(object):
 "\n"
 "QCheckBox::indicator {\n"
 "    width: 25px;\n"
-"    height: 25px;\n"
-"	border:2px solid rgb(6, 76, 130)"
-                        ";\n"
+"    height: "
+                        "25px;\n"
+"	border:2px solid rgb(6, 76, 130);\n"
 "	border-radius: 3px;\n"
 "	\n"
 "}\n"
@@ -343,12 +346,12 @@ class Ui_MainWindow(object):
 "\n"
 "QTabBar::tab:selected {\n"
 "    background: rgb(6, 76, 130);\n"
-"	font-weight: bold;\n"
+"	font-weight:"
+                        " bold;\n"
 "	font-size: 20px;\n"
 "}\n"
 "\n"
-""
-                        "QTabBar::tab:!selected {\n"
+"QTabBar::tab:!selected {\n"
 "	border-left: 1px solid rgb(199, 199, 199);\n"
 "	border-right: 1px solid rgb(199, 199, 199);\n"
 "}\n"
@@ -411,9 +414,9 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "\n"
-"QTimeEdit:hover{\n"
-"	background: #e4f0fa"
-                        ";\n"
+""
+                        "QTimeEdit:hover{\n"
+"	background: #e4f0fa;\n"
 "}\n"
 "\n"
 "QTimeEdit:focus {\n"
@@ -493,6 +496,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer)
 
+        self.toolbar_logined_username_lbl = QLabel(self.header)
+        self.toolbar_logined_username_lbl.setObjectName(u"toolbar_logined_username_lbl")
+        self.toolbar_logined_username_lbl.setStyleSheet(u"color:#ffffff;")
+
+        self.horizontalLayout_4.addWidget(self.toolbar_logined_username_lbl)
+
         self.win_buttons = QFrame(self.header)
         self.win_buttons.setObjectName(u"win_buttons")
         self.win_buttons.setStyleSheet(u"QPushButton{\n"
@@ -514,14 +523,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setSpacing(5)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.win_buttons)
-        self.pushButton.setObjectName(u"pushButton")
+        self.toolbar_login_logout_btn = QPushButton(self.win_buttons)
+        self.toolbar_login_logout_btn.setObjectName(u"toolbar_login_logout_btn")
+        self.toolbar_login_logout_btn.setStyleSheet(u"")
         icon1 = QIcon()
         icon1.addFile(u":/assets/Assets/icons/icons8-user-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon1)
-        self.pushButton.setIconSize(QSize(35, 35))
+        self.toolbar_login_logout_btn.setIcon(icon1)
+        self.toolbar_login_logout_btn.setIconSize(QSize(35, 35))
 
-        self.horizontalLayout_13.addWidget(self.pushButton)
+        self.horizontalLayout_13.addWidget(self.toolbar_login_logout_btn)
 
         self.line_13 = QFrame(self.win_buttons)
         self.line_13.setObjectName(u"line_13")
@@ -3727,7 +3737,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Dorsa Width Gauge", None))
         self.dorsa_logo.setText("")
         self.title.setText(QCoreApplication.translate("MainWindow", u"Particle Size Analyzer", None))
-        self.pushButton.setText("")
+        self.toolbar_logined_username_lbl.setText(QCoreApplication.translate("MainWindow", u"no one login", None))
+        self.toolbar_login_logout_btn.setText("")
 #if QT_CONFIG(tooltip)
         self.minimize_btn.setToolTip("")
 #endif // QT_CONFIG(tooltip)

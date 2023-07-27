@@ -15,6 +15,7 @@ sys.path.append( os.getcwd() + "/PagesAPI" )
 sys.path.append( os.getcwd() + "/PagesUI" )
 #------------------------------------------------------------------
 main_ui_file = 'main_UI.ui'
+login_ui_file = 'login.ui'
 
 #----------------------Load Madouls -------------------------------
 from PySide6 import QtWidgets, QtCore, QtGui 
@@ -38,14 +39,22 @@ from reportsPageUI import reportsPageUI
 from guiBackend import GUIBackend
 
 class UIs:
-    def __init__(self, ui):
+    def __init__(self, ui, login_ui):
         self.__global_setting__ = GlobalUI(ui)
 
         self.settingPage = settingPageUI(ui)
         self.reportsPage = reportsPageUI(ui)
         self.mainPage = mainPageUI(ui)
         self.calibrationPage = calibrationPageUI(ui)
-        self.usersPage = usersPageUI(ui)
+        self.usersPage = usersPageUI(ui, login_ui)
+
+class commonUiFunctions:
+    def __init__(self) -> None:
+        pass
+    
+    def show_confirm_box(Self, title, massage, buttons):
+        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
+        return cmb.render()
 
 class GlobalUI():
     """this class is used to build class for mainwindow to load GUI application
@@ -330,8 +339,9 @@ if __name__ == '__main__':
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
     window = loader.load(main_ui_file, None)
+    login_ui = loader.load(login_ui_file, None)
     #global_ui = GlobalUI(window)
-    all_uis = UIs(window)
+    all_uis = UIs(window, login_ui)
 
     
 
@@ -390,6 +400,7 @@ if __name__ == '__main__':
    
 
     window.show()
+    
     
 
     app.exec()

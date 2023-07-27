@@ -45,6 +45,10 @@ QPushButton{
 	
 }
 
+QPushButton:pressed {
+
+}
+
 QPushButton:hover{
 
 	background-color:rgb(22, 38, 76);
@@ -566,6 +570,16 @@ QListView::item{
         </spacer>
        </item>
        <item>
+        <widget class="QLabel" name="toolbar_logined_username_lbl">
+         <property name="styleSheet">
+          <string notr="true">color:#ffffff;</string>
+         </property>
+         <property name="text">
+          <string>no one login</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QFrame" name="win_buttons">
          <property name="styleSheet">
           <string notr="true">QPushButton{
@@ -605,7 +619,10 @@ background-color: rgba(31, 32, 85, 100);
            <number>0</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="toolbar_login_logout_btn">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -6265,7 +6282,6 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
-  <include location="../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

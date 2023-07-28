@@ -3,11 +3,13 @@ MIN_USERNAME_LENGHT = 1
 
 
 #-------------------------------------------------------------------
+UNLOGIN_USER_ROLE = 'none'
 USER_ROlES = ['admin', 'user']
+
 USER_ROlES_ACCESS = {
     'admin': ['admin', 'user'],
     'user': ['user'],
-    'none': ['user'],
+    UNLOGIN_USER_ROLE: ['user'],
 }
 
 ACCESS = {
@@ -21,7 +23,7 @@ ACCESS = {
         'tabs': ['grading_setting', 'register_user', 'edit_user' ],
     },
 
-    'none':{
+    UNLOGIN_USER_ROLE:{
         'pages' : ['user', 'help'],
         'tabs': ['register_user'],
     },

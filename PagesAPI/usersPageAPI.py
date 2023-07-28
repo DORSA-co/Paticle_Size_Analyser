@@ -11,6 +11,9 @@ class dataPasser:
         self.login_flag = False
         self.logined_user = {}
 
+    def get_logined_user_role(self,):
+        return self.logined_user.get('role', CONSTANTS.UNLOGIN_USER_ROLE)
+
 
 class usersPageAPI:
 
@@ -42,11 +45,13 @@ class usersPageAPI:
     
     def user_login_event(self,):
         self.editUser.update_logined_user()
+        self.registerUser.set_available_user_roles()
         if self.external_login_func_event is not None:
             self.external_login_func_event()
     
     def user_edited_event(self):
         self.loginUser.update_logedin_user()
+        self.registerUser.set_available_user_roles()
         self.allUser.load_users()
 
 
@@ -147,7 +152,11 @@ class RegisterUserTabAPI:
 
         self.register_event_func = None
         self.ui.register_button_connector(self.register)
-        self.ui.set_user_roles_items( CONSTANTS.USER_ROlES_ACCESS['none'] )
+        self.set_available_user_roles()
+        
+    def set_available_user_roles(self):
+        logined_user_role = self.data_passer.get_logined_user_role()
+        self.ui.set_user_roles_items( CONSTANTS.USER_ROlES_ACCESS[logined_user_role] )
     
     def register(self,):
         user_inputs = self.ui.get_register_fields()
@@ -234,12 +243,19 @@ class EditUserTabAPI:
 
         self.ui.update_profile_button_connector(self.update_profile)
         self.ui.change_password_button_connector(self.change_password)
+        self.set_available_user_roles()
+        
 
+
+    def set_available_user_roles(self):
+        logined_user_role = self.data_passer.get_logined_user_role()
+        self.ui.set_user_roles_items( CONSTANTS.USER_ROlES_ACCESS[logined_user_role] )
 
     def set_user_edit_event_func(self, func):
         self.user_edit_event_func = func
 
     def update_logined_user(self,):
+        self.set_available_user_roles()
         self.ui.set_edit_profile_fields(self.data_passer.logined_user)
 
     def update_profile(self):

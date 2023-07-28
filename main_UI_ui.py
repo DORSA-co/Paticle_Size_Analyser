@@ -1981,6 +1981,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_22.addWidget(self.settingpage_grading_new_standards_groupbox)
 
+        self.horizontalSpacer_72 = QSpacerItem(25, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_22.addItem(self.horizontalSpacer_72)
+
         self.horizontalSpacer_18 = QSpacerItem(50, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
         self.horizontalLayout_22.addItem(self.horizontalSpacer_18)
@@ -4098,8 +4102,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(2)
+        self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 

@@ -10,7 +10,7 @@ class dataPasser:
     def __init__(self) -> None:
         self.login_flag = False
         self.logined_user = {}
-        self.logined_user = {'role':'admin'}
+        #self.logined_user = {'role':'admin'}
 
     def get_logined_user_role(self,):
         return self.logined_user.get('role', CONSTANTS.UNLOGIN_USER_ROLE)
@@ -218,7 +218,7 @@ class AllUserTabAPI:
     def modify_users(self,idx, user, flag, btn):
         if flag == 'delete':
             response = self.ui.show_confirm_box("Delete User",
-                                                "Are you shoure to delete '{}' ?".format(user['username']),
+                                                "Are you sure you want to delete '{}' ?".format(user['username']),
                                                   buttons=['yes', 'cancel'])
             if response == 'cancel':
                 return
@@ -298,6 +298,11 @@ class EditUserTabAPI:
 
     def change_password(self):
         info = self.ui.get_change_password_fields()
+
+
+        if len(info['old_password']) == 0 or len(info['new_password']) == 0 or len(info['confirm_new_password']) == 0:
+            self.ui.write_change_password_error('Please Complete all fields')
+            return
 
         if not passwordManager.check_password(info['old_password'], self.data_passer.logined_user['password']):
             self.ui.write_change_password_error('Old password is Incorect')

@@ -162,7 +162,7 @@ class mainUI:
         """
         if isinstance(pages, str):
             if pages == 'all':
-                pages = self.sidebar_pages_buttons.keys()
+                pages = list(self.sidebar_pages_buttons.keys())
 
         for page_name in self.sidebar_pages_buttons.keys():
             btn = self.sidebar_pages_buttons[page_name]
@@ -173,10 +173,10 @@ class mainUI:
         
 
         #if current page is not access, we change page into firt accessable page.
-        current_page_name,_ = self.get_current_page()
-        if current_page_name not in pages:
-            new_page_idx = self.pages_index[pages[0]]
-            GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
+        #current_page_name,_ = self.get_current_page()
+        #if current_page_name not in pages:
+        new_page_idx = self.pages_index[pages[0]]
+        GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
 
 
     
@@ -217,6 +217,7 @@ if __name__ == '__main__':
 
     
     api = main_API(main_ui)
+    main_ui.usersPage.loginUserBox.show_login()
     
 
     #------------------------------------------------------------
@@ -244,7 +245,7 @@ if __name__ == '__main__':
     
    
 
-    window.show()
+    window.showMaximized()
     app.exec()
 
     

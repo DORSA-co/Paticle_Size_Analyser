@@ -79,7 +79,7 @@ class main_API:
 
 
     def login_user_event(self,):
-        logined_user = self.usersAPI.logined_user
+        logined_user = self.usersAPI.data_passer.logined_user
         role = logined_user.get('role', 'none')
         self.ui.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
         self.ui.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])

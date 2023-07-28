@@ -6,20 +6,26 @@ from backend.UserManager.userLoginRegister import passwordManager, regiterUtils
 import CONSTANTS
 
 
+class dataPasser:
+    def __init__(self) -> None:
+        self.login_flag = False
+        self.logined_user = {}
+
+
 class usersPageAPI:
 
     def __init__(self, ui:usersPageUI,database:usersDB):
         self.ui = ui
         self.database = database
-
-        self.login_flag = False
-        self.logined_user = {}
+        self.data_passer = dataPasser()
+        
+        
         self.external_login_func_event = None
 
-        self.registerUser = RegisterUserTabAPI(ui.registerTab, database)
-        self.allUser = AllUserTabAPI(ui.allUserTab, database)
-        self.loginUser = LoginBoxAPI(self.ui.loginUserBox, self.database)
-        self.editUser = EditUserTabAPI(self.ui.editUserTab, self.database)
+        self.registerUser = RegisterUserTabAPI(ui.registerTab, database, self.data_passer)
+        self.allUser = AllUserTabAPI(ui.allUserTab, database, self.data_passer)
+        self.loginUser = LoginBoxAPI(self.ui.loginUserBox, self.database, self.data_passer)
+        self.editUser = EditUserTabAPI(self.ui.editUserTab, self.database, self.data_passer)
 
         self.registerUser.set_register_event(self.new_user_register_event)
         self.loginUser.set_login_event_func(self.user_login_event)
@@ -35,27 +41,24 @@ class usersPageAPI:
         self.allUser.load_users()
     
     def user_login_event(self,):
-        self.login_flag = self.loginUser.login_flag
-        self.logined_user = self.loginUser.logined_user
-        self.editUser.set_logined_user(self.logined_user, self.login_flag)
+        self.editUser.update_logined_user()
         if self.external_login_func_event is not None:
             self.external_login_func_event()
     
     def user_edited_event(self):
-        edited_user = self.editUser.get_edited_user()
-        self.logined_user = edited_user
-        self.loginUser.update_logedin_user(edited_user)
+        self.loginUser.update_logedin_user()
         self.allUser.load_users()
 
 
 class LoginBoxAPI:
 
-    def __init__(self, ui:LoginUserBoxUI, database:usersDB) -> None:
+    def __init__(self, ui:LoginUserBoxUI, database:usersDB, data_passer:dataPasser) -> None:
         self.ui = ui
         self.database = database
+        self.data_passer = data_passer
 
-        self.login_flag = False
-        self.logined_user = {}
+        #self.login_flag = False
+        #self.logined_user = {}
         self.login_event_func = None
 
         #this button is login button on top of software
@@ -69,11 +72,11 @@ class LoginBoxAPI:
     def login_logout(self):
         """this function called when loging_logout button in top of wofrware pressed
         """
-        if not self.login_flag:
+        if not self.data_passer.login_flag:
             self.ui.show_login()
         
         else :
-            flag = self.ui.show_logout(self.logined_user['username'])
+            flag = self.ui.show_logout(self.data_passer.logined_user['username'])
             if flag:
                 self.logout()
 
@@ -98,9 +101,9 @@ class LoginBoxAPI:
             self.ui.write_login_error("Password is wrong")
             return
         #this flag shows a user is login or not
-        self.login_flag = True
+        self.data_passer.login_flag = True
         #store logedin user
-        self.logined_user = user_db
+        self.data_passer.logined_user = user_db
         #show logedin username on top of sofrware
         self.ui.set_logedin_username(user_db['username'])
         #clear username and password from input fields
@@ -115,9 +118,9 @@ class LoginBoxAPI:
 
     def logout(self):
         #this flag shows a user is login or not
-        self.login_flag = False
+        self.data_passer.login_flag = False
         #clear logedin user info
-        self.logined_user = {}
+        self.data_passer.logined_user = {}
         #clear logedin username on top of sofrware
         self.ui.set_logedin_username("")
         self.ui.set_toolbar_login_button_icon('login')
@@ -127,9 +130,8 @@ class LoginBoxAPI:
 
     
 
-    def update_logedin_user(self, user) :
-        self.logined_user = user
-        self.ui.set_logedin_username(user['username'])
+    def update_logedin_user(self) :
+        self.ui.set_logedin_username(self.data_passer.logined_user['username'])
 
 
 
@@ -138,9 +140,11 @@ class LoginBoxAPI:
 
 class RegisterUserTabAPI:
 
-    def __init__(self, ui:RegisterUserTabUI ,database: usersDB):
+    def __init__(self, ui:RegisterUserTabUI ,database: usersDB, data_passer: dataPasser):
         self.ui = ui
         self.database = database
+        self.data_passer = data_passer
+
         self.register_event_func = None
         self.ui.register_button_connector(self.register)
         self.ui.set_user_roles_items( CONSTANTS.USER_ROlES_ACCESS['none'] )
@@ -184,9 +188,10 @@ class RegisterUserTabAPI:
 
 class AllUserTabAPI:
 
-    def __init__(self, ui:AllUserTabUI ,database: usersDB):
+    def __init__(self, ui:AllUserTabUI ,database: usersDB, data_passer:dataPasser):
         self.ui = ui
         self.database = database
+        self.data_passer = data_passer
 
         self.ui.table_external_event_connector(self.modify_users)
 
@@ -220,11 +225,11 @@ class AllUserTabAPI:
 
 class EditUserTabAPI:
 
-    def __init__(self, ui:EditUserTabUI ,database: usersDB):
+    def __init__(self, ui:EditUserTabUI ,database: usersDB, data_passer:dataPasser):
         self.ui = ui
         self.database = database
-        self.logined_user = {}
-        self.login_flag = False
+        self.data_passer = data_passer
+
         self.user_edit_event_func = None
 
         self.ui.update_profile_button_connector(self.update_profile)
@@ -234,13 +239,14 @@ class EditUserTabAPI:
     def set_user_edit_event_func(self, func):
         self.user_edit_event_func = func
 
-    def set_logined_user(self, user, flag):
-        self.logined_user = user
-        self.login_flag = flag
-        self.ui.set_edit_profile_fields(user)
+    def update_logined_user(self,):
+        self.ui.set_edit_profile_fields(self.data_passer.logined_user)
 
     def update_profile(self):
-        if not self.login_flag:
+        login_flag = self.data_passer.login_flag
+        logined_user = self.data_passer.logined_user
+
+        if not login_flag:
             self.ui.write_edit_profile_error("Please login first")
             return
 
@@ -250,29 +256,33 @@ class EditUserTabAPI:
             self.ui.write_edit_profile_error("Username should be at least 3 character!")
             return
 
-        if new_info['username'] != self.logined_user['username']:
+        if new_info['username'] != logined_user['username']:
             if self.database.is_exist(new_info['username']):
                 self.ui.write_edit_profile_error("This Username is already exist!")
-                return
+                return 
+            
 
-        self.database.remove(self.logined_user['username'])    
+        #remove old user information from database
+        self.database.remove(logined_user['username'])    
 
+        #update information
         for key , value in new_info.items():
-            self.logined_user[key] = value
-
-        self.database.save(self.logined_user)
+            logined_user[key] = value
+        
+        #updated logined user information
+        self.data_passer.logined_user = logined_user
+        #save new logined user information into database
+        self.database.save(logined_user)
+        
         self.ui.show_success_msg("User Information Updated")
         if self.user_edit_event_func is not None:
             self.user_edit_event_func()
-    
-    def get_edited_user(self):
-        return self.logined_user
     
 
     def change_password(self):
         info = self.ui.get_change_password_fields()
 
-        if not passwordManager.check_password(info['old_password'], self.logined_user['password']):
+        if not passwordManager.check_password(info['old_password'], self.data_passer.logined_user['password']):
             self.ui.write_change_password_error('Old password is Incorect')
             return
         
@@ -288,8 +298,8 @@ class EditUserTabAPI:
         
         new_password = info['new_password']
         hashed_new_password = passwordManager.hash_password(new_password)
-        self.logined_user['password'] = hashed_new_password
-        self.database.save(self.logined_user)
+        self.data_passer.logined_user['password'] = hashed_new_password
+        self.database.save(self.data_passer.logined_user)
         
         self.ui.write_change_password_error(None)
         self.ui.clear_change_password_fields()

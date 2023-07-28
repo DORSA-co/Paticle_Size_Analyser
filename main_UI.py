@@ -99,8 +99,7 @@ class mainUI:
         self.sidebar_button_connector()
         GUIBackend.set_win_frameless(self.ui)
 
-        self.set_access_pages( CONSTANTS.ACCESS['none']['pages'],)
-        self.set_access_tabs( CONSTANTS.ACCESS['none']['tabs'])
+   
 
 
     #-------------------------------------------------------------------------------------------

@@ -39,6 +39,9 @@ class main_API:
 
 
         }
+
+        #TEMP
+        self.login_user_event()
         
     
     def page_change(self, pagename, idx):
@@ -79,8 +82,10 @@ class main_API:
 
 
     def login_user_event(self,):
-        logined_user = self.usersAPI.data_passer.logined_user
-        role = logined_user.get('role', 'none')
+        role = self.usersAPI.data_passer.get_logined_user_role()
+        self.set_access(role)
+    
+    def set_access(self, role):
         self.ui.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
         self.ui.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])
 

@@ -3272,7 +3272,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_28.setObjectName(u"verticalLayout_28")
         self.scrollArea_3 = QScrollArea(self.helppage_about_tab)
         self.scrollArea_3.setObjectName(u"scrollArea_3")
-        self.scrollArea_3.setMaximumSize(QSize(16777215, 1000))
+        self.scrollArea_3.setMaximumSize(QSize(16777215, 900))
         self.scrollArea_3.setStyleSheet(u"#aboutScrollArea{\n"
 "background-color:#ffffff;\n"
 "\n"
@@ -4120,7 +4120,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(4)
+        self.main_pages_stackw.setCurrentIndex(2)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)

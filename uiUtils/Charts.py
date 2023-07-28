@@ -20,11 +20,13 @@ class BarChart(QtCharts.QChartView):
                 axisY_tickCount: str = 5,
                 animation: bool = True,
                 bar_width: float = 1,
+                inner_margin = 25
                 ):
 
         self.chart = QtCharts.QChart()
         super().__init__(self.chart, parent)
 
+        self.set_inner_margin(inner_margin)
 
         self.axisX_label = axisX_label
         self.axisY_label = axisX_label
@@ -34,8 +36,8 @@ class BarChart(QtCharts.QChartView):
         self.series = QtCharts.QBarSeries()
         self.chart.addSeries(self.series)
 
-        if chart_title:
-            self.set_chart_title(chart_title)
+        
+        self.set_chart_title(chart_title)
         if chart_title_color:
             self.set_chart_title_color(chart_title_color)
 
@@ -62,7 +64,15 @@ class BarChart(QtCharts.QChartView):
         self.setup_chart()
 
     def set_chart_title(self, title):
-        self.chart.setTitle(title)
+        if title:
+            self.chart.setTitle(title)
+
+    def set_inner_margin(self, border):
+        if isinstance(border, int):
+            self.chart.layout().setContentsMargins(border, border, border, border)
+        
+        if isinstance(border, tuple):
+            self.chart.layout().setContentsMargins(*border)
 
     def set_chart_title_color(self, color):
         self.chart.setTitleBrush(QColor(color))

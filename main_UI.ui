@@ -1010,7 +1010,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1609,6 +1609,12 @@ font-weight: bold;
            </item>
            <item>
             <widget class="Line" name="line_9">
+             <property name="minimumSize">
+              <size>
+               <width>5</width>
+               <height>5</height>
+              </size>
+             </property>
              <property name="sizeIncrement">
               <size>
                <width>5</width>
@@ -1915,21 +1921,6 @@ padding-left:15px;</string>
                </spacer>
               </item>
               <item>
-               <widget class="QLabel" name="label">
-                <property name="styleSheet">
-                 <string notr="true">font-size: 20px;
-font-weight: bold;
-color:rgb(52, 52, 52)</string>
-                </property>
-                <property name="text">
-                 <string>Grading Chart</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
                <layout class="QHBoxLayout" name="mainpage_grading_chart_frame">
                 <property name="leftMargin">
                  <number>9</number>
@@ -1940,9 +1931,6 @@ color:rgb(52, 52, 52)</string>
                </layout>
               </item>
               <item>
-               <widget class="QWidget" name="widget" native="true"/>
-              </item>
-              <item>
                <widget class="Line" name="line_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -1950,35 +1938,23 @@ color:rgb(52, 52, 52)</string>
                </widget>
               </item>
               <item>
-               <widget class="QLabel" name="label_2">
-                <property name="styleSheet">
-                 <string notr="true">font-size: 20px;
-font-weight: bold;
-color:rgb(52, 52, 52)</string>
-                </property>
-                <property name="text">
-                 <string>Ovality Chart</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="mainpage_second_chart_frame"/>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_17">
+               <spacer name="verticalSpacer_37">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>20</width>
-                  <height>40</height>
+                  <height>30</height>
                  </size>
                 </property>
                </spacer>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="mainpage_second_chart_frame"/>
               </item>
              </layout>
             </widget>
@@ -2150,7 +2126,7 @@ color: rgb(6, 76, 130);
                    <x>0</x>
                    <y>0</y>
                    <width>306</width>
-                   <height>640</height>
+                   <height>594</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2589,7 +2565,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>

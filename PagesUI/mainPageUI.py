@@ -6,8 +6,13 @@ import Charts
 
 class mainPageUI:
     
-    def __init__(self, ui):
+    def __init__(self, ui, sample_info):
         self.ui = ui
+        self.sample_info = sample_info
+
+        self.current_status = 'stop'
+        self.statistics_table = self.ui.mainpage_statistics_table
+        self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
         
         self.warning_btns = {
             'camera_connection': {
@@ -50,14 +55,14 @@ class mainPageUI:
 
 
         self.grading_chart = Charts.BarChart(
-                    chart_title = None,
-                    chart_title_color = '#404040',
+                    chart_title = 'Grading',
+                    chart_title_color = None,
                     axisX_label = 'Rages',
                     axisY_label = 'Percents',
-                    chart_background_color = '#ffffff',
+                    chart_background_color = '#f0f0f0',
                     bar_color = '#4caf50',
                     axis_color = '#404040',
-                    axis_grid=True,
+                    axis_grid=False,
                     axisY_range = (0, 100),
                     axisY_tickCount = 10,
                     animation = True,
@@ -68,16 +73,33 @@ class mainPageUI:
         values = [5, 10, 20, 40, 60, 80]
         self.grading_chart.update_chart(axisX_ranges=categoris, axisY_values=values)
 
+        self.seccond_chart = Charts.BarChart(
+                    chart_title = 'Grading',
+                    chart_title_color = None,
+                    axisX_label = 'Rages',
+                    axisY_label = 'Percents',
+                    chart_background_color = '#f0f0f0',
+                    bar_color = '#4caf50',
+                    axis_color = '#404040',
+                    axis_grid=False,
+                    axisY_range = (0, 100),
+                    axisY_tickCount = 10,
+                    animation = True,
+                    bar_width = 1,
+                )
+        
+        categoris = ['a', 'b', 'c', 'd', 'e', 'f']
+        values = [5, 10, 20, 40, 60, 80]
+        self.seccond_chart.update_chart(axisX_ranges=categoris, axisY_values=values)
+
         
         
 
-        self.current_status = 'stop'
-        self.statistics_table = self.ui.mainpage_statistics_table
-        self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
+        
         
         GUIBackend.add_widget( self.ui.mainpage_grading_chart_frame, self.grading_chart )
-        #GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.second_chart )
-
+        GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.seccond_chart )
+        GUIBackend.button_connector(self.sample_info.cancel_btn, self.cancel_start )
 
         #Startup operations-----------------
         self.__player_buttons_connect_internal__()
@@ -88,6 +110,9 @@ class mainPageUI:
         # self.ui.mainpage_right_frame.addWidget(self.chart1)
 
 
+    def cancel_start(self):
+        
+        GUIBackend.close_window(self.sample_info)
 
     
     def __player_buttons_status__(self,state:str):
@@ -110,6 +135,9 @@ class mainPageUI:
                 GUIBackend.button_enable(self.player_btns['fast_start'])
                 GUIBackend.button_disable(self.player_btns['stop'])
                 self.current_status = 'stop'
+            
+            if state == 'start':
+                GUIBackend.show_window(self.sample_info)
         return func
         
 

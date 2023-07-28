@@ -205,7 +205,7 @@ class Ui_login_dialog_window(object):
         login_dialog_window.setWindowTitle(QCoreApplication.translate("login_dialog_window", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("login_dialog_window", u"Username", None))
         self.label_2.setText(QCoreApplication.translate("login_dialog_window", u"Password", None))
-        self.login_error_lbl.setText(QCoreApplication.translate("login_dialog_window", u"TextLabel", None))
+        self.login_error_lbl.setText(QCoreApplication.translate("login_dialog_window", u"Error", None))
         self.login_btn.setText(QCoreApplication.translate("login_dialog_window", u"Login", None))
         self.register_btn.setText(QCoreApplication.translate("login_dialog_window", u"Register new Account", None))
     # retranslateUi

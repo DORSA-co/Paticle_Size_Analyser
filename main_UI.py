@@ -17,6 +17,7 @@ sys.path.append( os.getcwd() + "/PagesUI" )
 #------------------------------------------------------------------
 main_ui_file = 'main_UI.ui'
 login_ui_file = 'login.ui'
+sample_info_ui_file = 'sample_info.ui'
 
 #----------------------Load Madouls -------------------------------
 from PySide6 import QtWidgets, QtCore, QtGui 
@@ -41,14 +42,15 @@ from reportsPageUI import reportsPageUI
 from guiBackend import GUIBackend
 
 class mainUI:
-    def __init__(self, ui, login_ui):
+    def __init__(self, ui, login_ui, sample_info):
         #self.__global_setting__ = GlobalUI(ui)
         self.ui = ui
         self.login_ui = login_ui
+        self.sample_info = sample_info
 
         self.settingPage = settingPageUI(ui)
         self.reportsPage = reportsPageUI(ui)
-        self.mainPage = mainPageUI(ui)
+        self.mainPage = mainPageUI(ui, sample_info)
         self.calibrationPage = calibrationPageUI(ui)
         self.usersPage = usersPageUI(ui, login_ui)
 
@@ -201,7 +203,8 @@ if __name__ == '__main__':
     #load .ui files
     window = loader.load(main_ui_file, None)
     login_ui = loader.load(login_ui_file, None)
-    main_ui = mainUI(window, login_ui)
+    sample_info = loader.load(sample_info_ui_file, None)
+    main_ui = mainUI(window, login_ui, sample_info)
 
     
     api = main_API(main_ui)

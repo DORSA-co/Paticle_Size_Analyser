@@ -10,7 +10,7 @@ class dataPasser:
     def __init__(self) -> None:
         self.login_flag = False
         self.logined_user = {}
-        #self.logined_user = {'role':'admin'}
+        self.logined_user = {'role':'admin'}
 
     def get_logined_user_role(self,):
         return self.logined_user.get('role', CONSTANTS.UNLOGIN_USER_ROLE)

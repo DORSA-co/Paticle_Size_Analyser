@@ -1033,6 +1033,7 @@ class Ui_MainWindow(object):
 
         self.line_9 = QFrame(self.main_page)
         self.line_9.setObjectName(u"line_9")
+        self.line_9.setMinimumSize(QSize(5, 5))
         self.line_9.setSizeIncrement(QSize(5, 0))
         self.line_9.setFrameShape(QFrame.VLine)
         self.line_9.setFrameShadow(QFrame.Sunken)
@@ -1200,25 +1201,11 @@ class Ui_MainWindow(object):
 
         self.left_main_page_.addItem(self.verticalSpacer_18)
 
-        self.label = QLabel(self.mainpage_right_frame)
-        self.label.setObjectName(u"label")
-        self.label.setStyleSheet(u"font-size: 20px;\n"
-"font-weight: bold;\n"
-"color:rgb(52, 52, 52)")
-        self.label.setAlignment(Qt.AlignCenter)
-
-        self.left_main_page_.addWidget(self.label)
-
         self.mainpage_grading_chart_frame = QHBoxLayout()
         self.mainpage_grading_chart_frame.setObjectName(u"mainpage_grading_chart_frame")
         self.mainpage_grading_chart_frame.setContentsMargins(9, 0, -1, -1)
 
         self.left_main_page_.addLayout(self.mainpage_grading_chart_frame)
-
-        self.widget = QWidget(self.mainpage_right_frame)
-        self.widget.setObjectName(u"widget")
-
-        self.left_main_page_.addWidget(self.widget)
 
         self.line_2 = QFrame(self.mainpage_right_frame)
         self.line_2.setObjectName(u"line_2")
@@ -1227,23 +1214,14 @@ class Ui_MainWindow(object):
 
         self.left_main_page_.addWidget(self.line_2)
 
-        self.label_2 = QLabel(self.mainpage_right_frame)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setStyleSheet(u"font-size: 20px;\n"
-"font-weight: bold;\n"
-"color:rgb(52, 52, 52)")
-        self.label_2.setAlignment(Qt.AlignCenter)
+        self.verticalSpacer_37 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
-        self.left_main_page_.addWidget(self.label_2)
+        self.left_main_page_.addItem(self.verticalSpacer_37)
 
         self.mainpage_second_chart_frame = QHBoxLayout()
         self.mainpage_second_chart_frame.setObjectName(u"mainpage_second_chart_frame")
 
         self.left_main_page_.addLayout(self.mainpage_second_chart_frame)
-
-        self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.left_main_page_.addItem(self.verticalSpacer_17)
 
 
         self.horizontalLayout_2.addWidget(self.mainpage_right_frame)
@@ -1386,7 +1364,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 640))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 594))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -4120,8 +4098,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(2)
-        self.settingpage_tabs.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(0)
+        self.settingpage_tabs.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -4186,8 +4164,6 @@ class Ui_MainWindow(object):
         self.mainpage_camera_connection_warning_btn.setText("")
         self.mainpage_camera_grabbing_warning_btn.setText("")
         self.mainpage_warning_massage_lbl.setText(QCoreApplication.translate("MainWindow", u"!", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Grading Chart", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Ovality Chart", None))
         self.label_70.setText(QCoreApplication.translate("MainWindow", u"Filter Results", None))
         self.reportpage_filtername_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By name", None))
         self.label_71.setText(QCoreApplication.translate("MainWindow", u"Name", None))

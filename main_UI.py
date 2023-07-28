@@ -170,6 +170,15 @@ class mainUI:
                 GUIBackend.set_wgt_visible( btn, flag )
             else:
                 GUIBackend.set_wgt_visible(btn , not(flag))
+        
+
+        #if current page is not access, we change page into firt accessable page.
+        current_page_name,_ = self.get_current_page()
+        if current_page_name not in pages:
+            new_page_idx = self.pages_index[pages[0]]
+            GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
+
+
     
     def set_access_tabs(self, tabs: list[str], flag:bool = True):
         """enable or disable some tabs

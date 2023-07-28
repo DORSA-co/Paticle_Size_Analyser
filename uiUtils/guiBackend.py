@@ -94,14 +94,18 @@ class GUIBackend:
 
     
     @staticmethod
-    def set_disable_enable( wdgt: QtWidgets, status ):
+    def set_disable_enable( wdgt: QtWidgets.QWidget, status ):
         """enable or disables a PyQt widget
 
         Args:
             wdgt (QtWidgets): PyQt widget object
             status: enable if True, and disable if False 
         """
-        wdgt.setDisabled(status)
+        wdgt.setEnabled(status)
+
+    
+    
+
 
 
     def add_widget( parent:QtWidgets.QLayout, widget):
@@ -405,6 +409,9 @@ class GUIBackend:
         """
         inpt.setText(txt)
 
+    def set_input_password(inpt:QtWidgets.QLineEdit):
+        inpt.setEchoMode(QtWidgets.QLineEdit.Password)
+
     #--------------------------------- GLOBAL table FUNCTIONs ---------------------------------
     @staticmethod
     def set_table_dim(table: QtWidgets.QTableWidget, row:int , col:int):
@@ -618,3 +625,14 @@ class GUIBackend:
             datetime: value in format if python datetime
         """
         return obj.date().toPython()
+    
+
+    #--------------------------------- GLOBAL Tabs FUNCTIONs ---------------------------------
+    @staticmethod 
+    def set_enable_tab( tab: QtWidgets.QTabWidget, idx, status):
+        tab.setTabEnabled(idx, status)
+
+
+    @staticmethod 
+    def set_visible_tab( tab: QtWidgets.QTabWidget, idx, status):
+        tab.setTabVisible(idx, status)

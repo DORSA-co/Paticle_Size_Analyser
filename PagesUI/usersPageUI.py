@@ -22,6 +22,8 @@ class LoginUserBoxUI:
         self.logined_username_lbl = self.ui.toolbar_logined_username_lbl
         
         self.toolbar_login_logout_btn = self.ui.toolbar_login_logout_btn
+
+        GUIBackend.set_input_password(self.login_ui.password_input)
         #GUIBackend.button_connector(self.login_logout_button, self.show_window)
         
 
@@ -113,7 +115,11 @@ class RegisterUserTabUI:
             'role': self.ui.userpage_user_role_combobox
         }
 
-        GUIBackend.set_combobox_items(self.register_users_field['role'], CONSTANTS.USER_ROlES)
+        
+        #set input type as password to show password as *
+        for name in ['password', 'password_confirm']:
+            GUIBackend.set_input_password(self.register_users_field[name])
+        
         self.hide_success_msg()
         self.reset()
 
@@ -126,6 +132,10 @@ class RegisterUserTabUI:
             'password_confirm': "",
         })
         self.write_register_error(None)
+
+    
+    def set_user_roles_items(self, items: list[str]):
+        GUIBackend.set_combobox_items(self.register_users_field['role'], items)
 
     def register_button_connector(self, func):
         """connect function into register button clicked event
@@ -294,7 +304,10 @@ class EditUserTabUI:
             'role': self.ui.userpage_editprofile_user_role_combobox,
         }
 
-        GUIBackend.set_combobox_items(self.edit_profile_fields['role'], CONSTANTS.USER_ROlES)
+        
+        for name in ['old_password', 'new_password', 'confirm_new_password']:
+            GUIBackend.set_input_password(self.change_password_fields[name])
+        
 
         self.write_change_password_error(None)
         self.write_edit_profile_error(None)
@@ -309,6 +322,9 @@ class EditUserTabUI:
 
     def change_password_button_connector(self, func):
         GUIBackend.button_connector(self.change_password_btn, func)
+
+    def set_user_roles_items(self, items: list[str]):
+        GUIBackend.set_combobox_items(self.edit_profile_fields['role'], items)
 
     
     def get_change_password_fields(self,):
@@ -332,8 +348,12 @@ class EditUserTabUI:
 
 
     def set_edit_profile_fields(self, data):
-        for name, field in self.edit_profile_fields.items():
-            GUIBackend.set_input(field, data[name])
+        if data == {}:
+            for name, field in self.edit_profile_fields.items():
+                GUIBackend.set_input(field, "")
+        else:
+            for name, field in self.edit_profile_fields.items():
+                GUIBackend.set_input(field, data[name])
         
 
     

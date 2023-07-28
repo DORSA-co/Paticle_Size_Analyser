@@ -619,11 +619,12 @@ class Ui_MainWindow(object):
 "	color: #ffffff;\n"
 "	min-height: 40px;\n"
 "	text-align: left;\n"
-"    margin-left:15px;\n"
 "	icon-size:25px;\n"
 "	background-color:rgba(0,0,0,0);\n"
-"	min-width:150px;\n"
-"max-width:150px;\n"
+"\n"
+"	border-bottom:2px solid rgba(255,255,255,100);\n"
+"	border-radius : 0px;\n"
+"	min-width:0px;\n"
 "    }\n"
 "\n"
 "    QPushButton:hover{\n"
@@ -645,93 +646,57 @@ class Ui_MainWindow(object):
         self.sidebar_main_btn = QPushButton(self.sidebar)
         self.sidebar_main_btn.setObjectName(u"sidebar_main_btn")
         self.sidebar_main_btn.setEnabled(True)
+        self.sidebar_main_btn.setMinimumSize(QSize(0, 42))
         icon5 = QIcon()
         icon5.addFile(u":/assets/Assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_main_btn.setIcon(icon5)
 
         self.verticalLayout_2.addWidget(self.sidebar_main_btn)
 
-        self.line_3 = QFrame(self.sidebar)
-        self.line_3.setObjectName(u"line_3")
-        self.line_3.setFrameShape(QFrame.HLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_3)
-
         self.sidebar_report_btn = QPushButton(self.sidebar)
         self.sidebar_report_btn.setObjectName(u"sidebar_report_btn")
+        self.sidebar_report_btn.setMinimumSize(QSize(0, 42))
         icon6 = QIcon()
         icon6.addFile(u":/assets/Assets/icons/report-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_report_btn.setIcon(icon6)
 
         self.verticalLayout_2.addWidget(self.sidebar_report_btn)
 
-        self.line_4 = QFrame(self.sidebar)
-        self.line_4.setObjectName(u"line_4")
-        self.line_4.setFrameShape(QFrame.HLine)
-        self.line_4.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_4)
-
         self.sidebar_settings_btn = QPushButton(self.sidebar)
         self.sidebar_settings_btn.setObjectName(u"sidebar_settings_btn")
+        self.sidebar_settings_btn.setMinimumSize(QSize(0, 42))
         icon7 = QIcon()
         icon7.addFile(u":/assets/Assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_settings_btn.setIcon(icon7)
 
         self.verticalLayout_2.addWidget(self.sidebar_settings_btn)
 
-        self.line_5 = QFrame(self.sidebar)
-        self.line_5.setObjectName(u"line_5")
-        self.line_5.setFrameShape(QFrame.HLine)
-        self.line_5.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_5)
-
         self.sidebar_calib_btn = QPushButton(self.sidebar)
         self.sidebar_calib_btn.setObjectName(u"sidebar_calib_btn")
+        self.sidebar_calib_btn.setMinimumSize(QSize(0, 42))
         icon8 = QIcon()
         icon8.addFile(u":/assets/Assets/icons/icons8-ruler-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_calib_btn.setIcon(icon8)
 
         self.verticalLayout_2.addWidget(self.sidebar_calib_btn)
 
-        self.line_6 = QFrame(self.sidebar)
-        self.line_6.setObjectName(u"line_6")
-        self.line_6.setFrameShape(QFrame.HLine)
-        self.line_6.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_6)
-
         self.sidebar_users_btn = QPushButton(self.sidebar)
         self.sidebar_users_btn.setObjectName(u"sidebar_users_btn")
+        self.sidebar_users_btn.setMinimumSize(QSize(0, 42))
         icon9 = QIcon()
         icon9.addFile(u":/assets/Assets/icons/icons8-users-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_users_btn.setIcon(icon9)
 
         self.verticalLayout_2.addWidget(self.sidebar_users_btn)
 
-        self.line_7 = QFrame(self.sidebar)
-        self.line_7.setObjectName(u"line_7")
-        self.line_7.setFrameShape(QFrame.HLine)
-        self.line_7.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_7)
-
         self.sidebar_help_btn = QPushButton(self.sidebar)
         self.sidebar_help_btn.setObjectName(u"sidebar_help_btn")
+        self.sidebar_help_btn.setMinimumSize(QSize(0, 42))
         icon10 = QIcon()
         icon10.addFile(u":/assets/Assets/icons/icons8-question-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_help_btn.setIcon(icon10)
 
         self.verticalLayout_2.addWidget(self.sidebar_help_btn)
-
-        self.line_8 = QFrame(self.sidebar)
-        self.line_8.setObjectName(u"line_8")
-        self.line_8.setFrameShape(QFrame.HLine)
-        self.line_8.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_2.addWidget(self.line_8)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -1615,6 +1580,7 @@ class Ui_MainWindow(object):
 
         self.settingpage_tabs = QTabWidget(self.settings_page)
         self.settingpage_tabs.setObjectName(u"settingpage_tabs")
+        self.settingpage_tabs.setEnabled(True)
         self.settingpage_tabs.setAutoFillBackground(False)
         self.settingpage_tabs.setStyleSheet(u"#settingpage_tabs{\n"
 "}\n"
@@ -1782,6 +1748,7 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.addTab(self.settingpage_general_tab, "")
         self.settingpage_grading_tab = QWidget()
         self.settingpage_grading_tab.setObjectName(u"settingpage_grading_tab")
+        self.settingpage_grading_tab.setEnabled(True)
         self.horizontalLayout_22 = QHBoxLayout(self.settingpage_grading_tab)
         self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
         self.settingpage_grading_new_standards_groupbox = QGroupBox(self.settingpage_grading_tab)
@@ -2114,6 +2081,7 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.addTab(self.settingpage_grading_tab, "")
         self.settingpage_camera_tab = QWidget()
         self.settingpage_camera_tab.setObjectName(u"settingpage_camera_tab")
+        self.settingpage_camera_tab.setEnabled(True)
         self.horizontalLayout_15 = QHBoxLayout(self.settingpage_camera_tab)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.settingpage_camera_left_side = QFrame(self.settingpage_camera_tab)
@@ -4152,9 +4120,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(5)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.settingpage_tabs.setCurrentIndex(1)
-        self.user_tabs.setCurrentIndex(1)
+        self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
 

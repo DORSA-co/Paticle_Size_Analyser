@@ -8,6 +8,7 @@ from Database.mainDatabase import mainDatabase
 from settingPageAPI import settingPageAPI
 from usersPageAPI import usersPageAPI
 # from settingUI import settingUI
+import CONSTANTS
 
 cameras_serial_number = {'standard': '23804186'}
 class main_API:
@@ -24,6 +25,7 @@ class main_API:
 
         
         self.ui.change_page_connector(self.page_change)
+        self.usersAPI.set_login_event(self.login_user_event)
 
         #this functions should run when each page load
         self.pages_api_dict = {
@@ -74,4 +76,11 @@ class main_API:
             self.camera_thread.connect_success_grab_to_function(self.grabbed_image_interrupt)
             self.camera_thread.start_thread()
 
+
+
+    def login_user_event(self,):
+        logined_user = self.usersAPI.logined_user
+        role = logined_user.get('role', 'none')
+        self.ui.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
+        self.ui.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])
 

@@ -14,6 +14,7 @@ class usersPageAPI:
 
         self.login_flag = False
         self.logined_user = {}
+        self.external_login_func_event = None
 
         self.registerUser = RegisterUserTabAPI(ui.registerTab, database)
         self.allUser = AllUserTabAPI(ui.allUserTab, database)
@@ -26,6 +27,9 @@ class usersPageAPI:
 
     def startup(self,):
         pass
+
+    def set_login_event(self, func):
+        self.external_login_func_event = func
     
     def new_user_register_event(self,):
         self.allUser.load_users()
@@ -33,8 +37,9 @@ class usersPageAPI:
     def user_login_event(self,):
         self.login_flag = self.loginUser.login_flag
         self.logined_user = self.loginUser.logined_user
-
         self.editUser.set_logined_user(self.logined_user, self.login_flag)
+        if self.external_login_func_event is not None:
+            self.external_login_func_event()
     
     def user_edited_event(self):
         edited_user = self.editUser.get_edited_user()
@@ -138,6 +143,7 @@ class RegisterUserTabAPI:
         self.database = database
         self.register_event_func = None
         self.ui.register_button_connector(self.register)
+        self.ui.set_user_roles_items( CONSTANTS.USER_ROlES_ACCESS['none'] )
     
     def register(self,):
         user_inputs = self.ui.get_register_fields()

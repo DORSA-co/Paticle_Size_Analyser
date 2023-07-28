@@ -1,6 +1,7 @@
 import os
 import typing
 import sys
+import CONSTANTS
 
 #----------------------Compile Resource File-----------------------
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
@@ -64,7 +65,7 @@ class mainUI:
         }
 
         
-        self.sidebar_buttons = {
+        self.sidebar_pages_buttons = {
             'main': self.ui.sidebar_main_btn,
             'report': self.ui.sidebar_report_btn,
             'settings': self.ui.sidebar_settings_btn,
@@ -74,15 +75,32 @@ class mainUI:
         
         }
 
+        self.tabs = {
+            'general_setting':   (self.ui.settingpage_tabs, 0),
+            'grading_setting':   (self.ui.settingpage_tabs, 1),
+            'camera_setting':    (self.ui.settingpage_tabs, 2),
+            'algorithm_setting': (self.ui.settingpage_tabs, 3),
+            'register_user':     (self.ui.user_tabs, 0),
+            'edit_user':         (self.ui.user_tabs, 1),
+            'all_users':         (self.ui.user_tabs, 2),
+        }
+
+
         self.headrs_button = {
             'minimize': self.ui.minimize_btn,
             'maximize': self.ui.maximize_btn,
             'close': self.ui.close_btn,
         }
 
+
+        
+
         self.header_button_connector()
         self.sidebar_button_connector()
         GUIBackend.set_win_frameless(self.ui)
+
+        self.set_access_pages( CONSTANTS.ACCESS['none']['pages'],)
+        self.set_access_tabs( CONSTANTS.ACCESS['none']['tabs'])
 
 
     #-------------------------------------------------------------------------------------------
@@ -105,8 +123,8 @@ class mainUI:
     
 
     def sidebar_button_connector(self):
-        for page_name in self.sidebar_buttons.keys():
-            GUIBackend.button_connector( self.sidebar_buttons[page_name], self.sidebar_menu_handler(page_name) )
+        for page_name in self.sidebar_pages_buttons.keys():
+            GUIBackend.button_connector( self.sidebar_pages_buttons[page_name], self.sidebar_menu_handler(page_name) )
         
 
 
@@ -124,20 +142,50 @@ class mainUI:
                 self.current_page = (pagename, new_page_idx)
                 
                 #reset styles of all btns (actully for rest style of buttons of previous page)
-                for btn in self.sidebar_buttons.values():
+                for btn in self.sidebar_pages_buttons.values():
                     btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
                 
                 #set style to button of new page to make it diffrent
-                self.sidebar_buttons[pagename].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
+                self.sidebar_pages_buttons[pagename].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
         return func
    
     def get_current_page(self,):
         return self.current_page
     
-    def enable_pages(self, pages):
-        for page in pages:
-            self.headrs_button[page]
+    def set_access_pages(self, pages:list[str], flag:bool = True):
+        """enable or disable some pages
+
+        Args:
+            pages (list[str]): list of page names 
+            flag (bool): if True, make pages enable. if False, make pages disable
+        """
+        if isinstance(pages, str):
+            if pages == 'all':
+                pages = self.sidebar_pages_buttons.keys()
+
+        for page_name in self.sidebar_pages_buttons.keys():
+            btn = self.sidebar_pages_buttons[page_name]
+            if page_name in pages:
+                GUIBackend.set_wgt_visible( btn, flag )
+            else:
+                GUIBackend.set_wgt_visible(btn , not(flag))
     
+    def set_access_tabs(self, tabs: list[str], flag:bool = True):
+        """enable or disable some tabs
+
+        Args:
+            tabs (dict[list]): list of tabs name
+            flag (bool): if True, make tabs enable. if False, make tabs disable
+        """
+        if isinstance(tabs, str):
+            if tabs == 'all':
+                tabs = self.tabs.keys()
+        for tab_name in self.tabs:
+            obj, idx = self.tabs[tab_name]
+            if tab_name in tabs:
+                GUIBackend.set_visible_tab(obj, idx, flag)
+            else:
+                GUIBackend.set_visible_tab(obj, idx, not(flag))
 
     def close(self):
         dialog_box = GUIComponents.confirmMessageBox('close', 'Are you sure?', buttons = ['yes', 'no'])

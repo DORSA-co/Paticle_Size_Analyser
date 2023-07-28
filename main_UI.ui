@@ -841,11 +841,12 @@ QPushButton{
 	color: #ffffff;
 	min-height: 40px;
 	text-align: left;
-    margin-left:15px;
 	icon-size:25px;
 	background-color:rgba(0,0,0,0);
-	min-width:150px;
-max-width:150px;
+
+	border-bottom:2px solid rgba(255,255,255,100);
+	border-radius : 0px;
+	min-width:0px;
     }
 
     QPushButton:hover{
@@ -869,6 +870,12 @@ Line{
             <property name="enabled">
              <bool>true</bool>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
             <property name="text">
              <string>Main</string>
             </property>
@@ -879,14 +886,13 @@ Line{
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="sidebar_report_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
             <property name="text">
              <string>Report</string>
             </property>
@@ -897,14 +903,13 @@ Line{
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line_4">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="sidebar_settings_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
             <property name="text">
              <string>Settings</string>
             </property>
@@ -915,14 +920,13 @@ Line{
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="sidebar_calib_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
             <property name="text">
              <string>Calibration</string>
             </property>
@@ -933,14 +937,13 @@ Line{
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line_6">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="sidebar_users_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
             <property name="text">
              <string>Users</string>
             </property>
@@ -951,27 +954,19 @@ Line{
            </widget>
           </item>
           <item>
-           <widget class="Line" name="line_7">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="sidebar_help_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
             <property name="text">
              <string>Help</string>
             </property>
             <property name="icon">
              <iconset resource="Assets.qrc">
               <normaloff>:/assets/Assets/icons/icons8-question-50.png</normaloff>:/assets/Assets/icons/icons8-question-50.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line_8">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
@@ -1015,7 +1010,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2554,6 +2549,9 @@ color: rgb(6, 76, 130);
              </item>
              <item>
               <widget class="QTabWidget" name="settingpage_tabs">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="autoFillBackground">
                 <bool>false</bool>
                </property>
@@ -2857,6 +2855,9 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 </layout>
                </widget>
                <widget class="QWidget" name="settingpage_grading_tab">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <attribute name="title">
                  <string>Grading</string>
                 </attribute>
@@ -3464,6 +3465,9 @@ QTableWidget::item
                 </layout>
                </widget>
                <widget class="QWidget" name="settingpage_camera_tab">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <attribute name="title">
                  <string>Camera</string>
                 </attribute>
@@ -4683,7 +4687,7 @@ max-height : 800px;</string>
            <item>
             <widget class="QTabWidget" name="user_tabs">
              <property name="currentIndex">
-              <number>1</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="tab_2">
               <attribute name="title">

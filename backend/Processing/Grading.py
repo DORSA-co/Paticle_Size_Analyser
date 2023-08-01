@@ -1,6 +1,6 @@
 import numpy as np
-import utiltsCython
-
+from backend.Processing import utiltsCython
+import CONSTANTS
 
 
 class Grading:
@@ -35,14 +35,20 @@ class Grading:
         #this flag show the self.datas aren't sort beacuse of new_data appended at the end without sorting after that
         #self.sorted = False
 
-    def get_result(self, )-> np.ndarray:
+    def get_hist(self, )-> np.ndarray:
         """return histogram percentage
 
         Returns:
             np.ndarray: 1d array of percentage in each range
         """
-        percentage_hist = self.ranges_hist / np.sum(self.ranges_hist)
+        percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
         return percentage_hist
+    
+    def get_statistics(self,):
+        data = {}
+        data['avrage'] = np.round(self.xs.mean(), CONSTANTS.DECIMAL_ROUND )
+        data['std'] = np.round(self.xs.std(), CONSTANTS.DECIMAL_ROUND )
+        return data
     
     def update_sift_ranges(self, new_ranges):
         """change sift ranges

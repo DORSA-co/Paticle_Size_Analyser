@@ -24,13 +24,12 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1339, 885)
+        MainWindow.resize(1339, 914)
         icon = QIcon()
         icon.addFile(u"../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -803,10 +802,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.horizontalLayout_6.setContentsMargins(-1, 0, -1, -1)
-        self.horizontalSpacer_67 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_67)
-
         self.mainpage_live_image_lbl = QLabel(self.mainpage_left_frame_2)
         self.mainpage_live_image_lbl.setObjectName(u"mainpage_live_image_lbl")
         self.mainpage_live_image_lbl.setMaximumSize(QSize(704, 704))
@@ -826,12 +821,23 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.mainpage_live_image_lbl)
 
-        self.horizontalSpacer_57 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_57)
-
 
         self.mainpage_left_frame.addLayout(self.horizontalLayout_6)
+
+        self.mainpage_error_lbl = QLabel(self.mainpage_left_frame_2)
+        self.mainpage_error_lbl.setObjectName(u"mainpage_error_lbl")
+        self.mainpage_error_lbl.setMaximumSize(QSize(16787, 30))
+        self.mainpage_error_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"background-color: rgb(255, 95, 84);\n"
+"padding:5px;\n"
+"\n"
+"min-width: 300px;\n"
+"max-width: 16777px;\n"
+"")
+
+        self.mainpage_left_frame.addWidget(self.mainpage_error_lbl)
 
         self.mainpage_livebox_frame = QFrame(self.mainpage_left_frame_2)
         self.mainpage_livebox_frame.setObjectName(u"mainpage_livebox_frame")
@@ -908,44 +914,10 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setHorizontalSpacing(5)
         self.gridLayout_12.setVerticalSpacing(0)
         self.gridLayout_12.setContentsMargins(-1, 10, -1, 6)
-        self.label_5 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;")
-        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_12.addWidget(self.label_5, 1, 0, 1, 1)
-
-        self.horizontalSpacer_30 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_30, 1, 2, 1, 1)
-
-        self.horizontalSpacer_42 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_42, 3, 5, 1, 1)
-
         self.label_35 = QLabel(self.mainpage_informaition_groupBox)
         self.label_35.setObjectName(u"label_35")
 
         self.gridLayout_12.addWidget(self.label_35, 3, 4, 1, 1)
-
-        self.label_37 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_37.setObjectName(u"label_37")
-
-        self.gridLayout_12.addWidget(self.label_37, 3, 7, 1, 1)
-
-        self.mainpage_fps_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
-
-        self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 1, 1, 1)
-
-        self.label_12 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;")
-        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_12.addWidget(self.label_12, 1, 3, 1, 1)
 
         self.label_34 = QLabel(self.mainpage_informaition_groupBox)
         self.label_34.setObjectName(u"label_34")
@@ -955,10 +927,44 @@ class Ui_MainWindow(object):
 
         self.gridLayout_12.addWidget(self.label_34, 3, 3, 1, 1)
 
+        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 1, 7, 1, 1)
+
+        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_41, 3, 2, 1, 1)
+
+        self.mainpage_fps_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 1, 1, 1)
+
+        self.mainpage_avrage_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_avrage_lbl.setObjectName(u"mainpage_avrage_lbl")
+        self.mainpage_avrage_lbl.setTextFormat(Qt.AutoText)
+        self.mainpage_avrage_lbl.setWordWrap(False)
+        self.mainpage_avrage_lbl.setTextInteractionFlags(Qt.LinksAccessibleByMouse)
+
+        self.gridLayout_12.addWidget(self.mainpage_avrage_lbl, 1, 1, 1, 1)
+
+        self.label_5 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.label_5, 1, 0, 1, 1)
+
         self.mainpage_std_lbl = QLabel(self.mainpage_informaition_groupBox)
         self.mainpage_std_lbl.setObjectName(u"mainpage_std_lbl")
 
         self.gridLayout_12.addWidget(self.mainpage_std_lbl, 1, 4, 1, 1)
+
+        self.horizontalSpacer_42 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_42, 3, 5, 1, 1)
 
         self.label_33 = QLabel(self.mainpage_informaition_groupBox)
         self.label_33.setObjectName(u"label_33")
@@ -972,28 +978,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout_12.addItem(self.horizontalSpacer_40, 1, 8, 1, 1)
 
-        self.label_36 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_36.setObjectName(u"label_36")
-        self.label_36.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;\n"
-"")
-        self.label_36.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_12.addWidget(self.label_36, 3, 6, 1, 1)
-
-        self.mainpage_avrage_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_avrage_lbl.setObjectName(u"mainpage_avrage_lbl")
-
-        self.gridLayout_12.addWidget(self.mainpage_avrage_lbl, 1, 1, 1, 1)
-
         self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.gridLayout_12.addItem(self.horizontalSpacer_31, 1, 5, 1, 1)
 
-        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
+        self.label_37 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_37.setObjectName(u"label_37")
 
-        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 1, 7, 1, 1)
+        self.gridLayout_12.addWidget(self.label_37, 3, 7, 1, 1)
 
         self.label_3 = QLabel(self.mainpage_informaition_groupBox)
         self.label_3.setObjectName(u"label_3")
@@ -1004,23 +996,52 @@ class Ui_MainWindow(object):
 
         self.gridLayout_12.addWidget(self.label_3, 1, 6, 1, 1)
 
-        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label_36 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_36.setObjectName(u"label_36")
+        self.label_36.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;\n"
+"")
+        self.label_36.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addItem(self.horizontalSpacer_41, 3, 2, 1, 1)
+        self.gridLayout_12.addWidget(self.label_36, 3, 6, 1, 1)
+
+        self.label_12 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.label_12, 1, 3, 1, 1)
+
+        self.horizontalSpacer_30 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_30, 1, 2, 1, 1)
 
 
         self.verticalLayout_5.addWidget(self.mainpage_informaition_groupBox)
 
         self.mainpage_report_button = QPushButton(self.mainpage_livebox_frame)
         self.mainpage_report_button.setObjectName(u"mainpage_report_button")
-        self.mainpage_report_button.setStyleSheet(u".QPushButton{\n"
+        self.mainpage_report_button.setEnabled(True)
+        self.mainpage_report_button.setStyleSheet(u"QPushButton{\n"
 "	min-height:40px;\n"
 "	border-radius:3px;\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color:rgb(147, 147, 147);\n"
+"	background-color:rgb(54, 193, 142);\n"
 "	max-width: 200px;\n"
 "}\n"
 "\n"
+"QPushButton:disabled{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color:rgb(147, 147, 147);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton:hover{\n"
+"	color: rgb(255, 255, 255);\n"
+"	background-color:rgb(40, 144, 106);\n"
+"}\n"
 "")
         self.mainpage_report_button.setIcon(icon6)
 
@@ -1246,7 +1267,7 @@ class Ui_MainWindow(object):
 
         self.frame1 = QFrame(self.mainpage_right_frame)
         self.frame1.setObjectName(u"frame1")
-        self.frame1.setMinimumSize(QSize(0, 200))
+        self.frame1.setMinimumSize(QSize(0, 300))
         self.mainpage_grading_chart_frame = QHBoxLayout(self.frame1)
         self.mainpage_grading_chart_frame.setObjectName(u"mainpage_grading_chart_frame")
         self.mainpage_grading_chart_frame.setContentsMargins(9, 1, -1, -1)
@@ -1266,7 +1287,7 @@ class Ui_MainWindow(object):
 
         self.frame2 = QFrame(self.mainpage_right_frame)
         self.frame2.setObjectName(u"frame2")
-        self.frame2.setMinimumSize(QSize(0, 200))
+        self.frame2.setMinimumSize(QSize(0, 300))
         self.mainpage_second_chart_frame = QHBoxLayout(self.frame2)
         self.mainpage_second_chart_frame.setObjectName(u"mainpage_second_chart_frame")
 
@@ -1417,7 +1438,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 601))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 306, 630))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3381,7 +3402,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 679))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -3563,7 +3584,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 824, 1519))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 1519))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4152,12 +4173,14 @@ class Ui_MainWindow(object):
         self.statusBar.setObjectName(u"statusBar")
         self.statusBar.setMaximumSize(QSize(16777215, 12))
         MainWindow.setStatusBar(self.statusBar)
+#if QT_CONFIG(shortcut)
+#endif // QT_CONFIG(shortcut)
 
         self.retranslateUi(MainWindow)
 
         self.main_pages_stackw.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(1)
-        self.user_tabs.setCurrentIndex(2)
+        self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
 
@@ -4194,22 +4217,23 @@ class Ui_MainWindow(object):
         self.mainpage_live_image_lbl.setAccessibleName("")
 #endif // QT_CONFIG(accessibility)
         self.mainpage_live_image_lbl.setText("")
+        self.mainpage_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Error", None))
         self.mainpage_start_btn.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.mainpage_faststart_btn.setText(QCoreApplication.translate("MainWindow", u"Fast Start", None))
         self.mainpage_stop_btn.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.mainpage_informaition_groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Informations", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
-        self.label_37.setText(QCoreApplication.translate("MainWindow", u"25", None))
-        self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"11", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
         self.label_34.setText(QCoreApplication.translate("MainWindow", u"Time:", None))
-        self.mainpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"1.6mm", None))
+        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
+        self.mainpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"FPS:", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Cam Tempreture(\u00b0C):", None))
-        self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"12.8 mm", None))
-        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"78%", None))
+        self.label_37.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Mean Oval:", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Cam Tempreture(\u00b0C):", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
         self.mainpage_report_button.setText(QCoreApplication.translate("MainWindow", u"Report", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"System Status", None))
         self.mainpage_illumination_warning_btn.setText("")

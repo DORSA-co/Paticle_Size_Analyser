@@ -126,6 +126,7 @@ class settingGradingDB:
         record = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
         if len(record):
             #convert str to list
+            record = record[0]
             record['ranges'] = json.loads(record['ranges'])
         return record 
 

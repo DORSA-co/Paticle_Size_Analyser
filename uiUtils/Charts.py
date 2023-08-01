@@ -1,45 +1,63 @@
+from tkinter.messagebox import NO
 from PySide6.QtCore import QMargins
-from PySide6.QtGui import QPainter, QColor, QCursor
-from PySide6.QtWidgets import QToolTip
+from PySide6.QtGui import QPainter, QColor, QFont
 from PySide6 import QtCharts
 
+class Font:
+    def __init__(self, font: str = None, font_size: int = None, bold: bool = None) -> None:
+        if font:
+            self.font = font
+        else:
+            self.font = 'Arial'
 
+        if font_size:
+            self.font_size = font_size
+        else:
+            self.font_size = 8
+
+        if bold:
+            self.bold = bold
+        else:
+            self.bold = False
 
 class BarChart(QtCharts.QChartView):
     def __init__(self, 
                 parent=None,
                 chart_title: str = None,
                 chart_title_color: str = None,
+                chart_title_font: object = None,
                 axisX_label: str = None,
                 axisY_label: str = None,
                 chart_background_color: str = None,
                 bar_color: str = None,
                 axis_color: str = None,
-                axis_grid: bool = False,
+                axis_font: object = None,
+                axisX_grid: bool = False,
+                axisY_grid: bool = False,
+                axisX_grid_color: str = None,
+                axisY_grid_color: str = None,
                 axisY_range: tuple = None,
                 axisY_tickCount: str = 5,
                 animation: bool = True,
                 bar_width: float = 1,
-                inner_margin = 25
+                inner_margin = 20,
                 ):
 
         self.chart = QtCharts.QChart()
         super().__init__(self.chart, parent)
+        self.chart.legend().setVisible(False)
 
         self.set_inner_margin(inner_margin)
-
-        self.axisX_label = axisX_label
-        self.axisY_label = axisX_label
-        
-        self.chart.legend().setVisible(False)
 
         self.series = QtCharts.QBarSeries()
         self.chart.addSeries(self.series)
 
-        
-        self.set_chart_title(chart_title)
+        if chart_title:
+            self.set_chart_title(chart_title)
         if chart_title_color:
             self.set_chart_title_color(chart_title_color)
+        if chart_title_font:
+            self.set_chart_title_font(chart_title_font)
 
         if chart_background_color:
             self.set_background_color(chart_background_color)
@@ -50,7 +68,9 @@ class BarChart(QtCharts.QChartView):
         self.set_axisY_label(axisY_label)
 
         self.set_axis_color(axis_color)
-        self.set_axis_grid(axis_grid)
+        self.set_axis_font(axis_font)
+        self.set_axis_grid(axisX_grid, axisY_grid)
+        self.set_axis_grid_color(axisX_grid_color, axisY_grid_color)
 
         self.set_axisY_range(axisY_range)
 
@@ -64,15 +84,12 @@ class BarChart(QtCharts.QChartView):
         self.setup_chart()
 
     def set_chart_title(self, title):
-        if title:
-            self.chart.setTitle(title)
+        self.chart.setTitle(title)
 
-    def set_inner_margin(self, border):
-        if isinstance(border, int):
-            self.chart.layout().setContentsMargins(border, border, border, border)
-        
-        if isinstance(border, tuple):
-            self.chart.layout().setContentsMargins(*border)
+    def set_chart_title_font(self, font):
+        assert(isinstance(font, Font))
+        font = QFont(font.font, font.font_size, QFont.Bold if font.bold else QFont.Normal)
+        self.chart.setTitleFont(font)
 
     def set_chart_title_color(self, color):
         self.chart.setTitleBrush(QColor(color))
@@ -87,7 +104,13 @@ class BarChart(QtCharts.QChartView):
         if self.axis_color:
             self.axisX.setTitleBrush(QColor(self.axis_color))
             self.axisX.setLabelsColor(QColor(self.axis_color))
-        self.axisX.setGridLineVisible(self.axis_grid)
+        if self.axis_font:
+            assert(isinstance(self.axis_font, Font))
+            font = QFont(self.axis_font.font, self.axis_font.font_size, QFont.Bold if self.axis_font.bold else QFont.Normal)
+            self.axisX.setTitleFont(font)
+        self.axisX.setGridLineVisible(self.axisX_grid)
+        if self.axisX_grid_color:
+            self.axisX.setGridLineColor(self.axisX_grid_color)
         self.axisX.append(categories)
         self.chart.setAxisX(self.axisX, self.series)  
 
@@ -98,7 +121,13 @@ class BarChart(QtCharts.QChartView):
         if self.axis_color:
             self.axisY.setTitleBrush(QColor(self.axis_color))
             self.axisY.setLabelsColor(QColor(self.axis_color))
-        self.axisY.setGridLineVisible(self.axis_grid)
+        if self.axis_font:
+            assert(isinstance(self.axis_font, Font))
+            font = QFont(self.axis_font.font, self.axis_font.font_size, QFont.Bold if self.axis_font.bold else QFont.Normal)
+            self.axisY.setTitleFont(font)
+        self.axisY.setGridLineVisible(self.axisY_grid)
+        if self.axisY_grid_color:
+            self.axisY.setGridLineColor(self.axisY_grid_color)
         if self.axisY_range:
             self.axisY.setRange(*self.axisY_range)
         else:
@@ -108,12 +137,14 @@ class BarChart(QtCharts.QChartView):
         self.chart.setAxisY(self.axisY, self.series)
 
     def set_axisX_label(self, label):
-        if label and hasattr(self, 'axisX'):
-            self.axisX.setTitleText(label)
+        self.axisX_label = label
+        if self.axisX_label and hasattr(self, 'axisX'):
+            self.axisX.setTitleText(self.axisX_label)
 
     def set_axisY_label(self, label):
-        if label and hasattr(self, 'axisY'):
-            self.axisY.setTitleText(label)
+        self.axisY_label = label
+        if self.axisY_label and hasattr(self, 'axisY'):
+            self.axisY.setTitleText(self.axisY_label)
 
     def set_axis_color(self, color):
         self.axis_color = color
@@ -123,11 +154,29 @@ class BarChart(QtCharts.QChartView):
             self.axisY.setTitleBrush(QColor(self.axis_color))
             self.axisY.setLabelsColor(QColor(self.axis_color))
 
-    def set_axis_grid(self, grid):
-        self.axis_grid = grid
-        if self.axis_grid and hasattr(self, 'axisX') and hasattr(self, 'axisY'):
-            self.axisX.setGridLineVisible(self.axis_grid)
-            self.axisY.setGridLineVisible(self.axis_grid)
+    def set_axis_font(self, font):
+        self.axis_font = font
+        if self.axis_font and hasattr(self, 'axisX') and hasattr(self, 'axisY'):
+            assert(isinstance(self.axis_font, Font))
+            font = QFont(self.axis_font.font, self.axis_font.font_size, QFont.Bold if self.axis_font.bold else QFont.Normal)
+            self.axisX.setTitleFont(font)
+            self.axisY.setTitleFont(font)
+
+    def set_axis_grid(self, axisX_grid, axisY_grid):
+        self.axisX_grid = axisX_grid
+        self.axisY_grid = axisY_grid
+        if self.axisX_grid and hasattr(self, 'axisX'):
+            self.axisX.setGridLineVisible(self.axisX_grid)
+        if self.axisY_grid and hasattr(self, 'axisY'):
+            self.axisY.setGridLineVisible(self.axisY_grid)
+
+    def set_axis_grid_color(self, axisX_grid_color, axisY_grid_color):
+        self.axisX_grid_color = axisX_grid_color
+        self.axisY_grid_color = axisY_grid_color
+        if self.axisX_grid_color and hasattr(self, 'axisX'):
+            self.axisX.setGridLineColor(self.axisX_grid_color)
+        if self.axisY_grid and hasattr(self, 'axisY'):
+            self.axisY.setGridLineColor(self.axisY_grid_color)
 
     def set_axisY_range(self, range):
         self.axisY_range = range
@@ -156,10 +205,9 @@ class BarChart(QtCharts.QChartView):
     def clear_chart(self):
         self.series.clear()
 
-    def update_chart(self, axisX_ranges, axisY_values):
+    def set_chart_y(self, axisY_values):
         self.clear_chart()
 
-        self.__set_axisX(axisX_ranges)
         self.__set_axisY(axisY_values)
 
         self.bar_set = QtCharts.QBarSet(self.axisY_label)
@@ -172,6 +220,9 @@ class BarChart(QtCharts.QChartView):
 
         # Update the chart view
         self.update()
+    
+    def set_chart_x(self, axisX_ranges):
+        self.__set_axisX(axisX_ranges)
 
     def setup_chart(self):
         self.chart.setMargins(QMargins(0, 0, 0, 0))
@@ -180,3 +231,11 @@ class BarChart(QtCharts.QChartView):
         self.chart.legend().hide()
         self.setRenderHint(QPainter.Antialiasing)
         
+
+
+    def set_inner_margin(self, border):
+        if isinstance(border, int):
+            self.chart.layout().setContentsMargins(border, border, border, border)
+        
+        if isinstance(border, tuple):
+            self.chart.layout().setContentsMargins(*border)

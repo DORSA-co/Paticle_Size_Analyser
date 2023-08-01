@@ -207,7 +207,7 @@ QComboBox QAbstractItemView::item {
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="username_input"/>
+      <widget class="QLineEdit" name="sample_name_input"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -217,9 +217,32 @@ QComboBox QAbstractItemView::item {
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="standards_name_combobox"/>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="error_lbl">
+     <property name="maximumSize">
+      <size>
+       <width>16787</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 16px;
+font-weight: bold;
+color: rgb(255, 95, 84);
+padding:5px;
+
+min-width: 300px;
+max-width: 16777px;
+</string>
+     </property>
+     <property name="text">
+      <string>Error</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QFrame" name="horizontalFrame">
@@ -239,7 +262,7 @@ max-width: 200px;
        <number>20</number>
       </property>
       <item>
-       <widget class="QPushButton" name="ok_btn">
+       <widget class="QPushButton" name="run_btn">
         <property name="styleSheet">
          <string notr="true">QPushButton:hover{
 
@@ -248,7 +271,7 @@ color:#ffffff;
 }</string>
         </property>
         <property name="text">
-         <string>Ok</string>
+         <string>Run</string>
         </property>
        </widget>
       </item>

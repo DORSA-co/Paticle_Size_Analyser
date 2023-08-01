@@ -1,7 +1,7 @@
 MIN_PASS_LENGHT = 1
 MIN_USERNAME_LENGHT = 1
-
-
+#-------------------------------------------------------------------
+DECIMAL_ROUND = 2
 #-------------------------------------------------------------------
 UNLOGIN_USER_ROLE = 'none'
 USER_ROlES = ['admin', 'user']

@@ -191,23 +191,37 @@ class Ui_dialog_window(object):
 
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
-        self.username_input = QLineEdit(dialog_window)
-        self.username_input.setObjectName(u"username_input")
+        self.sample_name_input = QLineEdit(dialog_window)
+        self.sample_name_input.setObjectName(u"sample_name_input")
 
-        self.gridLayout.addWidget(self.username_input, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.sample_name_input, 0, 1, 1, 1)
 
         self.label_2 = QLabel(dialog_window)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
 
-        self.comboBox = QComboBox(dialog_window)
-        self.comboBox.setObjectName(u"comboBox")
+        self.standards_name_combobox = QComboBox(dialog_window)
+        self.standards_name_combobox.setObjectName(u"standards_name_combobox")
 
-        self.gridLayout.addWidget(self.comboBox, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.standards_name_combobox, 1, 1, 1, 1)
 
 
         self.verticalLayout.addLayout(self.gridLayout)
+
+        self.error_lbl = QLabel(dialog_window)
+        self.error_lbl.setObjectName(u"error_lbl")
+        self.error_lbl.setMaximumSize(QSize(16787, 30))
+        self.error_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: rgb(255, 95, 84);\n"
+"padding:5px;\n"
+"\n"
+"min-width: 300px;\n"
+"max-width: 16777px;\n"
+"")
+
+        self.verticalLayout.addWidget(self.error_lbl)
 
         self.horizontalFrame = QFrame(dialog_window)
         self.horizontalFrame.setObjectName(u"horizontalFrame")
@@ -223,15 +237,15 @@ class Ui_dialog_window(object):
         self.horizontalLayout = QHBoxLayout(self.horizontalFrame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(-1, 20, -1, -1)
-        self.ok_btn = QPushButton(self.horizontalFrame)
-        self.ok_btn.setObjectName(u"ok_btn")
-        self.ok_btn.setStyleSheet(u"QPushButton:hover{\n"
+        self.run_btn = QPushButton(self.horizontalFrame)
+        self.run_btn.setObjectName(u"run_btn")
+        self.run_btn.setStyleSheet(u"QPushButton:hover{\n"
 "\n"
 "background-color: rgb(58, 209, 154);\n"
 "color:#ffffff;\n"
 "}")
 
-        self.horizontalLayout.addWidget(self.ok_btn)
+        self.horizontalLayout.addWidget(self.run_btn)
 
         self.cancel_btn = QPushButton(self.horizontalFrame)
         self.cancel_btn.setObjectName(u"cancel_btn")
@@ -259,7 +273,8 @@ class Ui_dialog_window(object):
         dialog_window.setWindowTitle(QCoreApplication.translate("dialog_window", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("dialog_window", u"Sample Name", None))
         self.label_2.setText(QCoreApplication.translate("dialog_window", u"Standard", None))
-        self.ok_btn.setText(QCoreApplication.translate("dialog_window", u"Ok", None))
+        self.error_lbl.setText(QCoreApplication.translate("dialog_window", u"Error", None))
+        self.run_btn.setText(QCoreApplication.translate("dialog_window", u"Run", None))
         self.cancel_btn.setText(QCoreApplication.translate("dialog_window", u"Cancel", None))
     # retranslateUi
 

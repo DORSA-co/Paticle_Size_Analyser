@@ -4,6 +4,7 @@ from PagesUI.usersPageUI import usersPageUI, RegisterUserTabUI, AllUserTabUI, Lo
 from Database.usersDB import usersDB
 from backend.UserManager.userLoginRegister import passwordManager, regiterUtils
 import CONSTANTS
+#from main_UI import routerUI
 
 
 class dataPasser:
@@ -18,10 +19,11 @@ class dataPasser:
 
 class usersPageAPI:
 
-    def __init__(self, ui:usersPageUI,database:usersDB):
+    def __init__(self, ui:usersPageUI,database:usersDB, ):
         self.ui = ui
         self.database = database
         self.data_passer = dataPasser()
+        #self.router = router
         
         
         self.external_login_func_event = None
@@ -155,6 +157,8 @@ class RegisterUserTabAPI:
         self.ui.register_button_connector(self.register)
         self.set_available_user_roles()
         
+
+
     def set_available_user_roles(self):
         logined_user_role = self.data_passer.get_logined_user_role()
         self.ui.set_user_roles_items( CONSTANTS.USER_ROlES_ACCESS[logined_user_role] )
@@ -194,6 +198,16 @@ class RegisterUserTabAPI:
     def set_register_event(self, func):
         self.register_event_func = func
 
+    
+
+
+
+
+
+
+
+
+
 
 
 class AllUserTabAPI:
@@ -207,11 +221,16 @@ class AllUserTabAPI:
 
         self.load_users()
 
+        #all user tab is only accessable by admin, so the user role absolutly is admin
+        self.ui.set_edit_user_roles(CONSTANTS.USER_ROlES_ACCESS['admin'])
+        self.ui.edit_user_save_button_connector(self.save_edit_user) 
+
     
 
     def load_users(self,):
         users = self.database.load_all()
         self.ui.set_users_table(users)
+        self.selected_user_for_edit = {}
 
 
 
@@ -226,10 +245,34 @@ class AllUserTabAPI:
             self.database.remove(user['username'])
             self.load_users()
 
-        if flag == 'edit':
-            print('edit', user)
-       
+        if flag == 'edit':    
+            self.selected_user_for_edit = user
+            self.ui.show_edit_user_box(user)
+    
 
+    def save_edit_user(self,):
+        new_info = self.ui.get_edit_user_box_inputs()
+        #check if password change, hash new password
+        if self.selected_user_for_edit['password'] != new_info['password']:
+            #check new password has enough lengh
+            if len(new_info['password']) < CONSTANTS.MIN_PASS_LENGHT:
+                self.ui.write_change_password_error("Password should be at least {} character".format(CONSTANTS.MIN_PASS_LENGHT))
+                return
+            
+            new_info['password'] = passwordManager.hash_password(new_info['password'])
+
+        #check if username change, remove previous in database
+        if self.selected_user_for_edit['username'] != new_info['username']:
+            #check new username not taken befor bu another
+            if self.database.is_exist(new_info['username']):
+                self.ui.write_edit_user_error("This User name is already exist")
+                return
+        
+        #remove previous record
+        self.database.remove(self.selected_user_for_edit['username'])
+        self.database.save(new_info)
+        self.load_users()
+        self.ui.close_edit_user_box()
 
 
 
@@ -239,6 +282,8 @@ class EditUserTabAPI:
         self.ui = ui
         self.database = database
         self.data_passer = data_passer
+
+        self.user = {}
 
         self.user_edit_event_func = None
 

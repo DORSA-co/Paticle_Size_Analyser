@@ -24,8 +24,8 @@ ACCESS = {
     },
 
     UNLOGIN_USER_ROLE:{
-        'pages' : ['user', 'help'],
-        'tabs': ['register_user'],
+        'pages' : [ 'help'],
+        'tabs': [],
     },
 }
 

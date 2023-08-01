@@ -7,6 +7,7 @@ from Database.mainDatabase import mainDatabase
 #Import Pages Ui---------------------------------------------
 from settingPageAPI import settingPageAPI
 from usersPageAPI import usersPageAPI
+from mainPageAPI import mainPageAPI
 # from settingUI import settingUI
 import CONSTANTS
 
@@ -22,8 +23,8 @@ class main_API:
         #Pages_api------------------------------------
         self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
         self.usersAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
+        self.gradingAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
 
-        
         self.ui.change_page_connector(self.page_change)
         self.usersAPI.set_login_event(self.login_user_event)
 
@@ -35,9 +36,6 @@ class main_API:
             'settings': self.settingAPI,
             'user': None,
             'help': None,
-            
-
-
         }
 
         #TEMP
@@ -53,7 +51,13 @@ class main_API:
             self.pages_api_dict[pagename].startup()
 
     def grabbed_image_interrupt(self,):
-        self.settingAPI.cameraSetting.show_live_image()
+        current_page,_ = self.ui.get_current_page()
+        
+        if current_page == 'main':
+            self.gradingAPI.process_image()
+        elif current_page == 'settings':
+            self.settingAPI.cameraSetting.show_live_image()
+        
 
     def creat_camera(self)-> Camera:
 

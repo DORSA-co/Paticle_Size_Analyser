@@ -164,13 +164,70 @@ class confirmMessageBox:
                 return btn_name
 
 
+class timerBuilder:
 
+    def __init__(self, t, event_func) -> None:
+        self.event_func = event_func
+        self.t = t
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect( self.event_func)
+    def start(self):
+        self.timer.start(self.t)
+    
+
+    
 def single_timer_runner( t, func):
     timer = QtCore.QTimer()
     timer.singleShot(t, func)
     
     
+
+
+class singleAnimation:
+
+    def __init__(self, obj ,atribute, time, key1, key2) -> None:
+        
+        self.key1 = key1
+        self.key2 = key2
+        self.toggle_flag = True
+        self.animation = QtCore.QPropertyAnimation(obj, atribute)
+        self.animation.setDuration(time)
+        self.animation.setEasingCurve(QtCore.QEasingCurve.Linear)
     
+    def forward( self ):
+        self.toggle_flag = False
+        self.animation.setStartValue(self.key1)
+        self.animation.setEndValue(self.key2)
+        self.animation.start()
+        
+    
+    def backward(self):
+        self.toggle_flag = True
+        self.animation.setStartValue(self.key2)
+        self.animation.setEndValue(self.key1)
+        self.animation.start()
+        
+
+
+    def single_forward(self):
+        if self.toggle_flag:
+            self.forward()
+            
+        
+    
+    def single_backward(self,):
+        if not self.toggle_flag:
+            self.backward()
+    
+    
+    def toggle(self,):
+        if self.toggle_flag:
+            self.forward()
+        else:
+            self.backward()
+                
+
+
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>430</height>
+    <height>442</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,17 +19,17 @@
   <property name="minimumSize">
    <size>
     <width>550</width>
-    <height>430</height>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>550</width>
-    <height>430</height>
+    <height>442</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Edit User</string>
   </property>
   <property name="styleSheet">
    <string notr="true">*{
@@ -47,8 +47,8 @@ QLabel{
 
 
 #login_dialog_window{
-	background-color: #ffffff;
 	background-color: rgb(6, 76, 130);
+	
 }
 
 
@@ -76,7 +76,8 @@ QPushButton:disabled{
 
 /*********************************************/
 QLabel{
-	color: #ffffff;
+	color: rgb(50,50,50);
+color: #ffffff;
 }
 
 
@@ -119,6 +120,66 @@ QSpinBox:hover{
 }
 
 
+/*********************************************/
+QComboBox
+{
+	border:2px solid rgb(6, 76, 130);
+    border-radius: 3px;
+    padding: 1px 18px 1px 8px;
+    min-width: 6em;
+	min-height: 35px;
+	font-size: 14px;
+}
+
+QComboBox:enabled{
+color: rgb(50, 50, 50);
+}
+
+QComboBox:disabled
+{
+	border:2px solid rgb(210, 210, 210);
+	color:(210, 210, 210);
+
+}
+
+QComboBox::down-arrow
+{   
+	image: url(:/assets/Assets/icons/icons8-arrow-48.png);
+	width: 15px;
+    height: 15px;
+
+}
+
+QComboBox::drop-down
+{
+	 background-color: rgb(238, 134, 44);
+	 min-width: 30px;
+}
+
+QComboBox::drop-down:disabled 
+{
+	 background-color: rgb(210, 210, 210);
+	 min-width: 30px;
+}
+
+QComboBox QAbstractItemView {
+    border: none;
+    selection-background-color: rgb(6, 76, 130);
+	selection-color: rgb(6, 76, 130);
+
+
+}
+
+QComboBox QAbstractItemView {
+    border: none;
+}
+
+QComboBox QAbstractItemView::item {
+    border: none;
+	height:30px;
+}
+
+
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -129,32 +190,24 @@ QSpinBox:hover{
     <number>60</number>
    </property>
    <property name="topMargin">
-    <number>80</number>
+    <number>40</number>
    </property>
    <property name="rightMargin">
     <number>60</number>
    </property>
    <property name="bottomMargin">
-    <number>80</number>
+    <number>40</number>
    </property>
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <property name="verticalSpacing">
       <number>50</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Username</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="username_input">
-       <property name="text">
-        <string>admin</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="username_input"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="role_combobox"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -163,17 +216,27 @@ QSpinBox:hover{
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="password_input">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_6">
        <property name="text">
-        <string>admin</string>
+        <string>Role</string>
        </property>
       </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Username</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="password_input"/>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="login_error_lbl">
+    <widget class="QLabel" name="error_lbl">
      <property name="styleSheet">
       <string notr="true">color:rgb(255, 99, 94);</string>
      </property>
@@ -185,47 +248,53 @@ QSpinBox:hover{
    <item>
     <widget class="QFrame" name="horizontalFrame">
      <property name="styleSheet">
-      <string notr="true">QPushButton{
-
-background-color: #ffffff;
-color: rgb(6, 76, 130);
-max-width: 200px;
-}
-
-
-QPushButton:hover{
-
-background-color: rgb(58, 209, 154);
-color:#ffffff;
-}</string>
+      <string notr="true"/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="topMargin">
        <number>20</number>
       </property>
       <item>
-       <widget class="QPushButton" name="login_btn">
+       <widget class="QPushButton" name="save_btn">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">QPushButton{
+
+background-color: rgb(58, 209, 154);
+color:#ffffff;
+max-width: 200px;
+}
+
+
+QPushButton:hover{
+
+background-color: rgb(49, 177, 130);
+color:#ffffff;
+}</string>
         </property>
         <property name="text">
-         <string>Login</string>
+         <string>Save</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="register_btn">
+       <widget class="QPushButton" name="cancel_btn">
         <property name="styleSheet">
          <string notr="true">QPushButton{
-background-color:rgb(222, 222, 222);
+
+background-color:rgb(255, 99, 94);
+color:#ffffff;
+max-width: 200px;
 }
 
+
 QPushButton:hover{
-background-color:rgb(58, 209, 154);
+
+background-color: rgb(208, 79, 77);
+color:#ffffff;
 }</string>
         </property>
         <property name="text">
-         <string>Register new Account</string>
+         <string>Cancel</string>
         </property>
        </widget>
       </item>
@@ -234,6 +303,8 @@ background-color:rgb(58, 209, 154);
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

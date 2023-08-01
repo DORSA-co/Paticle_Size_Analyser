@@ -1,4 +1,5 @@
-from guiBackend import GUIBackend
+from uiUtils.guiBackend import GUIBackend
+from uiUtils import GUIComponents
 import Charts
 
 
@@ -13,6 +14,12 @@ class mainPageUI:
         self.current_status = 'stop'
         self.statistics_table = self.ui.mainpage_statistics_table
         self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
+        self.close_warning_msg_btn = self.ui.mainpage_close_error_btn
+        self.warning_msg_frame = self.ui.mainpage_error_msg_frame
+
+        self.external_warning_button_event_func = None
+
+        self.error_slide_animation = GUIComponents.singleAnimation(self.warning_msg_frame, b'maximumHeight', 400, 0, 120)
         
         self.warning_btns = {
             'camera_connection': {
@@ -41,9 +48,9 @@ class mainPageUI:
         
         self.informations = {
             'ovality': self.ui.mainpage_mean_oval_lbl,
-            'avrage': self.ui.mainpage_avrage_lbl,
-            'std': self.ui.mainpage_std_lbl,
-            'fps': self.ui.mainpage_fps_lbl
+            'avrage' : self.ui.mainpage_avrage_lbl,
+            'std'    : self.ui.mainpage_std_lbl,
+            'fps'    : self.ui.mainpage_fps_lbl
 
         }
 
@@ -62,7 +69,7 @@ class mainPageUI:
                     chart_background_color = '#f0f0f0',
                     bar_color = '#4caf50',
                     axis_color = '#404040',
-                    axis_grid=False,
+                    axis_grid = False,
                     axisY_range = (0, 100),
                     axisY_tickCount = 10,
                     animation = True,
@@ -81,7 +88,7 @@ class mainPageUI:
                     chart_background_color = '#f0f0f0',
                     bar_color = '#4caf50',
                     axis_color = '#404040',
-                    axis_grid=False,
+                    axis_grid = False,
                     axisY_range = (0, 100),
                     axisY_tickCount = 10,
                     animation = True,
@@ -100,18 +107,42 @@ class mainPageUI:
         GUIBackend.add_widget( self.ui.mainpage_grading_chart_frame, self.grading_chart )
         GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.seccond_chart )
         GUIBackend.button_connector(self.sample_info.cancel_btn, self.cancel_start )
-
+        for name in self.warning_btns.keys():
+            GUIBackend.button_connector(self.warning_btns[name]['btn'], self.internal_warning_button_event(name))
+        GUIBackend.button_connector(self.close_warning_msg_btn, self.close_warning_msg)
         #Startup operations-----------------
         self.__player_buttons_connect_internal__()
-        GUIBackend.set_wgt_visible(self.warning_msg_lbl, False)
+        #-----------------------------------------------------------
+        self.close_warning_msg()
+        
+    def warning_buttons_connector(self, func):
+        self.external_warning_button_event_func = func
 
+
+    def internal_warning_button_event(self, name:str):
+        """this function execute when each of error button clicked
+
+        Args:
+            name (str): name of button that pressed. it coulbe be one key if self.warning_btns dictionary
+        """
+        def func():
+            self.open_warning_msg()
+            if self.external_warning_button_event_func is not None:
+                self.external_warning_button_event_func(name)
         
-        
-        # self.ui.mainpage_right_frame.addWidget(self.chart1)
+        return func
+    
+    def open_warning_msg(self,):
+        self.error_slide_animation.toggle()
+
+    def close_warning_msg(self,):
+        self.error_slide_animation.backward()
 
 
     def cancel_start(self):
-        
+        GUIBackend.button_enable(self.player_btns['start'])
+        GUIBackend.button_enable(self.player_btns['fast_start'])
+        GUIBackend.button_disable(self.player_btns['stop'])
         GUIBackend.close_window(self.sample_info)
 
     
@@ -139,7 +170,9 @@ class mainPageUI:
             if state == 'start':
                 GUIBackend.show_window(self.sample_info)
         return func
-        
+    
+
+    
 
     def player_buttons_connect(self,name:str,  func):
         """connect click event of start or fast_start or stop button into a function

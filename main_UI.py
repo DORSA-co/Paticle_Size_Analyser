@@ -18,6 +18,7 @@ sys.path.append( os.getcwd() + "/PagesUI" )
 main_ui_file = 'main_UI.ui'
 login_ui_file = 'login.ui'
 sample_info_ui_file = 'sample_info.ui'
+edit_user_ui_file = 'edit_user.ui'
 
 #----------------------Load Madouls -------------------------------
 from PySide6 import QtWidgets, QtCore, QtGui 
@@ -41,18 +42,54 @@ from reportsPageUI import reportsPageUI
 #---------------------------------------------------------
 from guiBackend import GUIBackend
 
+class routerUI:
+
+    def __init__(self, ui) -> None:
+        self.ui = ui
+        self.pages_index = {
+            'main'       : 0,
+            'report'     : 1,
+            'settings'   : 2,
+            'calibration': 3,
+            'user'       : 4,
+            'help'       : 5
+        }
+
+        self.tabs = {
+            'general_setting':   (self.ui.settingpage_tabs, 0),
+            'grading_setting':   (self.ui.settingpage_tabs, 1),
+            'camera_setting':    (self.ui.settingpage_tabs, 2),
+            'algorithm_setting': (self.ui.settingpage_tabs, 3),
+            'register_user':     (self.ui.user_tabs, 0),
+            'edit_user':         (self.ui.user_tabs, 1),
+            'all_users':         (self.ui.user_tabs, 2),
+        }
+
+        self.main_pages_stackw = self.ui.main_pages_stackw
+        
+    def go(self, pagename, tabname=None):
+        GUIBackend.set_stack_widget_idx(self.main_pages_stackw, self.pages_index[pagename])
+
+        if tabname is not None:
+            tab_obj, idx = self.tabs[tabname]
+            GUIBackend.set_current_tab( tab_obj,  idx)
+
+
 class mainUI:
-    def __init__(self, ui, login_ui, sample_info):
+    def __init__(self, ui, login_ui, sample_info, edit_user):
         #self.__global_setting__ = GlobalUI(ui)
         self.ui = ui
         self.login_ui = login_ui
         self.sample_info = sample_info
+        self.edit_user = edit_user
 
         self.settingPage = settingPageUI(ui)
         self.reportsPage = reportsPageUI(ui)
         self.mainPage = mainPageUI(ui, sample_info)
         self.calibrationPage = calibrationPageUI(ui)
-        self.usersPage = usersPageUI(ui, login_ui)
+        self.usersPage = usersPageUI(ui, login_ui, edit_user)
+
+        #self.router = routerUI(ui)
 
         self.current_page = ('main', 0)
         self.external_change_page_event = None
@@ -178,6 +215,8 @@ class mainUI:
         new_page_idx = self.pages_index[pages[0]]
         GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
 
+    
+
 
     
     def set_access_tabs(self, tabs: list[str], flag:bool = True):
@@ -213,7 +252,8 @@ if __name__ == '__main__':
     window = loader.load(main_ui_file, None)
     login_ui = loader.load(login_ui_file, None)
     sample_info = loader.load(sample_info_ui_file, None)
-    main_ui = mainUI(window, login_ui, sample_info)
+    edit_user = loader.load(edit_user_ui_file, None)
+    main_ui = mainUI(window, login_ui, sample_info, edit_user)
 
     
     api = main_API(main_ui)

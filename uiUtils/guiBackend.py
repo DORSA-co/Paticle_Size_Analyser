@@ -636,3 +636,12 @@ class GUIBackend:
     @staticmethod 
     def set_visible_tab( tab: QtWidgets.QTabWidget, idx, status):
         tab.setTabVisible(idx, status)
+
+    
+    @staticmethod
+    def set_current_tab( tab:QtWidgets.QTabWidget, idx):
+        tab.setCurrentIndex(idx)
+
+
+    #------------------------------------------------------------------------------------------
+    

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1337</width>
-    <height>878</height>
+    <width>1339</width>
+    <height>885</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1010,7 +1010,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1648,39 +1648,40 @@ font-weight: bold;
                <number>5</number>
               </property>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_35">
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <spacer name="horizontalSpacer_61">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QFrame" name="mainpage_warnings_frame">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>80</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>130</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">#mainpage_warnings_frame{
+               <widget class="QFrame" name="">
+                <layout class="QHBoxLayout" name="horizontalLayout_35">
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                 <item>
+                  <spacer name="horizontalSpacer_61">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="mainpage_warnings_frame">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">#mainpage_warnings_frame{
 	background-color:rgb(49, 49, 49);
 	border-radius: 5px;
 }
@@ -1723,186 +1724,259 @@ QPushButton
 	
 	background-color: rgba(0,0,0,0);
 }</string>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::StyledPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
-                  </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_7">
-                   <item>
-                    <widget class="QGroupBox" name="groupBox_2">
-                     <property name="title">
-                      <string>System Status</string>
-                     </property>
-                     <layout class="QGridLayout" name="gridLayout_2">
-                      <property name="bottomMargin">
-                       <number>11</number>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_7">
+                    <item>
+                     <widget class="QGroupBox" name="groupBox_2">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>100</height>
+                       </size>
                       </property>
-                      <item row="0" column="1">
-                       <widget class="QPushButton" name="mainpage_illumination_warning_btn">
-                        <property name="cursor">
-                         <cursorShape>PointingHandCursor</cursorShape>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="Assets.qrc">
-                          <normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>35</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="0">
-                       <widget class="QLabel" name="label_4">
-                        <property name="text">
-                         <string>Tempreture</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="2">
-                       <widget class="QLabel" name="label_11">
-                        <property name="text">
-                         <string>Camera Connection</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="0">
-                       <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
-                        <property name="minimumSize">
-                         <size>
-                          <width>114</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                        <property name="cursor">
-                         <cursorShape>PointingHandCursor</cursorShape>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true"/>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="Assets.qrc">
-                          <normaloff>:/assets/Assets/icons/icons8-thermometer-green-50.png</normaloff>:/assets/Assets/icons/icons8-thermometer-green-50.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>35</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="1">
-                       <widget class="QLabel" name="label_10">
-                        <property name="text">
-                         <string>Ilumination</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="2" column="3">
-                       <widget class="QLabel" name="label_14">
-                        <property name="text">
-                         <string>Camera Grabbing</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="2">
-                       <widget class="QPushButton" name="mainpage_camera_connection_warning_btn">
-                        <property name="cursor">
-                         <cursorShape>PointingHandCursor</cursorShape>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="Assets.qrc">
-                          <normaloff>:/assets/Assets/icons/icons8-connection-green-50.png</normaloff>:/assets/Assets/icons/icons8-connection-green-50.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>35</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                       </widget>
-                      </item>
-                      <item row="0" column="3">
-                       <widget class="QPushButton" name="mainpage_camera_grabbing_warning_btn">
-                        <property name="cursor">
-                         <cursorShape>PointingHandCursor</cursorShape>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true"/>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="icon">
-                         <iconset resource="Assets.qrc">
-                          <normaloff>:/assets/Assets/icons/icons8-camera-green-50.png</normaloff>:/assets/Assets/icons/icons8-camera-green-50.png</iconset>
-                        </property>
-                        <property name="iconSize">
-                         <size>
-                          <width>35</width>
-                          <height>35</height>
-                         </size>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="mainpage_warning_massage_lbl">
-                     <property name="styleSheet">
-                      <string notr="true">color:rgb(255, 204, 2);
+                      <property name="maximumSize">
+                       <size>
+                        <width>16777215</width>
+                        <height>100</height>
+                       </size>
+                      </property>
+                      <property name="title">
+                       <string>System Status</string>
+                      </property>
+                      <layout class="QGridLayout" name="gridLayout_2">
+                       <property name="bottomMargin">
+                        <number>11</number>
+                       </property>
+                       <item row="0" column="1">
+                        <widget class="QPushButton" name="mainpage_illumination_warning_btn">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="Assets.qrc">
+                           <normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>35</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="label_4">
+                         <property name="text">
+                          <string>Tempreture</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="2">
+                        <widget class="QLabel" name="label_11">
+                         <property name="text">
+                          <string>Camera Connection</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
+                         <property name="minimumSize">
+                          <size>
+                           <width>114</width>
+                           <height>40</height>
+                          </size>
+                         </property>
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="Assets.qrc">
+                           <normaloff>:/assets/Assets/icons/icons8-thermometer-green-50.png</normaloff>:/assets/Assets/icons/icons8-thermometer-green-50.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>35</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QLabel" name="label_10">
+                         <property name="text">
+                          <string>Ilumination</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="3">
+                        <widget class="QLabel" name="label_14">
+                         <property name="text">
+                          <string>Camera Grabbing</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QPushButton" name="mainpage_camera_connection_warning_btn">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="Assets.qrc">
+                           <normaloff>:/assets/Assets/icons/icons8-connection-green-50.png</normaloff>:/assets/Assets/icons/icons8-connection-green-50.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>35</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="3">
+                        <widget class="QPushButton" name="mainpage_camera_grabbing_warning_btn">
+                         <property name="cursor">
+                          <cursorShape>PointingHandCursor</cursorShape>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true"/>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="Assets.qrc">
+                           <normaloff>:/assets/Assets/icons/icons8-camera-green-50.png</normaloff>:/assets/Assets/icons/icons8-camera-green-50.png</iconset>
+                         </property>
+                         <property name="iconSize">
+                          <size>
+                           <width>35</width>
+                           <height>35</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="mainpage_error_msg_frame">
+                      <layout class="QVBoxLayout" name="verticalLayout_23">
+                       <item>
+                        <widget class="QLabel" name="mainpage_warning_massage_lbl">
+                         <property name="styleSheet">
+                          <string notr="true">color:rgb(255, 204, 2);
 padding-left:15px;</string>
-                     </property>
-                     <property name="text">
-                      <string>!</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_60">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
+                         </property>
+                         <property name="text">
+                          <string>!</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_41">
+                         <item>
+                          <spacer name="horizontalSpacer_68">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="mainpage_close_error_btn">
+                           <property name="minimumSize">
+                            <size>
+                             <width>124</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>124</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">QPushButton{
+max-width:50px;
+min-width:50px;
+min-height:30px;
+padding:0px;
+
+}
+
+QPushButton:hover{
+border:none;
+background-color: rgba(255,255,255,20);
+}</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="Assets.qrc">
+                             <normaloff>:/assets/Assets/icons/icons8-chevron-up-50.png</normaloff>:/assets/Assets/icons/icons8-chevron-up-50.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_60">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
               </item>
               <item>
                <spacer name="verticalSpacer_18">
@@ -1921,14 +1995,22 @@ padding-left:15px;</string>
                </spacer>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="mainpage_grading_chart_frame">
-                <property name="leftMargin">
-                 <number>9</number>
+               <widget class="QFrame" name="">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>200</height>
+                 </size>
                 </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-               </layout>
+                <layout class="QHBoxLayout" name="mainpage_grading_chart_frame">
+                 <property name="leftMargin">
+                  <number>9</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>1</number>
+                 </property>
+                </layout>
+               </widget>
               </item>
               <item>
                <widget class="Line" name="line_2">
@@ -1954,7 +2036,28 @@ padding-left:15px;</string>
                </spacer>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="mainpage_second_chart_frame"/>
+               <widget class="QFrame" name="">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>200</height>
+                 </size>
+                </property>
+                <layout class="QHBoxLayout" name="mainpage_second_chart_frame"/>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_17">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </widget>
@@ -2126,7 +2229,7 @@ color: rgb(6, 76, 130);
                    <x>0</x>
                    <y>0</y>
                    <width>306</width>
-                   <height>594</height>
+                   <height>601</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -5603,8 +5706,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1121</width>
-                    <height>916</height>
+                    <width>162</width>
+                    <height>3292</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -5626,7 +5729,7 @@ color: rgb(6, 76, 130);</string>
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap>img.jpg</pixmap>
+                      <pixmap>../../.designer/backup/img.jpg</pixmap>
                      </property>
                     </widget>
                    </item>
@@ -5862,7 +5965,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1143</width>
+                <width>824</width>
                 <height>1519</height>
                </rect>
               </property>
@@ -6961,6 +7064,7 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
+  <include location="../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

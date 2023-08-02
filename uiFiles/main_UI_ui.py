@@ -1637,23 +1637,31 @@ class Ui_MainWindow(object):
 "	width: 300px;\n"
 "\n"
 "}\n"
+"\n"
+"\n"
+"#new_standard_tab,\n"
+"#all_standards_tab\n"
+"{\n"
+"	background-color:rgb(255, 255, 255);\n"
+"}\n"
 "")
         self.gradingranges_tabs.setUsesScrollButtons(True)
         self.gradingranges_tabs.setDocumentMode(False)
         self.gradingranges_tabs.setTabsClosable(False)
         self.gradingranges_tabs.setMovable(False)
         self.gradingranges_tabs.setTabBarAutoHide(False)
-        self.new_standard = QWidget()
-        self.new_standard.setObjectName(u"new_standard")
-        self.horizontalLayout_22 = QHBoxLayout(self.new_standard)
+        self.new_standard_tab = QWidget()
+        self.new_standard_tab.setObjectName(u"new_standard_tab")
+        self.new_standard_tab.setStyleSheet(u"")
+        self.horizontalLayout_22 = QHBoxLayout(self.new_standard_tab)
         self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
         self.horizontalSpacer_65 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_22.addItem(self.horizontalSpacer_65)
 
-        self.settingpage_grading_new_standards_groupbox = QGroupBox(self.new_standard)
+        self.settingpage_grading_new_standards_groupbox = QGroupBox(self.new_standard_tab)
         self.settingpage_grading_new_standards_groupbox.setObjectName(u"settingpage_grading_new_standards_groupbox")
-        self.settingpage_grading_new_standards_groupbox.setMaximumSize(QSize(1000, 16777215))
+        self.settingpage_grading_new_standards_groupbox.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout_22 = QVBoxLayout(self.settingpage_grading_new_standards_groupbox)
         self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.settingpage_grading_editmode_lbl = QLabel(self.settingpage_grading_new_standards_groupbox)
@@ -1671,6 +1679,16 @@ class Ui_MainWindow(object):
         self.settingpage_grading_editmode_lbl.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_22.addWidget(self.settingpage_grading_editmode_lbl)
+
+        self.horizontalLayout_45 = QHBoxLayout()
+        self.horizontalLayout_45.setObjectName(u"horizontalLayout_45")
+        self.horizontalLayout_45.setContentsMargins(-1, 0, -1, -1)
+        self.verticalLayout_31 = QVBoxLayout()
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.verticalLayout_31.setContentsMargins(0, 0, -1, -1)
+        self.verticalSpacer_28 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.verticalLayout_31.addItem(self.verticalSpacer_28)
 
         self.horizontalLayout_24 = QHBoxLayout()
         self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
@@ -1690,11 +1708,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_24.addItem(self.horizontalSpacer_22)
 
 
-        self.verticalLayout_22.addLayout(self.horizontalLayout_24)
+        self.verticalLayout_31.addLayout(self.horizontalLayout_24)
 
         self.verticalSpacer_8 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
-        self.verticalLayout_22.addItem(self.verticalSpacer_8)
+        self.verticalLayout_31.addItem(self.verticalSpacer_8)
 
         self.gridLayout_13 = QGridLayout()
         self.gridLayout_13.setObjectName(u"gridLayout_13")
@@ -1763,7 +1781,7 @@ class Ui_MainWindow(object):
         self.gridLayout_13.addItem(self.horizontalSpacer_18, 0, 7, 1, 1)
 
 
-        self.verticalLayout_22.addLayout(self.gridLayout_13)
+        self.verticalLayout_31.addLayout(self.gridLayout_13)
 
         self.settingpage_grading_warning_lbl = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_warning_lbl.setObjectName(u"settingpage_grading_warning_lbl")
@@ -1777,12 +1795,93 @@ class Ui_MainWindow(object):
 "max-width: 16777px;\n"
 "")
 
-        self.verticalLayout_22.addWidget(self.settingpage_grading_warning_lbl)
+        self.verticalLayout_31.addWidget(self.settingpage_grading_warning_lbl)
 
         self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
-        self.verticalLayout_22.addItem(self.verticalSpacer_10)
+        self.verticalLayout_31.addItem(self.verticalSpacer_10)
 
+        self.horizontalFrame_5 = QFrame(self.settingpage_grading_new_standards_groupbox)
+        self.horizontalFrame_5.setObjectName(u"horizontalFrame_5")
+        self.horizontalFrame_5.setStyleSheet(u"color: #ffffff;")
+        self.horizontalLayout_20 = QHBoxLayout(self.horizontalFrame_5)
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.horizontalLayout_20.setContentsMargins(-1, 17, -1, -1)
+        self.horizontalSpacer_24 = QSpacerItem(100, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_20.addItem(self.horizontalSpacer_24)
+
+        self.settingpage_grading_save_btn = QPushButton(self.horizontalFrame_5)
+        self.settingpage_grading_save_btn.setObjectName(u"settingpage_grading_save_btn")
+
+        self.horizontalLayout_20.addWidget(self.settingpage_grading_save_btn)
+
+        self.settingpage_grading_cancel_btn = QPushButton(self.horizontalFrame_5)
+        self.settingpage_grading_cancel_btn.setObjectName(u"settingpage_grading_cancel_btn")
+
+        self.horizontalLayout_20.addWidget(self.settingpage_grading_cancel_btn)
+
+        self.horizontalSpacer_25 = QSpacerItem(100, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_20.addItem(self.horizontalSpacer_25)
+
+
+        self.verticalLayout_31.addWidget(self.horizontalFrame_5)
+
+        self.gradingranges_new_standard_success_frame = QFrame(self.settingpage_grading_new_standards_groupbox)
+        self.gradingranges_new_standard_success_frame.setObjectName(u"gradingranges_new_standard_success_frame")
+        self.gradingranges_new_standard_success_frame.setStyleSheet(u"QFrame{\n"
+"background-color: rgb(58, 209, 154);\n"
+"}")
+        self.gradingranges_new_standard_success_frame.setFrameShape(QFrame.StyledPanel)
+        self.gradingranges_new_standard_success_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_43 = QHBoxLayout(self.gradingranges_new_standard_success_frame)
+        self.horizontalLayout_43.setObjectName(u"horizontalLayout_43")
+        self.label_90 = QLabel(self.gradingranges_new_standard_success_frame)
+        self.label_90.setObjectName(u"label_90")
+        self.label_90.setMaximumSize(QSize(50, 50))
+        self.label_90.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-check-150.png"))
+        self.label_90.setScaledContents(True)
+
+        self.horizontalLayout_43.addWidget(self.label_90)
+
+        self.gradingranges_new_standard_success_lbl = QLabel(self.gradingranges_new_standard_success_frame)
+        self.gradingranges_new_standard_success_lbl.setObjectName(u"gradingranges_new_standard_success_lbl")
+        self.gradingranges_new_standard_success_lbl.setMinimumSize(QSize(0, 50))
+        self.gradingranges_new_standard_success_lbl.setStyleSheet(u"font-size: 16px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"\n"
+"")
+        self.gradingranges_new_standard_success_lbl.setScaledContents(False)
+
+        self.horizontalLayout_43.addWidget(self.gradingranges_new_standard_success_lbl)
+
+        self.horizontalSpacer_72 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_43.addItem(self.horizontalSpacer_72)
+
+
+        self.verticalLayout_31.addWidget(self.gradingranges_new_standard_success_frame)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_31.addItem(self.verticalSpacer_9)
+
+
+        self.horizontalLayout_45.addLayout(self.verticalLayout_31)
+
+        self.line_3 = QFrame(self.settingpage_grading_new_standards_groupbox)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setMinimumSize(QSize(16, 0))
+        self.line_3.setFrameShape(QFrame.VLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_45.addWidget(self.line_3)
+
+        self.verticalLayout_33 = QVBoxLayout()
+        self.verticalLayout_33.setObjectName(u"verticalLayout_33")
+        self.verticalLayout_33.setContentsMargins(0, -1, -1, -1)
         self.label_26 = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.label_26.setObjectName(u"label_26")
         self.label_26.setStyleSheet(u"max-width: 200;\n"
@@ -1790,11 +1889,11 @@ class Ui_MainWindow(object):
 "color:rgb(6, 76, 130);\n"
 "font-weight:bold;")
 
-        self.verticalLayout_22.addWidget(self.label_26)
+        self.verticalLayout_33.addWidget(self.label_26)
 
         self.horizontalLayout_28 = QHBoxLayout()
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
-        self.horizontalLayout_28.setContentsMargins(9, 18, -1, -1)
+        self.horizontalLayout_28.setContentsMargins(0, 0, -1, -1)
         self.settingpage_grading_ranges_table = QTableWidget(self.settingpage_grading_new_standards_groupbox)
         if (self.settingpage_grading_ranges_table.columnCount() < 5):
             self.settingpage_grading_ranges_table.setColumnCount(5)
@@ -1806,6 +1905,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.settingpage_grading_ranges_table.sizePolicy().hasHeightForWidth())
         self.settingpage_grading_ranges_table.setSizePolicy(sizePolicy)
+        self.settingpage_grading_ranges_table.setMaximumSize(QSize(16777215, 500))
         self.settingpage_grading_ranges_table.setSizeIncrement(QSize(0, 0))
         self.settingpage_grading_ranges_table.setBaseSize(QSize(0, 0))
         self.settingpage_grading_ranges_table.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
@@ -1867,74 +1967,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout_28.addItem(self.horizontalSpacer_66)
 
 
-        self.verticalLayout_22.addLayout(self.horizontalLayout_28)
+        self.verticalLayout_33.addLayout(self.horizontalLayout_28)
 
-        self.horizontalFrame_5 = QFrame(self.settingpage_grading_new_standards_groupbox)
-        self.horizontalFrame_5.setObjectName(u"horizontalFrame_5")
-        self.horizontalFrame_5.setStyleSheet(u"color: #ffffff;")
-        self.horizontalLayout_20 = QHBoxLayout(self.horizontalFrame_5)
-        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
-        self.horizontalLayout_20.setContentsMargins(-1, 17, -1, -1)
-        self.horizontalSpacer_24 = QSpacerItem(100, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+        self.verticalSpacer_29 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.horizontalLayout_20.addItem(self.horizontalSpacer_24)
-
-        self.settingpage_grading_save_btn = QPushButton(self.horizontalFrame_5)
-        self.settingpage_grading_save_btn.setObjectName(u"settingpage_grading_save_btn")
-
-        self.horizontalLayout_20.addWidget(self.settingpage_grading_save_btn)
-
-        self.settingpage_grading_cancel_btn = QPushButton(self.horizontalFrame_5)
-        self.settingpage_grading_cancel_btn.setObjectName(u"settingpage_grading_cancel_btn")
-
-        self.horizontalLayout_20.addWidget(self.settingpage_grading_cancel_btn)
-
-        self.horizontalSpacer_25 = QSpacerItem(100, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.horizontalLayout_20.addItem(self.horizontalSpacer_25)
+        self.verticalLayout_33.addItem(self.verticalSpacer_29)
 
 
-        self.verticalLayout_22.addWidget(self.horizontalFrame_5)
-
-        self.gradingranges_new_standard_success_frame = QFrame(self.settingpage_grading_new_standards_groupbox)
-        self.gradingranges_new_standard_success_frame.setObjectName(u"gradingranges_new_standard_success_frame")
-        self.gradingranges_new_standard_success_frame.setStyleSheet(u"QFrame{\n"
-"background-color: rgb(58, 209, 154);\n"
-"}")
-        self.gradingranges_new_standard_success_frame.setFrameShape(QFrame.StyledPanel)
-        self.gradingranges_new_standard_success_frame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_43 = QHBoxLayout(self.gradingranges_new_standard_success_frame)
-        self.horizontalLayout_43.setObjectName(u"horizontalLayout_43")
-        self.label_90 = QLabel(self.gradingranges_new_standard_success_frame)
-        self.label_90.setObjectName(u"label_90")
-        self.label_90.setMaximumSize(QSize(50, 50))
-        self.label_90.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-check-150.png"))
-        self.label_90.setScaledContents(True)
-
-        self.horizontalLayout_43.addWidget(self.label_90)
-
-        self.gradingranges_new_standard_success_lbl = QLabel(self.gradingranges_new_standard_success_frame)
-        self.gradingranges_new_standard_success_lbl.setObjectName(u"gradingranges_new_standard_success_lbl")
-        self.gradingranges_new_standard_success_lbl.setMinimumSize(QSize(0, 50))
-        self.gradingranges_new_standard_success_lbl.setStyleSheet(u"font-size: 16px;\n"
-"font-weight: bold;\n"
-"color: #ffffff;\n"
-"\n"
-"")
-        self.gradingranges_new_standard_success_lbl.setScaledContents(False)
-
-        self.horizontalLayout_43.addWidget(self.gradingranges_new_standard_success_lbl)
-
-        self.horizontalSpacer_72 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_43.addItem(self.horizontalSpacer_72)
+        self.horizontalLayout_45.addLayout(self.verticalLayout_33)
 
 
-        self.verticalLayout_22.addWidget(self.gradingranges_new_standard_success_frame)
-
-        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_22.addItem(self.verticalSpacer_9)
+        self.verticalLayout_22.addLayout(self.horizontalLayout_45)
 
 
         self.horizontalLayout_22.addWidget(self.settingpage_grading_new_standards_groupbox)
@@ -1943,12 +1986,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_22.addItem(self.horizontalSpacer_75)
 
-        self.gradingranges_tabs.addTab(self.new_standard, "")
-        self.all_standards = QWidget()
-        self.all_standards.setObjectName(u"all_standards")
-        self.verticalLayout_32 = QVBoxLayout(self.all_standards)
+        self.gradingranges_tabs.addTab(self.new_standard_tab, "")
+        self.all_standards_tab = QWidget()
+        self.all_standards_tab.setObjectName(u"all_standards_tab")
+        self.verticalLayout_32 = QVBoxLayout(self.all_standards_tab)
         self.verticalLayout_32.setObjectName(u"verticalLayout_32")
-        self.settingpage_grading_standards_groupbox = QGroupBox(self.all_standards)
+        self.settingpage_grading_standards_groupbox = QGroupBox(self.all_standards_tab)
         self.settingpage_grading_standards_groupbox.setObjectName(u"settingpage_grading_standards_groupbox")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
@@ -2019,7 +2062,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_32.addWidget(self.settingpage_grading_standards_groupbox)
 
-        self.gradingranges_tabs.addTab(self.all_standards, "")
+        self.gradingranges_tabs.addTab(self.all_standards_tab, "")
 
         self.verticalLayout_30.addWidget(self.gradingranges_tabs)
 
@@ -2060,6 +2103,7 @@ class Ui_MainWindow(object):
 "\n"
 "#settingpage_camera_tab,\n"
 "#settingpage_general_tab, \n"
+"#settingpage_storage_tab,\n"
 "#settingpage_pelletizing_tab,\n"
 "#settingpage_algorithm_tab\n"
 "{\n"
@@ -4362,8 +4406,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.main_pages_stackw.setCurrentIndex(2)
-        self.gradingranges_tabs.setCurrentIndex(1)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.gradingranges_tabs.setCurrentIndex(0)
+        self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -4455,12 +4499,12 @@ class Ui_MainWindow(object):
         self.settingpage_pelletizing_add_range_btn.setText("")
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Lower Limit(mm):", None))
         self.settingpage_grading_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Warning !", None))
-        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Defined Ranges", None))
         self.settingpage_grading_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_grading_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.label_90.setText("")
         self.gradingranges_new_standard_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
-        self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard), QCoreApplication.translate("MainWindow", u"New Standard", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Defined Ranges", None))
+        self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
         self.settingpage_grading_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
 
         __sortingEnabled1 = self.settingpage_grading_standards_table.isSortingEnabled()
@@ -4469,7 +4513,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"dddddddddddddddddddddddddddddddd", None));
         self.settingpage_grading_standards_table.setSortingEnabled(__sortingEnabled1)
 
-        self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.all_standards), QCoreApplication.translate("MainWindow", u"All Standards", None))
+        self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.all_standards_tab), QCoreApplication.translate("MainWindow", u"All Standards", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Restor Defualt", None))

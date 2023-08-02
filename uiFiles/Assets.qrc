@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="assets">
+    <file>../Assets/general/close.png</file>
+    <file>../Assets/general/dorsa_white.png</file>
+    <file>../Assets/general/maximize.png</file>
+    <file>../Assets/general/minimize.png</file>
     <file>../Assets/icons/icons8-bar-chart-50.png</file>
     <file>../Assets/icons/icons8-arrow-48.png</file>
     <file>../Assets/icons/icons8-back-48.png</file>

@@ -74,15 +74,6 @@ class newStandardTabAPI:
         self.edit_complete_event_func = func
 
 
-    def cancel_define_new_standard(self,):
-        self.standard_ranges = []
-        if self.edit_mode:
-            self.edit_mode = False
-            self.ui.enable_edit_mode(False)
-            if self.edit_complete_event_func is not None:
-                self.edit_complete_event_func()
-
-
     def has_ranges_overlap(self,low, high, ranges) -> bool:
         """check new low and high has overlap with ranges
 
@@ -178,11 +169,7 @@ class newStandardTabAPI:
             if flag == 'cancel':
                 return
         
-        #clear upper and high inputs and new range input name
-        self.ui.clear_new_standard_inputs()
-        #clear new range table
-        self.ui.set_ranges_table_data([])
-        #save new range into database
+        
         
         
         if self.edit_mode:
@@ -191,19 +178,41 @@ class newStandardTabAPI:
              
   
         self.database.save(data)
-        self.standard_ranges = []
-        self.ui.show_warning_massage(None)
+        self.clear()
         if self.edit_mode == False:
             self.ui.show_success_msg("New Standard Saved")
+            if self.new_range_event_func is not None:
+                self.new_range_event_func()
         
         else:
             self.edit_mode = False
             self.on_edit_standard_name = ''
-            self.ui.enable_edit_mode(False)
+            
             if self.edit_complete_event_func is not None:
                 self.edit_complete_event_func()
 
+
+
+    def cancel_define_new_standard(self,):
+            self.clear()
+            if self.edit_complete_event_func is not None:
+                self.edit_complete_event_func()
+
+    
+    def clear(self,):
+        #clear upper and high inputs and new range input name
+        self.ui.clear_new_standard_inputs()
+        #clear new range table
+        self.ui.set_ranges_table_data([])
+        #save new range into database
+        self.standard_ranges = []
+        self.ui.show_warning_massage(None)
+
+        self.ui.enable_edit_mode(False)
+
         
+
+
     def enable_edit_mode(self, standard):
         self.edit_mode = True
         self.on_edit_standard_name = standard['name']

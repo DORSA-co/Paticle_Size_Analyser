@@ -655,9 +655,9 @@ class GUIBackend:
     @staticmethod
     def hide_tab_header(tab:QtWidgets.QTableWidget, status):
         if status:
-            tab.setStyleSheet("QTabBar::tab{max-height:0px;}")
+            tab.setStyleSheet(tab.styleSheet() + "QTabBar::tab{max-height:0px;}")
         else:
-            tab.setStyleSheet("QTabBar::tab{max-height:1000px;}")
+            tab.setStyleSheet(tab.styleSheet() + "QTabBar::tab{max-height:1000px;}")
 
 
     #------------------------------------------------------------------------------------------

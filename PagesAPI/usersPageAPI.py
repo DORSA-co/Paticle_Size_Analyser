@@ -1,4 +1,3 @@
-from dorsaPylon import Collector
 
 from PagesUI.usersPageUI import usersPageUI, RegisterUserTabUI, AllUserTabUI, LoginUserBoxUI, EditUserTabUI
 from Database.usersDB import usersDB

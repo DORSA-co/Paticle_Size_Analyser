@@ -258,33 +258,7 @@ if __name__ == '__main__':
     
     api = main_API(main_ui)
     main_ui.usersPage.loginUserBox.show_login()
-    
-
-    #------------------------------------------------------------
-    # all_uis.mainPage.set_warning_buttons_status('camera_connection', False)
-    # all_uis.mainPage.set_warning_buttons_status('camera_grabbing', False)
-    # all_uis.mainPage.set_warning_buttons_status('illumination', False)
-    # all_uis.mainPage.set_warning_buttons_status('tempreture', False)
-
-    # all_uis.mainPage.set_statistics_table_headers(['<6mm', '6mm-8mm', '8mm-10mm', '10mm-12.5mm'])
-    # all_uis.mainPage.set_statistics_table_datas(datas=[['Avrage', 1,2,3,4],
-    #                                       ['STD', 5,1,5,4],
-    #                                       ['ovality', 5,1,5,4],
-    #                                       ['Variance', 5,1,5,4],
-    #                                       ])
-    
-    
-    # # #------------------------------------------------------------
-
-    # all_uis.calibrationPage.set_calib_tabel(['2022/12/01','18:30', '0.1', 'mean', '5'])
-    # all_uis.calibrationPage.write_calib_result(0.2, 0.1)
-    # settings = all_uis.calibrationPage.get_settings()
-    # print(settings)
-
-    #------------------------------------------------------------
-    
    
-
     window.showMaximized()
     app.exec()
 

@@ -1,71 +1,8 @@
 import cv2
 import numpy as np
 import pandas as pd
-
-
-class Particle:
-    def __init__(self, cnt, px2mm) -> None:
-        self.cnt = cnt
-        self.px2mm = px2mm
-        self.calc_area()
-        self.calc_max_radius()
-        self.calc_avrage_radius()
-        self.calc_avrage_valoum()
-
-    def calc_area(self):
-        self.area = cv2.contourArea(self.cnt)
-        self.area = self.area * ( self.px2mm ** 2 )
-    
-    def calc_max_radius(self):
-        self.center, self.max_radius = cv2.minEnclosingCircle(self.cnt)
-        self.max_radius = self.max_radius * self.px2mm
-
-    def calc_avrage_radius(self):
-        self.avg_radius = np.sqrt(self.area / np.pi)  #area = pi*r^2
-    
-    def calc_avrage_valoum(self):
-        self.avg_volume = 4/3 * np.pi * (self.avg_radius ** 3)
-
-    
-    def get_roi(self, border=10):
-        min_x, min_y = np.min(self.cnt, axis=(0,1)) - border
-        max_x, max_y = np.min(self.cnt, axis=(0,1)) + border
-    
-        return (min_x, min_y), (max_x, max_y)
-
-
-class telecentricPx2mm:
-
-    def __init__(self, camera_pixel_size:float, lens_mag:float) -> None:
-        """calculate diffrent kind of size like radius and volume in mm
-
-        Args:
-            camera_pixel_size (float): size of camera pixel on sensor in mm
-            lens_mag (float): magnification of telesentric lens
-        """
-        self.camera_pixel_size = camera_pixel_size
-        self.lens_mag = lens_mag
-
-        #ratio to convert size in px to mm in power of 1
-        self.ratio = self.camera_pixel_size/self.lens_mag
-
-
-    def px2mm(self, x:int, power:int) -> float:
-        """convert a pixel size into mm size in power of 'power' argument
-
-        Args:
-            x (int): input pixel size
-            power (int): relation power
-
-        Returns:
-            float: size in mm
-        """
-        return x * (self.ratio ** power)
-
-
-        
-  
-        
+from backend.Processing.Particel import Particle
+from backend.Processing.particlesBuffer import particlesBuffer
 
 
 
@@ -103,7 +40,7 @@ class particlesDetector:
 
 
 
-    def detect(self, img, return_particls=True, return_dataframe=True) -> list[Particle]:
+    def detect(self, img, img_id=None) -> particlesBuffer:
         """returns list of paricles in the given image
 
         Args:
@@ -113,8 +50,7 @@ class particlesDetector:
             list[Particle]: founded particles
         """
 
-        #conver image to gray scale if it is a color image
-        assert return_dataframe or return_particls, "couldnt be False both return_particls and return_dataframe"
+        #convert image to gray scale if it is a color image
         if len(img.shape) == 3:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -128,32 +64,19 @@ class particlesDetector:
 
         #particles = list(map( lambda cnt: Particle(cnt, self.px2mm_ratio), cnts ))
 
-        data = {
-            "max_radius": [],
-            "avg_radius": [],
-            "area": [],
-            "avg_volume": []
-            }
         
-        particles = []
+        particles = particlesBuffer()
         for cnt in cnts:
-            if return_particls:
-                particles.append(Particle(cnt, self.px2mm_ratio))
+                particle = Particle(cnt, self.px2mm_ratio, img_id)
+                particles.append(particle)
 
-            if return_dataframe:
-                data['area'].append(particles[-1].area)
-                data['max_radius'].append(particles[-1].max_radius)
-                data['avg_radius'].append(particles[-1].avg_radius)
-                data['avg_volume'].append(particles[-1].avg_radius)
-
-        if return_dataframe and particles:
-            return particles, pd.DataFrame(data)
-
-        elif particles:
-            return particles
         
-        elif return_dataframe:
-            pd.DataFrame(data)
+        return particles
+
+
+
+
+
 
 
 
@@ -183,35 +106,3 @@ def draw_particles(img, particles: list[Particle], color:tuple=(40, 40, 200), th
 
 
 
-if __name__ == '__main__':
-    import time
-    from Grading import Grading
-
-    img = cv2.imread('backend\Processing/test.png')
-    px2mm = telecentricPx2mm(3.45/1000, 0.095)
-    detector = particlesDetector(100, px2mm_ratio=px2mm.ratio, detection_border=10)
-    
-    all_ps = []
-    t = time.time()
-    ps = detector.detect(img, return_dataframe=False)
-    
-
-    
-    gr = Grading( sift_ranges=[[0,2], [2,4],[4,6]])
-    
-    data = np.array( list( map( lambda x:(x.max_radius, x.avg_volume), ps )))
-    gr.append(data[:,0], data[:,1])
-
-    #gr.append(df['max_radius'].to_numpy(), df['avg_volume'].to_numpy())
-    
-
-    t = time.time()-t
-    print(t)
-
-    res = draw_particles(img, ps)
-
-    
-
-    # cv2.imshow('res', res)
-    # cv2.waitKey(0)
-    # pass

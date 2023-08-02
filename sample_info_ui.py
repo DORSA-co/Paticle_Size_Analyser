@@ -272,6 +272,7 @@ class Ui_dialog_window(object):
     def retranslateUi(self, dialog_window):
         dialog_window.setWindowTitle(QCoreApplication.translate("dialog_window", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("dialog_window", u"Sample Name", None))
+        self.sample_name_input.setText("")
         self.label_2.setText(QCoreApplication.translate("dialog_window", u"Standard", None))
         self.error_lbl.setText(QCoreApplication.translate("dialog_window", u"Error", None))
         self.run_btn.setText(QCoreApplication.translate("dialog_window", u"Run", None))

@@ -20,6 +20,7 @@ class mainPageAPI:
         self.cameras = cameras
 
         self.t_frame = 0
+        self.frame_idx = 0
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
@@ -31,7 +32,7 @@ class mainPageAPI:
 
         self.test_img_idx = 0
 
-        self.detector = particlesDetector.particlesDetector(50, 0.1, 10)
+        
         self.gradind_calculator = Grading.Grading([])
 
     def check_warnings(self,):
@@ -78,6 +79,7 @@ class mainPageAPI:
             self.ui.set_live_img(img)
         #----------------------------------------------------
         
+        self.frame_idx +=1
 
     def start(self,):
             
@@ -108,6 +110,10 @@ class mainPageAPI:
         #clear error from sample info window box
         self.ui.write_sample_info_error_msg(None)
 
+        #build detector
+        algorithm_data = self.database.setting_db.algorithm_db.load()
+        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 0.1, algorithm_data['border'])
+
         #load selected standard from database
         standard = self.database.setting_db.grading_db.load(info['standard'])
         #build a grading object base on selected standard's ranges
@@ -120,6 +126,7 @@ class mainPageAPI:
         self.ui.close_sample_info_window()
 
         self.t_frame = time.time()
+        self.frame_idx = 0
         for camera in self.cameras.values():
             camera.Operations.start_grabbing()
 
@@ -135,9 +142,10 @@ class mainPageAPI:
 
 
     def stop(self,):
-        flag = self.ui.show_dialog_box('Stop',
+        flag = self.ui.show_dialog_box( 'Stop',
                                         'Are You shure you want to stop the measuring?',
-                                        buttons=['yes', 'cancel'])
+                                        buttons=['yes', 'cancel']
+                                        )
         if flag == 'cancel':
             return
         

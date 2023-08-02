@@ -289,6 +289,7 @@ class EditUserTabAPI:
 
         self.ui.update_profile_button_connector(self.update_profile)
         self.ui.change_password_button_connector(self.change_password)
+        self.ui.cancel_edit_profile_button_connector(self.update_logined_user)
         self.set_available_user_roles()
         
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1339</width>
-    <height>914</height>
+    <height>940</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1010,7 +1010,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2252,8 +2252,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>306</width>
-                   <height>630</height>
+                   <width>300</width>
+                   <height>590</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2692,7 +2692,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>4</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -2723,90 +2723,6 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                     </size>
                    </property>
                   </spacer>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QGroupBox" name="groupBox_5">
-                   <property name="title">
-                    <string>DataBase</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_11">
-                    <item row="1" column="4">
-                     <widget class="QLabel" name="label_32">
-                      <property name="styleSheet">
-                       <string notr="true">max-width: 300px;</string>
-                      </property>
-                      <property name="text">
-                       <string>Report Life Time (days) :</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="5">
-                     <widget class="QSpinBox" name="spinBox_2">
-                      <property name="maximum">
-                       <number>365</number>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="6">
-                     <spacer name="horizontalSpacer_23">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QCheckBox" name="checkBox">
-                      <property name="enabled">
-                       <bool>true</bool>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true"/>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="checkable">
-                       <bool>true</bool>
-                      </property>
-                      <property name="checked">
-                       <bool>false</bool>
-                      </property>
-                      <property name="tristate">
-                       <bool>false</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="2">
-                     <spacer name="horizontalSpacer_21">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeType">
-                       <enum>QSizePolicy::Maximum</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>100</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_31">
-                      <property name="text">
-                       <string>Auto Clean:</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
                  </item>
                  <item row="2" column="0">
                   <widget class="QFrame" name="horizontalFrame_3">
@@ -2954,6 +2870,216 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                     </item>
                    </layout>
                   </widget>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="settingpage_storage_tab">
+                <attribute name="title">
+                 <string>Storage</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_24">
+                 <property name="spacing">
+                  <number>30</number>
+                 </property>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_5">
+                   <property name="title">
+                    <string>Sorage Manager</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_11">
+                    <item row="1" column="4">
+                     <widget class="QLabel" name="label_32">
+                      <property name="styleSheet">
+                       <string notr="true">max-width: 300px;</string>
+                      </property>
+                      <property name="text">
+                       <string>Report Life Time (days) :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="5">
+                     <widget class="QSpinBox" name="settingpage_storage_life_time_spinbox">
+                      <property name="maximum">
+                       <number>365</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="6">
+                     <spacer name="horizontalSpacer_23">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QCheckBox" name="settingpage_storage_auto_clean_checkbox">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="checkable">
+                       <bool>true</bool>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                      <property name="tristate">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <spacer name="horizontalSpacer_21">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Maximum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_31">
+                      <property name="text">
+                       <string>Auto Clean:</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_3">
+                   <property name="title">
+                    <string>General</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_17">
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="settingpage_storage_path_input"/>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>115</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Storage Path</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="3">
+                     <spacer name="horizontalSpacer_57">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="settingpage_storage_select_path_btn">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton{
+min-width:40px;
+min-height: 40px;
+
+}</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="Assets.qrc">
+                        <normaloff>:/assets/Assets/icons/icons8-folder-50.png</normaloff>:/assets/Assets/icons/icons8-folder-50.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_42">
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <spacer name="horizontalSpacer_74">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_storage_save_btn">
+                     <property name="text">
+                      <string>Save</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_storage_cancel_btn">
+                     <property name="text">
+                      <string>Cancel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_67">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_27">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </widget>
@@ -4126,11 +4252,116 @@ max-height : 800px;
                 <attribute name="title">
                  <string>Algorithm</string>
                 </attribute>
-                <layout class="QGridLayout" name="gridLayout_9">
-                 <item row="1" column="1">
-                  <widget class="QDoubleSpinBox" name="settingpage_algorithm_circularity_spinbox"/>
+                <layout class="QVBoxLayout" name="verticalLayout_25">
+                 <item>
+                  <layout class="QGridLayout" name="gridLayout_19">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="1" column="1">
+                    <widget class="QSpinBox" name="settingpage_algorithm_border_spinbox">
+                     <property name="maximum">
+                      <number>1000</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="label_24">
+                     <property name="text">
+                      <string>border</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QSpinBox" name="settingpage_algorithm_threshould_spinbox">
+                     <property name="maximum">
+                      <number>255</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="label_22">
+                     <property name="text">
+                      <string>Threshould</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="2">
+                    <spacer name="horizontalSpacer_16">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
                  </item>
-                 <item row="2" column="0">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_44">
+                   <property name="topMargin">
+                    <number>21</number>
+                   </property>
+                   <item>
+                    <spacer name="horizontalSpacer_78">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_algorithm_save_btn">
+                     <property name="text">
+                      <string>Save</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_algorithm_cancel_btn">
+                     <property name="text">
+                      <string>Cancel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_algorithm_restor_default_btn">
+                     <property name="text">
+                      <string>Restore Default</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_77">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
                   <spacer name="verticalSpacer_6">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -4142,40 +4373,6 @@ max-height : 800px;
                     </size>
                    </property>
                   </spacer>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_22">
-                   <property name="text">
-                    <string>Threshould</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QSpinBox" name="settingpage_algorithm_threshould_spinbox">
-                   <property name="maximum">
-                    <number>255</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="2">
-                  <spacer name="horizontalSpacer_16">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>1353</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_24">
-                   <property name="text">
-                    <string>Circularity</string>
-                   </property>
-                  </widget>
                  </item>
                 </layout>
                </widget>
@@ -5196,7 +5393,7 @@ color: #ffffff;
 background-color: rgb(255, 95, 84);
 padding:5px;
 
-min-width: 300px;
+min-width: 100px;
 max-width: 16777px;
 max-height: 30px;
 </string>
@@ -5730,8 +5927,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1143</width>
-                    <height>679</height>
+                    <width>162</width>
+                    <height>3292</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -5989,7 +6186,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1145</width>
+                <width>824</width>
                 <height>1519</height>
                </rect>
               </property>
@@ -7088,6 +7285,7 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
+  <include location="../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

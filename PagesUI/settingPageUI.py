@@ -1,7 +1,6 @@
-from guiBackend import GUIBackend
 import GUIComponents
 
-
+from uiUtils.guiBackend import GUIBackend
 
 
 
@@ -9,6 +8,7 @@ class settingPageUI:
     def __init__(self, ui) -> None:
         self.cameraSettingTab = cameraSettingTabUI(ui)
         self.gradingSettingTab = gradingSettingTabUI(ui)
+        self.algorithmSettingTab= algorithmSettingTabUI(ui)
 
 
 
@@ -550,3 +550,67 @@ class gradingSettingTabUI(commonSettingUI):
     def show_confirm_box(Self, title, massage, buttons):
         cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
         return cmb.render()
+
+
+
+
+
+
+
+
+
+
+class algorithmSettingTabUI(commonSettingUI):
+
+    def __init__(self, ui) -> None:
+        super().__init__(ui)
+        self.ui = ui
+        self.fields = {
+            'threshold': self.ui.settingpage_algorithm_threshould_spinbox,
+            'border':self.ui.settingpage_algorithm_border_spinbox
+        }
+
+        self.save_btn = self.ui.settingpage_algorithm_save_btn
+        self.cancel_btn = self.ui.settingpage_algorithm_cancel_btn
+        self.restor_default_btn = self.ui.settingpage_algorithm_restor_default_btn
+        self.__change_state_connector__()
+        self.save_state(True)
+    
+    def __change_state_connector__(self,):
+        #make save button enable and wrote *not_save if any input changed
+        for name, field in self.fields.items():
+            if GUIBackend.is_spinbox(field):
+                GUIBackend.spinbox_connector(field, lambda :self.save_state(False))
+
+    def save_state(self, is_saved):
+        if not is_saved:
+            GUIBackend.set_enable(self.save_btn)
+            GUIBackend.set_enable(self.cancel_btn)
+            self.is_saved_massage(is_saved)
+        
+        else:
+            GUIBackend.set_disable(self.save_btn)
+            GUIBackend.set_disable(self.cancel_btn)
+            self.is_saved_massage(is_saved)
+
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
+
+    def cancel_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_btn, func)
+    
+    def restor_button_connector(self, func):
+        GUIBackend.button_connector(self.restor_default_btn, func)
+
+
+    
+    def get_data(self,) -> dict:
+        data = {}
+        for name, field in self.fields.items():
+            data[name] = GUIBackend.get_input(field)
+        return data
+    
+    def set_sata(self, data: dict):
+        for name, value in data.items():
+            GUIBackend.set_input( self.fields[name], value )
+

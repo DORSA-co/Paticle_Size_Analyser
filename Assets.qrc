@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="assets">
+    <file>Assets/icons/icons8-folder-50.png</file>
     <file>Assets/icons/icons8-chevron-up-50.png</file>
     <file>Assets/icons/icons8-check-150.png</file>
     <file>Assets/icons/icons8-logout-white-50.png</file>

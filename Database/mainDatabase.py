@@ -21,7 +21,7 @@ class mainDatabase:
         self.users_db = usersDB(self.dbManager)
     
     def __connect__(self,):
-        self.dbManager = databaseManager(self.username, self.password, self.HOST, self.DATABASE_NAME)
+        self.dbManager = databaseManager(self.username, self.password, self.HOST, self.DATABASE_NAME, log_level=1)
         
 
 

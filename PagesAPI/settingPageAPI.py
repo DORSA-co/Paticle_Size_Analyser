@@ -1,11 +1,12 @@
 from dorsaPylon import Collector
-
-from settingPageUI import settingPageUI
+from Database.settingDB import settingDB, settingAlgorithmDB, settingGradingDB, settingCameraDB
+from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, gradingSettingTabUI, cameraSettingTabUI
 
 class settingPageAPI:
-    def __init__(self, ui:settingPageUI ,database, camera):
+    def __init__(self, ui:settingPageUI ,database:settingDB, camera):
         self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, camera)
         self.gradingSetting = gradingSettingTabAPI(ui.gradingSettingTab, database.grading_db)
+        self.algorithmSetting = algorithmSettingTabAPI(ui.algorithmSettingTab, database.algorithm_db)
 
     def startup(self,):
         self.cameraSetting.startup()
@@ -22,7 +23,7 @@ class settingPageAPI:
 
 class cameraSettingTabAPI:
 
-    def __init__(self, ui ,database, cameras):
+    def __init__(self, ui:cameraSettingTabUI ,database, cameras:settingCameraDB):
         self.ui = ui
         self.database = database
         self.cameras = cameras
@@ -148,7 +149,7 @@ class cameraSettingTabAPI:
         
 class gradingSettingTabAPI:
 
-    def __init__(self, ui, database):
+    def __init__(self, ui:gradingSettingTabUI, database:settingGradingDB):
         self.ui = ui
         self.database = database
         self.new_standard_ranges = []
@@ -324,3 +325,42 @@ class gradingSettingTabAPI:
 
         #
         
+
+
+
+
+
+
+
+
+
+class algorithmSettingTabAPI:
+
+    def __init__(self, ui:algorithmSettingTabUI, database:settingAlgorithmDB):
+        self.ui = ui
+        self.database = database
+
+        self.ui.save_button_connector(self.save)
+        self.ui.cancel_button_connector(self.cancel)
+        self.ui.restor_button_connector(self.restor)
+
+        self.load_from_db()
+    
+    def load_from_db(self):
+        data = self.database.load()
+        self.ui.set_sata(data)
+        self.ui.save_state(True)
+
+    def save(self,):
+        data = self.ui.get_data()
+        self.database.save(data)
+        self.ui.save_state(True)
+    
+
+    def cancel(self):
+        self.load_from_db()
+
+    
+    def restor(self):
+        self.database.restor_default()
+        self.load_from_db()

@@ -24,7 +24,6 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1808,33 +1807,41 @@ class Ui_MainWindow(object):
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.gridLayout_17 = QGridLayout(self.groupBox_3)
         self.gridLayout_17.setObjectName(u"gridLayout_17")
-        self.settingpage_storage_path_input = QLineEdit(self.groupBox_3)
-        self.settingpage_storage_path_input.setObjectName(u"settingpage_storage_path_input")
-
-        self.gridLayout_17.addWidget(self.settingpage_storage_path_input, 0, 1, 1, 1)
-
-        self.label = QLabel(self.groupBox_3)
-        self.label.setObjectName(u"label")
-        self.label.setMinimumSize(QSize(115, 0))
-
-        self.gridLayout_17.addWidget(self.label, 0, 0, 1, 1)
-
-        self.horizontalSpacer_57 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_17.addItem(self.horizontalSpacer_57, 0, 3, 1, 1)
-
-        self.settingpage_storage_select_path_btn = QPushButton(self.groupBox_3)
-        self.settingpage_storage_select_path_btn.setObjectName(u"settingpage_storage_select_path_btn")
-        self.settingpage_storage_select_path_btn.setStyleSheet(u"QPushButton{\n"
+        self.settingpage_storage_select_dir_btn = QPushButton(self.groupBox_3)
+        self.settingpage_storage_select_dir_btn.setObjectName(u"settingpage_storage_select_dir_btn")
+        self.settingpage_storage_select_dir_btn.setStyleSheet(u"QPushButton{\n"
 "min-width:40px;\n"
 "min-height: 40px;\n"
 "\n"
 "}")
         icon21 = QIcon()
         icon21.addFile(u":/assets/Assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingpage_storage_select_path_btn.setIcon(icon21)
+        self.settingpage_storage_select_dir_btn.setIcon(icon21)
 
-        self.gridLayout_17.addWidget(self.settingpage_storage_select_path_btn, 0, 2, 1, 1)
+        self.gridLayout_17.addWidget(self.settingpage_storage_select_dir_btn, 0, 2, 1, 1)
+
+        self.horizontalSpacer_57 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_17.addItem(self.horizontalSpacer_57, 0, 3, 1, 1)
+
+        self.label = QLabel(self.groupBox_3)
+        self.label.setObjectName(u"label")
+        self.label.setMinimumSize(QSize(110, 0))
+        self.label.setStyleSheet(u"min-width:100px;")
+
+        self.gridLayout_17.addWidget(self.label, 0, 0, 1, 1)
+
+        self.settingpage_storage_path_input = QLineEdit(self.groupBox_3)
+        self.settingpage_storage_path_input.setObjectName(u"settingpage_storage_path_input")
+        self.settingpage_storage_path_input.setEnabled(False)
+        self.settingpage_storage_path_input.setMinimumSize(QSize(730, 41))
+        self.settingpage_storage_path_input.setMaximumSize(QSize(310, 16777215))
+        self.settingpage_storage_path_input.setStyleSheet(u"QLineEdit{\n"
+"min-width: 700px;\n"
+"\n"
+"}")
+
+        self.gridLayout_17.addWidget(self.settingpage_storage_path_input, 0, 1, 1, 1)
 
 
         self.verticalLayout_24.addWidget(self.groupBox_3)
@@ -3690,7 +3697,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 824, 1519))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 780, 1171))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4285,7 +4292,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.main_pages_stackw.setCurrentIndex(2)
-        self.settingpage_tabs.setCurrentIndex(4)
+        self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -4385,8 +4392,8 @@ class Ui_MainWindow(object):
         self.settingpage_storage_auto_clean_checkbox.setText("")
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"Auto Clean:", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"General", None))
+        self.settingpage_storage_select_dir_btn.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"Storage Path", None))
-        self.settingpage_storage_select_path_btn.setText("")
         self.settingpage_storage_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_storage_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_storage_tab), QCoreApplication.translate("MainWindow", u"Storage", None))

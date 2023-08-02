@@ -1,12 +1,13 @@
 from dorsaPylon import Collector
-from Database.settingDB import settingDB, settingAlgorithmDB, settingGradingDB, settingCameraDB
-from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, gradingSettingTabUI, cameraSettingTabUI
+from Database.settingDB import settingDB, settingAlgorithmDB, settingGradingDB, settingCameraDB, settingStorageDB
+from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, gradingSettingTabUI, cameraSettingTabUI, storageSettingTabUI
 
 class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database:settingDB, camera):
         self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, camera)
         self.gradingSetting = gradingSettingTabAPI(ui.gradingSettingTab, database.grading_db)
         self.algorithmSetting = algorithmSettingTabAPI(ui.algorithmSettingTab, database.algorithm_db)
+        self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
 
     def startup(self,):
         self.cameraSetting.startup()
@@ -15,6 +16,34 @@ class settingPageAPI:
 
 
 
+
+class storageSettingTabAPI:
+
+    def __init__(self, ui:storageSettingTabUI ,database:settingStorageDB):
+        self.ui = ui
+        self.database = database
+        self.ui.select_dir_button_connector(self.choose_dir)
+        self.ui.save_button_connector(self.save)
+        self.ui.cancel_button_connector(self.cancel)
+        self.load_from_db()
+        self.ui.save_state(True)
+    
+    def choose_dir(self):
+        path = self.ui.open_select_dir_dialog()
+        self.ui.set_path(path)
+
+    def save(self,):
+        settings = self.ui.get_settings()
+        self.database.save(settings)
+        self.ui.save_state(True)
+
+    def cancel(self,):
+        self.load_from_db()
+        self.ui.save_state(True)
+
+    def load_from_db(self):
+        settings = self.database.load()
+        self.ui.set_settings(settings)
 
 
 

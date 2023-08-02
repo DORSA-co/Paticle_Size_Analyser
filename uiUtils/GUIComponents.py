@@ -227,7 +227,9 @@ class singleAnimation:
             self.backward()
                 
 
-
+def selectDirectoryDialog():
+    path = QtWidgets.QFileDialog.getExistingDirectory()
+    return path
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-import GUIComponents
+from uiUtils import GUIComponents
 
 from uiUtils.guiBackend import GUIBackend
 
@@ -8,7 +8,8 @@ class settingPageUI:
     def __init__(self, ui) -> None:
         self.cameraSettingTab = cameraSettingTabUI(ui)
         self.gradingSettingTab = gradingSettingTabUI(ui)
-        self.algorithmSettingTab= algorithmSettingTabUI(ui)
+        self.algorithmSettingTab = algorithmSettingTabUI(ui)
+        self.storageSettingTab = storageSettingTabUI(ui)
 
 
 
@@ -23,7 +24,67 @@ class commonSettingUI:
         else:
             GUIBackend.set_label_text(self.save_mgs, "*temp setting")
 
+    
+    def save_state(self, is_saved):
+        if not is_saved:
+            GUIBackend.set_enable(self.save_btn)
+            GUIBackend.set_enable(self.cancel_btn)
+            self.is_saved_massage(is_saved)
         
+        else:
+            GUIBackend.set_disable(self.save_btn)
+            GUIBackend.set_disable(self.cancel_btn)
+            self.is_saved_massage(is_saved)
+
+
+        
+
+
+class storageSettingTabUI(commonSettingUI):
+
+    def __init__(self, ui) -> None:
+        super(storageSettingTabUI, self).__init__(ui)
+        self.ui = ui
+        self.select_dir_btn = self.ui.settingpage_storage_select_dir_btn
+        self.path_input = self.ui.settingpage_storage_path_input
+        self.save_btn = self.ui.settingpage_storage_save_btn
+        self.cancel_btn = self.ui.settingpage_storage_cancel_btn
+        self.__setting_change_connector__()
+
+    def __setting_change_connector__(self,):
+        GUIBackend.input_text_connector( self.path_input, lambda : self.save_state(False))
+
+    def select_dir_button_connector(self, func):
+        GUIBackend.button_connector(self.select_dir_btn, func)
+
+    
+    def open_select_dir_dialog(self,):
+        return GUIComponents.selectDirectoryDialog()
+    
+    def set_path(self, path):
+        GUIBackend.set_input(self.path_input, path)
+
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
+
+    def cancel_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_btn, func)
+
+
+    def get_settings(self, ):
+        data = {}
+        data['path'] = GUIBackend.get_input(self.path_input)
+
+        return data
+    
+    def set_settings(self, settings):
+        GUIBackend.set_input(self.path_input, settings['path'])
+
+        
+
+
+
+
 
 
 
@@ -308,7 +369,7 @@ class gradingSettingTabUI(commonSettingUI):
         GUIBackend.spinbox_connector( self.ranges_input['lower'] , self.__validation_input_ranges__ )
 
         #col 1 and 2 adjust to content
-        GUIBackend.set_cell_width_content_adjust(self.standards_table, [0,1,2, 3,4])
+        GUIBackend.set_cell_width_content_adjust(self.standards_table, [0,1,2, 3])
 
         #hide warning
         self.show_warning_massage(None)
@@ -582,17 +643,7 @@ class algorithmSettingTabUI(commonSettingUI):
             if GUIBackend.is_spinbox(field):
                 GUIBackend.spinbox_connector(field, lambda :self.save_state(False))
 
-    def save_state(self, is_saved):
-        if not is_saved:
-            GUIBackend.set_enable(self.save_btn)
-            GUIBackend.set_enable(self.cancel_btn)
-            self.is_saved_massage(is_saved)
-        
-        else:
-            GUIBackend.set_disable(self.save_btn)
-            GUIBackend.set_disable(self.cancel_btn)
-            self.is_saved_massage(is_saved)
-
+    
     def save_button_connector(self, func):
         GUIBackend.button_connector(self.save_btn, func)
 

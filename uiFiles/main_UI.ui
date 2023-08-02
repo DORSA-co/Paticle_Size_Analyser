@@ -513,7 +513,7 @@ QListView::item{
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="Assets.qrc">:/assets/Assets/general/dorsa_white.png</pixmap>
+             <pixmap>:/assets/Assets/general/dorsa_white.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -695,7 +695,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/general/minimize.png</normaloff>:/assets/Assets/general/minimize.png</iconset>
             </property>
             <property name="iconSize">
@@ -736,7 +736,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/general/maximize.png</normaloff>:/assets/Assets/general/maximize.png</iconset>
             </property>
             <property name="iconSize">
@@ -774,7 +774,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/general/close.png</normaloff>:/assets/Assets/general/close.png</iconset>
             </property>
             <property name="iconSize">
@@ -1215,7 +1215,7 @@ background-color:rgb(50, 50, 50);</string>
                    <enum>Qt::AutoText</enum>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                   <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>false</bool>
@@ -1327,7 +1327,7 @@ background-color:rgb(147, 147, 147);
                        <string>Fast Start</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
+                       <iconset>
                         <normaloff>:/assets/Assets/icons/fast-forwards-arrow-48.png</normaloff>:/assets/Assets/icons/fast-forwards-arrow-48.png</iconset>
                       </property>
                      </widget>
@@ -2692,7 +2692,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>4</number>
+                <number>1</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -2971,19 +2971,21 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                     <string>General</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_17">
-                    <item row="0" column="1">
-                     <widget class="QLineEdit" name="settingpage_storage_path_input"/>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label">
-                      <property name="minimumSize">
-                       <size>
-                        <width>115</width>
-                        <height>0</height>
-                       </size>
+                    <item row="0" column="2">
+                     <widget class="QPushButton" name="settingpage_storage_select_dir_btn">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton{
+min-width:40px;
+min-height: 40px;
+
+}</string>
                       </property>
                       <property name="text">
-                       <string>Storage Path</string>
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="Assets.qrc">
+                        <normaloff>:/assets/Assets/icons/icons8-folder-50.png</normaloff>:/assets/Assets/icons/icons8-folder-50.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -3000,21 +3002,44 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                       </property>
                      </spacer>
                     </item>
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="settingpage_storage_select_path_btn">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label">
+                      <property name="minimumSize">
+                       <size>
+                        <width>110</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="styleSheet">
-                       <string notr="true">QPushButton{
-min-width:40px;
-min-height: 40px;
-
-}</string>
+                       <string notr="true">min-width:100px;</string>
                       </property>
                       <property name="text">
-                       <string/>
+                       <string>Storage Path</string>
                       </property>
-                      <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/icons8-folder-50.png</normaloff>:/assets/Assets/icons/icons8-folder-50.png</iconset>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="settingpage_storage_path_input">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>730</width>
+                        <height>41</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>310</width>
+                        <height>16777215</height>
+                       </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QLineEdit{
+min-width: 700px;
+
+}</string>
                       </property>
                      </widget>
                     </item>
@@ -4125,7 +4150,7 @@ max-height : 800px;
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                      <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>false</bool>
@@ -4981,7 +5006,7 @@ max-height : 800px;</string>
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>false</bool>
@@ -6186,8 +6211,8 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>824</width>
-                <height>1519</height>
+                <width>780</width>
+                <height>1171</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -6838,7 +6863,7 @@ max-height: 400px;</string>
                          <string/>
                         </property>
                         <property name="pixmap">
-                         <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                         <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>
@@ -7285,7 +7310,6 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
-  <include location="../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

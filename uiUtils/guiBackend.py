@@ -410,7 +410,17 @@ class GUIBackend:
         inpt.setText(txt)
 
     def set_input_password(inpt:QtWidgets.QLineEdit):
+        """make a input, password format that show charater by *
+
+        Args:
+            inpt (QtWidgets.QLineEdit): _description_
+        """
         inpt.setEchoMode(QtWidgets.QLineEdit.Password)
+
+
+    def input_text_connector(inpt:QtWidgets.QLineEdit, func):
+        inpt.textChanged.connect(func)
+    
 
     #--------------------------------- GLOBAL table FUNCTIONs ---------------------------------
     @staticmethod

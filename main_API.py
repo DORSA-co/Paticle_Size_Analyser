@@ -8,6 +8,7 @@ from Database.mainDatabase import mainDatabase
 from settingPageAPI import settingPageAPI
 from usersPageAPI import usersPageAPI
 from mainPageAPI import mainPageAPI
+from gradingRangesPageAPI import gradingRangesPageAPI
 # from settingUI import settingUI
 import CONSTANTS
 
@@ -21,9 +22,10 @@ class main_API:
         self.run_camera_grabbing()
 
         #Pages_api------------------------------------
+        self.gradingAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
+        self.gradingRangesAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
         self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
         self.usersAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
-        self.gradingAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
 
         self.ui.change_page_connector(self.page_change)
         self.usersAPI.set_login_event(self.login_user_event)
@@ -32,6 +34,7 @@ class main_API:
         self.pages_api_dict = {
             'main': None,
             'report': None,
+            'grading_ranges': None,
             'calibration': None,
             'settings': self.settingAPI,
             'user': None,

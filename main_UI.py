@@ -39,6 +39,7 @@ from mainPageUI import mainPageUI
 from calibrationPageUI import calibrationPageUI
 from usersPageUI import usersPageUI
 from reportsPageUI import reportsPageUI
+from gradingRangesPageUI import gradingRangesPageUI
 #---------------------------------------------------------
 from guiBackend import GUIBackend
 
@@ -47,12 +48,13 @@ class routerUI:
     def __init__(self, ui) -> None:
         self.ui = ui
         self.pages_index = {
-            'main'       : 0,
-            'report'     : 1,
-            'settings'   : 2,
-            'calibration': 3,
-            'user'       : 4,
-            'help'       : 5
+            'main'              : 0,
+            'report'            : 1,
+            'grading_ranges'    : 2,
+            'settings'          : 3,
+            'calibration'       : 4,
+            'user'              : 5,
+            'help'              : 6
         }
 
         self.tabs = {
@@ -85,6 +87,7 @@ class mainUI:
 
         self.settingPage = settingPageUI(ui)
         self.reportsPage = reportsPageUI(ui)
+        self.gradingRange = gradingRangesPageUI(ui)
         self.mainPage = mainPageUI(ui, sample_info)
         self.calibrationPage = calibrationPageUI(ui)
         self.usersPage = usersPageUI(ui, login_ui, edit_user)
@@ -95,18 +98,19 @@ class mainUI:
         self.external_change_page_event = None
 
         self.pages_index = {
-            'main'       : 0,
-            'report'     : 1,
-            'settings'   : 2,
-            'calibration': 3,
-            'user'       : 4,
-            'help'       : 5
+            'main'              : 0,
+            'report'            : 1,
+            'grading_ranges'    : 2,
+            'settings'          : 3,
+            'calibration'       : 4,
+            'user'              : 5,
+            'help'              : 6
         }
-
         
         self.sidebar_pages_buttons = {
             'main': self.ui.sidebar_main_btn,
             'report': self.ui.sidebar_report_btn,
+            'grading_ranges': self.ui.sidebar_grading_ranges_btn,
             'settings': self.ui.sidebar_settings_btn,
             'calibration': self.ui.sidebar_calib_btn,
             'user': self.ui.sidebar_users_btn,

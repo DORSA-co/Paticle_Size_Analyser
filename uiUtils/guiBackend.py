@@ -652,6 +652,13 @@ class GUIBackend:
     def set_current_tab( tab:QtWidgets.QTabWidget, idx):
         tab.setCurrentIndex(idx)
 
+    @staticmethod
+    def hide_tab_header(tab:QtWidgets.QTableWidget, status):
+        if status:
+            tab.setStyleSheet("QTabBar::tab{max-height:0px;}")
+        else:
+            tab.setStyleSheet("QTabBar::tab{max-height:1000px;}")
+
 
     #------------------------------------------------------------------------------------------
     

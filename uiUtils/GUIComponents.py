@@ -16,10 +16,8 @@ QPushButton{
 	color: #ffffff;
 	min-height: 40px;
 	text-align: left;
-    margin-left:15px;
 	icon-size:25px;
 	background-color:rgba(0,0,0,0);
-
     color:rgb(255, 205, 5);
     font-size:14px;
     font-weight:bold;
@@ -33,7 +31,6 @@ QPushButton{
 	color: #ffffff;
 	min-height: 40px;
 	text-align: left;
-    margin-left:15px;
 	icon-size:25px;
 	background-color:rgba(0,0,0,0);
     }

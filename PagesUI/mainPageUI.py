@@ -12,7 +12,7 @@ class mainPageUI:
         self.sample_info = sample_info
 
         self.current_status = 'stop'
-        self.statistics_table = self.ui.mainpage_statistics_table
+        #self.statistics_table = self.ui.mainpage_statistics_table
         self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
         self.close_warning_msg_btn = self.ui.mainpage_close_error_btn
         self.warning_msg_frame = self.ui.mainpage_error_msg_frame
@@ -206,7 +206,7 @@ class mainPageUI:
                                      self.warning_btns[name]['warning-icon'])
             
     
-    def report_btn_connector(self, func):
+    def report_button_connector(self, func):
         """connect a function to clicked event of report button
 
         Args:

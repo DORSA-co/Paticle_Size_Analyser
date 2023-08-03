@@ -5,12 +5,18 @@ from Camera.dorsaPylon import Collector, Camera
 from Camera.cameraThread import cameraThread
 from Database.mainDatabase import mainDatabase
 #Import Pages Ui---------------------------------------------
-from settingPageAPI import settingPageAPI
-from usersPageAPI import usersPageAPI
-from mainPageAPI import mainPageAPI
-from gradingRangesPageAPI import gradingRangesPageAPI
+from PagesAPI.settingPageAPI import settingPageAPI
+from PagesAPI.usersPageAPI import usersPageAPI
+from PagesAPI.mainPageAPI import mainPageAPI
+from PagesAPI.gradingRangesPageAPI import gradingRangesPageAPI
+from PagesAPI.reportPageAPI import reportPageAPI
+#------------------------------------------------------------
+#from main_UI import mainUI
+#------------------------------------------------------------
+from backend.Processing.Report import Report
 # from settingUI import settingUI
 import CONSTANTS
+import pickle
 
 cameras_serial_number = {'standard': '23804186'}
 class main_API:
@@ -22,27 +28,34 @@ class main_API:
         self.run_camera_grabbing()
 
         #Pages_api------------------------------------
-        self.gradingAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
+        self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
         self.gradingRangesAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
         self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
         self.usersAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
+        self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
 
         self.ui.change_page_connector(self.page_change)
         self.usersAPI.set_login_event(self.login_user_event)
+        self.mainPageAPI.set_report_button_event_func(self.show_report)
+        self.reportPageAPI.set_back_event_func(self.change_page)
 
         #this functions should run when each page load
         self.pages_api_dict = {
             'main': None,
-            'report': None,
+            'reports': None,
             'grading_ranges': None,
             'calibration': None,
             'settings': self.settingAPI,
             'user': None,
             'help': None,
+            'report': None
         }
 
         #TEMP
         self.login_user_event()
+        #---------------------------------------------------
+        #report = load_obj('test_report')
+        #self.show_report(report, 'main')
         
     
     def page_change(self, pagename, idx):
@@ -57,7 +70,7 @@ class main_API:
         current_page,_ = self.ui.get_current_page()
         
         if current_page == 'main':
-            self.gradingAPI.process_image()
+            self.mainPageAPI.process_image()
         elif current_page == 'settings':
             self.settingAPI.cameraSetting.show_live_image()
         
@@ -90,9 +103,37 @@ class main_API:
 
     def login_user_event(self,):
         role = self.usersAPI.data_passer.get_logined_user_role()
+        username = self.usersAPI.data_passer.logined_user.get('username', '')
         self.set_access(role)
+        self.mainPageAPI.set_logined_user(username)
     
     def set_access(self, role):
         self.ui.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
         self.ui.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])
 
+
+    def show_report(self, report:Report, master_page:str ):
+        """open Report Page and Pass Report to its API
+
+        Args:
+            report (Report): _description_
+        """
+        save_obj(report, 'test_report')
+        self.reportPageAPI.set_master_page(master_page)
+        self.reportPageAPI.set_report(report)
+        self.ui.go_to_page('report')
+
+
+    def change_page(self, page_name):
+        self.ui.go_to_page(page_name)
+
+
+
+
+def save_obj(obj, path):
+    dbfile = open(path, 'ab')
+    pickle.dump(obj, dbfile)
+
+def load_obj( path):
+    dbfile = open(path, 'rb')
+    return pickle.load( dbfile)

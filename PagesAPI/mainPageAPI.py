@@ -24,6 +24,8 @@ class mainPageAPI:
 
         self.t_frame = 0
         self.frame_idx = 0
+        self.logined_username = ''
+        self.external_report_event_func = None
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
@@ -32,10 +34,26 @@ class mainPageAPI:
         self.ui.player_buttons_connect('start', self.start)
         self.ui.player_buttons_connect('stop', self.stop)
         self.ui.run_button_connect(self.run_start)
+        self.ui.report_button_connector(self.report_button_event)
 
         self.test_img_idx = 0
         self.report = Report()
         self.detector = None
+
+    def set_logined_user(self, username:str):
+        """this function calls from main_API when a login or logout event happend and gets logined username
+
+        Args:
+            username (str): logined username
+        """
+        self.logined_username = username
+
+    def set_report_button_event_func(self, func):
+        self.external_report_event_func = func
+
+    def report_button_event(self,):
+        if self.external_report_event_func is not None:
+            self.external_report_event_func(self.report, 'main')
 
 
     def calc_fps(self):
@@ -165,7 +183,7 @@ class mainPageAPI:
 
 
     
-    def prepeard_measuring_system(self, sample_name = None, standard_name = None):
+    def prepeard_measuring_system(self, sample_name = None, standard_name = None, username = ''):
         
         #-----------------------------------------------------------------------------------------
         #load algorithm parms from database
@@ -178,8 +196,9 @@ class mainPageAPI:
         #set ranges to chart
         self.ui.set_grading_chart_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------
-        self.report = Report( sample_name, standard )
-        
+        self.report = Report( sample_name, standard, self.logined_username )
+        #self.report.set_operator_username(self.logined_username)
+        #-----------------------------------------------------------------------------------------
         self.t_frame = time.time()
         self.frame_idx = 0
         #set chart bars

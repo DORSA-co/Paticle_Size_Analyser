@@ -28,20 +28,20 @@ from functools import partial
 import texts
 from uiFiles import Assets
 import time
-import GUIComponents
-import cv2
 from main_API import main_API
 
 
 #Import Pages UI------------------------------------------
-from settingPageUI import settingPageUI
-from mainPageUI import mainPageUI
-from calibrationPageUI import calibrationPageUI
-from usersPageUI import usersPageUI
-from reportsPageUI import reportsPageUI
-from gradingRangesPageUI import gradingRangesPageUI
+from PagesUI.settingPageUI import settingPageUI
+from PagesUI.mainPageUI import mainPageUI
+from PagesUI.calibrationPageUI import calibrationPageUI
+from PagesUI.usersPageUI import usersPageUI
+from PagesUI.reportsPageUI import reportsPageUI
+from PagesUI.gradingRangesPageUI import gradingRangesPageUI
+from PagesUI.reportPageUI import reportPageUI
 #---------------------------------------------------------
-from guiBackend import GUIBackend
+from uiUtils import GUIComponents
+from uiUtils.guiBackend import GUIBackend
 
 class routerUI:
 
@@ -49,7 +49,7 @@ class routerUI:
         self.ui = ui
         self.pages_index = {
             'main'              : 0,
-            'report'            : 1,
+            'reports'            : 1,
             'grading_ranges'    : 2,
             'settings'          : 3,
             'calibration'       : 4,
@@ -90,6 +90,7 @@ class mainUI:
         self.gradingRange = gradingRangesPageUI(ui)
         self.mainPage = mainPageUI(ui, sample_info)
         self.calibrationPage = calibrationPageUI(ui)
+        self.reportPage = reportPageUI(ui)
         self.usersPage = usersPageUI(ui, login_ui, edit_user)
 
         #self.router = routerUI(ui)
@@ -99,17 +100,18 @@ class mainUI:
 
         self.pages_index = {
             'main'              : 0,
-            'report'            : 1,
+            'reports'            : 1,
             'grading_ranges'    : 2,
             'settings'          : 3,
             'calibration'       : 4,
             'user'              : 5,
-            'help'              : 6
+            'help'              : 6,
+            'report'     : 7,
         }
         
         self.sidebar_pages_buttons = {
             'main': self.ui.sidebar_main_btn,
-            'report': self.ui.sidebar_report_btn,
+            'reports': self.ui.sidebar_report_btn,
             'grading_ranges': self.ui.sidebar_grading_ranges_btn,
             'settings': self.ui.sidebar_settings_btn,
             'calibration': self.ui.sidebar_calib_btn,
@@ -193,6 +195,10 @@ class mainUI:
    
     def get_current_page(self,):
         return self.current_page
+    
+
+    def go_to_page(self, page_name):
+        GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  self.pages_index[page_name])
     
     def set_access_pages(self, pages:list[str], flag:bool = True):
         """enable or disable some pages

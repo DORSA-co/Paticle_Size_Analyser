@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1339</width>
+    <width>1359</width>
     <height>949</height>
    </rect>
   </property>
@@ -1027,7 +1027,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1232,7 +1232,7 @@ background-color:rgb(50, 50, 50);</string>
                    <enum>Qt::AutoText</enum>
                   </property>
                   <property name="pixmap">
-                   <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
+                   <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>false</bool>
@@ -1709,6 +1709,12 @@ QPushButton:hover{
                  </item>
                  <item>
                   <widget class="QFrame" name="mainpage_warnings_frame">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -2036,22 +2042,14 @@ background-color: rgba(255,255,255,20);
                </spacer>
               </item>
               <item>
-               <widget class="QFrame" name="frame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>300</height>
-                 </size>
+               <layout class="QVBoxLayout" name="mainpage_grading_chart_frame">
+                <property name="leftMargin">
+                 <number>0</number>
                 </property>
-                <layout class="QHBoxLayout" name="mainpage_grading_chart_frame">
-                 <property name="leftMargin">
-                  <number>9</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>1</number>
-                 </property>
-                </layout>
-               </widget>
+                <property name="topMargin">
+                 <number>10</number>
+                </property>
+               </layout>
               </item>
               <item>
                <widget class="Line" name="line_2">
@@ -2077,28 +2075,14 @@ background-color: rgba(255,255,255,20);
                </spacer>
               </item>
               <item>
-               <widget class="QFrame" name="frame">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>300</height>
-                 </size>
+               <layout class="QVBoxLayout" name="mainpage_second_chart_frame">
+                <property name="leftMargin">
+                 <number>0</number>
                 </property>
-                <layout class="QHBoxLayout" name="mainpage_second_chart_frame"/>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_17">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                <property name="topMargin">
+                 <number>10</number>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
+               </layout>
               </item>
              </layout>
             </widget>
@@ -2270,7 +2254,7 @@ color: rgb(6, 76, 130);
                    <x>0</x>
                    <y>0</y>
                    <width>306</width>
-                   <height>656</height>
+                   <height>665</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -4354,7 +4338,7 @@ max-height : 800px;
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
+                      <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>false</bool>
@@ -5210,7 +5194,7 @@ max-height : 800px;</string>
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
+                <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>false</bool>
@@ -6157,7 +6141,7 @@ background-color:#ffffff;
                     <x>0</x>
                     <y>0</y>
                     <width>1143</width>
-                    <height>705</height>
+                    <height>714</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -6278,7 +6262,7 @@ border: 2px solid rgb(25, 68, 105);
                <number>1</number>
               </property>
               <item>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="sreportpage_back_btn">
                 <property name="styleSheet">
                  <string notr="true"/>
                 </property>
@@ -6305,7 +6289,7 @@ border: 2px solid rgb(25, 68, 105);
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_3">
+               <widget class="QPushButton" name="sreportpage_export_btn">
                 <property name="text">
                  <string>Export</string>
                 </property>
@@ -6414,9 +6398,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-59</y>
                 <width>1145</width>
-                <height>1171</height>
+                <height>1969</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -6428,7 +6412,23 @@ background-color:#ffffff;
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
                <item>
-                <widget class="QGroupBox" name="groupBox_6">
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Maximum</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_7">
                  <property name="styleSheet">
                   <string notr="true">QGroupBox
 {
@@ -6456,7 +6456,7 @@ QLabel{
                  <property name="title">
                   <string>General Information</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_3">
+                 <layout class="QVBoxLayout" name="verticalLayout_34">
                   <property name="leftMargin">
                    <number>11</number>
                   </property>
@@ -6466,285 +6466,421 @@ QLabel{
                   <property name="bottomMargin">
                    <number>25</number>
                   </property>
-                  <item row="0" column="4">
-                   <widget class="QLabel" name="label_42">
-                    <property name="text">
-                     <string>2023-05-12</string>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_46">
+                    <property name="leftMargin">
+                     <number>0</number>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="13">
-                   <widget class="QLabel" name="label_44">
-                    <property name="text">
-                     <string>AX256</string>
+                    <property name="topMargin">
+                     <number>0</number>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QLabel" name="label_41">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
+                    <item>
+                     <widget class="QLabel" name="label_6">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 18px;
+font-weight: bold;
+color: rgb(6, 76, 130);
+margin: 5px 0px;</string>
+                      </property>
+                      <property name="text">
+                       <string>Sample Name:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                      <property name="title" stdset="0">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="sreportpage_name_lbl">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 18px;
 font-weight: bold;
 color: rgb(40, 40, 40);
 margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>Date:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="title" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
+                      </property>
+                      <property name="text">
+                       <string>no-name</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_76">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_6">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
-font-weight: bold;
-color: rgb(40, 40, 40);
-margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>Sample Name:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="title" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="4">
-                   <widget class="QLabel" name="label_62">
-                    <property name="text">
-                     <string>2mm</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="3">
-                   <widget class="QLabel" name="label_61">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
-font-weight: bold;
-color: rgb(40, 40, 40);
-margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>STD:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLabel" name="label_40">
-                    <property name="text">
-                     <string>no-name</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="14">
-                   <spacer name="horizontalSpacer_45">
+                  <item>
+                   <spacer name="verticalSpacer_30">
                     <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="0" column="12">
-                   <widget class="QLabel" name="label_43">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
-font-weight: bold;
-color: rgb(40, 40, 40);
-margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>Standard:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                    <property name="title" stdset="0">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="8">
-                   <spacer name="horizontalSpacer_51">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
+                     <enum>Qt::Vertical</enum>
                     </property>
                     <property name="sizeType">
-                     <enum>QSizePolicy::Maximum</enum>
+                     <enum>QSizePolicy::Fixed</enum>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>100</width>
+                      <width>20</width>
                       <height>20</height>
                      </size>
                     </property>
                    </spacer>
                   </item>
-                  <item row="0" column="7">
-                   <widget class="QLabel" name="label_66">
-                    <property name="text">
-                     <string>12:17</string>
+                  <item>
+                   <widget class="Line" name="line_5">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>3</height>
+                     </size>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="9">
-                   <widget class="QLabel" name="label_67">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
-font-weight: bold;
-color: rgb(40, 40, 40);
-margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>user:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <spacer name="horizontalSpacer_43">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
-                    <property name="sizeType">
-                     <enum>QSizePolicy::Maximum</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>100</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="label_60">
-                    <property name="text">
-                     <string>16mm</string>
-                    </property>
                    </widget>
                   </item>
-                  <item row="0" column="10">
-                   <widget class="QLabel" name="label_68">
-                    <property name="text">
-                     <string>its.bigs</string>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_48">
+                    <property name="spacing">
+                     <number>0</number>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="6">
-                   <widget class="QLabel" name="label_65">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <spacer name="horizontalSpacer_81">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Maximum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>15</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_44">
+                      <property name="styleSheet">
+                       <string notr="true">max-width:30px;
+max-height:30px;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-user-gray-50.png</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_67">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
 font-weight: bold;
 color: rgb(40, 40, 40);
 margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>Time:</string>
-                    </property>
-                   </widget>
+                      </property>
+                      <property name="text">
+                       <string>user:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="sreportpage_user_lbl">
+                      <property name="text">
+                       <string>its.bigs</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_82">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
-                  <item row="0" column="5">
-                   <spacer name="horizontalSpacer_44">
+                  <item>
+                   <widget class="Line" name="line_4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>3</height>
+                     </size>
+                    </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
-                    <property name="sizeType">
-                     <enum>QSizePolicy::Maximum</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>100</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
+                   </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_59">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_47">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <spacer name="horizontalSpacer_80">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Maximum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>15</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_2">
+                      <property name="styleSheet">
+                       <string notr="true">max-width:30px;
+max-height:30px;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-date-50.png</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_41">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
 font-weight: bold;
 color: rgb(40, 40, 40);
 margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>Avrage:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                   </widget>
+                      </property>
+                      <property name="text">
+                       <string>Date:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="sreportpage_date_lbl">
+                      <property name="text">
+                       <string>2023-05-12</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_43">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Maximum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>100</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_40">
+                      <property name="styleSheet">
+                       <string notr="true">max-width:30px;
+max-height:30px;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-clock-50.png</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_65">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
+font-weight: bold;
+color: rgb(40, 40, 40);
+margin: 5px 0px;</string>
+                      </property>
+                      <property name="text">
+                       <string>Time:</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="sreportpage_time_lbl">
+                      <property name="text">
+                       <string>12:17</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_79">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
-                  <item row="0" column="11">
-                   <spacer name="horizontalSpacer_52">
+                  <item>
+                   <widget class="Line" name="line_6">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>3</height>
+                     </size>
+                    </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>100</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
+                   </widget>
                   </item>
-                  <item row="1" column="6">
-                   <widget class="QLabel" name="label_63">
-                    <property name="styleSheet">
-                     <string notr="true">font-size: 16px;
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_49">
+                    <property name="spacing">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <spacer name="horizontalSpacer_83">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Maximum</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>15</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_42">
+                      <property name="styleSheet">
+                       <string notr="true">max-width:30px;
+max-height:30px;</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="pixmap">
+                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-bar-chart-gray-50.png</pixmap>
+                      </property>
+                      <property name="scaledContents">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_43">
+                      <property name="styleSheet">
+                       <string notr="true">font-size: 16px;
 font-weight: bold;
 color: rgb(40, 40, 40);
 margin: 5px 0px;</string>
-                    </property>
-                    <property name="text">
-                     <string>Mode:</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                    </property>
-                   </widget>
+                      </property>
+                      <property name="text">
+                       <string>Standard:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                      <property name="title" stdset="0">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="sreportpage_standard_lbl">
+                      <property name="text">
+                       <string>AX256</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_85">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                   </layout>
                   </item>
-                  <item row="1" column="7">
-                   <widget class="QLabel" name="label_64">
-                    <property name="text">
-                     <string>11mm</string>
+                  <item>
+                   <widget class="Line" name="line_7">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>3</height>
+                     </size>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
                     </property>
                    </widget>
                   </item>
                  </layout>
                 </widget>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Maximum</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
                <item>
                 <widget class="QLabel" name="label_46">
@@ -6768,6 +6904,279 @@ padding: 10px 0px</string>
                 </widget>
                </item>
                <item>
+                <spacer name="verticalSpacer_17">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>50</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_54">
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <spacer name="horizontalSpacer_86">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="frame_2">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QFrame{
+	
+	background-color: rgb(6, 76, 130);
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QVBoxLayout" name="verticalLayout_35">
+                    <property name="leftMargin">
+                     <number>50</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>50</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>11</number>
+                    </property>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_50">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <spacer name="horizontalSpacer_44">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_60">
+                        <property name="styleSheet">
+                         <string notr="true">font-size: 18px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Summary</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_45">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <widget class="Line" name="line_8">
+                      <property name="styleSheet">
+                       <string notr="true">Line{
+	background-color:rgba(255, 255, 255, 50);
+}</string>
+                      </property>
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_53">
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="label_59">
+                        <property name="styleSheet">
+                         <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Avrage:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="sreportpage_avrage_lbl">
+                        <property name="styleSheet">
+                         <string notr="true">color: #ffffff;</string>
+                        </property>
+                        <property name="text">
+                         <string>16mm</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_51">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_61">
+                        <property name="styleSheet">
+                         <string notr="true">font-size: 16px;
+font-weight: bold;
+margin: 5px 0px;
+color: #ffffff;</string>
+                        </property>
+                        <property name="text">
+                         <string>STD:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="sreportpage_std_lbl">
+                        <property name="styleSheet">
+                         <string notr="true">color: #ffffff;</string>
+                        </property>
+                        <property name="text">
+                         <string>2mm</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_52">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_63">
+                        <property name="styleSheet">
+                         <string notr="true">font-size: 16px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                        </property>
+                        <property name="text">
+                         <string>Mode:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="sreportpage_mode_lbl">
+                        <property name="styleSheet">
+                         <string notr="true">color: #ffffff;</string>
+                        </property>
+                        <property name="text">
+                         <string>11mm</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_84">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_31">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <property name="topMargin">
                   <number>0</number>
@@ -6786,7 +7195,7 @@ padding: 10px 0px</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QTableWidget" name="mainpage_statistics_table">
+                  <widget class="QTableWidget" name="sreportpage_statictics_table">
                    <property name="enabled">
                     <bool>true</bool>
                    </property>
@@ -6827,15 +7236,12 @@ padding: 10px 0px</string>
                     <enum>Qt::NoFocus</enum>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">QTableWidget{
-	min-height: 200px;
-	font-size: 16px;
-}
+                    <string notr="true">
 QHeaderView::section {
-    background-color: #646464;
+    background-color: rgb(6, 76, 130);
 	color: #ffffff;
     padding: 4px;
-    font-size: 10pt;
+    font-size: 14pt;
     border-style: none;
     border-bottom: 1px solid #fffff8;
     border-right: 1px solid #fffff8;
@@ -6848,10 +7254,23 @@ QHeaderView::section:horizontal
 
 QHeaderView::section:vertical
 {
-    border-left: 1px solid #fffff8;
+    border-left: 1px solid #fffff8;	
 }
 
+
+QTableWidget{
+	font-size: 16px;
+	color:rgb(50, 50, 50);
+}
+
+QTableWidget::item
+{
+   padding: 10px;
+}
 </string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Box</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
@@ -6973,8 +7392,43 @@ padding: 10px 0px</string>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_25">
                  <property name="topMargin">
-                  <number>250</number>
+                  <number>0</number>
                  </property>
+                 <item>
+                  <layout class="QHBoxLayout" name="report_grading_chart_frame"/>
+                 </item>
+                 <item>
+                  <widget class="Line" name="line_18">
+                   <property name="minimumSize">
+                    <size>
+                     <width>3</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="report_grading_chart_frame_2"/>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_32">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Minimum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>10</width>
+                     <height>300</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
                 </layout>
                </item>
                <item>
@@ -7067,7 +7521,7 @@ max-height: 400px;</string>
                          <string/>
                         </property>
                         <property name="pixmap">
-                         <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
+                         <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignCenter</set>

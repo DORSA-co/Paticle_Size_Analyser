@@ -108,7 +108,7 @@ class GUIBackend:
 
 
 
-    def add_widget( parent:QtWidgets.QLayout, widget):
+    def add_widget( parent:QtWidgets.QFrame, widget):
         """insert a new widget into parent widget
 
         Args:

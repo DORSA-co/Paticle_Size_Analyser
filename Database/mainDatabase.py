@@ -6,6 +6,7 @@ else:
     from Database.settingDB import settingDB
     from Database.usersDB import usersDB
     from Database.gradingRangesDB import gradingRangesDB
+    from Database.reportsDB import reportsDB
 
 class mainDatabase:
     username = 'root'
@@ -21,6 +22,7 @@ class mainDatabase:
         self.setting_db = settingDB(self.dbManager)
         self.users_db = usersDB(self.dbManager)
         self.grading_ranges_db = gradingRangesDB(self.dbManager)
+        self.reports_db = reportsDB(self.dbManager)
     
     def __connect__(self,):
         self.dbManager = databaseManager(self.username, self.password, self.HOST, self.DATABASE_NAME, log_level=1)

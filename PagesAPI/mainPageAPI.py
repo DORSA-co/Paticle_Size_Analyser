@@ -2,6 +2,7 @@ from dorsaPylon import Collector
 
 from PagesUI.mainPageUI import mainPageUI
 from Database.mainDatabase import mainDatabase
+from Database.reportsDB import reportSaver
 import CONSTANTS
 #from main_UI import routerUI
 from uiUtils import GUIComponents
@@ -71,9 +72,6 @@ class mainPageAPI:
     def process_image(self):
         #calculate FPS-----------------------
         self.ui.set_information({"fps": self.calc_fps()})
-
-        #-----------------------------------
-
         #________________________________ONLY FOR TEST________________________________________________
         fname = "{}.png".format(self.test_img_idx)
         img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
@@ -87,17 +85,17 @@ class mainPageAPI:
         particles = self.detector.detect(img, img_id=self.frame_idx)
         #extend new particels into particles buffer
         self.report.append(particles)
-        #add new particels for calculating histogram
 
         #calculate histogram and upadte chart
         grading_percents = self.report.Grading.get_hist()
-
         self.ui.set_grading_chart_values(grading_percents)
         
         #calculate statistics information like std and avg
         infos = self.report.get_global_statistics()
         self.ui.set_information(infos)
-
+        
+        #----------------------------------------------------
+        self.report_saver.save_image(img, self.frame_idx)
         #----------------------------------------------------
         #get toolboxes value
         toolboxes_state = self.ui.get_toolboxes()
@@ -198,6 +196,16 @@ class mainPageAPI:
         #-----------------------------------------------------------------------------------------
         self.report = Report( sample_name, standard, self.logined_username )
         #self.report.set_operator_username(self.logined_username)
+
+        main_path = self.database.setting_db.storage_db.load()['path']
+        self.report_saver = reportSaver(main_path, self.report.name, self.report.date)
+        #-----------------------------------------------------------------------------------------
+        db_data = {
+            'name': self.report.name,
+            'path': main_path,
+            'standard': self.report.standard['name']
+        }
+        self.database.reports_db.save(db_data)
         #-----------------------------------------------------------------------------------------
         self.t_frame = time.time()
         self.frame_idx = 0

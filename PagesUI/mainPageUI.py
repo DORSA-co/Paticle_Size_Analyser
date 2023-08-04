@@ -12,7 +12,6 @@ class mainPageUI:
         self.sample_info = sample_info
 
         self.current_status = 'stop'
-        #self.statistics_table = self.ui.mainpage_statistics_table
         self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
         self.close_warning_msg_btn = self.ui.mainpage_close_error_btn
         self.warning_msg_frame = self.ui.mainpage_error_msg_frame
@@ -79,10 +78,6 @@ class mainPageUI:
                     axisY_grid = True,
                 )
         
-        #categoris = ['a', 'b', 'c', 'd', 'e', 'f']
-        #values = [5, 10, 20, 40, 60, 80]
-        #self.grading_chart.update_chart(axisX_ranges=categoris, axisY_values=values)
-
         self.seccond_chart = Charts.BarChart(
                     chart_title = 'Grading',
                     chart_title_color = None,
@@ -98,10 +93,6 @@ class mainPageUI:
                     bar_width = 1,
                 )
         
-        #categoris = ['a', 'b', 'c', 'd', 'e', 'f']
-        #values = [5, 10, 20, 40, 60, 80]
-        #self.seccond_chart.update_chart(axisX_ranges=categoris, axisY_values=values)
-
         
         
 
@@ -223,6 +214,7 @@ class mainPageUI:
     #     GUIBackend.checkbox_connector(self.ui.mainpage_liveview_checkbox, func('live-view'))
     #     GUIBackend.checkbox_connector(self.ui.mainpage_drawing_checkbox, func('drawing'))
 
+
     def get_toolboxes(self, ):
         data = {}
         data['live'] = GUIBackend.get_checkbox_value(self.ui.mainpage_liveview_checkbox)
@@ -240,8 +232,8 @@ class mainPageUI:
         for name, value in data.items():
             if name in ['avrage', 'std']:
                 value = "{0:.2f} mm".format(value)
-            GUIBackend.set_label_text( self.informations[name],
-                                    str(value) 
+            GUIBackend.set_label_text(  self.informations[name],
+                                        str(value) 
                                     )
             
         #self.set_statistics_table_datas()

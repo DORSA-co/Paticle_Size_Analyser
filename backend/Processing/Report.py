@@ -21,6 +21,7 @@ class Report:
         self.date = datetime.now()
         self.Buffer = particlesBuffer()
         self.sieved_particles = []
+
         if self.standard is not None:
             self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
         
@@ -28,8 +29,11 @@ class Report:
             self.Grading = Grading(self.standard['ranges'])
         else:
             assert True, "not developed yet"
+
+
     def set_operator_username(self, username):
         self.username = username
+
 
     def append(self, buffer:particlesBuffer):
         """append a buffer of particles into this sample
@@ -41,14 +45,17 @@ class Report:
         self.Grading.append(buffer)
         self.Buffer.extend(buffer)
    
+
+
     def clear(self,):
         self.Buffer = particlesBuffer()
+
+
 
     def get_global_statistics(self):
         info = {}
         info['avrage'] = np.round( self.Buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
         info['std'] = np.round( self.Buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
-
         return info
     
 

@@ -13,11 +13,12 @@ import CONSTANTS
 class Report:
     """store all information of a sample
     """
-    def __init__(self, name = None, standard = None, username = '' ) -> None:
+    def __init__(self, name = None, standard = None, username = '', main_path ='') -> None:
         
         self.name = name
         self.standard = standard
         self.username = username
+        self.main_path = main_path
         self.date = datetime.now()
         self.Buffer = particlesBuffer()
         self.sieved_particles = []

@@ -48,7 +48,7 @@ class reportsDB:
 
     
 
-class reportSaver:
+class reportFileHandler:
     """this class saves report object file and sample images
     """
     REPORT_NAME = 'report'

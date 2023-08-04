@@ -1,4 +1,5 @@
 import numpy as np
+import CONSTANTS
 import cv2
 
 class Particle:
@@ -52,8 +53,19 @@ class Particle:
             tuple:  (min_x, min_y), (max_x, max_y)
         """
         min_x, min_y = np.min(self.cnt, axis=(0,1)) - border
-        max_x, max_y = np.min(self.cnt, axis=(0,1)) + border
-    
+        max_x, max_y = np.max(self.cnt, axis=(0,1)) + border
+
+        min_x = max(min_x, 0)
+        min_y = max(min_y, 0)
         return (min_x, min_y), (max_x, max_y)
+    
+
+    def get_info(self):
+        info = {}
+        info['max_radius'] = np.round(self.max_radius, CONSTANTS.DECIMAL_ROUND )
+        info['area'] = np.round(self.area, CONSTANTS.DECIMAL_ROUND )
+        info['avrage_radius'] = np.round(self.avg_radius, CONSTANTS.DECIMAL_ROUND )
+        info['volume'] = np.round(self.avg_volume, CONSTANTS.DECIMAL_ROUND )
+        return info
 
 

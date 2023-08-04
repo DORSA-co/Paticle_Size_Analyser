@@ -61,6 +61,14 @@ class particlesBuffer:
         """
         return self.particels
     
+    def get_particel(self, idx) -> Particle:
+        """returns list of particles
+
+        Returns:
+            list[Particle]: list of Particle Objects
+        """
+        return self.particels[idx]
+    
     def get_feature(self, name: str) -> np.ndarray:
         """returns a 1d numpy array that shows a specific feature for all particles
 

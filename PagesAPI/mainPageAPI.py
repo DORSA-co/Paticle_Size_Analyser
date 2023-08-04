@@ -2,7 +2,7 @@ from dorsaPylon import Collector
 
 from PagesUI.mainPageUI import mainPageUI
 from Database.mainDatabase import mainDatabase
-from Database.reportsDB import reportSaver
+from Database.reportsDB import reportFileHandler
 import CONSTANTS
 #from main_UI import routerUI
 from uiUtils import GUIComponents
@@ -194,11 +194,11 @@ class mainPageAPI:
         #set ranges to chart
         self.ui.set_grading_chart_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------
-        self.report = Report( sample_name, standard, self.logined_username )
-        #self.report.set_operator_username(self.logined_username)
-
         main_path = self.database.setting_db.storage_db.load()['path']
-        self.report_saver = reportSaver(main_path, self.report.name, self.report.date)
+        
+        self.report = Report( sample_name, standard, self.logined_username, main_path )
+        #self.report.set_operator_username(self.logined_username)
+        self.report_saver = reportFileHandler(main_path, self.report.name, self.report.date)
         #-----------------------------------------------------------------------------------------
         db_data = {
             'name': self.report.name,

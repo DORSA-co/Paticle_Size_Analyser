@@ -1,15 +1,54 @@
 from PagesUI.reportPageUI import reportPageUI
 from backend.Processing.Report import Report
-
-
+from Database.reportsDB import reportFileHandler
+import cv2
 class reportPageAPI:
     
     def __init__(self, ui:reportPageUI):
         self.ui = ui
 
         self.ui.back_button_connector(self.back)
+        self.ui.navigator_button_connector(self.particle_navigation)
         self.external_back_event_func = None
+        self.particle_idx = 0
+        self.img_id = None
+        
+
     
+    def particle_navigation(self, key):
+        if key == 'next':
+            self.particle_idx+=1
+
+        elif key == 'prev':
+            self.particle_idx-=1
+
+        self.particle_idx = max(0, self.particle_idx)
+        self.particle_idx = min(self.particles_count, self.particle_idx)
+
+        self.show_particle_information()
+
+    
+    def show_particle_information(self,):
+        particle = self.report.Buffer.get_particel(self.particle_idx)
+        info = particle.get_info()
+        self.ui.set_particle_information(info)
+        #------------------------------------------------
+        (x1,y1), (x2,y2) = particle.get_roi(20)
+        
+        #check if particle is in a diffrent image, load it
+        if self.img_id != particle.img_id:
+            self.img_id = particle.img_id
+            self.img = self.report_file_handler.load_image(self.img_id)
+        
+        particle_img = self.img[y1:y2, x1:x2]
+        self.ui.set_particle_image(particle_img)
+        #------------------------------------------------
+
+
+        
+        
+        
+        
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
@@ -23,10 +62,15 @@ class reportPageAPI:
         """
         self.report = report
         self.report.render()
+        self.particles_count = len(self.report.Buffer.particels)
+        self.report_file_handler = reportFileHandler(self.report.main_path,
+                                                     self.report.name,
+                                                     self.report.date)
         
         self.show_general_information()
         self.show_ranges_statistics()
         self.show_charts()
+        self.show_particle_information()
 
     def set_master_page(self, page_name:str):
         """set master page
@@ -51,6 +95,8 @@ class reportPageAPI:
             info[key] = str(value)
 
         self.ui.set_general_information(info)
+
+    
 
     def show_ranges_statistics(self,):
         data = self.report.get_ranges_statistics()

@@ -1,6 +1,9 @@
 
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import Charts
+import cv2
+
+
 class reportPageUI:
     
     def __init__(self, ui,):
@@ -8,6 +11,11 @@ class reportPageUI:
 
         self.back_btn = self.ui.sreportpage_back_btn
         self.export_btn = self.ui.sreportpage_export_btn
+
+        self.particle_navigator_buttons = {
+            'next': self.ui.sreportpage_next_particle_btn,
+            'prev': self.ui.sreportpage_prev_particle_btn
+        }
 
         self.general_information = {
             'name':self.ui.sreportpage_name_lbl,
@@ -19,6 +27,16 @@ class reportPageUI:
             'std':self.ui.sreportpage_std_lbl,
             'mode':self.ui.sreportpage_mode_lbl,
         }
+
+        self.particle_information = {
+            'max_radius': self.ui.sreportpage_particle_max_r_lbl,
+            'avrage_radius': self.ui.sreportpage_particle_avg_r_lbl,
+            'area': self.ui.sreportpage_particle_area_lbl,
+            'volume': self.ui.sreportpage_particle_volume_lbl,
+            'max_radius': self.ui.sreportpage_particle_max_r_lbl,
+        }
+
+        self.particle_image_lbl = self.ui.sreportpage_particle_image_lbl
         self.statictics_table = self.ui.sreportpage_statictics_table
 
 
@@ -45,11 +63,33 @@ class reportPageUI:
         GUIBackend.set_table_dim(self.statictics_table, row=None, col=len(self.statictics_table_headers))
         GUIBackend.set_table_cheaders(self.statictics_table, self.statictics_table_headers)
         GUIBackend.add_widget( self.ui.report_grading_chart_frame, self.grading_chart )
+
+    def create_connect(func, *args):
+        return lambda: func(*args)
+
+    
+    def navigator_button_connector(self, func):
+        def make_func_arg(key):
+                def _func_():
+                    func(key)
+                return _func_
+        
+        for key, btn in self.particle_navigator_buttons.items():
+            GUIBackend.button_connector( btn,
+                                        make_func_arg(key) 
+            )
+            
+    
+    
     
 
     def set_general_information(self, infoes:dict):
         for name, value in infoes.items():
             GUIBackend.set_label_text( self.general_information[name] , value )
+
+    def set_particle_information(self, infoes:dict):
+        for name, value in infoes.items():
+            GUIBackend.set_label_text( self.particle_information[name] , str(value) )
 
     def back_button_connector(self, func):
         GUIBackend.button_connector(self.back_btn, func)
@@ -72,3 +112,6 @@ class reportPageUI:
         
         self.grading_chart.set_chart_x(ranges_str)
     
+    def set_particle_image(self, img):
+        img = cv2.resize(img, None, fx=2, fy =2)
+        GUIBackend.set_label_image(self.particle_image_lbl, img)

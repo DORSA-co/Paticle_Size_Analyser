@@ -14,8 +14,14 @@ class reportsDB:
     TABLE_NAME = 'reports'
     TABLE_COLS = [ {'col_name': 'name',        'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'standard',    'type':'VARCHAR(255)', 'len':50},
+                   {'col_name': 'date',        'type':'VARCHAR(255)', 'len':50},
+                   {'col_name': 'time',        'type':'VARCHAR(255)', 'len':50},
+                   {'col_name': 'username',    'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'path',        'type':'VARCHAR(255)', 'len':200},
                 ]
+
+    DATE_STR_FORMAT = "%Y/%m/%d"
+    TIME_STR_FORMAT = "%H:%M:%S"
     #PRIMERY_KEY_COL_NAME = 'application'
 
 
@@ -32,11 +38,16 @@ class reportsDB:
 
 
     def save(self, data):
+        data['date'] = data['date'].strftime(self.DATE_STR_FORMAT)
+        data['time'] = data['time'].strftime(self.TIME_STR_FORMAT)
         self.db_manager.add_record_dict(self.TABLE_NAME, data)
     
 
     def load_all(self,):
         records =  self.db_manager.get_all_content(self.TABLE_NAME)
+        for record in records:
+            record['date'] = datetime.strptime(record['date'], self.DATE_STR_FORMAT ).date()
+            record['time'] = datetime.strptime(record['time'], self.TIME_STR_FORMAT ).time()
         return records
         
     
@@ -116,7 +127,7 @@ class reportFileHandler:
         Returns:
             str: path
         """
-        return os.path.join(self.main_path, self.get_report_folder_path(), self.REPORT_NAME )
+        return os.path.join( self.get_report_folder_path(), self.REPORT_NAME )
     
     
     def get_image_foler_dir(self,)-> str:

@@ -108,10 +108,9 @@ class reportPageUI:
 
     def set_grading_chart(self, values:list[float], ranges:list[list]):
         self.grading_chart.set_chart_y(values)
-        ranges_str = list(map( lambda x: f"{x[0]}-{x[1]}", ranges))
         
-        self.grading_chart.set_chart_x(ranges_str)
+        self.grading_chart.set_chart_x(ranges)
     
     def set_particle_image(self, img):
-        img = cv2.resize(img, None, fx=2, fy =2)
+        #img = cv2.resize(img, None, fx=1, fy =1)
         GUIBackend.set_label_image(self.particle_image_lbl, img)

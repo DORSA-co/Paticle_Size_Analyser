@@ -10,6 +10,7 @@ from PagesAPI.usersPageAPI import usersPageAPI
 from PagesAPI.mainPageAPI import mainPageAPI
 from PagesAPI.gradingRangesPageAPI import gradingRangesPageAPI
 from PagesAPI.reportPageAPI import reportPageAPI
+from PagesAPI.reportsPageAPI import reportsPageAPI
 #------------------------------------------------------------
 #from main_UI import mainUI
 #------------------------------------------------------------
@@ -29,26 +30,28 @@ class main_API:
 
         #Pages_api------------------------------------
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
-        self.gradingRangesAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
-        self.settingAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
-        self.usersAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
+        self.gradingRangesPageAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
+        self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
+        self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
+        self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
 
         self.ui.change_page_connector(self.page_change)
-        self.usersAPI.set_login_event(self.login_user_event)
+        self.usersPageAPI.set_login_event(self.login_user_event)
         self.mainPageAPI.set_report_button_event_func(self.show_report)
+        self.reportsPageAPI.set_see_report_event_func(self.show_report)
         self.reportPageAPI.set_back_event_func(self.change_page)
 
         #this functions should run when each page load
         self.pages_api_dict = {
             'main': None,
-            'reports': None,
+            'reports': self.reportsPageAPI,
             'grading_ranges': None,
             'calibration': None,
-            'settings': self.settingAPI,
+            'settings': self.settingPageAPI,
             'user': None,
             'help': None,
-            'report': None
+            'report': None,
         }
 
         #TEMP
@@ -72,7 +75,7 @@ class main_API:
         if current_page == 'main':
             self.mainPageAPI.process_image()
         elif current_page == 'settings':
-            self.settingAPI.cameraSetting.show_live_image()
+            self.settingPageAPI.cameraSetting.show_live_image()
         
 
     def creat_camera(self)-> Camera:
@@ -102,8 +105,8 @@ class main_API:
 
 
     def login_user_event(self,):
-        role = self.usersAPI.data_passer.get_logined_user_role()
-        username = self.usersAPI.data_passer.logined_user.get('username', '')
+        role = self.usersPageAPI.data_passer.get_logined_user_role()
+        username = self.usersPageAPI.data_passer.logined_user.get('username', '')
         self.set_access(role)
         self.mainPageAPI.set_logined_user(username)
     

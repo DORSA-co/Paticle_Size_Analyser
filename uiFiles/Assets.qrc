@@ -1,6 +1,7 @@
 <RCC>
   <qresource prefix="assets">
     <file>../Assets/images/camera-error.png</file>
+    <file>../Assets/icons/icons8-eye-white-50.png</file>
     <file>../Assets/images/camera-error-500.png</file>
     <file>../Assets/icons/icons8-bar-chart-gray-50.png</file>
     <file>../Assets/icons/icons8-user-gray-50.png</file>

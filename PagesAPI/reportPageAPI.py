@@ -65,7 +65,7 @@ class reportPageAPI:
         self.particles_count = len(self.report.Buffer.particels)
         self.report_file_handler = reportFileHandler(self.report.main_path,
                                                      self.report.name,
-                                                     self.report.date)
+                                                     self.report.date_time)
         
         self.show_general_information()
         self.show_ranges_statistics()
@@ -86,8 +86,8 @@ class reportPageAPI:
         info = {}
         info['name'] = self.report.name
         info['standard'] = self.report.standard['name']
-        info['date'] = self.report.date.strftime("%Y/%m/%d")
-        info['time'] = self.report.date.strftime("%H:%M")
+        info['date'] = self.report.date_time.strftime("%Y/%m/%d")
+        info['time'] = self.report.date_time.strftime("%H:%M")
         info['username'] = self.report.username
 
         statictics =  self.report.get_global_statistics()

@@ -42,7 +42,44 @@ QPushButton{
 """
 
 
+REPORT_BUTTON_STYLE = """
+QPushButton{
+	min-height:30px;
+	border-radius:3px;
+	color: rgb(255, 255, 255);
+	background-color:rgb(54, 193, 142);
 
+}
+
+QPushButton:hover{
+	color: rgb(255, 255, 255);
+	background-color:rgb(40, 144, 106);
+}
+
+"""
+
+CONFIRMBOX_STYLESHEET = """
+   QMessageBox{ 
+        background-color: #ffffff;
+
+    }
+    
+    QPushButton{
+        border: none;
+        font-weight: bold;
+        color: #ffffff;
+        background-color:rgb(6, 76, 130);
+        min-height: 25px;
+        border-radius: 5px;
+        min-width:100px;
+        font-size:12px;
+	
+        }
+
+    QPushButton:hover{
+	    background-color:rgb(22, 38, 76);
+    }
+"""
 
 class editButton(QtWidgets.QPushButton):
 
@@ -82,6 +119,18 @@ class deleteButton(QtWidgets.QPushButton):
 
 
 
+class reportButton(QtWidgets.QPushButton):
+
+    def __init__(self, *a, **kw):
+        super(reportButton, self).__init__(*a, **kw)
+        self._icon = QtGui.QIcon(':/assets/Assets/icons/icons8-eye-white-50.png')
+        self.setText("")
+        self.setStyleSheet(REPORT_BUTTON_STYLE)
+        self.setIcon(self._icon)
+
+
+
+
 class tabelCheckbox(QtWidgets.QCheckBox):
 
     def __init__(self, *a, **kw):
@@ -99,28 +148,7 @@ class tabelCheckbox(QtWidgets.QCheckBox):
         #self.setMaximumWidth(w+5)
 
 
-CONFIRMBOX_STYLESHEET = """
-   QMessageBox{ 
-        background-color: #ffffff;
 
-    }
-    
-    QPushButton{
-        border: none;
-        font-weight: bold;
-        color: #ffffff;
-        background-color:rgb(6, 76, 130);
-        min-height: 25px;
-        border-radius: 5px;
-        min-width:100px;
-        font-size:12px;
-	
-        }
-
-    QPushButton:hover{
-	    background-color:rgb(22, 38, 76);
-    }
-"""
 
 class confirmMessageBox:
     def __init__(self, title, text, buttons, min_height=400, min_width=700 ):

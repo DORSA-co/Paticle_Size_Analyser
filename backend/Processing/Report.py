@@ -19,7 +19,7 @@ class Report:
         self.standard = standard
         self.username = username
         self.main_path = main_path
-        self.date = datetime.now()
+        self.date_time = datetime.now()
         self.Buffer = particlesBuffer()
         self.sieved_particles = []
 
@@ -82,7 +82,24 @@ class Report:
             res.append(data)
 
         return res
+    
 
+    def get_database_record(self,):
+        db_data = {
+            'name': self.name,
+            'path': self.main_path,
+            'standard': self.standard['name'],
+            'date': self.date_time.date(),
+            'time': self.date_time.time(),
+            'username': self.username
+        }
+
+        return db_data
+
+
+    def get_date_str(self,):
+        return self.date_time.strftime("%Y/%m/%d")
+    
 
         
 

@@ -825,21 +825,20 @@ background-color: rgba(31, 32, 85, 100);
         <widget class="QFrame" name="sidebar">
          <property name="minimumSize">
           <size>
-           <width>170</width>
+           <width>0</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>170</width>
+           <width>16777215</width>
            <height>16777215</height>
           </size>
          </property>
          <property name="styleSheet">
           <string notr="true">QFrame#sidebar{
 background-color:rgb(6, 76, 130);
-min-width:170px;
-max-width:170px;
+
 }
 
 
@@ -871,6 +870,15 @@ Line{
 }</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="leftMargin">
+           <number>20</number>
+          </property>
+          <property name="topMargin">
+           <number>11</number>
+          </property>
+          <property name="rightMargin">
+           <number>20</number>
+          </property>
           <item>
            <widget class="QPushButton" name="sidebar_main_btn">
             <property name="enabled">
@@ -1027,7 +1035,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2252,9 +2260,9 @@ color: rgb(6, 76, 130);
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>0</y>
-                   <width>300</width>
-                   <height>590</height>
+                   <y>-86</y>
+                   <width>322</width>
+                   <height>751</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2278,7 +2286,7 @@ color: rgb(6, 76, 130);
                      <bool>true</bool>
                     </property>
                     <property name="checked">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_18">
                      <item>
@@ -2326,12 +2334,77 @@ color: rgb(6, 76, 130);
                    </widget>
                   </item>
                   <item>
+                   <widget class="QGroupBox" name="reportpage_filterusername_groupbox">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="title">
+                     <string>Filter By User</string>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_36">
+                     <item>
+                      <spacer name="verticalSpacer_38">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeType">
+                        <enum>QSizePolicy::Maximum</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>15</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QFrame" name="reportpage_filterusername_frame">
+                       <property name="maximumSize">
+                        <size>
+                         <width>16777215</width>
+                         <height>16777215</height>
+                        </size>
+                       </property>
+                       <layout class="QGridLayout" name="gridLayout_20">
+                        <property name="topMargin">
+                         <number>1</number>
+                        </property>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_74">
+                          <property name="text">
+                           <string>Username</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLineEdit" name="reportpage_filterusername_input"/>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="QGroupBox" name="reportpage_filterdate_groupbox">
                     <property name="title">
                      <string>Filter By Date</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_19">
                      <item>
@@ -2360,7 +2433,11 @@ color: rgb(6, 76, 130);
                          <number>1</number>
                         </property>
                         <item row="1" column="1">
-                         <widget class="QDateEdit" name="reportpage_end_date_dateedit"/>
+                         <widget class="QDateEdit" name="reportpage_end_date_dateedit">
+                          <property name="displayFormat">
+                           <string>yyyy/M/d</string>
+                          </property>
+                         </widget>
                         </item>
                         <item row="1" column="0">
                          <widget class="QLabel" name="label_73">
@@ -2377,7 +2454,11 @@ color: rgb(6, 76, 130);
                          </widget>
                         </item>
                         <item row="0" column="1">
-                         <widget class="QDateEdit" name="reportpage_start_date_dateedit"/>
+                         <widget class="QDateEdit" name="reportpage_start_date_dateedit">
+                          <property name="displayFormat">
+                           <string>yyyy/M/d</string>
+                          </property>
+                         </widget>
                         </item>
                         <item row="0" column="2">
                          <spacer name="horizontalSpacer_56">
@@ -2406,6 +2487,9 @@ color: rgb(6, 76, 130);
                     <property name="checkable">
                      <bool>true</bool>
                     </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
                     <layout class="QVBoxLayout" name="verticalLayout_14">
                      <item>
                       <spacer name="verticalSpacer_26">
@@ -2433,7 +2517,7 @@ color: rgb(6, 76, 130);
                          <number>1</number>
                         </property>
                         <item>
-                         <widget class="QTableWidget" name="reportpage_standards_filter_tabel">
+                         <widget class="QTableWidget" name="reportpage_standards_filter_table">
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
@@ -2580,7 +2664,7 @@ color: rgb(6, 76, 130);
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="tableWidget">
+            <widget class="QTableWidget" name="reportpage_samples_table">
              <property name="verticalScrollBarPolicy">
               <enum>Qt::ScrollBarAlwaysOn</enum>
              </property>
@@ -2593,6 +2677,9 @@ color: rgb(6, 76, 130);
              <property name="columnCount">
               <number>5</number>
              </property>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>45</number>
+             </attribute>
              <row/>
              <row/>
              <row/>
@@ -6398,8 +6485,8 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-1189</y>
-                <width>1145</width>
+                <y>0</y>
+                <width>1156</width>
                 <height>1969</height>
                </rect>
               </property>
@@ -7556,6 +7643,12 @@ max-height: 400px;</string>
                          <string notr="true">
 QPushButton{
 	background-color: rgba(255, 255, 255, 0 );
+	min-width: 0px;
+	min-height: 50px;
+}
+
+QPushButton:hover{
+	background-color: rgb(50, 50, 50);
 	min-width: 0px;
 	min-height: 50px;
 }</string>

@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets, QtCore, QtGui 
 from functools import partial
 import cv2 
-from datetime import datetime
+from datetime import datetime, date
 import sys
 
 
@@ -439,6 +439,14 @@ class GUIBackend:
         if row is not None:
             table.setRowCount(row)
 
+
+    @staticmethod
+    def get_table_dim(table: QtWidgets.QTableWidget,) -> tuple[int,int]:
+        """
+        """
+        return table.rowCount(), table.columnCount()
+        
+
     def set_cell_width_content_adjust(table: QtWidgets.QTableWidget, indexes:list[int] = None):
         """adjust cell width based on its content
 
@@ -507,7 +515,7 @@ class GUIBackend:
             table.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
         
     @staticmethod
-    def set_table_cell_widget(table: QtWidgets.QTableWidget, idx: tuple, widget):
+    def set_table_cell_widget(table: QtWidgets.QTableWidget, index: tuple, widget):
         """insert a Qt widget (like QPushButton) into a custom cell of given Qt table
 
         Args:
@@ -515,7 +523,9 @@ class GUIBackend:
             idx (tuple): position of cell (row_idx, col_idx)
             widget (_type_): Qt widget that you want insert into cell of table
         """
-        table.setCellWidget(*idx, widget)
+        table.setCellWidget(*index, widget)
+        #item = QtWidgets.QTableWidgetItem(widget)
+        #table.setItem(*index, item )
 
     @staticmethod
     def set_table_cell_value(table: QtWidgets.QTableWidget,index:tuple, value):
@@ -556,6 +566,17 @@ class GUIBackend:
             GUIBackend.set_table_row(table, row, row_datas)        
 
 
+    @staticmethod
+    def get_table_cell_value(table: QtWidgets.QTableWidget,index:tuple):
+        """
+        """
+        return table.itemAt(*index).text()
+    
+    @staticmethod
+    def get_table_cell_widget(table: QtWidgets.QTableWidget,index:tuple):
+        """
+        """
+        return table.itemAt(*index).text()
 
     #--------------------------------- GLOBAL StackWidget FUNCTIONs ---------------------------------
     @staticmethod
@@ -635,6 +656,16 @@ class GUIBackend:
             datetime: value in format if python datetime
         """
         return obj.date().toPython()
+        #return datetime.combine( obj.date().toPython(), datetime.min.time() )
+
+    
+    def set_date_input( obj: QtWidgets.QDateEdit, date:date) -> datetime:
+        """returns date of QDateEdit
+        """
+
+        date = QtCore.QDate(date.year, date.month, date.day)
+        return obj.setDate(date)
+        
     
 
     #--------------------------------- GLOBAL Tabs FUNCTIONs ---------------------------------

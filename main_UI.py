@@ -100,13 +100,13 @@ class mainUI:
 
         self.pages_index = {
             'main'              : 0,
-            'reports'            : 1,
+            'reports'           : 1,
             'grading_ranges'    : 2,
             'settings'          : 3,
             'calibration'       : 4,
             'user'              : 5,
             'help'              : 6,
-            'report'     : 7,
+            'report'            : 7,
         }
         
         self.sidebar_pages_buttons = {

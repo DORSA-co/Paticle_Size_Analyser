@@ -607,12 +607,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.sidebar = QFrame(self.middle)
         self.sidebar.setObjectName(u"sidebar")
-        self.sidebar.setMinimumSize(QSize(170, 0))
-        self.sidebar.setMaximumSize(QSize(170, 16777215))
+        self.sidebar.setMinimumSize(QSize(0, 0))
+        self.sidebar.setMaximumSize(QSize(16777215, 16777215))
         self.sidebar.setStyleSheet(u"QFrame#sidebar{\n"
 "background-color:rgb(6, 76, 130);\n"
-"min-width:170px;\n"
-"max-width:170px;\n"
+"\n"
 "}\n"
 "\n"
 "\n"
@@ -644,6 +643,7 @@ class Ui_MainWindow(object):
 "}")
         self.verticalLayout_2 = QVBoxLayout(self.sidebar)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(20, 11, 20, -1)
         self.sidebar_main_btn = QPushButton(self.sidebar)
         self.sidebar_main_btn.setObjectName(u"sidebar_main_btn")
         self.sidebar_main_btn.setEnabled(True)
@@ -1443,7 +1443,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 300, 590))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -86, 322, 751))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1453,7 +1453,7 @@ class Ui_MainWindow(object):
         self.reportpage_filtername_groupbox.setObjectName(u"reportpage_filtername_groupbox")
         self.reportpage_filtername_groupbox.setMaximumSize(QSize(16777215, 16777215))
         self.reportpage_filtername_groupbox.setCheckable(True)
-        self.reportpage_filtername_groupbox.setChecked(True)
+        self.reportpage_filtername_groupbox.setChecked(False)
         self.verticalLayout_18 = QVBoxLayout(self.reportpage_filtername_groupbox)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.verticalSpacer_22 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Maximum)
@@ -1482,9 +1482,43 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_15.addWidget(self.reportpage_filtername_groupbox)
 
+        self.reportpage_filterusername_groupbox = QGroupBox(self.filters_scrollAreaWidgetContents)
+        self.reportpage_filterusername_groupbox.setObjectName(u"reportpage_filterusername_groupbox")
+        self.reportpage_filterusername_groupbox.setMaximumSize(QSize(16777215, 16777215))
+        self.reportpage_filterusername_groupbox.setCheckable(True)
+        self.reportpage_filterusername_groupbox.setChecked(False)
+        self.verticalLayout_36 = QVBoxLayout(self.reportpage_filterusername_groupbox)
+        self.verticalLayout_36.setObjectName(u"verticalLayout_36")
+        self.verticalSpacer_38 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.verticalLayout_36.addItem(self.verticalSpacer_38)
+
+        self.reportpage_filterusername_frame = QFrame(self.reportpage_filterusername_groupbox)
+        self.reportpage_filterusername_frame.setObjectName(u"reportpage_filterusername_frame")
+        self.reportpage_filterusername_frame.setMaximumSize(QSize(16777215, 16777215))
+        self.gridLayout_20 = QGridLayout(self.reportpage_filterusername_frame)
+        self.gridLayout_20.setObjectName(u"gridLayout_20")
+        self.gridLayout_20.setContentsMargins(-1, 1, -1, -1)
+        self.label_74 = QLabel(self.reportpage_filterusername_frame)
+        self.label_74.setObjectName(u"label_74")
+
+        self.gridLayout_20.addWidget(self.label_74, 0, 0, 1, 1)
+
+        self.reportpage_filterusername_input = QLineEdit(self.reportpage_filterusername_frame)
+        self.reportpage_filterusername_input.setObjectName(u"reportpage_filterusername_input")
+
+        self.gridLayout_20.addWidget(self.reportpage_filterusername_input, 0, 1, 1, 1)
+
+
+        self.verticalLayout_36.addWidget(self.reportpage_filterusername_frame)
+
+
+        self.verticalLayout_15.addWidget(self.reportpage_filterusername_groupbox)
+
         self.reportpage_filterdate_groupbox = QGroupBox(self.filters_scrollAreaWidgetContents)
         self.reportpage_filterdate_groupbox.setObjectName(u"reportpage_filterdate_groupbox")
         self.reportpage_filterdate_groupbox.setCheckable(True)
+        self.reportpage_filterdate_groupbox.setChecked(False)
         self.verticalLayout_19 = QVBoxLayout(self.reportpage_filterdate_groupbox)
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
         self.verticalSpacer_25 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Maximum)
@@ -1529,6 +1563,7 @@ class Ui_MainWindow(object):
         self.reportpage_filterstandards_groupbox = QGroupBox(self.filters_scrollAreaWidgetContents)
         self.reportpage_filterstandards_groupbox.setObjectName(u"reportpage_filterstandards_groupbox")
         self.reportpage_filterstandards_groupbox.setCheckable(True)
+        self.reportpage_filterstandards_groupbox.setChecked(False)
         self.verticalLayout_14 = QVBoxLayout(self.reportpage_filterstandards_groupbox)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
         self.verticalSpacer_26 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -1541,36 +1576,36 @@ class Ui_MainWindow(object):
         self.verticalLayout_20 = QVBoxLayout(self.reportpage_filterstandards_frame)
         self.verticalLayout_20.setObjectName(u"verticalLayout_20")
         self.verticalLayout_20.setContentsMargins(-1, 1, -1, -1)
-        self.reportpage_standards_filter_tabel = QTableWidget(self.reportpage_filterstandards_frame)
-        if (self.reportpage_standards_filter_tabel.columnCount() < 2):
-            self.reportpage_standards_filter_tabel.setColumnCount(2)
-        if (self.reportpage_standards_filter_tabel.rowCount() < 5):
-            self.reportpage_standards_filter_tabel.setRowCount(5)
+        self.reportpage_standards_filter_table = QTableWidget(self.reportpage_filterstandards_frame)
+        if (self.reportpage_standards_filter_table.columnCount() < 2):
+            self.reportpage_standards_filter_table.setColumnCount(2)
+        if (self.reportpage_standards_filter_table.rowCount() < 5):
+            self.reportpage_standards_filter_table.setRowCount(5)
         __qtablewidgetitem = QTableWidgetItem()
-        self.reportpage_standards_filter_tabel.setItem(0, 1, __qtablewidgetitem)
+        self.reportpage_standards_filter_table.setItem(0, 1, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
-        self.reportpage_standards_filter_tabel.setItem(1, 1, __qtablewidgetitem1)
-        self.reportpage_standards_filter_tabel.setObjectName(u"reportpage_standards_filter_tabel")
-        self.reportpage_standards_filter_tabel.setMinimumSize(QSize(0, 0))
-        self.reportpage_standards_filter_tabel.setMaximumSize(QSize(16777215, 150))
-        self.reportpage_standards_filter_tabel.setStyleSheet(u"")
-        self.reportpage_standards_filter_tabel.setFrameShape(QFrame.NoFrame)
-        self.reportpage_standards_filter_tabel.setFrameShadow(QFrame.Sunken)
-        self.reportpage_standards_filter_tabel.setLineWidth(0)
-        self.reportpage_standards_filter_tabel.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.reportpage_standards_filter_tabel.setTabKeyNavigation(True)
-        self.reportpage_standards_filter_tabel.setDefaultDropAction(Qt.IgnoreAction)
-        self.reportpage_standards_filter_tabel.setAlternatingRowColors(False)
-        self.reportpage_standards_filter_tabel.setTextElideMode(Qt.ElideLeft)
-        self.reportpage_standards_filter_tabel.setShowGrid(False)
-        self.reportpage_standards_filter_tabel.setRowCount(5)
-        self.reportpage_standards_filter_tabel.setColumnCount(2)
-        self.reportpage_standards_filter_tabel.horizontalHeader().setVisible(False)
-        self.reportpage_standards_filter_tabel.horizontalHeader().setHighlightSections(False)
-        self.reportpage_standards_filter_tabel.verticalHeader().setVisible(False)
-        self.reportpage_standards_filter_tabel.verticalHeader().setHighlightSections(False)
+        self.reportpage_standards_filter_table.setItem(1, 1, __qtablewidgetitem1)
+        self.reportpage_standards_filter_table.setObjectName(u"reportpage_standards_filter_table")
+        self.reportpage_standards_filter_table.setMinimumSize(QSize(0, 0))
+        self.reportpage_standards_filter_table.setMaximumSize(QSize(16777215, 150))
+        self.reportpage_standards_filter_table.setStyleSheet(u"")
+        self.reportpage_standards_filter_table.setFrameShape(QFrame.NoFrame)
+        self.reportpage_standards_filter_table.setFrameShadow(QFrame.Sunken)
+        self.reportpage_standards_filter_table.setLineWidth(0)
+        self.reportpage_standards_filter_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.reportpage_standards_filter_table.setTabKeyNavigation(True)
+        self.reportpage_standards_filter_table.setDefaultDropAction(Qt.IgnoreAction)
+        self.reportpage_standards_filter_table.setAlternatingRowColors(False)
+        self.reportpage_standards_filter_table.setTextElideMode(Qt.ElideLeft)
+        self.reportpage_standards_filter_table.setShowGrid(False)
+        self.reportpage_standards_filter_table.setRowCount(5)
+        self.reportpage_standards_filter_table.setColumnCount(2)
+        self.reportpage_standards_filter_table.horizontalHeader().setVisible(False)
+        self.reportpage_standards_filter_table.horizontalHeader().setHighlightSections(False)
+        self.reportpage_standards_filter_table.verticalHeader().setVisible(False)
+        self.reportpage_standards_filter_table.verticalHeader().setHighlightSections(False)
 
-        self.verticalLayout_20.addWidget(self.reportpage_standards_filter_tabel)
+        self.verticalLayout_20.addWidget(self.reportpage_standards_filter_table)
 
 
         self.verticalLayout_14.addWidget(self.reportpage_filterstandards_frame)
@@ -1608,18 +1643,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_27.addWidget(self.reportspage_filters_frame)
 
-        self.tableWidget = QTableWidget(self.report_page)
-        if (self.tableWidget.columnCount() < 5):
-            self.tableWidget.setColumnCount(5)
-        if (self.tableWidget.rowCount() < 11):
-            self.tableWidget.setRowCount(11)
-        self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.tableWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.tableWidget.setRowCount(11)
-        self.tableWidget.setColumnCount(5)
+        self.reportpage_samples_table = QTableWidget(self.report_page)
+        if (self.reportpage_samples_table.columnCount() < 5):
+            self.reportpage_samples_table.setColumnCount(5)
+        if (self.reportpage_samples_table.rowCount() < 11):
+            self.reportpage_samples_table.setRowCount(11)
+        self.reportpage_samples_table.setObjectName(u"reportpage_samples_table")
+        self.reportpage_samples_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.reportpage_samples_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.reportpage_samples_table.setRowCount(11)
+        self.reportpage_samples_table.setColumnCount(5)
+        self.reportpage_samples_table.verticalHeader().setDefaultSectionSize(45)
 
-        self.horizontalLayout_27.addWidget(self.tableWidget)
+        self.horizontalLayout_27.addWidget(self.reportpage_samples_table)
 
         self.main_pages_stackw.addWidget(self.report_page)
         self.grading_ranges_page = QWidget()
@@ -3804,7 +3840,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1189, 1145, 1969))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1156, 1969))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4405,6 +4441,12 @@ class Ui_MainWindow(object):
 "	background-color: rgba(255, 255, 255, 0 );\n"
 "	min-width: 0px;\n"
 "	min-height: 50px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(50, 50, 50);\n"
+"	min-width: 0px;\n"
+"	min-height: 50px;\n"
 "}")
         self.horizontalLayout_30 = QHBoxLayout(self.horizontalFrame_31)
         self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
@@ -4675,7 +4717,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(1)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
@@ -4748,18 +4790,22 @@ class Ui_MainWindow(object):
         self.label_70.setText(QCoreApplication.translate("MainWindow", u"Filter Results", None))
         self.reportpage_filtername_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By name", None))
         self.label_71.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.reportpage_filterusername_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By User", None))
+        self.label_74.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.reportpage_filterdate_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By Date", None))
+        self.reportpage_end_date_dateedit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy/M/d", None))
         self.label_73.setText(QCoreApplication.translate("MainWindow", u"To", None))
         self.label_72.setText(QCoreApplication.translate("MainWindow", u"From", None))
+        self.reportpage_start_date_dateedit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy/M/d", None))
         self.reportpage_filterstandards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By Ranges Standard", None))
 
-        __sortingEnabled = self.reportpage_standards_filter_tabel.isSortingEnabled()
-        self.reportpage_standards_filter_tabel.setSortingEnabled(False)
-        ___qtablewidgetitem = self.reportpage_standards_filter_tabel.item(0, 1)
+        __sortingEnabled = self.reportpage_standards_filter_table.isSortingEnabled()
+        self.reportpage_standards_filter_table.setSortingEnabled(False)
+        ___qtablewidgetitem = self.reportpage_standards_filter_table.item(0, 1)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"G1", None));
-        ___qtablewidgetitem1 = self.reportpage_standards_filter_tabel.item(1, 1)
+        ___qtablewidgetitem1 = self.reportpage_standards_filter_table.item(1, 1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"G2", None));
-        self.reportpage_standards_filter_tabel.setSortingEnabled(__sortingEnabled)
+        self.reportpage_standards_filter_table.setSortingEnabled(__sortingEnabled)
 
         self.reportpage_apply_filters_btn.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))

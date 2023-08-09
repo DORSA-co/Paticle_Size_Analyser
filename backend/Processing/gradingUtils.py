@@ -6,6 +6,7 @@ def get_sift_idx(x , ranges):
 
         if l<= x < h:
             return i
+    return -1
 
 
 def sift(xs, ranges: list[list]) -> list[np.ndarray]:
@@ -14,7 +15,8 @@ def sift(xs, ranges: list[list]) -> list[np.ndarray]:
         sift_results.append([])
     for x in xs:
         idx = get_sift_idx(x, ranges)
-        sift_results[idx].append(x)
+        if idx != -1:
+            sift_results[idx].append(x)
     
     for i in range(len(sift_results)):
         sift_results[i] = np.array( sift_results[i] )

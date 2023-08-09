@@ -34,7 +34,6 @@ class Grading:
             np.ndarray: 1d array of percentage in each range
         """
         percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
-        return percentage_hist
+        return np.round(percentage_hist, 1 )
     
 
-    

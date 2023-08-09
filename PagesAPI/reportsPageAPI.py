@@ -2,6 +2,7 @@ from PagesUI.reportsPageUI import reportsPageUI
 from backend.Processing.Report import Report
 from Database.mainDatabase  import mainDatabase
 from Database.reportsDB import reportFileHandler
+from backend.Processing.Compare import Compare
 import cv2
 from datetime import datetime, date
 
@@ -11,10 +12,12 @@ class reportsPageAPI:
         self.database = database
 
         self.see_report_event_func = None
+        self.compare_event_func = None
 
         self.ui.apply_filter_button_connector(self.apply_filters)
-        self.startup()
         self.ui.external_see_report_button_connector(self.see_report)
+        self.ui.compare_button_connector(self.compare)
+        self.startup()
         
         
         
@@ -23,7 +26,7 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
-        self.set_standards_filter()
+        self.set_standards()
         self.load_all_samples()
 
 
@@ -33,10 +36,12 @@ class reportsPageAPI:
         self.ui.set_samples_table(all_records)
 
     
-    def set_standards_filter(self,):
+    def set_standards(self,):
         standards = self.database.grading_ranges_db.load_all()
         standards_name = list(map( lambda x:x['name'], standards))
+
         self.ui.set_standards_filter_table_data(standards_name)
+        self.ui.set_compare_standards_items(standards_name)
 
     
     def apply_filters(self,):
@@ -94,4 +99,24 @@ class reportsPageAPI:
     
     def set_see_report_event_func(self, func):
         self.see_report_event_func = func
+    
+
+    def set_compare_event_func(self, func):
+        self.compare_event_func = func
+
+
+    def compare(self,):
+        ids  = self.ui.get_selected_samples()
+        #load selected sample for compare from database
+        samples = self.database.reports_db.load_by_ids(ids)
+        #get selected standard for compare
+        standard_name = self.ui.get_selected_standard_for_campare()
+        standard = self.database.grading_ranges_db.load(standard_name)
+
+        compare = Compare(samples, standard)
+
+        self.compare_event_func(compare)
+
+        
+        
         

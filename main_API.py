@@ -11,10 +11,12 @@ from PagesAPI.mainPageAPI import mainPageAPI
 from PagesAPI.gradingRangesPageAPI import gradingRangesPageAPI
 from PagesAPI.reportPageAPI import reportPageAPI
 from PagesAPI.reportsPageAPI import reportsPageAPI
+from PagesAPI.comparePageAPI import comparePageAPI
 #------------------------------------------------------------
 #from main_UI import mainUI
 #------------------------------------------------------------
 from backend.Processing.Report import Report
+from backend.Processing.Compare import Compare
 # from settingUI import settingUI
 import CONSTANTS
 import pickle
@@ -35,12 +37,15 @@ class main_API:
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
+        self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
 
         self.ui.change_page_connector(self.page_change)
         self.usersPageAPI.set_login_event(self.login_user_event)
         self.mainPageAPI.set_report_button_event_func(self.show_report)
         self.reportsPageAPI.set_see_report_event_func(self.show_report)
         self.reportPageAPI.set_back_event_func(self.change_page)
+        self.comparePageAPI.set_back_event_func(self.change_page)
+        self.reportsPageAPI.set_compare_event_func(self.show_compare)
 
         #this functions should run when each page load
         self.pages_api_dict = {
@@ -52,6 +57,7 @@ class main_API:
             'user': None,
             'help': None,
             'report': None,
+            'compare': None,
         }
 
         #TEMP
@@ -59,6 +65,7 @@ class main_API:
         #---------------------------------------------------
         #report = load_obj('test_report')
         #self.show_report(report, 'main')
+        #self.show_compare(None)
         
     
     def page_change(self, pagename, idx):
@@ -121,7 +128,6 @@ class main_API:
         Args:
             report (Report): _description_
         """
-        save_obj(report, 'test_report')
         self.reportPageAPI.set_master_page(master_page)
         self.reportPageAPI.set_report(report)
         self.ui.go_to_page('report')
@@ -130,13 +136,19 @@ class main_API:
     def change_page(self, page_name):
         self.ui.go_to_page(page_name)
 
+    def show_compare(self, compare:Compare):
+        #compare = __load_obj__('test')
+        self.ui.go_to_page('compare')
+        self.comparePageAPI.set_compare_data(compare)
 
 
 
-def save_obj(obj, path):
+def __save_obj__( obj:object, path:str):
     dbfile = open(path, 'ab')
     pickle.dump(obj, dbfile)
 
-def load_obj( path):
+
+def __load_obj__( path:str) -> object:
+
     dbfile = open(path, 'rb')
     return pickle.load( dbfile)

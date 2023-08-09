@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../.designer/backup/Icons/app_logo.ico</normaloff>../../.designer/backup/Icons/app_logo.ico</iconset>
+    <normaloff>../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../.designer/backup/Icons/app_logo.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -1023,7 +1023,8 @@ Line{
 #calibration_page,
 #users_page,
 #help_page,
-#single_report_page
+#single_report_page,
+#compare_page
  {
 	background-color: #ffffff;
 }
@@ -1035,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>8</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2664,39 +2665,112 @@ color: rgb(6, 76, 130);
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="reportpage_samples_table">
-             <property name="verticalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOn</enum>
+            <layout class="QVBoxLayout" name="verticalLayout_38">
+             <property name="rightMargin">
+              <number>0</number>
              </property>
-             <property name="horizontalScrollBarPolicy">
-              <enum>Qt::ScrollBarAlwaysOn</enum>
-             </property>
-             <property name="rowCount">
-              <number>11</number>
-             </property>
-             <property name="columnCount">
-              <number>5</number>
-             </property>
-             <attribute name="verticalHeaderDefaultSectionSize">
-              <number>45</number>
-             </attribute>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <row/>
-             <column/>
-             <column/>
-             <column/>
-             <column/>
-             <column/>
-            </widget>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_52">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_48">
+                 <property name="text">
+                  <string>Standard for compare</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="reportpage_compare_standards_combobox"/>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_88">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Maximum</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QPushButton" name="reportpage_compare_btn">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+	max-width: 100px;
+	background-color: rgb(200, 96, 26);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Compare</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_39">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="Line" name="line_21">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="reportpage_samples_table">
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOn</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOn</enum>
+               </property>
+               <property name="rowCount">
+                <number>11</number>
+               </property>
+               <property name="columnCount">
+                <number>5</number>
+               </property>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                <number>45</number>
+               </attribute>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <column/>
+               <column/>
+               <column/>
+               <column/>
+               <column/>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -6227,8 +6301,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>162</width>
-                    <height>3292</height>
+                    <width>1154</width>
+                    <height>714</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -6250,7 +6324,7 @@ color: rgb(6, 76, 130);</string>
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap>../../.designer/backup/img.jpg</pixmap>
+                      <pixmap>../../../.designer/backup/img.jpg</pixmap>
                      </property>
                     </widget>
                    </item>
@@ -8010,6 +8084,288 @@ margin: 5px 0px;</string>
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="compare_page">
+          <layout class="QVBoxLayout" name="verticalLayout_39">
+           <item>
+            <widget class="QFrame" name="horizontalFrame_6">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+background-color: rgba(255, 255, 255, 0);
+color: rgb(25, 68, 105);
+font-size: 14px;
+min-width:80px;
+padding: 5px;
+}
+
+QPushButton:hover{
+border: 2px solid rgb(25, 68, 105);
+}
+
+QFrame{
+	max-height: 50px;
+}</string>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_56">
+              <property name="topMargin">
+               <number>1</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="comparepage_back_btn">
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="text">
+                 <string>Back</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="Assets.qrc">
+                  <normaloff>:/assets/Assets/icons/icons8-back-48.png</normaloff>:/assets/Assets/icons/icons8-back-48.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>25</width>
+                  <height>25</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="Line" name="line_22">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="comparepage_export_btn">
+                <property name="text">
+                 <string>Export</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="Assets.qrc">
+                  <normaloff>:/assets/Assets/icons/icons8-export-48.png</normaloff>:/assets/Assets/icons/icons8-export-48.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>30</width>
+                  <height>30</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_91">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="comparepage_progressbar">
+             <property name="value">
+              <number>24</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QScrollArea" name="scrollArea_4">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="compareScrollAreaWidget">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1176</width>
+                <height>742</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#compareScrollAreaWidget
+{
+background-color:#ffffff;
+
+}</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_40">
+               <item>
+                <widget class="QTableWidget" name="comparepage_compare_table">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="sizeIncrement">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>-1</pointsize>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="focusPolicy">
+                  <enum>Qt::NoFocus</enum>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+QHeaderView::section {
+    background-color: rgb(6, 76, 130);
+	color: #ffffff;
+    padding: 4px;
+    font-size: 14pt;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+    border-right: 1px solid #fffff8;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fffff8;	
+}
+
+
+QTableWidget{
+	font-size: 16px;
+	color:rgb(50, 50, 50);
+}
+
+QTableWidget::item
+{
+   padding: 10px;
+}
+</string>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::Box</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOff</enum>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAsNeeded</enum>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::NoEditTriggers</set>
+                 </property>
+                 <property name="alternatingRowColors">
+                  <bool>false</bool>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::NoSelection</enum>
+                 </property>
+                 <property name="selectionBehavior">
+                  <enum>QAbstractItemView::SelectRows</enum>
+                 </property>
+                 <property name="textElideMode">
+                  <enum>Qt::ElideMiddle</enum>
+                 </property>
+                 <property name="gridStyle">
+                  <enum>Qt::SolidLine</enum>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>true</bool>
+                 </property>
+                 <property name="rowCount">
+                  <number>4</number>
+                 </property>
+                 <property name="columnCount">
+                  <number>5</number>
+                 </property>
+                 <attribute name="horizontalHeaderMinimumSectionSize">
+                  <number>50</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderDefaultSectionSize">
+                  <number>180</number>
+                 </attribute>
+                 <attribute name="horizontalHeaderHighlightSections">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderDefaultSectionSize">
+                  <number>40</number>
+                 </attribute>
+                 <attribute name="verticalHeaderHighlightSections">
+                  <bool>true</bool>
+                 </attribute>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <column/>
+                 <column/>
+                 <column/>
+                 <column/>
+                 <column/>
+                 <item row="0" column="1">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                 <item row="1" column="1">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -8136,6 +8492,7 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
+  <include location="../../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -8,6 +8,15 @@ import sys
 class GUIBackend:
 
     @staticmethod
+    def set_max_size(wgt:QtWidgets.QWidget, h=None, w=None):
+        if w is not None:
+            wgt.setMaximumWidth(w)
+        
+        if h is not None:
+            wgt.setMaximumHeight(h)
+
+
+    @staticmethod
     def set_win_frameless(ui):
         ui.setWindowFlags(QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint))
 
@@ -692,4 +701,6 @@ class GUIBackend:
 
 
     #------------------------------------------------------------------------------------------
-    
+    @staticmethod
+    def set_progressbar_value(progressbar:QtWidgets.QProgressBar, value):
+        progressbar.setValue(int(value))

@@ -29,7 +29,8 @@ class storageSettingTabAPI:
     
     def choose_dir(self):
         path = self.ui.open_select_dir_dialog()
-        self.ui.set_path(path)
+        if path != '':
+            self.ui.set_path(path)
 
     def save(self,):
         settings = self.ui.get_settings()

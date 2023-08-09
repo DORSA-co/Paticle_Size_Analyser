@@ -112,3 +112,4 @@ class reportPageAPI:
         """
         if self.external_back_event_func is not None:
             self.external_back_event_func(self.master_page)
+

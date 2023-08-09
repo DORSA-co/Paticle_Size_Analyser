@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Assets_rc
+import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,7 +32,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1359, 949)
         icon = QIcon()
-        icon.addFile(u"../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -723,7 +724,8 @@ class Ui_MainWindow(object):
 "#calibration_page,\n"
 "#users_page,\n"
 "#help_page,\n"
-"#single_report_page\n"
+"#single_report_page,\n"
+"#compare_page\n"
 " {\n"
 "	background-color: #ffffff;\n"
 "}\n"
@@ -1643,6 +1645,49 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_27.addWidget(self.reportspage_filters_frame)
 
+        self.verticalLayout_38 = QVBoxLayout()
+        self.verticalLayout_38.setObjectName(u"verticalLayout_38")
+        self.verticalLayout_38.setContentsMargins(-1, -1, 0, -1)
+        self.horizontalLayout_52 = QHBoxLayout()
+        self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
+        self.horizontalLayout_52.setContentsMargins(-1, 0, -1, -1)
+        self.label_48 = QLabel(self.report_page)
+        self.label_48.setObjectName(u"label_48")
+
+        self.horizontalLayout_52.addWidget(self.label_48)
+
+        self.reportpage_compare_standards_combobox = QComboBox(self.report_page)
+        self.reportpage_compare_standards_combobox.setObjectName(u"reportpage_compare_standards_combobox")
+
+        self.horizontalLayout_52.addWidget(self.reportpage_compare_standards_combobox)
+
+        self.horizontalSpacer_88 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_52.addItem(self.horizontalSpacer_88)
+
+        self.reportpage_compare_btn = QPushButton(self.report_page)
+        self.reportpage_compare_btn.setObjectName(u"reportpage_compare_btn")
+        self.reportpage_compare_btn.setStyleSheet(u"QPushButton{\n"
+"	max-width: 100px;\n"
+"	background-color: rgb(200, 96, 26);\n"
+"}")
+
+        self.horizontalLayout_52.addWidget(self.reportpage_compare_btn)
+
+        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_52.addItem(self.horizontalSpacer_39)
+
+
+        self.verticalLayout_38.addLayout(self.horizontalLayout_52)
+
+        self.line_21 = QFrame(self.report_page)
+        self.line_21.setObjectName(u"line_21")
+        self.line_21.setFrameShape(QFrame.HLine)
+        self.line_21.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_38.addWidget(self.line_21)
+
         self.reportpage_samples_table = QTableWidget(self.report_page)
         if (self.reportpage_samples_table.columnCount() < 5):
             self.reportpage_samples_table.setColumnCount(5)
@@ -1655,7 +1700,10 @@ class Ui_MainWindow(object):
         self.reportpage_samples_table.setColumnCount(5)
         self.reportpage_samples_table.verticalHeader().setDefaultSectionSize(45)
 
-        self.horizontalLayout_27.addWidget(self.reportpage_samples_table)
+        self.verticalLayout_38.addWidget(self.reportpage_samples_table)
+
+
+        self.horizontalLayout_27.addLayout(self.verticalLayout_38)
 
         self.main_pages_stackw.addWidget(self.report_page)
         self.grading_ranges_page = QWidget()
@@ -3658,7 +3706,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1154, 714))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -3671,7 +3719,7 @@ class Ui_MainWindow(object):
 
         self.label_84 = QLabel(self.aboutScrollArea)
         self.label_84.setObjectName(u"label_84")
-        self.label_84.setPixmap(QPixmap(u"../../.designer/backup/img.jpg"))
+        self.label_84.setPixmap(QPixmap(u"../../../.designer/backup/img.jpg"))
 
         self.verticalLayout_29.addWidget(self.label_84)
 
@@ -4647,6 +4695,158 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.scrollArea)
 
         self.main_pages_stackw.addWidget(self.single_report_page)
+        self.compare_page = QWidget()
+        self.compare_page.setObjectName(u"compare_page")
+        self.verticalLayout_39 = QVBoxLayout(self.compare_page)
+        self.verticalLayout_39.setObjectName(u"verticalLayout_39")
+        self.horizontalFrame_6 = QFrame(self.compare_page)
+        self.horizontalFrame_6.setObjectName(u"horizontalFrame_6")
+        self.horizontalFrame_6.setStyleSheet(u"QPushButton{\n"
+"background-color: rgba(255, 255, 255, 0);\n"
+"color: rgb(25, 68, 105);\n"
+"font-size: 14px;\n"
+"min-width:80px;\n"
+"padding: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"border: 2px solid rgb(25, 68, 105);\n"
+"}\n"
+"\n"
+"QFrame{\n"
+"	max-height: 50px;\n"
+"}")
+        self.horizontalLayout_56 = QHBoxLayout(self.horizontalFrame_6)
+        self.horizontalLayout_56.setObjectName(u"horizontalLayout_56")
+        self.horizontalLayout_56.setContentsMargins(-1, 1, -1, -1)
+        self.comparepage_back_btn = QPushButton(self.horizontalFrame_6)
+        self.comparepage_back_btn.setObjectName(u"comparepage_back_btn")
+        self.comparepage_back_btn.setStyleSheet(u"")
+        self.comparepage_back_btn.setIcon(icon26)
+        self.comparepage_back_btn.setIconSize(QSize(25, 25))
+
+        self.horizontalLayout_56.addWidget(self.comparepage_back_btn)
+
+        self.line_22 = QFrame(self.horizontalFrame_6)
+        self.line_22.setObjectName(u"line_22")
+        self.line_22.setFrameShape(QFrame.VLine)
+        self.line_22.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_56.addWidget(self.line_22)
+
+        self.comparepage_export_btn = QPushButton(self.horizontalFrame_6)
+        self.comparepage_export_btn.setObjectName(u"comparepage_export_btn")
+        self.comparepage_export_btn.setIcon(icon27)
+        self.comparepage_export_btn.setIconSize(QSize(30, 30))
+
+        self.horizontalLayout_56.addWidget(self.comparepage_export_btn)
+
+        self.horizontalSpacer_91 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_56.addItem(self.horizontalSpacer_91)
+
+
+        self.verticalLayout_39.addWidget(self.horizontalFrame_6)
+
+        self.comparepage_progressbar = QProgressBar(self.compare_page)
+        self.comparepage_progressbar.setObjectName(u"comparepage_progressbar")
+        self.comparepage_progressbar.setValue(24)
+
+        self.verticalLayout_39.addWidget(self.comparepage_progressbar)
+
+        self.scrollArea_4 = QScrollArea(self.compare_page)
+        self.scrollArea_4.setObjectName(u"scrollArea_4")
+        self.scrollArea_4.setStyleSheet(u"")
+        self.scrollArea_4.setWidgetResizable(True)
+        self.compareScrollAreaWidget = QWidget()
+        self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1176, 742))
+        self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
+"{\n"
+"background-color:#ffffff;\n"
+"\n"
+"}")
+        self.verticalLayout_40 = QVBoxLayout(self.compareScrollAreaWidget)
+        self.verticalLayout_40.setObjectName(u"verticalLayout_40")
+        self.comparepage_compare_table = QTableWidget(self.compareScrollAreaWidget)
+        if (self.comparepage_compare_table.columnCount() < 5):
+            self.comparepage_compare_table.setColumnCount(5)
+        if (self.comparepage_compare_table.rowCount() < 4):
+            self.comparepage_compare_table.setRowCount(4)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem10)
+        self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
+        self.comparepage_compare_table.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_table.setSizePolicy(sizePolicy2)
+        self.comparepage_compare_table.setMaximumSize(QSize(16777215, 16777215))
+        self.comparepage_compare_table.setSizeIncrement(QSize(0, 0))
+        self.comparepage_compare_table.setBaseSize(QSize(0, 0))
+        self.comparepage_compare_table.setFont(font1)
+        self.comparepage_compare_table.setFocusPolicy(Qt.NoFocus)
+        self.comparepage_compare_table.setStyleSheet(u"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(6, 76, 130);\n"
+"	color: #ffffff;\n"
+"    padding: 4px;\n"
+"    font-size: 14pt;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-right: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fffff8;	\n"
+"}\n"
+"\n"
+"\n"
+"QTableWidget{\n"
+"	font-size: 16px;\n"
+"	color:rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QTableWidget::item\n"
+"{\n"
+"   padding: 10px;\n"
+"}\n"
+"")
+        self.comparepage_compare_table.setFrameShape(QFrame.Box)
+        self.comparepage_compare_table.setFrameShadow(QFrame.Raised)
+        self.comparepage_compare_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.comparepage_compare_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.comparepage_compare_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.comparepage_compare_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.comparepage_compare_table.setAlternatingRowColors(False)
+        self.comparepage_compare_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.comparepage_compare_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.comparepage_compare_table.setTextElideMode(Qt.ElideMiddle)
+        self.comparepage_compare_table.setGridStyle(Qt.SolidLine)
+        self.comparepage_compare_table.setWordWrap(True)
+        self.comparepage_compare_table.setRowCount(4)
+        self.comparepage_compare_table.setColumnCount(5)
+        self.comparepage_compare_table.horizontalHeader().setMinimumSectionSize(50)
+        self.comparepage_compare_table.horizontalHeader().setDefaultSectionSize(180)
+        self.comparepage_compare_table.horizontalHeader().setHighlightSections(True)
+        self.comparepage_compare_table.horizontalHeader().setStretchLastSection(False)
+        self.comparepage_compare_table.verticalHeader().setVisible(False)
+        self.comparepage_compare_table.verticalHeader().setDefaultSectionSize(40)
+        self.comparepage_compare_table.verticalHeader().setHighlightSections(True)
+
+        self.verticalLayout_40.addWidget(self.comparepage_compare_table)
+
+        self.scrollArea_4.setWidget(self.compareScrollAreaWidget)
+
+        self.verticalLayout_39.addWidget(self.scrollArea_4)
+
+        self.main_pages_stackw.addWidget(self.compare_page)
 
         self.horizontalLayout.addWidget(self.main_pages_stackw)
 
@@ -4717,7 +4917,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(8)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
@@ -4808,6 +5008,8 @@ class Ui_MainWindow(object):
         self.reportpage_standards_filter_table.setSortingEnabled(__sortingEnabled)
 
         self.reportpage_apply_filters_btn.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare", None))
+        self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
         self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
@@ -5006,6 +5208,13 @@ class Ui_MainWindow(object):
         self.label_62.setText(QCoreApplication.translate("MainWindow", u"Max Radius:", None))
         self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"17", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
+        self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
+        self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+
+        __sortingEnabled4 = self.comparepage_compare_table.isSortingEnabled()
+        self.comparepage_compare_table.setSortingEnabled(False)
+        self.comparepage_compare_table.setSortingEnabled(__sortingEnabled4)
+
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Designed and Developed by Dideh Rayan Sanati Esfahan (Dorsa)", None))
     # retranslateUi
 

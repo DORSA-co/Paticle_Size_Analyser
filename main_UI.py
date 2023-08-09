@@ -19,6 +19,7 @@ main_ui_file = 'uiFiles/main_UI.ui'
 login_ui_file = 'uiFiles/login.ui'
 sample_info_ui_file = 'uiFiles/sample_info.ui'
 edit_user_ui_file = 'uiFiles/edit_user.ui'
+#compare_info_ui_file = 'uiFiles/compare_info.ui'
 
 #----------------------Load Madouls -------------------------------
 from PySide6 import QtWidgets, QtCore, QtGui 
@@ -39,6 +40,7 @@ from PagesUI.usersPageUI import usersPageUI
 from PagesUI.reportsPageUI import reportsPageUI
 from PagesUI.gradingRangesPageUI import gradingRangesPageUI
 from PagesUI.reportPageUI import reportPageUI
+from PagesUI.comparePageUI import comparePageUI
 #---------------------------------------------------------
 from uiUtils import GUIComponents
 from uiUtils.guiBackend import GUIBackend
@@ -92,6 +94,7 @@ class mainUI:
         self.calibrationPage = calibrationPageUI(ui)
         self.reportPage = reportPageUI(ui)
         self.usersPage = usersPageUI(ui, login_ui, edit_user)
+        self.comparePage = comparePageUI(ui)
 
         #self.router = routerUI(ui)
 
@@ -107,6 +110,7 @@ class mainUI:
             'user'              : 5,
             'help'              : 6,
             'report'            : 7,
+            'compare'           : 8,
         }
         
         self.sidebar_pages_buttons = {

@@ -1,6 +1,7 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from datetime import datetime
+from backend.Utils.datetimeUtils import datetimeFormat
 class reportsPageUI:
 
     def __init__(self, ui):
@@ -13,6 +14,8 @@ class reportsPageUI:
         self.samples_table = self.ui.reportpage_samples_table
         self.name_filter_input = self.ui.reportpage_filtername_input
         self.username_filter_input = self.ui.reportpage_filterusername_input
+        self.compare_btn = self.ui.reportpage_compare_btn
+        self.compare_standards_combobox = self.ui.reportpage_compare_standards_combobox
 
         self.filters_groupbox = {
             'name': self.ui.reportpage_filtername_groupbox,
@@ -32,7 +35,8 @@ class reportsPageUI:
         
 
         self.standards_filter_checkbox = {}
-        self.samples_table_headers= ['compare', 'id', 'name', 'standard', 'date','time', 'username', 'see' ]
+        self.samples_table_checkbox = {}
+        self.samples_table_headers= ['compare', 'id', 'name', 'standard', 'date', 'time', 'username', 'see' ]
         self.external_see_report_event_func = None
 
 
@@ -56,10 +60,18 @@ class reportsPageUI:
         pass
 
     def apply_filter_button_connector(self,func):
+        """connect 'apply filter' button into a python func
+
+        Args:
+            func (callable): a python function
+        """
         GUIBackend.button_connector(self.apply_filter_btn, func)
 
     def external_see_report_button_connector(self, func):
         self.external_see_report_event_func = func
+
+    def compare_button_connector(self, func):
+        GUIBackend.button_connector(self.compare_btn, func)
 
 
     def __groupbox_filter_event_connector__(self, ):
@@ -151,10 +163,10 @@ class reportsPageUI:
         return res
 
 
-    def set_standards_filter_table_data(self, standards:list[list]):
+    def set_standards_filter_table_data(self, standards:list[str]):
         """insert standards range into table
         Args:
-            datas (list[list]): list of standards name
+            datas (list[str]): list of standards name
         """
         
         #set row count
@@ -173,16 +185,23 @@ class reportsPageUI:
             GUIBackend.set_table_cell_widget(self.standards_filter_table, (i,0), cell_checkbox)
             self.standards_filter_checkbox[standard_name] = cell_checkbox
 
+    def set_compare_standards_items(self, standards:list[str]):
+        """set a list of standards name into compare_standard_combobox
 
+        Args:
+            standards (list[str]): _description_
+        """
+        GUIBackend.set_combobox_items(self.compare_standards_combobox, standards)
 
     def set_samples_table(self, samples: list[dict]):
-
+        
         GUIBackend.set_table_dim(self.samples_table, row=len(samples), col=None)
+        self.samples_table_checkbox = {}
 
         for i,sample in enumerate(samples):
             for feature_name, feature_value in sample.items():
                 if feature_name == 'date':
-                    feature_value = feature_value.strftime("%Y/%m/%d")
+                    feature_value = datetimeFormat.date_to_str(feature_value)
                 if feature_name in self.samples_table_headers:
                     j = self.samples_table_headers.index(feature_name)
                     GUIBackend.set_table_cell_value(self.samples_table, (i,j), feature_value)
@@ -191,7 +210,7 @@ class reportsPageUI:
             checkbox = GUIComponents.tabelCheckbox()
             j = self.samples_table_headers.index('compare')
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox)
-
+            self.samples_table_checkbox[sample['id']] = checkbox
 
 
             report_btn = GUIComponents.reportButton()
@@ -201,3 +220,17 @@ class reportsPageUI:
             
             
                 
+    def get_selected_samples(self,) -> list[str]:
+        """returns id of those samples that are checked for compare
+
+        Returns:
+            list[str]: list of samples id
+        """
+        res = []
+        for sample_id, checkbox in self.samples_table_checkbox.items():
+            if GUIBackend.get_checkbox_value(checkbox):
+                res.append(sample_id)
+        return res
+    
+    def get_selected_standard_for_campare(self,):
+        return GUIBackend.get_combobox_selected(self.compare_standards_combobox)

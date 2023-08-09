@@ -101,6 +101,16 @@ class Report:
         return self.date_time.strftime("%Y/%m/%d")
     
 
+    def change_standard(self, standard):
+        if standard['ranges'] != self.standard['ranges']:
+            self.standard = standard
+            self.Grading = Grading(self.standard['ranges'])
+            self.Grading.append( self.Buffer )
+
+
+    
+    
+
         
 
 

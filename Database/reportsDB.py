@@ -1,6 +1,7 @@
 
 from Database.databaseManager import databaseManager
 from backend.Processing.Report import Report
+from backend.Utils.datetimeUtils import datetimeFormat
 from datetime import datetime
 import numpy as np
 import os
@@ -20,8 +21,8 @@ class reportsDB:
                    {'col_name': 'path',        'type':'VARCHAR(255)', 'len':200},
                 ]
 
-    DATE_STR_FORMAT = "%Y/%m/%d"
-    TIME_STR_FORMAT = "%H:%M:%S"
+    # DATE_STR_FORMAT = "%Y/%m/%d"
+    # TIME_STR_FORMAT = "%H:%M:%S"
     #PRIMERY_KEY_COL_NAME = 'application'
 
 
@@ -38,21 +39,31 @@ class reportsDB:
 
 
     def save(self, data):
-        data['date'] = data['date'].strftime(self.DATE_STR_FORMAT)
-        data['time'] = data['time'].strftime(self.TIME_STR_FORMAT)
+        data['date'] = datetimeFormat.date_to_str(data['date'])
+        data['time'] = datetimeFormat.time_to_str(data['time'])
         self.db_manager.add_record_dict(self.TABLE_NAME, data)
     
 
     def load_all(self,):
         records =  self.db_manager.get_all_content(self.TABLE_NAME)
         for record in records:
-            record['date'] = datetime.strptime(record['date'], self.DATE_STR_FORMAT ).date()
-            record['time'] = datetime.strptime(record['time'], self.TIME_STR_FORMAT ).time()
+            record['date'] = datetimeFormat.str_to_date(record['date'] )
+            record['time'] = datetimeFormat.str_to_time(record['time'] )
         return records
+    
+    def load_by_ids(self, ids):
+        res = []
+        for id in ids:
+            record = self.db_manager.search(self.TABLE_NAME, 'id', id)
+            if len(record):
+                res.append(record[0])
+        return res
         
     
     def remove(self, data):
         self.db_manager.remove_record(self.TABLE_NAME, 'id', data['id'])
+
+        self.db_manager.search()
 
 
 

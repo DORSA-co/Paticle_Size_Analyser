@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1348</width>
+    <width>1369</width>
     <height>920</height>
    </rect>
   </property>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>8</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -6617,7 +6617,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-240</y>
+                <y>0</y>
                 <width>1145</width>
                 <height>1969</height>
                </rect>
@@ -8399,10 +8399,10 @@ QTableWidget::item
                   <set>QAbstractItemView::NoEditTriggers</set>
                  </property>
                  <property name="alternatingRowColors">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="selectionMode">
-                  <enum>QAbstractItemView::NoSelection</enum>
+                  <enum>QAbstractItemView::SingleSelection</enum>
                  </property>
                  <property name="selectionBehavior">
                   <enum>QAbstractItemView::SelectRows</enum>

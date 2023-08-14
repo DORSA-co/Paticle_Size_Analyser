@@ -64,7 +64,9 @@ class reportsPageUI:
         for sample_checkbox in self.samples_table_checkbox.values():
             GUIBackend.set_checkbox_value(sample_checkbox, status)
 
-    
+    def set_select_all_samples(self, flag):
+        GUIBackend.set_checkbox_value(self.select_all_checkbox, flag )
+        
     def startup(self):
         pass
 

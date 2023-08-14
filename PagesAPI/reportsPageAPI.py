@@ -47,6 +47,7 @@ class reportsPageAPI:
 
     
     def apply_filters(self,):
+        self.ui.set_select_all_samples(False)
         self.ui.get_standards_filter()
         all_samples = self.database.reports_db.load_all()
         filter_func = self.generate_filter()
@@ -59,6 +60,7 @@ class reportsPageAPI:
                 
     
     def generate_filter(self, ):
+        
         active_filters = self.ui.get_active_filters()
         name = self.ui.get_name_filter()
         username = self.ui.get_username_filter()
@@ -109,6 +111,9 @@ class reportsPageAPI:
 
     def compare(self,):
         ids  = self.ui.get_selected_samples()
+        if len(ids) == 0:
+            self.ui.show_confirm_box("ERROR!", massage="No Sample Selected", buttons=['ok'])
+            return
         #load selected sample for compare from database
         samples = self.database.reports_db.load_by_ids(ids)
         #get selected standard for compare

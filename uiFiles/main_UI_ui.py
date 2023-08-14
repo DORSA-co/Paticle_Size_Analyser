@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1348, 920)
+        MainWindow.resize(1369, 920)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -3918,7 +3918,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -240, 1145, 1969))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 1969))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4882,8 +4882,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.comparepage_compare_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.comparepage_compare_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.comparepage_compare_table.setAlternatingRowColors(False)
-        self.comparepage_compare_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.comparepage_compare_table.setAlternatingRowColors(True)
+        self.comparepage_compare_table.setSelectionMode(QAbstractItemView.SingleSelection)
         self.comparepage_compare_table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.comparepage_compare_table.setTextElideMode(Qt.ElideMiddle)
         self.comparepage_compare_table.setGridStyle(Qt.SolidLine)
@@ -5079,7 +5079,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(8)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(2)
         self.user_tabs.setCurrentIndex(1)

@@ -58,10 +58,13 @@ class reportPageUI:
 
         #--------------------------------------------------------------------------------------------------------
 
-        self.statictics_table_headers = ['range', 'avrage', 'std', 'count']
+        self.statictics_table_headers  = ['range', 'avrage', 'std', 'count', 'percent']
+        self.statictics_table_headers_unit = ['', ' (mm)', ' (mm)', '', ' (%)'] 
 
+
+        headrs = list( map( lambda x: x[0]+x[1] , zip(self.statictics_table_headers, self.statictics_table_headers_unit)))
         GUIBackend.set_table_dim(self.statictics_table, row=None, col=len(self.statictics_table_headers))
-        GUIBackend.set_table_cheaders(self.statictics_table, self.statictics_table_headers)
+        GUIBackend.set_table_cheaders(self.statictics_table, headrs)
         GUIBackend.add_widget( self.ui.report_grading_chart_frame, self.grading_chart )
 
     def create_connect(func, *args):

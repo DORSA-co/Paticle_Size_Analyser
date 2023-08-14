@@ -5,6 +5,7 @@ from Database.mainDatabase import mainDatabase
 from backend.Processing.Compare import Compare
 from backend.Utils.datetimeUtils import datetimeFormat
 import cv2
+import numpy as np
 
 
 
@@ -38,7 +39,7 @@ class comparePageAPI:
 
         data = []
         samples_count = len(self.compare.samples)
-
+        hists = []
         for i,sample in enumerate(self.compare.samples):
             sample_main_path = sample['path']
             sample_name = sample['name']
@@ -49,6 +50,7 @@ class comparePageAPI:
             report.change_standard(compare.standard)
             
             hist = list(report.Grading.get_hist())
+            hists.append(hist)
             table_record = [sample_name, sample['date'], sample['time'] ] + hist
             
             data.append( table_record )
@@ -57,8 +59,11 @@ class comparePageAPI:
             percent =  ( i + 1 )/samples_count * 100 
             self.ui.set_progressbar(percent)
             #--------------------------------------------------
-        
+        hists = np.array( hists )
+        hists_mean = np.round(np.mean( hists, axis=0), 0 )
+
         self.ui.set_compare_table(data)
+        self.ui.set_total_mean_table(hists_mean)
         self.ui.show_page_content(True)
             
 

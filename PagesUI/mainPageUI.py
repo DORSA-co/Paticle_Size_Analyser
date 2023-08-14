@@ -64,7 +64,7 @@ class mainPageUI:
 
 
         self.grading_chart = Charts.BarChart(
-                    chart_title = 'Grading',
+                    chart_title = 'Total Grading',
                     chart_title_color = None,
                     axisX_label = 'Rages',
                     axisY_label = 'Percents',

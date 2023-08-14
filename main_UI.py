@@ -51,7 +51,7 @@ class routerUI:
         self.ui = ui
         self.pages_index = {
             'main'              : 0,
-            'reports'            : 1,
+            'reports'           : 1,
             'grading_ranges'    : 2,
             'settings'          : 3,
             'calibration'       : 4,

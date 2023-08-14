@@ -37,3 +37,16 @@ class Grading:
         return np.round(percentage_hist, 1 )
     
 
+
+    def get_hist_str(self, )-> []:
+        """return histogram percentage
+
+        Returns:
+            np.ndarray: 1d array of percentage in each range
+        """
+        res = []
+        for p in self.get_hist():
+            res.append( str(p) + ' %' )
+            
+        return res
+    

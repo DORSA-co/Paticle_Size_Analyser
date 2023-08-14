@@ -7,6 +7,7 @@ import numpy as np
 import os
 import cv2
 import pickle
+import shutil
 
 
 
@@ -61,9 +62,8 @@ class reportsDB:
         
     
     def remove(self, data):
-        self.db_manager.remove_record(self.TABLE_NAME, 'id', data['id'])
+        self.db_manager.remove_record(self.TABLE_NAME, 'id', str(data['id']))
 
-        self.db_manager.search()
 
 
 
@@ -119,6 +119,8 @@ class reportFileHandler:
         """
         dbfile = open(path, 'rb')
         return pickle.load( dbfile)
+    
+    
 
     
     def get_report_folder_path(self,) -> str:
@@ -181,6 +183,18 @@ class reportFileHandler:
         """
         report_path = self.get_report_file_path()
         return self.__load_obj__(report_path)
+    
+
+    def remove(self,) -> Report:
+        """load report Object
+
+        Returns:
+            Report: loaded report object
+        """
+        path = self.get_report_folder_path()
+        if os.path.exists(path):
+            shutil.rmtree(path)
+            return True
 
     def save_image(self, img:np.ndarray ,  img_id:str):
         """saves an image file

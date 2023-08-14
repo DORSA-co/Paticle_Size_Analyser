@@ -15,6 +15,7 @@ class cameraThread(QObject):
     
     def __grabber__(self,):
         while True:
+            #print('while is running')
             try:
                 if self.camera.Status.is_grabbing():
                     img = self.camera.getPictures(img_when_error=None)

@@ -38,6 +38,10 @@ class storageSettingTabAPI:
         self.ui.save_state(True)
 
     def cancel(self,):
+        state = self.ui.show_confirm_box("Cancel", "Are You Sure?", 
+                                 buttons=['yes','no'])
+        if state == 'no':
+            return
         self.load_from_db()
         self.ui.save_state(True)
 
@@ -86,7 +90,7 @@ class cameraSettingTabAPI:
         self.ui.change_setting_event_connector(self.update_setting_event)
         self.ui.start_stop_event_connector( self.play_stop_camera )
         self.ui.save_button_connector(self.save_setting)
-        self.ui.cancel_button_connector(self.cancel_setting)
+        self.ui.cancel_button_connector(self.cancel)
         self.set_allowed_values_camera_setting()
         
 
@@ -150,14 +154,14 @@ class cameraSettingTabAPI:
         self.database.save(settings)
         self.set_camera_setting(camera_application, settings)
 
-    def cancel_setting(self):
-        self.load_from_database()
-
-    
     def cancel(self):
-        settings = self.load_from_database()
-        self.set_camera_setting(settings)
-
+        state = self.ui.show_confirm_box("Cancel", "Are You Sure?", 
+                                 buttons=['yes','no'])
+        if state == 'no':
+            return
+        
+        self.load_from_database()
+        self.ui.disable_save_btn()
 
     def load_from_database(self,):
         camera_application = self.ui.get_selected_camera_application()

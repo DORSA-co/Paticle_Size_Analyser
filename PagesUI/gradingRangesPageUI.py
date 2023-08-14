@@ -157,7 +157,7 @@ class newStandardTabUI:
 
         GUIBackend.set_table_dim(self.ranges_table, 1 , len(self.ranges_table_headers))
         GUIBackend.set_table_cheaders(self.ranges_table, headers=self.ranges_table_headers)
-        GUIBackend.button_connector(self.cancel_btn, self.clear_new_standard_inputs)
+        #GUIBackend.button_connector(self.cancel_btn, self.clear_new_standard_inputs)
         GUIBackend.spinbox_connector( self.ranges_input['lower'] , self.__validation_input_ranges__ )
 
         self.show_warning_massage(None)

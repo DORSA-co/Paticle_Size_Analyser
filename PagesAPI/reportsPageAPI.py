@@ -17,6 +17,7 @@ class reportsPageAPI:
         self.ui.apply_filter_button_connector(self.apply_filters)
         self.ui.external_see_report_button_connector(self.see_report)
         self.ui.compare_button_connector(self.compare)
+        self.ui.set_delete_sample_event_func(self.delete_sample)
         self.startup()
         
         
@@ -42,6 +43,7 @@ class reportsPageAPI:
 
         self.ui.set_standards_filter_table_data(standards_name)
         self.ui.set_compare_standards_items(standards_name)
+        
 
     
     def apply_filters(self,):
@@ -119,4 +121,19 @@ class reportsPageAPI:
 
         
         
+    def delete_sample(self, sample):
+
+        state = self.ui.show_confirm_box(title='Delete Sample', 
+                                 massage='Are you Sure delete sample?',
+                                 buttons=['yes', 'cancel'])
+        
+        if state == 'cancel':
+            return
+        date_time = datetime.combine(sample['date'], sample['time'])
+        rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+        rfh.remove()
+        self.database.reports_db.remove(sample)
+
+        self.load_all_samples()
+
         

@@ -36,7 +36,10 @@ class commonSettingUI:
             self.is_saved_massage(is_saved)
 
 
-        
+    def show_confirm_box(Self, title, massage, buttons):
+        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
+        return cmb.render()
+
 
 
 class storageSettingTabUI(commonSettingUI):
@@ -315,9 +318,12 @@ class cameraSettingTabUI(commonSettingUI):
     def __internal_save_event__(self):
         self.is_saved_massage(True)
         GUIBackend.set_disable(self.save_btn)
+    
+    def disable_save_btn(self,):
+        GUIBackend.set_disable(self.save_btn)
 
 
-
+    
 
 
 
@@ -374,3 +380,6 @@ class algorithmSettingTabUI(commonSettingUI):
         for name, value in data.items():
             GUIBackend.set_input( self.fields[name], value )
 
+
+
+    

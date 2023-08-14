@@ -303,6 +303,19 @@ class GUIBackend:
         return chbox.isChecked()
     
     @staticmethod
+    def set_checkbox_value(chbox: QtWidgets.QCheckBox, value: bool):
+        """set state of Qt checkbox
+
+        Args:
+            chbox (QtWidgets.QCheckBox): Qt CheckBox object
+            value (bool): checked if True
+
+        
+        """
+        return chbox.setChecked(value)
+    
+    
+    @staticmethod
     def checkbox_connector(chbox: QtWidgets.QCheckBox, func):
         """connects a function to event of Qt checkbox change state
 
@@ -533,6 +546,7 @@ class GUIBackend:
             widget (_type_): Qt widget that you want insert into cell of table
         """
         table.setCellWidget(*index, widget)
+        
         #item = QtWidgets.QTableWidgetItem(widget)
         #table.setItem(*index, item )
 

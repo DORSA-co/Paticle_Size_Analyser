@@ -67,6 +67,7 @@ class Report:
 
     def get_ranges_statistics(self,):
         res = []
+        hist = self.Grading.get_hist()
         for i,range_name in enumerate(self.ranges_string):
             data = {}
             if len(self.sieved_particles[i]) > 0:
@@ -74,11 +75,13 @@ class Report:
                 data['std'] = np.round( self.sieved_particles[i].std(), CONSTANTS.DECIMAL_ROUND )
                 data['avrage'] = np.round( self.sieved_particles[i].mean(), CONSTANTS.DECIMAL_ROUND )
                 data['count'] = len( self.sieved_particles[i] )
+                data['percent'] = hist[i]
             else:
-                data['range'] = '-'
+                data['range'] = range_name
                 data['std'] = '-'
                 data['avrage'] = '-'
                 data['count'] = '-'
+                data['percent'] = 0
             res.append(data)
 
         return res

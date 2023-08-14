@@ -194,9 +194,16 @@ class newStandardTabAPI:
 
 
     def cancel_define_new_standard(self,):
+            option = self.ui.show_confirm_box("Cancel", 
+                                     "Area You Sure You want Cancel? all change whould be remove",
+                                     buttons=['yes', 'no'])
+            if option == 'no':
+                return
             self.clear()
-            if self.edit_complete_event_func is not None:
-                self.edit_complete_event_func()
+            if self.edit_mode:
+                self.edit_mode = False
+                if self.edit_complete_event_func is not None:
+                    self.edit_complete_event_func()
 
     
     def clear(self,):

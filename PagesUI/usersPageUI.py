@@ -24,9 +24,14 @@ class LoginUserBoxUI:
         self.toolbar_login_logout_btn = self.ui.toolbar_login_logout_btn
 
         GUIBackend.set_input_password(self.login_ui.password_input)
+        GUIBackend.set_win_frameless(self.login_ui)
+        GUIBackend.button_connector(self.login_ui.close_btn, self.close_login_window)
         #GUIBackend.button_connector(self.login_logout_button, self.show_window)
         #self.show_login()
-        
+    
+    def close_login_window(self,):
+        self.login_ui.close()
+        self.clear_login_inputs()
 
         
     def profile_login_logout_button_connector(self, func):

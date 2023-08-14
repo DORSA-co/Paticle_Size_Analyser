@@ -13,12 +13,12 @@ TABEL_BUTTON_STYLE = """
 
 SIDEBAR_BUTTON_SELECTED_STYLE = """
 QPushButton{
-	color: #ffffff;
+	color:#ffffff;
+    border-color:rgb(255, 205, 5);
 	min-height: 40px;
 	text-align: left;
 	icon-size:25px;
 	background-color:rgba(0,0,0,0);
-    color:rgb(255, 205, 5);
     font-size:14px;
     font-weight:bold;
     }
@@ -151,7 +151,7 @@ class tabelCheckbox(QtWidgets.QCheckBox):
 
 
 class confirmMessageBox:
-    def __init__(self, title, text, buttons, min_height=400, min_width=700 ):
+    def __init__(self, title, text, buttons, min_height=300, min_width=400 ):
         self.STANDARD_BUTTONS = {
             'yes': QtWidgets.QMessageBox.Yes,
             'no': QtWidgets.QMessageBox.No,
@@ -163,12 +163,15 @@ class confirmMessageBox:
         self.icon = QtGui.QIcon(':/assets/Assets/icons/icons8-question-blue-50.png')
         self.buttons = buttons
 
+        text = text + " " * 100 + "\n"
+
         self.msg = QtWidgets.QMessageBox( text=text)
         self.msg.setWindowTitle(title)
         self.msg.setStyleSheet(CONFIRMBOX_STYLESHEET)
         self.msg.setWindowIcon(self.icon)
-        self.msg.setMinimumHeight(min_height)
-        self.msg.setMinimumWidth(min_width)
+        #self.msg.setMinimumHeight(min_height)
+        #self.msg.setStyleSheet("QLabel{ min-width:" + str(min_width) + " px; }" )
+        #self.msg.setMinimumWidth(min_width)
 
         
         #---------------------------------------------------

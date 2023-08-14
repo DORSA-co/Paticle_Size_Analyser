@@ -16,6 +16,8 @@ class reportsPageUI:
         self.username_filter_input = self.ui.reportpage_filterusername_input
         self.compare_btn = self.ui.reportpage_compare_btn
         self.compare_standards_combobox = self.ui.reportpage_compare_standards_combobox
+        self.select_all_checkbox = self.ui.reportspage_all_checkbox
+        
 
         self.filters_groupbox = {
             'name': self.ui.reportpage_filtername_groupbox,
@@ -36,8 +38,9 @@ class reportsPageUI:
 
         self.standards_filter_checkbox = {}
         self.samples_table_checkbox = {}
-        self.samples_table_headers= ['compare', 'id', 'name', 'standard', 'date', 'time', 'username', 'see' ]
+        self.samples_table_headers= ['compare', 'id', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
         self.external_see_report_event_func = None
+        self.external_delete_samples_event_func = None
 
 
         GUIBackend.set_table_dim(self.samples_table, row=None, col = len(self.samples_table_headers))
@@ -49,11 +52,17 @@ class reportsPageUI:
 
         self.__groupbox_filter_event_connector__()
         GUIBackend.set_cell_width_content_adjust(self.standards_filter_table, None)
+        GUIBackend.checkbox_connector(self.select_all_checkbox, self.select_all_samples)
 
 
         for filter_name in self.filters_frame.keys():
             self.show_filter(filter_name, False)
 
+
+    def select_all_samples(self,st):
+        status = GUIBackend.get_checkbox_value(self.select_all_checkbox)
+        for sample_checkbox in self.samples_table_checkbox.values():
+            GUIBackend.set_checkbox_value(sample_checkbox, status)
 
     
     def startup(self):
@@ -183,6 +192,8 @@ class reportsPageUI:
 
             #insert checkbox into table
             GUIBackend.set_table_cell_widget(self.standards_filter_table, (i,0), cell_checkbox)
+
+            
             self.standards_filter_checkbox[standard_name] = cell_checkbox
 
     def set_compare_standards_items(self, standards:list[str]):
@@ -192,6 +203,10 @@ class reportsPageUI:
             standards (list[str]): _description_
         """
         GUIBackend.set_combobox_items(self.compare_standards_combobox, standards)
+
+    
+    def set_delete_sample_event_func(self, func):
+        self.external_delete_samples_event_func = func
 
     def set_samples_table(self, samples: list[dict]):
         
@@ -217,6 +232,12 @@ class reportsPageUI:
             j = self.samples_table_headers.index('see')
             GUIBackend.button_connector( report_btn, self.__internal_see_report_event__(sample))
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), report_btn)
+
+            #define delte button
+            delete_btn = GUIComponents.deleteButton()
+            j = self.samples_table_headers.index('delete')
+            GUIBackend.set_table_cell_widget(self.samples_table, (i,j), delete_btn)
+            GUIBackend.button_connector(delete_btn, self.__samples_table_delete_connector__(sample))
             
             
                 
@@ -234,3 +255,15 @@ class reportsPageUI:
     
     def get_selected_standard_for_campare(self,):
         return GUIBackend.get_combobox_selected(self.compare_standards_combobox)
+    
+
+    def show_confirm_box(Self, title, massage, buttons):
+        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
+        return cmb.render()
+    
+
+    def __samples_table_delete_connector__(self, sample):
+        def func():
+            self.external_delete_samples_event_func(sample)
+
+        return func

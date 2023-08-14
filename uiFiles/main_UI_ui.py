@@ -24,13 +24,12 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1359, 949)
+        MainWindow.resize(1348, 920)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -608,7 +607,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.sidebar = QFrame(self.middle)
         self.sidebar.setObjectName(u"sidebar")
-        self.sidebar.setMinimumSize(QSize(0, 0))
+        self.sidebar.setMinimumSize(QSize(180, 0))
         self.sidebar.setMaximumSize(QSize(16777215, 16777215))
         self.sidebar.setStyleSheet(u"QFrame#sidebar{\n"
 "background-color:rgb(6, 76, 130);\n"
@@ -889,6 +888,7 @@ class Ui_MainWindow(object):
 
         self.mainpage_faststart_btn = QPushButton(self.horizontalFrame)
         self.mainpage_faststart_btn.setObjectName(u"mainpage_faststart_btn")
+        self.mainpage_faststart_btn.setEnabled(False)
         self.mainpage_faststart_btn.setStyleSheet(u"")
         icon15 = QIcon()
         icon15.addFile(u":/assets/Assets/icons/fast-forwards-arrow-48.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -1445,7 +1445,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -86, 322, 751))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 751))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1680,6 +1680,25 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_38.addLayout(self.horizontalLayout_52)
+
+        self.line_24 = QFrame(self.report_page)
+        self.line_24.setObjectName(u"line_24")
+        self.line_24.setMinimumSize(QSize(0, 5))
+        self.line_24.setFrameShape(QFrame.HLine)
+        self.line_24.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_38.addWidget(self.line_24)
+
+        self.horizontalLayout_57 = QHBoxLayout()
+        self.horizontalLayout_57.setObjectName(u"horizontalLayout_57")
+        self.horizontalLayout_57.setContentsMargins(40, 0, -1, -1)
+        self.reportspage_all_checkbox = QCheckBox(self.report_page)
+        self.reportspage_all_checkbox.setObjectName(u"reportspage_all_checkbox")
+
+        self.horizontalLayout_57.addWidget(self.reportspage_all_checkbox)
+
+
+        self.verticalLayout_38.addLayout(self.horizontalLayout_57)
 
         self.line_21 = QFrame(self.report_page)
         self.line_21.setObjectName(u"line_21")
@@ -2118,8 +2137,10 @@ class Ui_MainWindow(object):
 "   padding: 10px;\n"
 "}\n"
 "")
+        self.settingpage_grading_standards_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.settingpage_grading_standards_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContentsOnFirstShow)
         self.settingpage_grading_standards_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.settingpage_grading_standards_table.setWordWrap(True)
         self.settingpage_grading_standards_table.setRowCount(2)
         self.settingpage_grading_standards_table.setColumnCount(4)
         self.settingpage_grading_standards_table.horizontalHeader().setMinimumSectionSize(60)
@@ -2689,9 +2710,18 @@ class Ui_MainWindow(object):
 
         self.settingpage_camera_right_side.addWidget(self.horizontalFrame_4)
 
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.line_23 = QFrame(self.settingpage_camera_tab)
+        self.line_23.setObjectName(u"line_23")
+        self.line_23.setMinimumSize(QSize(3, 3))
+        self.line_23.setSizeIncrement(QSize(0, 0))
+        self.line_23.setFrameShape(QFrame.HLine)
+        self.line_23.setFrameShadow(QFrame.Sunken)
 
-        self.settingpage_camera_right_side.addItem(self.horizontalSpacer_9)
+        self.settingpage_camera_right_side.addWidget(self.line_23)
+
+        self.verticalSpacer_39 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.settingpage_camera_right_side.addItem(self.verticalSpacer_39)
 
 
         self.horizontalLayout_15.addLayout(self.settingpage_camera_right_side)
@@ -3706,7 +3736,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1154, 714))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 685))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -3888,7 +3918,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1156, 1969))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -240, 1145, 1969))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4232,6 +4262,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_53.addWidget(self.sreportpage_avrage_lbl)
 
+        self.label_54 = QLabel(self.frame_2)
+        self.label_54.setObjectName(u"label_54")
+        self.label_54.setStyleSheet(u"color:#ffffff;")
+
+        self.horizontalLayout_53.addWidget(self.label_54)
+
         self.horizontalSpacer_51 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_53.addItem(self.horizontalSpacer_51)
@@ -4252,6 +4288,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_53.addWidget(self.sreportpage_std_lbl)
 
+        self.label_53 = QLabel(self.frame_2)
+        self.label_53.setObjectName(u"label_53")
+        self.label_53.setStyleSheet(u"color:#ffffff;")
+
+        self.horizontalLayout_53.addWidget(self.label_53)
+
         self.horizontalSpacer_52 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_53.addItem(self.horizontalSpacer_52)
@@ -4271,6 +4313,12 @@ class Ui_MainWindow(object):
         self.sreportpage_mode_lbl.setStyleSheet(u"color: #ffffff;")
 
         self.horizontalLayout_53.addWidget(self.sreportpage_mode_lbl)
+
+        self.label_51 = QLabel(self.frame_2)
+        self.label_51.setObjectName(u"label_51")
+        self.label_51.setStyleSheet(u"color:#ffffff;")
+
+        self.horizontalLayout_53.addWidget(self.label_51)
 
 
         self.verticalLayout_35.addLayout(self.horizontalLayout_53)
@@ -4757,10 +4805,11 @@ class Ui_MainWindow(object):
         self.scrollArea_4 = QScrollArea(self.compare_page)
         self.scrollArea_4.setObjectName(u"scrollArea_4")
         self.scrollArea_4.setStyleSheet(u"")
+        self.scrollArea_4.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1176, 742))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 713))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4768,6 +4817,15 @@ class Ui_MainWindow(object):
 "}")
         self.verticalLayout_40 = QVBoxLayout(self.compareScrollAreaWidget)
         self.verticalLayout_40.setObjectName(u"verticalLayout_40")
+        self.label_57 = QLabel(self.compareScrollAreaWidget)
+        self.label_57.setObjectName(u"label_57")
+        self.label_57.setStyleSheet(u"color: rgb(6, 76, 130);\n"
+"font-size: 20px;\n"
+"font-weight: bold;\n"
+"max-height: 22px;")
+
+        self.verticalLayout_40.addWidget(self.label_57)
+
         self.comparepage_compare_table = QTableWidget(self.compareScrollAreaWidget)
         if (self.comparepage_compare_table.columnCount() < 5):
             self.comparepage_compare_table.setColumnCount(5)
@@ -4841,6 +4899,110 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.verticalHeader().setHighlightSections(True)
 
         self.verticalLayout_40.addWidget(self.comparepage_compare_table)
+
+        self.verticalSpacer_40 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_40.addItem(self.verticalSpacer_40)
+
+        self.label_56 = QLabel(self.compareScrollAreaWidget)
+        self.label_56.setObjectName(u"label_56")
+        self.label_56.setStyleSheet(u"color: rgb(6, 76, 130);\n"
+"font-size: 20px;\n"
+"font-weight: bold;\n"
+"max-height: 22px;")
+
+        self.verticalLayout_40.addWidget(self.label_56)
+
+        self.horizontalLayout_58 = QHBoxLayout()
+        self.horizontalLayout_58.setObjectName(u"horizontalLayout_58")
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_58.addItem(self.horizontalSpacer_9)
+
+        self.comparepage_compare_mean_table = QTableWidget(self.compareScrollAreaWidget)
+        if (self.comparepage_compare_mean_table.columnCount() < 5):
+            self.comparepage_compare_mean_table.setColumnCount(5)
+        if (self.comparepage_compare_mean_table.rowCount() < 4):
+            self.comparepage_compare_mean_table.setRowCount(4)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        self.comparepage_compare_mean_table.setItem(1, 1, __qtablewidgetitem12)
+        self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
+        self.comparepage_compare_mean_table.setEnabled(True)
+        sizePolicy2.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy2)
+        self.comparepage_compare_mean_table.setMaximumSize(QSize(16777215, 100))
+        self.comparepage_compare_mean_table.setSizeIncrement(QSize(0, 0))
+        self.comparepage_compare_mean_table.setBaseSize(QSize(0, 0))
+        self.comparepage_compare_mean_table.setFont(font1)
+        self.comparepage_compare_mean_table.setFocusPolicy(Qt.NoFocus)
+        self.comparepage_compare_mean_table.setStyleSheet(u"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(50, 50, 50);\n"
+"	color: #ffffff;\n"
+"    padding: 4px;\n"
+"    font-size: 14pt;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-right: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fffff8;	\n"
+"}\n"
+"\n"
+"\n"
+"QTableWidget{\n"
+"	font-size: 16px;\n"
+"	color:rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QTableWidget::item\n"
+"{\n"
+"   padding: 10px;\n"
+"}\n"
+"")
+        self.comparepage_compare_mean_table.setFrameShape(QFrame.Box)
+        self.comparepage_compare_mean_table.setFrameShadow(QFrame.Raised)
+        self.comparepage_compare_mean_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.comparepage_compare_mean_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.comparepage_compare_mean_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.comparepage_compare_mean_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.comparepage_compare_mean_table.setAlternatingRowColors(False)
+        self.comparepage_compare_mean_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.comparepage_compare_mean_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.comparepage_compare_mean_table.setTextElideMode(Qt.ElideMiddle)
+        self.comparepage_compare_mean_table.setGridStyle(Qt.SolidLine)
+        self.comparepage_compare_mean_table.setWordWrap(True)
+        self.comparepage_compare_mean_table.setRowCount(4)
+        self.comparepage_compare_mean_table.setColumnCount(5)
+        self.comparepage_compare_mean_table.horizontalHeader().setMinimumSectionSize(50)
+        self.comparepage_compare_mean_table.horizontalHeader().setDefaultSectionSize(180)
+        self.comparepage_compare_mean_table.horizontalHeader().setHighlightSections(True)
+        self.comparepage_compare_mean_table.horizontalHeader().setStretchLastSection(False)
+        self.comparepage_compare_mean_table.verticalHeader().setVisible(False)
+        self.comparepage_compare_mean_table.verticalHeader().setDefaultSectionSize(40)
+        self.comparepage_compare_mean_table.verticalHeader().setHighlightSections(True)
+
+        self.horizontalLayout_58.addWidget(self.comparepage_compare_mean_table)
+
+        self.horizontalSpacer_92 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_58.addItem(self.horizontalSpacer_92)
+
+
+        self.verticalLayout_40.addLayout(self.horizontalLayout_58)
+
+        self.verticalSpacer_41 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_40.addItem(self.verticalSpacer_41)
 
         self.scrollArea_4.setWidget(self.compareScrollAreaWidget)
 
@@ -4917,9 +5079,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(8)
-        self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(1)
+        self.gradingranges_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(2)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -4946,7 +5108,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.close_btn.setText("")
         self.sidebar_main_btn.setText(QCoreApplication.translate("MainWindow", u"Main", None))
-        self.sidebar_report_btn.setText(QCoreApplication.translate("MainWindow", u"Report", None))
+        self.sidebar_report_btn.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
         self.sidebar_grading_ranges_btn.setText(QCoreApplication.translate("MainWindow", u"Grading Ranges", None))
         self.sidebar_settings_btn.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.sidebar_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Calibration", None))
@@ -5007,9 +5169,10 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"G2", None));
         self.reportpage_standards_filter_table.setSortingEnabled(__sortingEnabled)
 
-        self.reportpage_apply_filters_btn.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
+        self.reportpage_apply_filters_btn.setText(QCoreApplication.translate("MainWindow", u"Update", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare", None))
         self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
+        self.reportspage_all_checkbox.setText(QCoreApplication.translate("MainWindow", u"All", None))
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
         self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
@@ -5027,8 +5190,6 @@ class Ui_MainWindow(object):
 
         __sortingEnabled1 = self.settingpage_grading_standards_table.isSortingEnabled()
         self.settingpage_grading_standards_table.setSortingEnabled(False)
-        ___qtablewidgetitem2 = self.settingpage_grading_standards_table.item(0, 0)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"dddddddddddddddddddddddddddddddd", None));
         self.settingpage_grading_standards_table.setSortingEnabled(__sortingEnabled1)
 
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.all_standards_tab), QCoreApplication.translate("MainWindow", u"All Standards", None))
@@ -5098,12 +5259,12 @@ class Ui_MainWindow(object):
 
         __sortingEnabled2 = self.calibrationpage_last_calib_tabel.isSortingEnabled()
         self.calibrationpage_last_calib_tabel.setSortingEnabled(False)
-        ___qtablewidgetitem3 = self.calibrationpage_last_calib_tabel.item(0, 0)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
-        ___qtablewidgetitem4 = self.calibrationpage_last_calib_tabel.item(0, 1)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
-        ___qtablewidgetitem5 = self.calibrationpage_last_calib_tabel.item(0, 2)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
+        ___qtablewidgetitem2 = self.calibrationpage_last_calib_tabel.item(0, 0)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
+        ___qtablewidgetitem3 = self.calibrationpage_last_calib_tabel.item(0, 1)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
+        ___qtablewidgetitem4 = self.calibrationpage_last_calib_tabel.item(0, 2)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
         self.calibrationpage_last_calib_tabel.setSortingEnabled(__sortingEnabled2)
 
         self.calibrationpage_last_calib_tabel.setProperty("Date", "")
@@ -5181,11 +5342,14 @@ class Ui_MainWindow(object):
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Statictics", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
         self.label_59.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
-        self.sreportpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"16mm", None))
+        self.sreportpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"16", None))
+        self.label_54.setText(QCoreApplication.translate("MainWindow", u"mm", None))
         self.label_61.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
-        self.sreportpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"2mm", None))
+        self.sreportpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_53.setText(QCoreApplication.translate("MainWindow", u"mm", None))
         self.label_63.setText(QCoreApplication.translate("MainWindow", u"Mode:", None))
-        self.sreportpage_mode_lbl.setText(QCoreApplication.translate("MainWindow", u"11mm", None))
+        self.sreportpage_mode_lbl.setText(QCoreApplication.translate("MainWindow", u"11", None))
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"mm", None))
 
         __sortingEnabled3 = self.sreportpage_statictics_table.isSortingEnabled()
         self.sreportpage_statictics_table.setSortingEnabled(False)
@@ -5210,10 +5374,17 @@ class Ui_MainWindow(object):
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
         self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.label_57.setText(QCoreApplication.translate("MainWindow", u"Samples", None))
 
         __sortingEnabled4 = self.comparepage_compare_table.isSortingEnabled()
         self.comparepage_compare_table.setSortingEnabled(False)
         self.comparepage_compare_table.setSortingEnabled(__sortingEnabled4)
+
+        self.label_56.setText(QCoreApplication.translate("MainWindow", u"Avrage Overview", None))
+
+        __sortingEnabled5 = self.comparepage_compare_mean_table.isSortingEnabled()
+        self.comparepage_compare_mean_table.setSortingEnabled(False)
+        self.comparepage_compare_mean_table.setSortingEnabled(__sortingEnabled5)
 
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Designed and Developed by Dideh Rayan Sanati Esfahan (Dorsa)", None))
     # retranslateUi

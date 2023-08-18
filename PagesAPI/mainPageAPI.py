@@ -156,15 +156,18 @@ class mainPageAPI:
             return
         
         #---------------------------------------------------------------------------
+        sample_setting = self.database.setting_db.sample_db.load()
+        #---------------------------------------------------------------------------
         #extract name of standards from standards list
         standards_name = list(map( lambda x:x['name'], standards))
         #set standards into combobox
         self.ui.set_sample_info_standards_items(standards_name)
+        self.ui.set_sample_info_selected_standard( sample_setting['default_standard'])
         #---------------------------------------------------------------------------
-        sample_setting = self.database.setting_db.sample_db.load()
+        
         if sample_setting['autoname_enable']:
             name = self.build_autoname_sample(sample_setting)
-            self.ui.set_sample_name(name)
+            self.ui.set_sample_info_sample_name(name)
 
         #---------------------------------------------------------------------------
         #show sample information box

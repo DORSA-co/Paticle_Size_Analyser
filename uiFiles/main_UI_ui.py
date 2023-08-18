@@ -2356,18 +2356,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_44.addItem(self.verticalSpacer_42)
 
-        self.label_96 = QLabel(self.settingpage_sample_autoname_frame)
-        self.label_96.setObjectName(u"label_96")
-        self.label_96.setStyleSheet(u"font-size:20px;")
-
-        self.verticalLayout_44.addWidget(self.label_96)
-
-        self.gridFrame = QFrame(self.settingpage_sample_autoname_frame)
-        self.gridFrame.setObjectName(u"gridFrame")
-        self.gridFrame.setStyleSheet(u"QPushButton{\n"
+        self.verticalFrame = QFrame(self.settingpage_sample_autoname_frame)
+        self.verticalFrame.setObjectName(u"verticalFrame")
+        self.verticalFrame.setStyleSheet(u"QPushButton{\n"
 "min-width:100px;\n"
+"background-color: rgb(150,150,150);\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:hover{\n"
 "background-color: rgb(50,50,50);\n"
 "}\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -2377,31 +2377,44 @@ class Ui_MainWindow(object):
 "	max-width:200px;\n"
 "	min-width:100px;\n"
 "	margin-left:10px;\n"
+"	\n"
 "}\n"
 "")
+        self.verticalLayout_46 = QVBoxLayout(self.verticalFrame)
+        self.verticalLayout_46.setObjectName(u"verticalLayout_46")
+        self.verticalLayout_46.setContentsMargins(-1, 12, -1, 22)
+        self.gridFrame = QFrame(self.verticalFrame)
+        self.gridFrame.setObjectName(u"gridFrame")
+        self.gridFrame.setStyleSheet(u"")
         self.gridLayout_3 = QGridLayout(self.gridFrame)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.label_96 = QLabel(self.gridFrame)
+        self.label_96.setObjectName(u"label_96")
+        self.label_96.setStyleSheet(u"font-size:20px;")
+
+        self.gridLayout_3.addWidget(self.label_96, 0, 0, 1, 1)
+
         self.label_76 = QLabel(self.gridFrame)
         self.label_76.setObjectName(u"label_76")
         self.label_76.setMinimumSize(QSize(110, 0))
         self.label_76.setMaximumSize(QSize(210, 16777215))
         self.label_76.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_3.addWidget(self.label_76, 0, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.label_76, 1, 1, 1, 1)
 
         self.settingpage_sample_day_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_day_code_btn.setObjectName(u"settingpage_sample_day_code_btn")
 
-        self.gridLayout_3.addWidget(self.settingpage_sample_day_code_btn, 1, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.settingpage_sample_day_code_btn, 2, 2, 1, 1)
 
         self.horizontalSpacer_93 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
-        self.gridLayout_3.addItem(self.horizontalSpacer_93, 1, 3, 1, 1)
+        self.gridLayout_3.addItem(self.horizontalSpacer_93, 2, 3, 1, 1)
 
         self.settingpage_sample_minute_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_minute_code_btn.setObjectName(u"settingpage_sample_minute_code_btn")
 
-        self.gridLayout_3.addWidget(self.settingpage_sample_minute_code_btn, 1, 5, 1, 1)
+        self.gridLayout_3.addWidget(self.settingpage_sample_minute_code_btn, 2, 5, 1, 1)
 
         self.label_75 = QLabel(self.gridFrame)
         self.label_75.setObjectName(u"label_75")
@@ -2409,7 +2422,7 @@ class Ui_MainWindow(object):
         self.label_75.setMaximumSize(QSize(210, 16777215))
         self.label_75.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_3.addWidget(self.label_75, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.label_75, 1, 0, 1, 1)
 
         self.label_92 = QLabel(self.gridFrame)
         self.label_92.setObjectName(u"label_92")
@@ -2417,12 +2430,12 @@ class Ui_MainWindow(object):
         self.label_92.setMaximumSize(QSize(210, 16777215))
         self.label_92.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_3.addWidget(self.label_92, 0, 5, 1, 1)
+        self.gridLayout_3.addWidget(self.label_92, 1, 5, 1, 1)
 
         self.settingpage_sample_month_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_month_code_btn.setObjectName(u"settingpage_sample_month_code_btn")
 
-        self.gridLayout_3.addWidget(self.settingpage_sample_month_code_btn, 1, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.settingpage_sample_month_code_btn, 2, 1, 1, 1)
 
         self.label_91 = QLabel(self.gridFrame)
         self.label_91.setObjectName(u"label_91")
@@ -2430,16 +2443,16 @@ class Ui_MainWindow(object):
         self.label_91.setMaximumSize(QSize(210, 16777215))
         self.label_91.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_3.addWidget(self.label_91, 0, 4, 1, 1)
+        self.gridLayout_3.addWidget(self.label_91, 1, 4, 1, 1)
 
         self.horizontalSpacer_96 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_3.addItem(self.horizontalSpacer_96, 1, 6, 1, 1)
+        self.gridLayout_3.addItem(self.horizontalSpacer_96, 2, 6, 1, 1)
 
         self.settingpage_sample_year_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_year_code_btn.setObjectName(u"settingpage_sample_year_code_btn")
 
-        self.gridLayout_3.addWidget(self.settingpage_sample_year_code_btn, 1, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.settingpage_sample_year_code_btn, 2, 0, 1, 1)
 
         self.label_77 = QLabel(self.gridFrame)
         self.label_77.setObjectName(u"label_77")
@@ -2447,33 +2460,19 @@ class Ui_MainWindow(object):
         self.label_77.setMaximumSize(QSize(210, 16777215))
         self.label_77.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_3.addWidget(self.label_77, 0, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.label_77, 1, 2, 1, 1)
 
         self.settingpage_sample_houre_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_houre_code_btn.setObjectName(u"settingpage_sample_houre_code_btn")
 
-        self.gridLayout_3.addWidget(self.settingpage_sample_houre_code_btn, 1, 4, 1, 1)
+        self.gridLayout_3.addWidget(self.settingpage_sample_houre_code_btn, 2, 4, 1, 1)
 
 
-        self.verticalLayout_44.addWidget(self.gridFrame)
+        self.verticalLayout_46.addWidget(self.gridFrame)
 
-        self.gridFrame_3 = QFrame(self.settingpage_sample_autoname_frame)
+        self.gridFrame_3 = QFrame(self.verticalFrame)
         self.gridFrame_3.setObjectName(u"gridFrame_3")
-        self.gridFrame_3.setStyleSheet(u"QPushButton{\n"
-"min-width:100px;\n"
-"background-color: rgb(50,50,50);\n"
-"}\n"
-"\n"
-"\n"
-"\n"
-"QLabel\n"
-"{\n"
-"	font-size: 14px;\n"
-"	max-width:200px;\n"
-"	min-width:100px;\n"
-"	margin-left:10px;\n"
-"}\n"
-"")
+        self.gridFrame_3.setStyleSheet(u"")
         self.gridLayout_23 = QGridLayout(self.gridFrame_3)
         self.gridLayout_23.setObjectName(u"gridLayout_23")
         self.gridLayout_23.setContentsMargins(-1, 1, -1, -1)
@@ -2541,7 +2540,10 @@ class Ui_MainWindow(object):
         self.gridLayout_23.addItem(self.horizontalSpacer_94, 1, 6, 1, 1)
 
 
-        self.verticalLayout_44.addWidget(self.gridFrame_3)
+        self.verticalLayout_46.addWidget(self.gridFrame_3)
+
+
+        self.verticalLayout_44.addWidget(self.verticalFrame)
 
         self.verticalSpacer_44 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
@@ -5538,10 +5540,10 @@ class Ui_MainWindow(object):
         self.label_75.setText(QCoreApplication.translate("MainWindow", u"%YEAR%", None))
         self.label_92.setText(QCoreApplication.translate("MainWindow", u"%MINUTE%", None))
         self.settingpage_sample_month_code_btn.setText(QCoreApplication.translate("MainWindow", u"Month", None))
-        self.label_91.setText(QCoreApplication.translate("MainWindow", u"%HOURE%", None))
+        self.label_91.setText(QCoreApplication.translate("MainWindow", u"%HOUR%", None))
         self.settingpage_sample_year_code_btn.setText(QCoreApplication.translate("MainWindow", u"Year", None))
         self.label_77.setText(QCoreApplication.translate("MainWindow", u"%DAY%", None))
-        self.settingpage_sample_houre_code_btn.setText(QCoreApplication.translate("MainWindow", u"Houre", None))
+        self.settingpage_sample_houre_code_btn.setText(QCoreApplication.translate("MainWindow", u"Hour", None))
         self.label_106.setText(QCoreApplication.translate("MainWindow", u"%USERNAME%", None))
         self.settingpage_sample_standard_code_btn.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
         self.settingpage_sample_username_code_btn.setText(QCoreApplication.translate("MainWindow", u"Username", None))

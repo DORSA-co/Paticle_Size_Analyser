@@ -126,9 +126,10 @@ class mainUI:
 
         self.tabs = {
             'general_setting':   (self.ui.settingpage_tabs, 0),
-            'grading_setting':   (self.ui.settingpage_tabs, 1),
-            'camera_setting':    (self.ui.settingpage_tabs, 2),
-            'algorithm_setting': (self.ui.settingpage_tabs, 3),
+            'sample_setting':   (self.ui.settingpage_tabs, 1),
+            'storage_setting': (self.ui.settingpage_tabs, 2),
+            'camera_setting':    (self.ui.settingpage_tabs, 3),
+            'algorithm_setting': (self.ui.settingpage_tabs, 4),
             'register_user':     (self.ui.user_tabs, 0),
             'edit_user':         (self.ui.user_tabs, 1),
             'all_users':         (self.ui.user_tabs, 2),

@@ -15,6 +15,8 @@ INT = 'INT'
 VARCHAR = 'VARCHAR(255)'
 FLOAT = 'FLOAT'
 DEFAULT = 'DEFAULT '
+BOOLEAN = 'BOOLEAN'
+
 
 NOTHING = 0   # Print nothing
 INFO = 1      # Only print errors

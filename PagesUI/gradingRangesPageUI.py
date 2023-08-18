@@ -9,12 +9,16 @@ class gradingRangesPageUI():
         self.ui = ui
         self.allStandardsTa = allStandardsTabUI(ui)
         self.newStandardTab = newStandardTabUI(ui)
+        
+        
 
     def open_new_standard_tab(self,):
         GUIBackend.set_current_tab(self.ui.gradingranges_tabs, 0)
     
     def open_all_standard_tab(self,):
         GUIBackend.set_current_tab(self.ui.gradingranges_tabs, 1)
+
+
 
 
 class allStandardsTabUI():

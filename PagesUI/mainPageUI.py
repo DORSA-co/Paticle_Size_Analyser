@@ -280,6 +280,9 @@ class mainPageUI:
     def set_sample_info_standards_items(self, items: list[str]) -> None: 
         GUIBackend.set_combobox_items(self.sample_info.standards_name_combobox, items)
     
+    def set_sample_name(self, name:str):
+        GUIBackend.set_input(self.sample_info.sample_name_input, name)
+    
     def get_sample_info(self, ) -> dict:
         info = {}
         info['name'] = GUIBackend.get_input_text(self.sample_info.sample_name_input)

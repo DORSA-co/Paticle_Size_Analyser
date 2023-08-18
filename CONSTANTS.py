@@ -32,4 +32,20 @@ ACCESS = {
 
 
 #-------------------------------------------------------------------
+NAME_CODE_CHAR = '%'
+NAME_CODE_SPACER = '_'
+NAME_CODES = {
+            'spacer':   '_',
+            'year':     '%YEAR%',
+            'month':    '%MONTH%',
+            'day':      '%DAY%',
+            'hour':    '%HOUR%',
+            'minute':   '%MINUTE%',
+            'standard': '%STANDARD%',
+            'username': '%USERNAME%',
+            'text1':    '%TEXT1%'
+
+        }
+
+
 SIDE_BAR_MAX_WIDTH = 16772

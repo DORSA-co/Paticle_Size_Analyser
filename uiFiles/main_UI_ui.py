@@ -2188,7 +2188,7 @@ class Ui_MainWindow(object):
 "QLabel\n"
 "{\n"
 "	font-size: 14px;\n"
-"	max-width:80px;\n"
+"	/*max-width:80px;*/\n"
 "	min-width:80px;\n"
 "	margin-left:10px;\n"
 "}\n"
@@ -2203,7 +2203,8 @@ class Ui_MainWindow(object):
 "#settingpage_general_tab, \n"
 "#settingpage_storage_tab,\n"
 "#settingpage_pelletizing_tab,\n"
-"#settingpage_algorithm_tab\n"
+"#settingpage_algorithm_tab,\n"
+"#settingpage_sample_tab\n"
 "{\n"
 "	background-color:rgb(255, 255, 255);\n"
 "}\n"
@@ -2305,6 +2306,330 @@ class Ui_MainWindow(object):
         self.gridLayout_4.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.settingpage_tabs.addTab(self.settingpage_general_tab, "")
+        self.settingpage_sample_tab = QWidget()
+        self.settingpage_sample_tab.setObjectName(u"settingpage_sample_tab")
+        self.settingpage_sample_tab.setStyleSheet(u"")
+        self.verticalLayout_41 = QVBoxLayout(self.settingpage_sample_tab)
+        self.verticalLayout_41.setObjectName(u"verticalLayout_41")
+        self.settingpage_sample_auto_name_groupbox = QGroupBox(self.settingpage_sample_tab)
+        self.settingpage_sample_auto_name_groupbox.setObjectName(u"settingpage_sample_auto_name_groupbox")
+        self.settingpage_sample_auto_name_groupbox.setStyleSheet(u"QGroupBox::indicator:checked {\n"
+"	image: url(:/assets/Assets/icons/icons8-check-50.png);\n"
+"	background-color: rgb(6, 76, 130);\n"
+"}\n"
+"\n"
+"QGroupBox::indicator {\n"
+"	width: 15px;\n"
+"    height: 15px;\n"
+"	border:1px solid rgb(6, 76, 130);\n"
+"	border-radius: 3px;\n"
+"}\n"
+"")
+        self.settingpage_sample_auto_name_groupbox.setCheckable(True)
+        self.verticalLayout_42 = QVBoxLayout(self.settingpage_sample_auto_name_groupbox)
+        self.verticalLayout_42.setObjectName(u"verticalLayout_42")
+        self.settingpage_sample_autoname_frame = QFrame(self.settingpage_sample_auto_name_groupbox)
+        self.settingpage_sample_autoname_frame.setObjectName(u"settingpage_sample_autoname_frame")
+        self.verticalLayout_44 = QVBoxLayout(self.settingpage_sample_autoname_frame)
+        self.verticalLayout_44.setObjectName(u"verticalLayout_44")
+        self.verticalLayout_44.setContentsMargins(-1, 1, -1, 1)
+        self.gridLayout_9 = QGridLayout()
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.settingpage_sample_text1_input = QLineEdit(self.settingpage_sample_autoname_frame)
+        self.settingpage_sample_text1_input.setObjectName(u"settingpage_sample_text1_input")
+
+        self.gridLayout_9.addWidget(self.settingpage_sample_text1_input, 0, 1, 1, 1)
+
+        self.label_68 = QLabel(self.settingpage_sample_autoname_frame)
+        self.label_68.setObjectName(u"label_68")
+
+        self.gridLayout_9.addWidget(self.label_68, 0, 0, 1, 1)
+
+        self.horizontalSpacer_95 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_9.addItem(self.horizontalSpacer_95, 0, 2, 1, 1)
+
+
+        self.verticalLayout_44.addLayout(self.gridLayout_9)
+
+        self.verticalSpacer_42 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_44.addItem(self.verticalSpacer_42)
+
+        self.label_96 = QLabel(self.settingpage_sample_autoname_frame)
+        self.label_96.setObjectName(u"label_96")
+        self.label_96.setStyleSheet(u"font-size:20px;")
+
+        self.verticalLayout_44.addWidget(self.label_96)
+
+        self.gridFrame = QFrame(self.settingpage_sample_autoname_frame)
+        self.gridFrame.setObjectName(u"gridFrame")
+        self.gridFrame.setStyleSheet(u"QPushButton{\n"
+"min-width:100px;\n"
+"background-color: rgb(50,50,50);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QLabel\n"
+"{\n"
+"	font-size: 14px;\n"
+"	max-width:200px;\n"
+"	min-width:100px;\n"
+"	margin-left:10px;\n"
+"}\n"
+"")
+        self.gridLayout_3 = QGridLayout(self.gridFrame)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.label_76 = QLabel(self.gridFrame)
+        self.label_76.setObjectName(u"label_76")
+        self.label_76.setMinimumSize(QSize(110, 0))
+        self.label_76.setMaximumSize(QSize(210, 16777215))
+        self.label_76.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label_76, 0, 1, 1, 1)
+
+        self.settingpage_sample_day_code_btn = QPushButton(self.gridFrame)
+        self.settingpage_sample_day_code_btn.setObjectName(u"settingpage_sample_day_code_btn")
+
+        self.gridLayout_3.addWidget(self.settingpage_sample_day_code_btn, 1, 2, 1, 1)
+
+        self.horizontalSpacer_93 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_93, 1, 3, 1, 1)
+
+        self.settingpage_sample_minute_code_btn = QPushButton(self.gridFrame)
+        self.settingpage_sample_minute_code_btn.setObjectName(u"settingpage_sample_minute_code_btn")
+
+        self.gridLayout_3.addWidget(self.settingpage_sample_minute_code_btn, 1, 5, 1, 1)
+
+        self.label_75 = QLabel(self.gridFrame)
+        self.label_75.setObjectName(u"label_75")
+        self.label_75.setMinimumSize(QSize(110, 0))
+        self.label_75.setMaximumSize(QSize(210, 16777215))
+        self.label_75.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label_75, 0, 0, 1, 1)
+
+        self.label_92 = QLabel(self.gridFrame)
+        self.label_92.setObjectName(u"label_92")
+        self.label_92.setMinimumSize(QSize(110, 0))
+        self.label_92.setMaximumSize(QSize(210, 16777215))
+        self.label_92.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label_92, 0, 5, 1, 1)
+
+        self.settingpage_sample_month_code_btn = QPushButton(self.gridFrame)
+        self.settingpage_sample_month_code_btn.setObjectName(u"settingpage_sample_month_code_btn")
+
+        self.gridLayout_3.addWidget(self.settingpage_sample_month_code_btn, 1, 1, 1, 1)
+
+        self.label_91 = QLabel(self.gridFrame)
+        self.label_91.setObjectName(u"label_91")
+        self.label_91.setMinimumSize(QSize(110, 0))
+        self.label_91.setMaximumSize(QSize(210, 16777215))
+        self.label_91.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label_91, 0, 4, 1, 1)
+
+        self.horizontalSpacer_96 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_96, 1, 6, 1, 1)
+
+        self.settingpage_sample_year_code_btn = QPushButton(self.gridFrame)
+        self.settingpage_sample_year_code_btn.setObjectName(u"settingpage_sample_year_code_btn")
+
+        self.gridLayout_3.addWidget(self.settingpage_sample_year_code_btn, 1, 0, 1, 1)
+
+        self.label_77 = QLabel(self.gridFrame)
+        self.label_77.setObjectName(u"label_77")
+        self.label_77.setMinimumSize(QSize(110, 0))
+        self.label_77.setMaximumSize(QSize(210, 16777215))
+        self.label_77.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label_77, 0, 2, 1, 1)
+
+        self.settingpage_sample_houre_code_btn = QPushButton(self.gridFrame)
+        self.settingpage_sample_houre_code_btn.setObjectName(u"settingpage_sample_houre_code_btn")
+
+        self.gridLayout_3.addWidget(self.settingpage_sample_houre_code_btn, 1, 4, 1, 1)
+
+
+        self.verticalLayout_44.addWidget(self.gridFrame)
+
+        self.gridFrame_3 = QFrame(self.settingpage_sample_autoname_frame)
+        self.gridFrame_3.setObjectName(u"gridFrame_3")
+        self.gridFrame_3.setStyleSheet(u"QPushButton{\n"
+"min-width:100px;\n"
+"background-color: rgb(50,50,50);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QLabel\n"
+"{\n"
+"	font-size: 14px;\n"
+"	max-width:200px;\n"
+"	min-width:100px;\n"
+"	margin-left:10px;\n"
+"}\n"
+"")
+        self.gridLayout_23 = QGridLayout(self.gridFrame_3)
+        self.gridLayout_23.setObjectName(u"gridLayout_23")
+        self.gridLayout_23.setContentsMargins(-1, 1, -1, -1)
+        self.label_106 = QLabel(self.gridFrame_3)
+        self.label_106.setObjectName(u"label_106")
+        sizePolicy.setHeightForWidth(self.label_106.sizePolicy().hasHeightForWidth())
+        self.label_106.setSizePolicy(sizePolicy)
+        self.label_106.setTextFormat(Qt.AutoText)
+        self.label_106.setScaledContents(False)
+        self.label_106.setAlignment(Qt.AlignCenter)
+        self.label_106.setWordWrap(False)
+
+        self.gridLayout_23.addWidget(self.label_106, 0, 3, 1, 1)
+
+        self.settingpage_sample_standard_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_standard_code_btn.setObjectName(u"settingpage_sample_standard_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_standard_code_btn, 1, 2, 1, 1)
+
+        self.horizontalSpacer_102 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_102, 1, 4, 1, 1)
+
+        self.settingpage_sample_username_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_username_code_btn.setObjectName(u"settingpage_sample_username_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_username_code_btn, 1, 3, 1, 1)
+
+        self.label_99 = QLabel(self.gridFrame_3)
+        self.label_99.setObjectName(u"label_99")
+        self.label_99.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_23.addWidget(self.label_99, 0, 5, 1, 1)
+
+        self.label_103 = QLabel(self.gridFrame_3)
+        self.label_103.setObjectName(u"label_103")
+        self.label_103.setMinimumSize(QSize(110, 0))
+        self.label_103.setMaximumSize(QSize(210, 16777215))
+        self.label_103.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_23.addWidget(self.label_103, 0, 0, 1, 1)
+
+        self.label_98 = QLabel(self.gridFrame_3)
+        self.label_98.setObjectName(u"label_98")
+        self.label_98.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_23.addWidget(self.label_98, 0, 2, 1, 1)
+
+        self.settingpage_sample_text1_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_text1_code_btn.setObjectName(u"settingpage_sample_text1_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_text1_code_btn, 1, 5, 1, 1)
+
+        self.horizontalSpacer_104 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_104, 1, 1, 1, 1)
+
+        self.settingpage_sample_spacer_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_spacer_code_btn.setObjectName(u"settingpage_sample_spacer_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_spacer_code_btn, 1, 0, 1, 1)
+
+        self.horizontalSpacer_94 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_94, 1, 6, 1, 1)
+
+
+        self.verticalLayout_44.addWidget(self.gridFrame_3)
+
+        self.verticalSpacer_44 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_44.addItem(self.verticalSpacer_44)
+
+        self.horizontalLayout_60 = QHBoxLayout()
+        self.horizontalLayout_60.setObjectName(u"horizontalLayout_60")
+        self.horizontalLayout_60.setContentsMargins(0, 0, -1, -1)
+        self.label_97 = QLabel(self.settingpage_sample_autoname_frame)
+        self.label_97.setObjectName(u"label_97")
+
+        self.horizontalLayout_60.addWidget(self.label_97)
+
+        self.settingpage_sample_auto_name_input = QLineEdit(self.settingpage_sample_autoname_frame)
+        self.settingpage_sample_auto_name_input.setObjectName(u"settingpage_sample_auto_name_input")
+        self.settingpage_sample_auto_name_input.setStyleSheet(u"max-width:800px;")
+        self.settingpage_sample_auto_name_input.setReadOnly(True)
+
+        self.horizontalLayout_60.addWidget(self.settingpage_sample_auto_name_input)
+
+        self.settingpage_sample_auto_name_clear_btn = QPushButton(self.settingpage_sample_autoname_frame)
+        self.settingpage_sample_auto_name_clear_btn.setObjectName(u"settingpage_sample_auto_name_clear_btn")
+
+        self.horizontalLayout_60.addWidget(self.settingpage_sample_auto_name_clear_btn)
+
+
+        self.verticalLayout_44.addLayout(self.horizontalLayout_60)
+
+
+        self.verticalLayout_42.addWidget(self.settingpage_sample_autoname_frame)
+
+
+        self.verticalLayout_41.addWidget(self.settingpage_sample_auto_name_groupbox)
+
+        self.verticalSpacer_43 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Maximum)
+
+        self.verticalLayout_41.addItem(self.verticalSpacer_43)
+
+        self.groupBox_6 = QGroupBox(self.settingpage_sample_tab)
+        self.groupBox_6.setObjectName(u"groupBox_6")
+        self.verticalLayout_43 = QVBoxLayout(self.groupBox_6)
+        self.verticalLayout_43.setObjectName(u"verticalLayout_43")
+        self.gridLayout_14 = QGridLayout()
+        self.gridLayout_14.setObjectName(u"gridLayout_14")
+        self.label_66 = QLabel(self.groupBox_6)
+        self.label_66.setObjectName(u"label_66")
+
+        self.gridLayout_14.addWidget(self.label_66, 0, 0, 1, 1)
+
+        self.settingpage_sample_default_standard_comboxos = QComboBox(self.groupBox_6)
+        self.settingpage_sample_default_standard_comboxos.setObjectName(u"settingpage_sample_default_standard_comboxos")
+
+        self.gridLayout_14.addWidget(self.settingpage_sample_default_standard_comboxos, 0, 1, 1, 1)
+
+        self.horizontalSpacer_98 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_14.addItem(self.horizontalSpacer_98, 0, 2, 1, 1)
+
+
+        self.verticalLayout_43.addLayout(self.gridLayout_14)
+
+
+        self.verticalLayout_41.addWidget(self.groupBox_6)
+
+        self.horizontalLayout_59 = QHBoxLayout()
+        self.horizontalLayout_59.setObjectName(u"horizontalLayout_59")
+        self.horizontalSpacer_99 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_59.addItem(self.horizontalSpacer_99)
+
+        self.settingpage_sample_save_btn = QPushButton(self.settingpage_sample_tab)
+        self.settingpage_sample_save_btn.setObjectName(u"settingpage_sample_save_btn")
+
+        self.horizontalLayout_59.addWidget(self.settingpage_sample_save_btn)
+
+        self.settingpage_sample_cancel_btn = QPushButton(self.settingpage_sample_tab)
+        self.settingpage_sample_cancel_btn.setObjectName(u"settingpage_sample_cancel_btn")
+
+        self.horizontalLayout_59.addWidget(self.settingpage_sample_cancel_btn)
+
+        self.horizontalSpacer_100 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_59.addItem(self.horizontalSpacer_100)
+
+
+        self.verticalLayout_41.addLayout(self.horizontalLayout_59)
+
+        self.settingpage_tabs.addTab(self.settingpage_sample_tab, "")
         self.settingpage_storage_tab = QWidget()
         self.settingpage_storage_tab.setObjectName(u"settingpage_storage_tab")
         self.verticalLayout_24 = QVBoxLayout(self.settingpage_storage_tab)
@@ -5079,9 +5404,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(8)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(1)
-        self.settingpage_tabs.setCurrentIndex(2)
+        self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -5204,6 +5529,34 @@ class Ui_MainWindow(object):
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"Language", None))
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"Font", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_general_tab), QCoreApplication.translate("MainWindow", u"General", None))
+        self.settingpage_sample_auto_name_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Auto Sample Name", None))
+        self.label_68.setText(QCoreApplication.translate("MainWindow", u"Custom Text 1", None))
+        self.label_96.setText(QCoreApplication.translate("MainWindow", u"ShortCodes", None))
+        self.label_76.setText(QCoreApplication.translate("MainWindow", u"%Month%", None))
+        self.settingpage_sample_day_code_btn.setText(QCoreApplication.translate("MainWindow", u"Day", None))
+        self.settingpage_sample_minute_code_btn.setText(QCoreApplication.translate("MainWindow", u"Minute", None))
+        self.label_75.setText(QCoreApplication.translate("MainWindow", u"%YEAR%", None))
+        self.label_92.setText(QCoreApplication.translate("MainWindow", u"%MINUTE%", None))
+        self.settingpage_sample_month_code_btn.setText(QCoreApplication.translate("MainWindow", u"Month", None))
+        self.label_91.setText(QCoreApplication.translate("MainWindow", u"%HOURE%", None))
+        self.settingpage_sample_year_code_btn.setText(QCoreApplication.translate("MainWindow", u"Year", None))
+        self.label_77.setText(QCoreApplication.translate("MainWindow", u"%DAY%", None))
+        self.settingpage_sample_houre_code_btn.setText(QCoreApplication.translate("MainWindow", u"Houre", None))
+        self.label_106.setText(QCoreApplication.translate("MainWindow", u"%USERNAME%", None))
+        self.settingpage_sample_standard_code_btn.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
+        self.settingpage_sample_username_code_btn.setText(QCoreApplication.translate("MainWindow", u"Username", None))
+        self.label_99.setText(QCoreApplication.translate("MainWindow", u"%TEXT1%", None))
+        self.label_103.setText(QCoreApplication.translate("MainWindow", u"_", None))
+        self.label_98.setText(QCoreApplication.translate("MainWindow", u"%STANDARD%", None))
+        self.settingpage_sample_text1_code_btn.setText(QCoreApplication.translate("MainWindow", u"Text1", None))
+        self.settingpage_sample_spacer_code_btn.setText(QCoreApplication.translate("MainWindow", u"Spacer", None))
+        self.label_97.setText(QCoreApplication.translate("MainWindow", u"Sample Name Struct", None))
+        self.settingpage_sample_auto_name_clear_btn.setText(QCoreApplication.translate("MainWindow", u"remove", None))
+        self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"General", None))
+        self.label_66.setText(QCoreApplication.translate("MainWindow", u"Default Standard ", None))
+        self.settingpage_sample_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.settingpage_sample_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_sample_tab), QCoreApplication.translate("MainWindow", u"Sample", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Sorage Manager", None))
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Report Life Time (days) :", None))
         self.settingpage_storage_auto_clean_checkbox.setText("")

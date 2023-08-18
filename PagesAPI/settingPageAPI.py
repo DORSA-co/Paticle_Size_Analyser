@@ -1,15 +1,80 @@
 from dorsaPylon import Collector
-from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB
-from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI
+from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB
+from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI
+import CONSTANTS
+
 
 class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database:settingDB, camera):
         self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, camera)
         self.algorithmSetting = algorithmSettingTabAPI(ui.algorithmSettingTab, database.algorithm_db)
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
+        self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
 
     def startup(self,):
         self.cameraSetting.startup()
+
+
+
+
+class sampleSettingTabAPI:
+
+    def __init__(self, ui:sampleSettingTabUI ,database:settingSampleDB):
+        self.ui = ui
+        self.database = database
+
+        self.autoname_struct = ''
+
+        self.ui.code_name_buttons_connector(self.code_name_button_event)
+        self.ui.clear_name_struct_button_connector(self.clear_struct_button_event)
+        self.ui.save_button_connector(self.save_setting)
+        self.ui.cancel_button_connector(self.cancel)
+        self.load_from_db()
+        self.ui.save_state(True)
+
+    def set_standards(self,standards):
+        self.ui.set_standards(standards)
+
+    def code_name_button_event(self, name):
+        self.autoname_struct += CONSTANTS.NAME_CODES[name]
+        self.ui.set_autoname_struct_input(self.autoname_struct)
+
+    def clear_struct_button_event(self, ):
+        if len(self.autoname_struct) == 0:
+            return
+        #check if last character is spacer, remove only that
+        if self.autoname_struct[-1] == CONSTANTS.NAME_CODE_SPACER:
+            self.autoname_struct = self.autoname_struct[:-1]
+        
+        #check if struct finish by a shortcode, remove that
+        elif self.autoname_struct[-1] == CONSTANTS.NAME_CODE_CHAR:
+            #last char is % so we search from -2
+            idx = self.autoname_struct.rfind(CONSTANTS.NAME_CODE_CHAR,0, -2)
+            self.autoname_struct = self.autoname_struct[:idx]
+        
+        self.ui.set_autoname_struct_input(self.autoname_struct)
+
+    
+
+    def save_setting(self,):
+        data = self.ui.get_settings()
+        self.database.save(data)
+        self.ui.save_state(True)
+
+
+    def cancel(self,):
+        state = self.ui.show_confirm_box("Cancel", "Are You Sure?", 
+                                 buttons=['yes','no'])
+        if state == 'no':
+            return
+        self.load_from_db()
+        self.ui.save_state(True)
+
+    def load_from_db(self):
+        settings = self.database.load()
+        self.autoname_struct = settings['autoname_struct']
+        self.ui.set_settings(settings)
+
 
 
 
@@ -48,6 +113,11 @@ class storageSettingTabAPI:
     def load_from_db(self):
         settings = self.database.load()
         self.ui.set_settings(settings)
+
+
+
+
+
 
 
 

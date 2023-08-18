@@ -289,6 +289,17 @@ class GUIBackend:
         """
         combo.setCurrentText(item)
 
+
+    @staticmethod
+    def combobox_changeg_connector( combo: QtWidgets.QComboBox, func):
+        """connect combobox change selected item selected event
+
+        Args:
+            combo (QtWidgets.QComboBox): Qt comboBox object
+            func : python function
+        """
+        combo.currentTextChanged.connect(func)
+
     #--------------------------------- GLOBAL CheckBox FUNCTIONs ---------------------------------
     @staticmethod
     def get_checkbox_value(chbox: QtWidgets.QCheckBox) -> bool:
@@ -647,6 +658,14 @@ class GUIBackend:
             (bool) : True if checked and False if not
         """
         return gp.isChecked()
+    
+
+
+    @staticmethod
+    def set_groupbox_checkbox(gp: QtWidgets.QGroupBox, state) :
+        return gp.setChecked(state)
+
+
     
     def set_groupbox_title(gp: QtWidgets.QGroupBox, title):
 

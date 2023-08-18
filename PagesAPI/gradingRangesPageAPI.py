@@ -12,17 +12,32 @@ class gradingRangesPageAPI:
     def __init__(self, ui:gradingRangesPageUI, database:gradingRangesDB):
         #self.dataPasser = dataPasser
         self.ui = ui
+        
+        self.new_standard_event_func = None
+        self.remove_standard_event_func = None
+
         self.newStandardTab = newStandardTabAPI(ui.newStandardTab, database,)
         self.allStandardTab = allStandardTabAPI(ui.allStandardsTa, database,)
 
-        self.newStandardTab.set_new_range_event_func(self.new_standard_added_event)
+        self.newStandardTab.set_new_standard_event_func(self.new_standard_added_event)
         self.allStandardTab.set_edit_event_func(self.standard_edit_event)
+        self.allStandardTab.set_delete_event_func(self.standard_delete_event)
         self.newStandardTab.set_edit_complete_event_func(self.edit_complete_event)
+
+        
+    def set_new_standard_event_func(self, func):
+        self.new_standard_event_func = func
+
+    def set_remove_standard_event_func(self, func):
+        self.remove_standard_event_func = func
     
+
     def new_standard_added_event(self,):
         """this event execute when a new standard added
         """
         self.allStandardTab.load_standards()
+        if self.new_standard_event_func is not None:
+            self.new_standard_event_func()
 
     def standard_edit_event(self,):
         """this event execute when edit button of a standard in all standards table clicked
@@ -31,6 +46,14 @@ class gradingRangesPageAPI:
         print(on_edit_standard)
         self.newStandardTab.enable_edit_mode(on_edit_standard)
         self.ui.open_new_standard_tab()
+
+
+    def standard_delete_event(self,):
+        """this event execute when edit button of a standard in all standards table clicked
+        """
+        if self.remove_standard_event_func is not None:
+            self.remove_standard_event_func()
+
 
     def edit_complete_event(self):
         """this event execute when edit complete
@@ -55,7 +78,7 @@ class newStandardTabAPI:
         self.database = database
         self.edit_mode = False
         self.on_edit_standard = ''
-        self.new_range_event_func = None
+        self.new_standard_event_func = None
         self.edit_complete_event_func = None
         self.standard_ranges = []
 
@@ -67,8 +90,8 @@ class newStandardTabAPI:
         self.ui.enable_edit_mode(self.edit_mode)
         
 
-    def set_new_range_event_func(self, func):
-        self.new_range_event_func = func
+    def set_new_standard_event_func(self, func):
+        self.new_standard_event_func = func
 
     def set_edit_complete_event_func(self, func):
         self.edit_complete_event_func = func
@@ -181,8 +204,8 @@ class newStandardTabAPI:
         self.clear()
         if self.edit_mode == False:
             self.ui.show_success_msg("New Standard Saved")
-            if self.new_range_event_func is not None:
-                self.new_range_event_func()
+            if self.new_standard_event_func is not None:
+                self.new_standard_event_func()
         
         else:
             self.edit_mode = False
@@ -245,6 +268,7 @@ class allStandardTabAPI:
         self.on_edit_standard = {}
         
         self.edit_event_func = None
+        self.delete_event_func = None
 
         #set a function for delete and edit event of all standards table
         self.ui.external_standards_table_connector(self.modify_standards_range) #Delete This line
@@ -269,6 +293,8 @@ class allStandardTabAPI:
     def set_edit_event_func(self, func):
         self.edit_event_func = func
 
+    def set_delete_event_func(self, func):
+        self.delete_event_func = func
 
 
     def modify_standards_range(self,idx, data, status, btn):
@@ -281,6 +307,9 @@ class allStandardTabAPI:
                 self.database.remove(deleted_standard['name'])
                 #refresh table
                 self.ui.set_standards_table_data(self.standards_list)
+
+                if self.delete_event_func is not None:
+                    self.delete_event_func()
 
         
         elif status =='edit':

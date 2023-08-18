@@ -46,6 +46,8 @@ class main_API:
         self.reportPageAPI.set_back_event_func(self.change_page)
         self.comparePageAPI.set_back_event_func(self.change_page)
         self.reportsPageAPI.set_compare_event_func(self.show_compare)
+        self.gradingRangesPageAPI.set_new_standard_event_func( self.standard_event )
+        self.gradingRangesPageAPI.set_remove_standard_event_func( self.standard_event )
 
         #this functions should run when each page load
         self.pages_api_dict = {
@@ -62,6 +64,7 @@ class main_API:
 
         #TEMP
         self.login_user_event()
+        self.standard_event()
         #---------------------------------------------------
         #report = load_obj('test_report')
         #self.show_report(report, 'main')
@@ -116,6 +119,10 @@ class main_API:
         username = self.usersPageAPI.data_passer.logined_user.get('username', '')
         self.set_access(role)
         self.mainPageAPI.set_logined_user(username)
+
+
+    def standards_changed_event(self,):
+        pass
     
     def set_access(self, role):
         self.ui.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
@@ -141,7 +148,12 @@ class main_API:
         self.ui.go_to_page('compare')
         self.comparePageAPI.set_compare_data(compare)
 
-
+    def standard_event(self,): 
+        """this event happend when a new standard define or remove
+        """
+        standars = self.db.grading_ranges_db.load_all()
+        standars_name = list(map( lambda x:x['name'], standars))
+        self.settingPageAPI.sampleSetting.set_standards(standars_name)
 
 def __save_obj__( obj:object, path:str):
     dbfile = open(path, 'ab')

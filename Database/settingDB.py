@@ -6,6 +6,7 @@ class settingDB:
         self.camera_db = settingCameraDB(self.db_manager)
         self.algorithm_db = settingAlgorithmDB(self.db_manager)
         self.storage_db = settingStorageDB(self.db_manager)
+        self.sample_db = settingSampleDB(self.db_manager)
         
 
 
@@ -71,6 +72,65 @@ class settingCameraDB:
         default_data = self.db_manager.search( self.TABLE_NAME_DEFAULT, self.PRIMERY_KEY_COL_NAME, camera_number)[0]
         self.db_manager.update_record_dict(self.TABLE_NAME, default_data, id_name = self.PRIMERY_KEY_COL_NAME, id_value = camera_number)
         return default_data
+
+
+
+
+
+
+class settingSampleDB:
+    TABLE_NAME = 'sample_setting'
+
+    TABLE_COLS = [ {'col_name': 'autoname_enable',      'type':'INT', },
+                   {'col_name': 'autoname_struct',      'type':'VARCHAR(255)', 'len':300},
+                   {'col_name': 'default_standard',     'type':'VARCHAR(255)', 'len':300},
+                   {'col_name': 'text1',     'type':'VARCHAR(255)', 'len':300},
+                ]
+    PRIMERY_KEY_COL_NAME = 'id'
+
+
+    def __init__(self,db_manager):
+        self.db_manager = db_manager
+        self.__create_table__()
+        
+
+    def __create_table__(self,):
+        self.db_manager.create_table(self.TABLE_NAME)
+
+        for col in self.TABLE_COLS:
+            self.db_manager.add_column( self.TABLE_NAME, **col)
+        
+        
+    def is_exist(self, id):
+        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
+        if len(founded_records)>0:
+            return True
+        return False
+
+
+    def save(self, data):
+        data['id'] = 1
+        data['autoname_enable'] = int(data['autoname_enable'])
+        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
+            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
+        else:
+            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+    
+
+    def load(self):
+        id = 1
+        record =  self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
+        if len(record)>0:
+            record = record[0]
+            record.pop('id')
+            record['autoname_enable'] = bool(record['autoname_enable'])
+            return record
+        return {}
+    
+    
+
+    
+
 
 
     

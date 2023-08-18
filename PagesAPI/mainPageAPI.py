@@ -9,7 +9,7 @@ from uiUtils import GUIComponents
 from backend.Camera import dorsaPylon
 from backend.Processing import particlesDetector, Grading
 from backend.Processing.Report import Report
-
+from datetime import datetime
 import cv2
 import numpy as np
 import time
@@ -109,6 +109,44 @@ class mainPageAPI:
         t = time.time() - t
         print(t)
 
+    def build_autoname_sample(self, sample_setting):
+        name_struct = str(sample_setting['autoname_struct'])
+        _datetime = datetime.now()
+        idx = 0
+        name = ''
+        while idx < len(name_struct):
+            if name_struct[idx] == CONSTANTS.NAME_CODE_SPACER:
+                name += CONSTANTS.NAME_CODE_SPACER
+            
+            elif name_struct[idx] == CONSTANTS.NAME_CODE_CHAR:
+                code_end_idx = name_struct.find(CONSTANTS.NAME_CODE_CHAR, idx+1)
+                code_name = name_struct[idx+1 : code_end_idx]
+                idx = code_end_idx
+
+                if code_name.lower() == 'year':
+                    name += _datetime.strftime("%Y")
+
+                elif code_name.lower() == 'month':
+                    name += _datetime.strftime("%m")
+
+                elif code_name.lower() == 'day':
+                    name += _datetime.strftime("%d")
+
+                elif code_name.lower() == 'hour':
+                    name += _datetime.strftime("%H")
+
+                elif code_name.lower() == 'minute':
+                    name += _datetime.strftime("%M")
+                
+                elif code_name.lower() == 'username':
+                    name += self.logined_username
+
+                elif code_name.lower() == 'text1':
+                    name += sample_setting['text1']
+            idx+=1
+        return name
+
+
     def start(self,):
         standards = self.database.grading_ranges_db.load_all()
         
@@ -122,6 +160,13 @@ class mainPageAPI:
         standards_name = list(map( lambda x:x['name'], standards))
         #set standards into combobox
         self.ui.set_sample_info_standards_items(standards_name)
+        #---------------------------------------------------------------------------
+        sample_setting = self.database.setting_db.sample_db.load()
+        if sample_setting['autoname_enable']:
+            name = self.build_autoname_sample(sample_setting)
+            self.ui.set_sample_name(name)
+
+        #---------------------------------------------------------------------------
         #show sample information box
         self.ui.show_sample_info_window()
 

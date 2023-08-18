@@ -9,6 +9,8 @@ class settingPageUI:
         self.cameraSettingTab = cameraSettingTabUI(ui)
         self.algorithmSettingTab = algorithmSettingTabUI(ui)
         self.storageSettingTab = storageSettingTabUI(ui)
+        self.sampleSettingTab = sampleSettingTabUI(ui)
+
 
 
 
@@ -86,8 +88,125 @@ class storageSettingTabUI(commonSettingUI):
 
 
 
+class sampleSettingTabUI(commonSettingUI):
+
+    def __init__(self, ui) -> None:
+        super(sampleSettingTabUI, self).__init__(ui)
+        self.ui = ui
+
+        self.autoname_struct_field = self.ui.settingpage_sample_auto_name_input
+        self.autoname_groupbox = self.ui.settingpage_sample_auto_name_groupbox
+        self.autoname_frame = self.ui.settingpage_sample_autoname_frame
+        self.save_btn = self.ui.settingpage_sample_save_btn
+        self.cancel_btn = self.ui.settingpage_sample_cancel_btn
+        self.autoame_struct_clear_btn = self.ui.settingpage_sample_auto_name_clear_btn
+        self.standards_name_combobox = self.ui.settingpage_sample_default_standard_comboxos
+
+        self.custom_texts_inputs = {
+            'text1': self.ui.settingpage_sample_text1_input
+        }
+
+        self.name_code_btns = {
+            'spacer':   self.ui.settingpage_sample_spacer_code_btn,
+            'year':     self.ui.settingpage_sample_year_code_btn,
+            'month':    self.ui.settingpage_sample_month_code_btn,
+            'day':      self.ui.settingpage_sample_day_code_btn,
+            'hour':    self.ui.settingpage_sample_houre_code_btn,
+            'minute':   self.ui.settingpage_sample_minute_code_btn,
+            'standard': self.ui.settingpage_sample_standard_code_btn,
+            'username': self.ui.settingpage_sample_username_code_btn,
+            'text1':    self.ui.settingpage_sample_text1_code_btn
+
+        }
 
 
+        
+
+        self.code_name_buttons_evetn_func = None
+
+        GUIBackend.groupbox_checkbox_connector(self.autoname_groupbox, self.__enable_auto_sample_setting__)
+        self.__internal_code_name_buttons_connector__()
+        self.__setting_change_connector__()
+
+
+
+
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
+
+    def cancel_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_btn, func)
+
+    def clear_name_struct_button_connector(self, func):
+        GUIBackend.button_connector(self.autoame_struct_clear_btn, func)
+        
+
+
+    def code_name_buttons_connector(self, func):
+        self.code_name_buttons_evetn_func = func
+
+
+    def __internal_code_name_buttons_connector__(self,):
+        for name, btn in self.name_code_btns.items():
+            GUIBackend.button_connector( btn, self.__internal_code_name_buttons_event__(name) )
+
+
+    def __internal_code_name_buttons_event__(self, name):
+
+        def func():
+            self.code_name_buttons_evetn_func(name)
+        return func
+    
+    def set_autoname_struct_input(self, txt):
+        GUIBackend.set_input(self.autoname_struct_field, txt)
+        
+    
+    def __enable_auto_sample_setting__(self,):
+        if GUIBackend.is_groupbox_checked(self.autoname_groupbox):
+            GUIBackend.set_frame_max_size(self.autoname_frame,w=None, h=17662)
+        else:
+            GUIBackend.set_frame_max_size(self.autoname_frame,w=None, h=0)
+
+
+    def __setting_change_connector__(self,):
+        for btn in self.name_code_btns.values():
+            GUIBackend.button_connector( btn, lambda :self.save_state(False) )
+        
+        for custom_field in self.custom_texts_inputs.values():
+            GUIBackend.input_text_connector(custom_field, lambda :self.save_state(False) )
+        GUIBackend.groupbox_checkbox_connector(self.autoname_groupbox, lambda :self.save_state(False) )    
+        GUIBackend.combobox_changeg_connector(self.standards_name_combobox, lambda :self.save_state(False) )
+        
+
+    
+    def set_settings(self, data:dict):
+        for setting_name, setting_value in data.items():
+            if setting_name == 'autoname_enable':
+                GUIBackend.set_groupbox_checkbox(self.autoname_groupbox, setting_value)
+            
+            elif setting_name == 'autoname_struct':
+                GUIBackend.set_input(self.autoname_struct_field, setting_value)
+            
+            elif setting_name == 'default_standard':
+                GUIBackend.set_combobox_current_item(self.standards_name_combobox, setting_value)
+            
+            elif setting_name in self.custom_texts_inputs.keys():
+                GUIBackend.set_input_text(self.custom_texts_inputs[setting_name], setting_value)
+    
+    def get_settings(self):
+        data = {}
+        data['autoname_struct'] = GUIBackend.get_input(self.autoname_struct_field)
+        data['autoname_enable'] = GUIBackend.is_groupbox_checked(self.autoname_groupbox)
+        data['default_standard'] = GUIBackend.get_combobox_selected(self.standards_name_combobox)
+        for custom_text in self.custom_texts_inputs.keys():
+            data[custom_text] = GUIBackend.get_input(self.custom_texts_inputs[custom_text])
+
+        return data
+
+    def set_standards(self, items:list[str]):
+        GUIBackend.set_combobox_items(self.standards_name_combobox, items)
+    
+    
 
 
 

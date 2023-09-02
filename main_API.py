@@ -41,8 +41,8 @@ class main_API:
 
         self.ui.change_page_connector(self.page_change)
         self.usersPageAPI.set_login_event(self.login_user_event)
-        self.mainPageAPI.set_report_button_event_func(self.show_report)
-        self.reportsPageAPI.set_see_report_event_func(self.show_report)
+        self.mainPageAPI.set_report_button_event_func(self.show_report_event)
+        self.reportsPageAPI.set_see_report_event_func(self.show_report_event)
         self.reportPageAPI.set_back_event_func(self.change_page)
         self.comparePageAPI.set_back_event_func(self.change_page)
         self.reportsPageAPI.set_compare_event_func(self.show_compare)
@@ -129,7 +129,7 @@ class main_API:
         self.ui.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])
 
 
-    def show_report(self, report:Report, master_page:str ):
+    def show_report_event(self, report:Report, master_page:str ):
         """open Report Page and Pass Report to its API
 
         Args:
@@ -155,12 +155,3 @@ class main_API:
         standars_name = list(map( lambda x:x['name'], standars))
         self.settingPageAPI.sampleSetting.set_standards(standars_name)
 
-def __save_obj__( obj:object, path:str):
-    dbfile = open(path, 'ab')
-    pickle.dump(obj, dbfile)
-
-
-def __load_obj__( path:str) -> object:
-
-    dbfile = open(path, 'rb')
-    return pickle.load( dbfile)

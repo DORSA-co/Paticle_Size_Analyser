@@ -218,6 +218,8 @@ class GUIBackend:
             btn (QtWidgets.QPushButton): PyQt button object
             color (tuple): color of background in format of 'rgb' or 'rgba'
         """
+        txt = btn.styleSheet()
+        print(btn, txt)
         #convert rgb to rgba
         if len(color) == 3:
             color+= (255,)

@@ -1,5 +1,6 @@
 
 from uiUtils.guiBackend import GUIBackend
+from uiUtils import GUIComponents
 from uiUtils import Charts
 import cv2
 
@@ -78,3 +79,9 @@ class comparePageUI:
         else:
             GUIBackend.set_max_size(self.ui.compareScrollAreaWidget, h=0)
             GUIBackend.set_max_size(self.progressbar, h=100)
+
+
+
+    def show_confirm_box(Self, title, massage, buttons):
+        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
+        return cmb.render()

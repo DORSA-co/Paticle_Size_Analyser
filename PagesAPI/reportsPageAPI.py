@@ -95,6 +95,8 @@ class reportsPageAPI:
         date_time = datetime.combine(sample['date'], sample['time'])
         rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
         report = rfh.load_report()
+        if report is None:
+            self.ui.show_confirm_box('Error', "Report File dosen't exit. it may deleted", ['ok'])
         if self.see_report_event_func is not None:
             self.see_report_event_func(report, 'reports')
 

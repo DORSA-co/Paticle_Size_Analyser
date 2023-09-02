@@ -1,5 +1,5 @@
 from uiUtils import GUIComponents
-
+import CONSTANTS
 from uiUtils.guiBackend import GUIBackend
 
 
@@ -113,7 +113,7 @@ class sampleSettingTabUI(commonSettingUI):
             'day':      self.ui.settingpage_sample_day_code_btn,
             'hour':    self.ui.settingpage_sample_houre_code_btn,
             'minute':   self.ui.settingpage_sample_minute_code_btn,
-            'standard': self.ui.settingpage_sample_standard_code_btn,
+            #'standard': self.ui.settingpage_sample_standard_code_btn,
             'username': self.ui.settingpage_sample_username_code_btn,
             'text1':    self.ui.settingpage_sample_text1_code_btn
 
@@ -159,6 +159,13 @@ class sampleSettingTabUI(commonSettingUI):
     
     def set_autoname_struct_input(self, txt):
         GUIBackend.set_input(self.autoname_struct_field, txt)
+        for btn_name, btn in self.name_code_btns.items():
+            if  CONSTANTS.NAME_CODES[btn_name] in txt and btn_name!='spacer':
+                GUIBackend.set_style(btn, GUIComponents.CODE_NAME_BUTTON_STYLE['active'])
+
+            else:
+                GUIBackend.button_background(btn , GUIComponents.CODE_NAME_BUTTON_STYLE['normal'])
+                
         
     
     def __enable_auto_sample_setting__(self,):
@@ -169,8 +176,7 @@ class sampleSettingTabUI(commonSettingUI):
 
 
     def __setting_change_connector__(self,):
-        for btn in self.name_code_btns.values():
-            GUIBackend.button_connector( btn, lambda :self.save_state(False) )
+        GUIBackend.input_text_connector( self.autoname_struct_field, lambda :self.save_state(False) )
         
         for custom_field in self.custom_texts_inputs.values():
             GUIBackend.input_text_connector(custom_field, lambda :self.save_state(False) )

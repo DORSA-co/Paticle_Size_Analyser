@@ -2383,6 +2383,67 @@ class Ui_MainWindow(object):
         self.verticalLayout_46 = QVBoxLayout(self.verticalFrame)
         self.verticalLayout_46.setObjectName(u"verticalLayout_46")
         self.verticalLayout_46.setContentsMargins(-1, 12, -1, 22)
+        self.gridFrame_3 = QFrame(self.verticalFrame)
+        self.gridFrame_3.setObjectName(u"gridFrame_3")
+        self.gridFrame_3.setStyleSheet(u"")
+        self.gridLayout_23 = QGridLayout(self.gridFrame_3)
+        self.gridLayout_23.setObjectName(u"gridLayout_23")
+        self.gridLayout_23.setContentsMargins(-1, 1, -1, -1)
+        self.label_106 = QLabel(self.gridFrame_3)
+        self.label_106.setObjectName(u"label_106")
+        sizePolicy.setHeightForWidth(self.label_106.sizePolicy().hasHeightForWidth())
+        self.label_106.setSizePolicy(sizePolicy)
+        self.label_106.setTextFormat(Qt.AutoText)
+        self.label_106.setScaledContents(False)
+        self.label_106.setAlignment(Qt.AlignCenter)
+        self.label_106.setWordWrap(False)
+
+        self.gridLayout_23.addWidget(self.label_106, 0, 2, 1, 1)
+
+        self.horizontalSpacer_104 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_104, 1, 1, 1, 1)
+
+        self.horizontalSpacer_102 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_102, 1, 3, 1, 1)
+
+        self.label_99 = QLabel(self.gridFrame_3)
+        self.label_99.setObjectName(u"label_99")
+        self.label_99.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_23.addWidget(self.label_99, 0, 4, 1, 1)
+
+        self.horizontalSpacer_94 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_94, 1, 5, 1, 1)
+
+        self.label_103 = QLabel(self.gridFrame_3)
+        self.label_103.setObjectName(u"label_103")
+        self.label_103.setMinimumSize(QSize(110, 0))
+        self.label_103.setMaximumSize(QSize(210, 16777215))
+        self.label_103.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_23.addWidget(self.label_103, 0, 0, 1, 1)
+
+        self.settingpage_sample_text1_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_text1_code_btn.setObjectName(u"settingpage_sample_text1_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_text1_code_btn, 1, 4, 1, 1)
+
+        self.settingpage_sample_spacer_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_spacer_code_btn.setObjectName(u"settingpage_sample_spacer_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_spacer_code_btn, 1, 0, 1, 1)
+
+        self.settingpage_sample_username_code_btn = QPushButton(self.gridFrame_3)
+        self.settingpage_sample_username_code_btn.setObjectName(u"settingpage_sample_username_code_btn")
+
+        self.gridLayout_23.addWidget(self.settingpage_sample_username_code_btn, 1, 2, 1, 1)
+
+
+        self.verticalLayout_46.addWidget(self.gridFrame_3)
+
         self.gridFrame = QFrame(self.verticalFrame)
         self.gridFrame.setObjectName(u"gridFrame")
         self.gridFrame.setStyleSheet(u"")
@@ -2469,78 +2530,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_46.addWidget(self.gridFrame)
-
-        self.gridFrame_3 = QFrame(self.verticalFrame)
-        self.gridFrame_3.setObjectName(u"gridFrame_3")
-        self.gridFrame_3.setStyleSheet(u"")
-        self.gridLayout_23 = QGridLayout(self.gridFrame_3)
-        self.gridLayout_23.setObjectName(u"gridLayout_23")
-        self.gridLayout_23.setContentsMargins(-1, 1, -1, -1)
-        self.label_106 = QLabel(self.gridFrame_3)
-        self.label_106.setObjectName(u"label_106")
-        sizePolicy.setHeightForWidth(self.label_106.sizePolicy().hasHeightForWidth())
-        self.label_106.setSizePolicy(sizePolicy)
-        self.label_106.setTextFormat(Qt.AutoText)
-        self.label_106.setScaledContents(False)
-        self.label_106.setAlignment(Qt.AlignCenter)
-        self.label_106.setWordWrap(False)
-
-        self.gridLayout_23.addWidget(self.label_106, 0, 3, 1, 1)
-
-        self.settingpage_sample_standard_code_btn = QPushButton(self.gridFrame_3)
-        self.settingpage_sample_standard_code_btn.setObjectName(u"settingpage_sample_standard_code_btn")
-
-        self.gridLayout_23.addWidget(self.settingpage_sample_standard_code_btn, 1, 2, 1, 1)
-
-        self.horizontalSpacer_102 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_23.addItem(self.horizontalSpacer_102, 1, 4, 1, 1)
-
-        self.settingpage_sample_username_code_btn = QPushButton(self.gridFrame_3)
-        self.settingpage_sample_username_code_btn.setObjectName(u"settingpage_sample_username_code_btn")
-
-        self.gridLayout_23.addWidget(self.settingpage_sample_username_code_btn, 1, 3, 1, 1)
-
-        self.label_99 = QLabel(self.gridFrame_3)
-        self.label_99.setObjectName(u"label_99")
-        self.label_99.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_23.addWidget(self.label_99, 0, 5, 1, 1)
-
-        self.label_103 = QLabel(self.gridFrame_3)
-        self.label_103.setObjectName(u"label_103")
-        self.label_103.setMinimumSize(QSize(110, 0))
-        self.label_103.setMaximumSize(QSize(210, 16777215))
-        self.label_103.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_23.addWidget(self.label_103, 0, 0, 1, 1)
-
-        self.label_98 = QLabel(self.gridFrame_3)
-        self.label_98.setObjectName(u"label_98")
-        self.label_98.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_23.addWidget(self.label_98, 0, 2, 1, 1)
-
-        self.settingpage_sample_text1_code_btn = QPushButton(self.gridFrame_3)
-        self.settingpage_sample_text1_code_btn.setObjectName(u"settingpage_sample_text1_code_btn")
-
-        self.gridLayout_23.addWidget(self.settingpage_sample_text1_code_btn, 1, 5, 1, 1)
-
-        self.horizontalSpacer_104 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_23.addItem(self.horizontalSpacer_104, 1, 1, 1, 1)
-
-        self.settingpage_sample_spacer_code_btn = QPushButton(self.gridFrame_3)
-        self.settingpage_sample_spacer_code_btn.setObjectName(u"settingpage_sample_spacer_code_btn")
-
-        self.gridLayout_23.addWidget(self.settingpage_sample_spacer_code_btn, 1, 0, 1, 1)
-
-        self.horizontalSpacer_94 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_23.addItem(self.horizontalSpacer_94, 1, 6, 1, 1)
-
-
-        self.verticalLayout_46.addWidget(self.gridFrame_3)
 
 
         self.verticalLayout_44.addWidget(self.verticalFrame)
@@ -4063,7 +4052,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 685))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4245,7 +4234,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 1969))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 686, 1969))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5136,7 +5125,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 713))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 534))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5533,6 +5522,12 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_general_tab), QCoreApplication.translate("MainWindow", u"General", None))
         self.settingpage_sample_auto_name_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Auto Sample Name", None))
         self.label_68.setText(QCoreApplication.translate("MainWindow", u"Custom Text 1", None))
+        self.label_106.setText(QCoreApplication.translate("MainWindow", u"%USERNAME%", None))
+        self.label_99.setText(QCoreApplication.translate("MainWindow", u"%TEXT1%", None))
+        self.label_103.setText(QCoreApplication.translate("MainWindow", u"_", None))
+        self.settingpage_sample_text1_code_btn.setText(QCoreApplication.translate("MainWindow", u"Text1", None))
+        self.settingpage_sample_spacer_code_btn.setText(QCoreApplication.translate("MainWindow", u"Spacer", None))
+        self.settingpage_sample_username_code_btn.setText(QCoreApplication.translate("MainWindow", u"Username", None))
         self.label_96.setText(QCoreApplication.translate("MainWindow", u"ShortCodes", None))
         self.label_76.setText(QCoreApplication.translate("MainWindow", u"%Month%", None))
         self.settingpage_sample_day_code_btn.setText(QCoreApplication.translate("MainWindow", u"Day", None))
@@ -5544,14 +5539,6 @@ class Ui_MainWindow(object):
         self.settingpage_sample_year_code_btn.setText(QCoreApplication.translate("MainWindow", u"Year", None))
         self.label_77.setText(QCoreApplication.translate("MainWindow", u"%DAY%", None))
         self.settingpage_sample_houre_code_btn.setText(QCoreApplication.translate("MainWindow", u"Hour", None))
-        self.label_106.setText(QCoreApplication.translate("MainWindow", u"%USERNAME%", None))
-        self.settingpage_sample_standard_code_btn.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
-        self.settingpage_sample_username_code_btn.setText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.label_99.setText(QCoreApplication.translate("MainWindow", u"%TEXT1%", None))
-        self.label_103.setText(QCoreApplication.translate("MainWindow", u"_", None))
-        self.label_98.setText(QCoreApplication.translate("MainWindow", u"%STANDARD%", None))
-        self.settingpage_sample_text1_code_btn.setText(QCoreApplication.translate("MainWindow", u"Text1", None))
-        self.settingpage_sample_spacer_code_btn.setText(QCoreApplication.translate("MainWindow", u"Spacer", None))
         self.label_97.setText(QCoreApplication.translate("MainWindow", u"Sample Name Struct", None))
         self.settingpage_sample_auto_name_clear_btn.setText(QCoreApplication.translate("MainWindow", u"remove", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"General", None))

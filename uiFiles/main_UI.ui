@@ -4005,6 +4005,141 @@ QLabel
                            <number>22</number>
                           </property>
                           <item>
+                           <widget class="QFrame" name="gridFrame_3">
+                            <property name="styleSheet">
+                             <string notr="true"/>
+                            </property>
+                            <layout class="QGridLayout" name="gridLayout_23">
+                             <property name="topMargin">
+                              <number>1</number>
+                             </property>
+                             <item row="0" column="2">
+                              <widget class="QLabel" name="label_106">
+                               <property name="sizePolicy">
+                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                 <horstretch>0</horstretch>
+                                 <verstretch>0</verstretch>
+                                </sizepolicy>
+                               </property>
+                               <property name="text">
+                                <string>%USERNAME%</string>
+                               </property>
+                               <property name="textFormat">
+                                <enum>Qt::AutoText</enum>
+                               </property>
+                               <property name="scaledContents">
+                                <bool>false</bool>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                               <property name="wordWrap">
+                                <bool>false</bool>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="1">
+                              <spacer name="horizontalSpacer_104">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeType">
+                                <enum>QSizePolicy::Maximum</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="1" column="3">
+                              <spacer name="horizontalSpacer_102">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeType">
+                                <enum>QSizePolicy::Maximum</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="0" column="4">
+                              <widget class="QLabel" name="label_99">
+                               <property name="text">
+                                <string>%TEXT1%</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="5">
+                              <spacer name="horizontalSpacer_94">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="0" column="0">
+                              <widget class="QLabel" name="label_103">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>110</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>210</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string>_</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="4">
+                              <widget class="QPushButton" name="settingpage_sample_text1_code_btn">
+                               <property name="text">
+                                <string>Text1</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QPushButton" name="settingpage_sample_spacer_code_btn">
+                               <property name="text">
+                                <string>Spacer</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="2">
+                              <widget class="QPushButton" name="settingpage_sample_username_code_btn">
+                               <property name="text">
+                                <string>Username</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </widget>
+                          </item>
+                          <item>
                            <widget class="QFrame" name="gridFrame">
                             <property name="styleSheet">
                              <string notr="true"/>
@@ -4193,158 +4328,6 @@ QLabel
                                 <string>Hour</string>
                                </property>
                               </widget>
-                             </item>
-                            </layout>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QFrame" name="gridFrame_3">
-                            <property name="styleSheet">
-                             <string notr="true"/>
-                            </property>
-                            <layout class="QGridLayout" name="gridLayout_23">
-                             <property name="topMargin">
-                              <number>1</number>
-                             </property>
-                             <item row="0" column="3">
-                              <widget class="QLabel" name="label_106">
-                               <property name="sizePolicy">
-                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                                 <horstretch>0</horstretch>
-                                 <verstretch>0</verstretch>
-                                </sizepolicy>
-                               </property>
-                               <property name="text">
-                                <string>%USERNAME%</string>
-                               </property>
-                               <property name="textFormat">
-                                <enum>Qt::AutoText</enum>
-                               </property>
-                               <property name="scaledContents">
-                                <bool>false</bool>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignCenter</set>
-                               </property>
-                               <property name="wordWrap">
-                                <bool>false</bool>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="2">
-                              <widget class="QPushButton" name="settingpage_sample_standard_code_btn">
-                               <property name="text">
-                                <string>Standard</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="4">
-                              <spacer name="horizontalSpacer_102">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeType">
-                                <enum>QSizePolicy::Maximum</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item row="1" column="3">
-                              <widget class="QPushButton" name="settingpage_sample_username_code_btn">
-                               <property name="text">
-                                <string>Username</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="5">
-                              <widget class="QLabel" name="label_99">
-                               <property name="text">
-                                <string>%TEXT1%</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="0">
-                              <widget class="QLabel" name="label_103">
-                               <property name="minimumSize">
-                                <size>
-                                 <width>110</width>
-                                 <height>0</height>
-                                </size>
-                               </property>
-                               <property name="maximumSize">
-                                <size>
-                                 <width>210</width>
-                                 <height>16777215</height>
-                                </size>
-                               </property>
-                               <property name="text">
-                                <string>_</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="2">
-                              <widget class="QLabel" name="label_98">
-                               <property name="text">
-                                <string>%STANDARD%</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="5">
-                              <widget class="QPushButton" name="settingpage_sample_text1_code_btn">
-                               <property name="text">
-                                <string>Text1</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="1">
-                              <spacer name="horizontalSpacer_104">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeType">
-                                <enum>QSizePolicy::Maximum</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item row="1" column="0">
-                              <widget class="QPushButton" name="settingpage_sample_spacer_code_btn">
-                               <property name="text">
-                                <string>Spacer</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="6">
-                              <spacer name="horizontalSpacer_94">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
                              </item>
                             </layout>
                            </widget>
@@ -6978,8 +6961,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1143</width>
-                    <height>685</height>
+                    <width>162</width>
+                    <height>3292</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7237,7 +7220,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1145</width>
+                <width>686</width>
                 <height>1969</height>
                </rect>
               </property>
@@ -8899,8 +8882,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1144</width>
-                <height>713</height>
+                <width>181</width>
+                <height>534</height>
                </rect>
               </property>
               <property name="styleSheet">

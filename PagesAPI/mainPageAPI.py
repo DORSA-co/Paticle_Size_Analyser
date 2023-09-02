@@ -168,6 +168,9 @@ class mainPageAPI:
         if sample_setting['autoname_enable']:
             name = self.build_autoname_sample(sample_setting)
             self.ui.set_sample_info_sample_name(name)
+            self.ui.disable_sample_info_sample_name(False)
+        else:
+            self.ui.disable_sample_info_sample_name(True)
 
         #---------------------------------------------------------------------------
         #show sample information box

@@ -4,9 +4,10 @@ from Database.reportsDB import reportFileHandler
 from Database.mainDatabase import mainDatabase
 from backend.Processing.Compare import Compare
 from backend.Utils.datetimeUtils import datetimeFormat
+
 import cv2
 import numpy as np
-
+import os
 
 
 class comparePageAPI:
@@ -43,28 +44,37 @@ class comparePageAPI:
         for i,sample in enumerate(self.compare.samples):
             sample_main_path = sample['path']
             sample_name = sample['name']
+            
             sample_date = datetimeFormat.str_to_date( sample['date'])
             sample_time = datetimeFormat.str_to_time( sample['time'])
             sample_datetime = datetimeFormat.combine(sample_date, sample_time)
-            report = reportFileHandler(main_path=sample_main_path, sample_name=sample_name, date_time=sample_datetime).load_report()
-            report.change_standard(compare.standard)
+            rfh = reportFileHandler(main_path=sample_main_path, sample_name=sample_name, date_time=sample_datetime)
+            report = rfh.load_report()
+
+            #-------------------------------------------------------------------------
+            if report is None:
+                self.ui.show_confirm_box("Error", f"Report {sample_name} not exits. it's file maybe deleted", ['ignore'])
             
-            hist = list(report.Grading.get_hist())
-            hists.append(hist)
-            table_record = [sample_name, sample['date'], sample['time'] ] + hist
+            #-------------------------------------------------------------------------
+            else:
+                report.change_standard(compare.standard)
             
-            data.append( table_record )
+                hist = list(report.Grading.get_hist())
+                hists.append(hist)
+                table_record = [sample_name, sample['date'], sample['time'] ] + hist
+                data.append( table_record )
 
             #--------------------------------------------------
             percent =  ( i + 1 )/samples_count * 100 
             self.ui.set_progressbar(percent)
             #--------------------------------------------------
-        hists = np.array( hists )
-        hists_mean = np.round(np.mean( hists, axis=0), 0 )
+        if len(hists)!=0:
+            hists = np.array( hists )
+            hists_mean = np.round(np.mean( hists, axis=0), 0 )
 
-        self.ui.set_compare_table(data)
-        self.ui.set_total_mean_table(hists_mean)
-        self.ui.show_page_content(True)
+            self.ui.set_compare_table(data)
+            self.ui.set_total_mean_table(hists_mean)
+            self.ui.show_page_content(True)
             
 
 

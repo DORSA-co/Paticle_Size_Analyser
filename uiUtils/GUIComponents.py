@@ -1,6 +1,33 @@
 from PySide6 import QtWidgets, QtCore, QtGui 
 import Assets
 
+CODE_NAME_BUTTON_STYLE ={
+    'normal': """ QPushButton{
+                  min-width:100px;
+                  background-color: rgb(150,150,150);
+                }
+
+
+            QPushButton:hover{
+            background-color: rgb(50,50,50);
+            }
+            """,
+
+    'active':
+            """ QPushButton{
+                  min-width:100px;
+                  background-color: rgb(58, 209, 154);
+                }
+
+
+            QPushButton:hover{
+            background-color: rgb(58, 209, 154);
+            }
+            """
+
+}
+
+
 
 TABEL_BUTTON_STYLE = """
     QPushButton{ 
@@ -158,6 +185,9 @@ class confirmMessageBox:
             'cancel': QtWidgets.QMessageBox.Cancel,
             'save': QtWidgets.QMessageBox.Save,
             'ok': QtWidgets.QMessageBox.Ok,
+            'ignore': QtWidgets.QMessageBox.Ignore,
+            
+
         }
 
         self.icon = QtGui.QIcon(':/assets/Assets/icons/icons8-question-blue-50.png')

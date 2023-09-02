@@ -285,6 +285,9 @@ class mainPageUI:
     
     def set_sample_info_sample_name(self, name:str):
         GUIBackend.set_input(self.sample_info.sample_name_input, name)
+
+    def disable_sample_info_sample_name(self, flag):
+        GUIBackend.set_disable_enable(self.sample_info.sample_name_input, flag)
     
     def get_sample_info(self, ) -> dict:
         info = {}

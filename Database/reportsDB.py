@@ -182,7 +182,9 @@ class reportFileHandler:
             Report: loaded report object
         """
         report_path = self.get_report_file_path()
-        return self.__load_obj__(report_path)
+        if os.path.exists(report_path):
+            return self.__load_obj__(report_path)
+        return None
     
 
     def remove(self,) -> Report:

@@ -36,8 +36,9 @@ class sampleSettingTabAPI:
         self.ui.set_standards(standards)
 
     def code_name_button_event(self, name):
-        self.autoname_struct += CONSTANTS.NAME_CODES[name]
-        self.ui.set_autoname_struct_input(self.autoname_struct)
+        if CONSTANTS.NAME_CODES[name] not in self.autoname_struct or name == 'spacer':
+            self.autoname_struct += CONSTANTS.NAME_CODES[name]
+            self.ui.set_autoname_struct_input(self.autoname_struct)
 
     def clear_struct_button_event(self, ):
         if len(self.autoname_struct) == 0:
@@ -74,6 +75,7 @@ class sampleSettingTabAPI:
         settings = self.database.load()
         self.autoname_struct = settings['autoname_struct']
         self.ui.set_settings(settings)
+        self.ui.set_autoname_struct_input(self.autoname_struct)
 
 
 

@@ -1,4 +1,6 @@
-from PySide6 import QtWidgets, QtCore, QtGui 
+from typing import Optional
+from PySide6 import QtWidgets, QtCore, QtGui
+import PySide6.QtWidgets 
 import Assets
 
 CODE_NAME_BUTTON_STYLE ={
@@ -72,6 +74,9 @@ QPushButton{
 REPORT_BUTTON_STYLE = """
 QPushButton{
 	min-height:30px;
+    min-width:30px;
+    max-height:30px;
+    max-width:30px;
 	border-radius:3px;
 	color: rgb(255, 255, 255);
 	background-color:rgb(54, 193, 142);
@@ -106,6 +111,86 @@ CONFIRMBOX_STYLESHEET = """
     QPushButton:hover{
 	    background-color:rgb(22, 38, 76);
     }
+"""
+
+COMPARE_COMBOBOXE = """
+                    QComboBox
+{
+	border:2px solid rgb(6, 76, 130);
+    border-radius: 1px;
+    padding: 3px;
+	min-width:0xp;
+	min-height: 0px;
+    max-height: 18px;
+	font-size: 14px;
+}
+
+QComboBox:enabled{
+color: rgb(50, 50, 50);
+}
+
+QComboBox::down-arrow
+{   
+	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
+	width: 8px;
+    height: 8px;
+     background-color: rgb(6, 76, 130);
+	 min-width: 0px;
+     max-height: 17px;
+
+}
+        """
+
+TABLE_SPINBOX = """
+QSpinBox, QDoubleSpinBox  
+{
+	border:2px solid rgb(6, 76, 130);
+    border-radius: 3px;
+    padding: 2px;
+    min-width:0xp;
+	min-height: 0px;
+    max-height: 20px;
+	font-size: 12px;
+}
+
+QSpinBox:enabled, QDoubleSpinBox:enabled{
+color: rgb(50, 50, 50);
+}
+
+
+QSpinBox::up-arrow, QDoubleSpinBox::up-arrow, QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
+{   
+	image: url(noimg);
+	width: 0px;
+    height: 0px;
+
+}
+
+
+QSpinBox::up-button,
+QSpinBox::down-button,
+QDoubleSpinBox::up-button,
+QDoubleSpinBox::down-button   {
+    subcontrol-origin: border;
+	background-color:rgb(6, 76, 130);
+    width: 0px;
+}
+
+
+QSpinBox::up-button:disabled ,
+QSpinBox::down-button:disabled ,
+QDoubleSpinBox::up-button:disabled ,
+QDoubleSpinBox::down-button:disabled    {
+    subcontrol-origin: border;
+	background-color:rgb(209, 209, 209);
+    width: 0px;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus{
+	background: rgb(241, 241, 241);
+	/*selection-background-color: black;*/
+}
+
 """
 
 class editButton(QtWidgets.QPushButton):
@@ -174,7 +259,47 @@ class tabelCheckbox(QtWidgets.QCheckBox):
         #self.setMaximumWidth(h+5)
         #self.setMaximumWidth(w+5)
 
+class compareComboBox(QtWidgets.QComboBox):
 
+    def __init__(self, *a, **kw):
+        super(compareComboBox, self).__init__(*a, **kw)
+
+        self.insertItems(0, ['none', '>','>=', '<', '<=', '=='])
+        self.setStyleSheet(COMPARE_COMBOBOXE)
+
+
+
+class Input(QtWidgets.QLineEdit):
+
+    def __init__(self, *a, **kw):
+        super(Input, self).__init__(*a, **kw)
+
+        
+
+    def set_size(self, w, h):
+        self.setStyleSheet(f"""QLineEdit 
+                                {{
+                               width :{w}px;
+                               height :{h}px;
+
+                               min-width :{w}px;
+                               min-height :{h}px;
+
+                               max-width :{w}px;
+                               max-height :{h}px;
+                               }}""")
+
+
+class doubleSpinBoxTable(QtWidgets.QDoubleSpinBox):
+
+    def __init__(self, *a, **kw):
+        super(doubleSpinBoxTable, self).__init__(*a, **kw)
+        self.setStyleSheet(TABLE_SPINBOX)
+        
+
+
+
+        
 
 
 class confirmMessageBox:
@@ -289,6 +414,3 @@ def selectDirectoryDialog():
     path = QtWidgets.QFileDialog.getExistingDirectory()
     return path
 
-
-if __name__ == '__main__':
-    pass

@@ -45,8 +45,8 @@ class comparePageAPI:
             sample_main_path = sample['path']
             sample_name = sample['name']
             
-            sample_date = datetimeFormat.str_to_date( sample['date'])
-            sample_time = datetimeFormat.str_to_time( sample['time'])
+            sample_date =  sample['date']
+            sample_time =  sample['time']
             sample_datetime = datetimeFormat.combine(sample_date, sample_time)
             rfh = reportFileHandler(main_path=sample_main_path, sample_name=sample_name, date_time=sample_datetime)
             report = rfh.load_report()

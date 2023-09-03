@@ -20,6 +20,7 @@ class reportsDB:
                    {'col_name': 'time',        'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'username',    'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'path',        'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'grading_result',     'type':'VARCHAR(255)', 'len':200},
                 ]
 
     # DATE_STR_FORMAT = "%Y/%m/%d"
@@ -38,18 +39,39 @@ class reportsDB:
         for col in self.TABLE_COLS:
             self.db_manager.add_column( self.TABLE_NAME, **col)
 
-
-    def save(self, data):
+    def __pre_process_to_save__(self, data):
         data['date'] = datetimeFormat.date_to_str(data['date'])
         data['time'] = datetimeFormat.time_to_str(data['time'])
+
+        #convert list to cvs
+        grading_result = data['grading_result']
+        grading_result = list(map( lambda x:str(x), grading_result))
+        grading_result = ','.join(grading_result)
+        data['grading_result'] = grading_result
+        return data
+    
+    def __pre_process_to_load__(self, record):
+        record['date'] = datetimeFormat.str_to_date(record['date'] )
+        record['time'] = datetimeFormat.str_to_time(record['time'] )
+
+        #convert csv to list
+        grading_result = record['grading_result']
+        grading_result = grading_result.split(',')
+        grading_result = list(map( lambda x:float(x), grading_result))
+        
+        record['grading_result'] = grading_result
+        return record
+
+    def save(self, data):
+        
+        data = self.__pre_process_to_save__(data)
         self.db_manager.add_record_dict(self.TABLE_NAME, data)
     
 
     def load_all(self,):
         records =  self.db_manager.get_all_content(self.TABLE_NAME)
         for record in records:
-            record['date'] = datetimeFormat.str_to_date(record['date'] )
-            record['time'] = datetimeFormat.str_to_time(record['time'] )
+            record = self.__pre_process_to_load__(record)
         return records
     
     def load_by_ids(self, ids):
@@ -57,6 +79,7 @@ class reportsDB:
         for id in ids:
             record = self.db_manager.search(self.TABLE_NAME, 'id', id)
             if len(record):
+                record = self.__pre_process_to_load__(record)
                 res.append(record[0])
         return res
         

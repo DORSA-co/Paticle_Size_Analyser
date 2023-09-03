@@ -45,7 +45,7 @@ class main_API:
         self.reportsPageAPI.set_see_report_event_func(self.show_report_event)
         self.reportPageAPI.set_back_event_func(self.change_page)
         self.comparePageAPI.set_back_event_func(self.change_page)
-        self.reportsPageAPI.set_compare_event_func(self.show_compare)
+        self.reportsPageAPI.set_compare_event_func(self.show_compare_event)
         self.gradingRangesPageAPI.set_new_standard_event_func( self.standard_event )
         self.gradingRangesPageAPI.set_remove_standard_event_func( self.standard_event )
 
@@ -68,7 +68,7 @@ class main_API:
         #---------------------------------------------------
         #report = load_obj('test_report')
         #self.show_report(report, 'main')
-        #self.show_compare(None)
+        #self.show_compare_event(None)
         
     
     def page_change(self, pagename, idx):
@@ -143,7 +143,7 @@ class main_API:
     def change_page(self, page_name):
         self.ui.go_to_page(page_name)
 
-    def show_compare(self, compare:Compare):
+    def show_compare_event(self, compare:Compare):
         #compare = __load_obj__('test')
         self.ui.go_to_page('compare')
         self.comparePageAPI.set_compare_data(compare)

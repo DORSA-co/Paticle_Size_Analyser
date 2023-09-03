@@ -7,23 +7,38 @@ class reportsPageUI:
     def __init__(self, ui):
         self.ui = ui
 
-        self.start_date_filter = self.ui.reportpage_start_date_dateedit
-        self.end_date_filter = self.ui.reportpage_end_date_dateedit
-        self.standards_filter_table = self.ui.reportpage_standards_filter_table
+        
+        
         self.apply_filter_btn = self.ui.reportpage_apply_filters_btn
         self.samples_table = self.ui.reportpage_samples_table
-        self.name_filter_input = self.ui.reportpage_filtername_input
-        self.username_filter_input = self.ui.reportpage_filterusername_input
         self.compare_btn = self.ui.reportpage_compare_btn
         self.compare_standards_combobox = self.ui.reportpage_compare_standards_combobox
         self.select_all_checkbox = self.ui.reportspage_all_checkbox
+
+        #-----------------name filter--------------
+        self.name_filter_input = self.ui.reportpage_filtername_input
+        #--------------username filter-------------
+        self.username_filter_input = self.ui.reportpage_filterusername_input
+        #----------------date filter---------------
+        self.start_date_filter = self.ui.reportpage_start_date_dateedit
+        self.end_date_filter = self.ui.reportpage_end_date_dateedit
+        #---------------standard filter------------
+        self.standards_filter_warning_lbl = self.ui.reportpage_filterstandards_warning_lbl
+        self.standards_filter_table = self.ui.reportpage_standards_filter_table
+        #----------------ranges filter-------------
+        self.ranges_filter_warning_lbl = self.ui.reportpage_filterranges_warning_lbl
+        self.ranges_filter_standards_combobox = self.ui.reportpage_filter_standards_combobox
+        self.ranges_filter_table = self.ui.reportpage_standards_filter_ranges_table
         
+
+        self.ranges_filter = []
 
         self.filters_groupbox = {
             'name': self.ui.reportpage_filtername_groupbox,
             'username': self.ui.reportpage_filterusername_groupbox,
             'date': self.ui.reportpage_filterdate_groupbox,
             'standards': self.ui.reportpage_filterstandards_groupbox,
+            'ranges': self.ui.reportpage_filterranges_groupbox,
         
         }
 
@@ -32,6 +47,7 @@ class reportsPageUI:
             'username': self.ui.reportpage_filterusername_frame,
             'date': self.ui.reportpage_filterdate_frame,
             'standards': self.ui.reportpage_filterstandards_frame,
+            'ranges': self.ui.reportpage_filterranges_frame,
         
         }
         
@@ -52,8 +68,12 @@ class reportsPageUI:
 
         self.__groupbox_filter_event_connector__()
         GUIBackend.set_cell_width_content_adjust(self.standards_filter_table, None)
+        GUIBackend.set_cell_width_content_adjust(self.ranges_filter_table, None)
         GUIBackend.checkbox_connector(self.select_all_checkbox, self.select_all_samples)
+        GUIBackend.combobox_changeg_connector(self.ranges_filter_standards_combobox, self.__ranges_filter_standard_changed__)
 
+        GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, False)
+        GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, False)
 
         for filter_name in self.filters_frame.keys():
             self.show_filter(filter_name, False)
@@ -103,9 +123,23 @@ class reportsPageUI:
         def func():
             if GUIBackend.is_groupbox_checked(self.filters_groupbox[name]):
                 self.show_filter(name, True)
+                if name == 'standards':
+                    GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, True)
+                    GUIBackend.set_disable_enable(self.filters_groupbox['ranges'], False)
+                
+                elif name == 'ranges':
+                    GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, True)
+                    GUIBackend.set_disable_enable(self.filters_groupbox['standards'], False)
             
             else:
                 self.show_filter(name, False)
+                if name == 'standards':
+                    GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, False)
+                    GUIBackend.set_disable_enable(self.filters_groupbox['ranges'], True)
+                
+                elif name == 'ranges':
+                    GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, False)
+                    GUIBackend.set_disable_enable(self.filters_groupbox['standards'], True)
 
         return func
     
@@ -116,6 +150,46 @@ class reportsPageUI:
             self.external_see_report_event_func(sample)
         
         return func
+    
+
+    def __ranges_filter_standard_changed__(self,):
+        current_standard_name = GUIBackend.get_combobox_selected(self.ranges_filter_standards_combobox)
+        current_standard = None
+        for standard in self.standards:
+            if standard['name'] == current_standard_name:
+                current_standard = standard
+                break
+        self.render_ranges_filter_table(current_standard)
+    
+
+    def render_ranges_filter_table(self, standard):
+        """show ranges in filter ranges box, corespond to selected standard
+        """
+        GUIBackend.set_table_dim(self.ranges_filter_table, row=len(standard['ranges']), col=None)
+        self.ranges_filter = []
+        for i,(low,high) in enumerate(standard['ranges']):
+            text = f'{low}mm - {high}mm'
+            GUIBackend.set_table_cell_value(self.ranges_filter_table, (i,0), text )
+
+            compare_comboxes = GUIComponents.compareComboBox()
+            GUIBackend.set_table_cell_widget(self.ranges_filter_table, (i,1), compare_comboxes, layout=True)
+
+            input = GUIComponents.doubleSpinBoxTable()
+            #input.set_size(30, 20)
+
+            GUIBackend.set_table_cell_widget(self.ranges_filter_table, (i,2), input, layout=True)
+
+            GUIBackend.set_table_cell_value(self.ranges_filter_table, (i,3), '%' )
+
+            self.ranges_filter.append(
+                {   
+                    'range': [low, high],
+                    'operator': compare_comboxes,
+                    'input': input,
+                }
+            )
+
+
     
 
     def show_filter(self, name, flag):
@@ -172,7 +246,25 @@ class reportsPageUI:
                 res.append(standard_name)
 
         return res
+    
 
+    def get_ranges_filter(self,) -> list[str]:
+        res = []
+        for i in range(len(self.ranges_filter)):
+            operator_combobox = self.ranges_filter[i]['operator']
+            value_input = self.ranges_filter[i]['input']
+
+            operator = GUIBackend.get_combobox_selected(operator_combobox)
+            value = GUIBackend.get_input(value_input)
+            if value == '':
+                value = None
+            else:
+                value = float(value)
+            res.append({'operator':operator, 'input':value})
+        
+        selected_standard = GUIBackend.get_combobox_selected(self.ranges_filter_standards_combobox)
+        return res, selected_standard
+  
 
     def set_standards_filter_table_data(self, standards:list[str]):
         """insert standards range into table
@@ -198,16 +290,35 @@ class reportsPageUI:
             
             self.standards_filter_checkbox[standard_name] = cell_checkbox
 
-    def set_compare_standards_items(self, standards:list[str]):
+    def set_compare_standards_items(self, standards_name:list[str]):
         """set a list of standards name into compare_standard_combobox
 
         Args:
-            standards (list[str]): _description_
+            standards_name (list[str]): list of standards names
+
         """
-        GUIBackend.set_combobox_items(self.compare_standards_combobox, standards)
+        GUIBackend.set_combobox_items(self.compare_standards_combobox, standards_name)
+
+
+    def set_ranges_filter_standards(self, standards_name:list[str], standards:list[dict]):
+        """insert standards range into table
+        Args:
+            standards_name (list[str]): list of standards name
+            standards (list[dict]): list of standards dictionary (database query of standards)
+        """
+        self.standards = standards
+        GUIBackend.set_signal_connection(self.ranges_filter_standards_combobox, False)
+        GUIBackend.set_combobox_items(self.ranges_filter_standards_combobox, standards_name)
+        GUIBackend.set_signal_connection(self.ranges_filter_standards_combobox, True)
+        self.__ranges_filter_standard_changed__()
 
     
     def set_delete_sample_event_func(self, func):
+        """set a python function as event of delete button samples in table
+
+        Args:
+            func (_type_): python function
+        """
         self.external_delete_samples_event_func = func
 
     def set_samples_table(self, samples: list[dict]):
@@ -233,7 +344,7 @@ class reportsPageUI:
             report_btn = GUIComponents.reportButton()
             j = self.samples_table_headers.index('see')
             GUIBackend.button_connector( report_btn, self.__internal_see_report_event__(sample))
-            GUIBackend.set_table_cell_widget(self.samples_table, (i,j), report_btn)
+            GUIBackend.set_table_cell_widget(self.samples_table, (i,j), report_btn, layout=True)
 
             #define delte button
             delete_btn = GUIComponents.deleteButton()

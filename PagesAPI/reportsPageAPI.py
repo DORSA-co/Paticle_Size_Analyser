@@ -14,11 +14,24 @@ class reportsPageAPI:
         self.see_report_event_func = None
         self.compare_event_func = None
 
+        self.operations_condition = {
+            '>': lambda real_value, condition_value : real_value > condition_value,
+            '<': lambda real_value, condition_value : real_value < condition_value,
+            '>=': lambda real_value, condition_value : real_value >= condition_value,
+            '<=': lambda real_value, condition_value : real_value <= condition_value,
+            '==': lambda real_value, condition_value : real_value == condition_value,
+            'none': lambda real_value, condition_value :True
+        }
+
+
         self.ui.apply_filter_button_connector(self.apply_filters)
         self.ui.external_see_report_button_connector(self.see_report)
         self.ui.compare_button_connector(self.compare)
         self.ui.set_delete_sample_event_func(self.delete_sample)
         self.startup()
+
+
+        
         
         
         
@@ -43,6 +56,7 @@ class reportsPageAPI:
 
         self.ui.set_standards_filter_table_data(standards_name)
         self.ui.set_compare_standards_items(standards_name)
+        self.ui.set_ranges_filter_standards(standards_name, standards)
         
 
     
@@ -66,6 +80,7 @@ class reportsPageAPI:
         username = self.ui.get_username_filter()
         start_date, end_date = self.ui.get_date_filter()
         standards_name = self.ui.get_standards_filter()
+        ranges_conditions, range_filter_standard_name = self.ui.get_ranges_filter()
 
         def func(sample):
             flag = True
@@ -87,9 +102,23 @@ class reportsPageAPI:
                 if sample['date'] < start_date or sample['date'] > end_date:
                     return False
             
+            if 'ranges' in active_filters:
+                if sample['standard'] != range_filter_standard_name:
+                    return False
+                
+                sample_grading_result = sample['grading_result']
+                for i in range(len(ranges_conditions)):
+                    operator = ranges_conditions[i]['operator']
+                    value = ranges_conditions[i]['input']
+                    real_value = sample_grading_result[i]
+
+                    if not self.operations_condition[operator](real_value, value):
+                        return False
+
+
+            
             return flag
         return func
-    
 
     def see_report(self, sample):
         date_time = datetime.combine(sample['date'], sample['time'])

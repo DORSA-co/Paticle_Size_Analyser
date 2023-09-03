@@ -94,7 +94,8 @@ class Report:
             'standard': self.standard['name'],
             'date': self.date_time.date(),
             'time': self.date_time.time(),
-            'username': self.username
+            'username': self.username,
+            'grading_result': self.Grading.get_hist()
         }
 
         return db_data

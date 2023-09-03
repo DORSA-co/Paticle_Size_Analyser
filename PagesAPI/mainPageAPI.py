@@ -200,6 +200,10 @@ class mainPageAPI:
         self.ui.set_player_buttons_status('stop')
         self.ui.enable_reports(True)
         self.report_saver.save_report(self.report)
+        #-----------------------------------------------------------------------------------------
+        db_data = self.report.get_database_record()
+        self.database.reports_db.save(db_data)
+        #-----------------------------------------------------------------------------------------
 
 
     
@@ -250,10 +254,7 @@ class mainPageAPI:
         self.report = Report( sample_name, standard, self.logined_username, main_path )
         #self.report.set_operator_username(self.logined_username)
         self.report_saver = reportFileHandler(main_path, self.report.name, self.report.date_time)
-        #-----------------------------------------------------------------------------------------
-        db_data = self.report.get_database_record()
-        self.database.reports_db.save(db_data)
-        #-----------------------------------------------------------------------------------------
+        
         self.t_frame = time.time()
         self.frame_idx = 0
         #set chart bars

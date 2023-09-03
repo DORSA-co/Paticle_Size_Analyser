@@ -8,6 +8,12 @@ import sys
 class GUIBackend:
 
     @staticmethod
+    def set_signal_connection(wgt:QtWidgets.QWidget, connection:bool):
+        wgt.blockSignals(not(connection))
+
+
+
+    @staticmethod
     def set_max_size(wgt:QtWidgets.QWidget, h=None, w=None):
         if w is not None:
             wgt.setMaximumWidth(w)
@@ -550,7 +556,7 @@ class GUIBackend:
             table.item(*index).setForeground(QtGui.QBrush(QtGui.QColor(*color)))
         
     @staticmethod
-    def set_table_cell_widget(table: QtWidgets.QTableWidget, index: tuple, widget):
+    def set_table_cell_widget(table: QtWidgets.QTableWidget, index: tuple, widget, layout=False):
         """insert a Qt widget (like QPushButton) into a custom cell of given Qt table
 
         Args:
@@ -558,7 +564,15 @@ class GUIBackend:
             idx (tuple): position of cell (row_idx, col_idx)
             widget (_type_): Qt widget that you want insert into cell of table
         """
-        table.setCellWidget(*index, widget)
+        if layout:
+            container = QtWidgets.QWidget()
+            layout = QtWidgets.QVBoxLayout(container)
+            layout.addWidget(widget)
+            layout.setContentsMargins(2,2,2,2)
+            table.setCellWidget(*index, container)
+        else:
+            table.setCellWidget(*index, widget)
+            
         
         #item = QtWidgets.QTableWidgetItem(widget)
         #table.setItem(*index, item )

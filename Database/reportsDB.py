@@ -77,10 +77,10 @@ class reportsDB:
     def load_by_ids(self, ids):
         res = []
         for id in ids:
-            record = self.db_manager.search(self.TABLE_NAME, 'id', id)
-            if len(record):
+            records = self.db_manager.search(self.TABLE_NAME, 'id', id)
+            for record in records:
                 record = self.__pre_process_to_load__(record)
-                res.append(record[0])
+                res.append(record)
         return res
         
     

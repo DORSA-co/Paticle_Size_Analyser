@@ -99,13 +99,17 @@ class reportPageUI:
 
 
     def set_ranges_statistics_tabel(self, data: list[dict]):
-        GUIBackend.set_table_dim(self.statictics_table, row=len(self.statictics_table_headers), col=None)
+        GUIBackend.set_table_dim(self.statictics_table, row=len(data), col=len(self.statictics_table_headers))
         for row_idx, row in enumerate(data):
             for name, value in row.items():
                 col_idx = self.statictics_table_headers.index(name)
                 GUIBackend.set_table_cell_value(self.statictics_table, index=(row_idx, col_idx), value=value)
             
-
+                if name == 'range':
+                    GUIBackend.set_table_cell_color(self.statictics_table, 
+                                                    index=(row_idx, col_idx),
+                                                     bg_color=(6, 76, 130), 
+                                                     color=(255,255,255))
             
 
 

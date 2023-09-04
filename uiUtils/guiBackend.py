@@ -3,7 +3,7 @@ from functools import partial
 import cv2 
 from datetime import datetime, date
 import sys
-
+from PyQt5.QtGui import QMovie
 
 class GUIBackend:
 
@@ -730,6 +730,20 @@ class GUIBackend:
             frame.setMaximumHeight(h)
         if w is not None:
             frame.setMaximumWidth(w)
+
+    @staticmethod
+    def set_frame_min_size( frame: QtWidgets.QFrame, w:int, h:int):
+        """set maximum width and height of a frame.
+
+        Args:
+            frame (QtWidgets.QFrame): Qt Frame Widget Object
+            w (int): maximum width. ignore if be None
+            h (int): maximum height. ignore if be None
+        """
+        if h is not None:
+            frame.setMinimumHeight(h)
+        if w is not None:
+            frame.setMinimumWidth(w)
 
     
     #--------------------------------- GLOBAL DateEdit FUNCTIONs ---------------------------------

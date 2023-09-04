@@ -63,7 +63,23 @@ class gradingRangesPageAPI:
 
 
 
+    def endup(self,):
+        #if user is during edit a standard or difining new standard
+        if self.newStandardTab.is_during_woking():
+        
+            flag = self.newStandardTab.ui.show_confirm_box('Warning', 
+                                                           'Are you sure? All changes Would be disapear',
+                                                          ['yes','cancel'])
+            if flag == 'cancel':
+                return False
 
+            elif flag =='yes':
+                self.newStandardTab.cancel_and_restor()
+                return True
+        
+        return True
+            
+            
 
 
 
@@ -84,7 +100,7 @@ class newStandardTabAPI:
 
 
         self.ui.add_range_button_connector(self.add_range)
-        self.ui.cancel_button_connector(self.cancel_define_new_standard)
+        self.ui.cancel_button_connector(self.cancel_event)
         self.ui.save_button_connector(self.save_standard)
         self.ui.external_ranges_table_connector(self.modify_new_standard_range)
         self.ui.enable_edit_mode(self.edit_mode)
@@ -216,17 +232,21 @@ class newStandardTabAPI:
 
 
 
-    def cancel_define_new_standard(self,):
-            option = self.ui.show_confirm_box("Cancel", 
-                                     "Area You Sure You want Cancel? all change whould be remove",
-                                     buttons=['yes', 'no'])
-            if option == 'no':
-                return
-            self.clear()
-            if self.edit_mode:
-                self.edit_mode = False
-                if self.edit_complete_event_func is not None:
-                    self.edit_complete_event_func()
+    def cancel_event(self,):
+        option = self.ui.show_confirm_box("Cancel", 
+                                    "Area You Sure You want Cancel? all change whould be remove",
+                                    buttons=['yes', 'no'])
+        if option == 'no':
+            return
+        self.cancel_and_restor()
+    
+
+    def cancel_and_restor(self,):
+        self.clear()
+        if self.edit_mode:
+            self.edit_mode = False
+            if self.edit_complete_event_func is not None:
+                self.edit_complete_event_func()
 
     
     def clear(self,):
@@ -253,6 +273,22 @@ class newStandardTabAPI:
         self.ui.set_standard_name_input( self.on_edit_standard_name )
 
 
+
+    def is_during_woking(self,) -> bool:
+        """returns True if user is during editing or defining new range. O.w returns False
+
+
+        Returns:
+            bool: if user during work returns True
+        """
+        if self.edit_mode:
+            return True
+        
+        #check user input a name or define at least one range
+        if len(self.standard_ranges) >0 or len(self.ui.get_new_range_name()) > 0:
+            return True
+        
+        return False
 
 
 

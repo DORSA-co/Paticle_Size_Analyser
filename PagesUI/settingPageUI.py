@@ -1,7 +1,7 @@
 from uiUtils import GUIComponents
 import CONSTANTS
 from uiUtils.guiBackend import GUIBackend
-
+import time
 
 
 class settingPageUI:
@@ -18,24 +18,39 @@ class commonSettingUI:
     def __init__(self, ui) -> None:
         self.ui = ui
         self.save_mgs = self.ui.settingpage_save_massage_lbl
+        self.gif_lbl = self.ui.settingpage_save_gif_lbl
+        self.gif_player = GUIComponents.gifPlayer(self.gif_lbl, 'Assets\gifs\Rolling_bg.gif')
 
-    def is_saved_massage(self, is_saved):
+
+    def __show_saved_massage__(self, is_saved):
+
         if is_saved:
-            GUIBackend.set_label_text(self.save_mgs, "setting saved")
+            self.__show_is_saving__()
+            GUIComponents.single_timer_runner(400, self.__show_saved__)
+            
         else:
-            GUIBackend.set_label_text(self.save_mgs, "*temp setting")
+            GUIBackend.set_label_text(self.save_mgs, "*temp")
+        
+    def __show_is_saving__(self,):
+        GUIBackend.set_label_text(self.save_mgs, "Settings  is saving")
+        self.gif_player.show_and_start_animation()
 
+    def __show_saved__(self,):
+        GUIBackend.set_label_text(self.save_mgs, "")
+        self.gif_player.hide_and_stop_animation()
     
+
+
     def save_state(self, is_saved):
         if not is_saved:
             GUIBackend.set_enable(self.save_btn)
             GUIBackend.set_enable(self.cancel_btn)
-            self.is_saved_massage(is_saved)
+            self.__show_saved_massage__(is_saved)
         
         else:
             GUIBackend.set_disable(self.save_btn)
             GUIBackend.set_disable(self.cancel_btn)
-            self.is_saved_massage(is_saved)
+            self.__show_saved_massage__(is_saved)
 
 
     def show_confirm_box(Self, title, massage, buttons):
@@ -100,7 +115,9 @@ class storageSettingTabUI(commonSettingUI):
         for setting_name, value in settings.items():
             obj = self.settings[setting_name]
             if value is not None:
+                GUIBackend.set_signal_connection(obj, False)
                 GUIBackend.set_input(obj, value)
+                GUIBackend.set_signal_connection(obj, True)
 
         
 
@@ -344,7 +361,7 @@ class cameraSettingTabUI(commonSettingUI):
         """
         def func():
             GUIBackend.set_enable(self.save_btn)
-            self.is_saved_massage(False)
+            self.save_state(False)
             #assert self.change_setting_event_connector is not None, "No Function Event determind. use cameraSettingTab.change_setting_event_connector method to do it"
             value = GUIBackend.get_input(self.settings[setting_group][setting_name])
             arg = {setting_name:value}
@@ -459,7 +476,7 @@ class cameraSettingTabUI(commonSettingUI):
     
 
     def __internal_save_event__(self):
-        self.is_saved_massage(True)
+        self.save_state(True)
         GUIBackend.set_disable(self.save_btn)
     
     def disable_save_btn(self,):

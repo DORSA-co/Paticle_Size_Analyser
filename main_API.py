@@ -66,7 +66,7 @@ class main_API:
         self.pages_endup = {
             'main': self.mainPageAPI,
             'reports': None,
-            'grading_ranges': None,
+            'grading_ranges': self.gradingRangesPageAPI,
             'calibration': None,
             'settings': self.settingPageAPI,
             'user': None,
@@ -74,6 +74,8 @@ class main_API:
             'report': None,
             'compare': None,
         }
+
+        
 
         #TEMP
         self.login_user_event()
@@ -127,6 +129,7 @@ class main_API:
                 self.pages_startups[new_page_name].startup()
         
             self.ui.go_to_page(new_page_name)
+        
 
 
     def grabbed_image_event(self,):

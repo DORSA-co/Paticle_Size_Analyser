@@ -28,6 +28,7 @@ class reportsPageAPI:
         self.ui.external_see_report_button_connector(self.see_report)
         self.ui.compare_button_connector(self.compare)
         self.ui.set_delete_sample_event_func(self.delete_sample)
+        self.ui.delete_selections_button_connector(self.delete_selections)
         self.startup()
 
 
@@ -176,4 +177,28 @@ class reportsPageAPI:
 
         self.load_all_samples()
 
+
+    def delete_selections(self,):
+        ids  = self.ui.get_selected_samples()
+
+        if len(ids) == 0:
+            state = self.ui.show_confirm_box(title='Delete Sample', 
+                                 massage=f'No Sample Selected',
+                                 buttons=['ok'])
+            return
+        
+        state = self.ui.show_confirm_box(title='Delete Sample', 
+                                 massage=f'Are you Sure delete {len(ids)} samples?',
+                                 buttons=['yes', 'cancel'])
+        
+        if state == 'cancel':
+            return
+        samples = self.database.reports_db.load_by_ids(ids)
+        for sample in samples:
+            date_time = datetime.combine(sample['date'], sample['time'])
+            rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+            rfh.remove()
+            self.database.reports_db.remove(sample)
+
+        self.load_all_samples()
         

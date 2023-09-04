@@ -408,6 +408,50 @@ class singleAnimation:
             self.forward()
         else:
             self.backward()
+
+
+
+class gifPlayer:
+
+    def __init__(self, label: QtWidgets.QLabel, gif_path: str) -> None:
+        self.movie = QtGui.QMovie(gif_path)
+        self.label = label
+        self.label.setMovie(self.movie)
+
+        self.max_w = self.label.maximumWidth()
+        self.max_h = self.label.maximumHeight()
+    
+    def set_maxsize(self, max_h, max_w):
+        if max_w is not None:
+            self.max_w = max_w
+        
+        if max_h is not None:
+            self.max_h = max_h
+
+
+	# Start Animation
+    def start_animation(self):
+        self.movie.start()
+
+    def show_and_start_animation(self,):
+        self.label.setMaximumHeight(self.max_h)
+        self.label.setMaximumWidth(self.max_w)
+
+        self.start_animation()
+
+	# Stop Animation(According to need)
+    def stop_animation(self):
+        pass
+        #self.movie.startTimer()
+
+    def hide_and_stop_animation(self,):
+        self.label.setMaximumHeight(0)
+        self.label.setMaximumWidth(0)
+
+        self.stop_animation()
+        
+    
+       
                 
 
 def selectDirectoryDialog():

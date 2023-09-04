@@ -48,4 +48,11 @@ NAME_CODES = {
         }
 
 
-SIDE_BAR_MAX_WIDTH = 16772
+
+#---------------------------------------------------------
+SIDEBAR_MAX_WIDTH = 16772
+SIDEBAR_MIN_WIDTH = 180
+HIDE_SIDEBAR_PAGES = [
+            'report', 
+            'compare'
+        ]

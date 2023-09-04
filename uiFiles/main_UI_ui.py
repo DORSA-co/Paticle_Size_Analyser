@@ -1446,7 +1446,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1796))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 348, 1796))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1739,54 +1739,103 @@ class Ui_MainWindow(object):
         self.verticalLayout_38 = QVBoxLayout()
         self.verticalLayout_38.setObjectName(u"verticalLayout_38")
         self.verticalLayout_38.setContentsMargins(-1, -1, 0, -1)
-        self.horizontalLayout_52 = QHBoxLayout()
-        self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
-        self.horizontalLayout_52.setContentsMargins(-1, 0, -1, -1)
-        self.label_48 = QLabel(self.report_page)
-        self.label_48.setObjectName(u"label_48")
-
-        self.horizontalLayout_52.addWidget(self.label_48)
-
-        self.reportpage_compare_standards_combobox = QComboBox(self.report_page)
-        self.reportpage_compare_standards_combobox.setObjectName(u"reportpage_compare_standards_combobox")
-
-        self.horizontalLayout_52.addWidget(self.reportpage_compare_standards_combobox)
-
-        self.horizontalSpacer_88 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.horizontalLayout_52.addItem(self.horizontalSpacer_88)
-
-        self.reportpage_compare_btn = QPushButton(self.report_page)
-        self.reportpage_compare_btn.setObjectName(u"reportpage_compare_btn")
-        self.reportpage_compare_btn.setStyleSheet(u"QPushButton{\n"
-"	max-width: 100px;\n"
-"	background-color: rgb(200, 96, 26);\n"
-"}")
-
-        self.horizontalLayout_52.addWidget(self.reportpage_compare_btn)
-
-        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_52.addItem(self.horizontalSpacer_39)
-
-
-        self.verticalLayout_38.addLayout(self.horizontalLayout_52)
-
-        self.line_24 = QFrame(self.report_page)
-        self.line_24.setObjectName(u"line_24")
-        self.line_24.setMinimumSize(QSize(0, 5))
-        self.line_24.setFrameShape(QFrame.HLine)
-        self.line_24.setFrameShadow(QFrame.Sunken)
-
-        self.verticalLayout_38.addWidget(self.line_24)
-
         self.horizontalLayout_57 = QHBoxLayout()
         self.horizontalLayout_57.setObjectName(u"horizontalLayout_57")
-        self.horizontalLayout_57.setContentsMargins(40, 0, -1, -1)
+        self.horizontalLayout_57.setContentsMargins(5, 0, -1, -1)
         self.reportspage_all_checkbox = QCheckBox(self.report_page)
         self.reportspage_all_checkbox.setObjectName(u"reportspage_all_checkbox")
 
         self.horizontalLayout_57.addWidget(self.reportspage_all_checkbox)
+
+        self.line_25 = QFrame(self.report_page)
+        self.line_25.setObjectName(u"line_25")
+        self.line_25.setMinimumSize(QSize(20, 0))
+        self.line_25.setStyleSheet(u"color:rgba(12, 80, 139, 150);")
+        self.line_25.setFrameShadow(QFrame.Plain)
+        self.line_25.setLineWidth(1)
+        self.line_25.setFrameShape(QFrame.VLine)
+
+        self.horizontalLayout_57.addWidget(self.line_25)
+
+        self.reportspage_delete_selections_btn = QPushButton(self.report_page)
+        self.reportspage_delete_selections_btn.setObjectName(u"reportspage_delete_selections_btn")
+        self.reportspage_delete_selections_btn.setStyleSheet(u"QPushButton{\n"
+"background-color: rgb(255, 255, 255);\n"
+"color: rgb(197, 63, 59);\n"
+"border: 2px solid rgb(197, 63, 59);\n"
+"min-width: 80px;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: rgb(255, 255, 255);\n"
+"color:rgb(152, 46, 44);\n"
+"border: 2px solid rgb(152, 46, 44);\n"
+"}")
+        icon22 = QIcon()
+        icon22.addFile(u":/assets/Assets/icons/icons8-remove-table-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.reportspage_delete_selections_btn.setIcon(icon22)
+        self.reportspage_delete_selections_btn.setIconSize(QSize(25, 25))
+
+        self.horizontalLayout_57.addWidget(self.reportspage_delete_selections_btn)
+
+        self.line_26 = QFrame(self.report_page)
+        self.line_26.setObjectName(u"line_26")
+        self.line_26.setMinimumSize(QSize(20, 0))
+        self.line_26.setStyleSheet(u"color:rgba(12, 80, 139, 150);")
+        self.line_26.setFrameShadow(QFrame.Plain)
+        self.line_26.setLineWidth(1)
+        self.line_26.setFrameShape(QFrame.VLine)
+
+        self.horizontalLayout_57.addWidget(self.line_26)
+
+        self.label_48 = QLabel(self.report_page)
+        self.label_48.setObjectName(u"label_48")
+
+        self.horizontalLayout_57.addWidget(self.label_48)
+
+        self.reportpage_compare_standards_combobox = QComboBox(self.report_page)
+        self.reportpage_compare_standards_combobox.setObjectName(u"reportpage_compare_standards_combobox")
+
+        self.horizontalLayout_57.addWidget(self.reportpage_compare_standards_combobox)
+
+        self.horizontalSpacer_88 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_57.addItem(self.horizontalSpacer_88)
+
+        self.reportpage_compare_btn = QPushButton(self.report_page)
+        self.reportpage_compare_btn.setObjectName(u"reportpage_compare_btn")
+        self.reportpage_compare_btn.setStyleSheet(u"QPushButton{\n"
+"/*	max-width: 100px;*/\n"
+"	min-width: 120px;\n"
+"	min-height: 40px;\n"
+"	background-color: rgb(200, 96, 26);\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color:rgb(173, 83, 22);\n"
+"\n"
+"}")
+        icon23 = QIcon()
+        icon23.addFile(u":/assets/Assets/icons/icons8-compare-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.reportpage_compare_btn.setIcon(icon23)
+        self.reportpage_compare_btn.setIconSize(QSize(25, 25))
+
+        self.horizontalLayout_57.addWidget(self.reportpage_compare_btn)
+
+        self.horizontalSpacer_101 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_57.addItem(self.horizontalSpacer_101)
+
+        self.line_27 = QFrame(self.report_page)
+        self.line_27.setObjectName(u"line_27")
+        self.line_27.setMinimumSize(QSize(20, 0))
+        self.line_27.setStyleSheet(u"color:rgba(12, 80, 139, 150);")
+        self.line_27.setFrameShadow(QFrame.Plain)
+        self.line_27.setLineWidth(1)
+        self.line_27.setFrameShape(QFrame.VLine)
+
+        self.horizontalLayout_57.addWidget(self.line_27)
 
 
         self.verticalLayout_38.addLayout(self.horizontalLayout_57)
@@ -1798,6 +1847,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_38.addWidget(self.line_21)
 
+        self.horizontalLayout_61 = QHBoxLayout()
+        self.horizontalLayout_61.setObjectName(u"horizontalLayout_61")
+        self.horizontalLayout_61.setContentsMargins(-1, 0, -1, -1)
         self.reportpage_samples_table = QTableWidget(self.report_page)
         if (self.reportpage_samples_table.columnCount() < 5):
             self.reportpage_samples_table.setColumnCount(5)
@@ -1810,7 +1862,10 @@ class Ui_MainWindow(object):
         self.reportpage_samples_table.setColumnCount(5)
         self.reportpage_samples_table.verticalHeader().setDefaultSectionSize(45)
 
-        self.verticalLayout_38.addWidget(self.reportpage_samples_table)
+        self.horizontalLayout_61.addWidget(self.reportpage_samples_table)
+
+
+        self.verticalLayout_38.addLayout(self.horizontalLayout_61)
 
 
         self.horizontalLayout_27.addLayout(self.verticalLayout_38)
@@ -1953,9 +2008,9 @@ class Ui_MainWindow(object):
 "border-radius: 200px;\n"
 "\n"
 "}")
-        icon22 = QIcon()
-        icon22.addFile(u":/assets/Assets/icons/icons8-plus-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingpage_pelletizing_add_range_btn.setIcon(icon22)
+        icon24 = QIcon()
+        icon24.addFile(u":/assets/Assets/icons/icons8-plus-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingpage_pelletizing_add_range_btn.setIcon(icon24)
         self.settingpage_pelletizing_add_range_btn.setIconSize(QSize(45, 45))
 
         self.gridLayout_13.addWidget(self.settingpage_pelletizing_add_range_btn, 0, 6, 1, 1)
@@ -2770,9 +2825,9 @@ class Ui_MainWindow(object):
 "min-height: 40px;\n"
 "\n"
 "}")
-        icon23 = QIcon()
-        icon23.addFile(u":/assets/Assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingpage_storage_select_dir_btn.setIcon(icon23)
+        icon25 = QIcon()
+        icon25.addFile(u":/assets/Assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingpage_storage_select_dir_btn.setIcon(icon25)
 
         self.gridLayout_17.addWidget(self.settingpage_storage_select_dir_btn, 0, 2, 1, 1)
 
@@ -3221,6 +3276,7 @@ class Ui_MainWindow(object):
 
         self.frame1 = QFrame(self.settings_page)
         self.frame1.setObjectName(u"frame1")
+        self.frame1.setMinimumSize(QSize(0, 35))
         self.frame1.setSizeIncrement(QSize(0, 0))
 #if QT_CONFIG(accessibility)
         self.frame1.setAccessibleName(u"")
@@ -3251,6 +3307,16 @@ class Ui_MainWindow(object):
         self.settingpage_save_massage_lbl.setStyleSheet(u"font-size: 15px;")
 
         self.horizontalLayout_32.addWidget(self.settingpage_save_massage_lbl)
+
+        self.settingpage_save_gif_lbl = QLabel(self.frame1)
+        self.settingpage_save_gif_lbl.setObjectName(u"settingpage_save_gif_lbl")
+        self.settingpage_save_gif_lbl.setMinimumSize(QSize(0, 0))
+        self.settingpage_save_gif_lbl.setMaximumSize(QSize(28, 28))
+        self.settingpage_save_gif_lbl.setStyleSheet(u"font-size: 15px;")
+        self.settingpage_save_gif_lbl.setScaledContents(True)
+        self.settingpage_save_gif_lbl.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
+
+        self.horizontalLayout_32.addWidget(self.settingpage_save_gif_lbl)
 
 
         self.verticalLayout_6.addWidget(self.frame1)
@@ -3323,9 +3389,9 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_check_btn = QPushButton(self.calibrationpage_left_side)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
-        icon24 = QIcon()
-        icon24.addFile(u":/assets/Assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.calibrationpage_check_btn.setIcon(icon24)
+        icon26 = QIcon()
+        icon26.addFile(u":/assets/Assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.calibrationpage_check_btn.setIcon(icon26)
 
         self.horizontalLayout_9.addWidget(self.calibrationpage_check_btn)
 
@@ -3674,9 +3740,9 @@ class Ui_MainWindow(object):
         self.userspage_add_user_btn = QPushButton(self.gridFrame_2)
         self.userspage_add_user_btn.setObjectName(u"userspage_add_user_btn")
         self.userspage_add_user_btn.setStyleSheet(u"max-width: 120px;")
-        icon25 = QIcon()
-        icon25.addFile(u":/assets/Assets/icons/icons8-plus-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.userspage_add_user_btn.setIcon(icon25)
+        icon27 = QIcon()
+        icon27.addFile(u":/assets/Assets/icons/icons8-plus-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.userspage_add_user_btn.setIcon(icon27)
 
         self.gridLayout_5.addWidget(self.userspage_add_user_btn, 8, 1, 1, 1)
 
@@ -3764,17 +3830,18 @@ class Ui_MainWindow(object):
 "}")
         self.horizontalLayout_34 = QHBoxLayout(self.userpage_editprofile_edit_profile_groupbox)
         self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
+        self.horizontalLayout_34.setContentsMargins(50, -1, -1, -1)
         self.verticalLayout_26 = QVBoxLayout()
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
         self.verticalLayout_26.setContentsMargins(0, -1, -1, -1)
         self.gridLayout_18 = QGridLayout()
         self.gridLayout_18.setObjectName(u"gridLayout_18")
         self.gridLayout_18.setVerticalSpacing(25)
-        self.userpage_editprofile_user_role_combobox = QComboBox(self.userpage_editprofile_edit_profile_groupbox)
-        self.userpage_editprofile_user_role_combobox.addItem("")
-        self.userpage_editprofile_user_role_combobox.setObjectName(u"userpage_editprofile_user_role_combobox")
+        self.label_79 = QLabel(self.userpage_editprofile_edit_profile_groupbox)
+        self.label_79.setObjectName(u"label_79")
+        self.label_79.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_18.addWidget(self.userpage_editprofile_user_role_combobox, 1, 1, 1, 1)
+        self.gridLayout_18.addWidget(self.label_79, 0, 0, 1, 1)
 
         self.label_78 = QLabel(self.userpage_editprofile_edit_profile_groupbox)
         self.label_78.setObjectName(u"label_78")
@@ -3782,16 +3849,20 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.label_78, 1, 0, 1, 1)
 
+        self.userpage_editprofile_user_role_combobox = QComboBox(self.userpage_editprofile_edit_profile_groupbox)
+        self.userpage_editprofile_user_role_combobox.addItem("")
+        self.userpage_editprofile_user_role_combobox.setObjectName(u"userpage_editprofile_user_role_combobox")
+
+        self.gridLayout_18.addWidget(self.userpage_editprofile_user_role_combobox, 1, 1, 1, 1)
+
         self.userpage_editprofile_username_inpt = QLineEdit(self.userpage_editprofile_edit_profile_groupbox)
         self.userpage_editprofile_username_inpt.setObjectName(u"userpage_editprofile_username_inpt")
 
         self.gridLayout_18.addWidget(self.userpage_editprofile_username_inpt, 0, 1, 1, 1)
 
-        self.label_79 = QLabel(self.userpage_editprofile_edit_profile_groupbox)
-        self.label_79.setObjectName(u"label_79")
-        self.label_79.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_18.addWidget(self.label_79, 0, 0, 1, 1)
+        self.gridLayout_18.addItem(self.horizontalSpacer_39, 0, 2, 1, 1)
 
 
         self.verticalLayout_26.addLayout(self.gridLayout_18)
@@ -3830,19 +3901,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_36.addWidget(self.userpage_editprofile_cancel_btn)
 
+        self.horizontalSpacer_69 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_36.addItem(self.horizontalSpacer_69)
+
 
         self.verticalLayout_26.addWidget(self.horizontalFrame1)
 
 
         self.horizontalLayout_34.addLayout(self.verticalLayout_26)
-
-        self.horizontalSpacer_69 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_34.addItem(self.horizontalSpacer_69)
-
-        self.verticalSpacer_33 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
-
-        self.horizontalLayout_34.addItem(self.verticalSpacer_33)
 
 
         self.verticalLayout_21.addWidget(self.userpage_editprofile_edit_profile_groupbox)
@@ -3868,27 +3935,18 @@ class Ui_MainWindow(object):
 "}")
         self.horizontalLayout_37 = QHBoxLayout(self.userpage_editprofile_change_pass_groupbox)
         self.horizontalLayout_37.setObjectName(u"horizontalLayout_37")
+        self.horizontalLayout_37.setContentsMargins(50, -1, -1, -1)
         self.verticalLayout_27 = QVBoxLayout()
         self.verticalLayout_27.setObjectName(u"verticalLayout_27")
         self.verticalLayout_27.setContentsMargins(0, -1, -1, -1)
         self.gridLayout_22 = QGridLayout()
         self.gridLayout_22.setObjectName(u"gridLayout_22")
         self.gridLayout_22.setVerticalSpacing(30)
-        self.userpage_editprofile_old_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
-        self.userpage_editprofile_old_password_inpt.setObjectName(u"userpage_editprofile_old_password_inpt")
-
-        self.gridLayout_22.addWidget(self.userpage_editprofile_old_password_inpt, 0, 1, 1, 1)
-
         self.label_80 = QLabel(self.userpage_editprofile_change_pass_groupbox)
         self.label_80.setObjectName(u"label_80")
         self.label_80.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_22.addWidget(self.label_80, 0, 0, 1, 1)
-
-        self.userpage_editprofile_new_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
-        self.userpage_editprofile_new_password_inpt.setObjectName(u"userpage_editprofile_new_password_inpt")
-
-        self.gridLayout_22.addWidget(self.userpage_editprofile_new_password_inpt, 1, 1, 1, 1)
 
         self.label_81 = QLabel(self.userpage_editprofile_change_pass_groupbox)
         self.label_81.setObjectName(u"label_81")
@@ -3896,16 +3954,30 @@ class Ui_MainWindow(object):
 
         self.gridLayout_22.addWidget(self.label_81, 1, 0, 1, 1)
 
+        self.userpage_editprofile_confirm_new_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_confirm_new_password_inpt.setObjectName(u"userpage_editprofile_confirm_new_password_inpt")
+
+        self.gridLayout_22.addWidget(self.userpage_editprofile_confirm_new_password_inpt, 2, 1, 1, 1)
+
+        self.userpage_editprofile_old_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_old_password_inpt.setObjectName(u"userpage_editprofile_old_password_inpt")
+
+        self.gridLayout_22.addWidget(self.userpage_editprofile_old_password_inpt, 0, 1, 1, 1)
+
         self.label_86 = QLabel(self.userpage_editprofile_change_pass_groupbox)
         self.label_86.setObjectName(u"label_86")
         self.label_86.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_22.addWidget(self.label_86, 2, 0, 1, 1)
 
-        self.userpage_editprofile_confirm_new_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
-        self.userpage_editprofile_confirm_new_password_inpt.setObjectName(u"userpage_editprofile_confirm_new_password_inpt")
+        self.userpage_editprofile_new_password_inpt = QLineEdit(self.userpage_editprofile_change_pass_groupbox)
+        self.userpage_editprofile_new_password_inpt.setObjectName(u"userpage_editprofile_new_password_inpt")
 
-        self.gridLayout_22.addWidget(self.userpage_editprofile_confirm_new_password_inpt, 2, 1, 1, 1)
+        self.gridLayout_22.addWidget(self.userpage_editprofile_new_password_inpt, 1, 1, 1, 1)
+
+        self.horizontalSpacer_73 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_22.addItem(self.horizontalSpacer_73, 0, 2, 1, 1)
 
 
         self.verticalLayout_27.addLayout(self.gridLayout_22)
@@ -3934,19 +4006,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_38.addWidget(self.userpage_editprofile_change_password_btn)
 
+        self.horizontalSpacer_97 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_38.addItem(self.horizontalSpacer_97)
+
 
         self.verticalLayout_27.addLayout(self.horizontalLayout_38)
 
 
         self.horizontalLayout_37.addLayout(self.verticalLayout_27)
-
-        self.horizontalSpacer_73 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_37.addItem(self.horizontalSpacer_73)
-
-        self.verticalSpacer_34 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
-
-        self.horizontalLayout_37.addItem(self.verticalSpacer_34)
 
 
         self.verticalLayout_21.addWidget(self.userpage_editprofile_change_pass_groupbox)
@@ -4228,9 +4296,9 @@ class Ui_MainWindow(object):
         self.sreportpage_back_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_back_btn.setObjectName(u"sreportpage_back_btn")
         self.sreportpage_back_btn.setStyleSheet(u"")
-        icon26 = QIcon()
-        icon26.addFile(u":/assets/Assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_back_btn.setIcon(icon26)
+        icon28 = QIcon()
+        icon28.addFile(u":/assets/Assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_back_btn.setIcon(icon28)
         self.sreportpage_back_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_back_btn)
@@ -4244,9 +4312,9 @@ class Ui_MainWindow(object):
 
         self.sreportpage_export_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_export_btn.setObjectName(u"sreportpage_export_btn")
-        icon27 = QIcon()
-        icon27.addFile(u":/assets/Assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_export_btn.setIcon(icon27)
+        icon29 = QIcon()
+        icon29.addFile(u":/assets/Assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_export_btn.setIcon(icon29)
         self.sreportpage_export_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_export_btn)
@@ -4966,9 +5034,9 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn = QPushButton(self.horizontalFrame_31)
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon28 = QIcon()
-        icon28.addFile(u":/assets/Assets/icons/icons8-previous-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_prev_particle_btn.setIcon(icon28)
+        icon30 = QIcon()
+        icon30.addFile(u":/assets/Assets/icons/icons8-previous-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_prev_particle_btn.setIcon(icon30)
         self.sreportpage_prev_particle_btn.setIconSize(QSize(50, 50))
 
         self.horizontalLayout_30.addWidget(self.sreportpage_prev_particle_btn)
@@ -4976,9 +5044,9 @@ class Ui_MainWindow(object):
         self.sreportpage_next_particle_btn = QPushButton(self.horizontalFrame_31)
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon29 = QIcon()
-        icon29.addFile(u":/assets/Assets/icons/icons8-next-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_next_particle_btn.setIcon(icon29)
+        icon31 = QIcon()
+        icon31.addFile(u":/assets/Assets/icons/icons8-next-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_next_particle_btn.setIcon(icon31)
         self.sreportpage_next_particle_btn.setIconSize(QSize(50, 50))
 
         self.horizontalLayout_30.addWidget(self.sreportpage_next_particle_btn)
@@ -5182,7 +5250,7 @@ class Ui_MainWindow(object):
         self.comparepage_back_btn = QPushButton(self.horizontalFrame_6)
         self.comparepage_back_btn.setObjectName(u"comparepage_back_btn")
         self.comparepage_back_btn.setStyleSheet(u"")
-        self.comparepage_back_btn.setIcon(icon26)
+        self.comparepage_back_btn.setIcon(icon28)
         self.comparepage_back_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_56.addWidget(self.comparepage_back_btn)
@@ -5196,7 +5264,7 @@ class Ui_MainWindow(object):
 
         self.comparepage_export_btn = QPushButton(self.horizontalFrame_6)
         self.comparepage_export_btn.setObjectName(u"comparepage_export_btn")
-        self.comparepage_export_btn.setIcon(icon27)
+        self.comparepage_export_btn.setIcon(icon29)
         self.comparepage_export_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_56.addWidget(self.comparepage_export_btn)
@@ -5490,10 +5558,11 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(shortcut)
 
         self.retranslateUi(MainWindow)
+        MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(5)
         self.gradingranges_tabs.setCurrentIndex(1)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -5594,9 +5663,10 @@ class Ui_MainWindow(object):
         self.reportpage_standards_filter_ranges_table.setSortingEnabled(__sortingEnabled1)
 
         self.reportpage_apply_filters_btn.setText(QCoreApplication.translate("MainWindow", u"Update", None))
-        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare", None))
-        self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
         self.reportspage_all_checkbox.setText(QCoreApplication.translate("MainWindow", u"All", None))
+        self.reportspage_delete_selections_btn.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare:", None))
+        self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
         self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
@@ -5691,6 +5761,7 @@ class Ui_MainWindow(object):
         self.settingpage_algorithm_restor_default_btn.setText(QCoreApplication.translate("MainWindow", u"Restore Default", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_algorithm_tab), QCoreApplication.translate("MainWindow", u"Algorithm", None))
         self.settingpage_save_massage_lbl.setText(QCoreApplication.translate("MainWindow", u"setting saved", None))
+        self.settingpage_save_gif_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.calibrationpage_step1_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 1", None))
         self.calibrationpage_check_btn.setText(QCoreApplication.translate("MainWindow", u" Check", None))
         self.calibrationpage_step2_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 2", None))
@@ -5731,10 +5802,10 @@ class Ui_MainWindow(object):
         self.userspage_register_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"register user", None))
         self.userpage_editprofile_edit_profile_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Edit Profile", None))
+        self.label_79.setText(QCoreApplication.translate("MainWindow", u"username:", None))
+        self.label_78.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))
         self.userpage_editprofile_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
 
-        self.label_78.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))
-        self.label_79.setText(QCoreApplication.translate("MainWindow", u"username:", None))
         self.userpage_editprofile_edit_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
         self.userpage_editprofile_update_btn.setText(QCoreApplication.translate("MainWindow", u"Upade Profile", None))
         self.userpage_editprofile_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))

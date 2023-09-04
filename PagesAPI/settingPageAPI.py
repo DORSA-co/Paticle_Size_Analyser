@@ -11,6 +11,12 @@ class settingPageAPI:
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
 
+        ui.cameraSettingTab.save_state(True)
+        ui.algorithmSettingTab.save_state(True)
+        ui.storageSettingTab.save_state(True)
+        ui.storageSettingTab.save_state(True)
+        ui.sampleSettingTab.save_state(True)
+
     def startup(self,):
         self.cameraSetting.startup()
     

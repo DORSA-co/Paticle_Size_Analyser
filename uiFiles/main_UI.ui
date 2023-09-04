@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>5</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2266,7 +2266,7 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>356</width>
+                   <width>348</width>
                    <height>1796</height>
                   </rect>
                  </property>
@@ -2882,14 +2882,100 @@ color: rgb(6, 76, 130);
               <number>0</number>
              </property>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_52">
+              <layout class="QHBoxLayout" name="horizontalLayout_57">
+               <property name="leftMargin">
+                <number>5</number>
+               </property>
                <property name="topMargin">
                 <number>0</number>
                </property>
                <item>
+                <widget class="QCheckBox" name="reportspage_all_checkbox">
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="Line" name="line_25">
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgba(12, 80, 139, 150);</string>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Plain</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="reportspage_delete_selections_btn">
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+background-color: rgb(255, 255, 255);
+color: rgb(197, 63, 59);
+border: 2px solid rgb(197, 63, 59);
+min-width: 80px;
+
+}
+
+QPushButton:hover{
+background-color: rgb(255, 255, 255);
+color:rgb(152, 46, 44);
+border: 2px solid rgb(152, 46, 44);
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Delete</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="Assets.qrc">
+                   <normaloff>:/assets/Assets/icons/icons8-remove-table-50.png</normaloff>:/assets/Assets/icons/icons8-remove-table-50.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>25</width>
+                   <height>25</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="Line" name="line_26">
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgba(12, 80, 139, 150);</string>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Plain</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_48">
                  <property name="text">
-                  <string>Standard for compare</string>
+                  <string>Standard for compare:</string>
                  </property>
                 </widget>
                </item>
@@ -2916,17 +3002,34 @@ color: rgb(6, 76, 130);
                 <widget class="QPushButton" name="reportpage_compare_btn">
                  <property name="styleSheet">
                   <string notr="true">QPushButton{
-	max-width: 100px;
+/*	max-width: 100px;*/
+	min-width: 120px;
+	min-height: 40px;
 	background-color: rgb(200, 96, 26);
+}
+
+QPushButton:hover{
+	background-color:rgb(173, 83, 22);
+
 }</string>
                  </property>
                  <property name="text">
                   <string>Compare</string>
                  </property>
+                 <property name="icon">
+                  <iconset resource="Assets.qrc">
+                   <normaloff>:/assets/Assets/icons/icons8-compare-50.png</normaloff>:/assets/Assets/icons/icons8-compare-50.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>25</width>
+                   <height>25</height>
+                  </size>
+                 </property>
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_39">
+                <spacer name="horizontalSpacer_101">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -2938,33 +3041,25 @@ color: rgb(6, 76, 130);
                  </property>
                 </spacer>
                </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="Line" name="line_24">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>5</height>
-                </size>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_57">
-               <property name="leftMargin">
-                <number>40</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
                <item>
-                <widget class="QCheckBox" name="reportspage_all_checkbox">
-                 <property name="text">
-                  <string>All</string>
+                <widget class="Line" name="line_27">
+                 <property name="minimumSize">
+                  <size>
+                   <width>20</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color:rgba(12, 80, 139, 150);</string>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Plain</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
                  </property>
                 </widget>
                </item>
@@ -2978,39 +3073,46 @@ color: rgb(6, 76, 130);
               </widget>
              </item>
              <item>
-              <widget class="QTableWidget" name="reportpage_samples_table">
-               <property name="verticalScrollBarPolicy">
-                <enum>Qt::ScrollBarAlwaysOn</enum>
+              <layout class="QHBoxLayout" name="horizontalLayout_61">
+               <property name="topMargin">
+                <number>0</number>
                </property>
-               <property name="horizontalScrollBarPolicy">
-                <enum>Qt::ScrollBarAlwaysOn</enum>
-               </property>
-               <property name="rowCount">
-                <number>11</number>
-               </property>
-               <property name="columnCount">
-                <number>5</number>
-               </property>
-               <attribute name="verticalHeaderDefaultSectionSize">
-                <number>45</number>
-               </attribute>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <row/>
-               <column/>
-               <column/>
-               <column/>
-               <column/>
-               <column/>
-              </widget>
+               <item>
+                <widget class="QTableWidget" name="reportpage_samples_table">
+                 <property name="verticalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOn</enum>
+                 </property>
+                 <property name="horizontalScrollBarPolicy">
+                  <enum>Qt::ScrollBarAlwaysOn</enum>
+                 </property>
+                 <property name="rowCount">
+                  <number>11</number>
+                 </property>
+                 <property name="columnCount">
+                  <number>5</number>
+                 </property>
+                 <attribute name="verticalHeaderDefaultSectionSize">
+                  <number>45</number>
+                 </attribute>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <row/>
+                 <column/>
+                 <column/>
+                 <column/>
+                 <column/>
+                 <column/>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
@@ -3916,7 +4018,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>1</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -5649,6 +5751,12 @@ background-color:rgb(240,240,240)
            </item>
            <item>
             <widget class="QFrame" name="frame">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>35</height>
+              </size>
+             </property>
              <property name="sizeIncrement">
               <size>
                <width>0</width>
@@ -5713,6 +5821,34 @@ QLabel{
                 </property>
                 <property name="text">
                  <string>setting saved</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="settingpage_save_gif_lbl">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>28</width>
+                  <height>28</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-size: 15px;</string>
+                </property>
+                <property name="text">
+                 <string>-</string>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignBottom|Qt::AlignHCenter</set>
                 </property>
                </widget>
               </item>
@@ -6594,6 +6730,9 @@ QLineEdit
                   <string>Edit Profile</string>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_34">
+                  <property name="leftMargin">
+                   <number>50</number>
+                  </property>
                   <item>
                    <layout class="QVBoxLayout" name="verticalLayout_26">
                     <property name="leftMargin">
@@ -6604,13 +6743,14 @@ QLineEdit
                       <property name="verticalSpacing">
                        <number>25</number>
                       </property>
-                      <item row="1" column="1">
-                       <widget class="QComboBox" name="userpage_editprofile_user_role_combobox">
-                        <item>
-                         <property name="text">
-                          <string>admin</string>
-                         </property>
-                        </item>
+                      <item row="0" column="0">
+                       <widget class="QLabel" name="label_79">
+                        <property name="text">
+                         <string>username:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        </property>
                        </widget>
                       </item>
                       <item row="1" column="0">
@@ -6623,18 +6763,30 @@ QLineEdit
                         </property>
                        </widget>
                       </item>
+                      <item row="1" column="1">
+                       <widget class="QComboBox" name="userpage_editprofile_user_role_combobox">
+                        <item>
+                         <property name="text">
+                          <string>admin</string>
+                         </property>
+                        </item>
+                       </widget>
+                      </item>
                       <item row="0" column="1">
                        <widget class="QLineEdit" name="userpage_editprofile_username_inpt"/>
                       </item>
-                      <item row="0" column="0">
-                       <widget class="QLabel" name="label_79">
-                        <property name="text">
-                         <string>username:</string>
+                      <item row="0" column="2">
+                       <spacer name="horizontalSpacer_39">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
                         </property>
-                        <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
                         </property>
-                       </widget>
+                       </spacer>
                       </item>
                      </layout>
                     </item>
@@ -6685,39 +6837,23 @@ max-width: 120px;
                          </property>
                         </widget>
                        </item>
+                       <item>
+                        <spacer name="horizontalSpacer_69">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
                       </layout>
                      </widget>
                     </item>
                    </layout>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_69">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_33">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                     <enum>QSizePolicy::Maximum</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -6759,6 +6895,9 @@ QLineEdit
                   <string>Change Password</string>
                  </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_37">
+                  <property name="leftMargin">
+                   <number>50</number>
+                  </property>
                   <item>
                    <layout class="QVBoxLayout" name="verticalLayout_27">
                     <property name="leftMargin">
@@ -6769,9 +6908,6 @@ QLineEdit
                       <property name="verticalSpacing">
                        <number>30</number>
                       </property>
-                      <item row="0" column="1">
-                       <widget class="QLineEdit" name="userpage_editprofile_old_password_inpt"/>
-                      </item>
                       <item row="0" column="0">
                        <widget class="QLabel" name="label_80">
                         <property name="text">
@@ -6781,9 +6917,6 @@ QLineEdit
                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                         </property>
                        </widget>
-                      </item>
-                      <item row="1" column="1">
-                       <widget class="QLineEdit" name="userpage_editprofile_new_password_inpt"/>
                       </item>
                       <item row="1" column="0">
                        <widget class="QLabel" name="label_81">
@@ -6795,6 +6928,12 @@ QLineEdit
                         </property>
                        </widget>
                       </item>
+                      <item row="2" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_confirm_new_password_inpt"/>
+                      </item>
+                      <item row="0" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_old_password_inpt"/>
+                      </item>
                       <item row="2" column="0">
                        <widget class="QLabel" name="label_86">
                         <property name="text">
@@ -6805,8 +6944,21 @@ QLineEdit
                         </property>
                        </widget>
                       </item>
-                      <item row="2" column="1">
-                       <widget class="QLineEdit" name="userpage_editprofile_confirm_new_password_inpt"/>
+                      <item row="1" column="1">
+                       <widget class="QLineEdit" name="userpage_editprofile_new_password_inpt"/>
+                      </item>
+                      <item row="0" column="2">
+                       <spacer name="horizontalSpacer_73">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
                       </item>
                      </layout>
                     </item>
@@ -6844,38 +6996,22 @@ max-height: 30px;
                         </property>
                        </widget>
                       </item>
+                      <item>
+                       <spacer name="horizontalSpacer_97">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
                      </layout>
                     </item>
                    </layout>
-                  </item>
-                  <item>
-                   <spacer name="horizontalSpacer_73">
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_34">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                     <enum>QSizePolicy::Maximum</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -9653,5 +9789,22 @@ QPushButton{
  <resources>
   <include location="Assets.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>MainWindow</sender>
+   <signal>destroyed(QObject*)</signal>
+   <receiver>calibrationpage_last_calib_tabel</receiver>
+   <slot>clearSelection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>684</x>
+     <y>456</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>493</x>
+     <y>768</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -101,6 +101,7 @@ class mainUI:
         self.current_page = ('main', 0)
         self.previous_page = ('help', 0)
         self.external_change_page_event = None
+        self.sidebar_frame = self.ui.sidebar
 
         self.pages_index = {
             'main'              : 0,
@@ -246,8 +247,12 @@ class mainUI:
         Args:
             page_name (_type_): _description_
         """
+        if page_name in CONSTANTS.HIDE_SIDEBAR_PAGES:
+            self.show_sidebar(False)
+        else:
+            self.show_sidebar(True)
+        
         self.__change_page__(page_name)
-        #GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  self.pages_index[page_name])
     
     def set_access_pages(self, pages:list[str], flag:bool = True):
         """enable or disable some pages
@@ -267,8 +272,7 @@ class mainUI:
             else:
                 GUIBackend.set_wgt_visible(btn , not(flag))
         
-        new_page_idx = self.pages_index[pages[0]]
-        GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
+        self.go_to_page(pages[0])
 
     
 
@@ -298,6 +302,16 @@ class mainUI:
         flag = dialog_box.render()
         if flag == 'yes':
             GUIBackend.close_app(self.ui)
+
+    
+    def show_sidebar(self, flag):
+        if not flag:
+            GUIBackend.set_frame_max_size(self.sidebar_frame, w=0, h=None)
+            GUIBackend.set_frame_min_size(self.sidebar_frame, w=0, h=None)
+        else:
+            GUIBackend.set_frame_max_size(self.sidebar_frame, w=CONSTANTS.SIDEBAR_MAX_WIDTH, h=None)
+            GUIBackend.set_frame_min_size(self.sidebar_frame, w=CONSTANTS.SIDEBAR_MIN_WIDTH, h=None)
+
 
         
        

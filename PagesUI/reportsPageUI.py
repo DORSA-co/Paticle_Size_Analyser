@@ -14,6 +14,7 @@ class reportsPageUI:
         self.compare_btn = self.ui.reportpage_compare_btn
         self.compare_standards_combobox = self.ui.reportpage_compare_standards_combobox
         self.select_all_checkbox = self.ui.reportspage_all_checkbox
+        self.delete_selections_btn = self.ui.reportspage_delete_selections_btn
 
         #-----------------name filter--------------
         self.name_filter_input = self.ui.reportpage_filtername_input
@@ -103,6 +104,9 @@ class reportsPageUI:
 
     def compare_button_connector(self, func):
         GUIBackend.button_connector(self.compare_btn, func)
+
+    def delete_selections_button_connector(self, func):
+        GUIBackend.button_connector(self.delete_selections_btn, func)
 
 
     def __groupbox_filter_event_connector__(self, ):

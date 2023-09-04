@@ -1446,7 +1446,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -798, 356, 1746))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1796))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1695,7 +1695,7 @@ class Ui_MainWindow(object):
         self.reportpage_standards_filter_ranges_table.horizontalHeader().setHighlightSections(False)
         self.reportpage_standards_filter_ranges_table.verticalHeader().setVisible(False)
         self.reportpage_standards_filter_ranges_table.verticalHeader().setMinimumSectionSize(35)
-        self.reportpage_standards_filter_ranges_table.verticalHeader().setDefaultSectionSize(30)
+        self.reportpage_standards_filter_ranges_table.verticalHeader().setDefaultSectionSize(35)
         self.reportpage_standards_filter_ranges_table.verticalHeader().setHighlightSections(False)
 
         self.verticalLayout_47.addWidget(self.reportpage_standards_filter_ranges_table)
@@ -3078,10 +3078,15 @@ class Ui_MainWindow(object):
 "	max-width: auto;\n"
 "	min-width: 0px;\n"
 "\n"
+"}\n"
+"\n"
+"QFrame{\n"
+"\n"
+"background-color:rgb(240,240,240)\n"
 "}")
         self.horizontalLayout_16 = QHBoxLayout(self.horizontalFrame_4)
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.horizontalLayout_16.setContentsMargins(-1, 19, -1, -1)
+        self.horizontalLayout_16.setContentsMargins(-1, 5, -1, 5)
         self.label_13 = QLabel(self.horizontalFrame_4)
         self.label_13.setObjectName(u"label_13")
         self.label_13.setMinimumSize(QSize(47, 0))
@@ -3096,7 +3101,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.label_15)
 
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_10)
 
@@ -3119,7 +3124,7 @@ class Ui_MainWindow(object):
 
         self.line_23 = QFrame(self.settingpage_camera_tab)
         self.line_23.setObjectName(u"line_23")
-        self.line_23.setMinimumSize(QSize(3, 3))
+        self.line_23.setMinimumSize(QSize(10, 10))
         self.line_23.setSizeIncrement(QSize(0, 0))
         self.line_23.setFrameShape(QFrame.HLine)
         self.line_23.setFrameShadow(QFrame.Sunken)
@@ -5486,9 +5491,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.main_pages_stackw.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(1)
-        self.settingpage_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(3)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 

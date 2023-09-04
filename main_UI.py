@@ -99,6 +99,7 @@ class mainUI:
         #self.router = routerUI(ui)
 
         self.current_page = ('main', 0)
+        self.previous_page = ('help', 0)
         self.external_change_page_event = None
 
         self.pages_index = {
@@ -156,9 +157,16 @@ class mainUI:
     def change_page_connector(self,func):
         self.external_change_page_event = func
 
-    def internal_change_page_event(self, name, idx):
+    def internal_change_page_event(self, current_page_name, new_page_name):
+        """this event happend user clicked new page that is diffrent from current page
+        and calls external event func
+
+        Args:
+            name (str): name of current page
+            idx (str): name of new page that its button clicked
+        """
         if self.external_change_page_event is not None:
-            self.external_change_page_event(name, idx)
+            self.external_change_page_event(current_page_name, new_page_name)
 
 
 
@@ -177,33 +185,69 @@ class mainUI:
         
 
 
-    def sidebar_menu_handler(self, pagename):
+    def sidebar_menu_handler(self, new_page_name:str):
+        """event happend when side bar menu button clicked
+
+        Args:
+            new_page_name (str): name of page that its button clicked
+        """
         def func():
             current_page_idx = GUIBackend.get_stack_widget_idx(self.ui.main_pages_stackw)
-            new_page_idx = self.pages_index[pagename]
+            new_page_idx = self.pages_index[new_page_name]
 
             if current_page_idx != new_page_idx:
                 #pass new page index and name to internal_change_page_event method
-                self.internal_change_page_event(pagename, new_page_idx)
-
-                GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
-                #save new page into an atribute for some using
-                self.current_page = (pagename, new_page_idx)
-                
-                #reset styles of all btns (actully for rest style of buttons of previous page)
-                for btn in self.sidebar_pages_buttons.values():
-                    btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
-                
-                #set style to button of new page to make it diffrent
-                self.sidebar_pages_buttons[pagename].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
+                self.internal_change_page_event(self.current_page[0], new_page_name)
         return func
-   
-    def get_current_page(self,):
-        return self.current_page
     
 
+    def __change_page__(self,new_page_name:str):
+        """changes page of ui
+
+        Args:
+            new_page_name (str): name of new page
+        """
+        new_page_idx = self.pages_index[new_page_name]
+        self.previous_page = self.current_page
+        self.current_page = (new_page_name, new_page_idx)
+
+        GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
+        #save new page into and previous page
+        
+        
+        #reset styles of all btns (actully for rest style of buttons of previous page)
+        if new_page_name in self.sidebar_pages_buttons.keys():
+            for btn in self.sidebar_pages_buttons.values():
+                btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
+        
+            #set style to button of new page to make it diffrent
+            self.sidebar_pages_buttons[new_page_name].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
+
+    def get_current_page(self,) -> tuple[str, int]:
+        """returns current page's name and index
+
+        Returns:
+            tuple[str, int]: (name of current page, index of current page)
+        """
+        return self.current_page
+    
+    def get_previous_page(self,)-> tuple[str, int]:
+        """returns previous page's name and index
+
+        Returns:
+            tuple[str, int]: tuple[str, int]: (name of previous page, index of previous page)
+        """
+        return self.previous_page
+    
+    
     def go_to_page(self, page_name):
-        GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  self.pages_index[page_name])
+        """changes page to
+
+        Args:
+            page_name (_type_): _description_
+        """
+        self.__change_page__(page_name)
+        #GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  self.pages_index[page_name])
     
     def set_access_pages(self, pages:list[str], flag:bool = True):
         """enable or disable some pages
@@ -223,10 +267,6 @@ class mainUI:
             else:
                 GUIBackend.set_wgt_visible(btn , not(flag))
         
-
-        #if current page is not access, we change page into firt accessable page.
-        #current_page_name,_ = self.get_current_page()
-        #if current_page_name not in pages:
         new_page_idx = self.pages_index[pages[0]]
         GUIBackend.set_stack_widget_idx( self.ui.main_pages_stackw,  new_page_idx)
 
@@ -252,6 +292,8 @@ class mainUI:
                 GUIBackend.set_visible_tab(obj, idx, not(flag))
 
     def close(self):
+        """shows dialog box for closing application
+        """
         dialog_box = GUIComponents.confirmMessageBox('close', 'Are you sure?', buttons = ['yes', 'no'])
         flag = dialog_box.render()
         if flag == 'yes':

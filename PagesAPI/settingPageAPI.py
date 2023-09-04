@@ -1,18 +1,22 @@
-from dorsaPylon import Collector
+from backend.Camera.dorsaPylon import Collector, Camera
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI
 import CONSTANTS
 
 
 class settingPageAPI:
-    def __init__(self, ui:settingPageUI ,database:settingDB, camera):
-        self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, camera)
+    def __init__(self, ui:settingPageUI ,database:settingDB, cameras):
+        self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, cameras)
         self.algorithmSetting = algorithmSettingTabAPI(ui.algorithmSettingTab, database.algorithm_db)
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
 
     def startup(self,):
         self.cameraSetting.startup()
+    
+    def endup(self,) -> bool:
+        cam_flag = self.cameraSetting.endup()
+        return cam_flag
 
 
 
@@ -78,7 +82,7 @@ class sampleSettingTabAPI:
         self.ui.set_autoname_struct_input(self.autoname_struct)
 
 
-
+    
 
 
 
@@ -128,7 +132,7 @@ class storageSettingTabAPI:
 
 class cameraSettingTabAPI:
 
-    def __init__(self, ui:cameraSettingTabUI ,database, cameras:settingCameraDB):
+    def __init__(self, ui:cameraSettingTabUI ,database:settingCameraDB, cameras: dict[str, Camera]):
         self.ui = ui
         self.database = database
         self.cameras = cameras
@@ -168,6 +172,16 @@ class cameraSettingTabAPI:
 
     def startup(self):
         self.ui.reset()
+
+    def endup(self,) -> bool:
+        """_summary_
+
+        Returns:
+            bool: permition for change page. if True page change is acceptable
+        """
+        for  camera in self.cameras.values():
+            camera.Operations.stop_grabbing()
+        return True
 
     def update_setting_event(self, group_setting, camera_application, settings = None):
         #when event happend, settings argument got value from ui

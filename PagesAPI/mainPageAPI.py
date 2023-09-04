@@ -27,6 +27,7 @@ class mainPageAPI:
         self.frame_idx = 0
         self.logined_username = ''
         self.external_report_event_func = None
+        self.is_running = False
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
@@ -40,6 +41,10 @@ class mainPageAPI:
         self.test_img_idx = 0
         self.report = Report()
         self.detector = None
+    
+    def startup(self,):
+        pass
+        #self.ui.startup()
 
     def set_logined_user(self, username:str):
         """this function calls from main_API when a login or logout event happend and gets logined username
@@ -179,10 +184,7 @@ class mainPageAPI:
 
     def fast_start(self,):
         return
-        for camera in self.cameras.values():
-            camera.Operations.start_grabbing()
 
-        self.ui.set_player_buttons_status('start')
 
 
     def stop(self,):
@@ -204,7 +206,7 @@ class mainPageAPI:
         db_data = self.report.get_database_record()
         self.database.reports_db.save(db_data)
         #-----------------------------------------------------------------------------------------
-
+        self.is_running = False
 
     
     
@@ -229,6 +231,8 @@ class mainPageAPI:
         self.ui.set_player_buttons_status('start')
         #close sample info window
         self.ui.close_sample_info_window()
+
+        self.is_running = True
 
         for camera in self.cameras.values():
             camera.Operations.start_grabbing()
@@ -260,3 +264,12 @@ class mainPageAPI:
         #set chart bars
         
         #disable start and fast_start button and enable stop button
+
+    
+    def endup(self):
+        if self.is_running:
+            self.ui.show_dialog_box("Warning", 
+                                    "You can't leave this page when system is Running, Please stop it first",
+                                    buttons=['ok'])
+            return False
+        return True

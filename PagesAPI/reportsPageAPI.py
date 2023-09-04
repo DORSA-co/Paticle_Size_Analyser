@@ -145,6 +145,10 @@ class reportsPageAPI:
         if len(ids) == 0:
             self.ui.show_confirm_box("ERROR!", massage="No Sample Selected", buttons=['ok'])
             return
+        
+        if len(ids) == 1:
+            self.ui.show_confirm_box("ERROR!", massage="only one sample selected. Please select at least two samples", buttons=['ok'])
+            return
         #load selected sample for compare from database
         samples = self.database.reports_db.load_by_ids(ids)
         #get selected standard for compare

@@ -23,8 +23,8 @@ class cameraThread(QObject):
                         self.success_grab_signal.emit()
                 time.sleep(0.01)
 
-            except:
-                print('camera Error happend in thread while !')
+            except Exception as e:
+                print('camera Error happend in thread while !', e)
             
     def connect_success_grab_to_function(self, func):
         self.func = func

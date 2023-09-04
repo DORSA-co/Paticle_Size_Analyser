@@ -157,13 +157,17 @@ class GUIBackend:
         if isinstance(wgt, QtWidgets.QComboBox):
             return GUIBackend.get_combobox_selected(wgt)
         
-        if isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
+        elif isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
             return GUIBackend.get_input_spinbox_value(wgt)
         
-        if isinstance(wgt, QtWidgets.QLineEdit):
+        elif isinstance(wgt, QtWidgets.QLineEdit):
             return GUIBackend.get_input_text(wgt)
-    
 
+        elif isinstance(wgt, QtWidgets.QCheckBox):
+            return GUIBackend.get_checkbox_value(wgt)
+
+        else:
+            assert False, f"get_input method doesn't support {wgt} object"
 
     @staticmethod
     def set_input(wgt, value):
@@ -176,14 +180,39 @@ class GUIBackend:
 
         """
         if isinstance(wgt, QtWidgets.QComboBox):
-            return GUIBackend.set_combobox_current_item(wgt, value)
+            GUIBackend.set_combobox_current_item(wgt, value)
         
-        if isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
-            return GUIBackend.set_spinbox_value(wgt, value)
+        elif isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
+            GUIBackend.set_spinbox_value(wgt, value)
         
-        if isinstance(wgt, QtWidgets.QLineEdit):
-            return GUIBackend.set_input_text(wgt, value)
+        elif isinstance(wgt, QtWidgets.QLineEdit):
+            GUIBackend.set_input_text(wgt, value)
+        
+        elif isinstance(wgt, QtWidgets.QCheckBox):
+            GUIBackend.set_checkbox_value(wgt, value)
 
+        else:
+            assert False, f"set_input method doesn't support {wgt} object"
+
+
+    @staticmethod
+    def connector(wgt, func):
+        """
+        """
+        if isinstance(wgt, QtWidgets.QComboBox):
+            return GUIBackend.combobox_changeg_connector(wgt, func)
+        
+        elif isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
+            return GUIBackend.spinbox_connector(wgt, func)
+        
+        elif isinstance(wgt, QtWidgets.QLineEdit):
+            return GUIBackend.input_text_connector(wgt, func)
+
+        elif isinstance(wgt, QtWidgets.QCheckBox):
+            return GUIBackend.checkbox_connector(wgt, func)
+        
+        else:
+            assert False, f"connector method doesn't support {wgt} object"
 
 
     #--------------------------------- GLOBAL BUTTON FUNCTIONs ---------------------------------

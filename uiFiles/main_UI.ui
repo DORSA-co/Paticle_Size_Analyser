@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2265,9 +2265,9 @@ color: rgb(6, 76, 130);
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>-798</y>
+                   <y>0</y>
                    <width>356</width>
-                   <height>1746</height>
+                   <height>1796</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2759,7 +2759,7 @@ color: rgb(6, 76, 130);
                            <number>35</number>
                           </attribute>
                           <attribute name="verticalHeaderDefaultSectionSize">
-                           <number>30</number>
+                           <number>35</number>
                           </attribute>
                           <attribute name="verticalHeaderHighlightSections">
                            <bool>false</bool>
@@ -3916,7 +3916,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>3</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -5368,11 +5368,19 @@ max-height : 800px;
 	max-width: auto;
 	min-width: 0px;
 
+}
+
+QFrame{
+
+background-color:rgb(240,240,240)
 }</string>
                      </property>
                      <layout class="QHBoxLayout" name="horizontalLayout_16">
                       <property name="topMargin">
-                       <number>19</number>
+                       <number>5</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>5</number>
                       </property>
                       <item>
                        <widget class="QLabel" name="label_13">
@@ -5417,6 +5425,9 @@ max-height : 800px;
                         <property name="orientation">
                          <enum>Qt::Horizontal</enum>
                         </property>
+                        <property name="sizeType">
+                         <enum>QSizePolicy::Maximum</enum>
+                        </property>
                         <property name="sizeHint" stdset="0">
                          <size>
                           <width>40</width>
@@ -5459,8 +5470,8 @@ max-height : 800px;
                     <widget class="Line" name="line_23">
                      <property name="minimumSize">
                       <size>
-                       <width>3</width>
-                       <height>3</height>
+                       <width>10</width>
+                       <height>10</height>
                       </size>
                      </property>
                      <property name="sizeIncrement">

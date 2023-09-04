@@ -33,13 +33,13 @@ class main_API:
         #Pages_api------------------------------------
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
         self.gradingRangesPageAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
-        self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, camera = self.cameras, database = self.db.setting_db )
+        self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db )
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
 
-        self.ui.change_page_connector(self.page_change)
+        self.ui.change_page_connector(self.page_change_event)
         self.usersPageAPI.set_login_event(self.login_user_event)
         self.mainPageAPI.set_report_button_event_func(self.show_report_event)
         self.reportsPageAPI.set_see_report_event_func(self.show_report_event)
@@ -50,9 +50,22 @@ class main_API:
         self.gradingRangesPageAPI.set_remove_standard_event_func( self.standard_event )
 
         #this functions should run when each page load
-        self.pages_api_dict = {
-            'main': None,
+        self.pages_startups = {
+            'main': self.mainPageAPI,
             'reports': self.reportsPageAPI,
+            'grading_ranges': None,
+            'calibration': None,
+            'settings': self.settingPageAPI,
+            'user': None,
+            'help': None,
+            'report': None,
+            'compare': None,
+        }
+
+
+        self.pages_endup = {
+            'main': self.mainPageAPI,
+            'reports': None,
             'grading_ranges': None,
             'calibration': None,
             'settings': self.settingPageAPI,
@@ -69,23 +82,6 @@ class main_API:
         #report = load_obj('test_report')
         #self.show_report(report, 'main')
         #self.show_compare_event(None)
-        
-    
-    def page_change(self, pagename, idx):
-        for camera in self.cameras.values():
-            camera.Operations.stop_grabbing()
-
-        #call startup method of API of corespond page
-        if self.pages_api_dict[pagename] is not None:
-            self.pages_api_dict[pagename].startup()
-
-    def grabbed_image_interrupt(self,):
-        current_page,_ = self.ui.get_current_page()
-        
-        if current_page == 'main':
-            self.mainPageAPI.process_image()
-        elif current_page == 'settings':
-            self.settingPageAPI.cameraSetting.show_live_image()
         
 
     def creat_camera(self)-> Camera:
@@ -109,9 +105,37 @@ class main_API:
         
             #self.camera.Operations.start_grabbing()
             self.camera_thread = cameraThread( camera )
-            self.camera_thread.connect_success_grab_to_function(self.grabbed_image_interrupt)
+            self.camera_thread.connect_success_grab_to_function(self.grabbed_image_event)
             self.camera_thread.start_thread()
 
+    #_________________________________________________________________________________________________________________________
+    #
+    #
+    #_________________________________________________________________________________________________________________________
+
+    def page_change_event(self, current_page_name, new_page_name):
+
+        #call startup method of API of corespond page
+        change_Page_permition = True
+        if self.pages_endup[current_page_name] is not None:
+            #call endup function of each page for do some stuff and check permition for change page
+            change_Page_permition = self.pages_endup[current_page_name].endup()
+
+        #check that previous page accepts changing page
+        if change_Page_permition:
+            if self.pages_startups[new_page_name] is not None:
+                self.pages_startups[new_page_name].startup()
+        
+            self.ui.go_to_page(new_page_name)
+
+
+    def grabbed_image_event(self,):
+        current_page,_ = self.ui.get_current_page()
+        
+        if current_page == 'main':
+            self.mainPageAPI.process_image()
+        elif current_page == 'settings':
+            self.settingPageAPI.cameraSetting.show_live_image()
 
 
     def login_user_event(self,):
@@ -144,6 +168,11 @@ class main_API:
         self.ui.go_to_page(page_name)
 
     def show_compare_event(self, compare:Compare):
+        """this event happend when compare button in reports page clicked
+
+        Args:
+            compare (Compare): _description_
+        """
         #compare = __load_obj__('test')
         self.ui.go_to_page('compare')
         self.comparePageAPI.set_compare_data(compare)

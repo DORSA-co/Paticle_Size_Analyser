@@ -204,6 +204,8 @@ class settingStorageDB:
     TABLE_NAME = 'storage_setting'
     TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
     TABLE_COLS = [ {'col_name': 'path',    'type':'VARCHAR(255)', 'len':1000},
+                   {'col_name': 'auto_clean',       'type':'INT', },
+                   {'col_name': 'life_time',       'type':'INT', },
                                   ]
     
     PRIMERY_KEY_COL_NAME = 'id'
@@ -232,6 +234,7 @@ class settingStorageDB:
 
     def save(self, data):
         data['id'] = 1
+        data['auto_clean'] = int(data['auto_clean'])
         if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
             self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
         else:
@@ -244,6 +247,7 @@ class settingStorageDB:
         if len(record)>0:
             record = record[0]
             record.pop('id')
+            record['auto_clean'] = bool(record['auto_clean'])
             return record
         return {}
     

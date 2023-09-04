@@ -50,13 +50,27 @@ class storageSettingTabUI(commonSettingUI):
         super(storageSettingTabUI, self).__init__(ui)
         self.ui = ui
         self.select_dir_btn = self.ui.settingpage_storage_select_dir_btn
-        self.path_input = self.ui.settingpage_storage_path_input
         self.save_btn = self.ui.settingpage_storage_save_btn
         self.cancel_btn = self.ui.settingpage_storage_cancel_btn
+
+
+        self.settings = {
+            'path': self.ui.settingpage_storage_path_input,
+            'auto_clean': self.ui.settingpage_storage_auto_clean_checkbox,
+            'life_time': self.ui.settingpage_storage_life_time_spinbox,
+
+
+        }
+
+
         self.__setting_change_connector__()
 
     def __setting_change_connector__(self,):
-        GUIBackend.input_text_connector( self.path_input, lambda : self.save_state(False))
+        for setting_name,  field_obj in self.settings.items():
+                if setting_name != 'auto_clean':
+                    GUIBackend.connector(field_obj,  lambda : self.save_state(False))
+                else:
+                    GUIBackend.connector(field_obj,  lambda x: self.save_state(False))
 
     def select_dir_button_connector(self, func):
         GUIBackend.button_connector(self.select_dir_btn, func)
@@ -66,7 +80,7 @@ class storageSettingTabUI(commonSettingUI):
         return GUIComponents.selectDirectoryDialog()
     
     def set_path(self, path):
-        GUIBackend.set_input(self.path_input, path)
+        GUIBackend.set_input(self.set_settings['path'], path)
 
     def save_button_connector(self, func):
         GUIBackend.button_connector(self.save_btn, func)
@@ -77,12 +91,16 @@ class storageSettingTabUI(commonSettingUI):
 
     def get_settings(self, ):
         data = {}
-        data['path'] = GUIBackend.get_input(self.path_input)
 
+        for setting_name,  field_obj in self.settings.items():
+                data[setting_name] = GUIBackend.get_input(field_obj)
         return data
     
-    def set_settings(self, settings):
-        GUIBackend.set_input(self.path_input, settings['path'])
+    def set_settings(self, settings: dict):
+        for setting_name, value in settings.items():
+            obj = self.settings[setting_name]
+            if value is not None:
+                GUIBackend.set_input(obj, value)
 
         
 

@@ -113,6 +113,7 @@ class mainPageUI:
         self.close_warning_msg()
         self.write_sample_info_error_msg(None)
         self.enable_reports(False)
+        self.set_player_buttons_status('stop')
         
     def warning_buttons_connector(self, func):
         self.external_warning_button_event_func = func

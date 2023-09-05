@@ -6,6 +6,7 @@ from Database.reportsDB import reportFileHandler
 from backend.Processing.Compare import Compare
 import cv2
 from datetime import datetime, date
+import threading
 
 class reportsPageAPI:    
     def __init__(self, ui:reportsPageUI, database:mainDatabase):
@@ -220,4 +221,4 @@ class reportsPageAPI:
             self.database.reports_db.remove(sample)
 
         self.load_all_samples()
-        
+

@@ -231,9 +231,10 @@ class mainPageAPI:
         self.ui.set_player_buttons_status('start')
         #close sample info window
         self.ui.close_sample_info_window()
-
+        self.ui.enable_reports(False)
+        
         self.is_running = True
-
+        
         for camera in self.cameras.values():
             camera.Operations.start_grabbing()
 

@@ -31,6 +31,9 @@ class gradingRangesPageAPI:
     def set_remove_standard_event_func(self, func):
         self.remove_standard_event_func = func
     
+    def set_edit_standard_event_func(self, func):
+        self.edit_standard_event_func = func
+    
 
     def new_standard_added_event(self,):
         """this event execute when a new standard added
@@ -43,7 +46,7 @@ class gradingRangesPageAPI:
         """this event execute when edit button of a standard in all standards table clicked
         """
         on_edit_standard = self.allStandardTab.get_on_edit_standard()
-        print(on_edit_standard)
+        #print(on_edit_standard)
         self.newStandardTab.enable_edit_mode(on_edit_standard)
         self.ui.open_new_standard_tab()
 
@@ -55,7 +58,7 @@ class gradingRangesPageAPI:
             self.remove_standard_event_func()
 
 
-    def edit_complete_event(self):
+    def edit_complete_event(self, old_standard, new_standard):
         """this event execute when edit complete
         """
         self.allStandardTab.load_standards()
@@ -176,11 +179,11 @@ class newStandardTabAPI:
     
 
     def save_standard(self, ):
-        data = {}
+        standard = {}
         new_range_name = self.ui.get_new_range_name()
         
-        data['name'] = new_range_name
-        data['ranges'] = self.standard_ranges
+        standard['name'] = new_range_name
+        standard['ranges'] = self.standard_ranges
 
         if len(self.standard_ranges)==0:
             self.ui.show_warning_massage("Error: Couldn't save empty range. Please define at least on range")
@@ -196,7 +199,7 @@ class newStandardTabAPI:
                 return
         else:
             #name of standard edited
-            if self.on_edit_standard_name != data['name'] and self.database.is_exist(new_range_name):
+            if self.on_edit_standard['name'] != standard['name'] and self.database.is_exist(new_range_name):
                 self.ui.show_warning_massage("Error: '{}' name is already exist. please choose another name".format(new_range_name))
                 return
                 
@@ -213,10 +216,10 @@ class newStandardTabAPI:
         
         if self.edit_mode:
              #remove old record
-             self.database.remove(self.on_edit_standard_name)
+             self.database.remove(self.on_edit_standard['name'])
              
   
-        self.database.save(data)
+        self.database.save(standard)
         self.clear()
         if self.edit_mode == False:
             self.ui.show_success_msg("New Standard Saved")
@@ -225,10 +228,10 @@ class newStandardTabAPI:
         
         else:
             self.edit_mode = False
-            self.on_edit_standard_name = ''
-            
             if self.edit_complete_event_func is not None:
-                self.edit_complete_event_func()
+                self.edit_complete_event_func(self.on_edit_standard, standard)
+            
+            self.on_edit_standard = {}
 
 
 
@@ -265,12 +268,12 @@ class newStandardTabAPI:
 
     def enable_edit_mode(self, standard):
         self.edit_mode = True
-        self.on_edit_standard_name = standard['name']
+        self.on_edit_standard = standard
         self.standard_ranges = standard['ranges']
         self.ui.clear_input_ranges()
         self.ui.enable_edit_mode(True)
         self.ui.set_ranges_table_data(standard['ranges'])
-        self.ui.set_standard_name_input( self.on_edit_standard_name )
+        self.ui.set_standard_name_input( self.on_edit_standard['name'] )
 
 
 

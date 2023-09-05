@@ -4,7 +4,7 @@ from backend.Processing import gradingUtils
 import numpy as np
 from datetime import datetime
 import CONSTANTS
-
+import time
 
 
 
@@ -95,7 +95,8 @@ class Report:
             'date': self.date_time.date(),
             'time': self.date_time.time(),
             'username': self.username,
-            'grading_result': self.Grading.get_hist()
+            'grading_result': self.Grading.get_hist(),
+            'max_radiuses': self.Buffer.get_feature('max_radius')
         }
 
         return db_data
@@ -106,10 +107,14 @@ class Report:
     
 
     def change_standard(self, standard):
+        t = time.time()
         if standard['ranges'] != self.standard['ranges']:
             self.standard = standard
             self.Grading = Grading(self.standard['ranges'])
             self.Grading.append( self.Buffer )
+        
+        t = time.time() - t
+        print('change_standard', t )
 
 
     

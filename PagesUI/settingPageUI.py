@@ -19,7 +19,7 @@ class commonSettingUI:
         self.ui = ui
         self.save_mgs = self.ui.settingpage_save_massage_lbl
         self.gif_lbl = self.ui.settingpage_save_gif_lbl
-        self.gif_player = GUIComponents.gifPlayer(self.gif_lbl, 'Assets\gifs\Rolling_bg.gif')
+        self.gif_player = GUIComponents.gifPlayer(self.gif_lbl, ':/assets/Assets/gifs/Rolling_bg.gif')
 
 
     def __show_saved_massage__(self, is_saved):

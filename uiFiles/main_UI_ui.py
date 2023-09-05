@@ -821,7 +821,10 @@ class Ui_MainWindow(object):
 "max-width:700px;\n"
 "max-height:700px;\n"
 "\n"
-"background-color:rgb(50, 50, 50);")
+"background-color:rgb(50, 50, 50);\n"
+"\n"
+"\n"
+"")
         self.mainpage_live_image_lbl.setTextFormat(Qt.AutoText)
         self.mainpage_live_image_lbl.setPixmap(QPixmap(u":/assets/Assets/images/camera-error-500.png"))
         self.mainpage_live_image_lbl.setScaledContents(False)
@@ -3311,7 +3314,7 @@ class Ui_MainWindow(object):
         self.settingpage_save_gif_lbl = QLabel(self.frame1)
         self.settingpage_save_gif_lbl.setObjectName(u"settingpage_save_gif_lbl")
         self.settingpage_save_gif_lbl.setMinimumSize(QSize(0, 0))
-        self.settingpage_save_gif_lbl.setMaximumSize(QSize(28, 28))
+        self.settingpage_save_gif_lbl.setMaximumSize(QSize(20, 20))
         self.settingpage_save_gif_lbl.setStyleSheet(u"font-size: 15px;")
         self.settingpage_save_gif_lbl.setScaledContents(True)
         self.settingpage_save_gif_lbl.setAlignment(Qt.AlignBottom|Qt.AlignHCenter)
@@ -5560,7 +5563,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(5)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)

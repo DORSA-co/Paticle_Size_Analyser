@@ -81,7 +81,7 @@ class mainPageAPI:
         fname = "{}.png".format(self.test_img_idx)
         img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
         self.test_img_idx+=1
-        if self.test_img_idx>3:
+        if self.test_img_idx>4:
             self.test_img_idx = 0
         #________________________________ONLY FOR TEST________________________________________________
         t = time.time()
@@ -112,7 +112,7 @@ class mainPageAPI:
         
         self.frame_idx +=1
         t = time.time() - t
-        print(t)
+        print('process_image: ', t)
 
     def build_autoname_sample(self, sample_setting):
         name_struct = str(sample_setting['autoname_struct'])

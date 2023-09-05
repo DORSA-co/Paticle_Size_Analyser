@@ -2,6 +2,7 @@
 from Database.databaseManager import databaseManager
 from backend.Processing.Report import Report
 from backend.Utils.datetimeUtils import datetimeFormat
+from backend.Utils import dataUtils
 from datetime import datetime
 import numpy as np
 import os
@@ -21,7 +22,10 @@ class reportsDB:
                    {'col_name': 'username',    'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'path',        'type':'VARCHAR(255)', 'len':200},
                    {'col_name': 'grading_result',     'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'max_radiuses',     'type':'TEXT',},
                 ]
+    
+    CSV_COLS = ['grading_result', 'max_radiuses']
 
     # DATE_STR_FORMAT = "%Y/%m/%d"
     # TIME_STR_FORMAT = "%H:%M:%S"
@@ -44,10 +48,8 @@ class reportsDB:
         data['time'] = datetimeFormat.time_to_str(data['time'])
 
         #convert list to cvs
-        grading_result = data['grading_result']
-        grading_result = list(map( lambda x:str(x), grading_result))
-        grading_result = ','.join(grading_result)
-        data['grading_result'] = grading_result
+        for col_name in self.CSV_COLS:
+            data[col_name] = dataUtils.list_to_csv(data[col_name])
         return data
     
     def __pre_process_to_load__(self, record):
@@ -55,11 +57,8 @@ class reportsDB:
         record['time'] = datetimeFormat.str_to_time(record['time'] )
 
         #convert csv to list
-        grading_result = record['grading_result']
-        grading_result = grading_result.split(',')
-        grading_result = list(map( lambda x:float(x), grading_result))
-        
-        record['grading_result'] = grading_result
+        for col_name in self.CSV_COLS:
+            record[col_name] = dataUtils.csv_to_list(record[col_name])
         return record
 
     def save(self, data):

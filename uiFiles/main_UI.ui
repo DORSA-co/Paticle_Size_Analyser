@@ -513,7 +513,7 @@ QListView::item{
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="Assets.qrc">:/assets/Assets/general/dorsa_white.png</pixmap>
+             <pixmap>:/assets/Assets/general/dorsa_white.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -695,7 +695,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/general/minimize.png</normaloff>:/assets/Assets/general/minimize.png</iconset>
             </property>
             <property name="iconSize">
@@ -736,7 +736,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/general/maximize.png</normaloff>:/assets/Assets/general/maximize.png</iconset>
             </property>
             <property name="iconSize">
@@ -774,7 +774,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/general/close.png</normaloff>:/assets/Assets/general/close.png</iconset>
             </property>
             <property name="iconSize">
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1232,7 +1232,10 @@ margin: 0px;
 max-width:700px;
 max-height:700px;
 
-background-color:rgb(50, 50, 50);</string>
+background-color:rgb(50, 50, 50);
+
+
+</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -1356,7 +1359,7 @@ background-color:rgb(147, 147, 147);
                        <string>Fast Start</string>
                       </property>
                       <property name="icon">
-                       <iconset>
+                       <iconset resource="Assets.qrc">
                         <normaloff>:/assets/Assets/icons/fast-forwards-arrow-48.png</normaloff>:/assets/Assets/icons/fast-forwards-arrow-48.png</iconset>
                       </property>
                      </widget>
@@ -5834,8 +5837,8 @@ QLabel{
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>28</width>
-                  <height>28</height>
+                  <width>20</width>
+                  <height>20</height>
                  </size>
                 </property>
                 <property name="styleSheet">

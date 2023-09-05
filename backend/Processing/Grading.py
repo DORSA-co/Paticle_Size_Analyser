@@ -9,6 +9,8 @@ class Grading:
         #save weighted histogram corespond to self.sift_ranges
         self.ranges_hist = np.zeros( (len(self.sift_ranges)) )
 
+    def clear(self,):
+        self.ranges_hist = np.zeros( (len(self.sift_ranges)) )
 
     def append(self, particles:particlesBuffer):
         """append new particels and calculate 

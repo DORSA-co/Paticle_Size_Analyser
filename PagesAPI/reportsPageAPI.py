@@ -1,5 +1,6 @@
 from PagesUI.reportsPageUI import reportsPageUI
 from backend.Processing.Report import Report
+from backend.Processing.Grading import Grading
 from Database.mainDatabase  import mainDatabase
 from Database.reportsDB import reportFileHandler
 from backend.Processing.Compare import Compare
@@ -82,7 +83,11 @@ class reportsPageAPI:
         start_date, end_date = self.ui.get_date_filter()
         standards_name = self.ui.get_standards_filter()
         ranges_conditions, range_filter_standard_name = self.ui.get_ranges_filter()
-
+        grading = Grading([])
+        if 'ranges' in active_filters:
+            range_filter_standard = self.database.grading_ranges_db.load(range_filter_standard_name)
+            standard_range = range_filter_standard['ranges']
+            Grading(standard_range)
         def func(sample):
             flag = True
             if 'name' in active_filters:
@@ -104,10 +109,25 @@ class reportsPageAPI:
                     return False
             
             if 'ranges' in active_filters:
-                if sample['standard'] != range_filter_standard_name:
-                    return False
+                #-----------------------------------------------------------------------------
+                # if sample['standard'] != range_filter_standard_name:
+                #     return False
                 
-                sample_grading_result = sample['grading_result']
+                # sample_grading_result = sample['grading_result']
+                
+                #-----------------------------------------------------------------------------
+                #WHIT CALCULATION
+                #-----------------------------------------------------------------------------
+                # grading.clear()
+                # grading.append(sample['max_radiuses'])
+                # sample_grading_result = grading.get_hist()
+                date_time = datetime.combine(sample['date'], sample['time'])
+                rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+                report = rfh.load_report()
+                report.change_standard(range_filter_standard)
+                sample_grading_result = report.Grading.get_hist()
+                #-----------------------------------------------------------------------------
+
                 for i in range(len(ranges_conditions)):
                     operator = ranges_conditions[i]['operator']
                     value = ranges_conditions[i]['input']
@@ -115,7 +135,6 @@ class reportsPageAPI:
 
                     if not self.operations_condition[operator](real_value, value):
                         return False
-
 
             
             return flag

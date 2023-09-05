@@ -1,4 +1,5 @@
 from backend.Processing.Particel import Particle
+from backend.Utils import dataUtils
 import numpy as np
 
 class particlesBuffer:
@@ -69,7 +70,7 @@ class particlesBuffer:
         """
         return self.particels[idx]
     
-    def get_feature(self, name: str) -> np.ndarray:
+    def get_feature(self, name: str, decimals=2) -> np.ndarray:
         """returns a 1d numpy array that shows a specific feature for all particles
 
         Args:
@@ -78,4 +79,9 @@ class particlesBuffer:
         Returns:
             np.ndarray: _description_
         """
-        return self.data[:, self.COLS_IDX[name]]
+        return np.round(self.data[:, self.COLS_IDX[name]], decimals=decimals)
+    
+
+
+
+    

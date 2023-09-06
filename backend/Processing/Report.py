@@ -107,14 +107,14 @@ class Report:
     
 
     def change_standard(self, standard):
-        t = time.time()
+        #t = time.time()
         if standard['ranges'] != self.standard['ranges']:
             self.standard = standard
             self.Grading = Grading(self.standard['ranges'])
             self.Grading.append( self.Buffer )
         
-        t = time.time() - t
-        print('change_standard', t )
+        #t = time.time() - t
+        #print('change_standard', t )
 
 
     

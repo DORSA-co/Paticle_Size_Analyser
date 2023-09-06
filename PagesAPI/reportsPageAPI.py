@@ -7,8 +7,11 @@ from backend.Processing.Compare import Compare
 import cv2
 from datetime import datetime, date
 import threading
+import numpy as np
 
-class reportsPageAPI:    
+class reportsPageAPI:   
+    FILTER_THREAD_COUNT = 5 
+    MIN_SAMPLE_COUNT_THREADING = 50
     def __init__(self, ui:reportsPageUI, database:mainDatabase):
         self.ui = ui
         self.database = database
@@ -68,13 +71,42 @@ class reportsPageAPI:
         self.ui.get_standards_filter()
         all_samples = self.database.reports_db.load_all()
         filter_func = self.generate_filter()
-        filterd_samples = []
-        for sample in all_samples:
-            if filter_func(sample):
-                filterd_samples.append(sample)
+        self.filterd_samples = []
         
-        self.ui.set_samples_table(filterd_samples)
-                
+        samples_count = len(all_samples)
+        batch_size = int( np.ceil(samples_count / self.FILTER_THREAD_COUNT))
+        
+
+        #start by threading
+        if samples_count > self.MIN_SAMPLE_COUNT_THREADING:
+            threads = []
+            for i in range(self.FILTER_THREAD_COUNT):
+                threads.append(
+                    threading.Thread( 
+                        target=self.__filter_loop__, args=(all_samples[i*batch_size:(i+1)*batch_size], filter_func)
+                    )
+                )
+
+                threads[-1].start()
+
+            for i in range(self.FILTER_THREAD_COUNT):
+                threads[i].join()
+        #start without threading  
+        else:
+            self.__filter_loop__(all_samples, filter_func)
+
+        
+        self.ui.set_samples_table(self.filterd_samples)
+        self.filterd_samples.clear()
+    
+
+    def __filter_loop__(self,batch_samples, filter_func):
+        for sample in batch_samples:
+            if filter_func(sample):
+                self.filterd_samples.append(sample)
+        
+        
+        #
     
     def generate_filter(self, ):
         
@@ -84,11 +116,11 @@ class reportsPageAPI:
         start_date, end_date = self.ui.get_date_filter()
         standards_name = self.ui.get_standards_filter()
         ranges_conditions, range_filter_standard_name = self.ui.get_ranges_filter()
-        grading = Grading([])
+        
         if 'ranges' in active_filters:
             range_filter_standard = self.database.grading_ranges_db.load(range_filter_standard_name)
-            standard_range = range_filter_standard['ranges']
-            Grading(standard_range)
+            
+            
         def func(sample):
             flag = True
             if 'name' in active_filters:

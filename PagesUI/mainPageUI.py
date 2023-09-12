@@ -1,12 +1,12 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 import Charts
-
+import time
 
 
 
 class mainPageUI:
-    
+    max_fps = 24
     def __init__(self, ui, sample_info):
         self.ui = ui
         self.sample_info = sample_info
@@ -20,6 +20,7 @@ class mainPageUI:
         
 
         self.external_warning_button_event_func = None
+        self.refresh_rate_time = time.time()
 
         self.error_slide_animation = GUIComponents.singleAnimation(self.warning_msg_frame, b'maximumHeight', 400, 0, 120)
         
@@ -274,8 +275,11 @@ class mainPageUI:
 
     
     def set_live_img(self, img):
-        GUIBackend.set_label_image(self.live_img_lbl, img)
-
+        _t = time.time()
+        if _t - self.refresh_rate_time > (1/self.max_fps):
+            self.refresh_rate_time = _t
+            GUIBackend.set_label_image(self.live_img_lbl, img)
+        
 
     
     def set_sample_info_standards_items(self, items: list[str]) -> None: 

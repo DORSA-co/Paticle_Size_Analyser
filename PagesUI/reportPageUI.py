@@ -1,16 +1,20 @@
 
 from uiUtils.guiBackend import GUIBackend
+from uiUtils import GUIComponents
 from uiUtils import Charts
 import cv2
-
+import math
 
 class reportPageUI:
     
+
     def __init__(self, ui,):
         self.ui = ui
 
         self.back_btn = self.ui.sreportpage_back_btn
         self.export_btn = self.ui.sreportpage_export_btn
+        self.particles_table = self.ui.sreportpage_particels_table
+
 
         self.particle_navigator_buttons = {
             'next': self.ui.sreportpage_next_particle_btn,
@@ -121,3 +125,24 @@ class reportPageUI:
     def set_particle_image(self, img):
         #img = cv2.resize(img, None, fx=1, fy =1)
         GUIBackend.set_label_image(self.particle_image_lbl, img)
+
+    
+    def set_particles_image(self, imgs, ncol=5):
+        count = len(imgs)
+        nrow = int(math.ceil(count / ncol))
+        GUIBackend.set_table_dim(self.particles_table, row=nrow, col=ncol)
+        
+        i = 0
+        j = 0
+        for img in imgs:
+            lbl = GUIComponents.LabelTable()
+            GUIBackend.set_label_image(lbl, img)
+            GUIBackend.set_table_cell_widget(self.particles_table,
+                                             index=(i,j),
+                                             widget=lbl,
+                                             layout=True)
+            i+=1
+            if i>=5:
+                j+=1
+                i=0
+

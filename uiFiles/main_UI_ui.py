@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1369, 914)
+        MainWindow.resize(1357, 899)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -1449,7 +1449,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 348, 1796))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 360, 1703))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2731,14 +2731,24 @@ class Ui_MainWindow(object):
 
         self.gridLayout_14.addWidget(self.label_66, 0, 0, 1, 1)
 
+        self.horizontalSpacer_98 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_14.addItem(self.horizontalSpacer_98, 0, 2, 1, 1)
+
         self.settingpage_sample_default_standard_comboxos = QComboBox(self.groupBox_6)
         self.settingpage_sample_default_standard_comboxos.setObjectName(u"settingpage_sample_default_standard_comboxos")
 
         self.gridLayout_14.addWidget(self.settingpage_sample_default_standard_comboxos, 0, 1, 1, 1)
 
-        self.horizontalSpacer_98 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label_93 = QLabel(self.groupBox_6)
+        self.label_93.setObjectName(u"label_93")
 
-        self.gridLayout_14.addItem(self.horizontalSpacer_98, 0, 2, 1, 1)
+        self.gridLayout_14.addWidget(self.label_93, 1, 0, 1, 1)
+
+        self.settingpage_sample_save_image_checkbox = QCheckBox(self.groupBox_6)
+        self.settingpage_sample_save_image_checkbox.setObjectName(u"settingpage_sample_save_image_checkbox")
+
+        self.gridLayout_14.addWidget(self.settingpage_sample_save_image_checkbox, 1, 1, 1, 1)
 
 
         self.verticalLayout_43.addLayout(self.gridLayout_14)
@@ -4219,7 +4229,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 679))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1151, 687))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4401,7 +4411,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 1969))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1149, 2469))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5221,6 +5231,80 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_26)
 
+        self.sreportpage_particels_table = QTableWidget(self.scrollAreaWidgetContents)
+        if (self.sreportpage_particels_table.columnCount() < 5):
+            self.sreportpage_particels_table.setColumnCount(5)
+        if (self.sreportpage_particels_table.rowCount() < 4):
+            self.sreportpage_particels_table.setRowCount(4)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        self.sreportpage_particels_table.setItem(1, 1, __qtablewidgetitem14)
+        self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
+        self.sreportpage_particels_table.setEnabled(True)
+        sizePolicy3.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_particels_table.setSizePolicy(sizePolicy3)
+        self.sreportpage_particels_table.setMaximumSize(QSize(16777215, 16777215))
+        self.sreportpage_particels_table.setSizeIncrement(QSize(0, 0))
+        self.sreportpage_particels_table.setBaseSize(QSize(0, 0))
+        self.sreportpage_particels_table.setFont(font1)
+        self.sreportpage_particels_table.setFocusPolicy(Qt.NoFocus)
+        self.sreportpage_particels_table.setStyleSheet(u"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(6, 76, 130);\n"
+"	color: #ffffff;\n"
+"    padding: 4px;\n"
+"    font-size: 14pt;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-right: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fffff8;	\n"
+"}\n"
+"\n"
+"\n"
+"QTableWidget{\n"
+"	font-size: 16px;\n"
+"	color:rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QTableWidget::item\n"
+"{\n"
+"   padding: 10px;\n"
+"}\n"
+"")
+        self.sreportpage_particels_table.setFrameShape(QFrame.Box)
+        self.sreportpage_particels_table.setFrameShadow(QFrame.Raised)
+        self.sreportpage_particels_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.sreportpage_particels_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.sreportpage_particels_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.sreportpage_particels_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.sreportpage_particels_table.setAlternatingRowColors(False)
+        self.sreportpage_particels_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.sreportpage_particels_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.sreportpage_particels_table.setTextElideMode(Qt.ElideMiddle)
+        self.sreportpage_particels_table.setGridStyle(Qt.SolidLine)
+        self.sreportpage_particels_table.setWordWrap(True)
+        self.sreportpage_particels_table.setRowCount(4)
+        self.sreportpage_particels_table.setColumnCount(5)
+        self.sreportpage_particels_table.horizontalHeader().setDefaultSectionSize(180)
+        self.sreportpage_particels_table.horizontalHeader().setHighlightSections(True)
+        self.sreportpage_particels_table.horizontalHeader().setStretchLastSection(False)
+        self.sreportpage_particels_table.verticalHeader().setVisible(False)
+        self.sreportpage_particels_table.verticalHeader().setMinimumSectionSize(120)
+        self.sreportpage_particels_table.verticalHeader().setDefaultSectionSize(120)
+        self.sreportpage_particels_table.verticalHeader().setHighlightSections(True)
+
+        self.verticalLayout_12.addWidget(self.sreportpage_particels_table)
+
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout_8.addWidget(self.scrollArea)
@@ -5292,7 +5376,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 707))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 180, 515))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5314,10 +5398,10 @@ class Ui_MainWindow(object):
             self.comparepage_compare_table.setColumnCount(5)
         if (self.comparepage_compare_table.rowCount() < 4):
             self.comparepage_compare_table.setRowCount(4)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem16)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
         sizePolicy3.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
@@ -5407,10 +5491,10 @@ class Ui_MainWindow(object):
             self.comparepage_compare_mean_table.setColumnCount(5)
         if (self.comparepage_compare_mean_table.rowCount() < 4):
             self.comparepage_compare_mean_table.setRowCount(4)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem15)
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.comparepage_compare_mean_table.setItem(1, 1, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.comparepage_compare_mean_table.setItem(1, 1, __qtablewidgetitem18)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
         sizePolicy3.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
@@ -5563,7 +5647,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(0)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
@@ -5724,6 +5808,8 @@ class Ui_MainWindow(object):
         self.settingpage_sample_auto_name_clear_btn.setText(QCoreApplication.translate("MainWindow", u"remove", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"General", None))
         self.label_66.setText(QCoreApplication.translate("MainWindow", u"Default Standard ", None))
+        self.label_93.setText(QCoreApplication.translate("MainWindow", u"Save Particels Image: ", None))
+        self.settingpage_sample_save_image_checkbox.setText("")
         self.settingpage_sample_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_sample_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_sample_tab), QCoreApplication.translate("MainWindow", u"Sample", None))
@@ -5896,19 +5982,24 @@ class Ui_MainWindow(object):
         self.label_62.setText(QCoreApplication.translate("MainWindow", u"Max Radius:", None))
         self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"17", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
+
+        __sortingEnabled5 = self.sreportpage_particels_table.isSortingEnabled()
+        self.sreportpage_particels_table.setSortingEnabled(False)
+        self.sreportpage_particels_table.setSortingEnabled(__sortingEnabled5)
+
         self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.label_57.setText(QCoreApplication.translate("MainWindow", u"Samples", None))
 
-        __sortingEnabled5 = self.comparepage_compare_table.isSortingEnabled()
+        __sortingEnabled6 = self.comparepage_compare_table.isSortingEnabled()
         self.comparepage_compare_table.setSortingEnabled(False)
-        self.comparepage_compare_table.setSortingEnabled(__sortingEnabled5)
+        self.comparepage_compare_table.setSortingEnabled(__sortingEnabled6)
 
         self.label_56.setText(QCoreApplication.translate("MainWindow", u"Avrage Overview", None))
 
-        __sortingEnabled6 = self.comparepage_compare_mean_table.isSortingEnabled()
+        __sortingEnabled7 = self.comparepage_compare_mean_table.isSortingEnabled()
         self.comparepage_compare_mean_table.setSortingEnabled(False)
-        self.comparepage_compare_mean_table.setSortingEnabled(__sortingEnabled6)
+        self.comparepage_compare_mean_table.setSortingEnabled(__sortingEnabled7)
 
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Designed and Developed by Dideh Rayan Sanati Esfahan (Dorsa)", None))
     # retranslateUi

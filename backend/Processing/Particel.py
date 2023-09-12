@@ -60,6 +60,11 @@ class Particle:
         return (min_x, min_y), (max_x, max_y)
     
 
+    def get_roi_image(self, image, border = 10):
+        (x1,y1),(x2,y2) = self.get_roi()
+        return image[y1:y2, x1:x2]
+    
+
     def get_info(self):
         info = {}
         info['max_radius'] = np.round(self.max_radius, CONSTANTS.DECIMAL_ROUND )
@@ -68,4 +73,7 @@ class Particle:
         info['volume'] = np.round(self.avg_volume, CONSTANTS.DECIMAL_ROUND )
         return info
 
+
+    def get_id(self):
+        return self.img_id
 

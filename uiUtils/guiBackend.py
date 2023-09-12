@@ -3,7 +3,7 @@ from functools import partial
 import cv2 
 from datetime import datetime, date
 import sys
-from PyQt5.QtGui import QMovie
+from PySide6.QtGui import QMovie
 
 class GUIBackend:
 

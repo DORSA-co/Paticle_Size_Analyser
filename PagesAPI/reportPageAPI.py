@@ -3,7 +3,7 @@ from backend.Processing.Report import Report
 from Database.reportsDB import reportFileHandler
 import cv2
 class reportPageAPI:
-    
+    PARTICLE_PER_PAGE = 100
     def __init__(self, ui:reportPageUI):
         self.ui = ui
 
@@ -12,8 +12,30 @@ class reportPageAPI:
         self.external_back_event_func = None
         self.particle_idx = 0
         self.img_id = None
-        
 
+    def set_back_event_func(self,func):
+        "connect an external function to back button click event"
+        self.external_back_event_func = func
+
+
+    def set_report(self, report:Report):
+        """set a report and show it
+
+        Args:
+            report (Report): _description_
+        """
+        self.report = report
+        self.report.render()
+        self.particles_count = len(self.report.Buffer.particels)
+        self.report_file_handler = reportFileHandler(self.report.main_path,
+                                                     self.report.name,
+                                                     self.report.date_time)
+        
+        self.show_general_information()
+        self.show_ranges_statistics()
+        self.show_charts()
+        self.show_particels_img()
+        #self.show_particle_information()
     
     def particle_navigation(self, key):
         if key == 'next':
@@ -43,34 +65,7 @@ class reportPageAPI:
         particle_img = self.img[y1:y2, x1:x2]
         self.ui.set_particle_image(particle_img)
         #------------------------------------------------
-
-
-        
-        
-        
-        
-
-    def set_back_event_func(self,func):
-        "connect an external function to back button click event"
-        self.external_back_event_func = func
-        
-    def set_report(self, report:Report):
-        """set a report and show it
-
-        Args:
-            report (Report): _description_
-        """
-        self.report = report
-        self.report.render()
-        self.particles_count = len(self.report.Buffer.particels)
-        self.report_file_handler = reportFileHandler(self.report.main_path,
-                                                     self.report.name,
-                                                     self.report.date_time)
-        
-        self.show_general_information()
-        self.show_ranges_statistics()
-        self.show_charts()
-        self.show_particle_information()
+    
 
     def set_master_page(self, page_name:str):
         """set master page
@@ -113,3 +108,15 @@ class reportPageAPI:
         if self.external_back_event_func is not None:
             self.external_back_event_func(self.master_page)
 
+
+
+    def show_particels_img(self, ):
+        imgs = []
+        for particle in self.report.Buffer.get_particels()[:80]:
+            p_id = particle.get_id()
+            img = self.report_file_handler.load_image(p_id)
+            imgs.append(img)
+
+        
+        self.ui.set_particles_image(imgs,ncol=8)
+        

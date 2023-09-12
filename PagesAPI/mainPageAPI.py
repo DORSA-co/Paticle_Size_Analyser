@@ -1,22 +1,25 @@
-from dorsaPylon import Collector
-
-from PagesUI.mainPageUI import mainPageUI
-from Database.mainDatabase import mainDatabase
-from Database.reportsDB import reportFileHandler
-import CONSTANTS
-#from main_UI import routerUI
-from uiUtils import GUIComponents
-from backend.Camera import dorsaPylon
-from backend.Processing import particlesDetector, Grading
-from backend.Processing.Report import Report
 from datetime import datetime
 import cv2
 import numpy as np
 import time
+from PySide6.QtCore import QThread, QObject, Signal, QMutex
+import copy
+
+import CONSTANTS
+from PagesUI.mainPageUI import mainPageUI
+from Database.mainDatabase import mainDatabase
+from Database.reportsDB import reportFileHandler
+from uiUtils import GUIComponents
+from backend.Camera import dorsaPylon
+from backend.Processing import particlesDetector
+from backend.Processing.Report import Report
+
 
 storage_path = 'data/'
 
 class mainPageAPI:
+    refresh_time = time.time()
+    max_fps = 10
 
     def __init__(self, ui:mainPageUI, cameras:dorsaPylon, database:mainDatabase, ):
         self.ui = ui
@@ -24,7 +27,6 @@ class mainPageAPI:
         self.cameras = cameras
 
         self.t_frame = 0
-        self.frame_idx = 0
         self.logined_username = ''
         self.external_report_event_func = None
         self.is_running = False
@@ -84,35 +86,41 @@ class mainPageAPI:
         if self.test_img_idx>4:
             self.test_img_idx = 0
         #________________________________ONLY FOR TEST________________________________________________
-        t = time.time()
-        #----------------------------------------------------
-        #detect particles
-        particles = self.detector.detect(img, img_id=self.frame_idx)
-        #extend new particels into particles buffer
-        self.report.append(particles)
+        
 
-        #calculate histogram and upadte chart
-        grading_percents = self.report.Grading.get_hist()
-        self.ui.set_grading_chart_values(grading_percents)
-        
+        self.thread = QThread()
+        self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
+        self.worker.moveToThread(self.thread)
+        self.thread.started.connect(self.worker.run_process)
+        self.worker.finished_processing.connect(self.show_live_info)
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.thread.start()
+
+
+
+    def show_live_info(self):
         #calculate statistics information like std and avg
-        infos = self.report.get_global_statistics()
-        self.ui.set_information(infos)
-        
-        #----------------------------------------------------
-        self.report_saver.save_image(img, self.frame_idx)
-        #----------------------------------------------------
-        #get toolboxes value
-        toolboxes_state = self.ui.get_toolboxes()
-        if toolboxes_state['live']:
-            if toolboxes_state['drawing']:
-                img = particlesDetector.draw_particles(img, particles.particels)
-            self.ui.set_live_img(img)
-        #----------------------------------------------------
-        
-        self.frame_idx +=1
-        t = time.time() - t
-        print('process_image: ', t)
+        t = time.time()
+        #update info in UI less than max_fps value
+        if t - self.refresh_time > 1/self.max_fps:
+            particle_buffer = self.worker.get_particles()
+            img = self.worker.img
+            
+            infos = self.report.get_global_statistics()
+            self.ui.set_information(infos)
+
+            grading_percents = self.report.Grading.get_hist()
+            self.ui.set_grading_chart_values(grading_percents)
+
+            toolboxes_state = self.ui.get_toolboxes()
+            if toolboxes_state['live']:
+                if toolboxes_state['drawing']:
+                    img = particlesDetector.draw_particles(img, particle_buffer.get_particels())
+                self.ui.set_live_img(img)
+
+
 
     def build_autoname_sample(self, sample_setting):
         name_struct = str(sample_setting['autoname_struct'])
@@ -261,10 +269,7 @@ class mainPageAPI:
         self.report_saver = reportFileHandler(main_path, self.report.name, self.report.date_time)
         
         self.t_frame = time.time()
-        self.frame_idx = 0
-        #set chart bars
         
-        #disable start and fast_start button and enable stop button
 
     
     def endup(self):
@@ -274,3 +279,53 @@ class mainPageAPI:
                                     buttons=['ok'])
             return False
         return True
+    
+
+
+
+
+
+
+
+
+class ProcessingWorker(QObject):
+    finished = Signal()
+    finished_processing = Signal()
+    def __init__(self, 
+                 img:np.ndarray,
+                 detector:particlesDetector.particlesDetector,
+                 report: Report,
+                 report_saver: reportFileHandler
+                 
+                 
+                 ) -> None:
+        super(ProcessingWorker,self).__init__()
+        self.img = img
+        self.detector = detector
+        self.report = report
+        self.report_saver = report_saver
+        self.result_gotten = False
+
+
+    
+    def run_process(self,):
+        for i in range(1):
+            self.particles_buffer = self.detector.detect(self.img)
+            #extend new particels into particles buffer
+            self.report.append(self.particles_buffer)
+            self.finished_processing.emit()
+
+            for particle in self.particles_buffer.get_particels():
+                p_img = particle.get_roi_image(self.img)
+                img_id = particle.get_id()
+                self.report_saver.save_image(p_img, img_id)
+            #calculate histogram and upadte chart
+        
+        # while not self.result_gotten:
+        #     time.sleep(0.005)
+
+        self.finished.emit()
+
+    
+    def get_particles(self, ):
+        return copy.copy(self.particles_buffer)

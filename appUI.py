@@ -6,7 +6,7 @@ import CONSTANTS
 #----------------------Compile Resource File-----------------------
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
 os.system('CMD /C pyside6-rcc uiFiles/Assets.qrc -o uiFiles/Assets.py')#PySide
-
+os.environ['PYSIDE_DESIGNER_PLUGINS'] = "."
 #----------------------Add Lib Files to path-----------------------
 sys.path.append( os.getcwd() + "/pagesUI" )
 sys.path.append( os.getcwd() + "/uiUtils" )
@@ -29,7 +29,7 @@ from functools import partial
 import texts
 from uiFiles import Assets
 import time
-from main_API import main_API
+from appAPI import main_API
 
 
 #Import Pages UI------------------------------------------

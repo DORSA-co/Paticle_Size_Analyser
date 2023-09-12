@@ -297,6 +297,12 @@ class doubleSpinBoxTable(QtWidgets.QDoubleSpinBox):
         self.setStyleSheet(TABLE_SPINBOX)
         
 
+class LabelTable(QtWidgets.QLabel):
+    def __init__(self, *a, **kw):
+        super(LabelTable, self).__init__(*a, **kw)
+        self.setScaledContents(True)
+
+
 
 
         

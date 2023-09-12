@@ -1,19 +1,20 @@
-from PySide6.QtCore import QObject
+#from PySide6.QtCore import QObject
 from PySide6.QtCore import QThread
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, QMutex, QObject
 import cv2
 import time
 
-class cameraThread(QObject):
+class cameraWorker(QObject):
     success_grab_signal = Signal()
+    finish = Signal()
 
     def __init__(self, camera):
-        super(cameraThread,self).__init__()
+        super(cameraWorker,self).__init__()
         self.camera = camera
-        self.func = None
-        self.thread = None
+        #self.func = None
+        #self.thread = None
     
-    def __grabber__(self,):
+    def grabber(self,):
         while True:
             #print('while is running')
             try:
@@ -21,30 +22,8 @@ class cameraThread(QObject):
                     img = self.camera.getPictures(img_when_error=None)
                     if img is not None:
                         self.success_grab_signal.emit()
-                time.sleep(0.01)
+                time.sleep(0.1)
+                
 
             except Exception as e:
                 print('camera Error happend in thread while !', e)
-            
-    def connect_success_grab_to_function(self, func):
-        self.func = func
-    
-    def start_thread(self,):
-        self.thread = QThread()
-        self.moveToThread( self.thread )
-        self.thread.started.connect( self.__grabber__ )
-        self.success_grab_signal.connect(self.func)
-        self.thread.start()
-
-
-# class cameraThreadHandler:
-
-#     def __init__(self):
-
-
-#     def start(self,):
-#         cth = cameraThread(cam)
-#         thread = QThread()
-#         cth.moveToThread(thread)
-#         cth.success_grab_signal.connect(test)
-#         thread.start()

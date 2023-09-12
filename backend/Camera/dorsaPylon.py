@@ -339,6 +339,11 @@ class CameraParms:
         return parameter.Symbolics
 
     def __get_value_range__(self, parameter):
+        #        print(parameter.Node.Name, )
+        access = parameter.Node.GetAccessMode()
+        if access == 1:
+            if not self.camera_object.Status.is_open():
+                self.camera_object.Operations.open()
         max_v = parameter.Max
         min_v = parameter.Min
         return min_v, max_v

@@ -1,8 +1,8 @@
 import cv2
 
-from Camera import dorsaPylon, PylonFlags
-from Camera.dorsaPylon import Collector, Camera
-from Camera.cameraThread import cameraThread
+from backend.Camera import dorsaPylon, PylonFlags
+from backend.Camera.dorsaPylon import Collector, Camera
+from backend.Camera.cameraThread import cameraWorker
 from Database.mainDatabase import mainDatabase
 #Import Pages Ui---------------------------------------------
 from PagesAPI.settingPageAPI import settingPageAPI
@@ -21,8 +21,11 @@ from backend.Processing.Compare import Compare
 import CONSTANTS
 import pickle
 
+from PySide6.QtCore import QThread, QObject
+#from PySide6.QtCore import QTimer
+
 cameras_serial_number = {'standard': '23804186'}
-class main_API:
+class main_API(QObject):
     def __init__(self, ui) -> None:
         self.ui = ui
         self.db = mainDatabase()
@@ -81,9 +84,7 @@ class main_API:
         self.login_user_event()
         self.standard_event()
         #---------------------------------------------------
-        #report = load_obj('test_report')
-        #self.show_report(report, 'main')
-        #self.show_compare_event(None)
+
         
 
     def creat_camera(self)-> Camera:
@@ -101,14 +102,19 @@ class main_API:
             self.cameras[camera_application] = camera
 
     def run_camera_grabbing(self,):
-        
-        for camera in self.cameras.values():
+
+        self.camera_workers = {}
+        self.cam_threads = {}
+        for camera_name, camera in self.cameras.items():
             camera.Operations.open()
-        
-            #self.camera.Operations.start_grabbing()
-            self.camera_thread = cameraThread( camera )
-            self.camera_thread.connect_success_grab_to_function(self.grabbed_image_event)
-            self.camera_thread.start_thread()
+
+            self.camera_workers[camera_name] = cameraWorker( camera )
+            self.cam_threads[camera_name] = QThread()
+            self.camera_workers[camera_name].moveToThread( self.cam_threads[camera_name] )
+            self.cam_threads[camera_name].started.connect( self.camera_workers[camera_name].grabber )
+            self.camera_workers[camera_name].success_grab_signal.connect(self.grabbed_image_event)
+            self.cam_threads[camera_name].start()
+
 
     #_________________________________________________________________________________________________________________________
     #
@@ -139,6 +145,7 @@ class main_API:
             self.mainPageAPI.process_image()
         elif current_page == 'settings':
             self.settingPageAPI.cameraSetting.show_live_image()
+        
 
 
     def login_user_event(self,):

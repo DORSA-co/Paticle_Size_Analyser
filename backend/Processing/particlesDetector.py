@@ -12,6 +12,8 @@ class particlesDetector:
         self.thresh = thresh
         self.detection_border = detection_border
         self.px2mm_ratio = px2mm_ratio
+        self.particle_id = 0
+        self.img_id = 0
 
 
 
@@ -40,7 +42,7 @@ class particlesDetector:
 
 
 
-    def detect(self, img, img_id=None) -> particlesBuffer:
+    def detect(self, img,) -> particlesBuffer:
         """returns list of paricles in the given image
 
         Args:
@@ -67,10 +69,11 @@ class particlesDetector:
         
         particles = particlesBuffer()
         for cnt in cnts:
-                particle = Particle(cnt, self.px2mm_ratio, img_id)
+                particle = Particle(cnt, self.px2mm_ratio, self.particle_id)
                 particles.append(particle)
+                self.particle_id+=1
 
-        
+        self.img_id+=1
         return particles
 
 

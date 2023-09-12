@@ -63,7 +63,7 @@ class reportPageAPI:
             self.img = self.report_file_handler.load_image(self.img_id)
         
         particle_img = self.img[y1:y2, x1:x2]
-        self.ui.set_particle_image(particle_img)
+        #self.ui.set_particle_image(particle_img)
         #------------------------------------------------
     
 
@@ -112,11 +112,12 @@ class reportPageAPI:
 
     def show_particels_img(self, ):
         imgs = []
-        for particle in self.report.Buffer.get_particels()[:80]:
-            p_id = particle.get_id()
-            img = self.report_file_handler.load_image(p_id)
-            imgs.append(img)
+        if self.report.settings['save_image']:
 
-        
+            for particle in self.report.Buffer.get_particels()[:80]:
+                p_id = particle.get_id()
+                img = self.report_file_handler.load_image(p_id)
+                imgs.append(img)
+
         self.ui.set_particles_image(imgs,ncol=8)
         

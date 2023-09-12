@@ -102,7 +102,7 @@ class mainPageAPI:
 
 
     def show_live_info(self):
-        #calculate statistics information like std and avg
+        
         t = time.time()
         #update info in UI less than max_fps value
         #print(1/(t - self.refresh_time))
@@ -112,9 +112,11 @@ class mainPageAPI:
             particle_buffer = self.worker.get_particles()
             img = self.worker.img
 
+            #calculate statistics information like std and avg
             infos = self.report.get_global_statistics()
             self.ui.set_information(infos)
 
+            #calculate histogram and upadte chart
             grading_percents = self.report.Grading.get_hist()
             self.ui.set_grading_chart_values(grading_percents)
 
@@ -270,8 +272,9 @@ class mainPageAPI:
         self.ui.set_grading_chart_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------
         main_path = self.database.setting_db.storage_db.load()['path']
+        settings =  self.database.setting_db.sample_db.load()
         
-        self.report = Report( sample_name, standard, self.logined_username, main_path )
+        self.report = Report( sample_name, standard, self.logined_username, main_path, settings=settings )
         #self.report.set_operator_username(self.logined_username)
         self.report_saver = reportFileHandler(main_path, self.report.name, self.report.date_time)
         
@@ -321,15 +324,12 @@ class ProcessingWorker(QObject):
             #extend new particels into particles buffer
             self.report.append(self.particles_buffer)
             self.finished_processing.emit()
-
-            for particle in self.particles_buffer.get_particels():
-                p_img = particle.get_roi_image(self.img)
-                img_id = particle.get_id()
-                self.report_saver.save_image(p_img, img_id)
-            #calculate histogram and upadte chart
         
-        # while not self.result_gotten:
-        #     time.sleep(0.005)
+            if self.report.settings['save_image']:
+                for particle in self.particles_buffer.get_particels():
+                    p_img = particle.get_roi_image(self.img)
+                    img_id = particle.get_id()
+                    self.report_saver.save_image(p_img, img_id)
 
         self.finished.emit()
 

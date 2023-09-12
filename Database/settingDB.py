@@ -85,9 +85,10 @@ class settingSampleDB:
                    {'col_name': 'autoname_struct',      'type':'VARCHAR(255)', 'len':300},
                    {'col_name': 'default_standard',     'type':'VARCHAR(255)', 'len':300},
                    {'col_name': 'text1',     'type':'VARCHAR(255)', 'len':300},
+                   {'col_name': 'save_image',    'type':'INT', },
                 ]
     PRIMERY_KEY_COL_NAME = 'id'
-
+    BOOL_COLS = [ 'save_image', 'autoname_enable']
 
     def __init__(self,db_manager):
         self.db_manager = db_manager
@@ -110,7 +111,8 @@ class settingSampleDB:
 
     def save(self, data):
         data['id'] = 1
-        data['autoname_enable'] = int(data['autoname_enable'])
+        for col in self.BOOL_COLS:
+            data[col] = int(data[col])
         if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
             self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
         else:
@@ -123,7 +125,8 @@ class settingSampleDB:
         if len(record)>0:
             record = record[0]
             record.pop('id')
-            record['autoname_enable'] = bool(record['autoname_enable'])
+            for col in self.BOOL_COLS:
+                record[col] = bool(record[col])
             return record
         return {}
     
@@ -203,12 +206,14 @@ class settingAlgorithmDB:
 class settingStorageDB:
     TABLE_NAME = 'storage_setting'
     TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
-    TABLE_COLS = [ {'col_name': 'path',    'type':'VARCHAR(255)', 'len':1000},
-                   {'col_name': 'auto_clean',       'type':'INT', },
-                   {'col_name': 'life_time',       'type':'INT', },
+    TABLE_COLS = [ {'col_name': 'path',          'type':'VARCHAR(255)', 'len':1000},
+                   {'col_name': 'auto_clean',    'type':'INT', },
+                   {'col_name': 'life_time',     'type':'INT', },
+                   
                                   ]
     
     PRIMERY_KEY_COL_NAME = 'id'
+    BOOL_COLS = ['auto_clean', ]
 
 
     def __init__(self,db_manager):
@@ -234,7 +239,9 @@ class settingStorageDB:
 
     def save(self, data):
         data['id'] = 1
-        data['auto_clean'] = int(data['auto_clean'])
+        #conver boolean to int for save in database
+        for col in self.BOOL_COLS:
+            data[col] = int(data[col])
         if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
             self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
         else:
@@ -247,7 +254,9 @@ class settingStorageDB:
         if len(record)>0:
             record = record[0]
             record.pop('id')
-            record['auto_clean'] = bool(record['auto_clean'])
+            #conver int 0 or 1 into boolean
+            for col in self.BOOL_COLS:
+                record[col] = bool(record[col])
             return record
         return {}
     

@@ -59,6 +59,12 @@ class commonSettingUI:
 
 
 
+
+
+
+
+
+
 class storageSettingTabUI(commonSettingUI):
 
     def __init__(self, ui) -> None:
@@ -73,19 +79,14 @@ class storageSettingTabUI(commonSettingUI):
             'path': self.ui.settingpage_storage_path_input,
             'auto_clean': self.ui.settingpage_storage_auto_clean_checkbox,
             'life_time': self.ui.settingpage_storage_life_time_spinbox,
-
-
-        }
+            }
 
 
         self.__setting_change_connector__()
 
     def __setting_change_connector__(self,):
         for setting_name,  field_obj in self.settings.items():
-                if setting_name != 'auto_clean':
-                    GUIBackend.connector(field_obj,  lambda : self.save_state(False))
-                else:
-                    GUIBackend.connector(field_obj,  lambda x: self.save_state(False))
+                GUIBackend.connector(field_obj,  lambda : self.save_state(False))
 
     def select_dir_button_connector(self, func):
         GUIBackend.button_connector(self.select_dir_btn, func)
@@ -136,10 +137,14 @@ class sampleSettingTabUI(commonSettingUI):
         self.cancel_btn = self.ui.settingpage_sample_cancel_btn
         self.autoame_struct_clear_btn = self.ui.settingpage_sample_auto_name_clear_btn
         self.standards_name_combobox = self.ui.settingpage_sample_default_standard_comboxos
+        self.save_image_checkbox =  self.ui.settingpage_sample_save_image_checkbox
 
         self.custom_texts_inputs = {
             'text1': self.ui.settingpage_sample_text1_input
         }
+
+
+  
 
         self.name_code_btns = {
             'spacer':   self.ui.settingpage_sample_spacer_code_btn,
@@ -192,7 +197,12 @@ class sampleSettingTabUI(commonSettingUI):
             self.code_name_buttons_evetn_func(name)
         return func
     
-    def set_autoname_struct_input(self, txt):
+    def set_autoname_struct_input(self, txt:str):
+        """got a text format and set it into name filed and style selected shortcode buttons
+
+        Args:
+            txt (str): name format like %DAY%_%YEAR%
+        """
         GUIBackend.set_input(self.autoname_struct_field, txt)
         for btn_name, btn in self.name_code_btns.items():
             if  CONSTANTS.NAME_CODES[btn_name] in txt and btn_name!='spacer':
@@ -204,6 +214,8 @@ class sampleSettingTabUI(commonSettingUI):
         
     
     def __enable_auto_sample_setting__(self,):
+        """show auto name settings in UI if its check box be enble
+        """
         if GUIBackend.is_groupbox_checked(self.autoname_groupbox):
             GUIBackend.set_frame_max_size(self.autoname_frame,w=None, h=17662)
         else:
@@ -217,6 +229,9 @@ class sampleSettingTabUI(commonSettingUI):
             GUIBackend.input_text_connector(custom_field, lambda :self.save_state(False) )
         GUIBackend.groupbox_checkbox_connector(self.autoname_groupbox, lambda :self.save_state(False) )    
         GUIBackend.combobox_changeg_connector(self.standards_name_combobox, lambda :self.save_state(False) )
+
+        GUIBackend.checkbox_connector(self.save_image_checkbox, lambda x:self.save_state(False) )
+        
         
 
     
@@ -230,6 +245,9 @@ class sampleSettingTabUI(commonSettingUI):
             
             elif setting_name == 'default_standard':
                 GUIBackend.set_combobox_current_item(self.standards_name_combobox, setting_value)
+
+            elif setting_name == 'save_image':
+                GUIBackend.set_checkbox_value(self.save_image_checkbox, setting_value)
             
             elif setting_name in self.custom_texts_inputs.keys():
                 GUIBackend.set_input_text(self.custom_texts_inputs[setting_name], setting_value)
@@ -239,6 +257,7 @@ class sampleSettingTabUI(commonSettingUI):
         data['autoname_struct'] = GUIBackend.get_input(self.autoname_struct_field)
         data['autoname_enable'] = GUIBackend.is_groupbox_checked(self.autoname_groupbox)
         data['default_standard'] = GUIBackend.get_combobox_selected(self.standards_name_combobox)
+        data['save_image'] = GUIBackend.get_checkbox_value(self.save_image_checkbox)
         for custom_text in self.custom_texts_inputs.keys():
             data[custom_text] = GUIBackend.get_input(self.custom_texts_inputs[custom_text])
 
@@ -481,16 +500,6 @@ class cameraSettingTabUI(commonSettingUI):
     
     def disable_save_btn(self,):
         GUIBackend.set_disable(self.save_btn)
-
-
-    
-
-
-
-
-
-
-
 
 
 

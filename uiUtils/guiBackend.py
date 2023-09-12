@@ -218,7 +218,7 @@ class GUIBackend:
             return GUIBackend.input_text_connector(wgt, func)
 
         elif isinstance(wgt, QtWidgets.QCheckBox):
-            return GUIBackend.checkbox_connector(wgt, func)
+            return GUIBackend.checkbox_connector(wgt, lambda x: func())
         
         else:
             assert False, f"connector method doesn't support {wgt} object"

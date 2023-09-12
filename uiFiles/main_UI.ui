@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1357</width>
+    <width>1369</width>
     <height>899</height>
    </rect>
   </property>
@@ -536,6 +536,7 @@ QListView::item{
              <font>
               <family>Arial</family>
               <pointsize>14</pointsize>
+              <weight>75</weight>
               <italic>false</italic>
               <bold>true</bold>
              </font>
@@ -1035,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2268,8 +2269,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>360</width>
-                   <height>1703</height>
+                   <width>322</width>
+                   <height>1796</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -6226,6 +6227,7 @@ margin-right:5px;</string>
                 <property name="font">
                  <font>
                   <family>Arial</family>
+                  <weight>50</weight>
                   <italic>false</italic>
                   <bold>false</bold>
                  </font>
@@ -7332,8 +7334,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1151</width>
-                    <height>687</height>
+                    <width>1143</width>
+                    <height>664</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7591,8 +7593,8 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1149</width>
-                <height>2469</height>
+                <width>1145</width>
+                <height>2527</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8449,6 +8451,7 @@ margin: 5px 0px;</string>
                     <font>
                      <family>Arial</family>
                      <pointsize>-1</pointsize>
+                     <weight>50</weight>
                      <italic>false</italic>
                      <bold>false</bold>
                     </font>
@@ -9171,6 +9174,7 @@ margin: 5px 0px;</string>
                   <font>
                    <family>Arial</family>
                    <pointsize>-1</pointsize>
+                   <weight>50</weight>
                    <italic>false</italic>
                    <bold>false</bold>
                   </font>
@@ -9410,8 +9414,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>180</width>
-                <height>515</height>
+                <width>1144</width>
+                <height>692</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -9468,6 +9472,7 @@ max-height: 22px;</string>
                   <font>
                    <family>Arial</family>
                    <pointsize>-1</pointsize>
+                   <weight>50</weight>
                    <italic>false</italic>
                    <bold>false</bold>
                   </font>
@@ -9670,6 +9675,7 @@ max-height: 22px;</string>
                     <font>
                      <family>Arial</family>
                      <pointsize>-1</pointsize>
+                     <weight>50</weight>
                      <italic>false</italic>
                      <bold>false</bold>
                     </font>
@@ -9897,6 +9903,7 @@ QPushButton{
           <font>
            <family>Arial</family>
            <pointsize>9</pointsize>
+           <weight>75</weight>
            <italic>false</italic>
            <bold>true</bold>
           </font>

@@ -14,7 +14,6 @@ class settingPageAPI:
         ui.cameraSettingTab.save_state(True)
         ui.algorithmSettingTab.save_state(True)
         ui.storageSettingTab.save_state(True)
-        ui.storageSettingTab.save_state(True)
         ui.sampleSettingTab.save_state(True)
 
     def startup(self,):
@@ -40,7 +39,6 @@ class sampleSettingTabAPI:
         self.ui.save_button_connector(self.save_setting)
         self.ui.cancel_button_connector(self.cancel)
         self.load_from_db()
-        self.ui.save_state(True)
 
     def set_standards(self,standards):
         self.ui.set_standards(standards)
@@ -102,7 +100,6 @@ class storageSettingTabAPI:
         self.ui.save_button_connector(self.save)
         self.ui.cancel_button_connector(self.cancel)
         self.load_from_db()
-        self.ui.save_state(True)
     
     def choose_dir(self):
         path = self.ui.open_select_dir_dialog()

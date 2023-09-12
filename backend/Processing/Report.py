@@ -13,7 +13,7 @@ import time
 class Report:
     """store all information of a sample
     """
-    def __init__(self, name = None, standard = None, username = '', main_path ='') -> None:
+    def __init__(self, name = None, standard = None, username = '', main_path ='', settings={}) -> None:
         
         self.name = name
         self.standard = standard
@@ -22,6 +22,7 @@ class Report:
         self.date_time = datetime.now()
         self.Buffer = particlesBuffer()
         self.sieved_particles = []
+        self.settings = settings
 
         if self.standard is not None:
             self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])

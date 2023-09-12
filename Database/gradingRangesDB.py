@@ -67,3 +67,19 @@ class gradingRangesDB:
     def remove(self, name):
         self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
 
+
+
+
+
+
+
+
+
+
+class standardsHistoryTemp:
+    """Storing History of Standards Editing
+
+    Returns:
+        _type_: _description_
+    """
+   

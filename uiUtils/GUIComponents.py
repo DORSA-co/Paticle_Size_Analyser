@@ -2,6 +2,7 @@ from typing import Optional
 from PySide6 import QtWidgets, QtCore, QtGui
 import PySide6.QtWidgets 
 import Assets
+from guiBackend import GUIBackend
 
 CODE_NAME_BUTTON_STYLE ={
     'normal': """ QPushButton{
@@ -301,6 +302,11 @@ class LabelTable(QtWidgets.QLabel):
     def __init__(self, *a, **kw):
         super(LabelTable, self).__init__(*a, **kw)
         self.setScaledContents(True)
+
+    
+    def set_size(self, h,w):
+        GUIBackend.set_max_size(self, h, w)
+        GUIBackend.set_min_size(self, h, w)
 
 
 

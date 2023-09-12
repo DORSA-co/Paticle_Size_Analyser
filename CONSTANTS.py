@@ -56,3 +56,9 @@ HIDE_SIDEBAR_PAGES = [
             'report', 
             'compare'
         ]
+
+
+
+class IMAGES:
+    STOP_SAMPLING = 'uiFiles\Assets\images\camera-finish.png'
+    NO_IMAGE = 'uiFiles\Assets\images\\no_grabbing.png'

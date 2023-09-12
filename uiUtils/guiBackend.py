@@ -23,6 +23,15 @@ class GUIBackend:
 
 
     @staticmethod
+    def set_min_size(wgt:QtWidgets.QWidget, h=None, w=None):
+        if w is not None:
+            wgt.setMinimumWidth(w)
+        
+        if h is not None:
+            wgt.setMinimumHeight(h)
+
+
+    @staticmethod
     def set_win_frameless(ui):
         ui.setWindowFlags(QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint))
 
@@ -388,6 +397,9 @@ class GUIBackend:
     @staticmethod
     def set_label_image(lbl: QtWidgets.QLabel, image):
 
+        if isinstance(image, str):
+            image = cv2.imread(image)        
+
         #resie image to fix in label
         img_h, img_w = image.shape[:2]
         lbl_h, lbl_w = lbl.height(), lbl.width()
@@ -416,6 +428,10 @@ class GUIBackend:
         img = img.rgbSwapped()
         lbl.setPixmap(QtGui.QPixmap.fromImage(img))
         lbl.setAlignment(QtCore.Qt.AlignCenter)
+
+    
+    def set_label_scale(lbl: QtWidgets.QLabel, active:bool):
+        lbl.setScaledContents(active)
     #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
     @staticmethod
     def get_input_spinbox_value( inpt: QtWidgets.QSpinBox)-> float:
@@ -594,10 +610,11 @@ class GUIBackend:
             widget (_type_): Qt widget that you want insert into cell of table
         """
         if layout:
-            container = QtWidgets.QWidget()
-            layout = QtWidgets.QVBoxLayout(container)
-            layout.addWidget(widget)
-            layout.setContentsMargins(2,2,2,2)
+            #container = QtWidgets.QWidget()
+            container = QtWidgets.QFrame()
+            layouth = QtWidgets.QHBoxLayout(container)
+            layouth.addWidget(widget)
+            layouth.setContentsMargins(2,2,2,2)
             table.setCellWidget(*index, container)
         else:
             table.setCellWidget(*index, widget)

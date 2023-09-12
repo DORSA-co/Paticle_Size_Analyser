@@ -19,7 +19,7 @@ storage_path = 'data/'
 
 class mainPageAPI:
     refresh_time = time.time()
-    max_fps = 10
+    max_fps = 20
 
     def __init__(self, ui:mainPageUI, cameras:dorsaPylon, database:mainDatabase, ):
         self.ui = ui
@@ -45,7 +45,8 @@ class mainPageAPI:
         self.detector = None
     
     def startup(self,):
-        pass
+        if not self.is_running:
+            self.ui.set_live_img(CONSTANTS.IMAGES.NO_IMAGE)
         #self.ui.startup()
 
     def set_logined_user(self, username:str):
@@ -82,11 +83,11 @@ class mainPageAPI:
         #________________________________ONLY FOR TEST________________________________________________
         fname = "{}.png".format(self.test_img_idx)
         img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
+        #cv2.circle(img, (10,10), 10, (np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255),), -1)
         self.test_img_idx+=1
         if self.test_img_idx>4:
             self.test_img_idx = 0
         #________________________________ONLY FOR TEST________________________________________________
-        
 
         self.thread = QThread()
         self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
@@ -104,10 +105,13 @@ class mainPageAPI:
         #calculate statistics information like std and avg
         t = time.time()
         #update info in UI less than max_fps value
-        if t - self.refresh_time > 1/self.max_fps:
+        #print(1/(t - self.refresh_time))
+        if 1/(t - self.refresh_time) < self.max_fps:
+            self.refresh_time = time.time()
+
             particle_buffer = self.worker.get_particles()
             img = self.worker.img
-            
+
             infos = self.report.get_global_statistics()
             self.ui.set_information(infos)
 
@@ -119,6 +123,7 @@ class mainPageAPI:
                 if toolboxes_state['drawing']:
                     img = particlesDetector.draw_particles(img, particle_buffer.get_particels())
                 self.ui.set_live_img(img)
+            
 
 
 
@@ -215,6 +220,8 @@ class mainPageAPI:
         self.database.reports_db.save(db_data)
         #-----------------------------------------------------------------------------------------
         self.is_running = False
+
+        self.ui.set_live_img(CONSTANTS.IMAGES.STOP_SAMPLING)
 
     
     
@@ -326,6 +333,7 @@ class ProcessingWorker(QObject):
 
         self.finished.emit()
 
-    
     def get_particles(self, ):
         return copy.copy(self.particles_buffer)
+    
+

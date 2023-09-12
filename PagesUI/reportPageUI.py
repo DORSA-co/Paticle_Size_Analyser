@@ -136,6 +136,9 @@ class reportPageUI:
         j = 0
         for img in imgs:
             lbl = GUIComponents.LabelTable()
+            lbl.set_size(100,100)
+            print(img.shape)
+            #GUIBackend.set_label_scale(lbl, False)
             GUIBackend.set_label_image(lbl, img)
             GUIBackend.set_table_cell_widget(self.particles_table,
                                              index=(i,j),

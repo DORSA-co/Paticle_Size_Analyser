@@ -1,4 +1,6 @@
 import cv2
+from PySide6.QtCore import QThread, QObject
+from datetime import datetime
 
 from backend.Camera import dorsaPylon, PylonFlags
 from backend.Camera.dorsaPylon import Collector, Camera
@@ -17,11 +19,10 @@ from PagesAPI.comparePageAPI import comparePageAPI
 #------------------------------------------------------------
 from backend.Processing.Report import Report
 from backend.Processing.Compare import Compare
-# from settingUI import settingUI
+#------------------------------------------------------------
+from backend.miniApps.storageCleaner import storageCleaner
 import CONSTANTS
-import pickle
 
-from PySide6.QtCore import QThread, QObject
 #from PySide6.QtCore import QTimer
 
 cameras_serial_number = {'standard': '23804186'}
@@ -33,6 +34,13 @@ class main_API(QObject):
         self.creat_camera()
         self.run_camera_grabbing()
 
+        #apps-----------------------------------------
+        self.storageCleanerApp = storageCleaner( settings= self.db.setting_db.storage_db.load(),
+                                                reports_db= self.db.reports_db
+                                                )
+        self.storageCleanerApp.run()
+        print(f'{self.storageCleanerApp.removed_counter} samples removed')
+
         #Pages_api------------------------------------
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
         self.gradingRangesPageAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
@@ -42,6 +50,7 @@ class main_API(QObject):
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
 
+        #events----------------------------------------------
         self.ui.change_page_connector(self.page_change_event)
         self.usersPageAPI.set_login_event(self.login_user_event)
         self.mainPageAPI.set_report_button_event_func(self.show_report_event)
@@ -51,6 +60,9 @@ class main_API(QObject):
         self.reportsPageAPI.set_compare_event_func(self.show_compare_event)
         self.gradingRangesPageAPI.set_new_standard_event_func( self.standard_event )
         self.gradingRangesPageAPI.set_remove_standard_event_func( self.standard_event )
+
+
+
 
         #this functions should run when each page load
         self.pages_startups = {
@@ -100,6 +112,7 @@ class main_API(QObject):
             camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
             
             self.cameras[camera_application] = camera
+
 
     def run_camera_grabbing(self,):
 

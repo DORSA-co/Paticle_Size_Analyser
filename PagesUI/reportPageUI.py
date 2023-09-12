@@ -1,7 +1,7 @@
 
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
-from uiUtils import Charts
+from uiUtils.Charts import barChart
 import cv2
 import math
 
@@ -45,7 +45,7 @@ class reportPageUI:
 
 
         #--------------------------------------------------------------------------------------------------------
-        self.grading_chart = Charts.BarChart(
+        self.grading_chart = barChart.BarChart(
                     chart_title = 'Grading',
                     chart_title_color = None,
                     axisX_label = 'Rages',

@@ -1,6 +1,7 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
-import Charts
+from uiUtils.Charts.barChart import BarChart
+from uiUtils.Charts.lineChart import LineChart, Trend
 import time
 
 
@@ -62,7 +63,7 @@ class mainPageUI:
         }
 
 
-        self.grading_chart = Charts.BarChart(
+        self.grading_chart = BarChart(
                     chart_title = 'Total Grading',
                     chart_title_color = None,
                     axisX_label = 'Rages',
@@ -77,28 +78,29 @@ class mainPageUI:
                     axisY_grid = True,
                 )
         
-        self.seccond_chart = Charts.BarChart(
-                    chart_title = 'Grading',
-                    chart_title_color = None,
+        self.cumulative_chart  = LineChart(
+                    chart_title = 'Cumulative',
+                    chart_title_color = '#404040',
                     axisX_label = 'Rages',
-                    axisY_label = 'Percents',
+                    axisY_label = 'Percent',
                     chart_background_color = '#f0f0f0',
-                    bar_color = '#4caf50',
+                    chart_legend=False,
                     axis_color = '#404040',
-                    #axis_grid = False,
+                    axisX_grid=True,
+                    axisY_grid=True,
+                    axisY_grid_color='#40404040',
                     axisY_range = (0, 100),
+                    axisX_tickCount = 10,
                     axisY_tickCount = 10,
-                    animation = True,
-                    bar_width = 1,
+                    animation = False,
                 )
         
-        
-        
-
+        self.cumulative_trend = Trend(name='', line_color='#20647d', line_width=2)
+        self.cumulative_chart.add_trend(self.cumulative_trend)
         
         
         GUIBackend.add_widget( self.ui.mainpage_grading_chart_frame, self.grading_chart )
-        GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.seccond_chart )
+        GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.cumulative_chart )
         GUIBackend.button_connector(self.sample_info.cancel_btn, self.cancel_start )
         for name in self.warning_btns.keys():
             GUIBackend.button_connector(self.warning_btns[name]['btn'], self.internal_warning_button_event(name))
@@ -349,9 +351,20 @@ class mainPageUI:
     
 
 
-    def set_grading_chart_ranges(self, ranges:list[list]):
+    def set_grading_chart_bars_ranges(self, ranges:list[list]):
         ranges_str = list(map( lambda x: f"{x[0]}-{x[1]}", ranges))
         self.grading_chart.set_chart_x(ranges_str)
+        #self.cumulative_chart.set_axisX_range()
     
     def set_grading_chart_values(self, values:list[float]):
         self.grading_chart.set_chart_y(values)
+        self.cumulative_chart
+
+    def set_cumulative_chart_range(self,min_value, max_value):
+        self.cumulative_chart.set_axisX_range((min_value, max_value))
+
+    def set_cumulative_chart_value(self, xs, ys):
+        self.cumulative_trend.clear()
+        self.cumulative_trend.add_data(xs, ys)
+        
+        

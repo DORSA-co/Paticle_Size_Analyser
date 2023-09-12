@@ -20,6 +20,7 @@ storage_path = 'data/'
 class mainPageAPI:
     refresh_time = time.time()
     max_fps = 20
+    max_thread = 3
 
     def __init__(self, ui:mainPageUI, cameras:dorsaPylon, database:mainDatabase, ):
         self.ui = ui
@@ -30,6 +31,7 @@ class mainPageAPI:
         self.logined_username = ''
         self.external_report_event_func = None
         self.is_running = False
+        self.during_processing = False
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
@@ -78,26 +80,35 @@ class mainPageAPI:
         pass
 
     def process_image(self):
-        #calculate FPS-----------------------
-        self.ui.set_information({"fps": self.calc_fps()})
-        #________________________________ONLY FOR TEST________________________________________________
-        fname = "{}.png".format(self.test_img_idx)
-        img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
-        #cv2.circle(img, (10,10), 10, (np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255),), -1)
-        self.test_img_idx+=1
-        if self.test_img_idx>4:
-            self.test_img_idx = 0
-        #________________________________ONLY FOR TEST________________________________________________
+        if not self.during_processing:
+            self.during_processing = True
+            #calculate FPS-----------------------
+            self.ui.set_information({"fps": self.calc_fps()})
+            #________________________________ONLY FOR TEST________________________________________________
+            fname = "{}.png".format(self.test_img_idx)
+            img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
+            #cv2.circle(img, (10,10), 10, (np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255),), -1)
+            self.test_img_idx+=1
+            if self.test_img_idx>4:
+                self.test_img_idx = 0
+            #________________________________ONLY FOR TEST________________________________________________
 
-        self.thread = QThread()
-        self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
-        self.worker.moveToThread(self.thread)
-        self.thread.started.connect(self.worker.run_process)
-        self.worker.finished_processing.connect(self.show_live_info)
-        self.worker.finished.connect(self.thread.quit)
-        self.worker.finished.connect(self.worker.deleteLater)
-        self.thread.finished.connect(self.thread.deleteLater)
-        self.thread.start()
+            self.thread = QThread()
+            self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
+            self.worker.moveToThread(self.thread)
+            self.thread.started.connect(self.worker.run_process)
+            self.worker.finished_processing.connect(self.show_live_info)
+            self.worker.finished.connect(self.thread.quit)
+            self.worker.finished.connect(self.worker.deleteLater)
+            self.thread.finished.connect(self.thread.deleteLater)
+            self.worker.finished.connect(self.__set_processing_finish__)
+            
+            self.thread.start()
+
+    
+
+    def __set_processing_finish__(self,):
+        self.during_processing = False
 
 
 
@@ -111,6 +122,7 @@ class mainPageAPI:
 
             particle_buffer = self.worker.get_particles()
             img = self.worker.img
+            self.worker.confirm_remove_permit()
 
             #calculate statistics information like std and avg
             infos = self.report.get_global_statistics()
@@ -119,6 +131,10 @@ class mainPageAPI:
             #calculate histogram and upadte chart
             grading_percents = self.report.Grading.get_hist()
             self.ui.set_grading_chart_values(grading_percents)
+
+            #radiuses, cum_precents = self.report.get_accumulative_grading()
+            radiuses, cum_precents = self.report.cumGrading.get_data()
+            self.ui.set_cumulative_chart_value(radiuses, cum_precents)
 
             toolboxes_state = self.ui.get_toolboxes()
             if toolboxes_state['live']:
@@ -269,7 +285,7 @@ class mainPageAPI:
         #load selected standard from databasr
         standard = self.database.grading_ranges_db.load(standard_name)
         #set ranges to chart
-        self.ui.set_grading_chart_ranges(standard['ranges'])
+        self.ui.set_grading_chart_bars_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------
         main_path = self.database.setting_db.storage_db.load()['path']
         settings =  self.database.setting_db.sample_db.load()
@@ -277,6 +293,9 @@ class mainPageAPI:
         self.report = Report( sample_name, standard, self.logined_username, main_path, settings=settings )
         #self.report.set_operator_username(self.logined_username)
         self.report_saver = reportFileHandler(main_path, self.report.name, self.report.date_time)
+        #-----------------------------------------------------------------------------------------
+        min_v, max_v = self.report.get_full_range()
+        self.ui.set_cumulative_chart_range(min_v, max_v)
         
         self.t_frame = time.time()
         
@@ -314,7 +333,7 @@ class ProcessingWorker(QObject):
         self.detector = detector
         self.report = report
         self.report_saver = report_saver
-        self.result_gotten = False
+        self.remove_permit = False
 
 
     
@@ -331,9 +350,17 @@ class ProcessingWorker(QObject):
                     img_id = particle.get_id()
                     self.report_saver.save_image(p_img, img_id)
 
+        while not self.remove_permit:
+            time.sleep(0.05)
+
+
         self.finished.emit()
 
     def get_particles(self, ):
         return copy.copy(self.particles_buffer)
+    
+
+    def confirm_remove_permit(self,):
+        self.remove_permit = True
     
 

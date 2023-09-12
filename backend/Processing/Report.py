@@ -1,5 +1,6 @@
 from backend.Processing.particlesBuffer import particlesBuffer
 from backend.Processing.Grading import Grading
+from backend.Processing.cumGrading import cumGrading
 from backend.Processing import gradingUtils
 import numpy as np
 from datetime import datetime
@@ -29,6 +30,7 @@ class Report:
         
         if standard is not None:
             self.Grading = Grading(self.standard['ranges'])
+            self.cumGrading = cumGrading(self.get_full_range())
         else:
             assert True, "not developed yet"
 
@@ -45,6 +47,7 @@ class Report:
         """
         #append new particle for histogram calculation 
         self.Grading.append(buffer)
+        self.cumGrading.append(buffer)
         self.Buffer.extend(buffer)
    
 
@@ -112,10 +115,41 @@ class Report:
         if standard['ranges'] != self.standard['ranges']:
             self.standard = standard
             self.Grading = Grading(self.standard['ranges'])
+            self.cumGrading = cumGrading(self.get_full_range())
             self.Grading.append( self.Buffer )
+            self.cumGrading.append(self.Buffer)
+
+    
+    def get_standard_ranges(self,):
+        return self.standard['ranges']
+
+
+    def get_standard_name(self,):
+        return self.standard['name']
+    
+    def get_full_range(self,):
+        ranges = np.array(self.standard['ranges'])
+        return ranges.min(), ranges.max()
+    
+
+    
+    def get_accumulative_grading(self, ):
+        # radiuses = self.Buffer.get_feature('max_radius')
+        # volumes = self.Buffer.get_feature('avg_volume')
+
+        # data = np.vstack((radiuses, volumes)).T
+        # data = data.tolist()
+
+        # data.sort(key = lambda x:x[0])
+        # data = np.array(data)
+        # radiuses, volumes = data[:,0], data[:,1]
+
+        # cum_volumes = np.cumsum(volumes)
+        # cum_volumes = cum_volumes / cum_volumes[-1] * 100
         
-        #t = time.time() - t
-        #print('change_standard', t )
+        # return radiuses, cum_volumes
+        
+        pass
 
 
     

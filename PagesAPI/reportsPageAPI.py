@@ -4,6 +4,7 @@ from backend.Processing.Grading import Grading
 from Database.mainDatabase  import mainDatabase
 from Database.reportsDB import reportFileHandler
 from backend.Processing.Compare import Compare
+from backend.Rebuild.rebuidReport import rebuildReport
 import cv2
 from datetime import datetime, date
 import threading
@@ -18,6 +19,7 @@ class reportsPageAPI:
 
         self.see_report_event_func = None
         self.compare_event_func = None
+        self.logined_username = ''
 
         self.operations_condition = {
             '>': lambda real_value, condition_value : real_value > condition_value,
@@ -34,6 +36,7 @@ class reportsPageAPI:
         self.ui.compare_button_connector(self.compare)
         self.ui.set_delete_sample_event_func(self.delete_sample)
         self.ui.delete_selections_button_connector(self.delete_selections)
+        self.ui.rebuild_btn_connector(self.rebuild_reports)
         self.startup()
 
 
@@ -46,9 +49,50 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
+        #show rebuild if user login
+        if self.logined_username != '':
+            self.check_rebuild()
+        
         self.set_standards()
         self.load_all_samples()
 
+    
+    def set_user_login(self, username):
+        self.logined_username = username
+    
+
+    def check_rebuild(self,):
+        history = self.database.standards_db.standardsHistoryTemp.get_history()
+        self.rebuilder = rebuildReport(history.copy())
+        all_samples = self.database.reports_db.load_all()
+        if self.rebuilder.is_need(all_samples):
+                self.ui.show_rebuild_win()
+        else:
+            self.database.standards_db.standardsHistoryTemp.remove_history()
+    
+
+    def rebuild_reports(self):
+        all_samples = self.database.reports_db.load_all()
+        total_count = len(all_samples)
+
+        for i in range(total_count):
+            rfh = reportFileHandler(all_samples[i])
+            report = rfh.load_report()
+            #rebuild sample and report base on standard changes
+            new_sample_record, new_report = self.rebuilder.rebuild(all_samples[i], report)
+            #if new_sample_record be None, no rebuid done
+            if new_sample_record is not None:
+                self.database.reports_db.update(new_sample_record)
+                rfh.save_report(new_report)
+
+            percent = (i+1) / total_count * 100
+            self.ui.set_rebuild_progress_bar( percent )
+
+        self.database.standards_db.standardsHistoryTemp.remove_history()
+        del(self.rebuilder)
+        self.load_all_samples()
+        self.ui.enable_rebuild_win_close()
+        
 
 
     def load_all_samples(self,):
@@ -154,8 +198,7 @@ class reportsPageAPI:
                 # grading.clear()
                 # grading.append(sample['max_radiuses'])
                 # sample_grading_result = grading.get_hist()
-                date_time = datetime.combine(sample['date'], sample['time'])
-                rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+                rfh = reportFileHandler(sample)
                 report = rfh.load_report()
                 report.change_standard(range_filter_standard)
                 sample_grading_result = report.Grading.get_hist()
@@ -173,9 +216,9 @@ class reportsPageAPI:
             return flag
         return func
 
-    def see_report(self, sample):
-        date_time = datetime.combine(sample['date'], sample['time'])
-        rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+    def see_report(self, sample:dict):
+        
+        rfh = reportFileHandler(sample)
         report = rfh.load_report()
         if report is None:
             self.ui.show_confirm_box('Error', "Report File dosen't exit. it may deleted", ['ok'])
@@ -222,8 +265,8 @@ class reportsPageAPI:
         
         if state == 'cancel':
             return
-        date_time = datetime.combine(sample['date'], sample['time'])
-        rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+        
+        rfh = reportFileHandler(sample)
         rfh.remove()
         self.database.reports_db.remove(sample)
 
@@ -247,8 +290,7 @@ class reportsPageAPI:
             return
         samples = self.database.reports_db.load_by_ids(ids)
         for sample in samples:
-            date_time = datetime.combine(sample['date'], sample['time'])
-            rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+            rfh = reportFileHandler(sample)
             rfh.remove()
             self.database.reports_db.remove(sample)
 

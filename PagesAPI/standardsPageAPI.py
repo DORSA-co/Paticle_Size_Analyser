@@ -12,6 +12,7 @@ class standardsPageAPI:
     def __init__(self, ui:standardsPageUI, database:standardsDB):
         #self.dataPasser = dataPasser
         self.ui = ui
+        self.database = database
         
         self.new_standard_event_func = None
         self.remove_standard_event_func = None
@@ -23,7 +24,7 @@ class standardsPageAPI:
         self.newStandardTab.set_new_standard_event_func(self.new_standard_added_event)
         self.allStandardTab.set_edit_event_func(self.standard_edit_event)
         self.allStandardTab.set_delete_event_func(self.standard_delete_event)
-        self.newStandardTab.set_edit_complete_event_func(self.edit_complete_event)
+        self.newStandardTab.set_edit_complete_event_func(self.standard_edit_complete_event)
 
     def set_new_standard_event_func(self, func):
         self.new_standard_event_func = func
@@ -49,6 +50,14 @@ class standardsPageAPI:
         #print(on_edit_standard)
         self.newStandardTab.enable_edit_mode(on_edit_standard)
         self.ui.open_new_standard_tab()
+        
+
+    def standard_edit_complete_event(self, old_standard, new_standard):
+        """this event execute when edit complete
+        """
+        self.database.standardsHistoryTemp.append(old_standard, new_standard)
+        self.allStandardTab.load_standards()
+        self.ui.open_all_standard_tab()
 
 
     def standard_delete_event(self,):
@@ -58,11 +67,7 @@ class standardsPageAPI:
             self.remove_standard_event_func()
 
 
-    def edit_complete_event(self, old_standard, new_standard):
-        """this event execute when edit complete
-        """
-        self.allStandardTab.load_standards()
-        self.ui.open_all_standard_tab()
+    
 
 
 
@@ -183,7 +188,7 @@ class newStandardTabAPI:
         new_range_name = self.ui.get_new_range_name()
         
         standard['name'] = new_range_name
-        standard['ranges'] = self.standard_ranges
+        standard['ranges'] = self.standard_ranges.copy()
 
         if len(self.standard_ranges)==0:
             self.ui.show_warning_massage("Error: Couldn't save empty range. Please define at least on range")
@@ -218,7 +223,7 @@ class newStandardTabAPI:
              #remove old record
              self.database.remove(self.on_edit_standard['name'])
              
-  
+        
         self.database.save(standard)
         self.clear()
         if self.edit_mode == False:
@@ -269,10 +274,10 @@ class newStandardTabAPI:
     def enable_edit_mode(self, standard):
         self.edit_mode = True
         self.on_edit_standard = standard
-        self.standard_ranges = standard['ranges']
+        self.standard_ranges = standard['ranges'].copy()
         self.ui.clear_input_ranges()
         self.ui.enable_edit_mode(True)
-        self.ui.set_ranges_table_data(standard['ranges'])
+        self.ui.set_ranges_table_data(self.standard_ranges)
         self.ui.set_standard_name_input( self.on_edit_standard['name'] )
 
 

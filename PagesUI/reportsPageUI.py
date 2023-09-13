@@ -4,8 +4,9 @@ from datetime import datetime
 from backend.Utils.datetimeUtils import datetimeFormat
 class reportsPageUI:
 
-    def __init__(self, ui):
+    def __init__(self, ui, auto_rebuild_ui):
         self.ui = ui
+        self.auto_rebuild_ui = auto_rebuild_ui
 
         
         
@@ -59,6 +60,8 @@ class reportsPageUI:
         self.external_see_report_event_func = None
         self.external_delete_samples_event_func = None
 
+        GUIBackend.set_win_frameless(self.auto_rebuild_ui)
+        GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, self.close_rebuild_win)
 
         GUIBackend.set_table_dim(self.samples_table, row=None, col = len(self.samples_table_headers))
         GUIBackend.set_table_cheaders(self.samples_table, self.samples_table_headers)
@@ -384,3 +387,22 @@ class reportsPageUI:
             self.external_delete_samples_event_func(sample)
 
         return func
+
+
+    def show_rebuild_win(self,):
+        self.set_rebuild_progress_bar(0)
+        GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, False)
+        GUIBackend.show_window(self.auto_rebuild_ui, True)
+
+    def enable_rebuild_win_close(self):
+        GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, True)
+
+    def close_rebuild_win(self,):
+        GUIBackend.close_window(self.auto_rebuild_ui)
+    
+    def rebuild_btn_connector(self, func):
+        GUIBackend.button_connector(self.auto_rebuild_ui.rebuild_btn, func)
+
+    def set_rebuild_progress_bar(self, value):
+        value = int(value)
+        GUIBackend.set_progressbar_value(self.auto_rebuild_ui.converting_progressbar, value)

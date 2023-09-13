@@ -19,6 +19,7 @@ main_ui_file = 'uiFiles/main_UI.ui'
 login_ui_file = 'uiFiles/login.ui'
 sample_info_ui_file = 'uiFiles/sample_info.ui'
 edit_user_ui_file = 'uiFiles/edit_user.ui'
+auto_rebuild_ui_file = 'uiFiles/rebuild.ui'
 #compare_info_ui_file = 'uiFiles/compare_info.ui'
 
 #----------------------Load Madouls -------------------------------
@@ -80,15 +81,16 @@ class routerUI:
 
 
 class mainUI:
-    def __init__(self, ui, login_ui, sample_info, edit_user):
+    def __init__(self, ui, login_ui, sample_info, edit_user, auto_rebuild_ui):
         #self.__global_setting__ = GlobalUI(ui)
         self.ui = ui
         self.login_ui = login_ui
         self.sample_info = sample_info
         self.edit_user = edit_user
+        self.auto_rebuild_ui = auto_rebuild_ui
 
         self.settingPage = settingPageUI(ui)
-        self.reportsPage = reportsPageUI(ui)
+        self.reportsPage = reportsPageUI(ui, auto_rebuild_ui)
         self.gradingRange = standardsPageUI(ui)
         self.mainPage = mainPageUI(ui, sample_info)
         self.calibrationPage = calibrationPageUI(ui)
@@ -324,7 +326,8 @@ if __name__ == '__main__':
     login_ui = loader.load(login_ui_file, None)
     sample_info = loader.load(sample_info_ui_file, None)
     edit_user = loader.load(edit_user_ui_file, None)
-    main_ui = mainUI(window, login_ui, sample_info, edit_user)
+    auto_rebuild_ui = loader.load(auto_rebuild_ui_file, None)
+    main_ui = mainUI(window, login_ui, sample_info, edit_user, auto_rebuild_ui)
 
     
     api = main_API(main_ui)

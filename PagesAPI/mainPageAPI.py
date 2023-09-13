@@ -292,8 +292,8 @@ class mainPageAPI:
         settings =  self.database.setting_db.sample_db.load()
         
         self.report = Report( sample_name, standard, self.logined_username, main_path, settings=settings )
-        #self.report.set_operator_username(self.logined_username)
-        self.report_saver = reportFileHandler(main_path, self.report.name, self.report.date_time)
+        args = {'path':main_path, 'name':self.report.name, 'date':self.report.date, 'time':self.report.time}
+        self.report_saver = reportFileHandler(args)
         #-----------------------------------------------------------------------------------------
         min_v, max_v = self.report.get_full_range()
         self.ui.set_cumulative_chart_range(min_v, max_v)

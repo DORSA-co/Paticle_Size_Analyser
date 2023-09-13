@@ -111,13 +111,15 @@ class mainPageUI:
     
     def startup(self):
         self.write_error_msg(None)
-        self.close_warning_msg()
+        #self.close_warning_msg()
         self.write_sample_info_error_msg(None)
         self.enable_reports(False)
         self.set_player_buttons_status('stop')
         self.set_information(None)
         self.clear_cumulative_chart()
         self.clear_grading_chart()
+
+        self.error_slide_animation.reset()
 
     def warning_buttons_connector(self, func):
         self.external_warning_button_event_func = func

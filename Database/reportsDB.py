@@ -3,6 +3,7 @@ from Database.databaseManager import databaseManager
 from backend.Processing.Report import Report
 from backend.Utils.datetimeUtils import datetimeFormat
 from backend.Utils import dataUtils
+from backend.Utils.StorageUtils import objectSaver, storageManager
 from datetime import datetime
 import numpy as np
 import os
@@ -29,7 +30,7 @@ class reportsDB:
 
     # DATE_STR_FORMAT = "%Y/%m/%d"
     # TIME_STR_FORMAT = "%H:%M:%S"
-    #PRIMERY_KEY_COL_NAME = 'application'
+    PRIMERY_KEY_COL_NAME = 'id'
 
 
     def __init__(self,db_manager:databaseManager):
@@ -61,11 +62,24 @@ class reportsDB:
             record[col_name] = dataUtils.csv_to_list(record[col_name])
         return record
 
+
     def save(self, data):
-        
         data = self.__pre_process_to_save__(data)
-        self.db_manager.add_record_dict(self.TABLE_NAME, data)
+        if self.PRIMERY_KEY_COL_NAME in data:
+            if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
+                self.update(self,data)
+
+        else:
+            self.db_manager.add_record_dict(self.TABLE_NAME, data)
     
+
+    def update(self, data):
+        data = self.__pre_process_to_save__(data)
+        self.db_manager.update_record_dict(self.TABLE_NAME, 
+                                           data, 
+                                           id_name=self.PRIMERY_KEY_COL_NAME, 
+                                           id_value=data[self.PRIMERY_KEY_COL_NAME]
+                                           )
 
     def load_all(self,):
         records =  self.db_manager.get_all_content(self.TABLE_NAME)
@@ -73,10 +87,17 @@ class reportsDB:
             record = self.__pre_process_to_load__(record)
         return records
     
+
+    def is_exist(self, sample_id):
+        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, sample_id)
+        if len(founded_records)>0:
+            return True
+        return False
+    
     def load_by_ids(self, ids):
         res = []
         for id in ids:
-            records = self.db_manager.search(self.TABLE_NAME, 'id', id)
+            records = self.db_manager.search(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
             for record in records:
                 record = self.__pre_process_to_load__(record)
                 res.append(record)
@@ -84,7 +105,7 @@ class reportsDB:
         
     
     def remove(self, data):
-        self.db_manager.remove_record(self.TABLE_NAME, 'id', str(data['id']))
+        self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, str(data['id']))
 
 
 
@@ -99,49 +120,18 @@ class reportFileHandler:
     IMG_FOLDER = 'images'
     IMG_FILE_FORMAT = '.png'
 
-    def __init__(self, main_path:str, sample_name:str, date_time:datetime) -> None:
-        self.main_path = main_path
-        self.sample_name = sample_name
-        self.date_time = date_time
-
-        self.__build_dir__( self.get_image_foler_dir() )
-
-    def __build_dir__(self, path:str):
-        """make a path dir if not exist
-        Args:
-            path (str): path
-        """
-
-        base_path = os.path.dirname(path)
-        if (not os.path.isdir(base_path)) and base_path != '':
-            self.__build_dir__(base_path)
-
-        if (not os.path.isdir(path)) and path !='' :
-            os.mkdir(path)
-
-    def __save_obj__(self, obj:object, path:str):
-        """save a python object in given path
+    def __init__(self, sample_record_db:dict) -> None:
+        """_summary_
 
         Args:
-            obj (object): python object 
-            path (str): path
+            sample_record_db (dict): {'path':PATH, 'name':NAME, 'date':.datetime.date, 'time':datetime.time}
         """
-        dbfile = open(path, 'ab')
-        pickle.dump(obj, dbfile)
+        self.main_path = sample_record_db['path']
+        self.sample_name = sample_record_db['name']
+        self.date_time = datetime.combine(sample_record_db['date'], sample_record_db['time'])
+        
+        storageManager.build_dir( self.get_image_foler_dir() )
 
-
-    def __load_obj__(self, path:str) -> object:
-        """load a python object
-
-        Args:
-            path (str): path of saved object
-
-        Returns:
-            object: return loaded python object
-        """
-        dbfile = open(path, 'rb')
-        return pickle.load( dbfile)
-    
     
 
     
@@ -187,7 +177,6 @@ class reportFileHandler:
         return os.path.join(self.main_path, self.get_report_folder_path(), self.IMG_FOLDER, img_name )
 
 
-
     def save_report(self,report: Report):
         """saves report object
 
@@ -195,7 +184,8 @@ class reportFileHandler:
             report (Report): report object
         """
         path = self.get_report_file_path()
-        self.__save_obj__(report, path)
+        objectSaver.save(report, path)
+
 
     def load_report(self,) -> Report:
         """load report Object
@@ -205,7 +195,7 @@ class reportFileHandler:
         """
         report_path = self.get_report_file_path()
         if os.path.exists(report_path):
-            return self.__load_obj__(report_path)
+            return objectSaver.load(report_path)
         return None
     
 
@@ -220,6 +210,7 @@ class reportFileHandler:
             shutil.rmtree(path)
             return True
 
+
     def save_image(self, img:np.ndarray ,  img_id:str):
         """saves an image file
 
@@ -230,6 +221,7 @@ class reportFileHandler:
         path = self.get_image_path(img_id)
         #cv2.imwrite(path, img)
         cv2.imwrite(path ,img, [int(cv2.IMWRITE_JPEG_QUALITY), 50] )
+
 
     def load_image(self, img_id):
         path = self.get_image_path(img_id)

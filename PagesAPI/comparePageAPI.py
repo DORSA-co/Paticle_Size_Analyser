@@ -42,13 +42,8 @@ class comparePageAPI:
         samples_count = len(self.compare.samples)
         hists = []
         for i,sample in enumerate(self.compare.samples):
-            sample_main_path = sample['path']
             sample_name = sample['name']
-            
-            sample_date =  sample['date']
-            sample_time =  sample['time']
-            sample_datetime = datetimeFormat.combine(sample_date, sample_time)
-            rfh = reportFileHandler(main_path=sample_main_path, sample_name=sample_name, date_time=sample_datetime)
+            rfh = reportFileHandler(sample)
             report = rfh.load_report()
 
             #-------------------------------------------------------------------------

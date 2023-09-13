@@ -384,10 +384,19 @@ class singleAnimation:
         
         self.key1 = key1
         self.key2 = key2
+        self.time = time
         self.toggle_flag = True
         self.animation = QtCore.QPropertyAnimation(obj, atribute)
         self.animation.setDuration(time)
         self.animation.setEasingCurve(QtCore.QEasingCurve.Linear)
+    
+    def reset(self,):
+        self.animation.setDuration(1)
+        self.animation.setStartValue(self.key1)
+        self.animation.setEndValue(self.key1)
+        self.animation.start()
+        self.animation.setDuration(self.time)
+        
     
     def forward( self ):
         self.toggle_flag = False

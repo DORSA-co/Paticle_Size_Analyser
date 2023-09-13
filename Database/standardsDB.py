@@ -1,7 +1,7 @@
 import json
 import pickle
-
-
+import os
+from backend.Utils.StorageUtils import objectSaver,storageManager
 
 
 class standardsDB:
@@ -53,6 +53,8 @@ class standardsDB:
             #convert str to list
             record = record[0]
             record['ranges'] = json.loads(record['ranges'])
+            if 'id' in record:
+                record.pop('id')
         return record 
 
     
@@ -63,6 +65,8 @@ class standardsDB:
         #convert str into list
         for i in range(len(records)):
             records[i]['ranges'] = json.loads(records[i]['ranges'])
+            if 'id' in records[i]:
+                records[i].pop('id')
         
         return records
     
@@ -86,27 +90,35 @@ class standardsHistoryTemp:
 
     def __init__(self):
         self.history = []
+        self.load_history()
+        print('standard history len:', len(self.history))
 
 
     def save_history(self):
-        dbfile = open(self.PATH, 'ab')
-        pickle.dump(self.history, dbfile)
+        objectSaver.save(self.history, self.PATH)
+        
+        
 
 
     def load_history(self):
-        dbfile = open(self.PATH, 'rb')
-        self.history = pickle.load( dbfile)
+        self.history = objectSaver.load(self.PATH, defalut=[])
+
+    def remove_history(self,):
+        storageManager.remove(self.PATH)
+        self.history = []
         
 
     def append(self, old_standard, new_standard):
-        self.history.append( {'old': old_standard,
-                              'new': new_standard,
-                              #'id' : 0,
-                              }
-                            )
         
-        self.save_history()
-
+        if old_standard != new_standard:
+            self.history.append( {'old': old_standard,
+                                'new': new_standard,
+                                #'id' : 0,
+                                }
+                                )
+            
+            self.save_history()
+        
     def get_history(self,):
         return self.history
 

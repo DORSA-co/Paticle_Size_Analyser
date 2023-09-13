@@ -166,6 +166,7 @@ class main_API(QObject):
         username = self.usersPageAPI.data_passer.logined_user.get('username', '')
         self.set_access(role)
         self.mainPageAPI.set_logined_user(username)
+        self.reportsPageAPI.set_user_login(username)
 
 
     def standards_changed_event(self,):

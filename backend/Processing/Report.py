@@ -21,6 +21,8 @@ class Report:
         self.username = username
         self.main_path = main_path
         self.date_time = datetime.now()
+        self.date = self.date_time.date()
+        self.time = self.date_time.time()
         self.Buffer = particlesBuffer()
         self.sieved_particles = []
         self.settings = settings
@@ -110,7 +112,7 @@ class Report:
         return self.date_time.strftime("%Y/%m/%d")
     
 
-    def change_standard(self, standard):
+    def change_standard(self, standard:dict):
         #t = time.time()
         if standard['ranges'] != self.standard['ranges']:
             self.standard = standard
@@ -118,6 +120,8 @@ class Report:
             self.cumGrading = cumGrading(self.get_full_range())
             self.Grading.append( self.Buffer )
             self.cumGrading.append(self.Buffer)
+        
+        self.standard = standard.copy()
 
     
     def get_standard_ranges(self,):

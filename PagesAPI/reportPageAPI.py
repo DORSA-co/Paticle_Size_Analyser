@@ -27,9 +27,8 @@ class reportPageAPI:
         self.report = report
         self.report.render()
         self.particles_count = len(self.report.Buffer.particels)
-        self.report_file_handler = reportFileHandler(self.report.main_path,
-                                                     self.report.name,
-                                                     self.report.date_time)
+        args = {'path':self.report.main_path, 'name':self.report.name, 'date':self.report.date, 'time':self.report.time}
+        self.report_file_handler = reportFileHandler(args)
         
         self.show_general_information()
         self.show_ranges_statistics()

@@ -28,7 +28,6 @@ class storageCleaner:
                     break
 
     def remove_sample(self, sample:dict):
-        date_time = datetime.combine(sample['date'], sample['time'])
-        rfh = reportFileHandler(main_path=sample['path'], sample_name=sample['name'], date_time=date_time)
+        rfh = reportFileHandler(sample)
         rfh.remove()
         self.reports_db.remove(sample)

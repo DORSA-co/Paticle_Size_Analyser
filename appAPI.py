@@ -43,7 +43,7 @@ class main_API(QObject):
 
         #Pages_api------------------------------------
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
-        self.gradingRangesPageAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.grading_ranges_db)
+        self.gradingRangesPageAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
         self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db )
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
@@ -203,7 +203,7 @@ class main_API(QObject):
     def standard_event(self,): 
         """this event happend when a new standard define or remove
         """
-        standars = self.db.grading_ranges_db.load_all()
+        standars = self.db.standards_db.load_all()
         standars_name = list(map( lambda x:x['name'], standars))
         self.settingPageAPI.sampleSetting.set_standards(standars_name)
 

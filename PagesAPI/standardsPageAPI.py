@@ -1,5 +1,5 @@
 from PagesUI.gradingRangesPageUI import gradingRangesPageUI , newStandardTabUI, allStandardsTabUI
-from Database.gradingRangesDB import gradingRangesDB
+from Database.gradingRangesDB import standardsDB
 import copy
 
 
@@ -9,7 +9,7 @@ class dataPasser:
 
 
 class gradingRangesPageAPI:
-    def __init__(self, ui:gradingRangesPageUI, database:gradingRangesDB):
+    def __init__(self, ui:gradingRangesPageUI, database:standardsDB):
         #self.dataPasser = dataPasser
         self.ui = ui
         
@@ -92,7 +92,7 @@ class gradingRangesPageAPI:
 
 class newStandardTabAPI:
 
-    def __init__(self, ui:newStandardTabUI, database:gradingRangesDB,):
+    def __init__(self, ui:newStandardTabUI, database:standardsDB,):
         self.ui = ui
         self.database = database
         self.edit_mode = False
@@ -298,7 +298,7 @@ class newStandardTabAPI:
 
 class allStandardTabAPI:
 
-    def __init__(self, ui:allStandardsTabUI, database:gradingRangesDB):
+    def __init__(self, ui:allStandardsTabUI, database:standardsDB):
         self.ui = ui
         self.database = database
 

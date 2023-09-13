@@ -5,7 +5,7 @@ else:
     from Database.databaseManager import databaseManager
     from Database.settingDB import settingDB
     from Database.usersDB import usersDB
-    from Database.gradingRangesDB import gradingRangesDB
+    from Database.gradingRangesDB import standardsDB
     from Database.reportsDB import reportsDB
 
 class mainDatabase:
@@ -21,7 +21,7 @@ class mainDatabase:
 
         self.setting_db = settingDB(self.dbManager)
         self.users_db = usersDB(self.dbManager)
-        self.grading_ranges_db = gradingRangesDB(self.dbManager)
+        self.standards_db = standardsDB(self.dbManager)
         self.reports_db = reportsDB(self.dbManager)
     
     def __connect__(self,):

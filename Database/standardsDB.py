@@ -1,8 +1,10 @@
 import json
+import pickle
 
 
 
-class gradingRangesDB:
+
+class standardsDB:
     TABLE_NAME = 'grading_standards'
     TABLE_COLS = [ {'col_name': 'name',    'type':'VARCHAR(255)', 'len':100},
                    {'col_name': 'ranges',  'type':'VARCHAR(255)', 'len':500},
@@ -17,6 +19,7 @@ class gradingRangesDB:
     def __init__(self,db_manager):
         self.db_manager = db_manager
         self.__create_table__()
+        self.standardsHistoryTemp = standardsHistoryTemp()
         
 
     def __create_table__(self,):
@@ -65,6 +68,7 @@ class gradingRangesDB:
     
 
     def remove(self, name):
+        
         self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
 
 
@@ -77,9 +81,33 @@ class gradingRangesDB:
 
 
 class standardsHistoryTemp:
-    """Storing History of Standards Editing
+    PATH = 'standards_history.temp'
+    
 
-    Returns:
-        _type_: _description_
-    """
-   
+    def __init__(self):
+        self.history = []
+
+
+    def save_history(self):
+        dbfile = open(self.PATH, 'ab')
+        pickle.dump(self.history, dbfile)
+
+
+    def load_history(self):
+        dbfile = open(self.PATH, 'rb')
+        self.history = pickle.load( dbfile)
+        
+
+    def append(self, old_standard, new_standard):
+        self.history.append( {'old': old_standard,
+                              'new': new_standard,
+                              #'id' : 0,
+                              }
+                            )
+        
+        self.save_history()
+
+    def get_history(self,):
+        return self.history
+
+

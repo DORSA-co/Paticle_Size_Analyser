@@ -57,7 +57,7 @@ class reportsPageAPI:
 
     
     def set_standards(self,):
-        standards = self.database.grading_ranges_db.load_all()
+        standards = self.database.standards_db.load_all()
         standards_name = list(map( lambda x:x['name'], standards))
 
         self.ui.set_standards_filter_table_data(standards_name)
@@ -118,7 +118,7 @@ class reportsPageAPI:
         ranges_conditions, range_filter_standard_name = self.ui.get_ranges_filter()
         
         if 'ranges' in active_filters:
-            range_filter_standard = self.database.grading_ranges_db.load(range_filter_standard_name)
+            range_filter_standard = self.database.standards_db.load(range_filter_standard_name)
             
             
         def func(sample):
@@ -206,7 +206,7 @@ class reportsPageAPI:
         samples = self.database.reports_db.load_by_ids(ids)
         #get selected standard for compare
         standard_name = self.ui.get_selected_standard_for_campare()
-        standard = self.database.grading_ranges_db.load(standard_name)
+        standard = self.database.standards_db.load(standard_name)
 
         compare = Compare(samples, standard)
 

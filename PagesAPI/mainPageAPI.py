@@ -45,11 +45,12 @@ class mainPageAPI:
         self.test_img_idx = 0
         self.report = Report()
         self.detector = None
+        self.startup()
     
     def startup(self,):
         if not self.is_running:
             self.ui.set_live_img(CONSTANTS.IMAGES.NO_IMAGE)
-        #self.ui.startup()
+        self.ui.startup()
 
     def set_logined_user(self, username:str):
         """this function calls from main_API when a login or logout event happend and gets logined username
@@ -184,7 +185,7 @@ class mainPageAPI:
 
 
     def start(self,):
-        standards = self.database.grading_ranges_db.load_all()
+        standards = self.database.standards_db.load_all()
         
         #error if no standards definded
         if len(standards) == 0:
@@ -283,7 +284,7 @@ class mainPageAPI:
         self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 0.1, algorithm_data['border'])
         #-----------------------------------------------------------------------------------------
         #load selected standard from databasr
-        standard = self.database.grading_ranges_db.load(standard_name)
+        standard = self.database.standards_db.load(standard_name)
         #set ranges to chart
         self.ui.set_grading_chart_bars_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------

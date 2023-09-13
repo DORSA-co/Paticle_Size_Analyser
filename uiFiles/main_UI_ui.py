@@ -815,6 +815,7 @@ class Ui_MainWindow(object):
         self.mainpage_live_image_lbl = QLabel(self.mainpage_left_frame_2)
         self.mainpage_live_image_lbl.setObjectName(u"mainpage_live_image_lbl")
         self.mainpage_live_image_lbl.setMaximumSize(QSize(704, 704))
+        self.mainpage_live_image_lbl.setSizeIncrement(QSize(500, 500))
         self.mainpage_live_image_lbl.setStyleSheet(u"border: 2px solid rgb(45, 86, 136);\n"
 "border-radius: 8px;\n"
 "margin: 0px;\n"
@@ -1449,7 +1450,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1796))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 348, 1796))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -5647,7 +5648,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(0)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)

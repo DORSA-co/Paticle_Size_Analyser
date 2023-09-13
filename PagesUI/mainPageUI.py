@@ -107,7 +107,7 @@ class mainPageUI:
         GUIBackend.button_connector(self.close_warning_msg_btn, self.close_warning_msg)
         #Startup operations-----------------
         #-----------------------------------------------------------
-        self.startup()
+        #self.startup()
     
     def startup(self):
         self.write_error_msg(None)
@@ -115,7 +115,10 @@ class mainPageUI:
         self.write_sample_info_error_msg(None)
         self.enable_reports(False)
         self.set_player_buttons_status('stop')
-        
+        self.set_information(None)
+        self.clear_cumulative_chart()
+        self.clear_grading_chart()
+
     def warning_buttons_connector(self, func):
         self.external_warning_button_event_func = func
 
@@ -231,12 +234,19 @@ class mainPageUI:
             data (dict): data is a dictionary that it keys are name of info and values are value of that infos.
             allowable are 'ovality', 'avrage', 'std', 'fps'
         """
-        for name, value in data.items():
-            if name in ['avrage', 'std']:
-                value = "{0:.2f} mm".format(value)
-            GUIBackend.set_label_text(  self.informations[name],
+        if data is not None:
+            for name, value in data.items():
+                if name in ['avrage', 'std']:
+                    value = "{0:.2f} mm".format(value)
+                GUIBackend.set_label_text(  self.informations[name],
                                         str(value) 
-                                    )
+                                        )
+            
+        else:
+            for name in self.informations.keys():
+                GUIBackend.set_label_text(  self.informations[name],
+                                        '-'
+                                        )
             
         #self.set_statistics_table_datas()
     
@@ -358,13 +368,19 @@ class mainPageUI:
     
     def set_grading_chart_values(self, values:list[float]):
         self.grading_chart.set_chart_y(values)
-        self.cumulative_chart
+    
+
+    def clear_grading_chart(self,):
+        self.grading_chart.clear_chart()
+
 
     def set_cumulative_chart_range(self,min_value, max_value):
         self.cumulative_chart.set_axisX_range((min_value, max_value))
 
     def set_cumulative_chart_value(self, xs, ys):
-        self.cumulative_trend.clear()
+        self.clear_cumulative_chart()
         self.cumulative_trend.add_data(xs, ys)
         
-        
+    
+    def clear_cumulative_chart(self,):
+        self.cumulative_trend.clear()

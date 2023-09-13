@@ -10,7 +10,7 @@ from Database.mainDatabase import mainDatabase
 from PagesAPI.settingPageAPI import settingPageAPI
 from PagesAPI.usersPageAPI import usersPageAPI
 from PagesAPI.mainPageAPI import mainPageAPI
-from PagesAPI.gradingRangesPageAPI import gradingRangesPageAPI
+from PagesAPI.standardsPageAPI import standardsPageAPI
 from PagesAPI.reportPageAPI import reportPageAPI
 from PagesAPI.reportsPageAPI import reportsPageAPI
 from PagesAPI.comparePageAPI import comparePageAPI
@@ -43,7 +43,7 @@ class main_API(QObject):
 
         #Pages_api------------------------------------
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
-        self.gradingRangesPageAPI = gradingRangesPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
+        self.gradingRangesPageAPI = standardsPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
         self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db )
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)

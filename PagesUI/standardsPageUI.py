@@ -3,7 +3,7 @@ from uiUtils import GUIComponents
 
 
 
-class gradingRangesPageUI():
+class standardsPageUI():
 
     def __init__(self, ui) -> None:
         self.ui = ui

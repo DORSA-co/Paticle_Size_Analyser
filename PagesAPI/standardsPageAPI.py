@@ -1,5 +1,5 @@
-from PagesUI.gradingRangesPageUI import gradingRangesPageUI , newStandardTabUI, allStandardsTabUI
-from Database.gradingRangesDB import standardsDB
+from PagesUI.standardsPageUI import standardsPageUI , newStandardTabUI, allStandardsTabUI
+from Database.standardsDB import standardsDB
 import copy
 
 
@@ -8,13 +8,14 @@ class dataPasser:
         self.all_standards = []
 
 
-class gradingRangesPageAPI:
-    def __init__(self, ui:gradingRangesPageUI, database:standardsDB):
+class standardsPageAPI:
+    def __init__(self, ui:standardsPageUI, database:standardsDB):
         #self.dataPasser = dataPasser
         self.ui = ui
         
         self.new_standard_event_func = None
         self.remove_standard_event_func = None
+        self.edit_standard_event_func = None
 
         self.newStandardTab = newStandardTabAPI(ui.newStandardTab, database,)
         self.allStandardTab = allStandardTabAPI(ui.allStandardsTa, database,)
@@ -24,7 +25,6 @@ class gradingRangesPageAPI:
         self.allStandardTab.set_delete_event_func(self.standard_delete_event)
         self.newStandardTab.set_edit_complete_event_func(self.edit_complete_event)
 
-        
     def set_new_standard_event_func(self, func):
         self.new_standard_event_func = func
 

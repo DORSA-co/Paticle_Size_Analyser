@@ -38,7 +38,7 @@ from PagesUI.mainPageUI import mainPageUI
 from PagesUI.calibrationPageUI import calibrationPageUI
 from PagesUI.usersPageUI import usersPageUI
 from PagesUI.reportsPageUI import reportsPageUI
-from PagesUI.gradingRangesPageUI import gradingRangesPageUI
+from PagesUI.standardsPageUI import standardsPageUI
 from PagesUI.reportPageUI import reportPageUI
 from PagesUI.comparePageUI import comparePageUI
 #---------------------------------------------------------
@@ -89,7 +89,7 @@ class mainUI:
 
         self.settingPage = settingPageUI(ui)
         self.reportsPage = reportsPageUI(ui)
-        self.gradingRange = gradingRangesPageUI(ui)
+        self.gradingRange = standardsPageUI(ui)
         self.mainPage = mainPageUI(ui, sample_info)
         self.calibrationPage = calibrationPageUI(ui)
         self.reportPage = reportPageUI(ui)

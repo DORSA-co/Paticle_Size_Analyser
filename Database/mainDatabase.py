@@ -5,7 +5,7 @@ else:
     from Database.databaseManager import databaseManager
     from Database.settingDB import settingDB
     from Database.usersDB import usersDB
-    from Database.gradingRangesDB import standardsDB
+    from Database.standardsDB import standardsDB
     from Database.reportsDB import reportsDB
 
 class mainDatabase:

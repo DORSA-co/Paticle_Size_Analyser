@@ -15,11 +15,15 @@ class reportPageUI:
         self.back_btn = self.ui.sreportpage_back_btn
         self.export_btn = self.ui.sreportpage_export_btn
         self.particles_table = self.ui.sreportpage_particels_table
+        self.particle_image_event_func = None
+        self.current_page = self.ui.sreportpage_current_page
+        self.end_page = self.ui.sreportpage_end_page
 
 
         self.particle_navigator_buttons = {
+            'prev': self.ui.sreportpage_prev_particle_btn,
             'next': self.ui.sreportpage_next_particle_btn,
-            'prev': self.ui.sreportpage_prev_particle_btn
+            
         }
 
         self.general_information = {
@@ -194,25 +198,57 @@ class reportPageUI:
         GUIBackend.set_label_image(self.particle_image_lbl, img)
 
     
-    def set_particles_image(self, imgs, ncol=5):
-        count = len(imgs)
-        nrow = int(math.ceil(count / ncol))
+    def set_particles_image(self, imgs, ncol, nrow):
+        imgs_count = len(imgs)
         GUIBackend.set_table_dim(self.particles_table, row=nrow, col=ncol)
         
-        i = 0
-        j = 0
-        for img in imgs:
+        for idx in range(ncol*nrow):
             lbl = GUIComponents.LabelTable()
-            lbl.set_size(100,100)
-            print(img.shape)
-            #GUIBackend.set_label_scale(lbl, False)
-            GUIBackend.set_label_image(lbl, img)
-            GUIBackend.set_table_cell_widget(self.particles_table,
-                                             index=(i,j),
-                                             widget=lbl,
-                                             layout=True)
-            i+=1
-            if i>=5:
-                j+=1
-                i=0
+            lbl.set_size(90,90)
+            if idx<imgs_count:
+                #GUIBackend.set_label_scale(lbl, False)
+                GUIBackend.set_label_image(lbl, imgs[idx])
+                
+                #lbl.mousePressEvent = lambda x:print('s',x)
+                lbl.clicked.connect( self.__particle_image_connector_maker__(idx))
 
+            row = int(idx // ncol)
+            col = int(idx % ncol)
+            GUIBackend.set_table_cell_widget(self.particles_table,
+                                                index=(row,col),
+                                                widget=lbl,
+                                                layout=True)
+
+    
+    def __particle_image_connector_maker__(self, img_num):
+        def func():
+            self.particle_image_event_func(img_num)
+        return func
+        
+    
+    def particle_click_connector(self, func):
+        self.particle_image_event_func = func
+
+    def handle_navigation_button_enabality(self, current_page, min_page, max_page):
+        """handle navigation buttons be enable or disable.
+           if current page be minimum, prev button disable
+           and if be maximum, next button disable
+        """
+
+        if current_page == max_page:
+            GUIBackend.set_disable_enable(self.particle_navigator_buttons['next'], False)
+        else:
+            GUIBackend.set_disable_enable(self.particle_navigator_buttons['next'], True)
+
+
+        if current_page == min_page:
+            GUIBackend.set_disable_enable(self.particle_navigator_buttons['prev'], False)
+        else:
+            GUIBackend.set_disable_enable(self.particle_navigator_buttons['prev'], True)
+        
+        
+
+
+    def show_page_number(self, curent:int, end:int):
+        GUIBackend.set_label_text(self.current_page, str(curent))
+        GUIBackend.set_label_text(self.end_page, str(end))

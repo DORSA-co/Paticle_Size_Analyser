@@ -3,15 +3,20 @@ from backend.Processing.Report import Report
 from Database.reportsDB import reportFileHandler
 import cv2
 class reportPageAPI:
-    PARTICLE_PER_PAGE = 100
+    PARTICLE_PER_PAGE = 48
+    PARTICLE_PAGE_COL = 8
+    assert PARTICLE_PER_PAGE % PARTICLE_PAGE_COL==0, "Particle Row count should be int"
     def __init__(self, ui:reportPageUI):
         self.ui = ui
 
-        self.ui.back_button_connector(self.back)
-        self.ui.navigator_button_connector(self.particle_navigation)
         self.external_back_event_func = None
         self.particle_idx = 0
-        self.img_id = None
+        self.img_id = -1
+        self.particles_page = 0
+
+        self.ui.back_button_connector(self.back)
+        self.ui.navigator_button_connector(self.particles_navigation)
+        self.ui.particle_click_connector(self.show_particle_information)
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
@@ -26,44 +31,23 @@ class reportPageAPI:
         """
         self.report = report
         self.report.render()
-        self.particles_count = len(self.report.Buffer.particels)
+        self.particles_count = self.report.get_particles_count()
+        self.particle_maximum_page = (self.particles_count // self.PARTICLE_PER_PAGE)
+        
+        
         args = {'path':self.report.main_path, 'name':self.report.name, 'date':self.report.date, 'time':self.report.time}
         self.report_file_handler = reportFileHandler(args)
         
         self.show_general_information()
         self.show_ranges_statistics()
         self.show_charts()
-        self.show_particels_img()
+        self.refresh_particles_page()
         #self.show_particle_information()
     
-    def particle_navigation(self, key):
-        if key == 'next':
-            self.particle_idx+=1
-
-        elif key == 'prev':
-            self.particle_idx-=1
-
-        self.particle_idx = max(0, self.particle_idx)
-        self.particle_idx = min(self.particles_count, self.particle_idx)
-
-        self.show_particle_information()
+    
 
     
-    def show_particle_information(self,):
-        particle = self.report.Buffer.get_particel(self.particle_idx)
-        info = particle.get_info()
-        self.ui.set_particle_information(info)
-        #------------------------------------------------
-        (x1,y1), (x2,y2) = particle.get_roi(20)
-        
-        #check if particle is in a diffrent image, load it
-        if self.img_id != particle.img_id:
-            self.img_id = particle.img_id
-            self.img = self.report_file_handler.load_image(self.img_id)
-        
-        particle_img = self.img[y1:y2, x1:x2]
-        #self.ui.set_particle_image(particle_img)
-        #------------------------------------------------
+    
     
 
     def set_master_page(self, page_name:str):
@@ -114,14 +98,54 @@ class reportPageAPI:
 
 
 
+    def particles_navigation(self, key):
+        if key == 'next':
+            self.particles_page +=1
+
+        elif key == 'prev':
+            self.particles_page -= 1
+
+        self.particles_page = max(0, self.particles_page)
+        self.particles_page = min(self.particles_page, self.particle_maximum_page)
+        self.refresh_particles_page()
+
+    def refresh_particles_page(self, ):
+        self.ui.handle_navigation_button_enabality(self.particles_page, 0, self.particle_maximum_page)
+        self.ui.show_page_number(self.particles_page + 1, self.particle_maximum_page + 1)
+        self.show_particels_img()
+
+
     def show_particels_img(self, ):
         imgs = []
         if self.report.settings['save_image']:
 
-            for particle in self.report.Buffer.get_particels()[:80]:
+            for particle in self.report.Buffer.get_particels()[self.particles_page * self.PARTICLE_PER_PAGE:
+                                                               (self.particles_page + 1) * self.PARTICLE_PER_PAGE]:
                 p_id = particle.get_id()
                 img = self.report_file_handler.load_image(p_id)
                 imgs.append(img)
 
-        self.ui.set_particles_image(imgs,ncol=8)
+        self.ui.set_particles_image(imgs,ncol=self.PARTICLE_PAGE_COL, nrow=int(self.PARTICLE_PER_PAGE/self.PARTICLE_PAGE_COL))
+
+    
+    def show_particle_information(self, idx:int):
+        """this function called when user click on a particle
+
+        Args:
+            idx (_type_): a number that shows which particle in table clicked
+        """
+        idx = self.particles_page * self.PARTICLE_PER_PAGE + idx
+        particle = self.report.Buffer.get_particel(idx)
+        info = particle.get_info()
+        self.ui.set_particle_information(info)
+        #------------------------------------------------
+        
+        #check if particle is in a diffrent image, load it
+        if self.img_id != particle.img_id:
+            p_id = particle.get_id()
+            particle_img = self.report_file_handler.load_image(p_id)
+        
+        self.ui.set_particle_image(particle_img)
+        #------------------------------------------------
+        
         

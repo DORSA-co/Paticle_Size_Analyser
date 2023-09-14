@@ -299,9 +299,15 @@ class doubleSpinBoxTable(QtWidgets.QDoubleSpinBox):
         
 
 class LabelTable(QtWidgets.QLabel):
+    clicked = QtCore.Signal()
     def __init__(self, *a, **kw):
         super(LabelTable, self).__init__(*a, **kw)
         self.setScaledContents(True)
+
+    def mousePressEvent(self, event:QtCore.QEvent):        
+        if event.type() == QtCore.QEvent.MouseButtonPress:
+                self.clicked.emit()
+  
 
     
     def set_size(self, h,w):

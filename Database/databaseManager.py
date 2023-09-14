@@ -1026,7 +1026,6 @@ if __name__ == "__main__":
     db.add_record_dict('users',data)
 
     a=db.get_count_table('users')
-    print(a)
 
     db.get_auto_increment_col_name('users')
     

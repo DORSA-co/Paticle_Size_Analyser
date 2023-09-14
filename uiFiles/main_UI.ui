@@ -7750,6 +7750,12 @@ border: 2px solid rgb(25, 68, 105);
     }
 </string>
              </property>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOn</enum>
+             </property>
+             <property name="horizontalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOn</enum>
+             </property>
              <property name="widgetResizable">
               <bool>true</bool>
              </property>
@@ -7757,9 +7763,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-762</y>
+                <y>-1601</y>
                 <width>1146</width>
-                <height>2836</height>
+                <height>2335</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8975,6 +8981,356 @@ padding: 10px 0px</string>
                   <number>0</number>
                  </property>
                  <item>
+                  <spacer name="horizontalSpacer_90">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Maximum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>25</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_52">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QFrame" name="report_single_pellet_frame">
+                     <property name="minimumSize">
+                      <size>
+                       <width>300</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>400</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">#report_single_pellet_frame{
+border: 1px solid rgb(12, 80, 139);
+border-radius: 10px;
+background-color: rgb(6, 76, 130);
+
+}
+
+QLabel{
+	color:#ffffff;
+}</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_13">
+                      <property name="leftMargin">
+                       <number>15</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>15</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>15</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>15</number>
+                      </property>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_65">
+                        <property name="topMargin">
+                         <number>16</number>
+                        </property>
+                        <item>
+                         <spacer name="horizontalSpacer_48">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QLabel" name="sreportpage_particle_image_lbl">
+                          <property name="minimumSize">
+                           <size>
+                            <width>300</width>
+                            <height>300</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color:#ffffff;</string>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="pixmap">
+                           <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>false</bool>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_49">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_66">
+                        <property name="topMargin">
+                         <number>31</number>
+                        </property>
+                        <item>
+                         <spacer name="horizontalSpacer_50">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                        <item>
+                         <widget class="QGroupBox" name="signle_pellet_info_groupbox">
+                          <property name="minimumSize">
+                           <size>
+                            <width>300</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>300</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">#signle_pellet_info_groupbox{
+	border: 1px solid #ffffff;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+Line{
+	background-color: rgba(255,255,255,50);
+}</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_37">
+                           <item>
+                            <layout class="QGridLayout" name="gridLayout_21">
+                             <property name="leftMargin">
+                              <number>3</number>
+                             </property>
+                             <property name="topMargin">
+                              <number>8</number>
+                             </property>
+                             <item row="0" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_area_lbl">
+                               <property name="text">
+                                <string>25</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QLabel" name="sreportpage_particle_avg_r_lbl_title">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Avg Radius:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="3">
+                              <spacer name="horizontalSpacer_87">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="1" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_volume_lbl">
+                               <property name="text">
+                                <string>64</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="2">
+                              <widget class="QLabel" name="label_58">
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
+                               </property>
+                               <property name="text">
+                                <string>(mm)</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="2">
+                              <widget class="QLabel" name="label_50">
+                               <property name="text">
+                                <string>(mm2)</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QLabel" name="label_55">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Volume</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="2">
+                              <widget class="QLabel" name="label_52">
+                               <property name="text">
+                                <string> (mm3)</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_avg_r_lbl">
+                               <property name="text">
+                                <string>28mm</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="0">
+                              <widget class="QLabel" name="label_49">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Area:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="0">
+                              <widget class="QLabel" name="label_62">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Max Radius:</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_max_r_lbl">
+                               <property name="text">
+                                <string>17</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="2">
+                              <widget class="QLabel" name="label_64">
+                               <property name="text">
+                                <string>(mm)</string>
+                               </property>
+                              </widget>
+                             </item>
+                            </layout>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_89">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_4">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
                   <spacer name="horizontalSpacer_38">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -8988,473 +9344,53 @@ padding: 10px 0px</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QFrame" name="report_single_pellet_frame">
-                   <property name="styleSheet">
-                    <string notr="true">#report_single_pellet_frame{
-border: 1px solid rgb(12, 80, 139);
-border-radius: 10px;
-background-color: rgb(6, 76, 130);
-
-}
-
-QLabel{
-	color:#ffffff;
-}</string>
+                  <layout class="QVBoxLayout" name="verticalLayout_51">
+                   <property name="leftMargin">
+                    <number>31</number>
                    </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_29">
-                    <property name="leftMargin">
-                     <number>15</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>15</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>15</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>15</number>
-                    </property>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_13">
-                      <property name="topMargin">
-                       <number>12</number>
-                      </property>
-                      <item>
-                       <widget class="QLabel" name="sreportpage_particle_image_lbl">
-                        <property name="minimumSize">
-                         <size>
-                          <width>400</width>
-                          <height>400</height>
-                         </size>
-                        </property>
-                        <property name="styleSheet">
-                         <string notr="true">max-width: 400px;
-max-height: 400px;</string>
-                        </property>
-                        <property name="text">
-                         <string/>
-                        </property>
-                        <property name="pixmap">
-                         <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
-                        </property>
-                        <property name="scaledContents">
-                         <bool>false</bool>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="horizontalFrame_3">
-                        <property name="styleSheet">
-                         <string notr="true">
-QPushButton{
-	background-color: rgba(255, 255, 255, 0 );
-	min-width: 0px;
-	min-height: 50px;
-}
-
-QPushButton:hover{
-	background-color: rgb(50, 50, 50);
-	min-width: 0px;
-	min-height: 50px;
-}</string>
-                        </property>
-                        <layout class="QHBoxLayout" name="horizontalLayout_30">
-                         <property name="leftMargin">
-                          <number>1</number>
-                         </property>
-                         <property name="topMargin">
-                          <number>13</number>
-                         </property>
-                         <item>
-                          <spacer name="horizontalSpacer_49">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item>
-                          <widget class="QPushButton" name="sreportpage_prev_particle_btn">
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="text">
-                            <string/>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="Assets.qrc">
-                             <normaloff>:/assets/Assets/icons/icons8-previous-white-50.png</normaloff>:/assets/Assets/icons/icons8-previous-white-50.png</iconset>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>50</width>
-                             <height>50</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QPushButton" name="sreportpage_next_particle_btn">
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="text">
-                            <string/>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="Assets.qrc">
-                             <normaloff>:/assets/Assets/icons/icons8-next-white-50.png</normaloff>:/assets/Assets/icons/icons8-next-white-50.png</iconset>
-                           </property>
-                           <property name="iconSize">
-                            <size>
-                             <width>50</width>
-                             <height>50</height>
-                            </size>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_48">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_47">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeType">
-                       <enum>QSizePolicy::Maximum</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QGroupBox" name="signle_pellet_info_groupbox">
-                      <property name="minimumSize">
-                       <size>
-                        <width>200</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">#signle_pellet_info_groupbox{
-	border: 1px solid #ffffff;
-	border-radius: 10px;
-	padding: 5px;
-}
-
-Line{
-	background-color: rgba(255,255,255,50);
-}</string>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_37">
-                       <item>
-                        <spacer name="verticalSpacer_16">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <property name="sizeType">
-                          <enum>QSizePolicy::Expanding</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>20</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item>
-                        <layout class="QHBoxLayout" name="horizontalLayout_51">
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QLabel" name="label_49">
-                           <property name="styleSheet">
-                            <string notr="true">font-size: 15px;
-font-weight: bold;
-color: #ffffff;
-margin: 5px 0px;</string>
-                           </property>
-                           <property name="text">
-                            <string>Area:</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="sreportpage_particle_area_lbl">
-                           <property name="text">
-                            <string>25</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_50">
-                           <property name="text">
-                            <string>(mm2)</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_87">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_55">
-                           <property name="styleSheet">
-                            <string notr="true">font-size: 15px;
-font-weight: bold;
-color: #ffffff;
-margin: 5px 0px;</string>
-                           </property>
-                           <property name="text">
-                            <string>Volume</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="sreportpage_particle_volume_lbl">
-                           <property name="text">
-                            <string>64</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_52">
-                           <property name="text">
-                            <string> (mm3)</string>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
-                       </item>
-                       <item>
-                        <widget class="Line" name="line_19">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <layout class="QHBoxLayout" name="horizontalLayout_55">
-                         <property name="topMargin">
-                          <number>0</number>
-                         </property>
-                         <item>
-                          <widget class="QLabel" name="sreportpage_particle_avg_r_lbl_title">
-                           <property name="styleSheet">
-                            <string notr="true">font-size: 15px;
-font-weight: bold;
-color: #ffffff;
-margin: 5px 0px;</string>
-                           </property>
-                           <property name="text">
-                            <string>Avg Radius:</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="sreportpage_particle_avg_r_lbl">
-                           <property name="text">
-                            <string>28mm</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_58">
-                           <property name="text">
-                            <string>(mm)</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_89">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_90">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_62">
-                           <property name="styleSheet">
-                            <string notr="true">font-size: 15px;
-font-weight: bold;
-color: #ffffff;
-margin: 5px 0px;</string>
-                           </property>
-                           <property name="text">
-                            <string>Max Radius:</string>
-                           </property>
-                           <property name="alignment">
-                            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="sreportpage_particle_max_r_lbl">
-                           <property name="text">
-                            <string>17</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_64">
-                           <property name="text">
-                            <string>(mm)</string>
-                           </property>
-                          </widget>
-                         </item>
-                        </layout>
-                       </item>
-                       <item>
-                        <widget class="Line" name="line_20">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <spacer name="verticalSpacer_4">
-                         <property name="orientation">
-                          <enum>Qt::Vertical</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>20</width>
-                           <height>40</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_50">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <widget class="QTableWidget" name="sreportpage_particels_table">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="sizeIncrement">
-                  <size>
-                   <width>0</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="baseSize">
-                  <size>
-                   <width>0</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Arial</family>
-                   <pointsize>-1</pointsize>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="focusPolicy">
-                  <enum>Qt::NoFocus</enum>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
+                   <item>
+                    <widget class="QTableWidget" name="sreportpage_particels_table">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="sizeIncrement">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="baseSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <pointsize>-1</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::NoFocus</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
 QHeaderView::section {
     background-color: rgb(6, 76, 130);
 	color: #ffffff;
@@ -9486,89 +9422,215 @@ QTableWidget::item
    padding: 10px;
 }
 </string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::Box</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <property name="verticalScrollBarPolicy">
-                  <enum>Qt::ScrollBarAlwaysOff</enum>
-                 </property>
-                 <property name="horizontalScrollBarPolicy">
-                  <enum>Qt::ScrollBarAsNeeded</enum>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QAbstractScrollArea::AdjustToContents</enum>
-                 </property>
-                 <property name="editTriggers">
-                  <set>QAbstractItemView::NoEditTriggers</set>
-                 </property>
-                 <property name="alternatingRowColors">
-                  <bool>false</bool>
-                 </property>
-                 <property name="selectionMode">
-                  <enum>QAbstractItemView::NoSelection</enum>
-                 </property>
-                 <property name="selectionBehavior">
-                  <enum>QAbstractItemView::SelectRows</enum>
-                 </property>
-                 <property name="textElideMode">
-                  <enum>Qt::ElideMiddle</enum>
-                 </property>
-                 <property name="gridStyle">
-                  <enum>Qt::SolidLine</enum>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>true</bool>
-                 </property>
-                 <property name="rowCount">
-                  <number>4</number>
-                 </property>
-                 <property name="columnCount">
-                  <number>5</number>
-                 </property>
-                 <attribute name="horizontalHeaderDefaultSectionSize">
-                  <number>180</number>
-                 </attribute>
-                 <attribute name="horizontalHeaderHighlightSections">
-                  <bool>true</bool>
-                 </attribute>
-                 <attribute name="horizontalHeaderStretchLastSection">
-                  <bool>false</bool>
-                 </attribute>
-                 <attribute name="verticalHeaderVisible">
-                  <bool>false</bool>
-                 </attribute>
-                 <attribute name="verticalHeaderMinimumSectionSize">
-                  <number>120</number>
-                 </attribute>
-                 <attribute name="verticalHeaderDefaultSectionSize">
-                  <number>120</number>
-                 </attribute>
-                 <attribute name="verticalHeaderHighlightSections">
-                  <bool>true</bool>
-                 </attribute>
-                 <row/>
-                 <row/>
-                 <row/>
-                 <row/>
-                 <column/>
-                 <column/>
-                 <column/>
-                 <column/>
-                 <column/>
-                 <item row="0" column="1">
-                  <property name="text">
-                   <string/>
-                  </property>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::Box</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="editTriggers">
+                      <set>QAbstractItemView::NoEditTriggers</set>
+                     </property>
+                     <property name="alternatingRowColors">
+                      <bool>false</bool>
+                     </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::NoSelection</enum>
+                     </property>
+                     <property name="selectionBehavior">
+                      <enum>QAbstractItemView::SelectRows</enum>
+                     </property>
+                     <property name="textElideMode">
+                      <enum>Qt::ElideMiddle</enum>
+                     </property>
+                     <property name="gridStyle">
+                      <enum>Qt::SolidLine</enum>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="rowCount">
+                      <number>1</number>
+                     </property>
+                     <property name="columnCount">
+                      <number>4</number>
+                     </property>
+                     <attribute name="horizontalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderDefaultSectionSize">
+                      <number>120</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderHighlightSections">
+                      <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderStretchLastSection">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderMinimumSectionSize">
+                      <number>120</number>
+                     </attribute>
+                     <attribute name="verticalHeaderDefaultSectionSize">
+                      <number>120</number>
+                     </attribute>
+                     <attribute name="verticalHeaderHighlightSections">
+                      <bool>true</bool>
+                     </attribute>
+                     <row/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <item row="0" column="1">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_64">
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_29">
+                       <item>
+                        <widget class="QLabel" name="label_100">
+                         <property name="text">
+                          <string>Page </string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="sreportpage_current_page">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_101">
+                         <property name="text">
+                          <string>of</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="sreportpage_end_page">
+                         <property name="text">
+                          <string>-</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_109">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="sreportpage_prev_particle_btn">
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="Assets.qrc">
+                         <normaloff>:/assets/Assets/icons/icons8-previous-50.png</normaloff>:/assets/Assets/icons/icons8-previous-50.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>50</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="sreportpage_next_particle_btn">
+                       <property name="cursor">
+                        <cursorShape>PointingHandCursor</cursorShape>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="Assets.qrc">
+                         <normaloff>:/assets/Assets/icons/icons8-next-50.png</normaloff>:/assets/Assets/icons/icons8-next-50.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>50</width>
+                         <height>50</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_108">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
                  </item>
-                 <item row="1" column="1">
-                  <property name="text">
-                   <string/>
-                  </property>
+                 <item>
+                  <spacer name="horizontalSpacer_47">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Maximum</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>25</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="Line" name="line_19">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -9685,7 +9747,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1144</width>
+                <width>1145</width>
                 <height>707</height>
                </rect>
               </property>

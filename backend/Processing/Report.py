@@ -154,6 +154,9 @@ class Report:
 
         return center_xs, ys
     
+    def get_particles_count(self,):
+        return len(self.Buffer.particels)
+    
     def get_accumulative_grading(self, ):
         # radiuses = self.Buffer.get_feature('max_radius')
         # volumes = self.Buffer.get_feature('avg_volume')

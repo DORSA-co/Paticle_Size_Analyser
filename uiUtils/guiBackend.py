@@ -4,13 +4,22 @@ import cv2
 from datetime import datetime, date
 import sys
 from PySide6.QtGui import QMovie
+from PySide6.QtUiTools import QUiLoader
+
+
 
 class GUIBackend:
+
+
+    @staticmethod
+    def load_ui(path):
+        loader = QUiLoader()
+        window = loader.load(path, None)
+        return window
 
     @staticmethod
     def set_signal_connection(wgt:QtWidgets.QWidget, connection:bool):
         wgt.blockSignals(not(connection))
-
 
 
     @staticmethod
@@ -139,7 +148,10 @@ class GUIBackend:
             parent (QtWidgets.QLayout): parent widget that is a QLayout
             widget (_type_): Qt widget that you want insert into parent
         """
-        parent.addWidget(widget)
+        if isinstance(parent, QtWidgets.QVBoxLayout) or isinstance(parent, QtWidgets.QHBoxLayout)  :
+            parent.addWidget(widget)
+        else:
+            pass
 
     @staticmethod
     def set_style( btn: QtWidgets.QPushButton, style:str):

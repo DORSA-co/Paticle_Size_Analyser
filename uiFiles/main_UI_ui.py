@@ -18,18 +18,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
     QComboBox, QCommandLinkButton, QDateEdit, QDoubleSpinBox,
     QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QProgressBar, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QSpinBox, QStackedWidget, QStatusBar,
-    QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+    QHeaderView, QLabel, QLayout, QLineEdit,
+    QMainWindow, QProgressBar, QPushButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QSpinBox, QStackedWidget,
+    QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1369, 899)
+        MainWindow.resize(1370, 914)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -1450,7 +1450,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 348, 1796))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -595, 348, 1796))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3340,7 +3340,18 @@ class Ui_MainWindow(object):
         self.calibration_page.setObjectName(u"calibration_page")
         self.horizontalLayout_8 = QHBoxLayout(self.calibration_page)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.calibrationpage_left_side = QFrame(self.calibration_page)
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_8.addItem(self.horizontalSpacer_6)
+
+        self.tabWidget = QTabWidget(self.calibration_page)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setAutoFillBackground(False)
+        self.cilbration = QWidget()
+        self.cilbration.setObjectName(u"cilbration")
+        self.horizontalLayout_52 = QHBoxLayout(self.cilbration)
+        self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
+        self.calibrationpage_left_side = QFrame(self.cilbration)
         self.calibrationpage_left_side.setObjectName(u"calibrationpage_left_side")
         self.calibrationpage_left_side.setStyleSheet(u"#calibrationpage_left_side{\n"
 "	padding: 10px;\n"
@@ -3629,20 +3640,13 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addWidget(self.calibrationpage_last_calib_tabel)
 
 
-        self.horizontalLayout_8.addWidget(self.calibrationpage_left_side)
-
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_8.addItem(self.horizontalSpacer_6)
+        self.horizontalLayout_52.addWidget(self.calibrationpage_left_side)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_8.addItem(self.horizontalSpacer_2)
+        self.horizontalLayout_52.addItem(self.horizontalSpacer_2)
 
-        self.calibrationpage_right_side = QVBoxLayout()
-        self.calibrationpage_right_side.setObjectName(u"calibrationpage_right_side")
-        self.calibrationpage_right_side.setContentsMargins(0, -1, -1, -1)
-        self.calibrationpage_liveimage_lbl = QLabel(self.calibration_page)
+        self.calibrationpage_liveimage_lbl = QLabel(self.cilbration)
         self.calibrationpage_liveimage_lbl.setObjectName(u"calibrationpage_liveimage_lbl")
         self.calibrationpage_liveimage_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;")
@@ -3651,10 +3655,102 @@ class Ui_MainWindow(object):
         self.calibrationpage_liveimage_lbl.setAlignment(Qt.AlignCenter)
         self.calibrationpage_liveimage_lbl.setWordWrap(False)
 
-        self.calibrationpage_right_side.addWidget(self.calibrationpage_liveimage_lbl)
+        self.horizontalLayout_52.addWidget(self.calibrationpage_liveimage_lbl)
+
+        self.tabWidget.addTab(self.cilbration, "")
+        self.tab_7 = QWidget()
+        self.tab_7.setObjectName(u"tab_7")
+        self.verticalLayout_48 = QVBoxLayout(self.tab_7)
+        self.verticalLayout_48.setObjectName(u"verticalLayout_48")
+        self.horizontalLayout_62 = QHBoxLayout()
+        self.horizontalLayout_62.setObjectName(u"horizontalLayout_62")
+        self.horizontalLayout_62.setContentsMargins(-1, 16, -1, -1)
+        self.label_94 = QLabel(self.tab_7)
+        self.label_94.setObjectName(u"label_94")
+
+        self.horizontalLayout_62.addWidget(self.label_94)
+
+        self.validationpage_hypotest_standards_combobox = QComboBox(self.tab_7)
+        self.validationpage_hypotest_standards_combobox.setObjectName(u"validationpage_hypotest_standards_combobox")
+
+        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_standards_combobox)
+
+        self.horizontalSpacer_106 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_62.addItem(self.horizontalSpacer_106)
+
+        self.line_29 = QFrame(self.tab_7)
+        self.line_29.setObjectName(u"line_29")
+        self.line_29.setFrameShape(QFrame.VLine)
+        self.line_29.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_62.addWidget(self.line_29)
+
+        self.horizontalSpacer_107 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_62.addItem(self.horizontalSpacer_107)
+
+        self.label_95 = QLabel(self.tab_7)
+        self.label_95.setObjectName(u"label_95")
+
+        self.horizontalLayout_62.addWidget(self.label_95)
+
+        self.validationpage_hypotest_test_count_spinbox = QSpinBox(self.tab_7)
+        self.validationpage_hypotest_test_count_spinbox.setObjectName(u"validationpage_hypotest_test_count_spinbox")
+
+        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_test_count_spinbox)
+
+        self.horizontalSpacer_103 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_62.addItem(self.horizontalSpacer_103)
+
+        self.line_28 = QFrame(self.tab_7)
+        self.line_28.setObjectName(u"line_28")
+        self.line_28.setFrameShape(QFrame.VLine)
+        self.line_28.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_62.addWidget(self.line_28)
+
+        self.horizontalSpacer_105 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_62.addItem(self.horizontalSpacer_105)
+
+        self.validationpage_hypotest_calculate_btn = QPushButton(self.tab_7)
+        self.validationpage_hypotest_calculate_btn.setObjectName(u"validationpage_hypotest_calculate_btn")
+
+        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_calculate_btn)
 
 
-        self.horizontalLayout_8.addLayout(self.calibrationpage_right_side)
+        self.verticalLayout_48.addLayout(self.horizontalLayout_62)
+
+        self.line_24 = QFrame(self.tab_7)
+        self.line_24.setObjectName(u"line_24")
+        self.line_24.setFrameShape(QFrame.HLine)
+        self.line_24.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_48.addWidget(self.line_24)
+
+        self.scrollArea_5 = QScrollArea(self.tab_7)
+        self.scrollArea_5.setObjectName(u"scrollArea_5")
+        self.scrollArea_5.setWidgetResizable(True)
+        self.sticalhyp_scroll_area = QWidget()
+        self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1137, 664))
+        self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
+        self.verticalLayout_49.setObjectName(u"verticalLayout_49")
+        self.verticalLayout_50 = QVBoxLayout()
+        self.verticalLayout_50.setSpacing(25)
+        self.verticalLayout_50.setObjectName(u"verticalLayout_50")
+
+        self.verticalLayout_49.addLayout(self.verticalLayout_50)
+
+        self.scrollArea_5.setWidget(self.sticalhyp_scroll_area)
+
+        self.verticalLayout_48.addWidget(self.scrollArea_5)
+
+        self.tabWidget.addTab(self.tab_7, "")
+
+        self.horizontalLayout_8.addWidget(self.tabWidget)
 
         self.main_pages_stackw.addWidget(self.calibration_page)
         self.users_page = QWidget()
@@ -4230,7 +4326,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 664))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1144, 679))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4412,7 +4508,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 2527))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -762, 1146, 2836))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4944,6 +5040,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_25.setContentsMargins(-1, 0, -1, -1)
         self.report_grading_chart_frame = QHBoxLayout()
         self.report_grading_chart_frame.setObjectName(u"report_grading_chart_frame")
+        self.report_grading_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
+        self.report_grading_chart_frame.setContentsMargins(10, 10, 10, 10)
 
         self.horizontalLayout_25.addLayout(self.report_grading_chart_frame)
 
@@ -4955,10 +5053,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25.addWidget(self.line_18)
 
-        self.report_grading_chart_frame_2 = QHBoxLayout()
-        self.report_grading_chart_frame_2.setObjectName(u"report_grading_chart_frame_2")
+        self.report_cum_chart_frame = QHBoxLayout()
+        self.report_cum_chart_frame.setObjectName(u"report_cum_chart_frame")
+        self.report_cum_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
+        self.report_cum_chart_frame.setContentsMargins(10, 10, 10, 10)
 
-        self.horizontalLayout_25.addLayout(self.report_grading_chart_frame_2)
+        self.horizontalLayout_25.addLayout(self.report_cum_chart_frame)
 
         self.verticalSpacer_32 = QSpacerItem(10, 300, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
@@ -4970,6 +5070,38 @@ class Ui_MainWindow(object):
         self.verticalSpacer_21 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
         self.verticalLayout_12.addItem(self.verticalSpacer_21)
+
+        self.horizontalLayout_63 = QHBoxLayout()
+        self.horizontalLayout_63.setObjectName(u"horizontalLayout_63")
+        self.horizontalLayout_63.setContentsMargins(-1, 0, -1, -1)
+        self.report_gaussian_chart_frame = QHBoxLayout()
+        self.report_gaussian_chart_frame.setObjectName(u"report_gaussian_chart_frame")
+        self.report_gaussian_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
+        self.report_gaussian_chart_frame.setContentsMargins(10, 10, 10, 10)
+
+        self.horizontalLayout_63.addLayout(self.report_gaussian_chart_frame)
+
+        self.line_30 = QFrame(self.scrollAreaWidgetContents)
+        self.line_30.setObjectName(u"line_30")
+        self.line_30.setMinimumSize(QSize(3, 0))
+        self.line_30.setFrameShape(QFrame.VLine)
+        self.line_30.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_63.addWidget(self.line_30)
+
+        self.report_cum_chart_frame_2 = QHBoxLayout()
+        self.report_cum_chart_frame_2.setObjectName(u"report_cum_chart_frame_2")
+        self.report_cum_chart_frame_2.setSizeConstraint(QLayout.SetFixedSize)
+        self.report_cum_chart_frame_2.setContentsMargins(10, 10, 10, 10)
+
+        self.horizontalLayout_63.addLayout(self.report_cum_chart_frame_2)
+
+        self.verticalSpacer_33 = QSpacerItem(10, 300, QSizePolicy.Minimum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_63.addItem(self.verticalSpacer_33)
+
+
+        self.verticalLayout_12.addLayout(self.horizontalLayout_63)
 
         self.label_47 = QLabel(self.scrollAreaWidgetContents)
         self.label_47.setObjectName(u"label_47")
@@ -5377,7 +5509,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 692))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 707))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5648,9 +5780,10 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(7)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -5880,6 +6013,11 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_last_calib_tabel.setProperty("Date", "")
         self.calibrationpage_liveimage_lbl.setText("")
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.cilbration), QCoreApplication.translate("MainWindow", u"Calibration", None))
+        self.label_94.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
+        self.label_95.setText(QCoreApplication.translate("MainWindow", u"Test Count:", None))
+        self.validationpage_hypotest_calculate_btn.setText(QCoreApplication.translate("MainWindow", u"See Result", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), QCoreApplication.translate("MainWindow", u"Statistical hypothesis", None))
         self.userpage_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
 
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))

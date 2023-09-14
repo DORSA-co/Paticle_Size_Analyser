@@ -186,22 +186,16 @@ class reportsPageAPI:
                     return False
             
             if 'ranges' in active_filters:
+                sample_grading_result = None
                 #-----------------------------------------------------------------------------
-                # if sample['standard'] != range_filter_standard_name:
-                #     return False
-                
-                # sample_grading_result = sample['grading_result']
-                
-                #-----------------------------------------------------------------------------
-                #WHIT CALCULATION
-                #-----------------------------------------------------------------------------
-                # grading.clear()
-                # grading.append(sample['max_radiuses'])
-                # sample_grading_result = grading.get_hist()
-                rfh = reportFileHandler(sample)
-                report = rfh.load_report()
-                report.change_standard(range_filter_standard)
-                sample_grading_result = report.Grading.get_hist()
+                if sample['standard'] == range_filter_standard_name:
+                    sample_grading_result = sample['grading_result']
+                    
+                else:
+                    rfh = reportFileHandler(sample)
+                    report = rfh.load_report()
+                    report.change_standard(range_filter_standard)
+                    sample_grading_result = report.Grading.get_hist()
                 #-----------------------------------------------------------------------------
 
                 for i in range(len(ranges_conditions)):

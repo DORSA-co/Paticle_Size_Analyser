@@ -100,6 +100,11 @@ class reportPageAPI:
     def show_charts(self,):
         self.ui.set_grading_chart( values=self.report.Grading.get_hist(), 
                                   ranges= self.report.ranges_string)
+        
+        self.ui.set_cumulative_chart_value( *self.report.cumGrading.get_data())
+
+        self.ui.set_gaussian_chart_value(*self.report.get_gaussian_data())
+        
 
     def back(self, ):
         """this function call when back button clicked

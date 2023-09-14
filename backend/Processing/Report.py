@@ -136,6 +136,23 @@ class Report:
         return ranges.min(), ranges.max()
     
 
+    def get_gaussian_data(self,step=1):
+        radiuses = self.Buffer.get_feature('max_radius')
+        volumes = self.Buffer.get_feature('avg_volume')
+        #return np.vstack((radiuses, volumes)).T
+        volumes_percent = volumes
+        r_min, r_max = self.get_full_range()
+        bins = np.arange(r_min, r_max, step)
+
+        ys, _ = np.histogram(radiuses, bins, weights=volumes_percent)
+        ys = ys / np.sum(ys) * 100
+        
+        center_xs = []
+        for i in range(len(bins)-1):
+            center = ( bins[i] + bins[i+1]  ) / 2
+            center_xs.append( center  )
+
+        return center_xs, ys
     
     def get_accumulative_grading(self, ):
         # radiuses = self.Buffer.get_feature('max_radius')

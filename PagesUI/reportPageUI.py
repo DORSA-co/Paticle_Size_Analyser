@@ -1,7 +1,8 @@
 
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
-from uiUtils.Charts import barChart
+from uiUtils.Charts.barChart import BarChart
+from uiUtils.Charts.lineChart import LineChart, Trend
 import cv2
 import math
 
@@ -45,7 +46,7 @@ class reportPageUI:
 
 
         #--------------------------------------------------------------------------------------------------------
-        self.grading_chart = barChart.BarChart(
+        self.grading_chart = BarChart(
                     chart_title = 'Grading',
                     chart_title_color = None,
                     axisX_label = 'Rages',
@@ -59,6 +60,45 @@ class reportPageUI:
                     bar_width = 1,
                     axisY_grid = True,
                 )
+        
+
+        self.cumulative_chart  = LineChart(
+                    chart_title = 'Cumulative',
+                    chart_title_color = '#404040',
+                    axisX_label = 'Rages',
+                    axisY_label = 'Percent',
+                    chart_background_color = '#f0f0f0',
+                    chart_legend=False,
+                    axis_color = '#404040',
+                    axisX_grid=True,
+                    axisY_grid=True,
+                    axisY_grid_color='#40404040',
+                    axisY_range = (0, 100),
+                    axisX_tickCount = 10,
+                    axisY_tickCount = 10,
+                    animation = False,
+                )
+        self.cumulative_trend = Trend(name='', line_color='#20647d', line_width=2)
+        self.cumulative_chart.add_trend(self.cumulative_trend)
+
+        self.gaussian_chart  = LineChart(
+                    chart_title = 'Guassian',
+                    chart_title_color = '#404040',
+                    axisX_label = 'Rages',
+                    axisY_label = 'Percent',
+                    chart_background_color = '#f0f0f0',
+                    chart_legend=False,
+                    axis_color = '#404040',
+                    axisX_grid=True,
+                    axisY_grid=True,
+                    axisY_grid_color='#40404040',
+                    axisY_range = (0, 100),
+                    axisX_tickCount = 10,
+                    axisY_tickCount = 10,
+                    animation = False,
+                )
+        self.gaussian_trend = Trend(name='', line_color='#d4594e', line_width=4)
+        self.gaussian_chart.add_trend(self.gaussian_trend)
 
         #--------------------------------------------------------------------------------------------------------
 
@@ -70,6 +110,8 @@ class reportPageUI:
         GUIBackend.set_table_dim(self.statictics_table, row=None, col=len(self.statictics_table_headers))
         GUIBackend.set_table_cheaders(self.statictics_table, headrs)
         GUIBackend.add_widget( self.ui.report_grading_chart_frame, self.grading_chart )
+        GUIBackend.add_widget( self.ui.report_cum_chart_frame, self.cumulative_chart )
+        GUIBackend.add_widget( self.ui.report_gaussian_chart_frame, self.gaussian_chart )
 
     def create_connect(func, *args):
         return lambda: func(*args)
@@ -119,9 +161,34 @@ class reportPageUI:
 
     def set_grading_chart(self, values:list[float], ranges:list[list]):
         self.grading_chart.set_chart_y(values)
-        
         self.grading_chart.set_chart_x(ranges)
+
+
+    # def set_cumulative_chart_range(self,min_value, max_value):
+    #     self.cumulative_chart.set_axisX_range((min_value, max_value))
+
+    def set_cumulative_chart_value(self, xs, ys):
+        self.clear_cumulative_chart()
+        self.cumulative_chart.set_axisX_range((min(xs), max(xs)))
+        self.cumulative_trend.add_data(xs, ys)
+        
+    def clear_cumulative_chart(self,):
+        self.cumulative_trend.clear()
+
     
+    def set_gaussian_chart_value(self, xs, ys):
+        self.clear_gaussian_chart()
+
+        self.gaussian_chart.set_axisX_range((min(xs), max(xs)))
+        self.gaussian_chart.set_axisY_range((min(ys), max(ys)))
+        self.gaussian_trend.add_data(xs, ys)
+        
+    def clear_gaussian_chart(self,):
+        self.gaussian_trend.clear()
+    
+    
+
+
     def set_particle_image(self, img):
         #img = cv2.resize(img, None, fx=1, fy =1)
         GUIBackend.set_label_image(self.particle_image_lbl, img)

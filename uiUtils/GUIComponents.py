@@ -309,6 +309,10 @@ class LabelTable(QtWidgets.QLabel):
         GUIBackend.set_min_size(self, h, w)
 
 
+class inputTable(QtWidgets.QLineEdit):
+    def __init__(self, *a, **kw):
+        super(inputTable, self).__init__(*a, **kw)
+
 
 
         

@@ -122,15 +122,12 @@ class reportPageUI:
 
     
     def navigator_button_connector(self, func):
-        def make_func_arg(key):
-                def _func_():
-                    func(key)
-                return _func_
-        
+  
         for key, btn in self.particle_navigator_buttons.items():
-            GUIBackend.button_connector( btn,
-                                        make_func_arg(key) 
-            )
+            GUIBackend.button_connector_argument_pass( btn,
+                                                      func,
+                                                      args=(key,)
+                                                )
             
     
     
@@ -252,3 +249,6 @@ class reportPageUI:
     def show_page_number(self, curent:int, end:int):
         GUIBackend.set_label_text(self.current_page, str(curent))
         GUIBackend.set_label_text(self.end_page, str(end))
+
+    
+    

@@ -14,6 +14,7 @@ from PagesAPI.standardsPageAPI import standardsPageAPI
 from PagesAPI.reportPageAPI import reportPageAPI
 from PagesAPI.reportsPageAPI import reportsPageAPI
 from PagesAPI.comparePageAPI import comparePageAPI
+from PagesAPI.validationPageAPI import validationPageAPI
 #------------------------------------------------------------
 #from main_UI import mainUI
 #------------------------------------------------------------
@@ -49,6 +50,7 @@ class main_API(QObject):
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
+        self.validationPageAPI = validationPageAPI(ui=self.ui.validationPage, database=self.db)
 
         #events----------------------------------------------
         self.ui.change_page_connector(self.page_change_event)
@@ -69,7 +71,7 @@ class main_API(QObject):
             'main': self.mainPageAPI,
             'reports': self.reportsPageAPI,
             'grading_ranges': None,
-            'calibration': None,
+            'calibration': self.validationPageAPI,
             'settings': self.settingPageAPI,
             'user': None,
             'help': None,

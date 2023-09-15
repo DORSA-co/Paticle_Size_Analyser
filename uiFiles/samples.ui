@@ -1,32 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sampleTest</class>
- <widget class="QWidget" name="sampleTest">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>860</width>
-    <height>160</height>
+    <width>764</width>
+    <height>751</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>0</width>
-    <height>150</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>16777215</width>
-    <height>200</height>
+    <width>600</width>
+    <height>0</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Dialog</string>
   </property>
   <property name="styleSheet">
    <string notr="true">*{
@@ -35,11 +26,6 @@
 	
 
 }
-
-#sampleTest{
-	background-color: #ffffff;
-}
-
 
 
 
@@ -75,7 +61,7 @@ QPushButton:disabled{
 
 /*********************************************/
 QHeaderView::section {
-    background-color: rgb(90, 117, 127);
+    background-color: rgb(6, 76, 130);
 	color: #ffffff;
     padding: 4px;
     font-size: 10pt;
@@ -96,10 +82,7 @@ QHeaderView::section:vertical
 
 
 /*********************************************/
-QLabel{
-	color: #404040;
 
-}
 
 
 /*********************************************/
@@ -425,135 +408,11 @@ QListView::item{
 }
 </string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="load_btn">
-       <property name="styleSheet">
-        <string notr="true">
-QPushButton{
-	background-color:rgb(90, 117, 127);
-}
-
-
-QPushButton::hover{
-background-color:rgb(76, 99, 107);
-}
-
-
-</string>
-       </property>
-       <property name="text">
-        <string>Load Sample</string>
-       </property>
-       <property name="icon">
-        <iconset resource="Assets.qrc">
-         <normaloff>:/assets/Assets/icons/icons8-download-50.png</normaloff>:/assets/Assets/icons/icons8-download-50.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="styleSheet">
-          <string notr="true">font-size: 14px;
-font-weight:bold;</string>
-         </property>
-         <property name="text">
-          <string>Date</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="sample_name_lbl">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="styleSheet">
-          <string notr="true">font-size: 14px;
-font-weight:bold;</string>
-         </property>
-         <property name="text">
-          <string>Sample Name:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="sample_date_lbl">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="styleSheet">
-          <string notr="true">font-size: 14px;
-font-weight:bold;</string>
-         </property>
-         <property name="text">
-          <string>Time</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="sample_time_lbl">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="minimumSize">
-      <size>
-       <width>15</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: #a0a0a0;</string>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="lineWidth">
-      <number>2</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QTableWidget" name="table">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>150</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>16777215</height>
-      </size>
+    <widget class="QTableWidget" name="samples_table">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
      </property>
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -562,22 +421,24 @@ font-weight:bold;</string>
       <enum>QAbstractScrollArea::AdjustToContents</enum>
      </property>
      <property name="rowCount">
-      <number>2</number>
-     </property>
-     <property name="columnCount">
       <number>6</number>
      </property>
-     <attribute name="horizontalHeaderHighlightSections">
-      <bool>true</bool>
-     </attribute>
+     <property name="columnCount">
+      <number>7</number>
+     </property>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
      <attribute name="verticalHeaderDefaultSectionSize">
-      <number>48</number>
+      <number>35</number>
      </attribute>
      <row/>
      <row/>
+     <row/>
+     <row/>
+     <row/>
+     <row/>
+     <column/>
      <column/>
      <column/>
      <column/>
@@ -588,8 +449,6 @@ font-weight:bold;</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="Assets.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

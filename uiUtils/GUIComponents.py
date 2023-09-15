@@ -90,6 +90,23 @@ QPushButton:hover{
 }
 
 """
+TABLE_BUTTON_STYLE = """
+QPushButton{
+	min-height:30px;
+    min-width:100px;
+    max-height:30px;
+    max-width:100px;
+	border-radius:3px;
+	color: rgb(255, 255, 255);
+	background-color:rgb(54, 193, 142);
+
+}
+
+QPushButton:hover{
+	color: rgb(255, 255, 255);
+	background-color:rgb(40, 144, 106);
+}
+"""
 
 CONFIRMBOX_STYLESHEET = """
    QMessageBox{ 
@@ -240,6 +257,17 @@ class reportButton(QtWidgets.QPushButton):
         self.setText("")
         self.setStyleSheet(REPORT_BUTTON_STYLE)
         self.setIcon(self._icon)
+
+
+class tableButton(QtWidgets.QPushButton):
+
+    def __init__(self, text='', *a, **kw):
+        super(tableButton, self).__init__(*a, **kw)
+        self.setStyleSheet(TABLE_BUTTON_STYLE)
+        self.setText(text)
+        
+        
+
 
 
 

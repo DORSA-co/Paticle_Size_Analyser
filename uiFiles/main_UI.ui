@@ -536,7 +536,6 @@ QListView::item{
              <font>
               <family>Arial</family>
               <pointsize>14</pointsize>
-              <weight>75</weight>
               <italic>false</italic>
               <bold>true</bold>
              </font>
@@ -1036,7 +1035,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2274,9 +2273,9 @@ color: rgb(6, 76, 130);
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>-595</y>
-                   <width>348</width>
-                   <height>1796</height>
+                   <y>0</y>
+                   <width>360</width>
+                   <height>1703</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -5883,19 +5882,6 @@ QLabel{
          <widget class="QWidget" name="calibration_page">
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
-            <spacer name="horizontalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
             <widget class="QTabWidget" name="tabWidget">
              <property name="autoFillBackground">
               <bool>false</bool>
@@ -6259,7 +6245,6 @@ margin-right:5px;</string>
                     <property name="font">
                      <font>
                       <family>Arial</family>
-                      <weight>50</weight>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -6484,7 +6469,11 @@ max-height : 800px;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QSpinBox" name="validationpage_hypotest_test_count_spinbox"/>
+                  <widget class="QSpinBox" name="validationpage_hypotest_test_count_spinbox">
+                   <property name="maximum">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_103">
@@ -6548,17 +6537,42 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1137</width>
-                    <height>664</height>
+                    <width>1152</width>
+                    <height>674</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
                    <item>
-                    <layout class="QVBoxLayout" name="verticalLayout_50">
+                    <layout class="QVBoxLayout" name="validationpage_hypotest_sections_layout">
                      <property name="spacing">
                       <number>25</number>
                      </property>
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>5</number>
+                     </property>
                     </layout>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_16">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
                   </layout>
                  </widget>
@@ -7499,8 +7513,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1144</width>
-                    <height>679</height>
+                    <width>156</width>
+                    <height>2688</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7763,9 +7777,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-1601</y>
-                <width>1146</width>
-                <height>2335</height>
+                <y>0</y>
+                <width>1150</width>
+                <height>2276</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8622,7 +8636,6 @@ margin: 5px 0px;</string>
                     <font>
                      <family>Arial</family>
                      <pointsize>-1</pointsize>
-                     <weight>50</weight>
                      <italic>false</italic>
                      <bold>false</bold>
                     </font>
@@ -9381,7 +9394,6 @@ margin: 5px 0px;</string>
                       <font>
                        <family>Arial</family>
                        <pointsize>-1</pointsize>
-                       <weight>50</weight>
                        <italic>false</italic>
                        <bold>false</bold>
                       </font>
@@ -9747,8 +9759,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1145</width>
-                <height>707</height>
+                <width>1153</width>
+                <height>713</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -9805,7 +9817,6 @@ max-height: 22px;</string>
                   <font>
                    <family>Arial</family>
                    <pointsize>-1</pointsize>
-                   <weight>50</weight>
                    <italic>false</italic>
                    <bold>false</bold>
                   </font>
@@ -10008,7 +10019,6 @@ max-height: 22px;</string>
                     <font>
                      <family>Arial</family>
                      <pointsize>-1</pointsize>
-                     <weight>50</weight>
                      <italic>false</italic>
                      <bold>false</bold>
                     </font>
@@ -10236,7 +10246,6 @@ QPushButton{
           <font>
            <family>Arial</family>
            <pointsize>9</pointsize>
-           <weight>75</weight>
            <italic>false</italic>
            <bold>true</bold>
           </font>

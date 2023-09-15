@@ -52,21 +52,6 @@ class allStandardsTabUI():
         """
         self.standards_table_external_event_function = func
 
-    def standards_table_event(self, idx, data, status, btn):
-        """this function exec when edit or delete button clicked on standards table
-
-        Args:
-            idx (_type_): row index that its button clicked
-            data (_type_): row datas that its button clicked
-            status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
-            btn (_type_): button object that clicked
-        """
-        def func():
-            #
-            # Write Internal Code Here
-            #
-            self.standards_table_external_event_function(idx, data, status, btn)
-        return func
 
     def set_standards_table_data(self, datas:list[list]):
         """insert standards range into table
@@ -103,8 +88,13 @@ class allStandardsTabUI():
             del_btn = GUIComponents.deleteButton()
 
             #connect buttons to event function 
-            GUIBackend.button_connector( edit_btn, self.standards_table_event(i, datas[i], 'edit',  edit_btn) )
-            GUIBackend.button_connector( del_btn, self.standards_table_event(i, datas[i], 'delete',  del_btn ) )
+            GUIBackend.button_connector_argument_pass( edit_btn,
+                                         self.standards_table_external_event_function,
+                                         args=(i, datas[i], 'edit',  edit_btn) )
+            
+            GUIBackend.button_connector_argument_pass( del_btn,
+                                         self.standards_table_external_event_function,
+                                         args =(i, datas[i], 'delete',  del_btn ) )
 
             #insert buttons into table
             #item_count = len(row_data)
@@ -244,26 +234,12 @@ class newStandardTabUI:
 
         Args:
             func (_type_): function should have foure arguments,  ( row idx, row data, 'edit' or 'delete' flag, button )
+                            * idx (_type_): row index that its button clicked
+                            * dat(_type_): row datas that its button clicked
+                            * status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
+                            * btn (_type_): button object that clickeda 
         """
         self.ranges_table_external_event_function = func
-
-    
-    def ranges_table_event(self, idx, data, status, btn):
-        """this function exec when edit or delete button clicked on defined ranges table
-
-        Args:
-            idx (_type_): row index that its button clicked
-            data (_type_): row datas that its button clicked
-            status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
-            btn (_type_): button object that clicked
-        """
-        def func():
-            #
-            # Write Internal Code Here
-            #
-            self.ranges_table_external_event_function(idx, data, status, btn)
-        return func
-
 
     
     def set_ranges_table_data(self, datas:list[list]):
@@ -293,8 +269,9 @@ class newStandardTabUI:
             del_btn = GUIComponents.deleteButton()
 
             #connect buttons to event function 
-            #GUIBackend.button_connector( edit_btn, self.ranges_table_event(i, datas[i], 'edit',  edit_btn) )
-            GUIBackend.button_connector( del_btn, self.ranges_table_event(i, datas[i], 'delete',  del_btn ) )
+            GUIBackend.button_connector_argument_pass( del_btn,
+                                         self.ranges_table_external_event_function, 
+                                         args = (i, datas[i], 'delete',  del_btn ) )
 
             #insert buttons into table
             item_count = len(row_data)

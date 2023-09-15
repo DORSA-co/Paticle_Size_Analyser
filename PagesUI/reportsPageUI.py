@@ -150,13 +150,6 @@ class reportsPageUI:
 
         return func
     
-
-    def __internal_see_report_event__(self, sample):
-
-        def func():
-            self.external_see_report_event_func(sample)
-        
-        return func
     
 
     def __ranges_filter_standard_changed__(self,):
@@ -350,14 +343,20 @@ class reportsPageUI:
 
             report_btn = GUIComponents.reportButton()
             j = self.samples_table_headers.index('see')
-            GUIBackend.button_connector( report_btn, self.__internal_see_report_event__(sample))
+            GUIBackend.button_connector_argument_pass( report_btn,
+                                                       self.external_see_report_event_func,
+                                                       args=(sample,)
+                                                       )
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), report_btn, layout=True)
 
             #define delte button
             delete_btn = GUIComponents.deleteButton()
             j = self.samples_table_headers.index('delete')
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), delete_btn)
-            GUIBackend.button_connector(delete_btn, self.__samples_table_delete_connector__(sample))
+            GUIBackend.button_connector_argument_pass(delete_btn, 
+                                        self.external_delete_samples_event_func, 
+                                        args=(sample,)
+                                        )
             
             
                 
@@ -381,13 +380,6 @@ class reportsPageUI:
         cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
         return cmb.render()
     
-
-    def __samples_table_delete_connector__(self, sample):
-        def func():
-            self.external_delete_samples_event_func(sample)
-
-        return func
-
 
     def show_rebuild_win(self,):
         self.set_rebuild_progress_bar(0)

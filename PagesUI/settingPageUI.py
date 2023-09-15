@@ -165,7 +165,6 @@ class sampleSettingTabUI(commonSettingUI):
         self.code_name_buttons_evetn_func = None
 
         GUIBackend.groupbox_checkbox_connector(self.autoname_groupbox, self.__enable_auto_sample_setting__)
-        self.__internal_code_name_buttons_connector__()
         self.__setting_change_connector__()
 
 
@@ -185,17 +184,11 @@ class sampleSettingTabUI(commonSettingUI):
     def code_name_buttons_connector(self, func):
         self.code_name_buttons_evetn_func = func
 
-
-    def __internal_code_name_buttons_connector__(self,):
         for name, btn in self.name_code_btns.items():
-            GUIBackend.button_connector( btn, self.__internal_code_name_buttons_event__(name) )
+            GUIBackend.button_connector_argument_pass( btn,
+                                                       self.code_name_buttons_evetn_func,
+                                                       args=(name,) )
 
-
-    def __internal_code_name_buttons_event__(self, name):
-
-        def func():
-            self.code_name_buttons_evetn_func(name)
-        return func
     
     def set_autoname_struct_input(self, txt:str):
         """got a text format and set it into name filed and style selected shortcode buttons

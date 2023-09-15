@@ -238,6 +238,12 @@ class GUIBackend:
 
     #--------------------------------- GLOBAL BUTTON FUNCTIONs ---------------------------------
     @staticmethod
+    def event_argumant_passer(func, args):
+        def event_func():
+            func(*args)
+        return event_func
+    
+    @staticmethod
     def button_connector( btn: QtWidgets.QPushButton, func):
         """Connects a PyQt Button clicked event into a function
 
@@ -246,6 +252,16 @@ class GUIBackend:
             func (_type_): function that execute when event happend
         """
         btn.clicked.connect(partial( func ))
+
+    
+    def button_connector_argument_pass(btn: QtWidgets.QPushButton, func, args):
+        """Connects a PyQt Button clicked event into a function and pass args to it
+        """
+        event_func = GUIBackend.event_argumant_passer(func, args)
+
+        btn.clicked.connect(partial( event_func  ))
+
+
 
     @staticmethod
     def button_disable( btn: QtWidgets.QPushButton ):

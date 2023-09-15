@@ -29,15 +29,14 @@ class standardsDB:
             self.db_manager.add_column( self.TABLE_NAME, **col)
     
 
-    def is_exist(self, name):
+    def is_exist(self, name:str) -> bool:
         founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
         if len(founded_records)>0:
             return True
         return False
 
-    def save(self, data):
-        #convert list to str
-        
+    def save(self, data: dict):
+
         data = data.copy()
         data['ranges'] = json.dumps(data['ranges'])
 
@@ -47,7 +46,7 @@ class standardsDB:
             self.db_manager.update_record_dict(self.TABLE_NAME, data, id_name=self.PRIMERY_KEY_COL_NAME, id_value = data[self.PRIMERY_KEY_COL_NAME])
     
 
-    def load(self, name):
+    def load(self, name:str) -> dict:
         record = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
         if len(record):
             #convert str to list
@@ -59,7 +58,7 @@ class standardsDB:
 
     
 
-    def load_all(self,):
+    def load_all(self,)->list[dict]:
         records = self.db_manager.get_all_content( self.TABLE_NAME)
 
         #convert str into list
@@ -71,7 +70,18 @@ class standardsDB:
         return records
     
 
-    def remove(self, name):
+    def load_standards_name(self,) -> list[str]:
+        records = self.db_manager.get_all_content( self.TABLE_NAME)
+
+        #convert str into list
+        res = []
+        for i in range(len(records)):
+            res.append( records[i]['name'])
+        
+        return res
+    
+
+    def remove(self, name:str):
         
         self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
 

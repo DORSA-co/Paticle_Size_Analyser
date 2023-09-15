@@ -36,7 +36,7 @@ from appAPI import main_API
 #Import Pages UI------------------------------------------
 from PagesUI.settingPageUI import settingPageUI
 from PagesUI.mainPageUI import mainPageUI
-from PagesUI.calibrationPageUI import calibrationPageUI, validationPageUI
+from PagesUI.validationPageUI import validationPageUI
 from PagesUI.usersPageUI import usersPageUI
 from PagesUI.reportsPageUI import reportsPageUI
 from PagesUI.standardsPageUI import standardsPageUI
@@ -93,11 +93,9 @@ class mainUI:
         self.reportsPage = reportsPageUI(ui, auto_rebuild_ui)
         self.gradingRange = standardsPageUI(ui)
         self.mainPage = mainPageUI(ui, sample_info)
-        self.calibrationPage = calibrationPageUI(ui)
         self.reportPage = reportPageUI(ui)
         self.usersPage = usersPageUI(ui, login_ui, edit_user)
         self.comparePage = comparePageUI(ui)
-
         self.validationPage = validationPageUI(ui)
 
         #self.router = routerUI(ui)

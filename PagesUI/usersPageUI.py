@@ -245,21 +245,6 @@ class AllUserTabUI:
         """
         self.__table_external_event_function__ = func
     
-    def __table_event_connector__(self,idx, user_info, status, btn):
-        """this function exec when edit or delete button clicked on defined ranges table
-
-        Args:
-            idx (_type_): row index that its button clicked
-            user_info (_type_): user info dictionary in format {'username':****, 'password':****', 'role':****}
-            status (_type_): be 'delete' when delete button clicked and 'edit' when edit button clicked
-            btn (_type_): button object that clicked
-        """
-        def func():
-            #
-            # Write Internal Code Here
-            #
-            self.__table_external_event_function__(idx, user_info, status, btn)
-        return func
 
     def set_users_table(self,users:list[dict]):
         """insert users info into table
@@ -291,8 +276,8 @@ class AllUserTabUI:
             del_btn = GUIComponents.deleteButton()
 
             #connect buttons to event function 
-            GUIBackend.button_connector( edit_btn, self.__table_event_connector__(row, user, 'edit',  edit_btn) )
-            GUIBackend.button_connector( del_btn, self.__table_event_connector__(row, user, 'delete',  del_btn ) )
+            GUIBackend.button_connector_argument_pass( edit_btn, self.__table_external_event_function__, args=(row, user, 'edit',  edit_btn) )
+            GUIBackend.button_connector_argument_pass( del_btn, self.__table_external_event_function__, args = (row, user, 'delete',  del_btn ) )
 
             #insert buttons into table
             GUIBackend.set_table_cell_widget(self.users_table, (row, info_count), edit_btn)

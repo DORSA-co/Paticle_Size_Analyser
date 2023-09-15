@@ -1450,7 +1450,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -595, 348, 1796))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 360, 1703))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3340,10 +3340,6 @@ class Ui_MainWindow(object):
         self.calibration_page.setObjectName(u"calibration_page")
         self.horizontalLayout_8 = QHBoxLayout(self.calibration_page)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_8.addItem(self.horizontalSpacer_6)
-
         self.tabWidget = QTabWidget(self.calibration_page)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setAutoFillBackground(False)
@@ -3697,6 +3693,7 @@ class Ui_MainWindow(object):
 
         self.validationpage_hypotest_test_count_spinbox = QSpinBox(self.tab_7)
         self.validationpage_hypotest_test_count_spinbox.setObjectName(u"validationpage_hypotest_test_count_spinbox")
+        self.validationpage_hypotest_test_count_spinbox.setMaximum(10)
 
         self.horizontalLayout_62.addWidget(self.validationpage_hypotest_test_count_spinbox)
 
@@ -3735,14 +3732,19 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1137, 664))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1152, 674))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
-        self.verticalLayout_50 = QVBoxLayout()
-        self.verticalLayout_50.setSpacing(25)
-        self.verticalLayout_50.setObjectName(u"verticalLayout_50")
+        self.validationpage_hypotest_sections_layout = QVBoxLayout()
+        self.validationpage_hypotest_sections_layout.setSpacing(25)
+        self.validationpage_hypotest_sections_layout.setObjectName(u"validationpage_hypotest_sections_layout")
+        self.validationpage_hypotest_sections_layout.setContentsMargins(5, 5, 5, 5)
 
-        self.verticalLayout_49.addLayout(self.verticalLayout_50)
+        self.verticalLayout_49.addLayout(self.validationpage_hypotest_sections_layout)
+
+        self.verticalSpacer_16 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_49.addItem(self.verticalSpacer_16)
 
         self.scrollArea_5.setWidget(self.sticalhyp_scroll_area)
 
@@ -4326,7 +4328,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1144, 679))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 156, 2688))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4510,7 +4512,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1601, 1146, 2335))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1150, 2276))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5534,7 +5536,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1145, 707))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1153, 713))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5805,7 +5807,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(1)

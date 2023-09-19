@@ -161,7 +161,7 @@ class reportFileHandler:
         Returns:
             str: path
         """
-        return os.path.join(self.main_path, self.get_report_folder_path(), self.IMG_FOLDER )
+        return os.path.join( self.get_report_folder_path(), self.IMG_FOLDER )
     
     
     def get_image_path(self, img_id):

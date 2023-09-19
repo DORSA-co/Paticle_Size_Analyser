@@ -96,7 +96,7 @@ class storageSettingTabUI(commonSettingUI):
         return GUIComponents.selectDirectoryDialog()
     
     def set_path(self, path):
-        GUIBackend.set_input(self.set_settings['path'], path)
+        GUIBackend.set_input(self.settings['path'], path)
 
     def save_button_connector(self, func):
         GUIBackend.button_connector(self.save_btn, func)

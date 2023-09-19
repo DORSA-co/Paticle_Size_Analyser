@@ -208,5 +208,5 @@ class main_API(QObject):
         """
         standars = self.db.standards_db.load_all()
         standars_name = list(map( lambda x:x['name'], standars))
-        self.settingPageAPI.sampleSetting.set_standards(standars_name)
+        self.settingPageAPI.sampleSetting.set_standards_event(standars_name)
 

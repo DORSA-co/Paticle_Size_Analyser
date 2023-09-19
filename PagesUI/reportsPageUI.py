@@ -1,7 +1,11 @@
+from typing import Optional
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from datetime import datetime
 from backend.Utils.datetimeUtils import datetimeFormat
+from PySide6.QtCore import Signal, QThread, QObject
+
+
 class reportsPageUI:
 
     def __init__(self, ui, auto_rebuild_ui):
@@ -16,6 +20,7 @@ class reportsPageUI:
         self.compare_standards_combobox = self.ui.reportpage_compare_standards_combobox
         self.select_all_checkbox = self.ui.reportspage_all_checkbox
         self.delete_selections_btn = self.ui.reportspage_delete_selections_btn
+        self.rebuild_btn = self.ui.reportpage_rebuild_btn
 
         #-----------------name filter--------------
         self.name_filter_input = self.ui.reportpage_filtername_input
@@ -61,7 +66,6 @@ class reportsPageUI:
         self.external_delete_samples_event_func = None
 
         GUIBackend.set_win_frameless(self.auto_rebuild_ui)
-        GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, self.close_rebuild_win)
 
         GUIBackend.set_table_dim(self.samples_table, row=None, col = len(self.samples_table_headers))
         GUIBackend.set_table_cheaders(self.samples_table, self.samples_table_headers)
@@ -75,6 +79,8 @@ class reportsPageUI:
         GUIBackend.set_cell_width_content_adjust(self.ranges_filter_table, None)
         GUIBackend.checkbox_connector(self.select_all_checkbox, self.select_all_samples)
         GUIBackend.combobox_changeg_connector(self.ranges_filter_standards_combobox, self.__ranges_filter_standard_changed__)
+        GUIBackend.button_connector(self.rebuild_btn, self.show_rebuild_win)
+        GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, self.close_rebuild_win)
 
         GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, False)
         GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, False)
@@ -91,8 +97,6 @@ class reportsPageUI:
     def set_select_all_samples(self, flag):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, flag )
         
-    def startup(self):
-        pass
 
     def apply_filter_button_connector(self,func):
         """connect 'apply filter' button into a python func
@@ -130,26 +134,26 @@ class reportsPageUI:
         def func():
             if GUIBackend.is_groupbox_checked(self.filters_groupbox[name]):
                 self.show_filter(name, True)
-                if name == 'standards':
-                    GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, True)
-                    GUIBackend.set_disable_enable(self.filters_groupbox['ranges'], False)
                 
-                elif name == 'ranges':
-                    GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, True)
-                    GUIBackend.set_disable_enable(self.filters_groupbox['standards'], False)
             
             else:
                 self.show_filter(name, False)
-                if name == 'standards':
-                    GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, False)
-                    GUIBackend.set_disable_enable(self.filters_groupbox['ranges'], True)
-                
-                elif name == 'ranges':
-                    GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, False)
-                    GUIBackend.set_disable_enable(self.filters_groupbox['standards'], True)
 
         return func
     
+
+
+    def set_rebuild_status(self, need_rebuild:bool):
+        
+        GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, need_rebuild)
+        GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, need_rebuild)
+        
+        GUIBackend.set_disable_enable(self.filters_groupbox['ranges'], not(need_rebuild))
+        GUIBackend.set_disable_enable(self.filters_groupbox['standards'], not(need_rebuild))
+
+        GUIBackend.set_disable_enable(self.rebuild_btn, need_rebuild)
+                
+
     
 
     def __ranges_filter_standard_changed__(self,):
@@ -383,7 +387,7 @@ class reportsPageUI:
 
     def show_rebuild_win(self,):
         self.set_rebuild_progress_bar(0)
-        GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, False)
+        #GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, False)
         GUIBackend.show_window(self.auto_rebuild_ui, True)
 
     def enable_rebuild_win_close(self):
@@ -392,9 +396,20 @@ class reportsPageUI:
     def close_rebuild_win(self,):
         GUIBackend.close_window(self.auto_rebuild_ui)
     
-    def rebuild_btn_connector(self, func):
+    def dialogbox_rebuild_btn_connector(self, func):
         GUIBackend.button_connector(self.auto_rebuild_ui.rebuild_btn, func)
 
     def set_rebuild_progress_bar(self, value):
         value = int(value)
         GUIBackend.set_progressbar_value(self.auto_rebuild_ui.converting_progressbar, value)
+
+
+
+
+    
+    
+
+    class samplesTableWorker(QObject):
+
+        def __init__(self, table, samples, button_func, parent: QObject) -> None:
+            super().__init__(parent)

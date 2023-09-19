@@ -14,8 +14,11 @@ from backend.Camera import dorsaPylon
 from backend.Processing import particlesDetector
 from backend.Processing.Report import Report
 
+class myThread(QThread):
+    def quit(self) -> None:
+        #print('Quit thread')
+        return super().quit()
 
-storage_path = 'data/'
 
 class mainPageAPI:
     refresh_time = time.time()
@@ -77,12 +80,14 @@ class mainPageAPI:
         
 
     def check_warnings(self,):
-        #print('camera Error')
+        ##print('camera Error')
         pass
 
     def process_image(self):
-        if not self.during_processing:
+        #print('process_image')
+        if not self.during_processing and self.is_running:
             self.during_processing = True
+            #print('process_image OK')
             #calculate FPS-----------------------
             self.ui.set_information({"fps": self.calc_fps()})
             #________________________________ONLY FOR TEST________________________________________________
@@ -94,36 +99,36 @@ class mainPageAPI:
                 self.test_img_idx = 0
             #________________________________ONLY FOR TEST________________________________________________
 
-            self.thread = QThread()
+            self.thread = myThread()
             self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
             self.worker.moveToThread(self.thread)
             self.thread.started.connect(self.worker.run_process)
             self.worker.finished_processing.connect(self.show_live_info)
             self.worker.finished.connect(self.thread.quit)
-            self.worker.finished.connect(self.worker.deleteLater)
             self.thread.finished.connect(self.thread.deleteLater)
             self.worker.finished.connect(self.__set_processing_finish__)
+            self.worker.finished.connect(self.worker.deleteLater)
             
             self.thread.start()
+            #print('process_image FINISH')
 
     
 
     def __set_processing_finish__(self,):
+        #print('__set_processing_finish__')
         self.during_processing = False
 
 
 
     def show_live_info(self):
-        
+        #print('show_live_info')
         t = time.time()
-        #update info in UI less than max_fps value
-        #print(1/(t - self.refresh_time))
-        if 1/(t - self.refresh_time) < self.max_fps:
+        
+        if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
             self.refresh_time = time.time()
 
             particle_buffer = self.worker.get_particles()
             img = self.worker.img
-            self.worker.confirm_remove_permit()
 
             #calculate statistics information like std and avg
             infos = self.report.get_global_statistics()
@@ -142,6 +147,9 @@ class mainPageAPI:
                 if toolboxes_state['drawing']:
                     img = particlesDetector.draw_particles(img, particle_buffer.get_particels())
                 self.ui.set_live_img(img)
+            
+                    
+        #print('show_live_info FINISH')
             
 
 
@@ -226,21 +234,24 @@ class mainPageAPI:
                                         )
         if flag == 'cancel':
             return
-        
-        for camera in self.cameras.values():
-            camera.Operations.stop_grabbing()
 
+        self.is_running = False
+
+        for camera in self.cameras.values():
+            camera.Operations.stop_grabbing()     
+        
+        #print('camera stop')
         #disable stop button
         self.ui.set_player_buttons_status('stop')
-        self.ui.enable_reports(True)
+        self.ui.enable_report(True)
         self.report_saver.save_report(self.report)
         #-----------------------------------------------------------------------------------------
         db_data = self.report.get_database_record()
         self.database.reports_db.save(db_data)
         #-----------------------------------------------------------------------------------------
-        self.is_running = False
-
+        
         self.ui.set_live_img(CONSTANTS.IMAGES.STOP_SAMPLING)
+        #print('stop FINISH')
 
     
     
@@ -265,7 +276,7 @@ class mainPageAPI:
         self.ui.set_player_buttons_status('start')
         #close sample info window
         self.ui.close_sample_info_window()
-        self.ui.enable_reports(False)
+        self.ui.enable_report(False)
         
         self.is_running = True
         
@@ -343,6 +354,7 @@ class ProcessingWorker(QObject):
             self.particles_buffer = self.detector.detect(self.img)
             #extend new particels into particles buffer
             self.report.append(self.particles_buffer)
+            #print('finished_processing EMIT')
             self.finished_processing.emit()
         
             if self.report.settings['save_image']:
@@ -350,18 +362,12 @@ class ProcessingWorker(QObject):
                     p_img = particle.get_roi_image(self.img)
                     img_id = particle.get_id()
                     self.report_saver.save_image(p_img, img_id)
-
-        while not self.remove_permit:
-            time.sleep(0.05)
-
-
+        
+        #print('FINISH signal--')
         self.finished.emit()
+        #print('FINISH signal**')
 
     def get_particles(self, ):
         return copy.copy(self.particles_buffer)
-    
-
-    def confirm_remove_permit(self,):
-        self.remove_permit = True
     
 

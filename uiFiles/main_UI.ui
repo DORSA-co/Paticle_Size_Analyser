@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../.designer/backup/Icons/app_logo.ico</iconset>
+    <normaloff>../../../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../../../.designer/backup/Icons/app_logo.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -536,6 +536,7 @@ QListView::item{
              <font>
               <family>Arial</family>
               <pointsize>14</pointsize>
+              <weight>75</weight>
               <italic>false</italic>
               <bold>true</bold>
              </font>
@@ -2274,8 +2275,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>360</width>
-                   <height>1703</height>
+                   <width>322</width>
+                   <height>1758</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2498,7 +2499,7 @@ color: rgb(6, 76, 130);
                      <string notr="true">color: rgb(255, 95, 84);</string>
                     </property>
                     <property name="text">
-                     <string>Can't use this filter when &quot;filter by range&quot; is active</string>
+                     <string>Can't use this filter. Please 'Re-Build' first</string>
                     </property>
                     <property name="wordWrap">
                      <bool>true</bool>
@@ -2636,7 +2637,7 @@ color: rgb(6, 76, 130);
                      <string notr="true">color: rgb(255, 95, 84);</string>
                     </property>
                     <property name="text">
-                     <string>Can't use this filter when &quot;filter by standard&quot; is active</string>
+                     <string>Can't use this filter. Please 'Re-Build' first</string>
                     </property>
                     <property name="wordWrap">
                      <bool>true</bool>
@@ -2959,6 +2960,37 @@ border: 2px solid rgb(152, 46, 44);
                 </widget>
                </item>
                <item>
+                <widget class="QPushButton" name="reportpage_rebuild_btn">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton{
+background-color: rgb(255, 255, 255);
+color:rgb(41, 147, 108);
+border: 2px solid rgb(41, 147, 108);
+min-width: 80px;
+
+}
+
+QPushButton:hover{
+background-color: rgb(255, 255, 255);
+color:rgb(27, 98, 71);
+border: 2px solid rgb(27, 98, 71);
+}
+
+QPushButton:disabled{
+ color: #a0a0a0;
+border: 2px solid #a0a0a0;
+
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>Re-Build</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="Line" name="line_26">
                  <property name="minimumSize">
                   <size>
@@ -3087,6 +3119,9 @@ QPushButton:hover{
                </property>
                <item>
                 <widget class="QTableWidget" name="reportpage_samples_table">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
                  <property name="verticalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOn</enum>
                  </property>
@@ -3146,7 +3181,7 @@ QPushButton:hover{
 </string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <property name="usesScrollButtons">
               <bool>true</bool>
@@ -3448,12 +3483,12 @@ max-width: 16777px;
                          <enum>Qt::Vertical</enum>
                         </property>
                         <property name="sizeType">
-                         <enum>QSizePolicy::Maximum</enum>
+                         <enum>QSizePolicy::Minimum</enum>
                         </property>
                         <property name="sizeHint" stdset="0">
                          <size>
                           <width>20</width>
-                          <height>40</height>
+                          <height>200</height>
                          </size>
                         </property>
                        </spacer>
@@ -3521,7 +3556,8 @@ max-width: 16777px;
                         <property name="styleSheet">
                          <string notr="true">QFrame{
 background-color: rgb(58, 209, 154);
-}</string>
+}
+</string>
                         </property>
                         <property name="frameShape">
                          <enum>QFrame::StyledPanel</enum>
@@ -5886,6 +5922,36 @@ QLabel{
              <property name="autoFillBackground">
               <bool>false</bool>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QTabBar::tab:selected {
+    background: rgb(6, 76, 130);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+QTabBar::tab:!selected {
+	border-left: 1px solid rgb(199, 199, 199);
+	border-right: 1px solid rgb(199, 199, 199);
+}
+
+QTabBar::tab{
+	height:40px;
+	width: 260px;
+	background-color: rgb(93, 93, 93);
+	color: rgb(255,255,255);
+	font-size: 16px;
+}
+
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid rgb(6, 76, 130);
+
+
+}
+QTabWidget{
+background-color: rgb(48, 48, 48);
+}</string>
+             </property>
              <property name="currentIndex">
               <number>1</number>
              </property>
@@ -6245,6 +6311,7 @@ margin-right:5px;</string>
                     <property name="font">
                      <font>
                       <family>Arial</family>
+                      <weight>50</weight>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -6410,17 +6477,21 @@ max-height : 800px;</string>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_62">
                  <property name="topMargin">
-                  <number>16</number>
+                  <number>0</number>
                  </property>
                  <item>
-                  <widget class="QLabel" name="label_94">
+                  <widget class="QLabel" name="label_95">
                    <property name="text">
-                    <string>Standard</string>
+                    <string>Test Count:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="validationpage_hypotest_standards_combobox"/>
+                  <widget class="QSpinBox" name="validationpage_hypotest_test_count_spinbox">
+                   <property name="maximum">
+                    <number>10</number>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_106">
@@ -6446,6 +6517,16 @@ max-height : 800px;</string>
                   </widget>
                  </item>
                  <item>
+                  <widget class="QLabel" name="label_94">
+                   <property name="text">
+                    <string>Standard</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="validationpage_hypotest_standards_combobox"/>
+                 </item>
+                 <item>
                   <spacer name="horizontalSpacer_107">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -6460,20 +6541,6 @@ max-height : 800px;</string>
                     </size>
                    </property>
                   </spacer>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="label_95">
-                   <property name="text">
-                    <string>Test Count:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="validationpage_hypotest_test_count_spinbox">
-                   <property name="maximum">
-                    <number>10</number>
-                   </property>
-                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_103">
@@ -6537,8 +6604,8 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1152</width>
-                    <height>674</height>
+                    <width>1144</width>
+                    <height>679</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -7513,8 +7580,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>156</width>
-                    <height>2688</height>
+                    <width>162</width>
+                    <height>3292</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7536,7 +7603,7 @@ color: rgb(6, 76, 130);</string>
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap>../../../.designer/backup/img.jpg</pixmap>
+                      <pixmap>../../../../../.designer/backup/img.jpg</pixmap>
                      </property>
                     </widget>
                    </item>
@@ -7778,8 +7845,8 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1150</width>
-                <height>2276</height>
+                <width>892</width>
+                <height>2377</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8636,6 +8703,7 @@ margin: 5px 0px;</string>
                     <font>
                      <family>Arial</family>
                      <pointsize>-1</pointsize>
+                     <weight>50</weight>
                      <italic>false</italic>
                      <bold>false</bold>
                     </font>
@@ -9394,6 +9462,7 @@ margin: 5px 0px;</string>
                       <font>
                        <family>Arial</family>
                        <pointsize>-1</pointsize>
+                       <weight>50</weight>
                        <italic>false</italic>
                        <bold>false</bold>
                       </font>
@@ -9639,6 +9708,13 @@ QTableWidget::item
                 </layout>
                </item>
                <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>alaki</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="Line" name="line_19">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -9759,8 +9835,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1153</width>
-                <height>713</height>
+                <width>181</width>
+                <height>534</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -9817,6 +9893,7 @@ max-height: 22px;</string>
                   <font>
                    <family>Arial</family>
                    <pointsize>-1</pointsize>
+                   <weight>50</weight>
                    <italic>false</italic>
                    <bold>false</bold>
                   </font>
@@ -10019,6 +10096,7 @@ max-height: 22px;</string>
                     <font>
                      <family>Arial</family>
                      <pointsize>-1</pointsize>
+                     <weight>50</weight>
                      <italic>false</italic>
                      <bold>false</bold>
                     </font>
@@ -10246,6 +10324,7 @@ QPushButton{
           <font>
            <family>Arial</family>
            <pointsize>9</pointsize>
+           <weight>75</weight>
            <italic>false</italic>
            <bold>true</bold>
           </font>
@@ -10306,6 +10385,7 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
+  <include location="../../../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

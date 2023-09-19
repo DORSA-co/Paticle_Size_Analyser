@@ -10,6 +10,8 @@ from datetime import datetime, date
 import threading
 import numpy as np
 
+import time
+
 class reportsPageAPI:   
     FILTER_THREAD_COUNT = 5 
     MIN_SAMPLE_COUNT_THREADING = 50
@@ -36,7 +38,7 @@ class reportsPageAPI:
         self.ui.compare_button_connector(self.compare)
         self.ui.set_delete_sample_event_func(self.delete_sample)
         self.ui.delete_selections_button_connector(self.delete_selections)
-        self.ui.rebuild_btn_connector(self.rebuild_reports)
+        self.ui.dialogbox_rebuild_btn_connector(self.rebuild_reports)
         self.startup()
 
 
@@ -49,13 +51,19 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
+        t = time.time()
+        self.all_samples = self.database.reports_db.load_all()
+        t = time.time() - t
+        print('t1',t)
         #show rebuild if user login
         if self.logined_username != '':
             self.check_rebuild()
         
         self.set_standards()
-        self.load_all_samples()
-
+        t = time.time()
+        self.ui.set_samples_table(self.all_samples)
+        t = time.time() - t
+        print('t2',t)
     
     def set_user_login(self, username):
         self.logined_username = username
@@ -64,34 +72,39 @@ class reportsPageAPI:
     def check_rebuild(self,):
         history = self.database.standards_db.standardsHistoryTemp.get_history()
         self.rebuilder = rebuildReport(history.copy())
-        all_samples = self.database.reports_db.load_all()
-        if self.rebuilder.is_need(all_samples):
+        
+        if self.rebuilder.is_need(self.all_samples):
+                self.ui.set_rebuild_status(True)
                 self.ui.show_rebuild_win()
         else:
+            self.ui.set_rebuild_status(False)
             self.database.standards_db.standardsHistoryTemp.remove_history()
     
 
     def rebuild_reports(self):
-        all_samples = self.database.reports_db.load_all()
-        total_count = len(all_samples)
+        total_count = len(self.all_samples)
 
         for i in range(total_count):
-            rfh = reportFileHandler(all_samples[i])
+            rfh = reportFileHandler(self.all_samples[i])
             report = rfh.load_report()
-            #rebuild sample and report base on standard changes
-            new_sample_record, new_report = self.rebuilder.rebuild(all_samples[i], report)
-            #if new_sample_record be None, no rebuid done
-            if new_sample_record is not None:
-                self.database.reports_db.update(new_sample_record)
-                rfh.save_report(new_report)
+            if report is not None:
+                #rebuild sample and report base on standard changes
+                new_sample_record, new_report = self.rebuilder.rebuild(self.all_samples[i], report)
+                #if new_sample_record be None, no rebuid done
+                if new_sample_record is not None:
+                    self.all_samples[i] = new_sample_record
+                    self.database.reports_db.update(new_sample_record)
+                    rfh.save_report(new_report)
 
             percent = (i+1) / total_count * 100
             self.ui.set_rebuild_progress_bar( percent )
 
-        self.database.standards_db.standardsHistoryTemp.remove_history()
-        del(self.rebuilder)
-        self.load_all_samples()
-        self.ui.enable_rebuild_win_close()
+        else:
+            self.database.standards_db.standardsHistoryTemp.remove_history()
+            del(self.rebuilder)
+            self.ui.set_rebuild_status(False)
+            self.ui.set_samples_table(self.all_samples)
+            self.ui.enable_rebuild_win_close()
         
 
 
@@ -263,11 +276,15 @@ class reportsPageAPI:
         rfh = reportFileHandler(sample)
         rfh.remove()
         self.database.reports_db.remove(sample)
+        self.all_samples.remove(sample)
 
-        self.load_all_samples()
+        self.ui.set_samples_table(self.all_samples)
 
 
     def delete_selections(self,):
+        """this functions calls when user want delete multi sample
+           actuly calls when user clicked on delete button on top of table
+        """
         ids  = self.ui.get_selected_samples()
 
         if len(ids) == 0:
@@ -287,6 +304,7 @@ class reportsPageAPI:
             rfh = reportFileHandler(sample)
             rfh.remove()
             self.database.reports_db.remove(sample)
+            self.all_samples.remove(sample)
 
-        self.load_all_samples()
+        self.ui.set_samples_table(self.all_samples)
 

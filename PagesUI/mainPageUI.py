@@ -113,7 +113,7 @@ class mainPageUI:
         self.write_error_msg(None)
         #self.close_warning_msg()
         self.write_sample_info_error_msg(None)
-        self.enable_reports(False)
+        self.enable_report(False)
         self.set_player_buttons_status('stop')
         self.set_information(None)
         self.clear_cumulative_chart()
@@ -357,7 +357,7 @@ class mainPageUI:
         GUIBackend.close_window(self.sample_info)
 
 
-    def enable_reports(self,flag):
+    def enable_report(self,flag):
         GUIBackend.set_disable_enable(self.report_btn, flag)
     
     

@@ -1,8 +1,9 @@
 from backend.Camera.dorsaPylon import Collector, Camera
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI
+from backend.Utils.StorageUtils import storageManager
 import CONSTANTS
-
+import os
 
 class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database:settingDB, cameras):
@@ -11,10 +12,10 @@ class settingPageAPI:
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
 
-        ui.cameraSettingTab.save_state(True)
-        ui.algorithmSettingTab.save_state(True)
-        ui.storageSettingTab.save_state(True)
-        ui.sampleSettingTab.save_state(True)
+        # ui.cameraSettingTab.save_state(True)
+        # ui.algorithmSettingTab.save_state(True)
+        # ui.storageSettingTab.save_state(True)
+        # ui.sampleSettingTab.save_state(True)
 
     def startup(self,):
         self.cameraSetting.startup()
@@ -40,8 +41,14 @@ class sampleSettingTabAPI:
         self.ui.cancel_button_connector(self.cancel)
         self.load_from_db()
 
-    def set_standards(self,standards):
+    def set_standards_event(self,standards:list[str]):
+        """this function called when a new standard defined
+
+        Args:
+            standards (list[str]): names of standards
+        """
         self.ui.set_standards(standards)
+        self.load_from_db()
 
     def code_name_button_event(self, name):
         if CONSTANTS.NAME_CODES[name] not in self.autoname_struct or name == 'spacer':
@@ -84,6 +91,7 @@ class sampleSettingTabAPI:
         self.autoname_struct = settings['autoname_struct']
         self.ui.set_settings(settings)
         self.ui.set_autoname_struct_input(self.autoname_struct)
+        self.ui.save_state(True)
 
 
     
@@ -92,14 +100,23 @@ class sampleSettingTabAPI:
 
 
 class storageSettingTabAPI:
-
+    default_folder = 'AppData/Local/Dorsa-PSA-Reports'
     def __init__(self, ui:storageSettingTabUI ,database:settingStorageDB):
         self.ui = ui
         self.database = database
+        self.check_storage_path()
         self.ui.select_dir_button_connector(self.choose_dir)
         self.ui.save_button_connector(self.save)
         self.ui.cancel_button_connector(self.cancel)
         self.load_from_db()
+
+    def check_storage_path(self,):
+        settings = self.database.load()
+        if not os.path.exists(settings['path']):
+            path = storageManager.get_windows_user_path(self.default_folder)
+            storageManager.build_dir(path)
+            self.ui.set_path(path)
+            self.save()
     
     def choose_dir(self):
         path = self.ui.open_select_dir_dialog()
@@ -122,6 +139,7 @@ class storageSettingTabAPI:
     def load_from_db(self):
         settings = self.database.load()
         self.ui.set_settings(settings)
+        self.ui.save_state(True)
 
 
 
@@ -256,6 +274,7 @@ class cameraSettingTabAPI:
         camera_application = self.ui.get_selected_camera_application()
         settings = self.database.load(camera_application)
         self.ui.set_all_settings(settings)
+        self.ui.save_state(True)
         return settings
 
 

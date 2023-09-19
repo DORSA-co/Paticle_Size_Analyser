@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 import Assets_rc
+import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,7 +32,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1370, 914)
         icon = QIcon()
-        icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -1450,7 +1451,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 360, 1703))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1783,6 +1784,31 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_57.addWidget(self.reportspage_delete_selections_btn)
 
+        self.reportpage_rebuild_btn = QPushButton(self.report_page)
+        self.reportpage_rebuild_btn.setObjectName(u"reportpage_rebuild_btn")
+        self.reportpage_rebuild_btn.setEnabled(True)
+        self.reportpage_rebuild_btn.setStyleSheet(u"QPushButton{\n"
+"background-color: rgb(255, 255, 255);\n"
+"color:rgb(41, 147, 108);\n"
+"border: 2px solid rgb(41, 147, 108);\n"
+"min-width: 80px;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: rgb(255, 255, 255);\n"
+"color:rgb(27, 98, 71);\n"
+"border: 2px solid rgb(27, 98, 71);\n"
+"}\n"
+"\n"
+"QPushButton:disabled{\n"
+" color: #a0a0a0;\n"
+"border: 2px solid #a0a0a0;\n"
+"\n"
+"}")
+
+        self.horizontalLayout_57.addWidget(self.reportpage_rebuild_btn)
+
         self.line_26 = QFrame(self.report_page)
         self.line_26.setObjectName(u"line_26")
         self.line_26.setMinimumSize(QSize(20, 0))
@@ -1860,6 +1886,7 @@ class Ui_MainWindow(object):
         if (self.reportpage_samples_table.rowCount() < 11):
             self.reportpage_samples_table.setRowCount(11)
         self.reportpage_samples_table.setObjectName(u"reportpage_samples_table")
+        self.reportpage_samples_table.setEnabled(True)
         self.reportpage_samples_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.reportpage_samples_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.reportpage_samples_table.setRowCount(11)
@@ -2046,7 +2073,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_31.addWidget(self.settingpage_grading_warning_lbl)
 
-        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
+        self.verticalSpacer_10 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
         self.verticalLayout_31.addItem(self.verticalSpacer_10)
 
@@ -2081,7 +2108,8 @@ class Ui_MainWindow(object):
         self.gradingranges_new_standard_success_frame.setObjectName(u"gradingranges_new_standard_success_frame")
         self.gradingranges_new_standard_success_frame.setStyleSheet(u"QFrame{\n"
 "background-color: rgb(58, 209, 154);\n"
-"}")
+"}\n"
+"")
         self.gradingranges_new_standard_success_frame.setFrameShape(QFrame.StyledPanel)
         self.gradingranges_new_standard_success_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_43 = QHBoxLayout(self.gradingranges_new_standard_success_frame)
@@ -3343,6 +3371,34 @@ class Ui_MainWindow(object):
         self.tabWidget = QTabWidget(self.calibration_page)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setAutoFillBackground(False)
+        self.tabWidget.setStyleSheet(u"QTabBar::tab:selected {\n"
+"    background: rgb(6, 76, 130);\n"
+"	font-weight: bold;\n"
+"	font-size: 20px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected {\n"
+"	border-left: 1px solid rgb(199, 199, 199);\n"
+"	border-right: 1px solid rgb(199, 199, 199);\n"
+"}\n"
+"\n"
+"QTabBar::tab{\n"
+"	height:40px;\n"
+"	width: 260px;\n"
+"	background-color: rgb(93, 93, 93);\n"
+"	color: rgb(255,255,255);\n"
+"	font-size: 16px;\n"
+"}\n"
+"\n"
+"\n"
+"QTabWidget::pane { /* The tab widget frame */\n"
+"    border-top: 2px solid rgb(6, 76, 130);\n"
+"\n"
+"\n"
+"}\n"
+"QTabWidget{\n"
+"background-color: rgb(48, 48, 48);\n"
+"}")
         self.cilbration = QWidget()
         self.cilbration.setObjectName(u"cilbration")
         self.horizontalLayout_52 = QHBoxLayout(self.cilbration)
@@ -3660,16 +3716,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_48.setObjectName(u"verticalLayout_48")
         self.horizontalLayout_62 = QHBoxLayout()
         self.horizontalLayout_62.setObjectName(u"horizontalLayout_62")
-        self.horizontalLayout_62.setContentsMargins(-1, 16, -1, -1)
-        self.label_94 = QLabel(self.tab_7)
-        self.label_94.setObjectName(u"label_94")
+        self.horizontalLayout_62.setContentsMargins(-1, 0, -1, -1)
+        self.label_95 = QLabel(self.tab_7)
+        self.label_95.setObjectName(u"label_95")
 
-        self.horizontalLayout_62.addWidget(self.label_94)
+        self.horizontalLayout_62.addWidget(self.label_95)
 
-        self.validationpage_hypotest_standards_combobox = QComboBox(self.tab_7)
-        self.validationpage_hypotest_standards_combobox.setObjectName(u"validationpage_hypotest_standards_combobox")
+        self.validationpage_hypotest_test_count_spinbox = QSpinBox(self.tab_7)
+        self.validationpage_hypotest_test_count_spinbox.setObjectName(u"validationpage_hypotest_test_count_spinbox")
+        self.validationpage_hypotest_test_count_spinbox.setMaximum(10)
 
-        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_standards_combobox)
+        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_test_count_spinbox)
 
         self.horizontalSpacer_106 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
@@ -3682,20 +3739,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_62.addWidget(self.line_29)
 
+        self.label_94 = QLabel(self.tab_7)
+        self.label_94.setObjectName(u"label_94")
+
+        self.horizontalLayout_62.addWidget(self.label_94)
+
+        self.validationpage_hypotest_standards_combobox = QComboBox(self.tab_7)
+        self.validationpage_hypotest_standards_combobox.setObjectName(u"validationpage_hypotest_standards_combobox")
+
+        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_standards_combobox)
+
         self.horizontalSpacer_107 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
         self.horizontalLayout_62.addItem(self.horizontalSpacer_107)
-
-        self.label_95 = QLabel(self.tab_7)
-        self.label_95.setObjectName(u"label_95")
-
-        self.horizontalLayout_62.addWidget(self.label_95)
-
-        self.validationpage_hypotest_test_count_spinbox = QSpinBox(self.tab_7)
-        self.validationpage_hypotest_test_count_spinbox.setObjectName(u"validationpage_hypotest_test_count_spinbox")
-        self.validationpage_hypotest_test_count_spinbox.setMaximum(10)
-
-        self.horizontalLayout_62.addWidget(self.validationpage_hypotest_test_count_spinbox)
 
         self.horizontalSpacer_103 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
@@ -3732,7 +3788,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1152, 674))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1144, 679))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4328,7 +4384,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 156, 2688))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4341,7 +4397,7 @@ class Ui_MainWindow(object):
 
         self.label_84 = QLabel(self.aboutScrollArea)
         self.label_84.setObjectName(u"label_84")
-        self.label_84.setPixmap(QPixmap(u"../../../.designer/backup/img.jpg"))
+        self.label_84.setPixmap(QPixmap(u"../../../../../.designer/backup/img.jpg"))
 
         self.verticalLayout_29.addWidget(self.label_84)
 
@@ -4512,7 +4568,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1150, 2276))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 2377))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5458,6 +5514,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_26)
 
+        self.pushButton = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.verticalLayout_12.addWidget(self.pushButton)
+
         self.line_19 = QFrame(self.scrollAreaWidgetContents)
         self.line_19.setObjectName(u"line_19")
         self.line_19.setFrameShape(QFrame.HLine)
@@ -5536,7 +5597,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1153, 713))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 534))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5808,7 +5869,7 @@ class Ui_MainWindow(object):
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
         self.main_pages_stackw.setCurrentIndex(4)
-        self.gradingranges_tabs.setCurrentIndex(1)
+        self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
@@ -5888,7 +5949,7 @@ class Ui_MainWindow(object):
         self.label_73.setText(QCoreApplication.translate("MainWindow", u"To", None))
         self.label_72.setText(QCoreApplication.translate("MainWindow", u"From", None))
         self.reportpage_start_date_dateedit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"yyyy/M/d", None))
-        self.reportpage_filterstandards_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Can't use this filter when \"filter by range\" is active", None))
+        self.reportpage_filterstandards_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Can't use this filter. Please 'Re-Build' first", None))
         self.reportpage_filterstandards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By Standard", None))
 
         __sortingEnabled = self.reportpage_standards_filter_table.isSortingEnabled()
@@ -5897,7 +5958,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"G1", None));
         self.reportpage_standards_filter_table.setSortingEnabled(__sortingEnabled)
 
-        self.reportpage_filterranges_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Can't use this filter when \"filter by standard\" is active", None))
+        self.reportpage_filterranges_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Can't use this filter. Please 'Re-Build' first", None))
         self.reportpage_filterranges_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Filter By Ranges", None))
 
         __sortingEnabled1 = self.reportpage_standards_filter_ranges_table.isSortingEnabled()
@@ -5913,6 +5974,7 @@ class Ui_MainWindow(object):
         self.reportpage_apply_filters_btn.setText(QCoreApplication.translate("MainWindow", u"Update", None))
         self.reportspage_all_checkbox.setText(QCoreApplication.translate("MainWindow", u"All", None))
         self.reportspage_delete_selections_btn.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
+        self.reportpage_rebuild_btn.setText(QCoreApplication.translate("MainWindow", u"Re-Build", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare:", None))
         self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
@@ -6041,8 +6103,8 @@ class Ui_MainWindow(object):
         self.calibrationpage_last_calib_tabel.setProperty("Date", "")
         self.calibrationpage_liveimage_lbl.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.cilbration), QCoreApplication.translate("MainWindow", u"Calibration", None))
-        self.label_94.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
         self.label_95.setText(QCoreApplication.translate("MainWindow", u"Test Count:", None))
+        self.label_94.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
         self.validationpage_hypotest_calculate_btn.setText(QCoreApplication.translate("MainWindow", u"See Result", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), QCoreApplication.translate("MainWindow", u"Statistical hypothesis", None))
         self.userpage_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
@@ -6157,6 +6219,7 @@ class Ui_MainWindow(object):
         self.sreportpage_end_page.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.sreportpage_prev_particle_btn.setText("")
         self.sreportpage_next_particle_btn.setText("")
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"alaki", None))
         self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.label_57.setText(QCoreApplication.translate("MainWindow", u"Samples", None))

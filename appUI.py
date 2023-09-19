@@ -2,6 +2,7 @@ import os
 import typing
 import sys
 import CONSTANTS
+import pyuac
 
 #----------------------Compile Resource File-----------------------
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
@@ -318,6 +319,9 @@ class mainUI:
         
        
 if __name__ == '__main__':
+    #if not pyuac.isUserAdmin():
+        #print("Re-launching as admin!")
+    #pyuac.runAsAdmin()
 
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)

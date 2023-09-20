@@ -16,7 +16,8 @@ import shutil
 
 class reportsDB:
     TABLE_NAME = 'reports'
-    TABLE_COLS = [ {'col_name': 'name',        'type':'VARCHAR(255)', 'len':50},
+    TABLE_COLS = [ {'col_name': 'name_id',     'type':'TEXT'},
+                   {'col_name': 'name',        'type':'TEXT'},
                    {'col_name': 'standard',    'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'date',        'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'time',        'type':'VARCHAR(255)', 'len':50},
@@ -30,7 +31,7 @@ class reportsDB:
 
     # DATE_STR_FORMAT = "%Y/%m/%d"
     # TIME_STR_FORMAT = "%H:%M:%S"
-    PRIMERY_KEY_COL_NAME = 'id'
+    PRIMERY_KEY_COL_NAME = 'name_id'
 
 
     def __init__(self,db_manager:databaseManager):
@@ -61,19 +62,23 @@ class reportsDB:
         for col_name in self.CSV_COLS:
             record[col_name] = dataUtils.csv_to_list(record[col_name])
         return record
+    
+
+    def search(self,data:dict):
+        self.db_manager.search()
 
 
     def save(self, data):
         data = self.__pre_process_to_save__(data)
-        if self.PRIMERY_KEY_COL_NAME in data:
-            if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-                self.update(self,data)
+        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
+            self.update(self,data)
 
         else:
             self.db_manager.add_record_dict(self.TABLE_NAME, data)
     
 
-    def update(self, data):
+    def update(self, data:dict):
+        data = data.copy()
         data = self.__pre_process_to_save__(data)
         self.db_manager.update_record_dict(self.TABLE_NAME, 
                                            data, 
@@ -94,9 +99,9 @@ class reportsDB:
             return True
         return False
     
-    def load_by_ids(self, ids):
+    def load_by_name_ids(self, name_ids):
         res = []
-        for id in ids:
+        for id in name_ids:
             records = self.db_manager.search(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
             for record in records:
                 record = self.__pre_process_to_load__(record)

@@ -13,10 +13,10 @@ class standardsPageUI():
         
 
     def open_new_standard_tab(self,):
-        GUIBackend.set_current_tab(self.ui.gradingranges_tabs, 0)
+        GUIBackend.set_current_tab(self.ui.gradingranges_tabs, 1)
     
     def open_all_standard_tab(self,):
-        GUIBackend.set_current_tab(self.ui.gradingranges_tabs, 1)
+        GUIBackend.set_current_tab(self.ui.gradingranges_tabs, 0)
 
 
 

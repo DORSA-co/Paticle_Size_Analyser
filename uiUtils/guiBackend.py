@@ -83,9 +83,12 @@ class GUIBackend:
         ui.show()
 
     @staticmethod
-    def close_window( ui):
+    def close_window( ui:QtWidgets.QDialog):
         ui.close()
 
+    @staticmethod
+    def hide_window( ui:QtWidgets.QDialog):
+        ui.hide()
     #----------------------------------------------------------------
     @staticmethod
     def is_spinbox(wgt):

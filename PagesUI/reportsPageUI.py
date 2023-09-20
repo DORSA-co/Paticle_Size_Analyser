@@ -4,6 +4,7 @@ from uiUtils import GUIComponents
 from datetime import datetime
 from backend.Utils.datetimeUtils import datetimeFormat
 from PySide6.QtCore import Signal, QThread, QObject
+from PagesUI.dialogWindows.proggressDialogUI import proggressDialogUI
 
 
 class reportsPageUI:
@@ -11,6 +12,7 @@ class reportsPageUI:
     def __init__(self, ui, auto_rebuild_ui):
         self.ui = ui
         self.auto_rebuild_ui = auto_rebuild_ui
+        self.progessBarDialog = proggressDialogUI()
 
         
         
@@ -57,11 +59,16 @@ class reportsPageUI:
             'ranges': self.ui.reportpage_filterranges_frame,
         
         }
+
+        self.rebuilds_button = {
+            'rebuild': self.auto_rebuild_ui.rebuild_btn,
+            'close': self.auto_rebuild_ui.close_btn,
+        }
         
 
         self.standards_filter_checkbox = {}
         self.samples_table_checkbox = {}
-        self.samples_table_headers= ['compare', 'id', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
+        self.samples_table_headers= ['compare', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
         self.external_see_report_event_func = None
         self.external_delete_samples_event_func = None
 
@@ -80,7 +87,7 @@ class reportsPageUI:
         GUIBackend.checkbox_connector(self.select_all_checkbox, self.select_all_samples)
         GUIBackend.combobox_changeg_connector(self.ranges_filter_standards_combobox, self.__ranges_filter_standard_changed__)
         GUIBackend.button_connector(self.rebuild_btn, self.show_rebuild_win)
-        GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, self.close_rebuild_win)
+        #GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, self.close_rebuild_win)
 
         GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, False)
         GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, False)
@@ -144,6 +151,12 @@ class reportsPageUI:
 
 
     def set_rebuild_status(self, need_rebuild:bool):
+        """if status be True, it means that rebuild is need and in UI,
+            rebuild button whould be action, and some filters de active.
+
+        Args:
+            need_rebuild (bool): _description_
+        """
         
         GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, need_rebuild)
         GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, need_rebuild)
@@ -327,6 +340,7 @@ class reportsPageUI:
 
     def set_samples_table(self, samples: list[dict]):
         
+        samples = samples.copy()
         GUIBackend.set_table_dim(self.samples_table, row=len(samples), col=None)
         self.samples_table_checkbox = {}
 
@@ -342,7 +356,7 @@ class reportsPageUI:
             checkbox = GUIComponents.tabelCheckbox()
             j = self.samples_table_headers.index('compare')
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox)
-            self.samples_table_checkbox[sample['id']] = checkbox
+            self.samples_table_checkbox[sample['name_id']] = checkbox
 
 
             report_btn = GUIComponents.reportButton()
@@ -384,17 +398,19 @@ class reportsPageUI:
         cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
         return cmb.render()
     
-
     def show_rebuild_win(self,):
         self.set_rebuild_progress_bar(0)
         #GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, False)
         GUIBackend.show_window(self.auto_rebuild_ui, True)
 
-    def enable_rebuild_win_close(self):
-        GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, True)
+    def enable_rebuild_win_buttons(self, btn_name, state):
+        GUIBackend.set_disable_enable(self.rebuilds_button[btn_name], state)
 
     def close_rebuild_win(self,):
         GUIBackend.close_window(self.auto_rebuild_ui)
+    
+    def hide_rebuild_win(self,):
+        GUIBackend.hide_window(self.auto_rebuild_ui)
     
     def dialogbox_rebuild_btn_connector(self, func):
         GUIBackend.button_connector(self.auto_rebuild_ui.rebuild_btn, func)
@@ -403,13 +419,11 @@ class reportsPageUI:
         value = int(value)
         GUIBackend.set_progressbar_value(self.auto_rebuild_ui.converting_progressbar, value)
 
-
+    def rebuid_close_button_connector(self, func):
+        GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, func)
+        
 
 
     
     
 
-    class samplesTableWorker(QObject):
-
-        def __init__(self, table, samples, button_func, parent: QObject) -> None:
-            super().__init__(parent)

@@ -14,7 +14,7 @@ import time
 class Report:
     """store all information of a sample
     """
-    def __init__(self, name = None, standard = None, username = '', main_path ='', settings={}) -> None:
+    def __init__(self, name = '', standard = None, username = '', main_path ='', settings={}) -> None:
         
         self.name = name
         self.standard = standard
@@ -26,6 +26,7 @@ class Report:
         self.Buffer = particlesBuffer()
         self.sieved_particles = []
         self.settings = settings
+        self.name_id = self.generate_uniq_id()
 
         if self.standard is not None:
             self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
@@ -36,6 +37,9 @@ class Report:
         else:
             assert True, "not developed yet"
 
+    def generate_uniq_id(self,):
+        date_time_str = self.date_time.strftime('%Y-%m-%d_%H-%M-%S_%f')
+        return self.name + '_' + self.username + '_' + date_time_str
 
     def set_operator_username(self, username):
         self.username = username
@@ -95,6 +99,7 @@ class Report:
 
     def get_database_record(self,):
         db_data = {
+            'name_id' : self.name_id,
             'name': self.name,
             'path': self.main_path,
             'standard': self.standard['name'],
@@ -112,14 +117,16 @@ class Report:
         return self.date_time.strftime("%Y/%m/%d")
     
 
-    def change_standard(self, standard:dict):
+    def change_standard(self, standard:dict, ):
         #t = time.time()
-        if standard['ranges'] != self.standard['ranges']:
+        if standard['ranges'] != self.standard['ranges'] :
             self.standard = standard
             self.Grading = Grading(self.standard['ranges'])
             self.cumGrading = cumGrading(self.get_full_range())
             self.Grading.append( self.Buffer )
             self.cumGrading.append(self.Buffer)
+            self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
+
         
         self.standard = standard.copy()
 

@@ -1,13 +1,18 @@
 from PagesUI.reportPageUI import reportPageUI
 from backend.Processing.Report import Report
 from Database.reportsDB import reportFileHandler
+from Database.mainDatabase  import mainDatabase
+from backend.Rebuild.rebuidReport import RebuildReport
+
 import cv2
 class reportPageAPI:
     PARTICLE_PER_PAGE = 48
     PARTICLE_PAGE_COL = 8
     assert PARTICLE_PER_PAGE % PARTICLE_PAGE_COL==0, "Particle Row count should be int"
-    def __init__(self, ui:reportPageUI):
+
+    def __init__(self, ui:reportPageUI, database:mainDatabase):
         self.ui = ui
+        self.database = database
 
         self.external_back_event_func = None
         self.particle_idx = 0
@@ -15,12 +20,36 @@ class reportPageAPI:
         self.particles_page = 0
 
         self.ui.back_button_connector(self.back)
+        self.ui.rebuild_button_connector(self.show_rebuild)
+        self.ui.dialog_rebuild_button_connector(self.run_rebuild)
         self.ui.navigator_button_connector(self.particles_navigation)
         self.ui.particle_click_connector(self.show_particle_information)
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
         self.external_back_event_func = func
+
+    def show_rebuild(self,):
+        standards_name = self.database.standards_db.load_standards_name()
+        self.ui.set_rebuild_standards(standards_name)
+        self.ui.show_rebuild_win()
+
+    def run_rebuild(self,):
+        """rebuild curent report into new standard
+        """
+        new_standard_name = self.ui.get_rebuild_standard()
+        new_standard = self.database.standards_db.load(new_standard_name)
+        name_id = self.report.generate_uniq_id()
+        report_record = self.database.reports_db.load_by_name_ids( [name_id] )[0]
+        new_report_record, new_report = RebuildReport.rebuild(report_record, self.report, new_standard)
+        
+        rfh = reportFileHandler(report_record)
+        self.database.reports_db.update(new_report_record)
+        rfh.save_report(new_report)
+        self.set_report(new_report)
+        self.ui.close_rebuild_win()
+        
+
 
 
     def set_report(self, report:Report):
@@ -42,7 +71,6 @@ class reportPageAPI:
         self.show_ranges_statistics()
         self.show_charts()
         self.refresh_particles_page()
-        #self.show_particle_information()
     
     
 

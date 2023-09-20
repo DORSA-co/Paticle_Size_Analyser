@@ -15,12 +15,15 @@ class objectSaver:
             path (str): path
         """
         if os.path.exists(path):
-            with open(path, 'ab') as dbfile:
-                pickle.dump(obj, dbfile)
+            os.remove(path)
+            #with open(path, 'ab') as dbfile:
+            #    pickle.dump(obj, dbfile)
         
-        else:
-            with open(path, 'wb') as dbfile:
-                pickle.dump(obj, dbfile)
+        while os.path.exists(path):
+            pass
+        
+        with open(path, 'wb') as dbfile:
+            pickle.dump(obj, dbfile)
 
 
     @staticmethod

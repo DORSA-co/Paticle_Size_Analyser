@@ -919,7 +919,7 @@ Line{
           <item>
            <widget class="QPushButton" name="sidebar_grading_ranges_btn">
             <property name="text">
-             <string>Grading Ranges</string>
+             <string>Standards</string>
             </property>
             <property name="icon">
              <iconset resource="Assets.qrc">
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -3128,6 +3128,9 @@ QPushButton:hover{
                  <property name="horizontalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOn</enum>
                  </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::NoEditTriggers</set>
+                 </property>
                  <property name="rowCount">
                   <number>11</number>
                  </property>
@@ -3198,6 +3201,129 @@ QPushButton:hover{
              <property name="tabBarAutoHide">
               <bool>false</bool>
              </property>
+             <widget class="QWidget" name="all_standards_tab">
+              <attribute name="title">
+               <string>All Standards</string>
+              </attribute>
+              <layout class="QVBoxLayout" name="verticalLayout_32">
+               <item>
+                <widget class="QGroupBox" name="settingpage_grading_standards_groupbox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="title">
+                  <string>Standards</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_17">
+                  <item>
+                   <widget class="QTableWidget" name="settingpage_grading_standards_table">
+                    <property name="styleSheet">
+                     <string notr="true">
+QHeaderView::section {
+    background-color: rgb(6, 76, 130);
+	color: #ffffff;
+    padding: 4px;
+    font-size: 16pt;
+	font-weight:bold;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+    border-right: 1px solid #fffff8;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fffff8;	
+}
+
+
+QTableWidget{
+	font-size: 16px;
+	color:rgb(50, 50, 50);
+}
+
+QTableWidget::item
+{
+   padding: 10px;
+}
+</string>
+                    </property>
+                    <property name="horizontalScrollBarPolicy">
+                     <enum>Qt::ScrollBarAlwaysOn</enum>
+                    </property>
+                    <property name="sizeAdjustPolicy">
+                     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+                    </property>
+                    <property name="editTriggers">
+                     <set>QAbstractItemView::NoEditTriggers</set>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                    <property name="rowCount">
+                     <number>2</number>
+                    </property>
+                    <property name="columnCount">
+                     <number>4</number>
+                    </property>
+                    <attribute name="horizontalHeaderMinimumSectionSize">
+                     <number>60</number>
+                    </attribute>
+                    <attribute name="horizontalHeaderDefaultSectionSize">
+                     <number>100</number>
+                    </attribute>
+                    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="horizontalHeaderStretchLastSection">
+                     <bool>true</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderVisible">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderCascadingSectionResizes">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderMinimumSectionSize">
+                     <number>23</number>
+                    </attribute>
+                    <attribute name="verticalHeaderDefaultSectionSize">
+                     <number>45</number>
+                    </attribute>
+                    <attribute name="verticalHeaderHighlightSections">
+                     <bool>true</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                     <bool>false</bool>
+                    </attribute>
+                    <attribute name="verticalHeaderStretchLastSection">
+                     <bool>false</bool>
+                    </attribute>
+                    <row/>
+                    <row/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <column/>
+                    <item row="0" column="0">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
              <widget class="QWidget" name="new_standard_tab">
               <property name="styleSheet">
                <string notr="true"/>
@@ -3850,129 +3976,6 @@ QTableWidget::item
                   </size>
                  </property>
                 </spacer>
-               </item>
-              </layout>
-             </widget>
-             <widget class="QWidget" name="all_standards_tab">
-              <attribute name="title">
-               <string>All Standards</string>
-              </attribute>
-              <layout class="QVBoxLayout" name="verticalLayout_32">
-               <item>
-                <widget class="QGroupBox" name="settingpage_grading_standards_groupbox">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="title">
-                  <string>Standards</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_17">
-                  <item>
-                   <widget class="QTableWidget" name="settingpage_grading_standards_table">
-                    <property name="styleSheet">
-                     <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 16pt;
-	font-weight:bold;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;	
-}
-
-
-QTableWidget{
-	font-size: 16px;
-	color:rgb(50, 50, 50);
-}
-
-QTableWidget::item
-{
-   padding: 10px;
-}
-</string>
-                    </property>
-                    <property name="horizontalScrollBarPolicy">
-                     <enum>Qt::ScrollBarAlwaysOn</enum>
-                    </property>
-                    <property name="sizeAdjustPolicy">
-                     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-                    </property>
-                    <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
-                    </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                    <property name="rowCount">
-                     <number>2</number>
-                    </property>
-                    <property name="columnCount">
-                     <number>4</number>
-                    </property>
-                    <attribute name="horizontalHeaderMinimumSectionSize">
-                     <number>60</number>
-                    </attribute>
-                    <attribute name="horizontalHeaderDefaultSectionSize">
-                     <number>100</number>
-                    </attribute>
-                    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="horizontalHeaderStretchLastSection">
-                     <bool>true</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderVisible">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderCascadingSectionResizes">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderMinimumSectionSize">
-                     <number>23</number>
-                    </attribute>
-                    <attribute name="verticalHeaderDefaultSectionSize">
-                     <number>45</number>
-                    </attribute>
-                    <attribute name="verticalHeaderHighlightSections">
-                     <bool>true</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderStretchLastSection">
-                     <bool>false</bool>
-                    </attribute>
-                    <row/>
-                    <row/>
-                    <column/>
-                    <column/>
-                    <column/>
-                    <column/>
-                    <item row="0" column="0">
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
                </item>
               </layout>
              </widget>
@@ -7580,8 +7583,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>162</width>
-                    <height>3292</height>
+                    <width>1144</width>
+                    <height>679</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7746,6 +7749,30 @@ border: 2px solid rgb(25, 68, 105);
                </widget>
               </item>
               <item>
+               <widget class="Line" name="line_20">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sreportpage_rebuild_btn">
+                <property name="text">
+                 <string>Re-Build</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="Assets.qrc">
+                  <normaloff>:/assets/Assets/icons/icons8-retweet-50.png</normaloff>:/assets/Assets/icons/icons8-retweet-50.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>30</width>
+                  <height>30</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="horizontalSpacer_46">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -7845,7 +7872,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>892</width>
+                <width>1146</width>
                 <height>2377</height>
                </rect>
               </property>
@@ -9835,8 +9862,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>181</width>
-                <height>534</height>
+                <width>1145</width>
+                <height>707</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -10385,7 +10412,6 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets.qrc"/>
-  <include location="../../../../.designer/backup/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

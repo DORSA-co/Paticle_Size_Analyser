@@ -1,14 +1,18 @@
-from PagesUI.reportsPageUI import reportsPageUI
-from backend.Processing.Report import Report
-from backend.Processing.Grading import Grading
-from Database.mainDatabase  import mainDatabase
-from Database.reportsDB import reportFileHandler
-from backend.Processing.Compare import Compare
-from backend.Rebuild.rebuidReport import rebuildReport
+from typing import Optional
 import cv2
 from datetime import datetime, date
 import threading
 import numpy as np
+from PySide6.QtCore import QThread, QObject, Signal
+
+from PagesUI.reportsPageUI import reportsPageUI
+from backend.Processing.Report import Report
+from backend.Processing.Grading import Grading
+from Database.mainDatabase  import mainDatabase
+from Database.reportsDB import reportFileHandler, reportsDB
+from backend.Processing.Compare import Compare
+from backend.Rebuild.rebuidReport import autoRebuildReport
+
 
 import time
 
@@ -21,6 +25,7 @@ class reportsPageAPI:
 
         self.see_report_event_func = None
         self.compare_event_func = None
+        self.in_rubuilding_flag = False
         self.logined_username = ''
 
         self.operations_condition = {
@@ -39,6 +44,7 @@ class reportsPageAPI:
         self.ui.set_delete_sample_event_func(self.delete_sample)
         self.ui.delete_selections_button_connector(self.delete_selections)
         self.ui.dialogbox_rebuild_btn_connector(self.rebuild_reports)
+        self.ui.rebuid_close_button_connector(self.close_rebild)
         self.startup()
 
 
@@ -51,19 +57,17 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
-        t = time.time()
         self.all_samples = self.database.reports_db.load_all()
-        t = time.time() - t
-        print('t1',t)
         #show rebuild if user login
         if self.logined_username != '':
             self.check_rebuild()
         
         self.set_standards()
-        t = time.time()
+        self.refresh_table()
+        
+
+    def refresh_table(self,):
         self.ui.set_samples_table(self.all_samples)
-        t = time.time() - t
-        print('t2',t)
     
     def set_user_login(self, username):
         self.logined_username = username
@@ -71,7 +75,7 @@ class reportsPageAPI:
 
     def check_rebuild(self,):
         history = self.database.standards_db.standardsHistoryTemp.get_history()
-        self.rebuilder = rebuildReport(history.copy())
+        self.rebuilder = autoRebuildReport(history.copy())
         
         if self.rebuilder.is_need(self.all_samples):
                 self.ui.set_rebuild_status(True)
@@ -82,30 +86,45 @@ class reportsPageAPI:
     
 
     def rebuild_reports(self):
-        total_count = len(self.all_samples)
+        self.in_rubuilding_flag = True
+        self.ui.enable_rebuild_win_buttons('rebuild', False)
 
-        for i in range(total_count):
-            rfh = reportFileHandler(self.all_samples[i])
-            report = rfh.load_report()
-            if report is not None:
-                #rebuild sample and report base on standard changes
-                new_sample_record, new_report = self.rebuilder.rebuild(self.all_samples[i], report)
-                #if new_sample_record be None, no rebuid done
-                if new_sample_record is not None:
-                    self.all_samples[i] = new_sample_record
-                    self.database.reports_db.update(new_sample_record)
-                    rfh.save_report(new_report)
+        self.rebuild_worker = rebuildWorker(self.rebuilder, self.all_samples, self.database.reports_db)
+        self.thread_rebuild = QThread()
 
-            percent = (i+1) / total_count * 100
-            self.ui.set_rebuild_progress_bar( percent )
+        self.rebuild_worker.moveToThread(self.thread_rebuild)
+        self.thread_rebuild.started.connect(self.rebuild_worker.rebuild)
+        self.rebuild_worker.finished.connect(self.rebuild_complete)
+        self.rebuild_worker.progressBar.connect(self.ui.set_rebuild_progress_bar)
+        self.rebuild_worker.finished.connect(self.thread_rebuild.quit)
+        self.thread_rebuild.finished.connect(self.thread_rebuild.deleteLater)
+        self.rebuild_worker.finished.connect(self.rebuild_worker.deleteLater)
 
-        else:
+        self.thread_rebuild.start()
+    
+
+    def rebuild_complete(self,):
+        self.in_rubuilding_flag = False
+        if self.rebuild_worker.complete_success:
             self.database.standards_db.standardsHistoryTemp.remove_history()
             del(self.rebuilder)
             self.ui.set_rebuild_status(False)
-            self.ui.set_samples_table(self.all_samples)
-            self.ui.enable_rebuild_win_close()
-        
+    
+        self.ui.enable_rebuild_win_buttons('rebuild', True)
+        self.refresh_table()
+
+    
+    def close_rebild(self,):
+        if self.in_rubuilding_flag:
+            self.ui.hide_rebuild_win()
+            btn = self.ui.show_confirm_box('Cancel','Are You Sure to stop rebuilding', ['yes','cancel'])
+            if btn == 'cancel':
+                self.ui.show_rebuild_win()
+                return 
+            self.in_rubuilding_flag = False
+            self.rebuild_worker.break_loop()
+                
+        self.ui.close_rebuild_win()
 
 
     def load_all_samples(self,):
@@ -162,8 +181,6 @@ class reportsPageAPI:
             if filter_func(sample):
                 self.filterd_samples.append(sample)
         
-        
-        #
     
     def generate_filter(self, ):
         
@@ -223,17 +240,15 @@ class reportsPageAPI:
             return flag
         return func
 
-    def see_report(self, sample:dict):
+    def see_report(self, sample_record:dict):
         
-        rfh = reportFileHandler(sample)
+        rfh = reportFileHandler(sample_record)
         report = rfh.load_report()
         if report is None:
             self.ui.show_confirm_box('Error', "Report File dosen't exit. it may deleted", ['ok'])
         if self.see_report_event_func is not None:
-            self.see_report_event_func(report, 'reports')
-
-
-
+            self.see_report_event_func( report, 'reports')
+            
     
     def set_see_report_event_func(self, func):
         self.see_report_event_func = func
@@ -253,7 +268,7 @@ class reportsPageAPI:
             self.ui.show_confirm_box("ERROR!", massage="only one sample selected. Please select at least two samples", buttons=['ok'])
             return
         #load selected sample for compare from database
-        samples = self.database.reports_db.load_by_ids(ids)
+        samples = self.database.reports_db.load_by_name_ids(ids)
         #get selected standard for compare
         standard_name = self.ui.get_selected_standard_for_campare()
         standard = self.database.standards_db.load(standard_name)
@@ -278,7 +293,7 @@ class reportsPageAPI:
         self.database.reports_db.remove(sample)
         self.all_samples.remove(sample)
 
-        self.ui.set_samples_table(self.all_samples)
+        self.refresh_table()
 
 
     def delete_selections(self,):
@@ -299,12 +314,99 @@ class reportsPageAPI:
         
         if state == 'cancel':
             return
-        samples = self.database.reports_db.load_by_ids(ids)
-        for sample in samples:
+        
+        self.ui.progessBarDialog.setup('Remove samples','', operation_name='removed')
+        self.ui.progessBarDialog.show()
+        samples = self.database.reports_db.load_by_name_ids(ids)
+
+
+        self.worker_remove = removeSamplesWorkder(self.all_samples, samples, self.database.reports_db)
+        self.thread_remove = QThread()
+
+        self.worker_remove.moveToThread(self.thread_remove)
+        self.thread_remove.started.connect(self.worker_remove.run)
+        self.worker_remove.finished.connect(self.ui.progessBarDialog.close)
+        self.worker_remove.finished.connect(self.refresh_table)
+        self.worker_remove.progressBar.connect(self.ui.progessBarDialog.set_value)
+        self.worker_remove.finished.connect(self.thread_remove.quit)
+        self.thread_remove.finished.connect(self.thread_remove.deleteLater)
+        self.thread_remove.finished.connect(self.worker_remove.deleteLater)
+        
+        self.thread_remove.start()
+
+
+
+
+
+
+
+class removeSamplesWorkder(QObject):
+    progressBar = Signal(int, int)
+    finished = Signal()
+
+    def __init__(self, all_samples:list[dict], selection_samples:list[dict], db:reportsDB ) -> None:
+        super(removeSamplesWorkder, self).__init__()
+
+        self.selection_samples = selection_samples
+        self.all_samples = all_samples
+        self.db = db
+
+    def run(self,):
+        total_count = len(self.selection_samples)
+        for i,sample in enumerate(self.selection_samples):
             rfh = reportFileHandler(sample)
             rfh.remove()
-            self.database.reports_db.remove(sample)
+            self.db.remove(sample)
             self.all_samples.remove(sample)
+            self.progressBar.emit(i, total_count)
 
-        self.ui.set_samples_table(self.all_samples)
+        self.finished.emit()
+
+
+
+
+
+class rebuildWorker(QObject):
+    progressBar = Signal(int)
+    finished = Signal()
+    
+    def __init__(self, rebuilder:autoRebuildReport, samples:list[dict], db:reportsDB) -> None:
+        super(rebuildWorker,self).__init__()
+        self.db = db
+        self.samples = samples
+        self.rebuilder = rebuilder
+        self.break_flag = False
+        self.complete_success = False
+
+    def break_loop(self):
+        self.break_flag = True
+
+    def rebuild(self,):
+
+        self.complete_success = False
+        total_count = len(self.samples)
+
+        for i in range(total_count):
+            if self.break_flag:
+                break
+            time.sleep(0.01)
+            rfh = reportFileHandler(self.samples[i])
+            report = rfh.load_report()
+            if report is not None:
+                #rebuild sample and report base on standard changes
+                new_sample_record, new_report = self.rebuilder.rebuild(self.samples[i], report)
+                #if new_sample_record be None, no rebuid done
+                if new_sample_record is not None:
+                    self.samples[i] = new_sample_record
+                    self.db.update(new_sample_record)
+                    rfh.save_report(new_report)
+
+            percent = int( (i+1) / total_count * 100)
+            self.progressBar.emit(percent)
+        else:
+            self.complete_success = True
+            
+
+        self.finished.emit()
+
 

@@ -1,6 +1,27 @@
 from backend.Processing.Report import Report
 
-class rebuildReport:
+
+class RebuildReport:
+
+    @staticmethod
+    def rebuild( sample_record:dict, report:Report , new_standard:dict)-> tuple[dict, Report]:
+        sample_record, report = RebuildReport.__change_standard__(sample_record, report, new_standard)
+        return sample_record, report
+        
+
+    @staticmethod 
+    def __change_standard__( sample_record:dict, report:Report, standard:dict ) -> tuple[dict, Report]:
+        report.change_standard(standard)
+        sample_record['grading_result'] = report.Grading.get_hist()
+        sample_record['standard'] = standard['name']
+
+        return sample_record, report
+
+
+
+
+
+class autoRebuildReport:
 
     def __init__(self, history:list[dict[dict]]) -> None:
         """
@@ -63,7 +84,7 @@ class rebuildReport:
             new_standard = convert['new']
 
             if sample_record['standard'] == old_standard['name']:
-                sample_record, report = self.__change_standard__(sample_record, report, new_standard)
+                sample_record, report = RebuildReport.rebuild(sample_record, report, new_standard)
                 convert_flag = True
                 break
         
@@ -73,15 +94,5 @@ class rebuildReport:
         else:
             return None, None
         
-        
-
-    
-    def __change_standard__(self, sample_record:dict, report:Report, standard:dict ) -> tuple[dict, Report]:
-        report.change_standard(standard)
-        sample_record['grading_result'] = report.Grading.get_hist()
-        sample_record['standard'] = standard['name']
-
-        return sample_record, report
-
 
 

@@ -47,7 +47,7 @@ class main_API(QObject):
         self.gradingRangesPageAPI = standardsPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
         self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db )
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
-        self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage)
+        self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage, database=self.db)
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
         self.validationPageAPI = validationPageAPI(ui=self.ui.validationPage, database=self.db)

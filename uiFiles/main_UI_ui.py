@@ -24,7 +24,6 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1889,6 +1888,7 @@ class Ui_MainWindow(object):
         self.reportpage_samples_table.setEnabled(True)
         self.reportpage_samples_table.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.reportpage_samples_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.reportpage_samples_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.reportpage_samples_table.setRowCount(11)
         self.reportpage_samples_table.setColumnCount(5)
         self.reportpage_samples_table.verticalHeader().setDefaultSectionSize(45)
@@ -1926,6 +1926,81 @@ class Ui_MainWindow(object):
         self.gradingranges_tabs.setTabsClosable(False)
         self.gradingranges_tabs.setMovable(False)
         self.gradingranges_tabs.setTabBarAutoHide(False)
+        self.all_standards_tab = QWidget()
+        self.all_standards_tab.setObjectName(u"all_standards_tab")
+        self.verticalLayout_32 = QVBoxLayout(self.all_standards_tab)
+        self.verticalLayout_32.setObjectName(u"verticalLayout_32")
+        self.settingpage_grading_standards_groupbox = QGroupBox(self.all_standards_tab)
+        self.settingpage_grading_standards_groupbox.setObjectName(u"settingpage_grading_standards_groupbox")
+        sizePolicy.setHeightForWidth(self.settingpage_grading_standards_groupbox.sizePolicy().hasHeightForWidth())
+        self.settingpage_grading_standards_groupbox.setSizePolicy(sizePolicy)
+        self.verticalLayout_17 = QVBoxLayout(self.settingpage_grading_standards_groupbox)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.settingpage_grading_standards_table = QTableWidget(self.settingpage_grading_standards_groupbox)
+        if (self.settingpage_grading_standards_table.columnCount() < 4):
+            self.settingpage_grading_standards_table.setColumnCount(4)
+        if (self.settingpage_grading_standards_table.rowCount() < 2):
+            self.settingpage_grading_standards_table.setRowCount(2)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.settingpage_grading_standards_table.setItem(0, 0, __qtablewidgetitem6)
+        self.settingpage_grading_standards_table.setObjectName(u"settingpage_grading_standards_table")
+        self.settingpage_grading_standards_table.setStyleSheet(u"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(6, 76, 130);\n"
+"	color: #ffffff;\n"
+"    padding: 4px;\n"
+"    font-size: 16pt;\n"
+"	font-weight:bold;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-right: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fffff8;	\n"
+"}\n"
+"\n"
+"\n"
+"QTableWidget{\n"
+"	font-size: 16px;\n"
+"	color:rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QTableWidget::item\n"
+"{\n"
+"   padding: 10px;\n"
+"}\n"
+"")
+        self.settingpage_grading_standards_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.settingpage_grading_standards_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.settingpage_grading_standards_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.settingpage_grading_standards_table.setWordWrap(True)
+        self.settingpage_grading_standards_table.setRowCount(2)
+        self.settingpage_grading_standards_table.setColumnCount(4)
+        self.settingpage_grading_standards_table.horizontalHeader().setMinimumSectionSize(60)
+        self.settingpage_grading_standards_table.horizontalHeader().setDefaultSectionSize(100)
+        self.settingpage_grading_standards_table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.settingpage_grading_standards_table.horizontalHeader().setStretchLastSection(True)
+        self.settingpage_grading_standards_table.verticalHeader().setVisible(False)
+        self.settingpage_grading_standards_table.verticalHeader().setCascadingSectionResizes(False)
+        self.settingpage_grading_standards_table.verticalHeader().setMinimumSectionSize(23)
+        self.settingpage_grading_standards_table.verticalHeader().setDefaultSectionSize(45)
+        self.settingpage_grading_standards_table.verticalHeader().setHighlightSections(True)
+        self.settingpage_grading_standards_table.verticalHeader().setProperty("showSortIndicator", False)
+        self.settingpage_grading_standards_table.verticalHeader().setStretchLastSection(False)
+
+        self.verticalLayout_17.addWidget(self.settingpage_grading_standards_table)
+
+
+        self.verticalLayout_32.addWidget(self.settingpage_grading_standards_groupbox)
+
+        self.gradingranges_tabs.addTab(self.all_standards_tab, "")
         self.new_standard_tab = QWidget()
         self.new_standard_tab.setObjectName(u"new_standard_tab")
         self.new_standard_tab.setStyleSheet(u"")
@@ -2264,81 +2339,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_22.addItem(self.horizontalSpacer_75)
 
         self.gradingranges_tabs.addTab(self.new_standard_tab, "")
-        self.all_standards_tab = QWidget()
-        self.all_standards_tab.setObjectName(u"all_standards_tab")
-        self.verticalLayout_32 = QVBoxLayout(self.all_standards_tab)
-        self.verticalLayout_32.setObjectName(u"verticalLayout_32")
-        self.settingpage_grading_standards_groupbox = QGroupBox(self.all_standards_tab)
-        self.settingpage_grading_standards_groupbox.setObjectName(u"settingpage_grading_standards_groupbox")
-        sizePolicy.setHeightForWidth(self.settingpage_grading_standards_groupbox.sizePolicy().hasHeightForWidth())
-        self.settingpage_grading_standards_groupbox.setSizePolicy(sizePolicy)
-        self.verticalLayout_17 = QVBoxLayout(self.settingpage_grading_standards_groupbox)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.settingpage_grading_standards_table = QTableWidget(self.settingpage_grading_standards_groupbox)
-        if (self.settingpage_grading_standards_table.columnCount() < 4):
-            self.settingpage_grading_standards_table.setColumnCount(4)
-        if (self.settingpage_grading_standards_table.rowCount() < 2):
-            self.settingpage_grading_standards_table.setRowCount(2)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.settingpage_grading_standards_table.setItem(0, 0, __qtablewidgetitem6)
-        self.settingpage_grading_standards_table.setObjectName(u"settingpage_grading_standards_table")
-        self.settingpage_grading_standards_table.setStyleSheet(u"\n"
-"QHeaderView::section {\n"
-"    background-color: rgb(6, 76, 130);\n"
-"	color: #ffffff;\n"
-"    padding: 4px;\n"
-"    font-size: 16pt;\n"
-"	font-weight:bold;\n"
-"    border-style: none;\n"
-"    border-bottom: 1px solid #fffff8;\n"
-"    border-right: 1px solid #fffff8;\n"
-"}\n"
-"\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border-top: 1px solid #fffff8;\n"
-"}\n"
-"\n"
-"QHeaderView::section:vertical\n"
-"{\n"
-"    border-left: 1px solid #fffff8;	\n"
-"}\n"
-"\n"
-"\n"
-"QTableWidget{\n"
-"	font-size: 16px;\n"
-"	color:rgb(50, 50, 50);\n"
-"}\n"
-"\n"
-"QTableWidget::item\n"
-"{\n"
-"   padding: 10px;\n"
-"}\n"
-"")
-        self.settingpage_grading_standards_table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.settingpage_grading_standards_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContentsOnFirstShow)
-        self.settingpage_grading_standards_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.settingpage_grading_standards_table.setWordWrap(True)
-        self.settingpage_grading_standards_table.setRowCount(2)
-        self.settingpage_grading_standards_table.setColumnCount(4)
-        self.settingpage_grading_standards_table.horizontalHeader().setMinimumSectionSize(60)
-        self.settingpage_grading_standards_table.horizontalHeader().setDefaultSectionSize(100)
-        self.settingpage_grading_standards_table.horizontalHeader().setProperty("showSortIndicator", False)
-        self.settingpage_grading_standards_table.horizontalHeader().setStretchLastSection(True)
-        self.settingpage_grading_standards_table.verticalHeader().setVisible(False)
-        self.settingpage_grading_standards_table.verticalHeader().setCascadingSectionResizes(False)
-        self.settingpage_grading_standards_table.verticalHeader().setMinimumSectionSize(23)
-        self.settingpage_grading_standards_table.verticalHeader().setDefaultSectionSize(45)
-        self.settingpage_grading_standards_table.verticalHeader().setHighlightSections(True)
-        self.settingpage_grading_standards_table.verticalHeader().setProperty("showSortIndicator", False)
-        self.settingpage_grading_standards_table.verticalHeader().setStretchLastSection(False)
-
-        self.verticalLayout_17.addWidget(self.settingpage_grading_standards_table)
-
-
-        self.verticalLayout_32.addWidget(self.settingpage_grading_standards_groupbox)
-
-        self.gradingranges_tabs.addTab(self.all_standards_tab, "")
 
         self.verticalLayout_30.addWidget(self.gradingranges_tabs)
 
@@ -4384,7 +4384,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1144, 679))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4487,6 +4487,22 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_19.addWidget(self.sreportpage_export_btn)
 
+        self.line_20 = QFrame(self.horizontalFrame2)
+        self.line_20.setObjectName(u"line_20")
+        self.line_20.setFrameShape(QFrame.VLine)
+        self.line_20.setFrameShadow(QFrame.Sunken)
+
+        self.horizontalLayout_19.addWidget(self.line_20)
+
+        self.sreportpage_rebuild_btn = QPushButton(self.horizontalFrame2)
+        self.sreportpage_rebuild_btn.setObjectName(u"sreportpage_rebuild_btn")
+        icon30 = QIcon()
+        icon30.addFile(u":/assets/Assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_rebuild_btn.setIcon(icon30)
+        self.sreportpage_rebuild_btn.setIconSize(QSize(30, 30))
+
+        self.horizontalLayout_19.addWidget(self.sreportpage_rebuild_btn)
+
         self.horizontalSpacer_46 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_19.addItem(self.horizontalSpacer_46)
@@ -4568,7 +4584,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 2377))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1146, 2377))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5480,9 +5496,9 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon30 = QIcon()
-        icon30.addFile(u":/assets/Assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_prev_particle_btn.setIcon(icon30)
+        icon31 = QIcon()
+        icon31.addFile(u":/assets/Assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_prev_particle_btn.setIcon(icon31)
         self.sreportpage_prev_particle_btn.setIconSize(QSize(50, 50))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_prev_particle_btn)
@@ -5490,9 +5506,9 @@ class Ui_MainWindow(object):
         self.sreportpage_next_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon31 = QIcon()
-        icon31.addFile(u":/assets/Assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_next_particle_btn.setIcon(icon31)
+        icon32 = QIcon()
+        icon32.addFile(u":/assets/Assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_next_particle_btn.setIcon(icon32)
         self.sreportpage_next_particle_btn.setIconSize(QSize(50, 50))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_next_particle_btn)
@@ -5597,7 +5613,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 534))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1145, 707))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5868,7 +5884,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(4)
+        self.main_pages_stackw.setCurrentIndex(1)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(1)
@@ -5899,7 +5915,7 @@ class Ui_MainWindow(object):
         self.close_btn.setText("")
         self.sidebar_main_btn.setText(QCoreApplication.translate("MainWindow", u"Main", None))
         self.sidebar_report_btn.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
-        self.sidebar_grading_ranges_btn.setText(QCoreApplication.translate("MainWindow", u"Grading Ranges", None))
+        self.sidebar_grading_ranges_btn.setText(QCoreApplication.translate("MainWindow", u"Standards", None))
         self.sidebar_settings_btn.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.sidebar_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Calibration", None))
         self.sidebar_users_btn.setText(QCoreApplication.translate("MainWindow", u"Users", None))
@@ -5977,6 +5993,13 @@ class Ui_MainWindow(object):
         self.reportpage_rebuild_btn.setText(QCoreApplication.translate("MainWindow", u"Re-Build", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare:", None))
         self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
+        self.settingpage_grading_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
+
+        __sortingEnabled2 = self.settingpage_grading_standards_table.isSortingEnabled()
+        self.settingpage_grading_standards_table.setSortingEnabled(False)
+        self.settingpage_grading_standards_table.setSortingEnabled(__sortingEnabled2)
+
+        self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.all_standards_tab), QCoreApplication.translate("MainWindow", u"All Standards", None))
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
         self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
@@ -5990,13 +6013,6 @@ class Ui_MainWindow(object):
         self.gradingranges_new_standard_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"Defined Ranges", None))
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
-        self.settingpage_grading_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
-
-        __sortingEnabled2 = self.settingpage_grading_standards_table.isSortingEnabled()
-        self.settingpage_grading_standards_table.setSortingEnabled(False)
-        self.settingpage_grading_standards_table.setSortingEnabled(__sortingEnabled2)
-
-        self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.all_standards_tab), QCoreApplication.translate("MainWindow", u"All Standards", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Restor Defualt", None))
@@ -6162,6 +6178,7 @@ class Ui_MainWindow(object):
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_document_tab), QCoreApplication.translate("MainWindow", u"Document", None))
         self.sreportpage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.sreportpage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.sreportpage_rebuild_btn.setText(QCoreApplication.translate("MainWindow", u"Re-Build", None))
         self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow", u"General Information", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Sample Name:", None))
         self.sreportpage_name_lbl.setText(QCoreApplication.translate("MainWindow", u"no-name", None))

@@ -9,11 +9,14 @@ import math
 class reportPageUI:
     
 
-    def __init__(self, ui,):
+    def __init__(self, ui,single_rebuild_manual_ui):
         self.ui = ui
+        self.rebuild_win_ui = single_rebuild_manual_ui
 
         self.back_btn = self.ui.sreportpage_back_btn
         self.export_btn = self.ui.sreportpage_export_btn
+        self.rebuild_btn = self.ui.sreportpage_rebuild_btn
+
         self.particles_table = self.ui.sreportpage_particels_table
         self.particle_image_event_func = None
         self.current_page = self.ui.sreportpage_current_page
@@ -116,6 +119,8 @@ class reportPageUI:
         GUIBackend.add_widget( self.ui.report_grading_chart_frame, self.grading_chart )
         GUIBackend.add_widget( self.ui.report_cum_chart_frame, self.cumulative_chart )
         GUIBackend.add_widget( self.ui.report_gaussian_chart_frame, self.gaussian_chart )
+        GUIBackend.button_connector(self.rebuild_win_ui.close_btn, self.close_rebuild_win)
+        GUIBackend.set_win_frameless(self.rebuild_win_ui)
 
     def create_connect(func, *args):
         return lambda: func(*args)
@@ -143,6 +148,17 @@ class reportPageUI:
 
     def back_button_connector(self, func):
         GUIBackend.button_connector(self.back_btn, func)
+
+    def rebuild_button_connector(self, func):
+        """connects a function to rebuild button in top of report page
+        """
+        GUIBackend.button_connector(self.rebuild_btn, func)
+    
+    def dialog_rebuild_button_connector(self, func):
+        """connects a function to rebuild button that is in the 
+          rebuild dialog
+        """
+        GUIBackend.button_connector(self.rebuild_win_ui.rebuild_btn, func)
 
 
     def set_ranges_statistics_tabel(self, data: list[dict]):
@@ -251,4 +267,14 @@ class reportPageUI:
         GUIBackend.set_label_text(self.end_page, str(end))
 
     
-    
+    def show_rebuild_win(self,):
+        GUIBackend.show_window(self.rebuild_win_ui, True)
+
+    def close_rebuild_win(self):
+        GUIBackend.close_window(self.rebuild_win_ui)
+
+    def set_rebuild_standards(self, standards:list[str]):
+        GUIBackend.set_combobox_items(self.rebuild_win_ui.standards_combobox, standards)
+
+    def get_rebuild_standard(self,) -> str:
+        return GUIBackend.get_combobox_selected(self.rebuild_win_ui.standards_combobox)

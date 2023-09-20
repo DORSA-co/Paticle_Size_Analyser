@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="assets">
+    <file>Assets/icons/icons8-retweet-50.png</file>
     <file>Assets/icons/icons8-next-50.png</file>
     <file>Assets/icons/icons8-previous-50.png</file>
     <file>Assets/icons/icons8-download-50.png</file>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'rebuild.ui'
+## Form generated from reading UI file 'single_rebuild_manual.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.2
 ##
@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
-    QProgressBar, QPushButton, QSizePolicy, QSpacerItem,
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QHBoxLayout,
+    QLabel, QPushButton, QSizePolicy, QSpacerItem,
     QVBoxLayout, QWidget)
 import Assets_rc
 
@@ -24,14 +24,14 @@ class Ui_rebuild_win(object):
     def setupUi(self, rebuild_win):
         if not rebuild_win.objectName():
             rebuild_win.setObjectName(u"rebuild_win")
-        rebuild_win.resize(700, 226)
+        rebuild_win.resize(700, 266)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(rebuild_win.sizePolicy().hasHeightForWidth())
         rebuild_win.setSizePolicy(sizePolicy)
         rebuild_win.setMinimumSize(QSize(700, 200))
-        rebuild_win.setMaximumSize(QSize(700, 300))
+        rebuild_win.setMaximumSize(QSize(700, 350))
         rebuild_win.setStyleSheet(u"*{\n"
 "	\n"
 "	font: auto \"Arial\";\n"
@@ -217,21 +217,29 @@ class Ui_rebuild_win(object):
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(50, 10, 50, 20)
-        self.label = QLabel(rebuild_win)
-        self.label.setObjectName(u"label")
-        self.label.setAlignment(Qt.AlignCenter)
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, -1, -1)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout_2.addWidget(self.label)
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.label_2 = QLabel(rebuild_win)
+        self.label_2.setObjectName(u"label_2")
 
-        self.verticalLayout_2.addItem(self.verticalSpacer)
+        self.horizontalLayout_3.addWidget(self.label_2)
 
-        self.converting_progressbar = QProgressBar(rebuild_win)
-        self.converting_progressbar.setObjectName(u"converting_progressbar")
-        self.converting_progressbar.setValue(0)
+        self.standards_combobox = QComboBox(rebuild_win)
+        self.standards_combobox.setObjectName(u"standards_combobox")
 
-        self.verticalLayout_2.addWidget(self.converting_progressbar)
+        self.horizontalLayout_3.addWidget(self.standards_combobox)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
         self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -264,31 +272,6 @@ class Ui_rebuild_win(object):
 
         self.horizontalLayout.addWidget(self.rebuild_btn)
 
-        self.close_btn22 = QPushButton(rebuild_win)
-        self.close_btn22.setObjectName(u"close_btn22")
-        self.close_btn22.setEnabled(False)
-        self.close_btn22.setStyleSheet(u"QPushButton{\n"
-"max-width: 200px;\n"
-"background-color: rgb(197, 63, 59);\n"
-"color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:disabled{\n"
-"background-color: rgb(220, 220, 220);\n"
-"color:#909090;\n"
-"max-width: 200px;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color: rgb(152, 46, 44);\n"
-"color:#ffffff;\n"
-"}")
-
-        self.horizontalLayout.addWidget(self.close_btn22)
-
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
@@ -308,8 +291,7 @@ class Ui_rebuild_win(object):
     def retranslateUi(self, rebuild_win):
         rebuild_win.setWindowTitle(QCoreApplication.translate("rebuild_win", u"Edit User", None))
         self.close_btn.setText("")
-        self.label.setText(QCoreApplication.translate("rebuild_win", u"You edit some standards, You should rebuild your database ", None))
-        self.rebuild_btn.setText(QCoreApplication.translate("rebuild_win", u"Rebuild", None))
-        self.close_btn22.setText(QCoreApplication.translate("rebuild_win", u"Close", None))
+        self.label_2.setText(QCoreApplication.translate("rebuild_win", u"New Standard", None))
+        self.rebuild_btn.setText(QCoreApplication.translate("rebuild_win", u"Run Rebuild", None))
     # retranslateUi
 

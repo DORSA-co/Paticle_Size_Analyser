@@ -126,7 +126,7 @@ class Ui_MainWindow(object):
 "\n"
 "QComboBox::down-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-arrow-48.png);\n"
+"	image: url(:/assets/icons/icons8-arrow-48.png);\n"
 "	width: 15px;\n"
 "    height: 15px;\n"
 "\n"
@@ -147,9 +147,9 @@ class Ui_MainWindow(object):
 "QComboBox QAbstractItemView {\n"
 "    border: none;\n"
 "    selection-background-color: rgb(6, 76, 130);\n"
-"	selection-color: rgb(6, 76, 130"
-                        ");\n"
-"\n"
+"	selection-color: rgb(6, 76, 130);\n"
+""
+                        "\n"
 "\n"
 "}\n"
 "\n"
@@ -185,7 +185,7 @@ class Ui_MainWindow(object):
 "\n"
 "QDateEdit::up-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);\n"
+"	image: url(:/assets/icons/icons8-uptriangle-48.png);\n"
 "	width: 10px;\n"
 "    height: 10px;\n"
 "\n"
@@ -193,7 +193,7 @@ class Ui_MainWindow(object):
 "\n"
 "QDateEdit::down-arrow \n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);\n"
+"	image: url(:/assets/icons/icons8-downtriangle-48.png);\n"
 "	width: 10px;\n"
 "    height: 10px;\n"
 "\n"
@@ -204,11 +204,11 @@ class Ui_MainWindow(object):
 "{\n"
 "    subcontrol-origin: border;\n"
 "	background-color:rgb(6, 76, 130);\n"
-"    width: "
-                        "30px;\n"
+"    width: 30px;\n"
 "}\n"
 "\n"
-"\n"
+""
+                        "\n"
 "QDateEdit::up-button:disabled ,\n"
 "QDateEdit::down-button:disabled\n"
 "    {\n"
@@ -254,16 +254,16 @@ class Ui_MainWindow(object):
 "\n"
 "QSpinBox::up-arrow, QDoubleSpinBox::up-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8"
-                        "-uptriangle-48.png);\n"
-"	width: 10px;\n"
+"	image: url(:/assets/icons/icons8-uptriangle-48.png);\n"
+"	wi"
+                        "dth: 10px;\n"
 "    height: 10px;\n"
 "\n"
 "}\n"
 "\n"
 "QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);\n"
+"	image: url(:/assets/icons/icons8-downtriangle-48.png);\n"
 "	width: 10px;\n"
 "    height: 10px;\n"
 "\n"
@@ -299,15 +299,15 @@ class Ui_MainWindow(object):
 "\n"
 "QCheckBox::indicator {\n"
 "    width: 25px;\n"
-"    height: "
-                        "25px;\n"
-"	border:2px solid rgb(6, 76, 130);\n"
+"    height: 25px;\n"
+"	border:2px solid rgb(6, "
+                        "76, 130);\n"
 "	border-radius: 3px;\n"
 "	\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:checked {\n"
-"    image:url(:/assets/Assets/icons/icons8-check-50.png);\n"
+"    image:url(:/assets/icons/icons8-check-50.png);\n"
 "	background-color:rgb(6, 76, 130);\n"
 "}\n"
 "\n"
@@ -347,12 +347,12 @@ class Ui_MainWindow(object):
 "\n"
 "QTabBar::tab:selected {\n"
 "    background: rgb(6, 76, 130);\n"
-"	font-weight:"
-                        " bold;\n"
+"	font-weight: bold;\n"
 "	font-size: 20px;\n"
 "}\n"
 "\n"
-"QTabBar::tab:!selected {\n"
+""
+                        "QTabBar::tab:!selected {\n"
 "	border-left: 1px solid rgb(199, 199, 199);\n"
 "	border-right: 1px solid rgb(199, 199, 199);\n"
 "}\n"
@@ -415,9 +415,9 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "\n"
-""
-                        "QTimeEdit:hover{\n"
-"	background: #e4f0fa;\n"
+"QTimeEdit:hover{\n"
+"	background: #e4f0fa"
+                        ";\n"
 "}\n"
 "\n"
 "QTimeEdit:focus {\n"
@@ -461,7 +461,7 @@ class Ui_MainWindow(object):
         self.dorsa_logo = QLabel(self.frame_5)
         self.dorsa_logo.setObjectName(u"dorsa_logo")
         self.dorsa_logo.setMaximumSize(QSize(110, 16777215))
-        self.dorsa_logo.setPixmap(QPixmap(u":/assets/Assets/general/dorsa_white.png"))
+        self.dorsa_logo.setPixmap(QPixmap(u":/assets/general/dorsa_white.png"))
         self.dorsa_logo.setScaledContents(True)
 
         self.horizontalLayout_3.addWidget(self.dorsa_logo)
@@ -557,7 +557,7 @@ class Ui_MainWindow(object):
         self.minimize_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.minimize_btn.setStyleSheet(u"")
         icon2 = QIcon()
-        icon2.addFile(u":/assets/Assets/general/minimize.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/assets/general/minimize.png", QSize(), QIcon.Normal, QIcon.Off)
         self.minimize_btn.setIcon(icon2)
         self.minimize_btn.setIconSize(QSize(15, 15))
 
@@ -571,7 +571,7 @@ class Ui_MainWindow(object):
         self.maximize_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.maximize_btn.setStyleSheet(u"")
         icon3 = QIcon()
-        icon3.addFile(u":/assets/Assets/general/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u":/assets/general/maximize.png", QSize(), QIcon.Normal, QIcon.Off)
         self.maximize_btn.setIcon(icon3)
         self.maximize_btn.setIconSize(QSize(15, 15))
 
@@ -584,7 +584,7 @@ class Ui_MainWindow(object):
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.close_btn.setStyleSheet(u"")
         icon4 = QIcon()
-        icon4.addFile(u":/assets/Assets/general/close.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u":/assets/general/close.png", QSize(), QIcon.Normal, QIcon.Off)
         self.close_btn.setIcon(icon4)
         self.close_btn.setIconSize(QSize(15, 15))
 
@@ -649,7 +649,7 @@ class Ui_MainWindow(object):
         self.sidebar_main_btn.setEnabled(True)
         self.sidebar_main_btn.setMinimumSize(QSize(0, 42))
         icon5 = QIcon()
-        icon5.addFile(u":/assets/Assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon5.addFile(u":/assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_main_btn.setIcon(icon5)
 
         self.verticalLayout_2.addWidget(self.sidebar_main_btn)
@@ -658,7 +658,7 @@ class Ui_MainWindow(object):
         self.sidebar_report_btn.setObjectName(u"sidebar_report_btn")
         self.sidebar_report_btn.setMinimumSize(QSize(0, 42))
         icon6 = QIcon()
-        icon6.addFile(u":/assets/Assets/icons/report-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon6.addFile(u":/assets/icons/report-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_report_btn.setIcon(icon6)
 
         self.verticalLayout_2.addWidget(self.sidebar_report_btn)
@@ -666,7 +666,7 @@ class Ui_MainWindow(object):
         self.sidebar_grading_ranges_btn = QPushButton(self.sidebar)
         self.sidebar_grading_ranges_btn.setObjectName(u"sidebar_grading_ranges_btn")
         icon7 = QIcon()
-        icon7.addFile(u":/assets/Assets/icons/icons8-bar-chart-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u":/assets/icons/icons8-bar-chart-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_grading_ranges_btn.setIcon(icon7)
 
         self.verticalLayout_2.addWidget(self.sidebar_grading_ranges_btn)
@@ -675,7 +675,7 @@ class Ui_MainWindow(object):
         self.sidebar_settings_btn.setObjectName(u"sidebar_settings_btn")
         self.sidebar_settings_btn.setMinimumSize(QSize(0, 42))
         icon8 = QIcon()
-        icon8.addFile(u":/assets/Assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon8.addFile(u":/assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_settings_btn.setIcon(icon8)
 
         self.verticalLayout_2.addWidget(self.sidebar_settings_btn)
@@ -684,7 +684,7 @@ class Ui_MainWindow(object):
         self.sidebar_calib_btn.setObjectName(u"sidebar_calib_btn")
         self.sidebar_calib_btn.setMinimumSize(QSize(0, 42))
         icon9 = QIcon()
-        icon9.addFile(u":/assets/Assets/icons/icons8-ruler-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon9.addFile(u":/assets/icons/icons8-ruler-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_calib_btn.setIcon(icon9)
 
         self.verticalLayout_2.addWidget(self.sidebar_calib_btn)
@@ -693,7 +693,7 @@ class Ui_MainWindow(object):
         self.sidebar_users_btn.setObjectName(u"sidebar_users_btn")
         self.sidebar_users_btn.setMinimumSize(QSize(0, 42))
         icon10 = QIcon()
-        icon10.addFile(u":/assets/Assets/icons/icons8-users-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon10.addFile(u":/assets/icons/icons8-users-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_users_btn.setIcon(icon10)
 
         self.verticalLayout_2.addWidget(self.sidebar_users_btn)
@@ -702,7 +702,7 @@ class Ui_MainWindow(object):
         self.sidebar_help_btn.setObjectName(u"sidebar_help_btn")
         self.sidebar_help_btn.setMinimumSize(QSize(0, 42))
         icon11 = QIcon()
-        icon11.addFile(u":/assets/Assets/icons/icons8-question-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon11.addFile(u":/assets/icons/icons8-question-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_help_btn.setIcon(icon11)
 
         self.verticalLayout_2.addWidget(self.sidebar_help_btn)
@@ -769,7 +769,7 @@ class Ui_MainWindow(object):
         self.mainpage_liveview_checkbox.setObjectName(u"mainpage_liveview_checkbox")
         self.mainpage_liveview_checkbox.setLayoutDirection(Qt.RightToLeft)
         icon12 = QIcon()
-        icon12.addFile(u":/assets/Assets/icons/icons8-video-call-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon12.addFile(u":/assets/icons/icons8-video-call-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_liveview_checkbox.setIcon(icon12)
         self.mainpage_liveview_checkbox.setIconSize(QSize(40, 40))
         self.mainpage_liveview_checkbox.setChecked(True)
@@ -795,7 +795,7 @@ class Ui_MainWindow(object):
         self.mainpage_drawing_checkbox.setObjectName(u"mainpage_drawing_checkbox")
         self.mainpage_drawing_checkbox.setLayoutDirection(Qt.RightToLeft)
         icon13 = QIcon()
-        icon13.addFile(u":/assets/Assets/icons/icons8-draw-pen-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon13.addFile(u":/assets/icons/icons8-draw-pen-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_drawing_checkbox.setIcon(icon13)
         self.mainpage_drawing_checkbox.setIconSize(QSize(35, 35))
         self.mainpage_drawing_checkbox.setChecked(True)
@@ -885,7 +885,7 @@ class Ui_MainWindow(object):
         self.mainpage_start_btn.setEnabled(True)
         self.mainpage_start_btn.setStyleSheet(u"")
         icon14 = QIcon()
-        icon14.addFile(u":/assets/Assets/icons/play-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon14.addFile(u":/assets/icons/play-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_start_btn.setIcon(icon14)
 
         self.horizontalLayout_5.addWidget(self.mainpage_start_btn)
@@ -895,7 +895,7 @@ class Ui_MainWindow(object):
         self.mainpage_faststart_btn.setEnabled(False)
         self.mainpage_faststart_btn.setStyleSheet(u"")
         icon15 = QIcon()
-        icon15.addFile(u":/assets/Assets/icons/fast-forwards-arrow-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon15.addFile(u":/assets/icons/fast-forwards-arrow-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_faststart_btn.setIcon(icon15)
 
         self.horizontalLayout_5.addWidget(self.mainpage_faststart_btn)
@@ -905,7 +905,7 @@ class Ui_MainWindow(object):
         self.mainpage_stop_btn.setEnabled(False)
         self.mainpage_stop_btn.setStyleSheet(u"")
         icon16 = QIcon()
-        icon16.addFile(u":/assets/Assets/icons/stop50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon16.addFile(u":/assets/icons/stop50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_stop_btn.setIcon(icon16)
 
         self.horizontalLayout_5.addWidget(self.mainpage_stop_btn)
@@ -1160,7 +1160,7 @@ class Ui_MainWindow(object):
         self.mainpage_illumination_warning_btn.setObjectName(u"mainpage_illumination_warning_btn")
         self.mainpage_illumination_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         icon17 = QIcon()
-        icon17.addFile(u":/assets/Assets/icons/icons8-headlight-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon17.addFile(u":/assets/icons/icons8-headlight-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_illumination_warning_btn.setIcon(icon17)
         self.mainpage_illumination_warning_btn.setIconSize(QSize(35, 35))
 
@@ -1184,7 +1184,7 @@ class Ui_MainWindow(object):
         self.mainpage_tempreture_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.mainpage_tempreture_warning_btn.setStyleSheet(u"")
         icon18 = QIcon()
-        icon18.addFile(u":/assets/Assets/icons/icons8-thermometer-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon18.addFile(u":/assets/icons/icons8-thermometer-red-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_tempreture_warning_btn.setIcon(icon18)
         self.mainpage_tempreture_warning_btn.setIconSize(QSize(35, 35))
 
@@ -1206,7 +1206,7 @@ class Ui_MainWindow(object):
         self.mainpage_camera_connection_warning_btn.setObjectName(u"mainpage_camera_connection_warning_btn")
         self.mainpage_camera_connection_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         icon19 = QIcon()
-        icon19.addFile(u":/assets/Assets/icons/icons8-connection-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon19.addFile(u":/assets/icons/icons8-connection-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_camera_connection_warning_btn.setIcon(icon19)
         self.mainpage_camera_connection_warning_btn.setIconSize(QSize(35, 35))
 
@@ -1217,7 +1217,7 @@ class Ui_MainWindow(object):
         self.mainpage_camera_grabbing_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.mainpage_camera_grabbing_warning_btn.setStyleSheet(u"")
         icon20 = QIcon()
-        icon20.addFile(u":/assets/Assets/icons/icons8-camera-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon20.addFile(u":/assets/icons/icons8-camera-green-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_camera_grabbing_warning_btn.setIcon(icon20)
         self.mainpage_camera_grabbing_warning_btn.setIconSize(QSize(35, 35))
 
@@ -1260,7 +1260,7 @@ class Ui_MainWindow(object):
 "background-color: rgba(255,255,255,20);\n"
 "}")
         icon21 = QIcon()
-        icon21.addFile(u":/assets/Assets/icons/icons8-chevron-up-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon21.addFile(u":/assets/icons/icons8-chevron-up-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.mainpage_close_error_btn.setIcon(icon21)
 
         self.horizontalLayout_41.addWidget(self.mainpage_close_error_btn)
@@ -1936,6 +1936,9 @@ class Ui_MainWindow(object):
         self.settingpage_grading_standards_groupbox.setSizePolicy(sizePolicy)
         self.verticalLayout_17 = QVBoxLayout(self.settingpage_grading_standards_groupbox)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.horizontalLayout_51 = QHBoxLayout()
+        self.horizontalLayout_51.setObjectName(u"horizontalLayout_51")
+        self.horizontalLayout_51.setContentsMargins(-1, 10, -1, -1)
         self.settingpage_grading_standards_table = QTableWidget(self.settingpage_grading_standards_groupbox)
         if (self.settingpage_grading_standards_table.columnCount() < 4):
             self.settingpage_grading_standards_table.setColumnCount(4)
@@ -1995,7 +1998,10 @@ class Ui_MainWindow(object):
         self.settingpage_grading_standards_table.verticalHeader().setProperty("showSortIndicator", False)
         self.settingpage_grading_standards_table.verticalHeader().setStretchLastSection(False)
 
-        self.verticalLayout_17.addWidget(self.settingpage_grading_standards_table)
+        self.horizontalLayout_51.addWidget(self.settingpage_grading_standards_table)
+
+
+        self.verticalLayout_17.addLayout(self.horizontalLayout_51)
 
 
         self.verticalLayout_32.addWidget(self.settingpage_grading_standards_groupbox)
@@ -2115,9 +2121,9 @@ class Ui_MainWindow(object):
 "\n"
 "}")
         icon24 = QIcon()
-        icon24.addFile(u":/assets/Assets/icons/icons8-plus-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon24.addFile(u":/assets/icons/icons8-plus-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.settingpage_pelletizing_add_range_btn.setIcon(icon24)
-        self.settingpage_pelletizing_add_range_btn.setIconSize(QSize(45, 45))
+        self.settingpage_pelletizing_add_range_btn.setIconSize(QSize(50, 50))
 
         self.gridLayout_13.addWidget(self.settingpage_pelletizing_add_range_btn, 0, 6, 1, 1)
 
@@ -2868,7 +2874,7 @@ class Ui_MainWindow(object):
 "\n"
 "}")
         icon25 = QIcon()
-        icon25.addFile(u":/assets/Assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon25.addFile(u":/assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.settingpage_storage_select_dir_btn.setIcon(icon25)
 
         self.gridLayout_17.addWidget(self.settingpage_storage_select_dir_btn, 0, 2, 1, 1)
@@ -3467,7 +3473,7 @@ class Ui_MainWindow(object):
         self.calibrationpage_check_btn = QPushButton(self.calibrationpage_left_side)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
         icon26 = QIcon()
-        icon26.addFile(u":/assets/Assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon26.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.calibrationpage_check_btn.setIcon(icon26)
 
         self.horizontalLayout_9.addWidget(self.calibrationpage_check_btn)
@@ -3948,7 +3954,7 @@ class Ui_MainWindow(object):
         self.label_88 = QLabel(self.userspage_register_success_frame)
         self.label_88.setObjectName(u"label_88")
         self.label_88.setMaximumSize(QSize(50, 50))
-        self.label_88.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-check-150.png"))
+        self.label_88.setPixmap(QPixmap(u":/assets/icons/icons8-check-150.png"))
         self.label_88.setScaledContents(True)
 
         self.horizontalLayout_39.addWidget(self.label_88)
@@ -4199,7 +4205,7 @@ class Ui_MainWindow(object):
         self.label_89 = QLabel(self.userspage_editprofile_success_frame)
         self.label_89.setObjectName(u"label_89")
         self.label_89.setMaximumSize(QSize(50, 50))
-        self.label_89.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-check-150.png"))
+        self.label_89.setPixmap(QPixmap(u":/assets/icons/icons8-check-150.png"))
         self.label_89.setScaledContents(True)
 
         self.horizontalLayout_40.addWidget(self.label_89)
@@ -4465,7 +4471,7 @@ class Ui_MainWindow(object):
         self.sreportpage_back_btn.setObjectName(u"sreportpage_back_btn")
         self.sreportpage_back_btn.setStyleSheet(u"")
         icon28 = QIcon()
-        icon28.addFile(u":/assets/Assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon28.addFile(u":/assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sreportpage_back_btn.setIcon(icon28)
         self.sreportpage_back_btn.setIconSize(QSize(25, 25))
 
@@ -4481,7 +4487,7 @@ class Ui_MainWindow(object):
         self.sreportpage_export_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_export_btn.setObjectName(u"sreportpage_export_btn")
         icon29 = QIcon()
-        icon29.addFile(u":/assets/Assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon29.addFile(u":/assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sreportpage_export_btn.setIcon(icon29)
         self.sreportpage_export_btn.setIconSize(QSize(30, 30))
 
@@ -4497,7 +4503,7 @@ class Ui_MainWindow(object):
         self.sreportpage_rebuild_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_rebuild_btn.setObjectName(u"sreportpage_rebuild_btn")
         icon30 = QIcon()
-        icon30.addFile(u":/assets/Assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon30.addFile(u":/assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sreportpage_rebuild_btn.setIcon(icon30)
         self.sreportpage_rebuild_btn.setIconSize(QSize(30, 30))
 
@@ -4584,7 +4590,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1146, 2377))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1653, 1146, 2377))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4677,7 +4683,7 @@ class Ui_MainWindow(object):
         self.label_44.setObjectName(u"label_44")
         self.label_44.setStyleSheet(u"max-width:30px;\n"
 "max-height:30px;")
-        self.label_44.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-user-gray-50.png"))
+        self.label_44.setPixmap(QPixmap(u":/assets/icons/icons8-user-gray-50.png"))
         self.label_44.setScaledContents(True)
 
         self.horizontalLayout_48.addWidget(self.label_44)
@@ -4723,7 +4729,7 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName(u"label_2")
         self.label_2.setStyleSheet(u"max-width:30px;\n"
 "max-height:30px;")
-        self.label_2.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-date-50.png"))
+        self.label_2.setPixmap(QPixmap(u":/assets/icons/icons8-date-50.png"))
         self.label_2.setScaledContents(True)
 
         self.horizontalLayout_47.addWidget(self.label_2)
@@ -4751,7 +4757,7 @@ class Ui_MainWindow(object):
         self.label_40.setObjectName(u"label_40")
         self.label_40.setStyleSheet(u"max-width:30px;\n"
 "max-height:30px;")
-        self.label_40.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-clock-50.png"))
+        self.label_40.setPixmap(QPixmap(u":/assets/icons/icons8-clock-50.png"))
         self.label_40.setScaledContents(True)
 
         self.horizontalLayout_47.addWidget(self.label_40)
@@ -4797,7 +4803,7 @@ class Ui_MainWindow(object):
         self.label_42.setObjectName(u"label_42")
         self.label_42.setStyleSheet(u"max-width:30px;\n"
 "max-height:30px;")
-        self.label_42.setPixmap(QPixmap(u":/assets/Assets/icons/icons8-bar-chart-gray-50.png"))
+        self.label_42.setPixmap(QPixmap(u":/assets/icons/icons8-bar-chart-gray-50.png"))
         self.label_42.setScaledContents(True)
 
         self.horizontalLayout_49.addWidget(self.label_42)
@@ -5497,9 +5503,9 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
         icon31 = QIcon()
-        icon31.addFile(u":/assets/Assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon31.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sreportpage_prev_particle_btn.setIcon(icon31)
-        self.sreportpage_prev_particle_btn.setIconSize(QSize(50, 50))
+        self.sreportpage_prev_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_prev_particle_btn)
 
@@ -5507,9 +5513,9 @@ class Ui_MainWindow(object):
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
         icon32 = QIcon()
-        icon32.addFile(u":/assets/Assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon32.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sreportpage_next_particle_btn.setIcon(icon32)
-        self.sreportpage_next_particle_btn.setIconSize(QSize(50, 50))
+        self.sreportpage_next_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_next_particle_btn)
 
@@ -5630,6 +5636,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_40.addWidget(self.label_57)
 
+        self.horizontalLayout_30 = QHBoxLayout()
+        self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_30.addItem(self.horizontalSpacer_6)
+
         self.comparepage_compare_table = QTableWidget(self.compareScrollAreaWidget)
         if (self.comparepage_compare_table.columnCount() < 5):
             self.comparepage_compare_table.setColumnCount(5)
@@ -5702,7 +5714,14 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.verticalHeader().setDefaultSectionSize(40)
         self.comparepage_compare_table.verticalHeader().setHighlightSections(True)
 
-        self.verticalLayout_40.addWidget(self.comparepage_compare_table)
+        self.horizontalLayout_30.addWidget(self.comparepage_compare_table)
+
+        self.horizontalSpacer_110 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_30.addItem(self.horizontalSpacer_110)
+
+
+        self.verticalLayout_40.addLayout(self.horizontalLayout_30)
 
         self.verticalSpacer_40 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
@@ -5884,11 +5903,11 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(1)
-        self.user_tabs.setCurrentIndex(1)
+        self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
 

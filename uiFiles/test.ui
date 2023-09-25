@@ -102,210 +102,7 @@ QLabel{
 }
 
 
-/*********************************************/
-QComboBox
-{
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 18px 1px 8px;
-    min-width: 6em;
-	min-height: 35px;
-	font-size: 14px;
-}
 
-QComboBox:enabled{
-color: rgb(50, 50, 50);
-}
-
-QComboBox:disabled
-{
-	border:2px solid rgb(210, 210, 210);
-	color:(210, 210, 210);
-
-}
-
-QComboBox::down-arrow
-{   
-	image: url(:/assets/Assets/icons/icons8-arrow-48.png);
-	width: 15px;
-    height: 15px;
-
-}
-
-QComboBox::drop-down
-{
-	 background-color: rgb(6, 76, 130);
-	 min-width: 30px;
-}
-
-QComboBox::drop-down:disabled 
-{
-	 background-color: rgb(210, 210, 210);
-	 min-width: 30px;
-}
-
-QComboBox QAbstractItemView {
-    border: none;
-    selection-background-color: rgb(6, 76, 130);
-	selection-color: rgb(6, 76, 130);
-
-
-}
-
-QComboBox QAbstractItemView {
-    border: none;
-}
-
-QComboBox QAbstractItemView::item {
-    border: none;
-	height:30px;
-}
-
-/*********************************************/
-
-QDateEdit
-{
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 18px 1px 8px;
-    min-width: 6em;
-	min-height: 35px;
-	font-size: 16px;
-}
-
-
-QDateEdit:disabled ,
-QDateEdit:disabled 
-{
-	border:2px solid rgb(200, 200, 200);
-}
-
-
-
-QDateEdit::up-arrow
-{   
-	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);
-	width: 10px;
-    height: 10px;
-
-}
-
-QDateEdit::down-arrow 
-{   
-	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
-	width: 10px;
-    height: 10px;
-
-}
-
-QDateEdit::up-button,
-QDateEdit::down-button
-{
-    subcontrol-origin: border;
-	background-color:rgb(6, 76, 130);
-    width: 30px;
-}
-
-
-QDateEdit::up-button:disabled ,
-QDateEdit::down-button:disabled
-    {
-    subcontrol-origin: border;
-	background-color:rgb(209, 209, 209);
-    width: 30px;
-}
-
-QDateEdit:focus
-{
-	background: rgb(241, 241, 241);
-	/*selection-background-color: black;*/
-}
-
-/*********************************************/
-
-QSpinBox, QDoubleSpinBox  
-{
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 18px 1px 8px;
-    min-width: 6em;
-	min-height: 35px;
-	font-size: 16px;
-}
-
-QSpinBox:enabled, QDoubleSpinBox:enabled{
-color: rgb(50, 50, 50);
-}
-
-
-QSpinBox:disabled ,
-QDoubleSpinBox:disabled 
-{
-	border:2px solid rgb(200, 200, 200);
-	color:(210, 210, 210);
-}
-
-QSpinBox:focus , QDoubleSpinBox:focus
-{
-	background-color:red;
-}
-
-QSpinBox::up-arrow, QDoubleSpinBox::up-arrow
-{   
-	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);
-	width: 10px;
-    height: 10px;
-
-}
-
-QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
-{   
-	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
-	width: 10px;
-    height: 10px;
-
-}
-
-QSpinBox::up-button,
-QSpinBox::down-button,
-QDoubleSpinBox::up-button,
-QDoubleSpinBox::down-button   {
-    subcontrol-origin: border;
-	background-color:rgb(6, 76, 130);
-    width: 30px;
-}
-
-
-QSpinBox::up-button:disabled ,
-QSpinBox::down-button:disabled ,
-QDoubleSpinBox::up-button:disabled ,
-QDoubleSpinBox::down-button:disabled    {
-    subcontrol-origin: border;
-	background-color:rgb(209, 209, 209);
-    width: 30px;
-}
-
-QSpinBox:focus, QDoubleSpinBox:focus{
-	background: rgb(241, 241, 241);
-	/*selection-background-color: black;*/
-}
-
-
-/*******************************************/
-
-
-QCheckBox::indicator {
-    width: 25px;
-    height: 25px;
-	border:2px solid rgb(6, 76, 130);
-	border-radius: 3px;
-	
-}
-
-QCheckBox::indicator:checked {
-    image:url(:/assets/Assets/icons/icons8-check-50.png);
-	background-color:rgb(6, 76, 130);
-}
 
 /*******************************************/
 QLineEdit
@@ -454,8 +251,8 @@ background-color:rgb(76, 99, 107);
         <string>Load Sample</string>
        </property>
        <property name="icon">
-        <iconset resource="Assets.qrc">
-         <normaloff>:/assets/Assets/icons/icons8-download-50.png</normaloff>:/assets/Assets/icons/icons8-download-50.png</iconset>
+        <iconset resource="Assets/Assets.qrc">
+         <normaloff>:/assets/icons/icons8-download-50.png</normaloff>:/assets/icons/icons8-download-50.png</iconset>
        </property>
       </widget>
      </item>
@@ -589,7 +386,7 @@ font-weight:bold;</string>
   </layout>
  </widget>
  <resources>
-  <include location="Assets.qrc"/>
+  <include location="Assets/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

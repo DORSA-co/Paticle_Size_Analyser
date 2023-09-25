@@ -149,7 +149,7 @@ color: rgb(50, 50, 50);
 
 QComboBox::down-arrow
 {   
-	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
+	image: url(:/assets/icons/icons8-downtriangle-48.png);
 	width: 8px;
     height: 8px;
      background-color: rgb(6, 76, 130);
@@ -215,8 +215,8 @@ class editButton(QtWidgets.QPushButton):
 
     def __init__(self, *a, **kw):
         super(editButton, self).__init__(*a, **kw)
-        self._icon_normal = QtGui.QIcon(':/assets/Assets/icons/icons8-edit-table-50.png')
-        self._icon_over = QtGui.QIcon(':/assets/Assets/icons/icons8-edit-hover-table-50.png')
+        self._icon_normal = QtGui.QIcon(':/assets/icons/icons8-edit-table-50.png')
+        self._icon_over = QtGui.QIcon(':/assets/icons/icons8-edit-hover-table-50.png')
         self.setStyleSheet(TABEL_BUTTON_STYLE)
         self.setIcon(self._icon_normal)
 
@@ -234,8 +234,8 @@ class deleteButton(QtWidgets.QPushButton):
 
     def __init__(self, *a, **kw):
         super(deleteButton, self).__init__(*a, **kw)
-        self._icon_normal = QtGui.QIcon(':/assets/Assets/icons/icons8-remove-table-50.png')
-        self._icon_over = QtGui.QIcon(':/assets/Assets/icons/icons8-remove-hover-table-50.png')
+        self._icon_normal = QtGui.QIcon(':/assets/icons/icons8-remove-table-50.png')
+        self._icon_over = QtGui.QIcon(':/assets/icons/icons8-remove-hover-table-50.png')
         self.setStyleSheet(TABEL_BUTTON_STYLE)
         self.setIcon(self._icon_normal)
 
@@ -253,7 +253,7 @@ class reportButton(QtWidgets.QPushButton):
 
     def __init__(self, *a, **kw):
         super(reportButton, self).__init__(*a, **kw)
-        self._icon = QtGui.QIcon(':/assets/Assets/icons/icons8-eye-white-50.png')
+        self._icon = QtGui.QIcon(':/assets/icons/icons8-eye-white-50.png')
         self.setText("")
         self.setStyleSheet(REPORT_BUTTON_STYLE)
         self.setIcon(self._icon)
@@ -365,7 +365,7 @@ class confirmMessageBox:
 
         }
 
-        self.icon = QtGui.QIcon(':/assets/Assets/icons/icons8-question-blue-50.png')
+        self.icon = QtGui.QIcon(':/assets/icons/icons8-question-blue-50.png')
         self.buttons = buttons
 
         text = text + " " * 100 + "\n"

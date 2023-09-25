@@ -242,8 +242,8 @@ border: 2px solid #404040;
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="Assets.qrc">
-         <normaloff>:/assets/Assets/icons/icons8-close-50.png</normaloff>:/assets/Assets/icons/icons8-close-50.png</iconset>
+        <iconset resource="Assets/Assets.qrc">
+         <normaloff>:/assets/icons/icons8-close-50.png</normaloff>:/assets/icons/icons8-close-50.png</iconset>
        </property>
       </widget>
      </item>
@@ -390,7 +390,7 @@ color:#ffffff;
   </layout>
  </widget>
  <resources>
-  <include location="Assets.qrc"/>
+  <include location="Assets/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

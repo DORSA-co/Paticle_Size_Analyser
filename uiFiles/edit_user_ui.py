@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'edit_user.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -145,7 +145,7 @@ class Ui_login_dialog_window(object):
 "\n"
 "QComboBox::down-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-arrow-48.png);\n"
+"	image: url(:/assets/icons/icons8-arrow-48.png);\n"
 "	width: 15px;\n"
 "    height: 15px;\n"
 "\n"
@@ -154,8 +154,8 @@ class Ui_login_dialog_window(object):
 "QComboBox::drop-down\n"
 "{\n"
 "	 background-color: rgb(238, 134, 44);\n"
-"	 min-wid"
-                        "th: 30px;\n"
+"	 min-width: 30p"
+                        "x;\n"
 "}\n"
 "\n"
 "QComboBox::drop-down:disabled \n"

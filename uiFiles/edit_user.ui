@@ -144,7 +144,7 @@ QComboBox:disabled
 
 QComboBox::down-arrow
 {   
-	image: url(:/assets/Assets/icons/icons8-arrow-48.png);
+	image: url(:/assets/icons/icons8-arrow-48.png);
 	width: 15px;
     height: 15px;
 
@@ -304,7 +304,7 @@ color:#ffffff;
   </layout>
  </widget>
  <resources>
-  <include location="Assets.qrc"/>
+  <include location="Assets/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

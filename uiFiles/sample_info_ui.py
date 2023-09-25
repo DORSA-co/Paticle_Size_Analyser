@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'sample_info.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -144,7 +144,7 @@ class Ui_dialog_window(object):
 "\n"
 "QComboBox::down-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-arrow-48.png);\n"
+"	image: url(:/assets/icons/icons8-arrow-48.png);\n"
 "	width: 15px;\n"
 "    height: 15px;\n"
 "\n"
@@ -154,9 +154,9 @@ class Ui_dialog_window(object):
 "{\n"
 "	 background-color:rgb(217, 82, 48);\n"
 "	 min-width: 30px;\n"
+"}\n"
 ""
-                        "}\n"
-"\n"
+                        "\n"
 "QComboBox::drop-down:disabled \n"
 "{\n"
 "	 background-color: rgb(210, 210, 210);\n"

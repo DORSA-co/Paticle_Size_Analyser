@@ -34,7 +34,7 @@ class Ui_Dialog(object):
         Dialog.setMaximumSize(QSize(610, 210))
         Dialog.setContextMenuPolicy(Qt.DefaultContextMenu)
         icon = QIcon()
-        icon.addFile(u":/assets/Assets/icons/icons8-edit-hover-table-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/assets/icons/icons8-edit-hover-table-50.png", QSize(), QIcon.Normal, QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setStyleSheet(u"*{\n"
 "	\n"
@@ -99,7 +99,7 @@ class Ui_Dialog(object):
 "\n"
 "QSpinBox::up-arrow, QDoubleSpinBox::up-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);\n"
+"	image: url(:/assets/icons/icons8-uptriangle-48.png);\n"
 "	width: 10px;\n"
 "    height: 10px;\n"
 "\n"
@@ -107,7 +107,7 @@ class Ui_Dialog(object):
 "\n"
 "QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow\n"
 "{   \n"
-"	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);\n"
+"	image: url(:/assets/icons/icons8-downtriangle-48.png);\n"
 "	width: 10px;\n"
 "    height: 10px;\n"
 "\n"

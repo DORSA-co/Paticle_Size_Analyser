@@ -171,7 +171,7 @@ class statisticalHypothesisTab:
 
 #-----------------------------------------------------------------------------------------------
 class testSectionUI:
-    sample_section_path = 'uiFiles\\untitled.ui'
+    sample_section_path = 'uiFiles\\test.ui'
     def __init__(self, idx) -> None:
     
         self.wgt_ui = GUIBackend.load_ui(self.sample_section_path)

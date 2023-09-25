@@ -227,7 +227,7 @@ background-color: rgb(50, 50, 50);
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="Assets.qrc">
+         <iconset>
           <normaloff>:/assets/Assets/general/close.png</normaloff>:/assets/Assets/general/close.png</iconset>
         </property>
         <property name="iconSize">
@@ -390,7 +390,7 @@ color:#ffffff;
   </layout>
  </widget>
  <resources>
-  <include location="Assets.qrc"/>
+  <include location="Assets/Assets.qrc"/>
  </resources>
  <connections/>
 </ui>

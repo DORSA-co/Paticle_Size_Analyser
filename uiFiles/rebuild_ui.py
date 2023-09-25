@@ -206,7 +206,7 @@ class Ui_rebuild_win(object):
 "\n"
 "}")
         icon = QIcon()
-        icon.addFile(u":/assets/Assets/icons/icons8-close-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/assets/icons/icons8-close-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.close_btn.setIcon(icon)
 
         self.horizontalLayout_2.addWidget(self.close_btn)

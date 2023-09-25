@@ -1,6 +1,7 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 import CONSTANTS
+from PagesUI.PageUI import commonUI
 
 
 class usersPageUI:
@@ -95,10 +96,10 @@ class LoginUserBoxUI:
             state (str): flags that determine icon. it could be 'login' or 'logout'
         """
         if state == 'login':
-            GUIBackend.set_button_icon(self.toolbar_login_logout_btn, ":/assets/Assets/icons/icons8-user-50.png")
+            GUIBackend.set_button_icon(self.toolbar_login_logout_btn, ":/assets/icons/icons8-user-50.png")
         
         elif state == 'logout':
-            GUIBackend.set_button_icon(self.toolbar_login_logout_btn, ":/assets/Assets/icons/icons8-logout-white-50.png")
+            GUIBackend.set_button_icon(self.toolbar_login_logout_btn, ":/assets/icons/icons8-logout-white-50.png")
             
 
 
@@ -211,7 +212,7 @@ class RegisterUserTabUI:
 
 
 
-class AllUserTabUI:
+class AllUserTabUI(commonUI):
 
     def __init__(self, ui, edit_user_ui) -> None:
         self.ui = ui
@@ -283,9 +284,6 @@ class AllUserTabUI:
             GUIBackend.set_table_cell_widget(self.users_table, (row, info_count), edit_btn)
             GUIBackend.set_table_cell_widget(self.users_table, (row, info_count+1), del_btn)
 
-    def show_confirm_box(Self, title, massage, buttons):
-        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
-        return cmb.render()
     
 
 

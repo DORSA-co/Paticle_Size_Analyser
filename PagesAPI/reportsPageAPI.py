@@ -134,7 +134,10 @@ class reportsPageAPI:
     
     def set_standards(self,):
         standards = self.database.standards_db.load_all()
-        standards_name = list(map( lambda x:x['name'], standards))
+        standards_name = []
+        
+        if len(standards) > 0:
+            standards_name = list(map( lambda x:x['name'], standards))
 
         self.ui.set_standards_filter_table_data(standards_name)
         self.ui.set_compare_standards_items(standards_name)

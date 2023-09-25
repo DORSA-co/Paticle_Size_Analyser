@@ -1,13 +1,13 @@
-from typing import Optional
+from datetime import datetime
+
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
-from datetime import datetime
 from backend.Utils.datetimeUtils import datetimeFormat
-from PySide6.QtCore import Signal, QThread, QObject
 from PagesUI.dialogWindows.proggressDialogUI import proggressDialogUI
+from PagesUI.PageUI import commonUI
 
 
-class reportsPageUI:
+class reportsPageUI(commonUI):
 
     def __init__(self, ui, auto_rebuild_ui):
         self.ui = ui
@@ -176,13 +176,14 @@ class reportsPageUI:
             if standard['name'] == current_standard_name:
                 current_standard = standard
                 break
-        self.render_ranges_filter_table(current_standard)
+        if current_standard is not None:
+            self.render_ranges_filter_table(current_standard)
     
 
     def render_ranges_filter_table(self, standard):
         """show ranges in filter ranges box, corespond to selected standard
         """
-        GUIBackend.set_table_dim(self.ranges_filter_table, row=len(standard['ranges']), col=None)
+        GUIBackend.set_table_dim(self.ranges_filter_table, row=len(standard.get('ranges',[])) , col=None)
         self.ranges_filter = []
         for i,(low,high) in enumerate(standard['ranges']):
             text = f'{low}mm - {high}mm'
@@ -394,10 +395,6 @@ class reportsPageUI:
         return GUIBackend.get_combobox_selected(self.compare_standards_combobox)
     
 
-    def show_confirm_box(Self, title, massage, buttons):
-        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
-        return cmb.render()
-    
     def show_rebuild_win(self,):
         self.set_rebuild_progress_bar(0)
         #GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, False)

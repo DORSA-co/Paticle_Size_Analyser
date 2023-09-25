@@ -19,6 +19,7 @@ class mainDatabase:
         self.dbManager = None
         self.__connect__()
 
+    def build(self,):
         self.setting_db = settingDB(self.dbManager)
         self.users_db = usersDB(self.dbManager)
         self.standards_db = standardsDB(self.dbManager)

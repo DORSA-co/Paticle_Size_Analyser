@@ -41,7 +41,6 @@ class objectSaver:
             return pickle.load( dbfile)
 
         return defalut
-    
 
 
 

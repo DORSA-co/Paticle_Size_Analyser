@@ -26,25 +26,25 @@ class mainPageUI:
         self.warning_btns = {
             'camera_connection': {
                 'btn':self.ui.mainpage_camera_connection_warning_btn,
-                'ok-icon':':/assets/Assets/icons/icons8-connection-green-50.png',
-                'warning-icon':':/assets/Assets/icons/icons8-connection-red-50.png'
+                'ok-icon':':/assets/icons/icons8-connection-green-50.png',
+                'warning-icon':':/assets/icons/icons8-connection-red-50.png'
                 },
             'camera_grabbing': {
                 'btn': self.ui.mainpage_camera_grabbing_warning_btn,
-                'ok-icon':':/assets/Assets/icons/icons8-camera-green-50.png',
-                'warning-icon':':/assets/Assets/icons/icons8-camera-red-50.png'
+                'ok-icon':':/assets/icons/icons8-camera-green-50.png',
+                'warning-icon':':/assets/icons/icons8-camera-red-50.png'
                 },
 
             'illumination': {
                 'btn': self.ui.mainpage_illumination_warning_btn,
-                'ok-icon':':/assets/Assets/icons/icons8-headlight-green-50.png',
-                'warning-icon':':/assets/Assets/icons/icons8-headlight-red-50.png'
+                'ok-icon':':/assets/icons/icons8-headlight-green-50.png',
+                'warning-icon':':/assets/icons/icons8-headlight-red-50.png'
             },
                              
             'tempreture': {
                 'btn': self.ui.mainpage_tempreture_warning_btn,
-                'ok-icon':':/assets/Assets/icons/icons8-thermometer-green-50.png',
-                'warning-icon':':/assets/Assets/icons/icons8-thermometer-red-50.png'
+                'ok-icon':':/assets/icons/icons8-thermometer-green-50.png',
+                'warning-icon':':/assets/icons/icons8-thermometer-red-50.png'
             }
         }
         

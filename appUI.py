@@ -1,14 +1,8 @@
 import os
-import typing
 import sys
 import CONSTANTS
-import pyuac
 
-#----------------------Compile Resource File-----------------------
-#os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
-os.system('CMD /C pyside6-rcc uiFiles/Assets.qrc -o uiFiles/Assets.py')#PySide
-os.environ['PYSIDE_DESIGNER_PLUGINS'] = "."
-#----------------------Add Lib Files to path-----------------------
+
 sys.path.append( os.getcwd() + "/pagesUI" )
 sys.path.append( os.getcwd() + "/uiUtils" )
 sys.path.append( os.getcwd() + "/backend" )
@@ -16,23 +10,6 @@ sys.path.append( os.getcwd() + "/backend/Camera" )
 sys.path.append( os.getcwd() + "/PagesAPI" )
 sys.path.append( os.getcwd() + "/PagesUI" )
 #------------------------------------------------------------------
-main_ui_file = 'uiFiles/main_UI.ui'
-login_ui_file = 'uiFiles/login.ui'
-sample_info_ui_file = 'uiFiles/sample_info.ui'
-edit_user_ui_file = 'uiFiles/edit_user.ui'
-auto_rebuild_ui_file = 'uiFiles/rebuild.ui'
-single_rebuild_manual_ui_file = 'uiFiles/single_rebuild_manual.ui'
-#compare_info_ui_file = 'uiFiles/compare_info.ui'
-
-#----------------------Load Madouls -------------------------------
-from PySide6 import QtWidgets, QtCore, QtGui 
-from PySide6.QtUiTools import QUiLoader
-import webbrowser
-from functools import partial
-import texts
-from uiFiles import Assets
-import time
-from appAPI import main_API
 
 
 #Import Pages UI------------------------------------------
@@ -299,13 +276,14 @@ class mainUI:
             else:
                 GUIBackend.set_visible_tab(obj, idx, not(flag))
 
-    def close(self):
+    def close(self, force=False):
         """shows dialog box for closing application
         """
-        dialog_box = GUIComponents.confirmMessageBox('close', 'Are you sure?', buttons = ['yes', 'no'])
-        flag = dialog_box.render()
-        if flag == 'yes':
-            GUIBackend.close_app(self.ui)
+        if not force:
+            btn = self.show_confirm_box('Close', 'Are you sure close app?',['yes','no'])
+            if btn == 'no':
+                return
+        GUIBackend.close_app(self.ui)
 
     
     def show_sidebar(self, flag):
@@ -316,31 +294,10 @@ class mainUI:
             GUIBackend.set_frame_max_size(self.sidebar_frame, w=CONSTANTS.SIDEBAR_MAX_WIDTH, h=None)
             GUIBackend.set_frame_min_size(self.sidebar_frame, w=CONSTANTS.SIDEBAR_MIN_WIDTH, h=None)
 
-
+    def show_confirm_box(Self, title, massage, buttons):
+        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
+        return cmb.render()
         
        
-if __name__ == '__main__':
-    #if not pyuac.isUserAdmin():
-        #print("Re-launching as admin!")
-    #pyuac.runAsAdmin()
-
-    loader = QUiLoader()
-    app = QtWidgets.QApplication(sys.argv)
-    #load .ui files
-    window = loader.load(main_ui_file, None)
-    login_ui = loader.load(login_ui_file, None)
-    sample_info = loader.load(sample_info_ui_file, None)
-    edit_user = loader.load(edit_user_ui_file, None)
-    auto_rebuild_ui = loader.load(auto_rebuild_ui_file, None)
-    single_rebuild_manual_ui = loader.load(single_rebuild_manual_ui_file, None)
-
-    main_ui = mainUI(window, login_ui, sample_info, edit_user, auto_rebuild_ui, single_rebuild_manual_ui)
-
-    
-    api = main_API(main_ui)
-    main_ui.usersPage.loginUserBox.show_login()
-   
-    window.showMaximized()
-    app.exec()
 
     

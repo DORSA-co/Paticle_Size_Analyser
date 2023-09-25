@@ -1,5 +1,6 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
+from PagesUI.PageUI import commonUI
 
 
 
@@ -21,7 +22,7 @@ class standardsPageUI():
 
 
 
-class allStandardsTabUI():
+class allStandardsTabUI(commonUI):
 
     def __init__(self, ui) -> None:
         self.ui = ui        
@@ -107,9 +108,7 @@ class allStandardsTabUI():
                 GUIBackend.set_table_cell_value(self.standards_table, (i, j+3), row_data[j])
 
 
-    def show_confirm_box(Self, title, massage, buttons):
-        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
-        return cmb.render()
+    
 
 
 
@@ -122,7 +121,7 @@ class allStandardsTabUI():
 
 
 
-class newStandardTabUI:
+class newStandardTabUI(commonUI):
     
     def __init__(self, ui) -> None:
         self.ui = ui
@@ -279,10 +278,6 @@ class newStandardTabUI:
             GUIBackend.set_table_cell_widget(self.ranges_table, (i, item_count + 1), del_btn)
 
 
-    def show_confirm_box(Self, title, massage, buttons):
-        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
-        return cmb.render()
-    
 
 
     def show_success_msg(self, txt):

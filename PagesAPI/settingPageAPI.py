@@ -88,7 +88,7 @@ class sampleSettingTabAPI:
 
     def load_from_db(self):
         settings = self.database.load()
-        self.autoname_struct = settings['autoname_struct']
+        self.autoname_struct = settings.get('autoname_struct', '' )
         self.ui.set_settings(settings)
         self.ui.set_autoname_struct_input(self.autoname_struct)
         self.ui.save_state(True)
@@ -112,7 +112,7 @@ class storageSettingTabAPI:
 
     def check_storage_path(self,):
         settings = self.database.load()
-        if not os.path.exists(settings['path']):
+        if not os.path.exists(settings.get('path', '')):
             path = storageManager.get_windows_user_path(self.default_folder)
             storageManager.build_dir(path)
             self.ui.set_path(path)

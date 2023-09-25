@@ -1,13 +1,15 @@
 
 from uiUtils.guiBackend import GUIBackend
+from PagesUI.PageUI import commonUI
 from uiUtils import GUIComponents
 from uiUtils.Charts import barChart
 import cv2
 
 
-class comparePageUI:
+class comparePageUI(commonUI):
     
     def __init__(self, ui,):
+        
         self.ui = ui
         self.back_btn = self.ui.comparepage_back_btn
         self.compare_table = self.ui.comparepage_compare_table
@@ -82,6 +84,4 @@ class comparePageUI:
 
 
 
-    def show_confirm_box(Self, title, massage, buttons):
-        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
-        return cmb.render()
+    

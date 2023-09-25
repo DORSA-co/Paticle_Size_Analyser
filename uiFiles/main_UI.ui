@@ -111,7 +111,7 @@ QComboBox:disabled
 
 QComboBox::down-arrow
 {   
-	image: url(:/assets/Assets/icons/icons8-arrow-48.png);
+	image: url(:/assets/icons/icons8-arrow-48.png);
 	width: 15px;
     height: 15px;
 
@@ -169,7 +169,7 @@ QDateEdit:disabled
 
 QDateEdit::up-arrow
 {   
-	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);
+	image: url(:/assets/icons/icons8-uptriangle-48.png);
 	width: 10px;
     height: 10px;
 
@@ -177,7 +177,7 @@ QDateEdit::up-arrow
 
 QDateEdit::down-arrow 
 {   
-	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
+	image: url(:/assets/icons/icons8-downtriangle-48.png);
 	width: 10px;
     height: 10px;
 
@@ -237,7 +237,7 @@ QSpinBox:focus , QDoubleSpinBox:focus
 
 QSpinBox::up-arrow, QDoubleSpinBox::up-arrow
 {   
-	image: url(:/assets/Assets/icons/icons8-uptriangle-48.png);
+	image: url(:/assets/icons/icons8-uptriangle-48.png);
 	width: 10px;
     height: 10px;
 
@@ -245,7 +245,7 @@ QSpinBox::up-arrow, QDoubleSpinBox::up-arrow
 
 QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
 {   
-	image: url(:/assets/Assets/icons/icons8-downtriangle-48.png);
+	image: url(:/assets/icons/icons8-downtriangle-48.png);
 	width: 10px;
     height: 10px;
 
@@ -288,7 +288,7 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:checked {
-    image:url(:/assets/Assets/icons/icons8-check-50.png);
+    image:url(:/assets/icons/icons8-check-50.png);
 	background-color:rgb(6, 76, 130);
 }
 
@@ -513,7 +513,7 @@ QListView::item{
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap>:/assets/Assets/general/dorsa_white.png</pixmap>
+             <pixmap resource="Assets/Assets.qrc">:/assets/general/dorsa_white.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -627,7 +627,7 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
+             <iconset>
               <normaloff>:/assets/Assets/icons/icons8-user-50.png</normaloff>:/assets/Assets/icons/icons8-user-50.png</iconset>
             </property>
             <property name="iconSize">
@@ -695,8 +695,8 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/assets/Assets/general/minimize.png</normaloff>:/assets/Assets/general/minimize.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/general/minimize.png</normaloff>:/assets/general/minimize.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -736,8 +736,8 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/assets/Assets/general/maximize.png</normaloff>:/assets/Assets/general/maximize.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/general/maximize.png</normaloff>:/assets/general/maximize.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -774,8 +774,8 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/assets/Assets/general/close.png</normaloff>:/assets/Assets/general/close.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/general/close.png</normaloff>:/assets/general/close.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -894,8 +894,8 @@ Line{
              <string>Main</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/icons8-home-50.png</normaloff>:/assets/Assets/icons/icons8-home-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-home-50.png</normaloff>:/assets/icons/icons8-home-50.png</iconset>
             </property>
            </widget>
           </item>
@@ -911,8 +911,8 @@ Line{
              <string>Reports</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/report-48.png</normaloff>:/assets/Assets/icons/report-48.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/report-48.png</normaloff>:/assets/icons/report-48.png</iconset>
             </property>
            </widget>
           </item>
@@ -922,8 +922,8 @@ Line{
              <string>Standards</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/icons8-bar-chart-50.png</normaloff>:/assets/Assets/icons/icons8-bar-chart-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-bar-chart-white-50.png</normaloff>:/assets/icons/icons8-bar-chart-white-50.png</iconset>
             </property>
            </widget>
           </item>
@@ -939,8 +939,8 @@ Line{
              <string>Settings</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/icons8-settings-50.png</normaloff>:/assets/Assets/icons/icons8-settings-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-settings-50.png</normaloff>:/assets/icons/icons8-settings-50.png</iconset>
             </property>
            </widget>
           </item>
@@ -956,8 +956,8 @@ Line{
              <string>Calibration</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/icons8-ruler-50.png</normaloff>:/assets/Assets/icons/icons8-ruler-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-ruler-50.png</normaloff>:/assets/icons/icons8-ruler-50.png</iconset>
             </property>
            </widget>
           </item>
@@ -973,8 +973,8 @@ Line{
              <string>Users</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/icons8-users-50.png</normaloff>:/assets/Assets/icons/icons8-users-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-users-50.png</normaloff>:/assets/icons/icons8-users-50.png</iconset>
             </property>
            </widget>
           </item>
@@ -990,8 +990,8 @@ Line{
              <string>Help</string>
             </property>
             <property name="icon">
-             <iconset resource="Assets.qrc">
-              <normaloff>:/assets/Assets/icons/icons8-question-50.png</normaloff>:/assets/Assets/icons/icons8-question-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-question-50.png</normaloff>:/assets/icons/icons8-question-50.png</iconset>
             </property>
            </widget>
           </item>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1117,8 +1117,8 @@ QPushButton:disabled{
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="Assets.qrc">
-                     <normaloff>:/assets/Assets/icons/icons8-video-call-50.png</normaloff>:/assets/Assets/icons/icons8-video-call-50.png</iconset>
+                    <iconset resource="Assets/Assets.qrc">
+                     <normaloff>:/assets/icons/icons8-video-call-50.png</normaloff>:/assets/icons/icons8-video-call-50.png</iconset>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -1179,8 +1179,8 @@ QPushButton:disabled{
                     <string/>
                    </property>
                    <property name="icon">
-                    <iconset resource="Assets.qrc">
-                     <normaloff>:/assets/Assets/icons/icons8-draw-pen-50.png</normaloff>:/assets/Assets/icons/icons8-draw-pen-50.png</iconset>
+                    <iconset resource="Assets/Assets.qrc">
+                     <normaloff>:/assets/icons/icons8-draw-pen-50.png</normaloff>:/assets/icons/icons8-draw-pen-50.png</iconset>
                    </property>
                    <property name="iconSize">
                     <size>
@@ -1250,7 +1250,7 @@ background-color:rgb(50, 50, 50);
                    <enum>Qt::AutoText</enum>
                   </property>
                   <property name="pixmap">
-                   <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                   <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>false</bool>
@@ -1348,8 +1348,8 @@ background-color:rgb(147, 147, 147);
                        <string>Start</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/play-48.png</normaloff>:/assets/Assets/icons/play-48.png</iconset>
+                       <iconset resource="Assets/Assets.qrc">
+                        <normaloff>:/assets/icons/play-48.png</normaloff>:/assets/icons/play-48.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -1365,8 +1365,8 @@ background-color:rgb(147, 147, 147);
                        <string>Fast Start</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/fast-forwards-arrow-48.png</normaloff>:/assets/Assets/icons/fast-forwards-arrow-48.png</iconset>
+                       <iconset resource="Assets/Assets.qrc">
+                        <normaloff>:/assets/icons/fast-forwards-arrow-48.png</normaloff>:/assets/icons/fast-forwards-arrow-48.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -1382,8 +1382,8 @@ background-color:rgb(147, 147, 147);
                        <string>Stop</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/stop50.png</normaloff>:/assets/Assets/icons/stop50.png</iconset>
+                       <iconset resource="Assets/Assets.qrc">
+                        <normaloff>:/assets/icons/stop50.png</normaloff>:/assets/icons/stop50.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -1658,8 +1658,8 @@ QPushButton:hover{
                     <string>Report</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="Assets.qrc">
-                     <normaloff>:/assets/Assets/icons/report-48.png</normaloff>:/assets/Assets/icons/report-48.png</iconset>
+                    <iconset resource="Assets/Assets.qrc">
+                     <normaloff>:/assets/icons/report-48.png</normaloff>:/assets/icons/report-48.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -1830,8 +1830,8 @@ QPushButton
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="Assets.qrc">
-                           <normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/Assets/icons/icons8-headlight-green-50.png</iconset>
+                          <iconset resource="Assets/Assets.qrc">
+                           <normaloff>:/assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/icons/icons8-headlight-green-50.png</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -1879,8 +1879,8 @@ QPushButton
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="Assets.qrc">
-                           <normaloff>:/assets/Assets/icons/icons8-thermometer-green-50.png</normaloff>:/assets/Assets/icons/icons8-thermometer-green-50.png</iconset>
+                          <iconset resource="Assets/Assets.qrc">
+                           <normaloff>:/assets/icons/icons8-thermometer-red-50.png</normaloff>:/assets/icons/icons8-thermometer-red-50.png</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -1919,8 +1919,8 @@ QPushButton
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="Assets.qrc">
-                           <normaloff>:/assets/Assets/icons/icons8-connection-green-50.png</normaloff>:/assets/Assets/icons/icons8-connection-green-50.png</iconset>
+                          <iconset resource="Assets/Assets.qrc">
+                           <normaloff>:/assets/icons/icons8-connection-green-50.png</normaloff>:/assets/icons/icons8-connection-green-50.png</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -1942,8 +1942,8 @@ QPushButton
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="Assets.qrc">
-                           <normaloff>:/assets/Assets/icons/icons8-camera-green-50.png</normaloff>:/assets/Assets/icons/icons8-camera-green-50.png</iconset>
+                          <iconset resource="Assets/Assets.qrc">
+                           <normaloff>:/assets/icons/icons8-camera-green-50.png</normaloff>:/assets/icons/icons8-camera-green-50.png</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -2017,8 +2017,8 @@ background-color: rgba(255,255,255,20);
                             <string/>
                            </property>
                            <property name="icon">
-                            <iconset resource="Assets.qrc">
-                             <normaloff>:/assets/Assets/icons/icons8-chevron-up-50.png</normaloff>:/assets/Assets/icons/icons8-chevron-up-50.png</iconset>
+                            <iconset resource="Assets/Assets.qrc">
+                             <normaloff>:/assets/icons/icons8-chevron-up-50.png</normaloff>:/assets/icons/icons8-chevron-up-50.png</iconset>
                            </property>
                           </widget>
                          </item>
@@ -2948,7 +2948,7 @@ border: 2px solid rgb(152, 46, 44);
                   <string>Delete</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="Assets.qrc">
+                  <iconset>
                    <normaloff>:/assets/Assets/icons/icons8-remove-table-50.png</normaloff>:/assets/Assets/icons/icons8-remove-table-50.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -3057,7 +3057,7 @@ QPushButton:hover{
                   <string>Compare</string>
                  </property>
                  <property name="icon">
-                  <iconset resource="Assets.qrc">
+                  <iconset>
                    <normaloff>:/assets/Assets/icons/icons8-compare-50.png</normaloff>:/assets/Assets/icons/icons8-compare-50.png</iconset>
                  </property>
                  <property name="iconSize">
@@ -3219,9 +3219,14 @@ QPushButton:hover{
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_17">
                   <item>
-                   <widget class="QTableWidget" name="settingpage_grading_standards_table">
-                    <property name="styleSheet">
-                     <string notr="true">
+                   <layout class="QHBoxLayout" name="horizontalLayout_51">
+                    <property name="topMargin">
+                     <number>10</number>
+                    </property>
+                    <item>
+                     <widget class="QTableWidget" name="settingpage_grading_standards_table">
+                      <property name="styleSheet">
+                       <string notr="true">
 QHeaderView::section {
     background-color: rgb(6, 76, 130);
 	color: #ffffff;
@@ -3254,70 +3259,72 @@ QTableWidget::item
    padding: 10px;
 }
 </string>
-                    </property>
-                    <property name="horizontalScrollBarPolicy">
-                     <enum>Qt::ScrollBarAlwaysOn</enum>
-                    </property>
-                    <property name="sizeAdjustPolicy">
-                     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-                    </property>
-                    <property name="editTriggers">
-                     <set>QAbstractItemView::NoEditTriggers</set>
-                    </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                    <property name="rowCount">
-                     <number>2</number>
-                    </property>
-                    <property name="columnCount">
-                     <number>4</number>
-                    </property>
-                    <attribute name="horizontalHeaderMinimumSectionSize">
-                     <number>60</number>
-                    </attribute>
-                    <attribute name="horizontalHeaderDefaultSectionSize">
-                     <number>100</number>
-                    </attribute>
-                    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="horizontalHeaderStretchLastSection">
-                     <bool>true</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderVisible">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderCascadingSectionResizes">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderMinimumSectionSize">
-                     <number>23</number>
-                    </attribute>
-                    <attribute name="verticalHeaderDefaultSectionSize">
-                     <number>45</number>
-                    </attribute>
-                    <attribute name="verticalHeaderHighlightSections">
-                     <bool>true</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-                     <bool>false</bool>
-                    </attribute>
-                    <attribute name="verticalHeaderStretchLastSection">
-                     <bool>false</bool>
-                    </attribute>
-                    <row/>
-                    <row/>
-                    <column/>
-                    <column/>
-                    <column/>
-                    <column/>
-                    <item row="0" column="0">
-                     <property name="text">
-                      <string/>
-                     </property>
+                      </property>
+                      <property name="horizontalScrollBarPolicy">
+                       <enum>Qt::ScrollBarAlwaysOn</enum>
+                      </property>
+                      <property name="sizeAdjustPolicy">
+                       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+                      </property>
+                      <property name="editTriggers">
+                       <set>QAbstractItemView::NoEditTriggers</set>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="rowCount">
+                       <number>2</number>
+                      </property>
+                      <property name="columnCount">
+                       <number>4</number>
+                      </property>
+                      <attribute name="horizontalHeaderMinimumSectionSize">
+                       <number>60</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                       <number>100</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="horizontalHeaderStretchLastSection">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderVisible">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderCascadingSectionResizes">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderMinimumSectionSize">
+                       <number>23</number>
+                      </attribute>
+                      <attribute name="verticalHeaderDefaultSectionSize">
+                       <number>45</number>
+                      </attribute>
+                      <attribute name="verticalHeaderHighlightSections">
+                       <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                       <bool>false</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderStretchLastSection">
+                       <bool>false</bool>
+                      </attribute>
+                      <row/>
+                      <row/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <column/>
+                      <item row="0" column="0">
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </item>
+                     </widget>
                     </item>
-                   </widget>
+                   </layout>
                   </item>
                  </layout>
                 </widget>
@@ -3549,13 +3556,13 @@ border-radius: 200px;
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="Assets.qrc">
-                            <normaloff>:/assets/Assets/icons/icons8-plus-50.png</normaloff>:/assets/Assets/icons/icons8-plus-50.png</iconset>
+                           <iconset resource="Assets/Assets.qrc">
+                            <normaloff>:/assets/icons/icons8-plus-50.png</normaloff>:/assets/icons/icons8-plus-50.png</iconset>
                           </property>
                           <property name="iconSize">
                            <size>
-                            <width>45</width>
-                            <height>45</height>
+                            <width>50</width>
+                            <height>50</height>
                            </size>
                           </property>
                          </widget>
@@ -3704,7 +3711,7 @@ background-color: rgb(58, 209, 154);
                             <string/>
                            </property>
                            <property name="pixmap">
-                            <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-check-150.png</pixmap>
+                            <pixmap>:/assets/Assets/icons/icons8-check-150.png</pixmap>
                            </property>
                            <property name="scaledContents">
                             <bool>true</bool>
@@ -4065,7 +4072,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>3</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4972,8 +4979,8 @@ min-height: 40px;
                        <string/>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/icons8-folder-50.png</normaloff>:/assets/Assets/icons/icons8-folder-50.png</iconset>
+                       <iconset resource="Assets/Assets.qrc">
+                        <normaloff>:/assets/icons/icons8-folder-50.png</normaloff>:/assets/icons/icons8-folder-50.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -5149,8 +5156,8 @@ background-color:rgb(175, 175, 175);
                           <string/>
                          </property>
                          <property name="icon">
-                          <iconset resource="Assets.qrc">
-                           <normaloff>:/assets/Assets/icons/play-48.png</normaloff>:/assets/Assets/icons/play-48.png</iconset>
+                          <iconset resource="Assets/Assets.qrc">
+                           <normaloff>:/assets/icons/play-48.png</normaloff>:/assets/icons/play-48.png</iconset>
                          </property>
                          <property name="iconSize">
                           <size>
@@ -5512,7 +5519,7 @@ max-height : 800px;
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                      <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                      </property>
                      <property name="scaledContents">
                       <bool>false</bool>
@@ -6037,8 +6044,8 @@ min-width:157px;
                        <string> Check</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/icons8-eye-50.png</normaloff>:/assets/Assets/icons/icons8-eye-50.png</iconset>
+                       <iconset resource="Assets/Assets.qrc">
+                        <normaloff>:/assets/icons/icons8-eye-50.png</normaloff>:/assets/icons/icons8-eye-50.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -6181,8 +6188,8 @@ margin-right:5px;</string>
                        <string>Start Calibration</string>
                       </property>
                       <property name="icon">
-                       <iconset resource="Assets.qrc">
-                        <normaloff>:/assets/Assets/icons/play-48.png</normaloff>:/assets/Assets/icons/play-48.png</iconset>
+                       <iconset resource="Assets/Assets.qrc">
+                        <normaloff>:/assets/icons/play-48.png</normaloff>:/assets/icons/play-48.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -6457,7 +6464,7 @@ max-height : 800px;</string>
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                  <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                  </property>
                  <property name="scaledContents">
                   <bool>false</bool>
@@ -6659,7 +6666,7 @@ max-height : 800px;</string>
            <item>
             <widget class="QTabWidget" name="user_tabs">
              <property name="currentIndex">
-              <number>1</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="tab_2">
               <attribute name="title">
@@ -6835,7 +6842,7 @@ QLineEdit
                      <string>Register</string>
                     </property>
                     <property name="icon">
-                     <iconset resource="Assets.qrc">
+                     <iconset>
                       <normaloff>:/assets/Assets/icons/icons8-plus-white-50.png</normaloff>:/assets/Assets/icons/icons8-plus-white-50.png</iconset>
                     </property>
                    </widget>
@@ -6909,7 +6916,7 @@ background-color: rgb(58, 209, 154);
                      <string/>
                     </property>
                     <property name="pixmap">
-                     <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-check-150.png</pixmap>
+                     <pixmap resource="Assets/Assets.qrc">:/assets/icons/icons8-check-150.png</pixmap>
                     </property>
                     <property name="scaledContents">
                      <bool>true</bool>
@@ -7308,7 +7315,7 @@ background-color: rgb(58, 209, 154);
                      <string/>
                     </property>
                     <property name="pixmap">
-                     <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-check-150.png</pixmap>
+                     <pixmap resource="Assets/Assets.qrc">:/assets/icons/icons8-check-150.png</pixmap>
                     </property>
                     <property name="scaledContents">
                      <bool>true</bool>
@@ -7713,8 +7720,8 @@ border: 2px solid rgb(25, 68, 105);
                  <string>Back</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Assets.qrc">
-                  <normaloff>:/assets/Assets/icons/icons8-back-48.png</normaloff>:/assets/Assets/icons/icons8-back-48.png</iconset>
+                 <iconset resource="Assets/Assets.qrc">
+                  <normaloff>:/assets/icons/icons8-back-48.png</normaloff>:/assets/icons/icons8-back-48.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -7737,8 +7744,8 @@ border: 2px solid rgb(25, 68, 105);
                  <string>Export</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Assets.qrc">
-                  <normaloff>:/assets/Assets/icons/icons8-export-48.png</normaloff>:/assets/Assets/icons/icons8-export-48.png</iconset>
+                 <iconset resource="Assets/Assets.qrc">
+                  <normaloff>:/assets/icons/icons8-export-48.png</normaloff>:/assets/icons/icons8-export-48.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -7761,8 +7768,8 @@ border: 2px solid rgb(25, 68, 105);
                  <string>Re-Build</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Assets.qrc">
-                  <normaloff>:/assets/Assets/icons/icons8-retweet-50.png</normaloff>:/assets/Assets/icons/icons8-retweet-50.png</iconset>
+                 <iconset resource="Assets/Assets.qrc">
+                  <normaloff>:/assets/icons/icons8-retweet-50.png</normaloff>:/assets/icons/icons8-retweet-50.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -7871,7 +7878,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-1653</y>
                 <width>1146</width>
                 <height>2377</height>
                </rect>
@@ -8057,7 +8064,7 @@ max-height:30px;</string>
                        <string/>
                       </property>
                       <property name="pixmap">
-                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-user-gray-50.png</pixmap>
+                       <pixmap resource="Assets/Assets.qrc">:/assets/icons/icons8-user-gray-50.png</pixmap>
                       </property>
                       <property name="scaledContents">
                        <bool>true</bool>
@@ -8146,7 +8153,7 @@ max-height:30px;</string>
                        <string/>
                       </property>
                       <property name="pixmap">
-                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-date-50.png</pixmap>
+                       <pixmap resource="Assets/Assets.qrc">:/assets/icons/icons8-date-50.png</pixmap>
                       </property>
                       <property name="scaledContents">
                        <bool>true</bool>
@@ -8202,7 +8209,7 @@ max-height:30px;</string>
                        <string/>
                       </property>
                       <property name="pixmap">
-                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-clock-50.png</pixmap>
+                       <pixmap resource="Assets/Assets.qrc">:/assets/icons/icons8-clock-50.png</pixmap>
                       </property>
                       <property name="scaledContents">
                        <bool>true</bool>
@@ -8291,7 +8298,7 @@ max-height:30px;</string>
                        <string/>
                       </property>
                       <property name="pixmap">
-                       <pixmap resource="Assets.qrc">:/assets/Assets/icons/icons8-bar-chart-gray-50.png</pixmap>
+                       <pixmap resource="Assets/Assets.qrc">:/assets/icons/icons8-bar-chart-gray-50.png</pixmap>
                       </property>
                       <property name="scaledContents">
                        <bool>true</bool>
@@ -9187,7 +9194,7 @@ QLabel{
                            <string/>
                           </property>
                           <property name="pixmap">
-                           <pixmap resource="Assets.qrc">:/assets/Assets/images/camera-error-500.png</pixmap>
+                           <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
                           </property>
                           <property name="scaledContents">
                            <bool>false</bool>
@@ -9668,13 +9675,13 @@ QTableWidget::item
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="Assets.qrc">
-                         <normaloff>:/assets/Assets/icons/icons8-previous-50.png</normaloff>:/assets/Assets/icons/icons8-previous-50.png</iconset>
+                        <iconset resource="Assets/Assets.qrc">
+                         <normaloff>:/assets/icons/icons8-previous-50.png</normaloff>:/assets/icons/icons8-previous-50.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
-                         <width>50</width>
-                         <height>50</height>
+                         <width>35</width>
+                         <height>35</height>
                         </size>
                        </property>
                       </widget>
@@ -9688,13 +9695,13 @@ QTableWidget::item
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="Assets.qrc">
-                         <normaloff>:/assets/Assets/icons/icons8-next-50.png</normaloff>:/assets/Assets/icons/icons8-next-50.png</iconset>
+                        <iconset resource="Assets/Assets.qrc">
+                         <normaloff>:/assets/icons/icons8-next-50.png</normaloff>:/assets/icons/icons8-next-50.png</iconset>
                        </property>
                        <property name="iconSize">
                         <size>
-                         <width>50</width>
-                         <height>50</height>
+                         <width>35</width>
+                         <height>35</height>
                         </size>
                        </property>
                       </widget>
@@ -9788,8 +9795,8 @@ QFrame{
                  <string>Back</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Assets.qrc">
-                  <normaloff>:/assets/Assets/icons/icons8-back-48.png</normaloff>:/assets/Assets/icons/icons8-back-48.png</iconset>
+                 <iconset resource="Assets/Assets.qrc">
+                  <normaloff>:/assets/icons/icons8-back-48.png</normaloff>:/assets/icons/icons8-back-48.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -9812,8 +9819,8 @@ QFrame{
                  <string>Export</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="Assets.qrc">
-                  <normaloff>:/assets/Assets/icons/icons8-export-48.png</normaloff>:/assets/Assets/icons/icons8-export-48.png</iconset>
+                 <iconset resource="Assets/Assets.qrc">
+                  <normaloff>:/assets/icons/icons8-export-48.png</normaloff>:/assets/icons/icons8-export-48.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -9888,48 +9895,63 @@ max-height: 22px;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QTableWidget" name="comparepage_compare_table">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>16777215</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="sizeIncrement">
-                  <size>
-                   <width>0</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="baseSize">
-                  <size>
-                   <width>0</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Arial</family>
-                   <pointsize>-1</pointsize>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="focusPolicy">
-                  <enum>Qt::NoFocus</enum>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">
+                <layout class="QHBoxLayout" name="horizontalLayout_30">
+                 <item>
+                  <spacer name="horizontalSpacer_6">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="comparepage_compare_table">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="baseSize">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial</family>
+                     <pointsize>-1</pointsize>
+                     <weight>50</weight>
+                     <italic>false</italic>
+                     <bold>false</bold>
+                    </font>
+                   </property>
+                   <property name="focusPolicy">
+                    <enum>Qt::NoFocus</enum>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">
 QHeaderView::section {
     background-color: rgb(6, 76, 130);
 	color: #ffffff;
@@ -9961,90 +9983,105 @@ QTableWidget::item
    padding: 10px;
 }
 </string>
-                 </property>
-                 <property name="frameShape">
-                  <enum>QFrame::Box</enum>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Raised</enum>
-                 </property>
-                 <property name="verticalScrollBarPolicy">
-                  <enum>Qt::ScrollBarAlwaysOff</enum>
-                 </property>
-                 <property name="horizontalScrollBarPolicy">
-                  <enum>Qt::ScrollBarAsNeeded</enum>
-                 </property>
-                 <property name="sizeAdjustPolicy">
-                  <enum>QAbstractScrollArea::AdjustToContents</enum>
-                 </property>
-                 <property name="editTriggers">
-                  <set>QAbstractItemView::NoEditTriggers</set>
-                 </property>
-                 <property name="alternatingRowColors">
-                  <bool>true</bool>
-                 </property>
-                 <property name="selectionMode">
-                  <enum>QAbstractItemView::SingleSelection</enum>
-                 </property>
-                 <property name="selectionBehavior">
-                  <enum>QAbstractItemView::SelectRows</enum>
-                 </property>
-                 <property name="textElideMode">
-                  <enum>Qt::ElideMiddle</enum>
-                 </property>
-                 <property name="gridStyle">
-                  <enum>Qt::SolidLine</enum>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>true</bool>
-                 </property>
-                 <property name="rowCount">
-                  <number>4</number>
-                 </property>
-                 <property name="columnCount">
-                  <number>5</number>
-                 </property>
-                 <attribute name="horizontalHeaderMinimumSectionSize">
-                  <number>50</number>
-                 </attribute>
-                 <attribute name="horizontalHeaderDefaultSectionSize">
-                  <number>180</number>
-                 </attribute>
-                 <attribute name="horizontalHeaderHighlightSections">
-                  <bool>true</bool>
-                 </attribute>
-                 <attribute name="horizontalHeaderStretchLastSection">
-                  <bool>false</bool>
-                 </attribute>
-                 <attribute name="verticalHeaderVisible">
-                  <bool>false</bool>
-                 </attribute>
-                 <attribute name="verticalHeaderDefaultSectionSize">
-                  <number>40</number>
-                 </attribute>
-                 <attribute name="verticalHeaderHighlightSections">
-                  <bool>true</bool>
-                 </attribute>
-                 <row/>
-                 <row/>
-                 <row/>
-                 <row/>
-                 <column/>
-                 <column/>
-                 <column/>
-                 <column/>
-                 <column/>
-                 <item row="0" column="1">
-                  <property name="text">
-                   <string/>
-                  </property>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Box</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <property name="verticalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAlwaysOff</enum>
+                   </property>
+                   <property name="horizontalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAsNeeded</enum>
+                   </property>
+                   <property name="sizeAdjustPolicy">
+                    <enum>QAbstractScrollArea::AdjustToContents</enum>
+                   </property>
+                   <property name="editTriggers">
+                    <set>QAbstractItemView::NoEditTriggers</set>
+                   </property>
+                   <property name="alternatingRowColors">
+                    <bool>true</bool>
+                   </property>
+                   <property name="selectionMode">
+                    <enum>QAbstractItemView::SingleSelection</enum>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectRows</enum>
+                   </property>
+                   <property name="textElideMode">
+                    <enum>Qt::ElideMiddle</enum>
+                   </property>
+                   <property name="gridStyle">
+                    <enum>Qt::SolidLine</enum>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                   <property name="rowCount">
+                    <number>4</number>
+                   </property>
+                   <property name="columnCount">
+                    <number>5</number>
+                   </property>
+                   <attribute name="horizontalHeaderMinimumSectionSize">
+                    <number>50</number>
+                   </attribute>
+                   <attribute name="horizontalHeaderDefaultSectionSize">
+                    <number>180</number>
+                   </attribute>
+                   <attribute name="horizontalHeaderHighlightSections">
+                    <bool>true</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderStretchLastSection">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="verticalHeaderVisible">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="verticalHeaderDefaultSectionSize">
+                    <number>40</number>
+                   </attribute>
+                   <attribute name="verticalHeaderHighlightSections">
+                    <bool>true</bool>
+                   </attribute>
+                   <row/>
+                   <row/>
+                   <row/>
+                   <row/>
+                   <column/>
+                   <column/>
+                   <column/>
+                   <column/>
+                   <column/>
+                   <item row="0" column="1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </item>
+                   <item row="1" column="1">
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </item>
+                  </widget>
                  </item>
-                 <item row="1" column="1">
-                  <property name="text">
-                   <string/>
-                  </property>
+                 <item>
+                  <spacer name="horizontalSpacer_110">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
-                </widget>
+                </layout>
                </item>
                <item>
                 <spacer name="verticalSpacer_40">
@@ -10411,7 +10448,7 @@ QPushButton{
   </widget>
  </widget>
  <resources>
-  <include location="Assets.qrc"/>
+  <include location="Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

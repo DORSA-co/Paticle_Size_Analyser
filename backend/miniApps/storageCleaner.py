@@ -12,7 +12,7 @@ class storageCleaner:
     def run(self):
         """delete samples that have more lifetime than determinded value in setting, only of auto clean is active
         """
-        if self.settings['auto_clean']:
+        if self.settings.get('auto_clean'):
             today = datetime.today().date()
             life_time = self.settings['life_time']
             #load all samples from db

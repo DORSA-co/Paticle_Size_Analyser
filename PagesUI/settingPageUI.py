@@ -1,8 +1,7 @@
 from uiUtils import GUIComponents
 import CONSTANTS
 from uiUtils.guiBackend import GUIBackend
-import time
-
+from PagesUI.PageUI import commonUI
 
 class settingPageUI:
     def __init__(self, ui) -> None:
@@ -14,12 +13,13 @@ class settingPageUI:
 
 
 
-class commonSettingUI:
+class commonSettingUI(commonUI):
     def __init__(self, ui) -> None:
+        #super(commonSettingUI, self).__init__()
         self.ui = ui
         self.save_mgs = self.ui.settingpage_save_massage_lbl
         self.gif_lbl = self.ui.settingpage_save_gif_lbl
-        self.gif_player = GUIComponents.gifPlayer(self.gif_lbl, ':/assets/Assets/gifs/Rolling_bg.gif')
+        self.gif_player = GUIComponents.gifPlayer(self.gif_lbl, ':/assets/gifs/Rolling_bg.gif')
 
 
     def __show_saved_massage__(self, is_saved):
@@ -51,11 +51,6 @@ class commonSettingUI:
             GUIBackend.set_disable(self.save_btn)
             GUIBackend.set_disable(self.cancel_btn)
             self.__show_saved_massage__(is_saved)
-
-
-    def show_confirm_box(Self, title, massage, buttons):
-        cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
-        return cmb.render()
 
 
 
@@ -303,8 +298,8 @@ class cameraSettingTabUI(commonSettingUI):
             }
 
         self.start_stop_icon = {
-            True: ":/assets/Assets/icons/stop50.png",
-            False: ":/assets/Assets/icons/play-48.png"
+            True: ":/assets/icons/stop50.png",
+            False: ":/assets/icons/play-48.png"
         }
 
         self.fields_enable_status = {

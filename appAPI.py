@@ -23,17 +23,26 @@ from backend.Processing.Compare import Compare
 #------------------------------------------------------------
 from backend.miniApps.storageCleaner import storageCleaner
 import CONSTANTS
-
+from PagesUI.PageUI import commonUI
+from appUI import mainUI
 #from PySide6.QtCore import QTimer
 
 cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:mainUI) -> None:
         self.ui = ui
         self.db = mainDatabase()
+
+        #handle database Error
+        if not self.db.dbManager.check_connection():
+            self.ui.show_confirm_box('Error', 'database connection error', buttons=['ok'])
+            self.ui.close(True)
+        
+
         self.cameras = {}
         self.creat_camera()
         self.run_camera_grabbing()
+        self.db.build()
 
         #apps-----------------------------------------
         self.storageCleanerApp = storageCleaner( settings= self.db.setting_db.storage_db.load(),

@@ -52,7 +52,8 @@ class mainPageUI:
             'ovality': self.ui.mainpage_mean_oval_lbl,
             'avrage' : self.ui.mainpage_avrage_lbl,
             'std'    : self.ui.mainpage_std_lbl,
-            'fps'    : self.ui.mainpage_fps_lbl
+            'fps'    : self.ui.mainpage_fps_lbl,
+            'timer'  : self.ui.mainpage_timer_lbl
 
         }
 

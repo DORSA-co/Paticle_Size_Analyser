@@ -528,7 +528,7 @@ class Ui_MainWindow(object):
         self.toolbar_login_logout_btn.setObjectName(u"toolbar_login_logout_btn")
         self.toolbar_login_logout_btn.setStyleSheet(u"")
         icon1 = QIcon()
-        icon1.addFile(u":/assets/Assets/icons/icons8-user-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u":/assets/icons/icons8-user-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.toolbar_login_logout_btn.setIcon(icon1)
         self.toolbar_login_logout_btn.setIconSize(QSize(35, 35))
 
@@ -929,10 +929,10 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setHorizontalSpacing(5)
         self.gridLayout_12.setVerticalSpacing(0)
         self.gridLayout_12.setContentsMargins(-1, 10, -1, 6)
-        self.label_35 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_35.setObjectName(u"label_35")
+        self.mainpage_timer_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_timer_lbl.setObjectName(u"mainpage_timer_lbl")
 
-        self.gridLayout_12.addWidget(self.label_35, 3, 4, 1, 1)
+        self.gridLayout_12.addWidget(self.mainpage_timer_lbl, 3, 4, 1, 1)
 
         self.label_34 = QLabel(self.mainpage_informaition_groupBox)
         self.label_34.setObjectName(u"label_34")
@@ -3794,7 +3794,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1144, 679))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4390,7 +4390,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1144, 679))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4590,7 +4590,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1653, 1146, 2377))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 2377))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5903,7 +5903,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(4)
+        self.main_pages_stackw.setCurrentIndex(0)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(3)
         self.tabWidget.setCurrentIndex(1)
@@ -5950,7 +5950,7 @@ class Ui_MainWindow(object):
         self.mainpage_faststart_btn.setText(QCoreApplication.translate("MainWindow", u"Fast Start", None))
         self.mainpage_stop_btn.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.mainpage_informaition_groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Informations", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
+        self.mainpage_timer_lbl.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
         self.label_34.setText(QCoreApplication.translate("MainWindow", u"Time:", None))
         self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))

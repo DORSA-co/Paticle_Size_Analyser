@@ -13,7 +13,7 @@ from uiUtils import GUIComponents
 from backend.Camera import dorsaPylon
 from backend.Processing import particlesDetector
 from backend.Processing.Report import Report
-
+from backend.Utils.datetimeUtils import timerCounter
 class myThread(QThread):
     def quit(self) -> None:
         #print('Quit thread')
@@ -23,7 +23,7 @@ class myThread(QThread):
 class mainPageAPI:
     refresh_time = time.time()
     max_fps = 20
-    max_thread = 3
+    #max_thread = 3
 
     def __init__(self, ui:mainPageUI, cameras:dorsaPylon, database:mainDatabase, ):
         self.ui = ui
@@ -84,10 +84,11 @@ class mainPageAPI:
         pass
 
     def process_image(self):
-        #print('process_image')
+        print('process_image')
         if not self.during_processing and self.is_running:
+            
             self.during_processing = True
-            #print('process_image OK')
+            print('process_image OK')
             #calculate FPS-----------------------
             self.ui.set_information({"fps": self.calc_fps()})
             #________________________________ONLY FOR TEST________________________________________________
@@ -98,7 +99,6 @@ class mainPageAPI:
             if self.test_img_idx>4:
                 self.test_img_idx = 0
             #________________________________ONLY FOR TEST________________________________________________
-
             self.thread = myThread()
             self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
             self.worker.moveToThread(self.thread)
@@ -109,6 +109,7 @@ class mainPageAPI:
             self.worker.finished.connect(self.__set_processing_finish__)
             self.worker.finished.connect(self.worker.deleteLater)
             
+            print('new thread start')
             self.thread.start()
             #print('process_image FINISH')
 
@@ -121,7 +122,7 @@ class mainPageAPI:
 
 
     def show_live_info(self):
-        #print('show_live_info')
+        print('show_live_info')
         t = time.time()
         
         if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
@@ -149,7 +150,7 @@ class mainPageAPI:
                 self.ui.set_live_img(img)
             
                     
-        #print('show_live_info FINISH')
+        print('show_live_info FINISH')
             
 
 
@@ -236,12 +237,14 @@ class mainPageAPI:
             return
 
         self.is_running = False
+        
 
         for camera in self.cameras.values():
             camera.Operations.stop_grabbing()     
         
         #print('camera stop')
         #disable stop button
+        self.system_timer_thread.timer.stop()
         self.ui.set_player_buttons_status('stop')
         self.ui.enable_report(True)
         self.report_saver.save_report(self.report)
@@ -282,6 +285,13 @@ class mainPageAPI:
         
         for camera in self.cameras.values():
             camera.Operations.start_grabbing()
+        
+        self.running_timer = timerCounter()
+        #self.running_timer.set_external_event(self.running_one_second_event)
+        #self.running_timer.run()
+
+        self.system_timer_thread = GUIComponents.timerBuilder(1000, self.running_one_second_event)
+        self.system_timer_thread.start()
 
 
 
@@ -322,6 +332,11 @@ class mainPageAPI:
         return True
     
 
+    def running_one_second_event(self,):
+        self.running_timer.count(second=1)
+        if self.is_running:
+            info = {'timer' : self.running_timer.get_fstr('%M:%S')}
+            self.ui.set_information(info)
 
 
 
@@ -355,6 +370,7 @@ class ProcessingWorker(QObject):
             #extend new particels into particles buffer
             self.report.append(self.particles_buffer)
             #print('finished_processing EMIT')
+            print('process finished')
             self.finished_processing.emit()
         
             if self.report.settings['save_image']:
@@ -362,7 +378,8 @@ class ProcessingWorker(QObject):
                     p_img = particle.get_roi_image(self.img)
                     img_id = particle.get_id()
                     self.report_saver.save_image(p_img, img_id)
-        
+
+            print('THREAD finished')
         #print('FINISH signal--')
         self.finished.emit()
         #print('FINISH signal**')

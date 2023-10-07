@@ -110,7 +110,7 @@ class reportsDB:
         
     
     def remove(self, data):
-        self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, str(data['id']))
+        self.db_manager.remove_record(self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, str(data[self.PRIMERY_KEY_COL_NAME]))
 
 
 

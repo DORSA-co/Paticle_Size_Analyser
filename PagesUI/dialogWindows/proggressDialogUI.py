@@ -24,6 +24,7 @@ class proggressDialogUI:
         self.total_count_lbl = self.ui.total_count_lbl
 
         self.setup(title, description, show_info, operation_name)
+        GUIBackend.set_win_frameless(self.ui)
 
 
 

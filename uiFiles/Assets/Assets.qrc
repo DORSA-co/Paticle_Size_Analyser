@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="assets">
+    <file>gifs/Rolling_bg.gif</file>
     <file>general/close.png</file>
     <file>general/dorsa_white.png</file>
     <file>general/maximize.png</file>

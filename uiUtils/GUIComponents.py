@@ -402,11 +402,19 @@ class timerBuilder:
     def __init__(self, t, event_func) -> None:
         self.event_func = event_func
         self.t = t
+        # self.timer = QtCore.QTimer()
+        # self.timer.timeout.connect( self.event_func)
+
+
+    def start(self):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect( self.event_func)
-    def start(self):
         self.timer.start(self.t)
     
+
+    def stop(self, ):
+        self.timer.stop()
+        self.timer.deleteLater()
 
     
 def single_timer_runner( t, func):

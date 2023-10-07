@@ -392,7 +392,6 @@ class rebuildWorker(QObject):
         for i in range(total_count):
             if self.break_flag:
                 break
-            time.sleep(0.01)
             rfh = reportFileHandler(self.samples[i])
             report = rfh.load_report()
             if report is not None:

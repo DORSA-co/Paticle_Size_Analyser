@@ -117,6 +117,7 @@ class main_API(QObject):
             camera = collector.get_camera_by_serial(serial_number)
         
             if camera is None:
+                #self.mainPageAPI
                 collector.enable_camera_emulation(1)
                 camera = collector.get_all_cameras(camera_class=PylonFlags.CamersClass.emulation)[0]
         

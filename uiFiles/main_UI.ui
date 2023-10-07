@@ -627,8 +627,8 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>:/assets/Assets/icons/icons8-user-50.png</normaloff>:/assets/Assets/icons/icons8-user-50.png</iconset>
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-user-50.png</normaloff>:/assets/icons/icons8-user-50.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1420,7 +1420,7 @@ QLabel{
                      <number>0</number>
                     </property>
                     <item row="3" column="4">
-                     <widget class="QLabel" name="label_35">
+                     <widget class="QLabel" name="mainpage_timer_lbl">
                       <property name="text">
                        <string>05:31</string>
                       </property>
@@ -6614,8 +6614,8 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1144</width>
-                    <height>679</height>
+                    <width>55</width>
+                    <height>39</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -7590,8 +7590,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1144</width>
-                    <height>679</height>
+                    <width>162</width>
+                    <height>3292</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7878,8 +7878,8 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-1653</y>
-                <width>1146</width>
+                <y>0</y>
+                <width>892</width>
                 <height>2377</height>
                </rect>
               </property>

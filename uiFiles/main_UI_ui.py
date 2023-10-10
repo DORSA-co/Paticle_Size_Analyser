@@ -24,7 +24,6 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -4636,7 +4635,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 2377))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1848, 1145, 2543))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4884,6 +4883,16 @@ class Ui_MainWindow(object):
         self.line_7.setFrameShadow(QFrame.Sunken)
 
         self.verticalLayout_34.addWidget(self.line_7)
+
+        self.verticalSpacer_34 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_34.addItem(self.verticalSpacer_34)
+
+        self.sreportpage_description_lbl = QLabel(self.groupBox_7)
+        self.sreportpage_description_lbl.setObjectName(u"sreportpage_description_lbl")
+        self.sreportpage_description_lbl.setWordWrap(True)
+
+        self.verticalLayout_34.addWidget(self.sreportpage_description_lbl)
 
 
         self.verticalLayout_12.addWidget(self.groupBox_7)
@@ -5582,10 +5591,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_26)
 
-        self.pushButton = QPushButton(self.scrollAreaWidgetContents)
-        self.pushButton.setObjectName(u"pushButton")
+        self.alaki_btn = QPushButton(self.scrollAreaWidgetContents)
+        self.alaki_btn.setObjectName(u"alaki_btn")
 
-        self.verticalLayout_12.addWidget(self.pushButton)
+        self.verticalLayout_12.addWidget(self.alaki_btn)
 
         self.line_19 = QFrame(self.scrollAreaWidgetContents)
         self.line_19.setObjectName(u"line_19")
@@ -5949,7 +5958,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(7)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(1)
@@ -6263,6 +6272,7 @@ class Ui_MainWindow(object):
         self.label_42.setText("")
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"Standard:", None))
         self.sreportpage_standard_lbl.setText(QCoreApplication.translate("MainWindow", u"AX256", None))
+        self.sreportpage_description_lbl.setText(QCoreApplication.translate("MainWindow", u"description", None))
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Statictics", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
         self.label_59.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
@@ -6305,7 +6315,7 @@ class Ui_MainWindow(object):
         self.sreportpage_end_page.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.sreportpage_prev_particle_btn.setText("")
         self.sreportpage_next_particle_btn.setText("")
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"alaki", None))
+        self.alaki_btn.setText(QCoreApplication.translate("MainWindow", u"alaki", None))
         self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.label_57.setText(QCoreApplication.translate("MainWindow", u"Samples", None))

@@ -34,6 +34,7 @@ class reportPageAPI:
     def show_rebuild(self,):
         standards_name = self.database.standards_db.load_standards_name()
         self.ui.set_rebuild_standards(standards_name)
+        self.ui.set_rebuild_current_standard(self.report.standard['name'])
         self.ui.show_rebuild_win()
 
     def run_rebuild(self,):
@@ -97,6 +98,7 @@ class reportPageAPI:
         info['date'] = self.report.date_time.strftime("%Y/%m/%d")
         info['time'] = self.report.date_time.strftime("%H:%M")
         info['username'] = self.report.username
+        info['description'] = self.report.description
 
         statictics =  self.report.get_global_statistics()
         for key, value in statictics.items():

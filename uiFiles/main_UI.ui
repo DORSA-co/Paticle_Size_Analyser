@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -7942,9 +7942,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-1848</y>
                 <width>1145</width>
-                <height>2377</height>
+                <height>2543</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8420,6 +8420,32 @@ margin: 5px 0px;</string>
                     </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="verticalSpacer_34">
+                    <property name="orientation">
+                     <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>20</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="sreportpage_description_lbl">
+                    <property name="text">
+                     <string>description</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -9806,7 +9832,7 @@ QTableWidget::item
                 </layout>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="alaki_btn">
                  <property name="text">
                   <string>alaki</string>
                  </property>
@@ -10513,7 +10539,6 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets/Assets.qrc"/>
-  <include location="../../../../.designer/backup/Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

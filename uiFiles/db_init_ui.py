@@ -387,7 +387,7 @@ class Ui_login_dialog_window(object):
 
         self.retranslateUi(login_dialog_window)
 
-        self.pages.setCurrentIndex(0)
+        self.pages.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(login_dialog_window)

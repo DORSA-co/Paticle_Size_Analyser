@@ -511,6 +511,11 @@ class GUIBackend:
         inpt.setRange(*value_range)
 
 
+
+    def get_textarea_text(inpt:QtWidgets.QTextEdit) -> str:
+        return inpt.toPlainText()
+
+
     #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------    
     def get_input_text(inpt:QtWidgets.QLineEdit)-> str:
         """returns text of an input box

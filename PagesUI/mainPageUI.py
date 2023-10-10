@@ -308,7 +308,7 @@ class mainPageUI:
         info = {}
         info['name'] = GUIBackend.get_input_text(self.sample_info.sample_name_input)
         info['standard'] = GUIBackend.get_combobox_selected(self.sample_info.standards_name_combobox)
-
+        info['description'] = GUIBackend.get_textarea_text(self.sample_info.description_inpt)
         return info
     
 
@@ -350,7 +350,9 @@ class mainPageUI:
     def show_sample_info_window(self,):
         """show sample info dialog window
         """
+        GUIBackend.set_input_text(self.sample_info.description_inpt,'')
         GUIBackend.show_window(self.sample_info)
+        
 
     def close_sample_info_window(self,):
         """close sample info

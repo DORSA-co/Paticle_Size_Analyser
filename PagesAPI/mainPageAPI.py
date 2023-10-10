@@ -273,7 +273,7 @@ class mainPageAPI:
         #clear error from sample info window box
         self.ui.write_sample_info_error_msg(None)
 
-        self.prepeard_measuring_system(sample_name=info['name'], standard_name=info['standard'])
+        self.prepeard_measuring_system(info)
         
         #disable start and fast_start buttons and enable stop button
         self.ui.set_player_buttons_status('start')
@@ -296,7 +296,7 @@ class mainPageAPI:
 
 
     
-    def prepeard_measuring_system(self, sample_name = None, standard_name = None, username = ''):
+    def prepeard_measuring_system(self, info = {}):
         
         #-----------------------------------------------------------------------------------------
         #load algorithm parms from database
@@ -305,14 +305,20 @@ class mainPageAPI:
         self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 0.1, algorithm_data['border'])
         #-----------------------------------------------------------------------------------------
         #load selected standard from databasr
-        standard = self.database.standards_db.load(standard_name)
+        standard = self.database.standards_db.load(info['standard'])
         #set ranges to chart
         self.ui.set_grading_chart_bars_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------
         main_path = self.database.setting_db.storage_db.load()['path']
         settings =  self.database.setting_db.sample_db.load()
         
-        self.report = Report( sample_name, standard, self.logined_username, main_path, settings=settings )
+        self.report = Report( info['name'],
+                              standard,
+                              self.logined_username,
+                              main_path,
+                              settings=settings,
+                              description = info['description'] 
+                              )
         args = {'path':main_path, 'name':self.report.name, 'date':self.report.date, 'time':self.report.time}
         self.report_saver = reportFileHandler(args)
         #-----------------------------------------------------------------------------------------

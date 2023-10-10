@@ -14,7 +14,8 @@ import time
 class Report:
     """store all information of a sample
     """
-    def __init__(self, name = '', standard = None, username = '', main_path ='', settings={}) -> None:
+    def __init__(self, name = '', standard = None, username = '', main_path ='', settings={}, description='') -> None:
+        
         
         self.name = name
         self.standard = standard
@@ -26,6 +27,7 @@ class Report:
         self.Buffer = particlesBuffer()
         self.sieved_particles = []
         self.settings = settings
+        self.description = description
         self.name_id = self.generate_uniq_id()
 
         if self.standard is not None:

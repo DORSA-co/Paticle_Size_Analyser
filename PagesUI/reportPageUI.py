@@ -22,6 +22,8 @@ class reportPageUI:
         self.current_page = self.ui.sreportpage_current_page
         self.end_page = self.ui.sreportpage_end_page
 
+        #self.description_lbl = self.ui.sreportpage_description_lbl
+
 
         self.particle_navigator_buttons = {
             'prev': self.ui.sreportpage_prev_particle_btn,
@@ -35,6 +37,7 @@ class reportPageUI:
             'time':self.ui.sreportpage_time_lbl,
             'username':self.ui.sreportpage_user_lbl,
             'standard':self.ui.sreportpage_standard_lbl,
+            'description': self.ui.sreportpage_description_lbl,
             'avrage':self.ui.sreportpage_avrage_lbl,
             'std':self.ui.sreportpage_std_lbl,
             'mode':self.ui.sreportpage_mode_lbl,
@@ -141,6 +144,7 @@ class reportPageUI:
     def set_general_information(self, infoes:dict):
         for name, value in infoes.items():
             GUIBackend.set_label_text( self.general_information[name] , value )
+
 
     def set_particle_information(self, infoes:dict):
         for name, value in infoes.items():
@@ -275,6 +279,9 @@ class reportPageUI:
 
     def set_rebuild_standards(self, standards:list[str]):
         GUIBackend.set_combobox_items(self.rebuild_win_ui.standards_combobox, standards)
+    
+    def set_rebuild_current_standard(self, stanndard_name:str):
+        GUIBackend.set_combobox_current_item(self.rebuild_win_ui.standards_combobox, stanndard_name)
 
     def get_rebuild_standard(self,) -> str:
         return GUIBackend.get_combobox_selected(self.rebuild_win_ui.standards_combobox)

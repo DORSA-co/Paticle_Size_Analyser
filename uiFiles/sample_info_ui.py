@@ -17,21 +17,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFrame,
     QGridLayout, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QTextEdit,
+    QVBoxLayout, QWidget)
 import Assets_rc
 
 class Ui_dialog_window(object):
     def setupUi(self, dialog_window):
         if not dialog_window.objectName():
             dialog_window.setObjectName(u"dialog_window")
-        dialog_window.resize(550, 430)
+        dialog_window.resize(550, 700)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(dialog_window.sizePolicy().hasHeightForWidth())
         dialog_window.setSizePolicy(sizePolicy)
-        dialog_window.setMinimumSize(QSize(550, 430))
-        dialog_window.setMaximumSize(QSize(550, 430))
+        dialog_window.setMinimumSize(QSize(550, 700))
+        dialog_window.setMaximumSize(QSize(550, 700))
         dialog_window.setStyleSheet(u"*{\n"
 "	\n"
 "	font: auto \"Arial\";\n"
@@ -209,6 +210,20 @@ class Ui_dialog_window(object):
 
         self.verticalLayout.addLayout(self.gridLayout)
 
+        self.verticalSpacer = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
+        self.label_3 = QLabel(dialog_window)
+        self.label_3.setObjectName(u"label_3")
+
+        self.verticalLayout.addWidget(self.label_3)
+
+        self.description_inpt = QTextEdit(dialog_window)
+        self.description_inpt.setObjectName(u"description_inpt")
+
+        self.verticalLayout.addWidget(self.description_inpt)
+
         self.error_lbl = QLabel(dialog_window)
         self.error_lbl.setObjectName(u"error_lbl")
         self.error_lbl.setMaximumSize(QSize(16787, 30))
@@ -274,6 +289,7 @@ class Ui_dialog_window(object):
         self.label.setText(QCoreApplication.translate("dialog_window", u"Sample Name", None))
         self.sample_name_input.setText("")
         self.label_2.setText(QCoreApplication.translate("dialog_window", u"Standard", None))
+        self.label_3.setText(QCoreApplication.translate("dialog_window", u"Description (optional)", None))
         self.error_lbl.setText(QCoreApplication.translate("dialog_window", u"Error", None))
         self.run_btn.setText(QCoreApplication.translate("dialog_window", u"Run", None))
         self.cancel_btn.setText(QCoreApplication.translate("dialog_window", u"Cancel", None))

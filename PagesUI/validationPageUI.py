@@ -184,6 +184,7 @@ class testSectionUI:
         }
         self.load_btn = self.wgt_ui.load_btn
         self.table = self.wgt_ui.table
+        self.error_lbl = self.wgt_ui.error_lbl
 
         self.table_inputs = []
         self.table_rows_header = ['Dorsa-PSA', 'Sieve']
@@ -193,7 +194,8 @@ class testSectionUI:
         for row, text in enumerate(self.table_rows_header):
             GUIBackend.set_table_cell_value(self.table,(row,0), text )
             GUIBackend.set_table_cell_color( self.table,(row,0), color=(255,255,255), bg_color=(90, 117, 127))
-    
+
+        self.write_error(None)
 
     def load_button_connector(self, func):
         GUIBackend.button_connector_argument_pass(self.load_btn,
@@ -275,6 +277,13 @@ class testSectionUI:
         self.setup_table( standard_range )
         self.set_sample_info(sample)
         self.set_grading_result(sample['grading_result'])
+
+    def write_error(self, txt: str):
+        if txt is None:
+            GUIBackend.set_wgt_visible(self.error_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.error_lbl, True)
+            GUIBackend.set_label_text(self.error_lbl, txt)
         
 
 

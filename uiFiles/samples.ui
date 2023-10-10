@@ -416,7 +416,7 @@ QListView::item{
    <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
-   <item>
+   <item alignment="Qt::AlignHCenter">
     <widget class="QTableWidget" name="samples_table">
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOn</enum>

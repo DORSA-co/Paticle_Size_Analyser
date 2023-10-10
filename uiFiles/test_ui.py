@@ -26,7 +26,7 @@ class Ui_sampleTest(object):
         if not sampleTest.objectName():
             sampleTest.setObjectName(u"sampleTest")
         sampleTest.setEnabled(True)
-        sampleTest.resize(860, 160)
+        sampleTest.resize(860, 174)
         sampleTest.setMinimumSize(QSize(0, 150))
         sampleTest.setMaximumSize(QSize(16777215, 200))
         sampleTest.setStyleSheet(u"*{\n"
@@ -303,6 +303,8 @@ class Ui_sampleTest(object):
 
         self.horizontalLayout.addWidget(self.line)
 
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.table = QTableWidget(sampleTest)
         if (self.table.columnCount() < 6):
             self.table.setColumnCount(6)
@@ -319,7 +321,16 @@ class Ui_sampleTest(object):
         self.table.verticalHeader().setVisible(False)
         self.table.verticalHeader().setDefaultSectionSize(48)
 
-        self.horizontalLayout.addWidget(self.table)
+        self.verticalLayout_2.addWidget(self.table)
+
+        self.error_lbl = QLabel(sampleTest)
+        self.error_lbl.setObjectName(u"error_lbl")
+        self.error_lbl.setStyleSheet(u"color: rgb(197, 63, 59)")
+
+        self.verticalLayout_2.addWidget(self.error_lbl)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_2)
 
 
         self.retranslateUi(sampleTest)
@@ -336,5 +347,6 @@ class Ui_sampleTest(object):
         self.sample_date_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
         self.label_5.setText(QCoreApplication.translate("sampleTest", u"Time", None))
         self.sample_time_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
+        self.error_lbl.setText(QCoreApplication.translate("sampleTest", u"Error", None))
     # retranslateUi
 

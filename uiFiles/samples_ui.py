@@ -440,7 +440,7 @@ class Ui_Dialog(object):
         self.samples_table.verticalHeader().setVisible(False)
         self.samples_table.verticalHeader().setDefaultSectionSize(35)
 
-        self.verticalLayout_2.addWidget(self.samples_table)
+        self.verticalLayout_2.addWidget(self.samples_table, 0, Qt.AlignHCenter)
 
 
         self.retranslateUi(Dialog)

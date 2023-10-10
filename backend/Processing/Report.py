@@ -4,7 +4,7 @@ from backend.Processing.cumGrading import cumGrading
 from backend.Processing import gradingUtils
 import numpy as np
 from datetime import datetime
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 import time
 
 

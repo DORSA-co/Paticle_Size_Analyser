@@ -242,8 +242,8 @@ border: 2px solid #404040;
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/assets/Assets/icons/icons8-close-50.png</normaloff>:/assets/Assets/icons/icons8-close-50.png</iconset>
+        <iconset resource="Assets/Assets.qrc">
+         <normaloff>:/assets/icons/icons8-close-black-50.png</normaloff>:/assets/icons/icons8-close-black-50.png</iconset>
        </property>
       </widget>
      </item>

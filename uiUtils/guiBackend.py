@@ -300,6 +300,14 @@ class GUIBackend:
 
         btn.setStyleSheet(f'background-color: rgba{color}')
 
+    @staticmethod
+    def set_button_text( btn: QtWidgets.QPushButton , txt:str):
+        """changes text of button
+
+        Args:
+            btn (QtWidgets.QPushButton): PyQt button object
+        """
+        btn.setText(txt)
 
     @staticmethod
     def set_button_icon( btn: QtWidgets.QPushButton, path):
@@ -726,6 +734,12 @@ class GUIBackend:
             int: current index
         """
         return stw.currentIndex()
+    
+
+    @staticmethod
+    def get_stack_widget_count(stw: QtWidgets.QStackedWidget ) -> int:
+
+        return stw.count()
     
     #--------------------------------- GLOBAL GroupBox FUNCTIONs ---------------------------------
     @staticmethod

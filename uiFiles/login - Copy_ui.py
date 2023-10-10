@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'login.ui'
+## Form generated from reading UI file 'login - Copy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.2
 ##
@@ -163,7 +163,7 @@ class Ui_login_dialog_window(object):
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.close_btn.setStyleSheet(u"")
         icon = QIcon()
-        icon.addFile(u":/assets/general/close.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/assets/Assets/general/close.png", QSize(), QIcon.Normal, QIcon.Off)
         self.close_btn.setIcon(icon)
         self.close_btn.setIconSize(QSize(15, 15))
 

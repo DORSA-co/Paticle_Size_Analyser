@@ -227,8 +227,8 @@ background-color: rgb(50, 50, 50);
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>:/assets/Assets/general/close.png</normaloff>:/assets/Assets/general/close.png</iconset>
+         <iconset resource="Assets/Assets.qrc">
+          <normaloff>:/assets/general/close.png</normaloff>:/assets/general/close.png</iconset>
         </property>
         <property name="iconSize">
          <size>

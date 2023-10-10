@@ -24,14 +24,15 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 import Assets_rc
+import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1370, 914)
+        MainWindow.resize(1369, 885)
         icon = QIcon()
-        icon.addFile(u"../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -2820,6 +2821,51 @@ class Ui_MainWindow(object):
         self.verticalLayout_24 = QVBoxLayout(self.settingpage_storage_tab)
         self.verticalLayout_24.setSpacing(30)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.groupBox_4 = QGroupBox(self.settingpage_storage_tab)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setEnabled(False)
+        self.gridLayout_24 = QGridLayout(self.groupBox_4)
+        self.gridLayout_24.setObjectName(u"gridLayout_24")
+        self.label_98 = QLabel(self.groupBox_4)
+        self.label_98.setObjectName(u"label_98")
+        self.label_98.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_24.addWidget(self.label_98, 1, 0, 1, 1)
+
+        self.label_35 = QLabel(self.groupBox_4)
+        self.label_35.setObjectName(u"label_35")
+        self.label_35.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_24.addWidget(self.label_35, 0, 0, 1, 1)
+
+        self.settingpage_db_password = QLineEdit(self.groupBox_4)
+        self.settingpage_db_password.setObjectName(u"settingpage_db_password")
+
+        self.gridLayout_24.addWidget(self.settingpage_db_password, 1, 1, 1, 1)
+
+        self.settingpage_db_username = QLineEdit(self.groupBox_4)
+        self.settingpage_db_username.setObjectName(u"settingpage_db_username")
+
+        self.gridLayout_24.addWidget(self.settingpage_db_username, 0, 1, 1, 1)
+
+        self.horizontalSpacer_111 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_24.addItem(self.horizontalSpacer_111, 0, 2, 1, 1)
+
+        self.label_102 = QLabel(self.groupBox_4)
+        self.label_102.setObjectName(u"label_102")
+        self.label_102.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_24.addWidget(self.label_102, 2, 0, 1, 1)
+
+        self.settingpage_db_host = QLineEdit(self.groupBox_4)
+        self.settingpage_db_host.setObjectName(u"settingpage_db_host")
+
+        self.gridLayout_24.addWidget(self.settingpage_db_host, 2, 1, 1, 1)
+
+
+        self.verticalLayout_24.addWidget(self.groupBox_4)
+
         self.groupBox_5 = QGroupBox(self.settingpage_storage_tab)
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.gridLayout_11 = QGridLayout(self.groupBox_5)
@@ -3794,7 +3840,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 650))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4390,7 +4436,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 162, 3292))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 650))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4403,7 +4449,7 @@ class Ui_MainWindow(object):
 
         self.label_84 = QLabel(self.aboutScrollArea)
         self.label_84.setObjectName(u"label_84")
-        self.label_84.setPixmap(QPixmap(u"../../../../../.designer/backup/img.jpg"))
+        self.label_84.setPixmap(QPixmap(u"../../../../../../.designer/backup/img.jpg"))
 
         self.verticalLayout_29.addWidget(self.label_84)
 
@@ -4590,7 +4636,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 2377))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 2377))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5619,7 +5665,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1145, 707))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 678))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5903,9 +5949,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.settingpage_tabs.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
@@ -6071,6 +6117,10 @@ class Ui_MainWindow(object):
         self.settingpage_sample_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_sample_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_sample_tab), QCoreApplication.translate("MainWindow", u"Sample", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Database", None))
+        self.label_98.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
+        self.label_102.setText(QCoreApplication.translate("MainWindow", u"Host:", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Sorage Manager", None))
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Report Life Time (days) :", None))
         self.settingpage_storage_auto_clean_checkbox.setText("")

@@ -7,17 +7,18 @@ else:
     from Database.usersDB import usersDB
     from Database.standardsDB import standardsDB
     from Database.reportsDB import reportsDB
+    from Database.metaDatabase import metaDatabase
 
 class mainDatabase:
-    username = 'root'
-    password = 'dorsa-co'
-    password = ''
-    HOST = 'localhost'
+    # username = 'root'
+    # password = 'dorsa-co'
+    # password = ''
+    # host = 'localhost'
     DATABASE_NAME = 'dorsa_psa'
 
     def __init__(self,):
         self.dbManager = None
-        self.__connect__()
+        
 
     def build(self,):
         self.setting_db = settingDB(self.dbManager)
@@ -25,9 +26,19 @@ class mainDatabase:
         self.standards_db = standardsDB(self.dbManager)
         self.reports_db = reportsDB(self.dbManager)
     
-    def __connect__(self,):
-        self.dbManager = databaseManager(self.username, self.password, self.HOST, self.DATABASE_NAME, log_level=1)
-        
+    def connect(self,):
+        mtb = metaDatabase()
+        if mtb.is_exist():
+            meta = mtb.load()
+            self.dbManager = databaseManager(meta['database_username'],
+                                             meta['database_password'],
+                                             meta['database_host'], 
+                                             self.DATABASE_NAME,
+                                             log_level=1)
+            return self.dbManager.check_connection()
+
+      
+        return False
 
 
 

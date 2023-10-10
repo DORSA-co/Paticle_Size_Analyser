@@ -1,5 +1,5 @@
 import numpy as np
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 import cv2
 
 class Particle:

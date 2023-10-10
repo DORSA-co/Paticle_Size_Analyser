@@ -1,6 +1,6 @@
 import numpy as np
 from backend.Processing import utiltsCython
-import CONSTANTS
+from Constants import CONSTANTS
 from backend.Processing.particlesBuffer import particlesBuffer
 
 class Grading:

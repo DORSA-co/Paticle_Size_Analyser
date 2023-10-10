@@ -18,6 +18,7 @@ sample_info_ui_file = 'uiFiles/sample_info.ui'
 edit_user_ui_file = 'uiFiles/edit_user.ui'
 auto_rebuild_ui_file = 'uiFiles/rebuild.ui'
 single_rebuild_manual_ui_file = 'uiFiles/single_rebuild_manual.ui'
+db_init_ui_file = 'uiFiles/db_init.ui'
 
 
 if __name__ == '__main__':
@@ -30,14 +31,20 @@ if __name__ == '__main__':
     edit_user = loader.load(edit_user_ui_file, None)
     auto_rebuild_ui = loader.load(auto_rebuild_ui_file, None)
     single_rebuild_manual_ui = loader.load(single_rebuild_manual_ui_file, None)
+    db_init_ui = loader.load(db_init_ui_file, None)
 
-    main_ui = mainUI(window, login_ui, sample_info, edit_user, auto_rebuild_ui, single_rebuild_manual_ui)
+    main_ui = mainUI(window, login_ui,
+                             sample_info,
+                             edit_user,
+                             auto_rebuild_ui,
+                             single_rebuild_manual_ui,
+                             db_init_ui)
 
     
     api = main_API(main_ui)
-    main_ui.usersPage.loginUserBox.show_login()
+    #main_ui.usersPage.loginUserBox.show_login()
    
-    window.showMaximized()
+    #window.showMaximized()
     app.exec()
 
   

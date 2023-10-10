@@ -1,4 +1,4 @@
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 from PagesUI.validationPageUI import validationPageUI, statisticalHypothesisTab, calibrationTabUI, testSectionUI
 from Database.mainDatabase import mainDatabase
 from Database.reportsDB import reportFileHandler

@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDialog, QHeaderView,
     QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
+import Assets_rc
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -25,6 +26,9 @@ class Ui_Dialog(object):
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(764, 751)
         Dialog.setMinimumSize(QSize(600, 0))
+        icon = QIcon()
+        icon.addFile(u":/assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        Dialog.setWindowIcon(icon)
         Dialog.setStyleSheet(u"*{\n"
 "	\n"
 "	font: auto \"Arial\";\n"
@@ -419,6 +423,7 @@ class Ui_Dialog(object):
 "	height: 30px;\n"
 "}\n"
 "")
+        Dialog.setModal(False)
         self.verticalLayout_2 = QVBoxLayout(Dialog)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.samples_table = QTableWidget(Dialog)
@@ -444,6 +449,6 @@ class Ui_Dialog(object):
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Samples", None))
     # retranslateUi
 

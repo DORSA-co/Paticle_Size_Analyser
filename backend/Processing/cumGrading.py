@@ -1,6 +1,6 @@
 import numpy as np
 from backend.Processing import utiltsCython
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 from backend.Processing.particlesBuffer import particlesBuffer
 
 class cumGrading:

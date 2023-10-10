@@ -1,6 +1,6 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 from PagesUI.PageUI import commonUI
 
 

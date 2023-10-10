@@ -418,6 +418,12 @@ class timerBuilder:
 
     
 def single_timer_runner( t, func):
+    """runs a function after a delay time
+
+    Args:
+        t (_type_): delay time in ms`
+        func (_type_): function event after time finished
+    """
     timer = QtCore.QTimer()
     timer.singleShot(t, func)
     

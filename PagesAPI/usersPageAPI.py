@@ -2,7 +2,7 @@
 from PagesUI.usersPageUI import usersPageUI, RegisterUserTabUI, AllUserTabUI, LoginUserBoxUI, EditUserTabUI
 from Database.usersDB import usersDB
 from backend.UserManager.userLoginRegister import passwordManager, regiterUtils
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 #from main_UI import routerUI
 
 

@@ -1,5 +1,5 @@
 from uiUtils import GUIComponents
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
 
@@ -71,6 +71,9 @@ class storageSettingTabUI(commonSettingUI):
 
 
         self.settings = {
+            # 'database_username': self.ui.settingpage_db_username,
+            # 'database_password': self.ui.settingpage_db_password,
+            # 'database_host': self.ui.settingpage_db_host,
             'path': self.ui.settingpage_storage_path_input,
             'auto_clean': self.ui.settingpage_storage_auto_clean_checkbox,
             'life_time': self.ui.settingpage_storage_life_time_spinbox,

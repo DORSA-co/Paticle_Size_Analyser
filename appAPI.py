@@ -22,27 +22,38 @@ from backend.Processing.Report import Report
 from backend.Processing.Compare import Compare
 #------------------------------------------------------------
 from backend.miniApps.storageCleaner import storageCleaner
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 from PagesUI.PageUI import commonUI
 from appUI import mainUI
 #from PySide6.QtCore import QTimer
+from subPrograms.dbInit.dbInitAPI import dbInitAPI
 
 cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
     def __init__(self, ui:mainUI) -> None:
         self.ui = ui
         self.db = mainDatabase()
-
+        db_status = self.db.connect()
+        if not db_status:
+            db_init = dbInitAPI()
+            db_init.ui.show()
+            return
+            #self.ui.show_db_init()
+            #return
         #handle database Error
-        if not self.db.dbManager.check_connection():
-            self.ui.show_confirm_box('Error', 'database connection error', buttons=['ok'])
-            self.ui.close(True)
+        #if not self.db.dbManager.check_connection():
+            
+            #self.ui.show_confirm_box('Error', 'database connection error', buttons=['ok'])
+            #self.ui.close(True)
+            
         
+        else:
+            self.db.build()
 
         self.cameras = {}
         self.creat_camera()
         self.run_camera_grabbing()
-        self.db.build()
+        
 
         #apps-----------------------------------------
         self.storageCleanerApp = storageCleaner( settings= self.db.setting_db.storage_db.load(),
@@ -107,7 +118,8 @@ class main_API(QObject):
         self.login_user_event()
         self.standard_event()
         #---------------------------------------------------
-
+        self.ui.show()
+        self.ui.usersPage.loginUserBox.show_login()
         
 
     def creat_camera(self)-> Camera:

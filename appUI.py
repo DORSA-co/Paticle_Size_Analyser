@@ -1,6 +1,6 @@
 import os
 import sys
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 
 
 sys.path.append( os.getcwd() + "/pagesUI" )
@@ -60,13 +60,14 @@ class routerUI:
 
 
 class mainUI:
-    def __init__(self, ui, login_ui, sample_info, edit_user, auto_rebuild_ui, single_rebuild_manual_ui):
+    def __init__(self, ui, login_ui, sample_info, edit_user, auto_rebuild_ui, single_rebuild_manual_ui, db_init_ui):
         #self.__global_setting__ = GlobalUI(ui)
         self.ui = ui
         self.login_ui = login_ui
         self.sample_info = sample_info
         self.edit_user = edit_user
         self.auto_rebuild_ui = auto_rebuild_ui
+        self.db_init_ui = db_init_ui
 
         self.settingPage = settingPageUI(ui)
         self.reportsPage = reportsPageUI(ui, auto_rebuild_ui)
@@ -276,6 +277,9 @@ class mainUI:
             else:
                 GUIBackend.set_visible_tab(obj, idx, not(flag))
 
+    def show(self,):
+        self.ui.showMaximized()
+
     def close(self, force=False):
         """shows dialog box for closing application
         """
@@ -298,6 +302,9 @@ class mainUI:
         cmb = GUIComponents.confirmMessageBox(title, massage, buttons = buttons)
         return cmb.render()
         
-       
+    
+    def show_db_init(self):
+        GUIBackend.set_win_frameless(self.db_init_ui)
+        GUIBackend.show_window(self.db_init_ui, True)
 
     

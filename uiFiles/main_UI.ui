@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1370</width>
-    <height>914</height>
+    <width>1369</width>
+    <height>885</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../../../.designer/backup/Icons/app_logo.ico</iconset>
+    <normaloff>../../../../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../../../../.designer/backup/Icons/app_logo.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -4072,7 +4072,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>2</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4876,6 +4876,70 @@ QLabel
                  <property name="spacing">
                   <number>30</number>
                  </property>
+                 <item>
+                  <widget class="QGroupBox" name="groupBox_4">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="title">
+                    <string>Database</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_24">
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_98">
+                      <property name="text">
+                       <string>Password:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_35">
+                      <property name="text">
+                       <string>Username:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="settingpage_db_password"/>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="settingpage_db_username"/>
+                    </item>
+                    <item row="0" column="2">
+                     <spacer name="horizontalSpacer_111">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_102">
+                      <property name="text">
+                       <string>Host:</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QLineEdit" name="settingpage_db_host"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QGroupBox" name="groupBox_5">
                    <property name="title">
@@ -6614,8 +6678,8 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>55</width>
-                    <height>39</height>
+                    <width>1143</width>
+                    <height>650</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -7590,8 +7654,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>162</width>
-                    <height>3292</height>
+                    <width>1143</width>
+                    <height>650</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7613,7 +7677,7 @@ color: rgb(6, 76, 130);</string>
                       <string/>
                      </property>
                      <property name="pixmap">
-                      <pixmap>../../../../../.designer/backup/img.jpg</pixmap>
+                      <pixmap>../../../../../../.designer/backup/img.jpg</pixmap>
                      </property>
                     </widget>
                    </item>
@@ -7879,7 +7943,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>892</width>
+                <width>1145</width>
                 <height>2377</height>
                </rect>
               </property>
@@ -9869,8 +9933,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1145</width>
-                <height>707</height>
+                <width>1144</width>
+                <height>678</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -10449,6 +10513,7 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets/Assets.qrc"/>
+  <include location="../../../../.designer/backup/Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

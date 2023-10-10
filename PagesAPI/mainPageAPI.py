@@ -5,7 +5,7 @@ import time
 from PySide6.QtCore import QThread, QObject, Signal, QMutex
 import copy
 
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 from PagesUI.mainPageUI import mainPageUI
 from Database.mainDatabase import mainDatabase
 from Database.reportsDB import reportFileHandler

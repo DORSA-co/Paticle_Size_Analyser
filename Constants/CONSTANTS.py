@@ -1,3 +1,19 @@
+class meta:
+    MASTER_PASSWORD = '1111'
+
+class databaseConstant:
+    KEY = b'hiyPabX4mQTPQZYW_iSueyTfhFWvf2EO3T_1uCGLTiw='
+    META_PATH = 'dbmeta.json'
+
+
+
+
+
+
+
+
+
+
 MIN_PASS_LENGHT = 1
 MIN_USERNAME_LENGHT = 1
 #-------------------------------------------------------------------

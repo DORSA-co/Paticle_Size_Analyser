@@ -1,5 +1,5 @@
 import bcrypt
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 
 class passwordManager:
 

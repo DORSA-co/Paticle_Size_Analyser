@@ -2,7 +2,7 @@ from backend.Camera.dorsaPylon import Collector, Camera
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI
 from backend.Utils.StorageUtils import storageManager
-import CONSTANTS
+import Constants.CONSTANTS as CONSTANTS
 import os
 
 class settingPageAPI:

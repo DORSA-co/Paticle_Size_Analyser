@@ -106,6 +106,7 @@ class mainPageUI:
         for name in self.warning_btns.keys():
             GUIBackend.button_connector(self.warning_btns[name]['btn'], self.internal_warning_button_event(name))
         GUIBackend.button_connector(self.close_warning_msg_btn, self.close_warning_msg)
+        GUIBackend.set_relation_size(self.live_img_lbl, 0.45, 0.5)
         #Startup operations-----------------
         #-----------------------------------------------------------
         #self.startup()

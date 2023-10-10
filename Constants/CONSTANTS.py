@@ -5,7 +5,9 @@ class databaseConstant:
     KEY = b'hiyPabX4mQTPQZYW_iSueyTfhFWvf2EO3T_1uCGLTiw='
     META_PATH = 'dbmeta.json'
 
-
+class screen:
+    W = 0
+    H = 0
 
 
 

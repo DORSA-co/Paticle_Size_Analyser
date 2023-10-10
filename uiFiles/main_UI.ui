@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1232,13 +1232,13 @@ QPushButton:disabled{
                    <string/>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">border: 2px solid rgb(45, 86, 136);
-border-radius: 8px;
+                   <string notr="true">border: 2px solid rgb(50, 50, 50);
+border-radius: 0px;
 margin: 0px;
 max-width:700px;
 max-height:700px;
 
-background-color:rgb(50, 50, 50);
+background-color:rgb(50,50,50);
 
 
 </string>

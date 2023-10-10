@@ -816,13 +816,13 @@ class Ui_MainWindow(object):
         self.mainpage_live_image_lbl.setObjectName(u"mainpage_live_image_lbl")
         self.mainpage_live_image_lbl.setMaximumSize(QSize(704, 704))
         self.mainpage_live_image_lbl.setSizeIncrement(QSize(500, 500))
-        self.mainpage_live_image_lbl.setStyleSheet(u"border: 2px solid rgb(45, 86, 136);\n"
-"border-radius: 8px;\n"
+        self.mainpage_live_image_lbl.setStyleSheet(u"border: 2px solid rgb(50, 50, 50);\n"
+"border-radius: 0px;\n"
 "margin: 0px;\n"
 "max-width:700px;\n"
 "max-height:700px;\n"
 "\n"
-"background-color:rgb(50, 50, 50);\n"
+"background-color:rgb(50,50,50);\n"
 "\n"
 "\n"
 "")
@@ -5958,7 +5958,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(0)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(1)

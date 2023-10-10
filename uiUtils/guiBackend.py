@@ -5,7 +5,7 @@ from datetime import datetime, date
 import sys
 from PySide6.QtGui import QMovie
 from PySide6.QtUiTools import QUiLoader
-
+from Constants import CONSTANTS
 
 
 class GUIBackend:
@@ -70,6 +70,14 @@ class GUIBackend:
         Returns: None
         """
         ui.showMinimized()
+
+    
+    @staticmethod
+    def set_relation_size(wgt: QtWidgets.QWidget, rw, rh):
+        h = int( CONSTANTS.screen.H * rh )
+        w = int( CONSTANTS.screen.W * rw )
+        GUIBackend.set_max_size(wgt, h, w)
+        GUIBackend.set_min_size(wgt, h, w)
     #----------------------------------------------------------------
 
     @staticmethod

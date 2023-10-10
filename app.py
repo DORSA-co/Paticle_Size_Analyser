@@ -1,9 +1,11 @@
-from appUI import mainUI
-from appAPI import main_API
 from PySide6 import QtWidgets, QtCore, QtGui 
 from PySide6.QtUiTools import QUiLoader
 import sys
 import os
+
+from appUI import mainUI
+from appAPI import main_API
+from Constants import CONSTANTS
 
 #----------------------Compile Resource File-----------------------
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
@@ -24,6 +26,11 @@ db_init_ui_file = 'uiFiles/db_init.ui'
 if __name__ == '__main__':
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
+    
+    screen = app.screens()[0]
+    CONSTANTS.screen.H = screen.virtualSize().height()
+    CONSTANTS.screen.W = screen.virtualSize().width()
+    
     #load .ui files
     window = loader.load(main_ui_file, None)
     login_ui = loader.load(login_ui_file, None)
@@ -43,7 +50,6 @@ if __name__ == '__main__':
     
     api = main_API(main_ui)
     #main_ui.usersPage.loginUserBox.show_login()
-   
     #window.showMaximized()
     app.exec()
 

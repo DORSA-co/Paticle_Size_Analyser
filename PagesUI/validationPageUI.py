@@ -1,11 +1,12 @@
 from __future__ import annotations  #for hint class befor defined
-
+import numpy as np
 
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from PagesUI.dialogWindows.samplesDialogUI import samplesDialogUI
 from backend.Utils.datetimeUtils import datetimeFormat
-
+from PagesUI.PageUI import commonUI
+from PagesUI.dialogWindows.verficationResultDialogUI import verficationResultDialogUI
 
 class validationPageUI:
 
@@ -14,9 +15,10 @@ class validationPageUI:
         self.calibrationTab = calibrationTabUI(ui)
 
 
-class calibrationTabUI:
+class calibrationTabUI(commonUI):
 
     def __init__(self, ui) -> None:
+        
         self.ui = ui
 
         self.check_btn = self.ui.calibrationpage_check_btn
@@ -92,19 +94,24 @@ class calibrationTabUI:
 
 
 
-class statisticalHypothesisTab:
+class statisticalHypothesisTab(commonUI):
     
     
     MAX_TEST_COUNT = 10
     
+    
     def __init__(self, ui) -> None:
+        super(statisticalHypothesisTab, self).__init__()
+
         self.ui = ui
         self.sampleLoader = samplesDialogUI(button_name='load')
+        self.resultDialog = verficationResultDialogUI()
 
         self.standards_combobox = self.ui.validationpage_hypotest_standards_combobox
         self.test_count_spinbox = self.ui.validationpage_hypotest_test_count_spinbox
         self.calculate_button = self.ui.validationpage_hypotest_calculate_btn
         self.sections_layout = self.ui.validationpage_hypotest_sections_layout
+        self.verification_type_combobox = self.ui.validationpage_verify_type
 
         self.test_sections =[]
         for i in range(self.MAX_TEST_COUNT):
@@ -137,6 +144,8 @@ class statisticalHypothesisTab:
     def set_standards_list(self, standards_name:list[str]):
         GUIBackend.set_combobox_items(self.standards_combobox, standards_name)
 
+    def get_selected_standard(self) -> str:
+        return GUIBackend.get_combobox_selected(self.standards_combobox)
 
     def get_test_count(self, ) -> int:
         """returns test count from corspond spinbox
@@ -146,6 +155,13 @@ class statisticalHypothesisTab:
         """
         return GUIBackend.get_input_spinbox_value(self.test_count_spinbox)
     
+    def set_verification_type_items(self, types:list[str]):
+        GUIBackend.set_combobox_items(self.verification_type_combobox,
+                                      types 
+        )
+    
+    def get_verfication_type(self)-> str:
+        return GUIBackend.get_combobox_selected(self.verification_type_combobox).lower()
 
     def calculate_button_connector(self, func):
         GUIBackend.button_connector(self.calculate_button, func)
@@ -166,7 +182,14 @@ class statisticalHypothesisTab:
                 self.test_sections[i].clear()
         
 
-
+    def get_sieve_inputs(self) -> list[np.ndarray]:
+        sieve_percents = []
+        n = self.get_test_count()
+        for i in range(n):
+            test_section = self.get_test_section(i)
+            percents = test_section.get_sieve_percents()
+            sieve_percents.append(percents)
+        return sieve_percents
 
 
 #-----------------------------------------------------------------------------------------------
@@ -185,6 +208,8 @@ class testSectionUI:
         self.load_btn = self.wgt_ui.load_btn
         self.table = self.wgt_ui.table
         self.error_lbl = self.wgt_ui.error_lbl
+        self.warning_lamp = self.wgt_ui.warning_lamp
+        self.sum_percents_lbl = self.wgt_ui.sum_percents_lbl
 
         self.table_inputs = []
         self.table_rows_header = ['Dorsa-PSA', 'Sieve']
@@ -239,6 +264,8 @@ class testSectionUI:
         self.table_inputs.clear()
         for col in range(1, len(self.table_headers)):
             inpt = GUIComponents.doubleSpinBoxTable()
+            
+            GUIBackend.input_text_connector(inpt, self.__percent_inputs_event__)
             GUIBackend.set_table_cell_widget( self.table, (1, col), inpt, layout=True )
             self.table_inputs.append(inpt)
 
@@ -298,4 +325,22 @@ class testSectionUI:
     
     def append_to_layout(self, layout):
         GUIBackend.add_widget(layout, self.wgt_ui)
-        
+    
+    def __percent_inputs_event__(self,):
+        res = self.get_sieve_percents()
+        percents_sum =  res.sum()
+        GUIBackend.set_label_text(self.sum_percents_lbl, f'{percents_sum} %')
+        if percents_sum == 100:
+            GUIBackend.set_style(self.warning_lamp, 'background-color:rgb(58, 209, 154);') #green color
+    
+        else:
+            GUIBackend.set_style(self.warning_lamp, 'background-color:rgb(197, 63, 59);') #red color
+            
+
+    def get_sieve_percents(self,):
+        res = []
+        for inpt in self.table_inputs:
+            value = GUIBackend.get_input(inpt)
+            res.append(value)
+
+        return np.array(res)

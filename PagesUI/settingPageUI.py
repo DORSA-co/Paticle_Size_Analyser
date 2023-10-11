@@ -15,7 +15,7 @@ class settingPageUI:
 
 class commonSettingUI(commonUI):
     def __init__(self, ui) -> None:
-        #super(commonSettingUI, self).__init__()
+        super(commonSettingUI, self).__init__()
         self.ui = ui
         self.save_mgs = self.ui.settingpage_save_massage_lbl
         self.gif_lbl = self.ui.settingpage_save_gif_lbl

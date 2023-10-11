@@ -74,6 +74,7 @@ class reportPageAPI:
         self.show_ranges_statistics()
         self.show_charts()
         self.refresh_particles_page()
+        self.set_description()
     
     
 
@@ -180,4 +181,30 @@ class reportPageAPI:
         self.ui.set_particle_image(particle_img)
         #------------------------------------------------
         
+    def set_description(self, ):
+        p1, p2 = reportDescriptions.get_statistic_desc()
+        self.ui.set_description('statictics',0, p1)
+        self.ui.set_description('statictics',1, p2)
         
+        # p = """<p> testttttt</p>"""
+        # self.ui.ui.textEdit.setHtml(p)
+
+
+
+
+
+class reportDescriptions:
+    
+    @staticmethod
+    def get_statistic_desc():
+        p1 = """
+             """
+        
+        p2 = """the statistics of this experiment include mean,
+          standard deviation, count of particles, and weight percent of each range of diameter. 
+          statistics have been reported on the selected range standard but can be calculated 
+          on other range standards on the report filter page."""
+        
+        
+        
+        return p1.replace('\n', ''), p2.replace('\n', '')

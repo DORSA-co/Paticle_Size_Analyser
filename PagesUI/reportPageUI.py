@@ -31,6 +31,13 @@ class reportPageUI:
             
         }
 
+        self.descriptions = {
+            'statictics' : [
+                                self.ui.sreportpage_statictics_desc1,
+                                self.ui.sreportpage_statictics_desc2,
+                            ]
+        }
+
         self.general_information = {
             'name':self.ui.sreportpage_name_lbl,
             'date':self.ui.sreportpage_date_lbl,
@@ -264,7 +271,8 @@ class reportPageUI:
             GUIBackend.set_disable_enable(self.particle_navigator_buttons['prev'], True)
         
         
-
+    def set_description(self, name, idx, text):
+        GUIBackend.set_label_text( self.descriptions[name][idx], text)
 
     def show_page_number(self, curent:int, end:int):
         GUIBackend.set_label_text(self.current_page, str(curent))

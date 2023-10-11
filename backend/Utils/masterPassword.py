@@ -22,7 +22,7 @@ def get_master_password():
         master_pass = master_pass + chr(asci)
 
     return master_pass
-
+5
 
 
 if __name__ == '__main__':

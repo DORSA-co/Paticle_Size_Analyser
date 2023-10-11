@@ -20,9 +20,18 @@ class settingCameraDB:
                    {'col_name': 'height',           'type':'INT', },
                    {'col_name': 'fps',              'type':'INT', },
                    {'col_name': 'application',      'type':'VARCHAR(255)', 'len':20},
-                   #{'col_name': 'is_default',       'type':'BOOL',},
-
                 ]
+    
+    TABLE_DEFAULT= {
+                   'serial_number': '',
+                   'gain': 50,           
+                   'exposure': 50,       
+                   'width':  2000,          
+                   'height': 1800,         
+                   'fps': 15,            
+                   'application': 'standard',   
+
+                }
     PRIMERY_KEY_COL_NAME = 'application'
 
 
@@ -33,18 +42,13 @@ class settingCameraDB:
 
     def __create_table__(self,):
         self.db_manager.create_table(self.TABLE_NAME)
-        self.db_manager.create_table(self.TABLE_NAME_DEFAULT)
+        #self.db_manager.create_table(self.TABLE_NAME_DEFAULT)
 
         for col in self.TABLE_COLS:
             self.db_manager.add_column( self.TABLE_NAME, **col)
-            self.db_manager.add_column( self.TABLE_NAME_DEFAULT, **col)
+            #self.db_manager.add_column( self.TABLE_NAME_DEFAULT, **col)
         
-        
-    
-    # def __set_default__(self):
-    #     for is_default in [0,1]:
-    #         self.DEFAULTS['is_default'] = is_default
-    #         self.db_manager.add_record(self.TABLE_NAME, self.DEFAULTS)
+
 
     def is_exist(self, application):
         founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, application)
@@ -87,6 +91,14 @@ class settingSampleDB:
                    {'col_name': 'text1',     'type':'VARCHAR(255)', 'len':300},
                    {'col_name': 'save_image',    'type':'INT', },
                 ]
+    
+    TABLE_DEFAULT= [ {'autoname_enable': 0},
+                     {'autoname_struct': '%Y%M%D'},
+                     {'default_standard': ''},
+                     {'text1': ''},
+                     {'save_image': 1},
+                ]
+    
     PRIMERY_KEY_COL_NAME = 'id'
     BOOL_COLS = [ 'save_image', 'autoname_enable']
 
@@ -143,12 +155,15 @@ class settingSampleDB:
 class settingAlgorithmDB:
     TABLE_NAME = 'algorithm_setting'
     TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
-    TABLE_COLS = [ #{'col_name': 'id',    'type':'INT'},
+    TABLE_COLS = [ 
                    {'col_name': 'threshold',    'type':'INT'},
                    {'col_name': 'border',       'type':'INT', },
-                   
-
                 ]
+    
+    TABLE_DEFAULTS = {
+                        'threshold' : 20,
+                        'border': 10
+                    }
     PRIMERY_KEY_COL_NAME = 'id'
 
 
@@ -210,7 +225,13 @@ class settingStorageDB:
                    {'col_name': 'auto_clean',    'type':'INT', },
                    {'col_name': 'life_time',     'type':'INT', },
                    
-                                  ]
+                ]
+    
+    TABLE_DEFAULTS = {
+                        'path': '',
+                        'auto_clean' : 1,
+                        'life_time': 90
+                    }
     
     PRIMERY_KEY_COL_NAME = 'id'
     BOOL_COLS = ['auto_clean', ]
@@ -222,6 +243,7 @@ class settingStorageDB:
         
 
     def __create_table__(self,):
+        #print(self.db_manager.table_exits(self.TABLE_NAME))
         self.db_manager.create_table(self.TABLE_NAME)
         self.db_manager.create_table(self.TABLE_NAME_DEFAULT)
 

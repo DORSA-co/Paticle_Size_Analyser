@@ -54,7 +54,7 @@ class dbInitAPI:
         status = db.connect()
 
         if not status:
-            self.ui.write_error('Connection Failed. please sure the connection exist in workBench')
+            self.ui.write_error('Connection Failed. please make sure the connection exist in your MySQL workbench')
         else:
             self.ui.go_next_page()
 

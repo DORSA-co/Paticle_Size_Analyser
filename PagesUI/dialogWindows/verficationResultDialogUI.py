@@ -24,6 +24,10 @@ class verficationResultDialogUI:
                 'error' : self.ui.error_lbl,
             },
             {
+                'p_value' : self.ui.p_value_lbl,
+                't_score' : self.ui.t_score_lbl,
+                'df' : self.ui.df_lbl,
+                'best_confidence': self.ui.best_confidence_lbl
 
             }
         ]

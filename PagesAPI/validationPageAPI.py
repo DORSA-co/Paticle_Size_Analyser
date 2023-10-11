@@ -140,8 +140,15 @@ class statisticalHypothesisTabAPI:
             t_test = tTestValidation()
             standatd_name = self.test_system_samples[0]['standard']
             standard = self.database.standards_db.load(standatd_name)
+            
             t_test.set_ranges(standard['ranges'])
-
+            t_test.set_test(system_percents, sieve_percents)
+            status, infoes = t_test.calculate() 
+            best = infoes['best_confidence']
+            if status:
+                text = f"T test passed in T95 condfidence (on-tail). the best confidence is {best}"
+            else:
+                text = f"T test didn't passed in T95 condfidence (on-tail). the best confidence is {best}"
 
             self.ui.resultDialog.set_page(1)
 

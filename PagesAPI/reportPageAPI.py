@@ -200,10 +200,7 @@ class reportDescriptions:
         p1 = """
              """
         
-        p2 = """the statistics of this experiment include mean,
-          standard deviation, count of particles, and weight percent of each range of diameter. 
-          statistics have been reported on the selected range standard but can be calculated 
-          on other range standards on the report filter page."""
+        p2 = """the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page."""
         
         
         

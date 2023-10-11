@@ -25,7 +25,7 @@ class Ui_sampleTest(object):
         if not sampleTest.objectName():
             sampleTest.setObjectName(u"sampleTest")
         sampleTest.setEnabled(True)
-        sampleTest.resize(450, 300)
+        sampleTest.resize(450, 350)
         sampleTest.setMinimumSize(QSize(450, 300))
         sampleTest.setMaximumSize(QSize(450, 350))
         sampleTest.setStyleSheet(u"*{\n"
@@ -307,6 +307,7 @@ class Ui_sampleTest(object):
         self.label_3.setObjectName(u"label_3")
         self.label_3.setStyleSheet(u"font-size: 14px;\n"
 "font-weight:bold;")
+        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
 
@@ -329,6 +330,7 @@ class Ui_sampleTest(object):
         self.label_5.setObjectName(u"label_5")
         self.label_5.setStyleSheet(u"font-size: 14px;\n"
 "font-weight:bold;")
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label_5, 1, 0, 1, 1)
 
@@ -346,6 +348,107 @@ class Ui_sampleTest(object):
         self.pages.addWidget(self.type1)
         self.type2 = QWidget()
         self.type2.setObjectName(u"type2")
+        self.verticalLayout = QVBoxLayout(self.type2)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.description_lbl_2 = QLabel(self.type2)
+        self.description_lbl_2.setObjectName(u"description_lbl_2")
+        self.description_lbl_2.setStyleSheet(u"font-size: 18px;\n"
+"font-weight:bold;\n"
+"color: rgb(12, 80, 139);")
+        self.description_lbl_2.setWordWrap(True)
+
+        self.verticalLayout.addWidget(self.description_lbl_2)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, -1, -1)
+        self.label_4 = QLabel(self.type2)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setStyleSheet(u"font-size: 14px;\n"
+"font-weight:bold;")
+        self.label_4.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_3.addWidget(self.label_4)
+
+        self.t_score_lbl = QLabel(self.type2)
+        self.t_score_lbl.setObjectName(u"t_score_lbl")
+
+        self.horizontalLayout_3.addWidget(self.t_score_lbl)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(-1, 0, -1, -1)
+        self.label_6 = QLabel(self.type2)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setStyleSheet(u"font-size: 14px;\n"
+"font-weight:bold;")
+        self.label_6.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.horizontalLayout_5.addWidget(self.label_6)
+
+        self.p_value_lbl = QLabel(self.type2)
+        self.p_value_lbl.setObjectName(u"p_value_lbl")
+
+        self.horizontalLayout_5.addWidget(self.p_value_lbl)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_4)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_5)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, -1, -1)
+        self.label_7 = QLabel(self.type2)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setStyleSheet(u"font-size: 14px;\n"
+"font-weight:bold;")
+
+        self.horizontalLayout_6.addWidget(self.label_7)
+
+        self.df_lbl = QLabel(self.type2)
+        self.df_lbl.setObjectName(u"df_lbl")
+
+        self.horizontalLayout_6.addWidget(self.df_lbl)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_5)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_6)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, -1, -1)
+        self.label_8 = QLabel(self.type2)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setStyleSheet(u"font-size: 14px;\n"
+"font-weight:bold;")
+
+        self.horizontalLayout_7.addWidget(self.label_8)
+
+        self.best_confidence_lbl = QLabel(self.type2)
+        self.best_confidence_lbl.setObjectName(u"best_confidence_lbl")
+
+        self.horizontalLayout_7.addWidget(self.best_confidence_lbl)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_6)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_7)
+
         self.pages.addWidget(self.type2)
 
         self.verticalLayout_3.addWidget(self.pages)
@@ -407,6 +510,15 @@ class Ui_sampleTest(object):
         self.sieve_std_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
         self.sieve_std_lbl_2.setText(QCoreApplication.translate("sampleTest", u"%", None))
         self.label_5.setText(QCoreApplication.translate("sampleTest", u"Avrage of Sieved STD", None))
+        self.description_lbl_2.setText(QCoreApplication.translate("sampleTest", u"Results for t95", None))
+        self.label_4.setText(QCoreApplication.translate("sampleTest", u"T Score", None))
+        self.t_score_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
+        self.label_6.setText(QCoreApplication.translate("sampleTest", u"P-value", None))
+        self.p_value_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
+        self.label_7.setText(QCoreApplication.translate("sampleTest", u"Degree of freedom", None))
+        self.df_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
+        self.label_8.setText(QCoreApplication.translate("sampleTest", u"best confidence", None))
+        self.best_confidence_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
         self.description_lbl.setText(QCoreApplication.translate("sampleTest", u"Desc", None))
         self.ok.setText(QCoreApplication.translate("sampleTest", u"ok", None))
     # retranslateUi

@@ -278,6 +278,7 @@ class Ui_login_dialog_window(object):
         self.label_3 = QLabel(self.page2)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setStyleSheet(u"color: rgb(255, 191, 0);")
+        self.label_3.setWordWrap(True)
 
         self.verticalLayout_4.addWidget(self.label_3)
 
@@ -345,7 +346,7 @@ class Ui_login_dialog_window(object):
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(-1, 11, -1, -1)
+        self.horizontalLayout_2.setContentsMargins(-1, 15, -1, -1)
         self.prev_btn = QPushButton(login_dialog_window)
         self.prev_btn.setObjectName(u"prev_btn")
         self.prev_btn.setStyleSheet(u"QPushButton{\n"
@@ -387,7 +388,7 @@ class Ui_login_dialog_window(object):
 
         self.retranslateUi(login_dialog_window)
 
-        self.pages.setCurrentIndex(2)
+        self.pages.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(login_dialog_window)
@@ -401,14 +402,14 @@ class Ui_login_dialog_window(object):
         self.close_btn.setText("")
         self.label.setText(QCoreApplication.translate("login_dialog_window", u"Input your master password", None))
         self.label_7.setText("")
-        self.label_6.setText(QCoreApplication.translate("login_dialog_window", u"If you forget your master password, please contact to Dorsa support", None))
+        self.label_6.setText(QCoreApplication.translate("login_dialog_window", u"If you forget your master password, please contact Dorsa support", None))
         self.label_2.setText(QCoreApplication.translate("login_dialog_window", u"Please insert database information", None))
         self.label_35.setText(QCoreApplication.translate("login_dialog_window", u"Username:", None))
         self.label_98.setText(QCoreApplication.translate("login_dialog_window", u"Password:", None))
-        self.label_3.setText(QCoreApplication.translate("login_dialog_window", u"Warning: almost you don't need to change host", None))
+        self.label_3.setText(QCoreApplication.translate("login_dialog_window", u"Warning: most of the time you don't need to change host", None))
         self.label_102.setText(QCoreApplication.translate("login_dialog_window", u"Host:", None))
         self.label_5.setText("")
-        self.label_4.setText(QCoreApplication.translate("login_dialog_window", u"Database Initial successfully. click on finish and run the software again", None))
+        self.label_4.setText(QCoreApplication.translate("login_dialog_window", u"Database Initialization was successfull. click on finish and run the software again.", None))
         self.error_lbl.setText("")
         self.prev_btn.setText(QCoreApplication.translate("login_dialog_window", u"Previous", None))
         self.next_btn.setText(QCoreApplication.translate("login_dialog_window", u"Next", None))

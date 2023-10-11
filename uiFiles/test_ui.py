@@ -17,8 +17,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QFrame, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QPushButton,
-    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+    QSizePolicy, QSpacerItem, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 import Assets_rc
 
 class Ui_sampleTest(object):
@@ -26,7 +26,7 @@ class Ui_sampleTest(object):
         if not sampleTest.objectName():
             sampleTest.setObjectName(u"sampleTest")
         sampleTest.setEnabled(True)
-        sampleTest.resize(860, 174)
+        sampleTest.resize(860, 200)
         sampleTest.setMinimumSize(QSize(0, 150))
         sampleTest.setMaximumSize(QSize(16777215, 200))
         sampleTest.setStyleSheet(u"*{\n"
@@ -311,7 +311,12 @@ class Ui_sampleTest(object):
         if (self.table.rowCount() < 2):
             self.table.setRowCount(2)
         self.table.setObjectName(u"table")
-        self.table.setMinimumSize(QSize(0, 150))
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.table.sizePolicy().hasHeightForWidth())
+        self.table.setSizePolicy(sizePolicy)
+        self.table.setMinimumSize(QSize(0, 140))
         self.table.setMaximumSize(QSize(16777215, 16777215))
         self.table.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
@@ -323,11 +328,54 @@ class Ui_sampleTest(object):
 
         self.verticalLayout_2.addWidget(self.table)
 
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(-1, 0, -1, -1)
+        self.warning_lamp = QLabel(sampleTest)
+        self.warning_lamp.setObjectName(u"warning_lamp")
+        self.warning_lamp.setMinimumSize(QSize(20, 20))
+        self.warning_lamp.setMaximumSize(QSize(20, 20))
+        self.warning_lamp.setStyleSheet(u"background-color: rgb(197, 63, 59);\n"
+"\n"
+"")
+
+        self.horizontalLayout_3.addWidget(self.warning_lamp)
+
+        self.label_4 = QLabel(sampleTest)
+        self.label_4.setObjectName(u"label_4")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy1)
+
+        self.horizontalLayout_3.addWidget(self.label_4)
+
+        self.sum_percents_lbl = QLabel(sampleTest)
+        self.sum_percents_lbl.setObjectName(u"sum_percents_lbl")
+        self.sum_percents_lbl.setMinimumSize(QSize(40, 0))
+        self.sum_percents_lbl.setMaximumSize(QSize(16777215, 16777215))
+        self.sum_percents_lbl.setTextFormat(Qt.RichText)
+        self.sum_percents_lbl.setScaledContents(False)
+
+        self.horizontalLayout_3.addWidget(self.sum_percents_lbl)
+
+        self.horizontalSpacer = QSpacerItem(30, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer)
+
         self.error_lbl = QLabel(sampleTest)
         self.error_lbl.setObjectName(u"error_lbl")
         self.error_lbl.setStyleSheet(u"color: rgb(197, 63, 59)")
 
-        self.verticalLayout_2.addWidget(self.error_lbl)
+        self.horizontalLayout_3.addWidget(self.error_lbl)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
 
         self.horizontalLayout.addLayout(self.verticalLayout_2)
@@ -347,6 +395,9 @@ class Ui_sampleTest(object):
         self.sample_date_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
         self.label_5.setText(QCoreApplication.translate("sampleTest", u"Time", None))
         self.sample_time_lbl.setText(QCoreApplication.translate("sampleTest", u"TextLabel", None))
+        self.warning_lamp.setText("")
+        self.label_4.setText(QCoreApplication.translate("sampleTest", u"Sum of Sieve percents:", None))
+        self.sum_percents_lbl.setText(QCoreApplication.translate("sampleTest", u"0", None))
         self.error_lbl.setText(QCoreApplication.translate("sampleTest", u"Error", None))
     # retranslateUi
 

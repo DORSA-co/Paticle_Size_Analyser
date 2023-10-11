@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QVBoxLayout, QWidget)
 import Assets_rc
+import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -3804,6 +3805,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_62.addItem(self.horizontalSpacer_107)
 
+        self.label_110 = QLabel(self.tab_7)
+        self.label_110.setObjectName(u"label_110")
+
+        self.horizontalLayout_62.addWidget(self.label_110)
+
         self.horizontalSpacer_103 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
         self.horizontalLayout_62.addItem(self.horizontalSpacer_103)
@@ -3814,6 +3820,11 @@ class Ui_MainWindow(object):
         self.line_28.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_62.addWidget(self.line_28)
+
+        self.validationpage_verify_type = QComboBox(self.tab_7)
+        self.validationpage_verify_type.setObjectName(u"validationpage_verify_type")
+
+        self.horizontalLayout_62.addWidget(self.validationpage_verify_type)
 
         self.horizontalSpacer_105 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -4635,7 +4646,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1848, 1145, 2543))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1144, 2719))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4914,9 +4925,28 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.label_46)
 
-        self.verticalSpacer_17 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_17 = QSpacerItem(20, 35, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_12.addItem(self.verticalSpacer_17)
+
+        self.sreportpage_statictics_desc1 = QLabel(self.scrollAreaWidgetContents)
+        self.sreportpage_statictics_desc1.setObjectName(u"sreportpage_statictics_desc1")
+        self.sreportpage_statictics_desc1.setStyleSheet(u"QLabel{\n"
+"	color: #404040;\n"
+"	font-size: 16px;\n"
+"\n"
+"}")
+        self.sreportpage_statictics_desc1.setWordWrap(True)
+        self.sreportpage_statictics_desc1.setMargin(5)
+        self.sreportpage_statictics_desc1.setIndent(-1)
+        self.sreportpage_statictics_desc1.setOpenExternalLinks(False)
+        self.sreportpage_statictics_desc1.setTextInteractionFlags(Qt.LinksAccessibleByMouse|Qt.TextSelectableByMouse)
+
+        self.verticalLayout_12.addWidget(self.sreportpage_statictics_desc1)
+
+        self.verticalSpacer_46 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_12.addItem(self.verticalSpacer_46)
 
         self.horizontalLayout_54 = QHBoxLayout()
         self.horizontalLayout_54.setObjectName(u"horizontalLayout_54")
@@ -4924,6 +4954,25 @@ class Ui_MainWindow(object):
         self.horizontalSpacer_86 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_54.addItem(self.horizontalSpacer_86)
+
+        self.verticalLayout_50 = QVBoxLayout()
+        self.verticalLayout_50.setObjectName(u"verticalLayout_50")
+        self.verticalLayout_50.setContentsMargins(0, 0, -1, 14)
+        self.label_104 = QLabel(self.scrollAreaWidgetContents)
+        self.label_104.setObjectName(u"label_104")
+        font2 = QFont()
+        font2.setFamilies([u"Arial"])
+        font2.setBold(False)
+        font2.setItalic(True)
+        self.label_104.setFont(font2)
+        self.label_104.setStyleSheet(u"QLabel{\n"
+"	color: #707070;\n"
+"	font-style: italic;\n"
+"\n"
+"}")
+        self.label_104.setTextFormat(Qt.PlainText)
+
+        self.verticalLayout_50.addWidget(self.label_104, 0, Qt.AlignHCenter)
 
         self.frame_2 = QFrame(self.scrollAreaWidgetContents)
         self.frame_2.setObjectName(u"frame_2")
@@ -5051,7 +5100,10 @@ class Ui_MainWindow(object):
         self.verticalLayout_35.addLayout(self.horizontalLayout_53)
 
 
-        self.horizontalLayout_54.addWidget(self.frame_2)
+        self.verticalLayout_50.addWidget(self.frame_2)
+
+
+        self.horizontalLayout_54.addLayout(self.verticalLayout_50)
 
         self.horizontalSpacer_84 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -5064,12 +5116,33 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addItem(self.verticalSpacer_31)
 
+        self.sreportpage_statictics_desc2 = QLabel(self.scrollAreaWidgetContents)
+        self.sreportpage_statictics_desc2.setObjectName(u"sreportpage_statictics_desc2")
+        self.sreportpage_statictics_desc2.setWordWrap(True)
+
+        self.verticalLayout_12.addWidget(self.sreportpage_statictics_desc2)
+
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(-1, 0, -1, -1)
         self.horizontalSpacer_53 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_7.addItem(self.horizontalSpacer_53)
+
+        self.verticalLayout_53 = QVBoxLayout()
+        self.verticalLayout_53.setObjectName(u"verticalLayout_53")
+        self.verticalLayout_53.setContentsMargins(0, 15, -1, 15)
+        self.label_105 = QLabel(self.scrollAreaWidgetContents)
+        self.label_105.setObjectName(u"label_105")
+        self.label_105.setFont(font2)
+        self.label_105.setStyleSheet(u"QLabel{\n"
+"	color: #707070;\n"
+"	font-style: italic;\n"
+"\n"
+"}")
+        self.label_105.setTextFormat(Qt.PlainText)
+
+        self.verticalLayout_53.addWidget(self.label_105, 0, Qt.AlignHCenter)
 
         self.sreportpage_statictics_table = QTableWidget(self.scrollAreaWidgetContents)
         if (self.sreportpage_statictics_table.columnCount() < 5):
@@ -5146,7 +5219,10 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.verticalHeader().setDefaultSectionSize(40)
         self.sreportpage_statictics_table.verticalHeader().setHighlightSections(True)
 
-        self.horizontalLayout_7.addWidget(self.sreportpage_statictics_table)
+        self.verticalLayout_53.addWidget(self.sreportpage_statictics_table)
+
+
+        self.horizontalLayout_7.addLayout(self.verticalLayout_53)
 
         self.horizontalSpacer_54 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -5174,13 +5250,30 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25 = QHBoxLayout()
         self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
-        self.horizontalLayout_25.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_25.setContentsMargins(61, 0, -1, -1)
+        self.verticalLayout_54 = QVBoxLayout()
+        self.verticalLayout_54.setObjectName(u"verticalLayout_54")
         self.report_grading_chart_frame = QHBoxLayout()
         self.report_grading_chart_frame.setObjectName(u"report_grading_chart_frame")
         self.report_grading_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
         self.report_grading_chart_frame.setContentsMargins(10, 10, 10, 10)
 
-        self.horizontalLayout_25.addLayout(self.report_grading_chart_frame)
+        self.verticalLayout_54.addLayout(self.report_grading_chart_frame)
+
+        self.label_107 = QLabel(self.scrollAreaWidgetContents)
+        self.label_107.setObjectName(u"label_107")
+        self.label_107.setFont(font2)
+        self.label_107.setStyleSheet(u"QLabel{\n"
+"	color: #707070;\n"
+"	font-style: italic;\n"
+"\n"
+"}")
+        self.label_107.setTextFormat(Qt.PlainText)
+
+        self.verticalLayout_54.addWidget(self.label_107, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_25.addLayout(self.verticalLayout_54)
 
         self.line_18 = QFrame(self.scrollAreaWidgetContents)
         self.line_18.setObjectName(u"line_18")
@@ -5190,12 +5283,29 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25.addWidget(self.line_18)
 
+        self.verticalLayout_55 = QVBoxLayout()
+        self.verticalLayout_55.setObjectName(u"verticalLayout_55")
         self.report_cum_chart_frame = QHBoxLayout()
         self.report_cum_chart_frame.setObjectName(u"report_cum_chart_frame")
         self.report_cum_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
         self.report_cum_chart_frame.setContentsMargins(10, 10, 10, 10)
 
-        self.horizontalLayout_25.addLayout(self.report_cum_chart_frame)
+        self.verticalLayout_55.addLayout(self.report_cum_chart_frame)
+
+        self.label_108 = QLabel(self.scrollAreaWidgetContents)
+        self.label_108.setObjectName(u"label_108")
+        self.label_108.setFont(font2)
+        self.label_108.setStyleSheet(u"QLabel{\n"
+"	color: #707070;\n"
+"	font-style: italic;\n"
+"\n"
+"}")
+        self.label_108.setTextFormat(Qt.PlainText)
+
+        self.verticalLayout_55.addWidget(self.label_108, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_25.addLayout(self.verticalLayout_55)
 
         self.verticalSpacer_32 = QSpacerItem(10, 300, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
@@ -5211,12 +5321,29 @@ class Ui_MainWindow(object):
         self.horizontalLayout_63 = QHBoxLayout()
         self.horizontalLayout_63.setObjectName(u"horizontalLayout_63")
         self.horizontalLayout_63.setContentsMargins(-1, 0, -1, -1)
+        self.verticalLayout_56 = QVBoxLayout()
+        self.verticalLayout_56.setObjectName(u"verticalLayout_56")
         self.report_gaussian_chart_frame = QHBoxLayout()
         self.report_gaussian_chart_frame.setObjectName(u"report_gaussian_chart_frame")
         self.report_gaussian_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
         self.report_gaussian_chart_frame.setContentsMargins(10, 10, 10, 10)
 
-        self.horizontalLayout_63.addLayout(self.report_gaussian_chart_frame)
+        self.verticalLayout_56.addLayout(self.report_gaussian_chart_frame)
+
+        self.label_109 = QLabel(self.scrollAreaWidgetContents)
+        self.label_109.setObjectName(u"label_109")
+        self.label_109.setFont(font2)
+        self.label_109.setStyleSheet(u"QLabel{\n"
+"	color: #707070;\n"
+"	font-style: italic;\n"
+"\n"
+"}")
+        self.label_109.setTextFormat(Qt.PlainText)
+
+        self.verticalLayout_56.addWidget(self.label_109, 0, Qt.AlignHCenter)
+
+
+        self.horizontalLayout_63.addLayout(self.verticalLayout_56)
 
         self.line_30 = QFrame(self.scrollAreaWidgetContents)
         self.line_30.setObjectName(u"line_30")
@@ -5225,13 +5352,6 @@ class Ui_MainWindow(object):
         self.line_30.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_63.addWidget(self.line_30)
-
-        self.report_cum_chart_frame_2 = QHBoxLayout()
-        self.report_cum_chart_frame_2.setObjectName(u"report_cum_chart_frame_2")
-        self.report_cum_chart_frame_2.setSizeConstraint(QLayout.SetFixedSize)
-        self.report_cum_chart_frame_2.setContentsMargins(10, 10, 10, 10)
-
-        self.horizontalLayout_63.addLayout(self.report_cum_chart_frame_2)
 
         self.verticalSpacer_33 = QSpacerItem(10, 300, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
@@ -5921,12 +6041,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setContentsMargins(10, 0, 10, 0)
         self.label_7 = QLabel(self.footer)
         self.label_7.setObjectName(u"label_7")
-        font2 = QFont()
-        font2.setFamilies([u"Arial"])
-        font2.setPointSize(9)
-        font2.setBold(True)
-        font2.setItalic(False)
-        self.label_7.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Arial"])
+        font3.setPointSize(9)
+        font3.setBold(True)
+        font3.setItalic(False)
+        self.label_7.setFont(font3)
 
         self.horizontalLayout_17.addWidget(self.label_7)
 
@@ -5958,7 +6078,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(1)
@@ -6199,6 +6319,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.cilbration), QCoreApplication.translate("MainWindow", u"Calibration", None))
         self.label_95.setText(QCoreApplication.translate("MainWindow", u"Test Count:", None))
         self.label_94.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
+        self.label_110.setText(QCoreApplication.translate("MainWindow", u"Verification Type", None))
         self.validationpage_hypotest_calculate_btn.setText(QCoreApplication.translate("MainWindow", u"See Result", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), QCoreApplication.translate("MainWindow", u"Statistical hypothesis", None))
         self.userpage_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
@@ -6274,6 +6395,8 @@ class Ui_MainWindow(object):
         self.sreportpage_standard_lbl.setText(QCoreApplication.translate("MainWindow", u"AX256", None))
         self.sreportpage_description_lbl.setText(QCoreApplication.translate("MainWindow", u"description", None))
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Statictics", None))
+        self.sreportpage_statictics_desc1.setText(QCoreApplication.translate("MainWindow", u"the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page.", None))
+        self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
         self.label_59.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
         self.sreportpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"16", None))
@@ -6284,12 +6407,17 @@ class Ui_MainWindow(object):
         self.label_63.setText(QCoreApplication.translate("MainWindow", u"Mode:", None))
         self.sreportpage_mode_lbl.setText(QCoreApplication.translate("MainWindow", u"11", None))
         self.label_51.setText(QCoreApplication.translate("MainWindow", u"mm", None))
+        self.sreportpage_statictics_desc2.setText(QCoreApplication.translate("MainWindow", u"Desc2", None))
+        self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table1 - Statistics for each diameter range in the Sample ", None))
 
         __sortingEnabled4 = self.sreportpage_statictics_table.isSortingEnabled()
         self.sreportpage_statictics_table.setSortingEnabled(False)
         self.sreportpage_statictics_table.setSortingEnabled(__sortingEnabled4)
 
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Charts", None))
+        self.label_107.setText(QCoreApplication.translate("MainWindow", u"Chart1 - Weight Percent Barchart", None))
+        self.label_108.setText(QCoreApplication.translate("MainWindow", u"Chart2 - Cumulative Weight Percent Chart", None))
+        self.label_109.setText(QCoreApplication.translate("MainWindow", u"Chart3 - Frequency Histogram of All Particle Diameters", None))
         self.label_47.setText(QCoreApplication.translate("MainWindow", u"Particles", None))
         self.sreportpage_particle_image_lbl.setText("")
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"25", None))

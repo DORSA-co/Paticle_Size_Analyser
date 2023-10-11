@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>sampleTest</class>
+ <widget class="QWidget" name="sampleTest">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>450</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>450</width>
+    <height>350</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+	
+	font: auto &quot;Arial&quot;;
+	
+
+}
+
+#sampleTest{
+	background-color: #ffffff;
+}
+
+
+
+
+
+
+QPushButton{
+	border: none;
+	font-weight: bold;
+	color: #ffffff;
+	background-color:rgb(6, 76, 130);
+	min-height: 35px;
+	border-radius: 5px;
+	min-width:200px;
+	font-size:12px;
+	
+}
+
+QPushButton:pressed {
+
+}
+
+QPushButton:hover{
+
+	background-color:rgb(22, 38, 76);
+
+}
+
+QPushButton:disabled{
+	color: #808080;
+	background-color:rgb(210, 210, 210);
+
+}
+
+/*********************************************/
+QHeaderView::section {
+    background-color: rgb(90, 117, 127);
+	color: #ffffff;
+    padding: 4px;
+    font-size: 10pt;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+    border-right: 1px solid #fffff8;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QHeaderView::section:vertical
+{
+    border: 1px solid #fffff8;
+}
+
+
+/*********************************************/
+QLabel{
+	color: #404040;
+
+}
+
+
+
+
+/*******************************************/
+QLineEdit
+{
+	border:2px solid rgb(6, 76, 130);
+    border-radius: 3px;
+    padding: 1px 18px 1px 8px;
+    min-width: 6em;
+	min-height: 35px;
+	font-size: 16px;
+}
+
+/*******************************************/
+
+QProgressBar {
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+	background-color:rgb(43, 43, 43);
+	color:#ffffff;
+	font-weight: bold;
+	font-size: 20px;
+	height: 32;
+}
+
+QProgressBar::chunk {
+    background-color: rgb(8, 103, 176);
+    width: 20px;
+
+
+}
+
+
+/*******************************************/
+
+QTabBar::tab:selected {
+    background: rgb(6, 76, 130);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+QTabBar::tab:!selected {
+	border-left: 1px solid rgb(199, 199, 199);
+	border-right: 1px solid rgb(199, 199, 199);
+}
+
+QTabBar::tab{
+	height:40px;
+	width: 150px;
+	background-color: rgb(93, 93, 93);
+	color: rgb(255,255,255);
+	font-size: 16px;
+}
+
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid rgb(6, 76, 130);
+
+
+}
+QTabWidget{
+background-color: rgb(48, 48, 48)
+}
+/*******************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QGroupBox{
+	font-weight: bold;
+}
+
+QLineEdit:hover{
+	border: 1px solid black;
+	background: #e4f0fa;
+}
+
+QLineEdit:focus {
+	color: white;
+	background: #0078D7;
+	selection-background-color: black;
+}
+
+QSpinBox:hover{
+	background: #e4f0fa;
+}
+
+
+
+QDoubleSpinBox:hover{
+	background: #e4f0fa;
+}
+
+
+QTimeEdit:hover{
+	background: #e4f0fa;
+}
+
+QTimeEdit:focus {
+	color: white;
+	background: #0078D7;
+	selection-background-color: black;
+}
+
+QListView::item{
+	height: 30px;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <property name="leftMargin">
+    <number>25</number>
+   </property>
+   <property name="topMargin">
+    <number>40</number>
+   </property>
+   <property name="rightMargin">
+    <number>25</number>
+   </property>
+   <property name="bottomMargin">
+    <number>10</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="styleSheet">
+        <string notr="true">font-size: 18px;
+font-weight:bold;</string>
+       </property>
+       <property name="text">
+        <string>Test Result:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="passed">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="sample_date_lbl_2">
+          <property name="styleSheet">
+           <string notr="true">color:rgb(41, 147, 108);
+font-weight: bold;
+font-size:16px;</string>
+          </property>
+          <property name="text">
+           <string>Passed</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="not_passed">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="sample_date_lbl_3">
+          <property name="styleSheet">
+           <string notr="true">color:rgb(152, 46, 44);
+font-weight: bold;
+font-size:16px;</string>
+          </property>
+          <property name="text">
+           <string>Not Passed</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="pages">
+     <property name="styleSheet">
+      <string notr="true">#type1,
+#type2
+{
+	background-color: rgba(0,0,0,0);
+	padding:0px;
+	margin:0px;
+}
+</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="type1">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>10</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="2">
+          <widget class="QLabel" name="error_lbl_2">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="styleSheet">
+            <string notr="true">font-size: 14px;
+font-weight:bold;</string>
+           </property>
+           <property name="text">
+            <string>Error of System and Sieve </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="error_lbl">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="sieve_std_lbl">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="sieve_std_lbl_2">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="styleSheet">
+            <string notr="true">font-size: 14px;
+font-weight:bold;</string>
+           </property>
+           <property name="text">
+            <string>Avrage of Sieved STD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="type2"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="description_lbl">
+     <property name="text">
+      <string>Desc</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="ok">
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+background-color:rgb(150, 150, 150);
+max-width: 100px;
+min-width:100px;
+}
+
+QPushButton:hover{
+background-color: rgb(100, 100, 100);
+max-width: 100px;
+min-width:100px;
+}</string>
+     </property>
+     <property name="text">
+      <string>ok</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="minimumSize">
+      <size>
+       <width>15</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #a0a0a0;</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>2</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="Assets/Assets.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>ok</sender>
+   <signal>clicked()</signal>
+   <receiver>sampleTest</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

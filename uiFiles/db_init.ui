@@ -267,7 +267,7 @@ background-color: rgb(20, 20, 20);
 }</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page1">
         <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -337,7 +337,7 @@ background-color: rgb(20, 20, 20);
               <string notr="true">color: rgb(255, 191, 0);</string>
              </property>
              <property name="text">
-              <string>If you forget your master password, please contact to Dorsa support</string>
+              <string>If you forget your master password, please contact Dorsa support</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -411,7 +411,10 @@ background-color: rgb(20, 20, 20);
             <string notr="true">color: rgb(255, 191, 0);</string>
            </property>
            <property name="text">
-            <string>Warning: almost you don't need to change host</string>
+            <string>Warning: most of the time you don't need to change host</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -482,7 +485,7 @@ background-color: rgb(20, 20, 20);
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>Database Initial successfully. click on finish and run the software again</string>
+              <string>Database Initialization was successfull. click on finish and run the software again.</string>
              </property>
              <property name="wordWrap">
               <bool>true</bool>
@@ -528,7 +531,7 @@ padding: 5px;</string>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <property name="topMargin">
-        <number>11</number>
+        <number>15</number>
        </property>
        <item>
         <widget class="QPushButton" name="prev_btn">

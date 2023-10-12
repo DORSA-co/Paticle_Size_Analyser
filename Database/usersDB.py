@@ -1,9 +1,15 @@
+from backend.UserManager.userLoginRegister import passwordManager
+
+
+
 class usersDB:
     TABLE_NAME = 'users'
     TABLE_COLS = [ {'col_name': 'username',    'type':'VARCHAR(255)', 'len':50},
                    {'col_name': 'password',    'type':'VARCHAR(255)', 'len':100},
                    {'col_name': 'role',        'type':'VARCHAR(255)', 'len':50},
                 ]
+    
+    DEFAULT_USERS = [{'username':'admin', 'password':'admin', 'role':'admin'}]
     
     PRIMERY_KEY_COL_NAME = 'username'
     
@@ -13,11 +19,18 @@ class usersDB:
 
 
     def __create_table__(self,) -> None:
-        self.db_manager.create_table(self.TABLE_NAME)
+        if not self.db_manager.table_exits(self.TABLE_NAME):
+            self.db_manager.create_table(self.TABLE_NAME)
+            
+            for col in self.TABLE_COLS:
+                self.db_manager.add_column( self.TABLE_NAME, **col)
+                #self.db_manager.add_column( self.TABLE_NAME_DEFAULT, **col)
+            
+            for user in self.DEFAULT_USERS:
+                user['password'] = passwordManager.hash_password(user['password'])
+                self.save(user)
 
-        for col in self.TABLE_COLS:
-            self.db_manager.add_column( self.TABLE_NAME, **col)
-    
+
 
 
     def is_exist(self, username:str) -> bool:

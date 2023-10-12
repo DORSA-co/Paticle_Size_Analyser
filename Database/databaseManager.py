@@ -648,33 +648,7 @@ class databaseManager:
             return []
 
 
-    def check_table_exist(self,table_name):
-        """
-        Checks if the specified table exists in the database.
 
-        Args:
-            table_name (str): The name of the table to check.
-
-        Returns:
-            bool: True if the table exists, False otherwise.
-
-        Raises:
-            None.
-
-        Example:
-            To check if a table named 'users' exists in the database, you can call the function like this:
-                check_table_exist('users')
-
-            This will return True if the 'users' table exists, or False if it does not exist.
-
-        """
-        try:
-            sql_check_table = "SELECT * FROM {}.{};".format(self.data_base_name,table_name)
-            self.execute_quary(sql_check_table)        
-            return True                              
-        except mysql.connector.Error as e:
-            self.show_message(("Error reading data from MySQL table", e))
-            return False
 
 
     def create_table(self,table_name):

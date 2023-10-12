@@ -28,6 +28,9 @@ class Ui_sampleTest(object):
         sampleTest.resize(450, 350)
         sampleTest.setMinimumSize(QSize(450, 300))
         sampleTest.setMaximumSize(QSize(450, 350))
+        icon = QIcon()
+        icon.addFile(u":/assets/icons/icons8-result-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        sampleTest.setWindowIcon(icon)
         sampleTest.setStyleSheet(u"*{\n"
 "	\n"
 "	font: auto \"Arial\";\n"
@@ -500,7 +503,7 @@ class Ui_sampleTest(object):
     # setupUi
 
     def retranslateUi(self, sampleTest):
-        sampleTest.setWindowTitle(QCoreApplication.translate("sampleTest", u"Form", None))
+        sampleTest.setWindowTitle(QCoreApplication.translate("sampleTest", u"Result", None))
         self.label.setText(QCoreApplication.translate("sampleTest", u"Test Result:", None))
         self.sample_date_lbl_2.setText(QCoreApplication.translate("sampleTest", u"Passed", None))
         self.sample_date_lbl_3.setText(QCoreApplication.translate("sampleTest", u"Not Passed", None))

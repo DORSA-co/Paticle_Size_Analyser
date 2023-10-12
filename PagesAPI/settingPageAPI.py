@@ -116,7 +116,9 @@ class storageSettingTabAPI:
             path = storageManager.get_windows_user_path(self.default_folder)
             storageManager.build_dir(path)
             self.ui.set_path(path)
-            self.save()
+            settings = self.database.load()
+            settings['path'] = path
+            self.database.save(settings)
     
     def choose_dir(self):
         path = self.ui.open_select_dir_dialog()
@@ -188,6 +190,7 @@ class cameraSettingTabAPI:
         self.ui.start_stop_event_connector( self.play_stop_camera )
         self.ui.save_button_connector(self.save_setting)
         self.ui.cancel_button_connector(self.cancel)
+        self.ui.restor_button_connector(self.restor)
         self.set_allowed_values_camera_setting()
         
 
@@ -277,6 +280,9 @@ class cameraSettingTabAPI:
         self.ui.save_state(True)
         return settings
 
+    def restor(self):
+        self.database.restor_default()
+        self.load_from_database()
 
 
 

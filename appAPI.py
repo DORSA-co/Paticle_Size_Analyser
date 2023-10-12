@@ -38,15 +38,7 @@ class main_API(QObject):
             db_init = dbInitAPI()
             db_init.ui.show()
             return
-            #self.ui.show_db_init()
-            #return
-        #handle database Error
-        #if not self.db.dbManager.check_connection():
             
-            #self.ui.show_confirm_box('Error', 'database connection error', buttons=['ok'])
-            #self.ui.close(True)
-            
-        
         else:
             self.db.build()
 

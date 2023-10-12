@@ -1,7 +1,37 @@
+from Database.databaseManager import databaseManager
+
+
+class parentSettingDB:
+    TABLE_NAME = ""
+    TABLE_COLS = []
+    TABLE_DEFAULT_DATAS = []
+
+    def __init__(self,db_manager):
+        self.db_manager = db_manager
+
+    
+    def __create_table__(self,):
+        if not self.db_manager.table_exits(self.TABLE_NAME):
+            self.db_manager.create_table(self.TABLE_NAME)
+            
+            for col in self.TABLE_COLS:
+                self.db_manager.add_column( self.TABLE_NAME, **col)
+            
+            self.restor_default()
+
+    def restor_default(self):
+        for default_data in self.TABLE_DEFAULT_DATAS:
+            self.save(default_data)
+        
+    def save(self,record):
+        pass
+        #Re Implement this method
+
+
 
 class settingDB:
     
-    def __init__(self, db_manager) -> None:
+    def __init__(self, db_manager:databaseManager) -> None:
         self.db_manager = db_manager
         self.camera_db = settingCameraDB(self.db_manager)
         self.algorithm_db = settingAlgorithmDB(self.db_manager)
@@ -10,9 +40,9 @@ class settingDB:
         
 
 
-class settingCameraDB:
+class settingCameraDB(parentSettingDB):
     TABLE_NAME = 'camera_setting'
-    TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
+    #TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
     TABLE_COLS = [ {'col_name': 'serial_number',    'type':'VARCHAR(255)', 'len':20},
                    {'col_name': 'gain',             'type':'INT', },
                    {'col_name': 'exposure',         'type':'INT', },
@@ -22,32 +52,26 @@ class settingCameraDB:
                    {'col_name': 'application',      'type':'VARCHAR(255)', 'len':20},
                 ]
     
-    TABLE_DEFAULT= {
-                   'serial_number': '',
-                   'gain': 50,           
-                   'exposure': 50,       
-                   'width':  2000,          
-                   'height': 1800,         
-                   'fps': 15,            
-                   'application': 'standard',   
-
-                }
+    TABLE_DEFAULT_DATAS= [ {
+                            'serial_number': '',
+                            'gain': 50,           
+                            'exposure': 50,       
+                            'width':  2000,          
+                            'height': 1800,         
+                            'fps': 15,            
+                            'application': 'standard',   
+                        }   
+                    ]
+    
     PRIMERY_KEY_COL_NAME = 'application'
 
-
-    def __init__(self,db_manager):
-        self.db_manager = db_manager
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
         self.__create_table__()
         
 
-    def __create_table__(self,):
-        self.db_manager.create_table(self.TABLE_NAME)
-        #self.db_manager.create_table(self.TABLE_NAME_DEFAULT)
-
-        for col in self.TABLE_COLS:
-            self.db_manager.add_column( self.TABLE_NAME, **col)
-            #self.db_manager.add_column( self.TABLE_NAME_DEFAULT, **col)
-        
+    
+            
 
 
     def is_exist(self, application):
@@ -71,18 +95,14 @@ class settingCameraDB:
         if len(record)>0:
             return record[0]
         return {}
-    
-    def restor_default(self, camera_number):
-        default_data = self.db_manager.search( self.TABLE_NAME_DEFAULT, self.PRIMERY_KEY_COL_NAME, camera_number)[0]
-        self.db_manager.update_record_dict(self.TABLE_NAME, default_data, id_name = self.PRIMERY_KEY_COL_NAME, id_value = camera_number)
-        return default_data
 
 
 
 
 
 
-class settingSampleDB:
+
+class settingSampleDB(parentSettingDB):
     TABLE_NAME = 'sample_setting'
 
     TABLE_COLS = [ {'col_name': 'autoname_enable',      'type':'INT', },
@@ -92,26 +112,23 @@ class settingSampleDB:
                    {'col_name': 'save_image',    'type':'INT', },
                 ]
     
-    TABLE_DEFAULT= [ {'autoname_enable': 0},
-                     {'autoname_struct': '%Y%M%D'},
-                     {'default_standard': ''},
-                     {'text1': ''},
-                     {'save_image': 1},
-                ]
+    TABLE_DEFAULT_DATAS= [{  
+                            'autoname_enable': 0,
+                            'autoname_struct': '%YEAR%%MONTH%%DAY%_%HOUR%%MINUTE%_%USERNAME%',
+                            'default_standard': '',
+                            'text1': '',
+                            'save_image': 1,
+                            }
+                        ]
     
+            
     PRIMERY_KEY_COL_NAME = 'id'
     BOOL_COLS = [ 'save_image', 'autoname_enable']
 
-    def __init__(self,db_manager):
-        self.db_manager = db_manager
+
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
         self.__create_table__()
-        
-
-    def __create_table__(self,):
-        self.db_manager.create_table(self.TABLE_NAME)
-
-        for col in self.TABLE_COLS:
-            self.db_manager.add_column( self.TABLE_NAME, **col)
         
         
     def is_exist(self, id):
@@ -152,7 +169,7 @@ class settingSampleDB:
 
 
 
-class settingAlgorithmDB:
+class settingAlgorithmDB(parentSettingDB):
     TABLE_NAME = 'algorithm_setting'
     TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
     TABLE_COLS = [ 
@@ -160,25 +177,19 @@ class settingAlgorithmDB:
                    {'col_name': 'border',       'type':'INT', },
                 ]
     
-    TABLE_DEFAULTS = {
-                        'threshold' : 20,
-                        'border': 10
-                    }
+    TABLE_DEFAULT_DATAS = [
+                            {
+                            'threshold' : 50,
+                            'border': 10
+                        }
+                    ]
+    
     PRIMERY_KEY_COL_NAME = 'id'
 
 
-    def __init__(self,db_manager):
-        self.db_manager = db_manager
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
         self.__create_table__()
-        
-
-    def __create_table__(self,):
-        self.db_manager.create_table(self.TABLE_NAME)
-        self.db_manager.create_table(self.TABLE_NAME_DEFAULT)
-
-        for col in self.TABLE_COLS:
-            self.db_manager.add_column( self.TABLE_NAME, **col)
-            self.db_manager.add_column( self.TABLE_NAME_DEFAULT, **col)
         
         
     def is_exist(self, id):
@@ -205,20 +216,12 @@ class settingAlgorithmDB:
             return record
         return {}
     
-    def restor_default(self,):
-        id = 1
-        default_data = self.db_manager.search( self.TABLE_NAME_DEFAULT, self.PRIMERY_KEY_COL_NAME, id)[0]
-        self.db_manager.update_record_dict(self.TABLE_NAME, default_data, id_name = self.PRIMERY_KEY_COL_NAME, id_value = id)
-        return default_data
-
-    
 
 
 
 
 
-
-class settingStorageDB:
+class settingStorageDB(parentSettingDB):
     TABLE_NAME = 'storage_setting'
     TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
     TABLE_COLS = [ {'col_name': 'path',          'type':'VARCHAR(255)', 'len':1000},
@@ -227,29 +230,20 @@ class settingStorageDB:
                    
                 ]
     
-    TABLE_DEFAULTS = {
-                        'path': '',
-                        'auto_clean' : 1,
-                        'life_time': 90
-                    }
+    TABLE_DEFAULT_DATAS = [ {
+                                'path': '',
+                                'auto_clean' : 1,
+                                'life_time': 90
+                        }
+                    ]
     
     PRIMERY_KEY_COL_NAME = 'id'
     BOOL_COLS = ['auto_clean', ]
 
 
-    def __init__(self,db_manager):
-        self.db_manager = db_manager
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
         self.__create_table__()
-        
-
-    def __create_table__(self,):
-        #print(self.db_manager.table_exits(self.TABLE_NAME))
-        self.db_manager.create_table(self.TABLE_NAME)
-        self.db_manager.create_table(self.TABLE_NAME_DEFAULT)
-
-        for col in self.TABLE_COLS:
-            self.db_manager.add_column( self.TABLE_NAME, **col)
-            self.db_manager.add_column( self.TABLE_NAME_DEFAULT, **col)
         
         
     def is_exist(self, id):
@@ -283,12 +277,6 @@ class settingStorageDB:
             return record
         return {}
     
-    def restor_default(self,):
-        id = 1
-        default_data = self.db_manager.search( self.TABLE_NAME_DEFAULT, self.PRIMERY_KEY_COL_NAME, id)[0]
-        self.db_manager.update_record_dict(self.TABLE_NAME, default_data, id_name = self.PRIMERY_KEY_COL_NAME, id_value = id)
-        return default_data
 
-    
 
 

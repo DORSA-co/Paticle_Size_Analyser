@@ -24,7 +24,7 @@ class validationPageAPI:
 
 class statisticalHypothesisTabAPI:
     
-    VERFICATION_TYPES = ['WSTD', 'SH']
+    VERFICATION_TYPES = ['WSTD', 'T-Test']
 
     def __init__(self, ui:statisticalHypothesisTab, database:mainDatabase, ):
         self.ui = ui

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-result-50.png</file>
     <file>icons/icons8-support-64.png</file>
     <file>gifs/Rolling_bg.gif</file>
     <file>general/close.png</file>

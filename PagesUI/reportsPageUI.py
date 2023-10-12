@@ -356,7 +356,7 @@ class reportsPageUI(commonUI):
 
             checkbox = GUIComponents.tabelCheckbox()
             j = self.samples_table_headers.index('compare')
-            GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox)
+            GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox, True) 
             self.samples_table_checkbox[sample['name_id']] = checkbox
 
 

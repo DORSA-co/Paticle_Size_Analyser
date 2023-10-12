@@ -197,11 +197,7 @@ class reportDescriptions:
     
     @staticmethod
     def get_statistic_desc():
-        p1 = """
-             """
-        
-        p2 = """the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page."""
-        
-        
+        p1 = ""
+        p2 = ""
         
         return p1.replace('\n', ''), p2.replace('\n', '')

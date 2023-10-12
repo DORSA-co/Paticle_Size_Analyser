@@ -317,7 +317,7 @@ QProgressBar {
 }
 
 QProgressBar::chunk {
-    background-color: rgb(8, 103, 176);
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(12, 80, 139, 255), stop:100 rgba(10, 66, 112, 255));
     width: 20px;
 
 
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1270,10 +1270,16 @@ background-color:rgb(50,50,50);
               </item>
               <item>
                <widget class="QLabel" name="mainpage_error_lbl">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>16787</width>
-                  <height>30</height>
+                  <height>60</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -1289,6 +1295,9 @@ max-width: 16777px;
                 </property>
                 <property name="text">
                  <string>Error</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -2274,7 +2283,7 @@ color: rgb(6, 76, 130);
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>0</y>
+                   <y>-1083</y>
                    <width>322</width>
                    <height>1758</height>
                   </rect>
@@ -2750,7 +2759,7 @@ color: rgb(6, 76, 130);
                            <number>15</number>
                           </property>
                           <property name="columnCount">
-                           <number>4</number>
+                           <number>0</number>
                           </property>
                           <attribute name="horizontalHeaderVisible">
                            <bool>false</bool>
@@ -2788,35 +2797,6 @@ color: rgb(6, 76, 130);
                           <row/>
                           <row/>
                           <row/>
-                          <column/>
-                          <column/>
-                          <column/>
-                          <column/>
-                          <item row="0" column="0">
-                           <property name="text">
-                            <string>1</string>
-                           </property>
-                          </item>
-                          <item row="0" column="1">
-                           <property name="text">
-                            <string/>
-                           </property>
-                          </item>
-                          <item row="1" column="0">
-                           <property name="text">
-                            <string>2</string>
-                           </property>
-                          </item>
-                          <item row="1" column="1">
-                           <property name="text">
-                            <string/>
-                           </property>
-                          </item>
-                          <item row="2" column="0">
-                           <property name="text">
-                            <string>3</string>
-                           </property>
-                          </item>
                          </widget>
                         </item>
                        </layout>
@@ -7952,9 +7932,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>1144</width>
-                <height>2719</height>
+                <y>-306</y>
+                <width>1145</width>
+                <height>2779</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8500,31 +8480,35 @@ padding: 10px 0px</string>
                 </spacer>
                </item>
                <item>
-                <widget class="QLabel" name="sreportpage_statictics_desc1">
+                <widget class="QTextEdit" name="textEdit">
                  <property name="styleSheet">
-                  <string notr="true">QLabel{
-	color: #404040;
-	font-size: 16px;
-
-}</string>
+                  <string notr="true"/>
                  </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; color:#404040;&quot;&gt;the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="sreportpage_statictics_desc1">
                  <property name="text">
-                  <string>the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page.</string>
+                  <string>Desc1</string>
                  </property>
                  <property name="wordWrap">
                   <bool>true</bool>
-                 </property>
-                 <property name="margin">
-                  <number>5</number>
-                 </property>
-                 <property name="indent">
-                  <number>-1</number>
-                 </property>
-                 <property name="openExternalLinks">
-                  <bool>false</bool>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
                  </property>
                 </widget>
                </item>
@@ -10151,7 +10135,10 @@ QFrame{
            <item>
             <widget class="QProgressBar" name="comparepage_progressbar">
              <property name="value">
-              <number>24</number>
+              <number>100</number>
+             </property>
+             <property name="textVisible">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -10212,48 +10199,81 @@ max-height: 22px;</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QTableWidget" name="comparepage_compare_table">
-                   <property name="enabled">
-                    <bool>true</bool>
+                  <layout class="QVBoxLayout" name="verticalLayout_57">
+                   <property name="leftMargin">
+                    <number>0</number>
                    </property>
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
+                   <property name="topMargin">
+                    <number>0</number>
                    </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="sizeIncrement">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial</family>
-                     <pointsize>-1</pointsize>
-                     <weight>50</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="focusPolicy">
-                    <enum>Qt::NoFocus</enum>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">
+                   <item alignment="Qt::AlignHCenter">
+                    <widget class="QLabel" name="label_111">
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <weight>50</weight>
+                       <italic>true</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLabel{
+	color: #707070;
+	font-style: italic;
+
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Table1 - </string>
+                     </property>
+                     <property name="textFormat">
+                      <enum>Qt::PlainText</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QTableWidget" name="comparepage_compare_table">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="sizeIncrement">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="baseSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <pointsize>-1</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::NoFocus</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
 QHeaderView::section {
     background-color: rgb(6, 76, 130);
 	color: #ffffff;
@@ -10285,90 +10305,92 @@ QTableWidget::item
    padding: 10px;
 }
 </string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <property name="verticalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAlwaysOff</enum>
-                   </property>
-                   <property name="horizontalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAsNeeded</enum>
-                   </property>
-                   <property name="sizeAdjustPolicy">
-                    <enum>QAbstractScrollArea::AdjustToContents</enum>
-                   </property>
-                   <property name="editTriggers">
-                    <set>QAbstractItemView::NoEditTriggers</set>
-                   </property>
-                   <property name="alternatingRowColors">
-                    <bool>true</bool>
-                   </property>
-                   <property name="selectionMode">
-                    <enum>QAbstractItemView::SingleSelection</enum>
-                   </property>
-                   <property name="selectionBehavior">
-                    <enum>QAbstractItemView::SelectRows</enum>
-                   </property>
-                   <property name="textElideMode">
-                    <enum>Qt::ElideMiddle</enum>
-                   </property>
-                   <property name="gridStyle">
-                    <enum>Qt::SolidLine</enum>
-                   </property>
-                   <property name="wordWrap">
-                    <bool>true</bool>
-                   </property>
-                   <property name="rowCount">
-                    <number>4</number>
-                   </property>
-                   <property name="columnCount">
-                    <number>5</number>
-                   </property>
-                   <attribute name="horizontalHeaderMinimumSectionSize">
-                    <number>50</number>
-                   </attribute>
-                   <attribute name="horizontalHeaderDefaultSectionSize">
-                    <number>180</number>
-                   </attribute>
-                   <attribute name="horizontalHeaderHighlightSections">
-                    <bool>true</bool>
-                   </attribute>
-                   <attribute name="horizontalHeaderStretchLastSection">
-                    <bool>false</bool>
-                   </attribute>
-                   <attribute name="verticalHeaderVisible">
-                    <bool>false</bool>
-                   </attribute>
-                   <attribute name="verticalHeaderDefaultSectionSize">
-                    <number>40</number>
-                   </attribute>
-                   <attribute name="verticalHeaderHighlightSections">
-                    <bool>true</bool>
-                   </attribute>
-                   <row/>
-                   <row/>
-                   <row/>
-                   <row/>
-                   <column/>
-                   <column/>
-                   <column/>
-                   <column/>
-                   <column/>
-                   <item row="0" column="1">
-                    <property name="text">
-                     <string/>
-                    </property>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAsNeeded</enum>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="editTriggers">
+                      <set>QAbstractItemView::NoEditTriggers</set>
+                     </property>
+                     <property name="alternatingRowColors">
+                      <bool>true</bool>
+                     </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::SingleSelection</enum>
+                     </property>
+                     <property name="selectionBehavior">
+                      <enum>QAbstractItemView::SelectRows</enum>
+                     </property>
+                     <property name="textElideMode">
+                      <enum>Qt::ElideMiddle</enum>
+                     </property>
+                     <property name="gridStyle">
+                      <enum>Qt::SolidLine</enum>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="rowCount">
+                      <number>4</number>
+                     </property>
+                     <property name="columnCount">
+                      <number>5</number>
+                     </property>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderDefaultSectionSize">
+                      <number>180</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderHighlightSections">
+                      <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderStretchLastSection">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderDefaultSectionSize">
+                      <number>40</number>
+                     </attribute>
+                     <attribute name="verticalHeaderHighlightSections">
+                      <bool>true</bool>
+                     </attribute>
+                     <row/>
+                     <row/>
+                     <row/>
+                     <row/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <item row="0" column="1">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </item>
+                     <item row="1" column="1">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </item>
+                    </widget>
                    </item>
-                   <item row="1" column="1">
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </item>
-                  </widget>
+                  </layout>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_110">
@@ -10430,48 +10452,87 @@ max-height: 22px;</string>
                   </spacer>
                  </item>
                  <item>
-                  <widget class="QTableWidget" name="comparepage_compare_mean_table">
-                   <property name="enabled">
-                    <bool>true</bool>
+                  <layout class="QVBoxLayout" name="verticalLayout_58">
+                   <property name="leftMargin">
+                    <number>0</number>
                    </property>
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
+                   <property name="topMargin">
+                    <number>0</number>
                    </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>16777215</width>
-                     <height>100</height>
-                    </size>
-                   </property>
-                   <property name="sizeIncrement">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="baseSize">
-                    <size>
-                     <width>0</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial</family>
-                     <pointsize>-1</pointsize>
-                     <weight>50</weight>
-                     <italic>false</italic>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                   <property name="focusPolicy">
-                    <enum>Qt::NoFocus</enum>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">
+                   <item alignment="Qt::AlignHCenter">
+                    <widget class="QLabel" name="label_112">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <weight>50</weight>
+                       <italic>true</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLabel{
+	color: #707070;
+	font-style: italic;
+
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Table2 -</string>
+                     </property>
+                     <property name="textFormat">
+                      <enum>Qt::PlainText</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QTableWidget" name="comparepage_compare_mean_table">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>100</height>
+                      </size>
+                     </property>
+                     <property name="sizeIncrement">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="baseSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <pointsize>-1</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::NoFocus</enum>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">
 QHeaderView::section {
     background-color: rgb(50, 50, 50);
 	color: #ffffff;
@@ -10503,90 +10564,97 @@ QTableWidget::item
    padding: 10px;
 }
 </string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::Box</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Raised</enum>
-                   </property>
-                   <property name="verticalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAlwaysOff</enum>
-                   </property>
-                   <property name="horizontalScrollBarPolicy">
-                    <enum>Qt::ScrollBarAsNeeded</enum>
-                   </property>
-                   <property name="sizeAdjustPolicy">
-                    <enum>QAbstractScrollArea::AdjustToContents</enum>
-                   </property>
-                   <property name="editTriggers">
-                    <set>QAbstractItemView::NoEditTriggers</set>
-                   </property>
-                   <property name="alternatingRowColors">
-                    <bool>false</bool>
-                   </property>
-                   <property name="selectionMode">
-                    <enum>QAbstractItemView::NoSelection</enum>
-                   </property>
-                   <property name="selectionBehavior">
-                    <enum>QAbstractItemView::SelectRows</enum>
-                   </property>
-                   <property name="textElideMode">
-                    <enum>Qt::ElideMiddle</enum>
-                   </property>
-                   <property name="gridStyle">
-                    <enum>Qt::SolidLine</enum>
-                   </property>
-                   <property name="wordWrap">
-                    <bool>true</bool>
-                   </property>
-                   <property name="rowCount">
-                    <number>4</number>
-                   </property>
-                   <property name="columnCount">
-                    <number>5</number>
-                   </property>
-                   <attribute name="horizontalHeaderMinimumSectionSize">
-                    <number>50</number>
-                   </attribute>
-                   <attribute name="horizontalHeaderDefaultSectionSize">
-                    <number>180</number>
-                   </attribute>
-                   <attribute name="horizontalHeaderHighlightSections">
-                    <bool>true</bool>
-                   </attribute>
-                   <attribute name="horizontalHeaderStretchLastSection">
-                    <bool>false</bool>
-                   </attribute>
-                   <attribute name="verticalHeaderVisible">
-                    <bool>false</bool>
-                   </attribute>
-                   <attribute name="verticalHeaderDefaultSectionSize">
-                    <number>40</number>
-                   </attribute>
-                   <attribute name="verticalHeaderHighlightSections">
-                    <bool>true</bool>
-                   </attribute>
-                   <row/>
-                   <row/>
-                   <row/>
-                   <row/>
-                   <column/>
-                   <column/>
-                   <column/>
-                   <column/>
-                   <column/>
-                   <item row="0" column="1">
-                    <property name="text">
-                     <string/>
-                    </property>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                     <property name="verticalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAlwaysOff</enum>
+                     </property>
+                     <property name="horizontalScrollBarPolicy">
+                      <enum>Qt::ScrollBarAsNeeded</enum>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="editTriggers">
+                      <set>QAbstractItemView::NoEditTriggers</set>
+                     </property>
+                     <property name="alternatingRowColors">
+                      <bool>false</bool>
+                     </property>
+                     <property name="selectionMode">
+                      <enum>QAbstractItemView::NoSelection</enum>
+                     </property>
+                     <property name="selectionBehavior">
+                      <enum>QAbstractItemView::SelectRows</enum>
+                     </property>
+                     <property name="textElideMode">
+                      <enum>Qt::ElideMiddle</enum>
+                     </property>
+                     <property name="gridStyle">
+                      <enum>Qt::SolidLine</enum>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="rowCount">
+                      <number>1</number>
+                     </property>
+                     <property name="columnCount">
+                      <number>5</number>
+                     </property>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderDefaultSectionSize">
+                      <number>180</number>
+                     </attribute>
+                     <attribute name="horizontalHeaderHighlightSections">
+                      <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderStretchLastSection">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderVisible">
+                      <bool>false</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderDefaultSectionSize">
+                      <number>40</number>
+                     </attribute>
+                     <attribute name="verticalHeaderHighlightSections">
+                      <bool>true</bool>
+                     </attribute>
+                     <row/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <column/>
+                     <item row="0" column="1">
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </item>
+                    </widget>
                    </item>
-                   <item row="1" column="1">
-                    <property name="text">
-                     <string/>
-                    </property>
+                   <item>
+                    <spacer name="verticalSpacer_47">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
-                  </widget>
+                  </layout>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_92">
@@ -10751,7 +10819,6 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets/Assets.qrc"/>
-  <include location="../../../../.designer/backup/Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

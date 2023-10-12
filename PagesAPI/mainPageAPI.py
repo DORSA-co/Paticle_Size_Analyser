@@ -192,13 +192,19 @@ class mainPageAPI:
             idx+=1
         return name
 
+    def handle_standard_error(self, standards):
+        #error if no standards definded
+        if len(standards) == 0:
+            self.ui.write_error_msg("No standard defineded, Go to 'Standards >> New Standad' and define new one")
+            return False
+        return True
+    
 
     def start(self,):
         standards = self.database.standards_db.load_all()
         
         #error if no standards definded
-        if len(standards) == 0:
-            self.ui.write_error_msg("No standard defineded, Go to 'Settings >> Grading' and define new one")
+        if not self.handle_standard_error(standards):
             return
         
         #---------------------------------------------------------------------------
@@ -224,8 +230,41 @@ class mainPageAPI:
 
 
     def fast_start(self,):
-        return
+        standards = self.database.standards_db.load_all()
+        
+        if not self.handle_standard_error(standards):
+            return
+           
+        #---------------------------------------------------------------------------
+        sample_setting = self.database.setting_db.sample_db.load()
+        #---------------------------------------------------------------------------
+        #extract name of standards from standards list
+        standards_name = list(map( lambda x:x['name'], standards))
+        #set standards into combobox
+        self.ui.set_sample_info_standards_items(standards_name)
 
+        default_standard = sample_setting.get('default_standard')
+        if default_standard == None or default_standard == '-':
+            self.ui.write_error_msg("No default standard selected. go to 'Settings >> sample Setting' and choose a default standard")
+            return
+        
+        if default_standard not in standards_name:
+            self.ui.write_error_msg("Couldn't find default standard. go to 'Settings >> sample Setting' and choose a default standard")
+            return
+
+        self.ui.set_sample_info_selected_standard( sample_setting['default_standard'])
+        #---------------------------------------------------------------------------
+
+        if not sample_setting['autoname_enable']:
+            self.ui.write_error_msg("You Should enable 'Auto name' to use fast start. go to Settings >> sample Setting and setup 'Auto Sample Name'")
+            return
+        
+            
+        name = self.build_autoname_sample(sample_setting)
+        self.ui.set_sample_info_sample_name(name)
+        self.ui.disable_sample_info_sample_name(False)
+
+        self.run_start()
 
 
     def stop(self,):

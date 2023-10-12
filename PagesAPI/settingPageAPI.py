@@ -47,6 +47,7 @@ class sampleSettingTabAPI:
         Args:
             standards (list[str]): names of standards
         """
+        standards.insert(0, '-')
         self.ui.set_standards(standards)
         self.load_from_db()
 

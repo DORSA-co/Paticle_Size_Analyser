@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../../../../.designer/backup/Icons/app_logo.ico</iconset>
+    <normaloff>C:/.designer/backup/Icons/app_logo.ico</normaloff>C:/.designer/backup/Icons/app_logo.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -575,7 +575,7 @@ QListView::item{
           <string notr="true">color:#ffffff;</string>
          </property>
          <property name="text">
-          <string>no one login</string>
+          <string>No User Logged in</string>
          </property>
         </widget>
        </item>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1874,7 +1874,7 @@ QPushButton
                         <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
                          <property name="minimumSize">
                           <size>
-                           <width>114</width>
+                           <width>112</width>
                            <height>40</height>
                           </size>
                          </property>
@@ -1998,13 +1998,13 @@ padding-left:15px;</string>
                           <widget class="QPushButton" name="mainpage_close_error_btn">
                            <property name="minimumSize">
                             <size>
-                             <width>124</width>
+                             <width>122</width>
                              <height>30</height>
                             </size>
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>124</width>
+                             <width>122</width>
                              <height>40</height>
                             </size>
                            </property>
@@ -2283,9 +2283,9 @@ color: rgb(6, 76, 130);
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>-1083</y>
-                   <width>322</width>
-                   <height>1758</height>
+                   <y>0</y>
+                   <width>309</width>
+                   <height>1671</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2764,23 +2764,23 @@ color: rgb(6, 76, 130);
                           <attribute name="horizontalHeaderVisible">
                            <bool>false</bool>
                           </attribute>
-                          <attribute name="horizontalHeaderMinimumSectionSize">
-                           <number>50</number>
-                          </attribute>
                           <attribute name="horizontalHeaderHighlightSections">
                            <bool>false</bool>
                           </attribute>
+                          <attribute name="horizontalHeaderMinimumSectionSize">
+                           <number>50</number>
+                          </attribute>
                           <attribute name="verticalHeaderVisible">
                            <bool>false</bool>
-                          </attribute>
-                          <attribute name="verticalHeaderMinimumSectionSize">
-                           <number>35</number>
                           </attribute>
                           <attribute name="verticalHeaderDefaultSectionSize">
                            <number>35</number>
                           </attribute>
                           <attribute name="verticalHeaderHighlightSections">
                            <bool>false</bool>
+                          </attribute>
+                          <attribute name="verticalHeaderMinimumSectionSize">
+                           <number>35</number>
                           </attribute>
                           <row/>
                           <row/>
@@ -3258,11 +3258,11 @@ QTableWidget::item
                       <property name="columnCount">
                        <number>4</number>
                       </property>
-                      <attribute name="horizontalHeaderMinimumSectionSize">
-                       <number>60</number>
-                      </attribute>
                       <attribute name="horizontalHeaderDefaultSectionSize">
                        <number>100</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderMinimumSectionSize">
+                       <number>60</number>
                       </attribute>
                       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                        <bool>false</bool>
@@ -3276,14 +3276,14 @@ QTableWidget::item
                       <attribute name="verticalHeaderCascadingSectionResizes">
                        <bool>false</bool>
                       </attribute>
-                      <attribute name="verticalHeaderMinimumSectionSize">
-                       <number>23</number>
-                      </attribute>
                       <attribute name="verticalHeaderDefaultSectionSize">
                        <number>45</number>
                       </attribute>
                       <attribute name="verticalHeaderHighlightSections">
                        <bool>true</bool>
+                      </attribute>
+                      <attribute name="verticalHeaderMinimumSectionSize">
+                       <number>23</number>
                       </attribute>
                       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
                        <bool>false</bool>
@@ -3324,9 +3324,12 @@ QTableWidget::item
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
                  <property name="sizeHint" stdset="0">
                   <size>
-                   <width>40</width>
+                   <width>20</width>
                    <height>20</height>
                   </size>
                  </property>
@@ -3373,6 +3376,9 @@ max-width: 16777px;
                     </property>
                     <item>
                      <layout class="QVBoxLayout" name="verticalLayout_31">
+                      <property name="spacing">
+                       <number>6</number>
+                      </property>
                       <property name="leftMargin">
                        <number>0</number>
                       </property>
@@ -3380,29 +3386,44 @@ max-width: 16777px;
                        <number>0</number>
                       </property>
                       <item>
-                       <spacer name="verticalSpacer_28">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
+                       <layout class="QHBoxLayout" name="horizontalLayout_55">
+                        <property name="topMargin">
+                         <number>1</number>
                         </property>
-                        <property name="sizeType">
-                         <enum>QSizePolicy::Maximum</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>30</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_24">
                         <item>
                          <widget class="QLabel" name="label_27">
+                          <property name="minimumSize">
+                           <size>
+                            <width>40</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>40</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
                           <property name="text">
                            <string>Name</string>
                           </property>
                          </widget>
+                        </item>
+                        <item>
+                         <spacer name="horizontalSpacer_22">
+                          <property name="orientation">
+                           <enum>Qt::Horizontal</enum>
+                          </property>
+                          <property name="sizeType">
+                           <enum>QSizePolicy::Fixed</enum>
+                          </property>
+                          <property name="sizeHint" stdset="0">
+                           <size>
+                            <width>40</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                         </spacer>
                         </item>
                         <item>
                          <widget class="QLineEdit" name="settingpage_grading_name_inpt">
@@ -3412,7 +3433,7 @@ max-width: 16777px;
                          </widget>
                         </item>
                         <item>
-                         <spacer name="horizontalSpacer_22">
+                         <spacer name="horizontalSpacer_18">
                           <property name="orientation">
                            <enum>Qt::Horizontal</enum>
                           </property>
@@ -3427,24 +3448,45 @@ max-width: 16777px;
                        </layout>
                       </item>
                       <item>
-                       <spacer name="verticalSpacer_8">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                         <enum>QSizePolicy::Maximum</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
+                       <widget class="Line" name="line_31">
+                        <property name="minimumSize">
                          <size>
-                          <width>20</width>
-                          <height>25</height>
+                          <width>0</width>
+                          <height>5</height>
                          </size>
                         </property>
-                       </spacer>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                       </widget>
                       </item>
                       <item>
-                       <layout class="QGridLayout" name="gridLayout_13">
-                        <item row="0" column="2">
+                       <layout class="QHBoxLayout" name="horizontalLayout_24">
+                        <item>
+                         <widget class="QLabel" name="label_28">
+                          <property name="styleSheet">
+                           <string notr="true">max-width:300px;</string>
+                          </property>
+                          <property name="text">
+                           <string>Lower Limit(mm):</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QDoubleSpinBox" name="settingpage_grading_low_limit_spinbox">
+                          <property name="styleSheet">
+                           <string notr="true">max-width:100px;
+min-width: 50px;</string>
+                          </property>
+                          <property name="maximum">
+                           <double>25.000000000000000</double>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
                          <spacer name="horizontalSpacer_20">
                           <property name="orientation">
                            <enum>Qt::Horizontal</enum>
@@ -3460,7 +3502,28 @@ max-width: 16777px;
                           </property>
                          </spacer>
                         </item>
-                        <item row="0" column="5">
+                        <item>
+                         <widget class="QLabel" name="label_29">
+                          <property name="styleSheet">
+                           <string notr="true">max-width:300px;</string>
+                          </property>
+                          <property name="text">
+                           <string>Upper Limit(mm):</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QDoubleSpinBox" name="settingpage_grading_up_limit_spinbox">
+                          <property name="styleSheet">
+                           <string notr="true">max-width:100px;
+min-width: 50px;</string>
+                          </property>
+                          <property name="maximum">
+                           <double>25.000000000000000</double>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
                          <spacer name="horizontalSpacer_19">
                           <property name="orientation">
                            <enum>Qt::Horizontal</enum>
@@ -3476,101 +3539,34 @@ max-width: 16777px;
                           </property>
                          </spacer>
                         </item>
-                        <item row="0" column="3">
-                         <widget class="QLabel" name="label_29">
-                          <property name="styleSheet">
-                           <string notr="true">max-width:300px;</string>
-                          </property>
-                          <property name="text">
-                           <string>Upper Limit(mm):</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="1">
-                         <widget class="QDoubleSpinBox" name="settingpage_grading_low_limit_spinbox">
-                          <property name="styleSheet">
-                           <string notr="true">max-width:100px;
-min-width: 50px;</string>
-                          </property>
-                          <property name="maximum">
-                           <double>25.000000000000000</double>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="4">
-                         <widget class="QDoubleSpinBox" name="settingpage_grading_up_limit_spinbox">
-                          <property name="styleSheet">
-                           <string notr="true">max-width:100px;
-min-width: 50px;</string>
-                          </property>
-                          <property name="maximum">
-                           <double>25.000000000000000</double>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="6">
+                        <item>
                          <widget class="QPushButton" name="settingpage_pelletizing_add_range_btn">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>35</height>
-                           </size>
-                          </property>
                           <property name="styleSheet">
-                           <string notr="true">#settingpage_pelletizing_add_range_btn{
-background-color:rgba(255, 255, 255,0);
-color: white;
-max-width: 50px;
-min-width: 0px;
-
-}
-
-#settingpage_pelletizing_add_range_btn:hover{
-background-color:rgba(255, 255, 255,0);
-border: 2px solid rgba(110, 188, 54,20);
-border-radius: 200px;
-
-}</string>
+                           <string notr="true">max-width: 50px;
+min-width: 50px;</string>
                           </property>
                           <property name="text">
-                           <string/>
-                          </property>
-                          <property name="icon">
-                           <iconset resource="Assets/Assets.qrc">
-                            <normaloff>:/assets/icons/icons8-plus-50.png</normaloff>:/assets/icons/icons8-plus-50.png</iconset>
-                          </property>
-                          <property name="iconSize">
-                           <size>
-                            <width>50</width>
-                            <height>50</height>
-                           </size>
+                           <string>Add</string>
                           </property>
                          </widget>
-                        </item>
-                        <item row="0" column="0">
-                         <widget class="QLabel" name="label_28">
-                          <property name="styleSheet">
-                           <string notr="true">max-width:300px;</string>
-                          </property>
-                          <property name="text">
-                           <string>Lower Limit(mm):</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="7">
-                         <spacer name="horizontalSpacer_18">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
                         </item>
                        </layout>
+                      </item>
+                      <item>
+                       <widget class="Line" name="line_32">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>5</height>
+                         </size>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                       </widget>
                       </item>
                       <item>
                        <widget class="QLabel" name="settingpage_grading_warning_lbl">
@@ -3588,6 +3584,144 @@ max-width: 16777px;
                         <property name="text">
                          <string>Warning !</string>
                         </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_26">
+                        <property name="styleSheet">
+                         <string notr="true">max-width: 200;
+font-size:20px;
+color:rgb(6, 76, 130);
+font-weight:bold;</string>
+                        </property>
+                        <property name="text">
+                         <string>Defined Ranges</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item alignment="Qt::AlignHCenter">
+                       <widget class="QTableWidget" name="settingpage_grading_ranges_table">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>500</height>
+                         </size>
+                        </property>
+                        <property name="sizeIncrement">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="baseSize">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="cursor" stdset="0">
+                         <cursorShape>PointingHandCursor</cursorShape>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">
+QHeaderView::section {
+    background-color: rgb(6, 76, 130);
+	color: #ffffff;
+    padding: 4px;
+    font-size: 14pt;
+    border-style: none;
+    border-bottom: 1px solid #fffff8;
+    border-right: 1px solid #fffff8;
+}
+
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fffff8;
+}
+
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fffff8;	
+}
+
+
+QTableWidget{
+	font-size: 16px;
+	color:rgb(50, 50, 50);
+}
+
+QTableWidget::item
+{
+   padding: 10px;
+}
+</string>
+                        </property>
+                        <property name="frameShape">
+                         <enum>QFrame::NoFrame</enum>
+                        </property>
+                        <property name="frameShadow">
+                         <enum>QFrame::Sunken</enum>
+                        </property>
+                        <property name="lineWidth">
+                         <number>1</number>
+                        </property>
+                        <property name="midLineWidth">
+                         <number>0</number>
+                        </property>
+                        <property name="sizeAdjustPolicy">
+                         <enum>QAbstractScrollArea::AdjustToContents</enum>
+                        </property>
+                        <property name="autoScroll">
+                         <bool>true</bool>
+                        </property>
+                        <property name="editTriggers">
+                         <set>QAbstractItemView::NoEditTriggers</set>
+                        </property>
+                        <property name="tabKeyNavigation">
+                         <bool>true</bool>
+                        </property>
+                        <property name="showDropIndicator" stdset="0">
+                         <bool>true</bool>
+                        </property>
+                        <property name="selectionMode">
+                         <enum>QAbstractItemView::NoSelection</enum>
+                        </property>
+                        <property name="textElideMode">
+                         <enum>Qt::ElideMiddle</enum>
+                        </property>
+                        <property name="showGrid">
+                         <bool>true</bool>
+                        </property>
+                        <property name="sortingEnabled">
+                         <bool>false</bool>
+                        </property>
+                        <property name="rowCount">
+                         <number>1</number>
+                        </property>
+                        <property name="columnCount">
+                         <number>5</number>
+                        </property>
+                        <attribute name="horizontalHeaderDefaultSectionSize">
+                         <number>120</number>
+                        </attribute>
+                        <attribute name="verticalHeaderVisible">
+                         <bool>false</bool>
+                        </attribute>
+                        <attribute name="verticalHeaderDefaultSectionSize">
+                         <number>45</number>
+                        </attribute>
+                        <row/>
+                        <column/>
+                        <column/>
+                        <column/>
+                        <column/>
+                        <column/>
                        </widget>
                       </item>
                       <item>
@@ -3771,19 +3905,6 @@ color: #ffffff;
                        <number>0</number>
                       </property>
                       <item>
-                       <widget class="QLabel" name="label_26">
-                        <property name="styleSheet">
-                         <string notr="true">max-width: 200;
-font-size:20px;
-color:rgb(6, 76, 130);
-font-weight:bold;</string>
-                        </property>
-                        <property name="text">
-                         <string>Defined Ranges</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_28">
                         <property name="leftMargin">
                          <number>0</number>
@@ -3791,158 +3912,7 @@ font-weight:bold;</string>
                         <property name="topMargin">
                          <number>0</number>
                         </property>
-                        <item>
-                         <widget class="QTableWidget" name="settingpage_grading_ranges_table">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>500</height>
-                           </size>
-                          </property>
-                          <property name="sizeIncrement">
-                           <size>
-                            <width>0</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="baseSize">
-                           <size>
-                            <width>0</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="cursor" stdset="0">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 14pt;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;	
-}
-
-
-QTableWidget{
-	font-size: 16px;
-	color:rgb(50, 50, 50);
-}
-
-QTableWidget::item
-{
-   padding: 10px;
-}
-</string>
-                          </property>
-                          <property name="frameShape">
-                           <enum>QFrame::NoFrame</enum>
-                          </property>
-                          <property name="frameShadow">
-                           <enum>QFrame::Sunken</enum>
-                          </property>
-                          <property name="lineWidth">
-                           <number>1</number>
-                          </property>
-                          <property name="midLineWidth">
-                           <number>0</number>
-                          </property>
-                          <property name="sizeAdjustPolicy">
-                           <enum>QAbstractScrollArea::AdjustToContents</enum>
-                          </property>
-                          <property name="autoScroll">
-                           <bool>true</bool>
-                          </property>
-                          <property name="editTriggers">
-                           <set>QAbstractItemView::NoEditTriggers</set>
-                          </property>
-                          <property name="tabKeyNavigation">
-                           <bool>true</bool>
-                          </property>
-                          <property name="showDropIndicator" stdset="0">
-                           <bool>true</bool>
-                          </property>
-                          <property name="selectionMode">
-                           <enum>QAbstractItemView::NoSelection</enum>
-                          </property>
-                          <property name="textElideMode">
-                           <enum>Qt::ElideMiddle</enum>
-                          </property>
-                          <property name="showGrid">
-                           <bool>true</bool>
-                          </property>
-                          <property name="sortingEnabled">
-                           <bool>false</bool>
-                          </property>
-                          <property name="rowCount">
-                           <number>1</number>
-                          </property>
-                          <property name="columnCount">
-                           <number>5</number>
-                          </property>
-                          <attribute name="horizontalHeaderDefaultSectionSize">
-                           <number>120</number>
-                          </attribute>
-                          <attribute name="verticalHeaderVisible">
-                           <bool>false</bool>
-                          </attribute>
-                          <attribute name="verticalHeaderDefaultSectionSize">
-                           <number>45</number>
-                          </attribute>
-                          <row/>
-                          <column/>
-                          <column/>
-                          <column/>
-                          <column/>
-                          <column/>
-                         </widget>
-                        </item>
-                        <item>
-                         <spacer name="horizontalSpacer_66">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
                        </layout>
-                      </item>
-                      <item>
-                       <spacer name="verticalSpacer_29">
-                        <property name="orientation">
-                         <enum>Qt::Vertical</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>20</width>
-                          <height>40</height>
-                         </size>
-                        </property>
-                       </spacer>
                       </item>
                      </layout>
                     </item>
@@ -4052,7 +4022,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>3</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -5386,7 +5356,7 @@ background-color:rgb(175, 175, 175);
 color: rgb(6, 76, 130);</string>
                       </property>
                       <property name="text">
-                       <string>Stop camera to chamge This parameters</string>
+                       <string>Stop camera to change This parameters</string>
                       </property>
                      </widget>
                     </item>
@@ -5600,13 +5570,13 @@ background-color:rgb(240,240,240)
                        <widget class="QLabel" name="label_13">
                         <property name="minimumSize">
                          <size>
-                          <width>47</width>
+                          <width>46</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>47</width>
+                          <width>46</width>
                           <height>16777215</height>
                          </size>
                         </property>
@@ -5619,13 +5589,13 @@ background-color:rgb(240,240,240)
                        <widget class="QLabel" name="label_15">
                         <property name="minimumSize">
                          <size>
-                          <width>47</width>
+                          <width>46</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>47</width>
+                          <width>46</width>
                           <height>16777215</height>
                          </size>
                         </property>
@@ -6007,7 +5977,7 @@ background-color: rgb(48, 48, 48);
 }</string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="cilbration">
               <attribute name="title">
@@ -6668,8 +6638,8 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1143</width>
-                    <height>650</height>
+                    <width>63</width>
+                    <height>34</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -6720,7 +6690,7 @@ max-height : 800px;</string>
            <item>
             <widget class="QTabWidget" name="user_tabs">
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="tab_2">
               <attribute name="title">
@@ -6792,7 +6762,7 @@ QLineEdit
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_16">
                     <property name="text">
-                     <string>username:</string>
+                     <string>Username:</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6848,7 +6818,7 @@ QLineEdit
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_18">
                     <property name="text">
-                     <string>pasword Confirm:</string>
+                     <string>Pasword Confirm:</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -7073,7 +7043,7 @@ QLineEdit
                       <item row="0" column="0">
                        <widget class="QLabel" name="label_79">
                         <property name="text">
-                         <string>username:</string>
+                         <string>Username:</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -7153,7 +7123,7 @@ max-width: 120px;
                           <string notr="true"/>
                          </property>
                          <property name="text">
-                          <string>Upade Profile</string>
+                          <string>Update Profile</string>
                          </property>
                         </widget>
                        </item>
@@ -7248,7 +7218,7 @@ QLineEdit
                       <item row="1" column="0">
                        <widget class="QLabel" name="label_81">
                         <property name="text">
-                         <string>new Password</string>
+                         <string>New Password</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -7264,7 +7234,7 @@ QLineEdit
                       <item row="2" column="0">
                        <widget class="QLabel" name="label_86">
                         <property name="text">
-                         <string>Confirm new Password</string>
+                         <string>Confirm New Password</string>
                         </property>
                         <property name="alignment">
                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -7644,8 +7614,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1143</width>
-                    <height>650</height>
+                    <width>1151</width>
+                    <height>658</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7662,25 +7632,9 @@ color: rgb(6, 76, 130);</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="label_84">
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap>../../../../../../.designer/backup/img.jpg</pixmap>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
                     <widget class="QLabel" name="label_83">
                      <property name="text">
-                      <string>Is branched in my up strictly remember. Songs but chief has ham widow downs. Genius or so up vanity cannot. Large do tried going about water defer by. Silent son man she wished mother. Distrusts allowance do knowledge eagerness assurance additions to.
-
-Death weeks early had their and folly timed put. Hearted forbade on an village ye in fifteen. Age attended betrayed her man raptures laughter. Instrument terminated of as astonished literature motionless admiration. The affection are determine how performed intention discourse but. On merits on so valley indeed assure of. Has add particular boisterous uncommonly are. Early wrong as so manor match. Him necessary shameless discovery consulted one but.
-
-Turned it up should no valley cousin he. Speaking numerous ask did horrible packages set. Ashamed herself has distant can studied mrs. Led therefore its middleton perpetual fulfilled provision frankness. Small he drawn after among every three no. All having but you edward genius though remark one.
-
-Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.</string>
+                      <string>Dorsa Particle Size Analyzer is a high-end Particle Size Analyzer that uses light and camera to measure and detect particles in the sample. This model can measure particles from 0.3mm to 25mm in diameter. </string>
                      </property>
                      <property name="wordWrap">
                       <bool>true</bool>
@@ -7932,9 +7886,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-306</y>
-                <width>1145</width>
-                <height>2779</height>
+                <y>0</y>
+                <width>869</width>
+                <height>2924</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8497,8 +8451,8 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; color:#404040;&quot;&gt;the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; color:#404040;&quot;&gt;The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -8838,6 +8792,29 @@ margin: 5px 0px;</string>
                 </layout>
                </item>
                <item>
+                <widget class="QTextEdit" name="textEdit_2">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#404040;&quot;&gt;The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <spacer name="verticalSpacer_31">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -9034,14 +9011,14 @@ QTableWidget::item
                      <property name="columnCount">
                       <number>5</number>
                      </property>
-                     <attribute name="horizontalHeaderMinimumSectionSize">
-                      <number>50</number>
-                     </attribute>
                      <attribute name="horizontalHeaderDefaultSectionSize">
                       <number>180</number>
                      </attribute>
                      <attribute name="horizontalHeaderHighlightSections">
                       <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
                      </attribute>
                      <attribute name="horizontalHeaderStretchLastSection">
                       <bool>false</bool>
@@ -9115,6 +9092,29 @@ padding: 10px 0px</string>
                 </widget>
                </item>
                <item>
+                <widget class="QTextEdit" name="textEdit_3">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_25">
                  <property name="leftMargin">
                   <number>61</number>
@@ -9124,6 +9124,41 @@ padding: 10px 0px</string>
                  </property>
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_54">
+                   <item>
+                    <widget class="QTextEdit" name="textEdit_4">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="html">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The weight Percentage chart shows the weight percentage for each range of diameter in the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
                    <item>
                     <layout class="QHBoxLayout" name="report_grading_chart_frame">
                      <property name="sizeConstraint">
@@ -9185,6 +9220,41 @@ padding: 10px 0px</string>
                  </item>
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_55">
+                   <item>
+                    <widget class="QTextEdit" name="textEdit_5">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="html">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
                    <item>
                     <layout class="QHBoxLayout" name="report_cum_chart_frame">
                      <property name="sizeConstraint">
@@ -9272,6 +9342,41 @@ padding: 10px 0px</string>
                  </property>
                  <item>
                   <layout class="QVBoxLayout" name="verticalLayout_56">
+                   <item>
+                    <widget class="QTextEdit" name="textEdit_6">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>30</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::NoFrame</enum>
+                     </property>
+                     <property name="lineWidth">
+                      <number>1</number>
+                     </property>
+                     <property name="sizeAdjustPolicy">
+                      <enum>QAbstractScrollArea::AdjustToContents</enum>
+                     </property>
+                     <property name="html">
+                      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
                    <item>
                     <layout class="QHBoxLayout" name="report_gaussian_chart_frame">
                      <property name="sizeConstraint">
@@ -9367,6 +9472,29 @@ padding: 10px 0px</string>
                  </property>
                  <property name="text">
                   <string>Particles</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="textEdit_7">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="frameShape">
+                  <enum>QFrame::NoFrame</enum>
+                 </property>
+                 <property name="lineWidth">
+                  <number>1</number>
+                 </property>
+                 <property name="sizeAdjustPolicy">
+                  <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -9881,14 +10009,14 @@ QTableWidget::item
                      <attribute name="verticalHeaderVisible">
                       <bool>false</bool>
                      </attribute>
-                     <attribute name="verticalHeaderMinimumSectionSize">
-                      <number>120</number>
-                     </attribute>
                      <attribute name="verticalHeaderDefaultSectionSize">
                       <number>120</number>
                      </attribute>
                      <attribute name="verticalHeaderHighlightSections">
                       <bool>true</bool>
+                     </attribute>
+                     <attribute name="verticalHeaderMinimumSectionSize">
+                      <number>120</number>
                      </attribute>
                      <row/>
                      <column/>
@@ -10158,8 +10286,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1144</width>
-                <height>678</height>
+                <width>177</width>
+                <height>528</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -10348,14 +10476,14 @@ QTableWidget::item
                      <property name="columnCount">
                       <number>5</number>
                      </property>
-                     <attribute name="horizontalHeaderMinimumSectionSize">
-                      <number>50</number>
-                     </attribute>
                      <attribute name="horizontalHeaderDefaultSectionSize">
                       <number>180</number>
                      </attribute>
                      <attribute name="horizontalHeaderHighlightSections">
                       <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
                      </attribute>
                      <attribute name="horizontalHeaderStretchLastSection">
                       <bool>false</bool>
@@ -10607,14 +10735,14 @@ QTableWidget::item
                      <property name="columnCount">
                       <number>5</number>
                      </property>
-                     <attribute name="horizontalHeaderMinimumSectionSize">
-                      <number>50</number>
-                     </attribute>
                      <attribute name="horizontalHeaderDefaultSectionSize">
                       <number>180</number>
                      </attribute>
                      <attribute name="horizontalHeaderHighlightSections">
                       <bool>true</bool>
+                     </attribute>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
                      </attribute>
                      <attribute name="horizontalHeaderStretchLastSection">
                       <bool>false</bool>
@@ -10819,6 +10947,7 @@ QPushButton{
  </widget>
  <resources>
   <include location="Assets/Assets.qrc"/>
+  <include location="C:/Users/itsbi/.designer/backup/Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

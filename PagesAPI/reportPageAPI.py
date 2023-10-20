@@ -3,7 +3,7 @@ from backend.Processing.Report import Report
 from Database.reportsDB import reportFileHandler
 from Database.mainDatabase  import mainDatabase
 from backend.Rebuild.rebuidReport import RebuildReport
-
+from backend.Exporter.excelExporter import reportExcelExporter
 import cv2
 class reportPageAPI:
     PARTICLE_PER_PAGE = 48
@@ -26,6 +26,7 @@ class reportPageAPI:
         self.ui.dialog_rebuild_button_connector(self.run_rebuild)
         self.ui.navigator_button_connector(self.particles_navigation)
         self.ui.particle_click_connector(self.show_particle_information)
+        self.ui.export_button_connector(self.export)
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
@@ -188,7 +189,12 @@ class reportPageAPI:
         # p = """<p> testttttt</p>"""
         # self.ui.ui.textEdit.setHtml(p)
 
-
+    def export(self,):
+        exporter = reportExcelExporter('format.xlsx')
+        path,_ = self.ui.open_export_file_dialog()
+        exporter.export(self.report)
+        exporter.save(path)
+        print(path)
 
 
 

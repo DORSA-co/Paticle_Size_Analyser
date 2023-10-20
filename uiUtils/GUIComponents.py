@@ -531,3 +531,17 @@ def selectDirectoryDialog():
     path = QtWidgets.QFileDialog.getExistingDirectory()
     return path
 
+def selectSaveFile(file_name:str = 'All', file_extention:str='.*'):
+    """opens a dialog file to select a file to save
+
+    Args:
+        file_name (str): an ideal name of file like 'Excel' 
+        file_extention (str): file extention like '.xlsx'
+
+    Returns:
+        _type_: selected path
+    """
+    filter = f'{file_name} (*{file_extention})'
+    path = QtWidgets.QFileDialog.getSaveFileName(filter=filter)
+    return path
+

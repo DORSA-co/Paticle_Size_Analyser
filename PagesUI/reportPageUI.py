@@ -145,6 +145,8 @@ class reportPageUI:
                                                 )
             
     
+    def export_button_connector(self, func):
+        GUIBackend.button_connector(self.export_btn, func)
     
     
 
@@ -295,3 +297,6 @@ class reportPageUI:
 
     def get_rebuild_standard(self,) -> str:
         return GUIBackend.get_combobox_selected(self.rebuild_win_ui.standards_combobox)
+    
+    def open_export_file_dialog(self,):
+        return GUIComponents.selectSaveFile(file_name='Excel',file_extention='.xlsx')

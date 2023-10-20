@@ -236,6 +236,9 @@ background-color: rgb(50, 50, 50);
           <height>15</height>
          </size>
         </property>
+        <property name="shortcut">
+         <string>Esc</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -367,6 +370,9 @@ color:#ffffff;
           <property name="text">
            <string>Login</string>
           </property>
+          <property name="shortcut">
+           <string>Return</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -389,6 +395,12 @@ color:#ffffff;
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>username_input</tabstop>
+  <tabstop>password_input</tabstop>
+  <tabstop>login_btn</tabstop>
+  <tabstop>close_btn</tabstop>
+ </tabstops>
  <resources>
   <include location="Assets/Assets.qrc"/>
  </resources>

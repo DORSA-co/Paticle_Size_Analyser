@@ -30,9 +30,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1369, 885)
+        MainWindow.resize(1369, 908)
         icon = QIcon()
-        icon.addFile(u"C:/.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -1187,7 +1187,7 @@ class Ui_MainWindow(object):
 
         self.mainpage_tempreture_warning_btn = QPushButton(self.groupBox_2)
         self.mainpage_tempreture_warning_btn.setObjectName(u"mainpage_tempreture_warning_btn")
-        self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(112, 40))
+        self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(114, 40))
         self.mainpage_tempreture_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.mainpage_tempreture_warning_btn.setStyleSheet(u"")
         icon18 = QIcon()
@@ -1252,8 +1252,8 @@ class Ui_MainWindow(object):
 
         self.mainpage_close_error_btn = QPushButton(self.mainpage_error_msg_frame)
         self.mainpage_close_error_btn.setObjectName(u"mainpage_close_error_btn")
-        self.mainpage_close_error_btn.setMinimumSize(QSize(122, 30))
-        self.mainpage_close_error_btn.setMaximumSize(QSize(122, 40))
+        self.mainpage_close_error_btn.setMinimumSize(QSize(124, 30))
+        self.mainpage_close_error_btn.setMaximumSize(QSize(124, 40))
         self.mainpage_close_error_btn.setStyleSheet(u"QPushButton{\n"
 "max-width:50px;\n"
 "min-width:50px;\n"
@@ -1457,7 +1457,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 309, 1671))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3221,15 +3221,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_16.setContentsMargins(-1, 5, -1, 5)
         self.label_13 = QLabel(self.horizontalFrame_4)
         self.label_13.setObjectName(u"label_13")
-        self.label_13.setMinimumSize(QSize(46, 0))
-        self.label_13.setMaximumSize(QSize(46, 16777215))
+        self.label_13.setMinimumSize(QSize(47, 0))
+        self.label_13.setMaximumSize(QSize(47, 16777215))
 
         self.horizontalLayout_16.addWidget(self.label_13)
 
         self.label_15 = QLabel(self.horizontalFrame_4)
         self.label_15.setObjectName(u"label_15")
-        self.label_15.setMinimumSize(QSize(46, 0))
-        self.label_15.setMaximumSize(QSize(46, 16777215))
+        self.label_15.setMinimumSize(QSize(47, 0))
+        self.label_15.setMaximumSize(QSize(47, 16777215))
 
         self.horizontalLayout_16.addWidget(self.label_15)
 
@@ -3833,7 +3833,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 63, 34))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4429,7 +4429,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1151, 658))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 673))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4623,7 +4623,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 869, 2924))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -430, 1145, 3055))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -4912,6 +4912,7 @@ class Ui_MainWindow(object):
         self.textEdit.setFrameShape(QFrame.NoFrame)
         self.textEdit.setLineWidth(1)
         self.textEdit.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.textEdit.setTabStopDistance(82.000000000000000)
 
         self.verticalLayout_12.addWidget(self.textEdit)
 
@@ -5093,8 +5094,10 @@ class Ui_MainWindow(object):
         self.textEdit_2.setObjectName(u"textEdit_2")
         self.textEdit_2.setStyleSheet(u"")
         self.textEdit_2.setFrameShape(QFrame.NoFrame)
-        self.textEdit_2.setLineWidth(1)
         self.textEdit_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.textEdit_2.setLineWrapColumnOrWidth(0)
+        self.textEdit_2.setReadOnly(True)
+        self.textEdit_2.setOverwriteMode(False)
 
         self.verticalLayout_12.addWidget(self.textEdit_2)
 
@@ -5750,6 +5753,8 @@ class Ui_MainWindow(object):
 
         self.alaki_btn = QPushButton(self.scrollAreaWidgetContents)
         self.alaki_btn.setObjectName(u"alaki_btn")
+        self.alaki_btn.setStyleSheet(u"background-color: #ffffff;\n"
+"")
 
         self.verticalLayout_12.addWidget(self.alaki_btn)
 
@@ -5832,7 +5837,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 177, 528))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 701))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6155,13 +6160,156 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusBar)
 #if QT_CONFIG(shortcut)
 #endif // QT_CONFIG(shortcut)
+        QWidget.setTabOrder(self.settingpage_general_font_combobox, self.settingpage_general_color_combobox)
+        QWidget.setTabOrder(self.settingpage_general_color_combobox, self.settingpage_general_language_combobox)
+        QWidget.setTabOrder(self.settingpage_general_language_combobox, self.pushButton_12)
+        QWidget.setTabOrder(self.pushButton_12, self.pushButton_11)
+        QWidget.setTabOrder(self.pushButton_11, self.pushButton_10)
+        QWidget.setTabOrder(self.pushButton_10, self.settingpage_sample_auto_name_groupbox)
+        QWidget.setTabOrder(self.settingpage_sample_auto_name_groupbox, self.settingpage_sample_text1_input)
+        QWidget.setTabOrder(self.settingpage_sample_text1_input, self.settingpage_sample_spacer_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_spacer_code_btn, self.settingpage_sample_username_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_username_code_btn, self.settingpage_sample_text1_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_text1_code_btn, self.settingpage_sample_year_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_year_code_btn, self.settingpage_sample_month_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_month_code_btn, self.settingpage_sample_day_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_day_code_btn, self.settingpage_sample_houre_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_houre_code_btn, self.settingpage_sample_minute_code_btn)
+        QWidget.setTabOrder(self.settingpage_sample_minute_code_btn, self.settingpage_sample_auto_name_input)
+        QWidget.setTabOrder(self.settingpage_sample_auto_name_input, self.settingpage_sample_default_standard_comboxos)
+        QWidget.setTabOrder(self.settingpage_sample_default_standard_comboxos, self.settingpage_sample_save_image_checkbox)
+        QWidget.setTabOrder(self.settingpage_sample_save_image_checkbox, self.settingpage_sample_save_btn)
+        QWidget.setTabOrder(self.settingpage_sample_save_btn, self.settingpage_sample_cancel_btn)
+        QWidget.setTabOrder(self.settingpage_sample_cancel_btn, self.settingpage_db_username)
+        QWidget.setTabOrder(self.settingpage_db_username, self.settingpage_db_password)
+        QWidget.setTabOrder(self.settingpage_db_password, self.settingpage_db_host)
+        QWidget.setTabOrder(self.settingpage_db_host, self.settingpage_storage_auto_clean_checkbox)
+        QWidget.setTabOrder(self.settingpage_storage_auto_clean_checkbox, self.settingpage_storage_life_time_spinbox)
+        QWidget.setTabOrder(self.settingpage_storage_life_time_spinbox, self.settingpage_storage_path_input)
+        QWidget.setTabOrder(self.settingpage_storage_path_input, self.settingpage_storage_save_btn)
+        QWidget.setTabOrder(self.settingpage_storage_save_btn, self.settingpage_storage_cancel_btn)
+        QWidget.setTabOrder(self.settingpage_storage_cancel_btn, self.settingpage_camera_device_combobox)
+        QWidget.setTabOrder(self.settingpage_camera_device_combobox, self.settingpage_camera_fps_spinbox)
+        QWidget.setTabOrder(self.settingpage_camera_fps_spinbox, self.settingpage_camera_exposure_spinbox)
+        QWidget.setTabOrder(self.settingpage_camera_exposure_spinbox, self.settingpage_camera_gain_spinbox)
+        QWidget.setTabOrder(self.settingpage_camera_gain_spinbox, self.settingpage_camera_width_spinbox)
+        QWidget.setTabOrder(self.settingpage_camera_width_spinbox, self.settingpage_camera_height_spinbox)
+        QWidget.setTabOrder(self.settingpage_camera_height_spinbox, self.settingpage_camera_start_btn)
+        QWidget.setTabOrder(self.settingpage_camera_start_btn, self.settingpage_camera_save_btn)
+        QWidget.setTabOrder(self.settingpage_camera_save_btn, self.settingpage_camera_cancel_btn)
+        QWidget.setTabOrder(self.settingpage_camera_cancel_btn, self.settingpage_camera_restore_btn)
+        QWidget.setTabOrder(self.settingpage_camera_restore_btn, self.settingpage_algorithm_threshould_spinbox)
+        QWidget.setTabOrder(self.settingpage_algorithm_threshould_spinbox, self.settingpage_algorithm_border_spinbox)
+        QWidget.setTabOrder(self.settingpage_algorithm_border_spinbox, self.settingpage_algorithm_save_btn)
+        QWidget.setTabOrder(self.settingpage_algorithm_save_btn, self.settingpage_algorithm_cancel_btn)
+        QWidget.setTabOrder(self.settingpage_algorithm_cancel_btn, self.settingpage_algorithm_restor_default_btn)
+        QWidget.setTabOrder(self.settingpage_algorithm_restor_default_btn, self.settingpage_grading_name_inpt)
+        QWidget.setTabOrder(self.settingpage_grading_name_inpt, self.settingpage_grading_low_limit_spinbox)
+        QWidget.setTabOrder(self.settingpage_grading_low_limit_spinbox, self.settingpage_grading_up_limit_spinbox)
+        QWidget.setTabOrder(self.settingpage_grading_up_limit_spinbox, self.settingpage_pelletizing_add_range_btn)
+        QWidget.setTabOrder(self.settingpage_pelletizing_add_range_btn, self.settingpage_grading_ranges_table)
+        QWidget.setTabOrder(self.settingpage_grading_ranges_table, self.settingpage_grading_save_btn)
+        QWidget.setTabOrder(self.settingpage_grading_save_btn, self.settingpage_grading_cancel_btn)
+        QWidget.setTabOrder(self.settingpage_grading_cancel_btn, self.settingpage_tabs)
+        QWidget.setTabOrder(self.settingpage_tabs, self.mainpage_report_button)
+        QWidget.setTabOrder(self.mainpage_report_button, self.minimize_btn)
+        QWidget.setTabOrder(self.minimize_btn, self.maximize_btn)
+        QWidget.setTabOrder(self.maximize_btn, self.sidebar_grading_ranges_btn)
+        QWidget.setTabOrder(self.sidebar_grading_ranges_btn, self.sidebar_report_btn)
+        QWidget.setTabOrder(self.sidebar_report_btn, self.reportpage_standards_filter_table)
+        QWidget.setTabOrder(self.reportpage_standards_filter_table, self.close_btn)
+        QWidget.setTabOrder(self.close_btn, self.toolbar_login_logout_btn)
+        QWidget.setTabOrder(self.toolbar_login_logout_btn, self.reportpage_filterusername_input)
+        QWidget.setTabOrder(self.reportpage_filterusername_input, self.reportpage_filtername_input)
+        QWidget.setTabOrder(self.reportpage_filtername_input, self.reportpage_filterusername_groupbox)
+        QWidget.setTabOrder(self.reportpage_filterusername_groupbox, self.reportpage_end_date_dateedit)
+        QWidget.setTabOrder(self.reportpage_end_date_dateedit, self.mainpage_stop_btn)
+        QWidget.setTabOrder(self.mainpage_stop_btn, self.reportpage_start_date_dateedit)
+        QWidget.setTabOrder(self.reportpage_start_date_dateedit, self.reportpage_filterdate_groupbox)
+        QWidget.setTabOrder(self.reportpage_filterdate_groupbox, self.mainpage_faststart_btn)
+        QWidget.setTabOrder(self.mainpage_faststart_btn, self.mainpage_illumination_warning_btn)
+        QWidget.setTabOrder(self.mainpage_illumination_warning_btn, self.settingpage_sample_auto_name_clear_btn)
+        QWidget.setTabOrder(self.settingpage_sample_auto_name_clear_btn, self.mainpage_tempreture_warning_btn)
+        QWidget.setTabOrder(self.mainpage_tempreture_warning_btn, self.mainpage_close_error_btn)
+        QWidget.setTabOrder(self.mainpage_close_error_btn, self.mainpage_camera_connection_warning_btn)
+        QWidget.setTabOrder(self.mainpage_camera_connection_warning_btn, self.mainpage_camera_grabbing_warning_btn)
+        QWidget.setTabOrder(self.mainpage_camera_grabbing_warning_btn, self.sidebar_users_btn)
+        QWidget.setTabOrder(self.sidebar_users_btn, self.settingpage_storage_select_dir_btn)
+        QWidget.setTabOrder(self.settingpage_storage_select_dir_btn, self.sidebar_main_btn)
+        QWidget.setTabOrder(self.sidebar_main_btn, self.sidebar_help_btn)
+        QWidget.setTabOrder(self.sidebar_help_btn, self.sidebar_calib_btn)
+        QWidget.setTabOrder(self.sidebar_calib_btn, self.mainpage_liveview_checkbox)
+        QWidget.setTabOrder(self.mainpage_liveview_checkbox, self.scrollArea_2)
+        QWidget.setTabOrder(self.scrollArea_2, self.mainpage_drawing_checkbox)
+        QWidget.setTabOrder(self.mainpage_drawing_checkbox, self.reportpage_apply_filters_btn)
+        QWidget.setTabOrder(self.reportpage_apply_filters_btn, self.mainpage_start_btn)
+        QWidget.setTabOrder(self.mainpage_start_btn, self.reportpage_filterstandards_groupbox)
+        QWidget.setTabOrder(self.reportpage_filterstandards_groupbox, self.reportpage_filterranges_groupbox)
+        QWidget.setTabOrder(self.reportpage_filterranges_groupbox, self.sidebar_settings_btn)
+        QWidget.setTabOrder(self.sidebar_settings_btn, self.reportpage_standards_filter_ranges_table)
+        QWidget.setTabOrder(self.reportpage_standards_filter_ranges_table, self.reportpage_filter_standards_combobox)
+        QWidget.setTabOrder(self.reportpage_filter_standards_combobox, self.reportpage_filtername_groupbox)
+        QWidget.setTabOrder(self.reportpage_filtername_groupbox, self.reportspage_all_checkbox)
+        QWidget.setTabOrder(self.reportspage_all_checkbox, self.reportspage_delete_selections_btn)
+        QWidget.setTabOrder(self.reportspage_delete_selections_btn, self.reportpage_rebuild_btn)
+        QWidget.setTabOrder(self.reportpage_rebuild_btn, self.reportpage_compare_btn)
+        QWidget.setTabOrder(self.reportpage_compare_btn, self.reportpage_compare_standards_combobox)
+        QWidget.setTabOrder(self.reportpage_compare_standards_combobox, self.reportpage_samples_table)
+        QWidget.setTabOrder(self.reportpage_samples_table, self.gradingranges_tabs)
+        QWidget.setTabOrder(self.gradingranges_tabs, self.settingpage_grading_standards_table)
+        QWidget.setTabOrder(self.settingpage_grading_standards_table, self.tabWidget)
+        QWidget.setTabOrder(self.tabWidget, self.calibrationpage_check_btn)
+        QWidget.setTabOrder(self.calibrationpage_check_btn, self.calibrationpage_calib_type_combobox)
+        QWidget.setTabOrder(self.calibrationpage_calib_type_combobox, self.calibrationpage_calib_itrs_spinbox)
+        QWidget.setTabOrder(self.calibrationpage_calib_itrs_spinbox, self.calibrationpage_calib_btn)
+        QWidget.setTabOrder(self.calibrationpage_calib_btn, self.calibrationpage_last_calib_tabel)
+        QWidget.setTabOrder(self.calibrationpage_last_calib_tabel, self.validationpage_hypotest_test_count_spinbox)
+        QWidget.setTabOrder(self.validationpage_hypotest_test_count_spinbox, self.validationpage_hypotest_standards_combobox)
+        QWidget.setTabOrder(self.validationpage_hypotest_standards_combobox, self.validationpage_verify_type)
+        QWidget.setTabOrder(self.validationpage_verify_type, self.validationpage_hypotest_calculate_btn)
+        QWidget.setTabOrder(self.validationpage_hypotest_calculate_btn, self.scrollArea_5)
+        QWidget.setTabOrder(self.scrollArea_5, self.user_tabs)
+        QWidget.setTabOrder(self.user_tabs, self.userpage_user_role_combobox)
+        QWidget.setTabOrder(self.userpage_user_role_combobox, self.userpage_password_inpt)
+        QWidget.setTabOrder(self.userpage_password_inpt, self.userpage_username_inpt)
+        QWidget.setTabOrder(self.userpage_username_inpt, self.userpage_confirm_password_inpt)
+        QWidget.setTabOrder(self.userpage_confirm_password_inpt, self.userspage_add_user_btn)
+        QWidget.setTabOrder(self.userspage_add_user_btn, self.userpage_editprofile_user_role_combobox)
+        QWidget.setTabOrder(self.userpage_editprofile_user_role_combobox, self.userpage_editprofile_username_inpt)
+        QWidget.setTabOrder(self.userpage_editprofile_username_inpt, self.userpage_editprofile_update_btn)
+        QWidget.setTabOrder(self.userpage_editprofile_update_btn, self.userpage_editprofile_cancel_btn)
+        QWidget.setTabOrder(self.userpage_editprofile_cancel_btn, self.userpage_editprofile_confirm_new_password_inpt)
+        QWidget.setTabOrder(self.userpage_editprofile_confirm_new_password_inpt, self.userpage_editprofile_old_password_inpt)
+        QWidget.setTabOrder(self.userpage_editprofile_old_password_inpt, self.userpage_editprofile_new_password_inpt)
+        QWidget.setTabOrder(self.userpage_editprofile_new_password_inpt, self.userpage_editprofile_change_password_btn)
+        QWidget.setTabOrder(self.userpage_editprofile_change_password_btn, self.userpage_all_users_table)
+        QWidget.setTabOrder(self.userpage_all_users_table, self.helppage_tabs)
+        QWidget.setTabOrder(self.helppage_tabs, self.scrollArea_3)
+        QWidget.setTabOrder(self.scrollArea_3, self.commandLinkButton)
+        QWidget.setTabOrder(self.commandLinkButton, self.sreportpage_back_btn)
+        QWidget.setTabOrder(self.sreportpage_back_btn, self.sreportpage_export_btn)
+        QWidget.setTabOrder(self.sreportpage_export_btn, self.sreportpage_rebuild_btn)
+        QWidget.setTabOrder(self.sreportpage_rebuild_btn, self.scrollArea)
+        QWidget.setTabOrder(self.scrollArea, self.textEdit)
+        QWidget.setTabOrder(self.textEdit, self.textEdit_2)
+        QWidget.setTabOrder(self.textEdit_2, self.textEdit_3)
+        QWidget.setTabOrder(self.textEdit_3, self.textEdit_4)
+        QWidget.setTabOrder(self.textEdit_4, self.textEdit_5)
+        QWidget.setTabOrder(self.textEdit_5, self.textEdit_6)
+        QWidget.setTabOrder(self.textEdit_6, self.textEdit_7)
+        QWidget.setTabOrder(self.textEdit_7, self.sreportpage_prev_particle_btn)
+        QWidget.setTabOrder(self.sreportpage_prev_particle_btn, self.sreportpage_next_particle_btn)
+        QWidget.setTabOrder(self.sreportpage_next_particle_btn, self.alaki_btn)
+        QWidget.setTabOrder(self.alaki_btn, self.comparepage_back_btn)
+        QWidget.setTabOrder(self.comparepage_back_btn, self.comparepage_export_btn)
+        QWidget.setTabOrder(self.comparepage_export_btn, self.scrollArea_4)
 
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(6)
+        self.main_pages_stackw.setCurrentIndex(7)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.settingpage_tabs.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(0)
         self.helppage_tabs.setCurrentIndex(0)
@@ -6278,6 +6426,9 @@ class Ui_MainWindow(object):
         self.gradingranges_new_standard_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+#if QT_CONFIG(shortcut)
+        self.pushButton_12.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Restor Defualt", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Interface Setting", None))
@@ -6353,6 +6504,9 @@ class Ui_MainWindow(object):
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"border", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Threshould", None))
         self.settingpage_algorithm_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+#if QT_CONFIG(shortcut)
+        self.settingpage_algorithm_save_btn.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
+#endif // QT_CONFIG(shortcut)
         self.settingpage_algorithm_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_algorithm_restor_default_btn.setText(QCoreApplication.translate("MainWindow", u"Restore Default", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_algorithm_tab), QCoreApplication.translate("MainWindow", u"Algorithm", None))
@@ -6460,7 +6614,7 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.</span></p></body></html>", None))
         self.sreportpage_statictics_desc1.setText(QCoreApplication.translate("MainWindow", u"Desc1", None))
         self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
@@ -6477,8 +6631,8 @@ class Ui_MainWindow(object):
         self.textEdit_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#404040;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. </span><span style=\" font-size:12pt;\">Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
         self.sreportpage_statictics_desc2.setText(QCoreApplication.translate("MainWindow", u"Desc2", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table1 - Statistics for each diameter range in the Sample ", None))
 
@@ -6490,32 +6644,32 @@ class Ui_MainWindow(object):
         self.textEdit_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#282828;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
         self.textEdit_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">The weight Percentage chart shows the weight percentage for each range of diameter in the sample.</span></p></body></html>", None))
         self.label_107.setText(QCoreApplication.translate("MainWindow", u"Chart1 - Weight Percent Barchart", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</span></p></body></html>", None))
         self.label_108.setText(QCoreApplication.translate("MainWindow", u"Chart2 - Cumulative Weight Percent Chart", None))
         self.textEdit_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</span></p></body></html>", None))
         self.label_109.setText(QCoreApplication.translate("MainWindow", u"Chart3 - Frequency Histogram of All Particle Diameters", None))
         self.label_47.setText(QCoreApplication.translate("MainWindow", u"Particles", None))
         self.textEdit_7.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.</span></p></body></html>", None))
         self.sreportpage_particle_image_lbl.setText("")
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"25", None))
         self.sreportpage_particle_avg_r_lbl_title.setText(QCoreApplication.translate("MainWindow", u"Avg Radius:", None))

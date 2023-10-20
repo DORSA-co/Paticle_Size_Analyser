@@ -43,7 +43,7 @@ if __name__ == '__main__':
     main_ui = mainUI(window, login_ui,
                              sample_info,
                              edit_user,
-                             auto_rebuild_ui,
+                                         auto_rebuild_ui,
                              single_rebuild_manual_ui,
                              db_init_ui)
 

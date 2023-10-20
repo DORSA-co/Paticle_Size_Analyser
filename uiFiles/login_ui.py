@@ -252,6 +252,9 @@ class Ui_login_dialog_window(object):
 
         self.verticalLayout.addItem(self.verticalSpacer)
 
+        QWidget.setTabOrder(self.username_input, self.password_input)
+        QWidget.setTabOrder(self.password_input, self.login_btn)
+        QWidget.setTabOrder(self.login_btn, self.close_btn)
 
         self.retranslateUi(login_dialog_window)
 
@@ -264,11 +267,17 @@ class Ui_login_dialog_window(object):
         self.close_btn.setToolTip("")
 #endif // QT_CONFIG(tooltip)
         self.close_btn.setText("")
+#if QT_CONFIG(shortcut)
+        self.close_btn.setShortcut(QCoreApplication.translate("login_dialog_window", u"Esc", None))
+#endif // QT_CONFIG(shortcut)
         self.label_2.setText(QCoreApplication.translate("login_dialog_window", u"Password", None))
         self.password_input.setText(QCoreApplication.translate("login_dialog_window", u"admin", None))
         self.label.setText(QCoreApplication.translate("login_dialog_window", u"Username   ", None))
         self.username_input.setText(QCoreApplication.translate("login_dialog_window", u"admin", None))
         self.login_error_lbl.setText(QCoreApplication.translate("login_dialog_window", u"Error", None))
         self.login_btn.setText(QCoreApplication.translate("login_dialog_window", u"Login", None))
+#if QT_CONFIG(shortcut)
+        self.login_btn.setShortcut(QCoreApplication.translate("login_dialog_window", u"Return", None))
+#endif // QT_CONFIG(shortcut)
     # retranslateUi
 

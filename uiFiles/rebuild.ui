@@ -337,6 +337,9 @@ max-width: 200px;
          <property name="text">
           <string>Rebuild</string>
          </property>
+         <property name="shortcut">
+          <string>Return</string>
+         </property>
         </widget>
        </item>
        <item>

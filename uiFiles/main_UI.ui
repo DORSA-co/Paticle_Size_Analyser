@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1369</width>
-    <height>885</height>
+    <height>908</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/.designer/backup/Icons/app_logo.ico</normaloff>C:/.designer/backup/Icons/app_logo.ico</iconset>
+    <normaloff>../../../../../../.designer/backup/Icons/app_logo.ico</normaloff>../../../../../../.designer/backup/Icons/app_logo.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1874,7 +1874,7 @@ QPushButton
                         <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
                          <property name="minimumSize">
                           <size>
-                           <width>112</width>
+                           <width>114</width>
                            <height>40</height>
                           </size>
                          </property>
@@ -1998,13 +1998,13 @@ padding-left:15px;</string>
                           <widget class="QPushButton" name="mainpage_close_error_btn">
                            <property name="minimumSize">
                             <size>
-                             <width>122</width>
+                             <width>124</width>
                              <height>30</height>
                             </size>
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>122</width>
+                             <width>124</width>
                              <height>40</height>
                             </size>
                            </property>
@@ -2284,8 +2284,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>309</width>
-                   <height>1671</height>
+                   <width>322</width>
+                   <height>1758</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2764,23 +2764,23 @@ color: rgb(6, 76, 130);
                           <attribute name="horizontalHeaderVisible">
                            <bool>false</bool>
                           </attribute>
-                          <attribute name="horizontalHeaderHighlightSections">
-                           <bool>false</bool>
-                          </attribute>
                           <attribute name="horizontalHeaderMinimumSectionSize">
                            <number>50</number>
                           </attribute>
+                          <attribute name="horizontalHeaderHighlightSections">
+                           <bool>false</bool>
+                          </attribute>
                           <attribute name="verticalHeaderVisible">
                            <bool>false</bool>
+                          </attribute>
+                          <attribute name="verticalHeaderMinimumSectionSize">
+                           <number>35</number>
                           </attribute>
                           <attribute name="verticalHeaderDefaultSectionSize">
                            <number>35</number>
                           </attribute>
                           <attribute name="verticalHeaderHighlightSections">
                            <bool>false</bool>
-                          </attribute>
-                          <attribute name="verticalHeaderMinimumSectionSize">
-                           <number>35</number>
                           </attribute>
                           <row/>
                           <row/>
@@ -3258,11 +3258,11 @@ QTableWidget::item
                       <property name="columnCount">
                        <number>4</number>
                       </property>
-                      <attribute name="horizontalHeaderDefaultSectionSize">
-                       <number>100</number>
-                      </attribute>
                       <attribute name="horizontalHeaderMinimumSectionSize">
                        <number>60</number>
+                      </attribute>
+                      <attribute name="horizontalHeaderDefaultSectionSize">
+                       <number>100</number>
                       </attribute>
                       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
                        <bool>false</bool>
@@ -3276,14 +3276,14 @@ QTableWidget::item
                       <attribute name="verticalHeaderCascadingSectionResizes">
                        <bool>false</bool>
                       </attribute>
+                      <attribute name="verticalHeaderMinimumSectionSize">
+                       <number>23</number>
+                      </attribute>
                       <attribute name="verticalHeaderDefaultSectionSize">
                        <number>45</number>
                       </attribute>
                       <attribute name="verticalHeaderHighlightSections">
                        <bool>true</bool>
-                      </attribute>
-                      <attribute name="verticalHeaderMinimumSectionSize">
-                       <number>23</number>
                       </attribute>
                       <attribute name="verticalHeaderShowSortIndicator" stdset="0">
                        <bool>false</bool>
@@ -4022,7 +4022,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>0</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4080,6 +4080,9 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                      <widget class="QPushButton" name="pushButton_12">
                       <property name="text">
                        <string>Save</string>
+                      </property>
+                      <property name="shortcut">
+                       <string>Ctrl+S</string>
                       </property>
                      </widget>
                     </item>
@@ -5570,13 +5573,13 @@ background-color:rgb(240,240,240)
                        <widget class="QLabel" name="label_13">
                         <property name="minimumSize">
                          <size>
-                          <width>46</width>
+                          <width>47</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>46</width>
+                          <width>47</width>
                           <height>16777215</height>
                          </size>
                         </property>
@@ -5589,13 +5592,13 @@ background-color:rgb(240,240,240)
                        <widget class="QLabel" name="label_15">
                         <property name="minimumSize">
                          <size>
-                          <width>46</width>
+                          <width>47</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>46</width>
+                          <width>47</width>
                           <height>16777215</height>
                          </size>
                         </property>
@@ -5767,6 +5770,9 @@ background-color:rgb(240,240,240)
                     <widget class="QPushButton" name="settingpage_algorithm_save_btn">
                      <property name="text">
                       <string>Save</string>
+                     </property>
+                     <property name="shortcut">
+                      <string>Ctrl+S</string>
                      </property>
                     </widget>
                    </item>
@@ -6638,8 +6644,8 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>63</width>
-                    <height>34</height>
+                    <width>55</width>
+                    <height>39</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -7614,8 +7620,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1151</width>
-                    <height>658</height>
+                    <width>1143</width>
+                    <height>673</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -7886,9 +7892,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>869</width>
-                <height>2924</height>
+                <y>-430</y>
+                <width>1145</width>
+                <height>3055</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -8451,8 +8457,11 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; color:#404040;&quot;&gt;The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="tabStopDistance">
+                  <double>82.000000000000000</double>
                  </property>
                 </widget>
                </item>
@@ -8799,18 +8808,24 @@ margin: 5px 0px;</string>
                  <property name="frameShape">
                   <enum>QFrame::NoFrame</enum>
                  </property>
-                 <property name="lineWidth">
-                  <number>1</number>
-                 </property>
                  <property name="sizeAdjustPolicy">
                   <enum>QAbstractScrollArea::AdjustToContents</enum>
+                 </property>
+                 <property name="lineWrapColumnOrWidth">
+                  <number>0</number>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
                  </property>
                  <property name="html">
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#404040;&quot;&gt;The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. &lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#282828;&quot;&gt;The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="overwriteMode">
+                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -9011,14 +9026,14 @@ QTableWidget::item
                      <property name="columnCount">
                       <number>5</number>
                      </property>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
+                     </attribute>
                      <attribute name="horizontalHeaderDefaultSectionSize">
                       <number>180</number>
                      </attribute>
                      <attribute name="horizontalHeaderHighlightSections">
                       <bool>true</bool>
-                     </attribute>
-                     <attribute name="horizontalHeaderMinimumSectionSize">
-                      <number>50</number>
                      </attribute>
                      <attribute name="horizontalHeaderStretchLastSection">
                       <bool>false</bool>
@@ -9109,8 +9124,8 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#282828;&quot;&gt;The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -9154,7 +9169,7 @@ p, li { white-space: pre-wrap; }
                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The weight Percentage chart shows the weight percentage for each range of diameter in the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
@@ -9250,8 +9265,8 @@ p, li { white-space: pre-wrap; }
                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
@@ -9372,8 +9387,8 @@ p, li { white-space: pre-wrap; }
                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
@@ -9493,8 +9508,8 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#282828;&quot;&gt;In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -10009,14 +10024,14 @@ QTableWidget::item
                      <attribute name="verticalHeaderVisible">
                       <bool>false</bool>
                      </attribute>
+                     <attribute name="verticalHeaderMinimumSectionSize">
+                      <number>120</number>
+                     </attribute>
                      <attribute name="verticalHeaderDefaultSectionSize">
                       <number>120</number>
                      </attribute>
                      <attribute name="verticalHeaderHighlightSections">
                       <bool>true</bool>
-                     </attribute>
-                     <attribute name="verticalHeaderMinimumSectionSize">
-                      <number>120</number>
                      </attribute>
                      <row/>
                      <column/>
@@ -10157,6 +10172,10 @@ QTableWidget::item
                </item>
                <item>
                 <widget class="QPushButton" name="alaki_btn">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: #ffffff;
+</string>
+                 </property>
                  <property name="text">
                   <string>alaki</string>
                  </property>
@@ -10286,8 +10305,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>177</width>
-                <height>528</height>
+                <width>1144</width>
+                <height>701</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -10476,14 +10495,14 @@ QTableWidget::item
                      <property name="columnCount">
                       <number>5</number>
                      </property>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
+                     </attribute>
                      <attribute name="horizontalHeaderDefaultSectionSize">
                       <number>180</number>
                      </attribute>
                      <attribute name="horizontalHeaderHighlightSections">
                       <bool>true</bool>
-                     </attribute>
-                     <attribute name="horizontalHeaderMinimumSectionSize">
-                      <number>50</number>
                      </attribute>
                      <attribute name="horizontalHeaderStretchLastSection">
                       <bool>false</bool>
@@ -10735,14 +10754,14 @@ QTableWidget::item
                      <property name="columnCount">
                       <number>5</number>
                      </property>
+                     <attribute name="horizontalHeaderMinimumSectionSize">
+                      <number>50</number>
+                     </attribute>
                      <attribute name="horizontalHeaderDefaultSectionSize">
                       <number>180</number>
                      </attribute>
                      <attribute name="horizontalHeaderHighlightSections">
                       <bool>true</bool>
-                     </attribute>
-                     <attribute name="horizontalHeaderMinimumSectionSize">
-                      <number>50</number>
                      </attribute>
                      <attribute name="horizontalHeaderStretchLastSection">
                       <bool>false</bool>
@@ -10945,9 +10964,155 @@ QPushButton{
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>settingpage_general_font_combobox</tabstop>
+  <tabstop>settingpage_general_color_combobox</tabstop>
+  <tabstop>settingpage_general_language_combobox</tabstop>
+  <tabstop>pushButton_12</tabstop>
+  <tabstop>pushButton_11</tabstop>
+  <tabstop>pushButton_10</tabstop>
+  <tabstop>settingpage_sample_auto_name_groupbox</tabstop>
+  <tabstop>settingpage_sample_text1_input</tabstop>
+  <tabstop>settingpage_sample_spacer_code_btn</tabstop>
+  <tabstop>settingpage_sample_username_code_btn</tabstop>
+  <tabstop>settingpage_sample_text1_code_btn</tabstop>
+  <tabstop>settingpage_sample_year_code_btn</tabstop>
+  <tabstop>settingpage_sample_month_code_btn</tabstop>
+  <tabstop>settingpage_sample_day_code_btn</tabstop>
+  <tabstop>settingpage_sample_houre_code_btn</tabstop>
+  <tabstop>settingpage_sample_minute_code_btn</tabstop>
+  <tabstop>settingpage_sample_auto_name_input</tabstop>
+  <tabstop>settingpage_sample_default_standard_comboxos</tabstop>
+  <tabstop>settingpage_sample_save_image_checkbox</tabstop>
+  <tabstop>settingpage_sample_save_btn</tabstop>
+  <tabstop>settingpage_sample_cancel_btn</tabstop>
+  <tabstop>settingpage_db_username</tabstop>
+  <tabstop>settingpage_db_password</tabstop>
+  <tabstop>settingpage_db_host</tabstop>
+  <tabstop>settingpage_storage_auto_clean_checkbox</tabstop>
+  <tabstop>settingpage_storage_life_time_spinbox</tabstop>
+  <tabstop>settingpage_storage_path_input</tabstop>
+  <tabstop>settingpage_storage_save_btn</tabstop>
+  <tabstop>settingpage_storage_cancel_btn</tabstop>
+  <tabstop>settingpage_camera_device_combobox</tabstop>
+  <tabstop>settingpage_camera_fps_spinbox</tabstop>
+  <tabstop>settingpage_camera_exposure_spinbox</tabstop>
+  <tabstop>settingpage_camera_gain_spinbox</tabstop>
+  <tabstop>settingpage_camera_width_spinbox</tabstop>
+  <tabstop>settingpage_camera_height_spinbox</tabstop>
+  <tabstop>settingpage_camera_start_btn</tabstop>
+  <tabstop>settingpage_camera_save_btn</tabstop>
+  <tabstop>settingpage_camera_cancel_btn</tabstop>
+  <tabstop>settingpage_camera_restore_btn</tabstop>
+  <tabstop>settingpage_algorithm_threshould_spinbox</tabstop>
+  <tabstop>settingpage_algorithm_border_spinbox</tabstop>
+  <tabstop>settingpage_algorithm_save_btn</tabstop>
+  <tabstop>settingpage_algorithm_cancel_btn</tabstop>
+  <tabstop>settingpage_algorithm_restor_default_btn</tabstop>
+  <tabstop>settingpage_grading_name_inpt</tabstop>
+  <tabstop>settingpage_grading_low_limit_spinbox</tabstop>
+  <tabstop>settingpage_grading_up_limit_spinbox</tabstop>
+  <tabstop>settingpage_pelletizing_add_range_btn</tabstop>
+  <tabstop>settingpage_grading_ranges_table</tabstop>
+  <tabstop>settingpage_grading_save_btn</tabstop>
+  <tabstop>settingpage_grading_cancel_btn</tabstop>
+  <tabstop>settingpage_tabs</tabstop>
+  <tabstop>mainpage_report_button</tabstop>
+  <tabstop>minimize_btn</tabstop>
+  <tabstop>maximize_btn</tabstop>
+  <tabstop>sidebar_grading_ranges_btn</tabstop>
+  <tabstop>sidebar_report_btn</tabstop>
+  <tabstop>reportpage_standards_filter_table</tabstop>
+  <tabstop>close_btn</tabstop>
+  <tabstop>toolbar_login_logout_btn</tabstop>
+  <tabstop>reportpage_filterusername_input</tabstop>
+  <tabstop>reportpage_filtername_input</tabstop>
+  <tabstop>reportpage_filterusername_groupbox</tabstop>
+  <tabstop>reportpage_end_date_dateedit</tabstop>
+  <tabstop>mainpage_stop_btn</tabstop>
+  <tabstop>reportpage_start_date_dateedit</tabstop>
+  <tabstop>reportpage_filterdate_groupbox</tabstop>
+  <tabstop>mainpage_faststart_btn</tabstop>
+  <tabstop>mainpage_illumination_warning_btn</tabstop>
+  <tabstop>settingpage_sample_auto_name_clear_btn</tabstop>
+  <tabstop>mainpage_tempreture_warning_btn</tabstop>
+  <tabstop>mainpage_close_error_btn</tabstop>
+  <tabstop>mainpage_camera_connection_warning_btn</tabstop>
+  <tabstop>mainpage_camera_grabbing_warning_btn</tabstop>
+  <tabstop>sidebar_users_btn</tabstop>
+  <tabstop>settingpage_storage_select_dir_btn</tabstop>
+  <tabstop>sidebar_main_btn</tabstop>
+  <tabstop>sidebar_help_btn</tabstop>
+  <tabstop>sidebar_calib_btn</tabstop>
+  <tabstop>mainpage_liveview_checkbox</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>mainpage_drawing_checkbox</tabstop>
+  <tabstop>reportpage_apply_filters_btn</tabstop>
+  <tabstop>mainpage_start_btn</tabstop>
+  <tabstop>reportpage_filterstandards_groupbox</tabstop>
+  <tabstop>reportpage_filterranges_groupbox</tabstop>
+  <tabstop>sidebar_settings_btn</tabstop>
+  <tabstop>reportpage_standards_filter_ranges_table</tabstop>
+  <tabstop>reportpage_filter_standards_combobox</tabstop>
+  <tabstop>reportpage_filtername_groupbox</tabstop>
+  <tabstop>reportspage_all_checkbox</tabstop>
+  <tabstop>reportspage_delete_selections_btn</tabstop>
+  <tabstop>reportpage_rebuild_btn</tabstop>
+  <tabstop>reportpage_compare_btn</tabstop>
+  <tabstop>reportpage_compare_standards_combobox</tabstop>
+  <tabstop>reportpage_samples_table</tabstop>
+  <tabstop>gradingranges_tabs</tabstop>
+  <tabstop>settingpage_grading_standards_table</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>calibrationpage_check_btn</tabstop>
+  <tabstop>calibrationpage_calib_type_combobox</tabstop>
+  <tabstop>calibrationpage_calib_itrs_spinbox</tabstop>
+  <tabstop>calibrationpage_calib_btn</tabstop>
+  <tabstop>calibrationpage_last_calib_tabel</tabstop>
+  <tabstop>validationpage_hypotest_test_count_spinbox</tabstop>
+  <tabstop>validationpage_hypotest_standards_combobox</tabstop>
+  <tabstop>validationpage_verify_type</tabstop>
+  <tabstop>validationpage_hypotest_calculate_btn</tabstop>
+  <tabstop>scrollArea_5</tabstop>
+  <tabstop>user_tabs</tabstop>
+  <tabstop>userpage_user_role_combobox</tabstop>
+  <tabstop>userpage_password_inpt</tabstop>
+  <tabstop>userpage_username_inpt</tabstop>
+  <tabstop>userpage_confirm_password_inpt</tabstop>
+  <tabstop>userspage_add_user_btn</tabstop>
+  <tabstop>userpage_editprofile_user_role_combobox</tabstop>
+  <tabstop>userpage_editprofile_username_inpt</tabstop>
+  <tabstop>userpage_editprofile_update_btn</tabstop>
+  <tabstop>userpage_editprofile_cancel_btn</tabstop>
+  <tabstop>userpage_editprofile_confirm_new_password_inpt</tabstop>
+  <tabstop>userpage_editprofile_old_password_inpt</tabstop>
+  <tabstop>userpage_editprofile_new_password_inpt</tabstop>
+  <tabstop>userpage_editprofile_change_password_btn</tabstop>
+  <tabstop>userpage_all_users_table</tabstop>
+  <tabstop>helppage_tabs</tabstop>
+  <tabstop>scrollArea_3</tabstop>
+  <tabstop>commandLinkButton</tabstop>
+  <tabstop>sreportpage_back_btn</tabstop>
+  <tabstop>sreportpage_export_btn</tabstop>
+  <tabstop>sreportpage_rebuild_btn</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>textEdit_2</tabstop>
+  <tabstop>textEdit_3</tabstop>
+  <tabstop>textEdit_4</tabstop>
+  <tabstop>textEdit_5</tabstop>
+  <tabstop>textEdit_6</tabstop>
+  <tabstop>textEdit_7</tabstop>
+  <tabstop>sreportpage_prev_particle_btn</tabstop>
+  <tabstop>sreportpage_next_particle_btn</tabstop>
+  <tabstop>alaki_btn</tabstop>
+  <tabstop>comparepage_back_btn</tabstop>
+  <tabstop>comparepage_export_btn</tabstop>
+  <tabstop>scrollArea_4</tabstop>
+ </tabstops>
  <resources>
   <include location="Assets/Assets.qrc"/>
-  <include location="C:/Users/itsbi/.designer/backup/Assets/Assets.qrc"/>
+  <include location="Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

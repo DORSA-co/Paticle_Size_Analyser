@@ -310,6 +310,9 @@ class Ui_rebuild_win(object):
         self.close_btn.setText("")
         self.label.setText(QCoreApplication.translate("rebuild_win", u"You edit some standards, You should rebuild your database ", None))
         self.rebuild_btn.setText(QCoreApplication.translate("rebuild_win", u"Rebuild", None))
+#if QT_CONFIG(shortcut)
+        self.rebuild_btn.setShortcut(QCoreApplication.translate("rebuild_win", u"Return", None))
+#endif // QT_CONFIG(shortcut)
         self.close_btn22.setText(QCoreApplication.translate("rebuild_win", u"Close", None))
     # retranslateUi
 

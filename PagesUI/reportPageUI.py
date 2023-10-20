@@ -119,8 +119,8 @@ class reportPageUI:
 
         #--------------------------------------------------------------------------------------------------------
 
-        self.statictics_table_headers  = ['range', 'avrage', 'std', 'count', 'percent']
-        self.statictics_table_headers_unit = ['', ' (mm)', ' (mm)', '', ' (%)'] 
+        self.statictics_table_headers  = ['range', 'avrage', 'std', 'count', 'percent', 'circularity']
+        self.statictics_table_headers_unit = ['', ' (mm)', ' (mm)', '', ' (%)', ' %'] 
 
 
         headrs = list( map( lambda x: x[0]+x[1] , zip(self.statictics_table_headers, self.statictics_table_headers_unit)))
@@ -150,12 +150,14 @@ class reportPageUI:
 
     def set_general_information(self, infoes:dict):
         for name, value in infoes.items():
-            GUIBackend.set_label_text( self.general_information[name] , value )
+            if name in self.general_information:
+                GUIBackend.set_label_text( self.general_information[name] , value )
 
 
     def set_particle_information(self, infoes:dict):
         for name, value in infoes.items():
-            GUIBackend.set_label_text( self.particle_information[name] , str(value) )
+            if name in self.particle_information:
+                GUIBackend.set_label_text( self.particle_information[name] , str(value) )
 
     def back_button_connector(self, func):
         GUIBackend.button_connector(self.back_btn, func)

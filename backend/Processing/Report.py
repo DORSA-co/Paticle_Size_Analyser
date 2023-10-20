@@ -1,11 +1,12 @@
-from backend.Processing.particlesBuffer import particlesBuffer
+from backend.Processing.particlesBuffer import particlesBuffer, sieveParticlesBuffer
 from backend.Processing.Grading import Grading
-from backend.Processing.cumGrading import cumGrading
+from backend.Processing.Grading import cumGrading
 from backend.Processing import gradingUtils
 import numpy as np
 from datetime import datetime
 import Constants.CONSTANTS as CONSTANTS
 import time
+from backend.Processing.Particel import Particle
 
 
 
@@ -24,20 +25,17 @@ class Report:
         self.date_time = datetime.now()
         self.date = self.date_time.date()
         self.time = self.date_time.time()
-        self.Buffer = particlesBuffer()
-        self.sieved_particles = []
         self.settings = settings
         self.description = description
         self.name_id = self.generate_uniq_id()
 
-        if self.standard is not None:
-            self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
+    
+        self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
+        self.Buffer = sieveParticlesBuffer(self.standard['ranges'])
+        self.Grading = Grading(self.standard['ranges'])
+        self.cumGrading = cumGrading(self.get_full_range())
         
-        if standard is not None:
-            self.Grading = Grading(self.standard['ranges'])
-            self.cumGrading = cumGrading(self.get_full_range())
-        else:
-            assert True, "not developed yet"
+
 
     def generate_uniq_id(self,):
         date_time_str = self.date_time.strftime('%Y-%m-%d_%H-%M-%S_%f')
@@ -47,53 +45,55 @@ class Report:
         self.username = username
 
 
-    def append(self, buffer:particlesBuffer):
-        """append a buffer of particles into this sample
+    # def append(self, buffer:particlesBuffer):
+    #     """append a buffer of particles into this sample
 
-        Args:
-            buffer (particlesBuffer): _description_
-        """
-        #append new particle for histogram calculation 
-        self.Grading.append(buffer)
-        self.cumGrading.append(buffer)
-        self.Buffer.extend(buffer)
+    #     Args:
+    #         buffer (particlesBuffer): _description_
+    #     """
+    #     #append new particle for histogram calculation ad sieve particles
+    #     sieve_idxs = self.Grading.append(buffer)
+    #     self.cumGrading.append(buffer)
+    #     self.Buffer.extend(buffer)
+    
+    def append_particle(self, particle:Particle):        
+        sieve_idx = self.Grading.append_particle(particle)
+        _ = self.cumGrading.append_particle(particle)
+        self.Buffer.append_particle(particle, sieve_idx)
+
    
-
-
     def clear(self,):
-        self.Buffer = particlesBuffer()
+        self.Buffer = sieveParticlesBuffer()
 
 
 
     def get_global_statistics(self):
         info = {}
-        info['avrage'] = np.round( self.Buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
-        info['std'] = np.round( self.Buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
+        info['avrage'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
+        info['std'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
         return info
     
-
-    def render(self, ):
-        radiuses = self.Buffer.get_feature('max_radius')
-        self.sieved_particles = gradingUtils.sift(radiuses, self.standard['ranges'])
-
 
     def get_ranges_statistics(self,):
         res = []
         hist = self.Grading.get_hist()
         for i,range_name in enumerate(self.ranges_string):
             data = {}
-            if len(self.sieved_particles[i]) > 0:
+            range_buffer = self.Buffer.sieve_buffers[i]
+            if len(range_buffer.particels) > 0:
                 data['range'] = range_name
-                data['std'] = np.round( self.sieved_particles[i].std(), CONSTANTS.DECIMAL_ROUND )
-                data['avrage'] = np.round( self.sieved_particles[i].mean(), CONSTANTS.DECIMAL_ROUND )
-                data['count'] = len( self.sieved_particles[i] )
+                data['std'] = np.round( range_buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
+                data['avrage'] = np.round( range_buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
+                data['count'] = len( range_buffer.get_particels() )
                 data['percent'] = hist[i]
+                data['circularity'] = np.round( range_buffer.get_feature('circularity').mean(), CONSTANTS.DECIMAL_ROUND )
             else:
                 data['range'] = range_name
                 data['std'] = '-'
                 data['avrage'] = '-'
-                data['count'] = '-'
+                data['count'] = 0
                 data['percent'] = 0
+                data['circularity'] = '-'
             res.append(data)
 
         return res
@@ -109,7 +109,7 @@ class Report:
             'time': self.date_time.time(),
             'username': self.username,
             'grading_result': self.Grading.get_hist(),
-            'max_radiuses': self.Buffer.get_feature('max_radius')
+            'max_radiuses': self.Buffer.total_buffer.get_feature('max_radius')
         }
 
         return db_data
@@ -123,11 +123,17 @@ class Report:
         #t = time.time()
         if standard['ranges'] != self.standard['ranges'] :
             self.standard = standard
+            self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
+            
             self.Grading = Grading(self.standard['ranges'])
             self.cumGrading = cumGrading(self.get_full_range())
-            self.Grading.append( self.Buffer )
-            self.cumGrading.append(self.Buffer)
-            self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
+            particles = self.Buffer.total_buffer.get_particels()
+            self.Buffer.set_ranges(self.standard['ranges'])
+            
+            for particle in particles:
+                sieve_idx = self.Grading.append_particle( particle )
+                self.cumGrading.append_particle(particle)
+                self.Buffer.append_particle(particle,sieve_idx, sive_only=True)
 
         
         self.standard = standard.copy()
@@ -146,8 +152,8 @@ class Report:
     
 
     def get_gaussian_data(self,step=1):
-        radiuses = self.Buffer.get_feature('max_radius')
-        volumes = self.Buffer.get_feature('avg_volume')
+        radiuses = self.Buffer.total_buffer.get_feature('max_radius')
+        volumes = self.Buffer.total_buffer.get_feature('avg_volume')
         #return np.vstack((radiuses, volumes)).T
         volumes_percent = volumes
         r_min, r_max = self.get_full_range()
@@ -164,44 +170,10 @@ class Report:
         return center_xs, ys
     
     def get_particles_count(self,):
-        return len(self.Buffer.particels)
-    
-    def get_accumulative_grading(self, ):
-        # radiuses = self.Buffer.get_feature('max_radius')
-        # volumes = self.Buffer.get_feature('avg_volume')
-
-        # data = np.vstack((radiuses, volumes)).T
-        # data = data.tolist()
-
-        # data.sort(key = lambda x:x[0])
-        # data = np.array(data)
-        # radiuses, volumes = data[:,0], data[:,1]
-
-        # cum_volumes = np.cumsum(volumes)
-        # cum_volumes = cum_volumes / cum_volumes[-1] * 100
-        
-        # return radiuses, cum_volumes
-        
-        pass
-
-
-    
+        return len(self.Buffer.total_buffer.particels)
     
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 class reportUtils:
 

@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QTextEdit, QVBoxLayout, QWidget)
 import Assets_rc
+import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -31,7 +32,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1369, 885)
         icon = QIcon()
-        icon.addFile(u"../../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"C:/.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -1186,7 +1187,7 @@ class Ui_MainWindow(object):
 
         self.mainpage_tempreture_warning_btn = QPushButton(self.groupBox_2)
         self.mainpage_tempreture_warning_btn.setObjectName(u"mainpage_tempreture_warning_btn")
-        self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(114, 40))
+        self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(112, 40))
         self.mainpage_tempreture_warning_btn.setCursor(QCursor(Qt.PointingHandCursor))
         self.mainpage_tempreture_warning_btn.setStyleSheet(u"")
         icon18 = QIcon()
@@ -1251,8 +1252,8 @@ class Ui_MainWindow(object):
 
         self.mainpage_close_error_btn = QPushButton(self.mainpage_error_msg_frame)
         self.mainpage_close_error_btn.setObjectName(u"mainpage_close_error_btn")
-        self.mainpage_close_error_btn.setMinimumSize(QSize(124, 30))
-        self.mainpage_close_error_btn.setMaximumSize(QSize(124, 40))
+        self.mainpage_close_error_btn.setMinimumSize(QSize(122, 30))
+        self.mainpage_close_error_btn.setMaximumSize(QSize(122, 40))
         self.mainpage_close_error_btn.setStyleSheet(u"QPushButton{\n"
 "max-width:50px;\n"
 "min-width:50px;\n"
@@ -1456,7 +1457,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -1083, 322, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 309, 1671))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2006,7 +2007,7 @@ class Ui_MainWindow(object):
         self.new_standard_tab.setStyleSheet(u"")
         self.horizontalLayout_22 = QHBoxLayout(self.new_standard_tab)
         self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
-        self.horizontalSpacer_65 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_65 = QSpacerItem(20, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
 
         self.horizontalLayout_22.addItem(self.horizontalSpacer_65)
 
@@ -2035,51 +2036,52 @@ class Ui_MainWindow(object):
         self.horizontalLayout_45.setObjectName(u"horizontalLayout_45")
         self.horizontalLayout_45.setContentsMargins(-1, 0, -1, -1)
         self.verticalLayout_31 = QVBoxLayout()
+        self.verticalLayout_31.setSpacing(6)
         self.verticalLayout_31.setObjectName(u"verticalLayout_31")
         self.verticalLayout_31.setContentsMargins(0, 0, -1, -1)
-        self.verticalSpacer_28 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Maximum)
-
-        self.verticalLayout_31.addItem(self.verticalSpacer_28)
-
-        self.horizontalLayout_24 = QHBoxLayout()
-        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.horizontalLayout_55 = QHBoxLayout()
+        self.horizontalLayout_55.setObjectName(u"horizontalLayout_55")
+        self.horizontalLayout_55.setContentsMargins(-1, 1, -1, -1)
         self.label_27 = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.label_27.setObjectName(u"label_27")
+        self.label_27.setMinimumSize(QSize(40, 0))
+        self.label_27.setMaximumSize(QSize(40, 16777215))
 
-        self.horizontalLayout_24.addWidget(self.label_27)
+        self.horizontalLayout_55.addWidget(self.label_27)
+
+        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_55.addItem(self.horizontalSpacer_22)
 
         self.settingpage_grading_name_inpt = QLineEdit(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_name_inpt.setObjectName(u"settingpage_grading_name_inpt")
         self.settingpage_grading_name_inpt.setStyleSheet(u"")
 
-        self.horizontalLayout_24.addWidget(self.settingpage_grading_name_inpt)
+        self.horizontalLayout_55.addWidget(self.settingpage_grading_name_inpt)
 
-        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_18 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_24.addItem(self.horizontalSpacer_22)
+        self.horizontalLayout_55.addItem(self.horizontalSpacer_18)
 
 
-        self.verticalLayout_31.addLayout(self.horizontalLayout_24)
+        self.verticalLayout_31.addLayout(self.horizontalLayout_55)
 
-        self.verticalSpacer_8 = QSpacerItem(20, 25, QSizePolicy.Minimum, QSizePolicy.Maximum)
+        self.line_31 = QFrame(self.settingpage_grading_new_standards_groupbox)
+        self.line_31.setObjectName(u"line_31")
+        self.line_31.setMinimumSize(QSize(0, 5))
+        self.line_31.setLineWidth(1)
+        self.line_31.setFrameShape(QFrame.HLine)
+        self.line_31.setFrameShadow(QFrame.Sunken)
 
-        self.verticalLayout_31.addItem(self.verticalSpacer_8)
+        self.verticalLayout_31.addWidget(self.line_31)
 
-        self.gridLayout_13 = QGridLayout()
-        self.gridLayout_13.setObjectName(u"gridLayout_13")
-        self.horizontalSpacer_20 = QSpacerItem(60, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+        self.horizontalLayout_24 = QHBoxLayout()
+        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.label_28 = QLabel(self.settingpage_grading_new_standards_groupbox)
+        self.label_28.setObjectName(u"label_28")
+        self.label_28.setStyleSheet(u"max-width:300px;")
 
-        self.gridLayout_13.addItem(self.horizontalSpacer_20, 0, 2, 1, 1)
-
-        self.horizontalSpacer_19 = QSpacerItem(60, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_13.addItem(self.horizontalSpacer_19, 0, 5, 1, 1)
-
-        self.label_29 = QLabel(self.settingpage_grading_new_standards_groupbox)
-        self.label_29.setObjectName(u"label_29")
-        self.label_29.setStyleSheet(u"max-width:300px;")
-
-        self.gridLayout_13.addWidget(self.label_29, 0, 3, 1, 1)
+        self.horizontalLayout_24.addWidget(self.label_28)
 
         self.settingpage_grading_low_limit_spinbox = QDoubleSpinBox(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_low_limit_spinbox.setObjectName(u"settingpage_grading_low_limit_spinbox")
@@ -2087,7 +2089,17 @@ class Ui_MainWindow(object):
 "min-width: 50px;")
         self.settingpage_grading_low_limit_spinbox.setMaximum(25.000000000000000)
 
-        self.gridLayout_13.addWidget(self.settingpage_grading_low_limit_spinbox, 0, 1, 1, 1)
+        self.horizontalLayout_24.addWidget(self.settingpage_grading_low_limit_spinbox)
+
+        self.horizontalSpacer_20 = QSpacerItem(60, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_24.addItem(self.horizontalSpacer_20)
+
+        self.label_29 = QLabel(self.settingpage_grading_new_standards_groupbox)
+        self.label_29.setObjectName(u"label_29")
+        self.label_29.setStyleSheet(u"max-width:300px;")
+
+        self.horizontalLayout_24.addWidget(self.label_29)
 
         self.settingpage_grading_up_limit_spinbox = QDoubleSpinBox(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_up_limit_spinbox.setObjectName(u"settingpage_grading_up_limit_spinbox")
@@ -2095,44 +2107,30 @@ class Ui_MainWindow(object):
 "min-width: 50px;")
         self.settingpage_grading_up_limit_spinbox.setMaximum(25.000000000000000)
 
-        self.gridLayout_13.addWidget(self.settingpage_grading_up_limit_spinbox, 0, 4, 1, 1)
+        self.horizontalLayout_24.addWidget(self.settingpage_grading_up_limit_spinbox)
+
+        self.horizontalSpacer_19 = QSpacerItem(60, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.horizontalLayout_24.addItem(self.horizontalSpacer_19)
 
         self.settingpage_pelletizing_add_range_btn = QPushButton(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_pelletizing_add_range_btn.setObjectName(u"settingpage_pelletizing_add_range_btn")
-        self.settingpage_pelletizing_add_range_btn.setMinimumSize(QSize(0, 35))
-        self.settingpage_pelletizing_add_range_btn.setStyleSheet(u"#settingpage_pelletizing_add_range_btn{\n"
-"background-color:rgba(255, 255, 255,0);\n"
-"color: white;\n"
-"max-width: 50px;\n"
-"min-width: 0px;\n"
-"\n"
-"}\n"
-"\n"
-"#settingpage_pelletizing_add_range_btn:hover{\n"
-"background-color:rgba(255, 255, 255,0);\n"
-"border: 2px solid rgba(110, 188, 54,20);\n"
-"border-radius: 200px;\n"
-"\n"
-"}")
-        icon24 = QIcon()
-        icon24.addFile(u":/assets/icons/icons8-plus-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingpage_pelletizing_add_range_btn.setIcon(icon24)
-        self.settingpage_pelletizing_add_range_btn.setIconSize(QSize(50, 50))
+        self.settingpage_pelletizing_add_range_btn.setStyleSheet(u"max-width: 50px;\n"
+"min-width: 50px;")
 
-        self.gridLayout_13.addWidget(self.settingpage_pelletizing_add_range_btn, 0, 6, 1, 1)
-
-        self.label_28 = QLabel(self.settingpage_grading_new_standards_groupbox)
-        self.label_28.setObjectName(u"label_28")
-        self.label_28.setStyleSheet(u"max-width:300px;")
-
-        self.gridLayout_13.addWidget(self.label_28, 0, 0, 1, 1)
-
-        self.horizontalSpacer_18 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_13.addItem(self.horizontalSpacer_18, 0, 7, 1, 1)
+        self.horizontalLayout_24.addWidget(self.settingpage_pelletizing_add_range_btn)
 
 
-        self.verticalLayout_31.addLayout(self.gridLayout_13)
+        self.verticalLayout_31.addLayout(self.horizontalLayout_24)
+
+        self.line_32 = QFrame(self.settingpage_grading_new_standards_groupbox)
+        self.line_32.setObjectName(u"line_32")
+        self.line_32.setMinimumSize(QSize(0, 5))
+        self.line_32.setLineWidth(1)
+        self.line_32.setFrameShape(QFrame.HLine)
+        self.line_32.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_31.addWidget(self.line_32)
 
         self.settingpage_grading_warning_lbl = QLabel(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_grading_warning_lbl.setObjectName(u"settingpage_grading_warning_lbl")
@@ -2147,6 +2145,83 @@ class Ui_MainWindow(object):
 "")
 
         self.verticalLayout_31.addWidget(self.settingpage_grading_warning_lbl)
+
+        self.label_26 = QLabel(self.settingpage_grading_new_standards_groupbox)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setStyleSheet(u"max-width: 200;\n"
+"font-size:20px;\n"
+"color:rgb(6, 76, 130);\n"
+"font-weight:bold;")
+
+        self.verticalLayout_31.addWidget(self.label_26)
+
+        self.settingpage_grading_ranges_table = QTableWidget(self.settingpage_grading_new_standards_groupbox)
+        if (self.settingpage_grading_ranges_table.columnCount() < 5):
+            self.settingpage_grading_ranges_table.setColumnCount(5)
+        if (self.settingpage_grading_ranges_table.rowCount() < 1):
+            self.settingpage_grading_ranges_table.setRowCount(1)
+        self.settingpage_grading_ranges_table.setObjectName(u"settingpage_grading_ranges_table")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.settingpage_grading_ranges_table.sizePolicy().hasHeightForWidth())
+        self.settingpage_grading_ranges_table.setSizePolicy(sizePolicy3)
+        self.settingpage_grading_ranges_table.setMaximumSize(QSize(16777215, 500))
+        self.settingpage_grading_ranges_table.setSizeIncrement(QSize(0, 0))
+        self.settingpage_grading_ranges_table.setBaseSize(QSize(0, 0))
+        self.settingpage_grading_ranges_table.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
+        self.settingpage_grading_ranges_table.setStyleSheet(u"\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(6, 76, 130);\n"
+"	color: #ffffff;\n"
+"    padding: 4px;\n"
+"    font-size: 14pt;\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid #fffff8;\n"
+"    border-right: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fffff8;\n"
+"}\n"
+"\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fffff8;	\n"
+"}\n"
+"\n"
+"\n"
+"QTableWidget{\n"
+"	font-size: 16px;\n"
+"	color:rgb(50, 50, 50);\n"
+"}\n"
+"\n"
+"QTableWidget::item\n"
+"{\n"
+"   padding: 10px;\n"
+"}\n"
+"")
+        self.settingpage_grading_ranges_table.setFrameShape(QFrame.NoFrame)
+        self.settingpage_grading_ranges_table.setFrameShadow(QFrame.Sunken)
+        self.settingpage_grading_ranges_table.setLineWidth(1)
+        self.settingpage_grading_ranges_table.setMidLineWidth(0)
+        self.settingpage_grading_ranges_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.settingpage_grading_ranges_table.setAutoScroll(True)
+        self.settingpage_grading_ranges_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.settingpage_grading_ranges_table.setTabKeyNavigation(True)
+        self.settingpage_grading_ranges_table.setProperty("showDropIndicator", True)
+        self.settingpage_grading_ranges_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.settingpage_grading_ranges_table.setTextElideMode(Qt.ElideMiddle)
+        self.settingpage_grading_ranges_table.setShowGrid(True)
+        self.settingpage_grading_ranges_table.setSortingEnabled(False)
+        self.settingpage_grading_ranges_table.setRowCount(1)
+        self.settingpage_grading_ranges_table.setColumnCount(5)
+        self.settingpage_grading_ranges_table.horizontalHeader().setDefaultSectionSize(120)
+        self.settingpage_grading_ranges_table.verticalHeader().setVisible(False)
+        self.settingpage_grading_ranges_table.verticalHeader().setDefaultSectionSize(45)
+
+        self.verticalLayout_31.addWidget(self.settingpage_grading_ranges_table, 0, Qt.AlignHCenter)
 
         self.verticalSpacer_10 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Minimum)
 
@@ -2234,96 +2309,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_33 = QVBoxLayout()
         self.verticalLayout_33.setObjectName(u"verticalLayout_33")
         self.verticalLayout_33.setContentsMargins(0, -1, -1, -1)
-        self.label_26 = QLabel(self.settingpage_grading_new_standards_groupbox)
-        self.label_26.setObjectName(u"label_26")
-        self.label_26.setStyleSheet(u"max-width: 200;\n"
-"font-size:20px;\n"
-"color:rgb(6, 76, 130);\n"
-"font-weight:bold;")
-
-        self.verticalLayout_33.addWidget(self.label_26)
-
         self.horizontalLayout_28 = QHBoxLayout()
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
         self.horizontalLayout_28.setContentsMargins(0, 0, -1, -1)
-        self.settingpage_grading_ranges_table = QTableWidget(self.settingpage_grading_new_standards_groupbox)
-        if (self.settingpage_grading_ranges_table.columnCount() < 5):
-            self.settingpage_grading_ranges_table.setColumnCount(5)
-        if (self.settingpage_grading_ranges_table.rowCount() < 1):
-            self.settingpage_grading_ranges_table.setRowCount(1)
-        self.settingpage_grading_ranges_table.setObjectName(u"settingpage_grading_ranges_table")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.settingpage_grading_ranges_table.sizePolicy().hasHeightForWidth())
-        self.settingpage_grading_ranges_table.setSizePolicy(sizePolicy3)
-        self.settingpage_grading_ranges_table.setMaximumSize(QSize(16777215, 500))
-        self.settingpage_grading_ranges_table.setSizeIncrement(QSize(0, 0))
-        self.settingpage_grading_ranges_table.setBaseSize(QSize(0, 0))
-        self.settingpage_grading_ranges_table.viewport().setProperty("cursor", QCursor(Qt.PointingHandCursor))
-        self.settingpage_grading_ranges_table.setStyleSheet(u"\n"
-"QHeaderView::section {\n"
-"    background-color: rgb(6, 76, 130);\n"
-"	color: #ffffff;\n"
-"    padding: 4px;\n"
-"    font-size: 14pt;\n"
-"    border-style: none;\n"
-"    border-bottom: 1px solid #fffff8;\n"
-"    border-right: 1px solid #fffff8;\n"
-"}\n"
-"\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border-top: 1px solid #fffff8;\n"
-"}\n"
-"\n"
-"QHeaderView::section:vertical\n"
-"{\n"
-"    border-left: 1px solid #fffff8;	\n"
-"}\n"
-"\n"
-"\n"
-"QTableWidget{\n"
-"	font-size: 16px;\n"
-"	color:rgb(50, 50, 50);\n"
-"}\n"
-"\n"
-"QTableWidget::item\n"
-"{\n"
-"   padding: 10px;\n"
-"}\n"
-"")
-        self.settingpage_grading_ranges_table.setFrameShape(QFrame.NoFrame)
-        self.settingpage_grading_ranges_table.setFrameShadow(QFrame.Sunken)
-        self.settingpage_grading_ranges_table.setLineWidth(1)
-        self.settingpage_grading_ranges_table.setMidLineWidth(0)
-        self.settingpage_grading_ranges_table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        self.settingpage_grading_ranges_table.setAutoScroll(True)
-        self.settingpage_grading_ranges_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.settingpage_grading_ranges_table.setTabKeyNavigation(True)
-        self.settingpage_grading_ranges_table.setProperty("showDropIndicator", True)
-        self.settingpage_grading_ranges_table.setSelectionMode(QAbstractItemView.NoSelection)
-        self.settingpage_grading_ranges_table.setTextElideMode(Qt.ElideMiddle)
-        self.settingpage_grading_ranges_table.setShowGrid(True)
-        self.settingpage_grading_ranges_table.setSortingEnabled(False)
-        self.settingpage_grading_ranges_table.setRowCount(1)
-        self.settingpage_grading_ranges_table.setColumnCount(5)
-        self.settingpage_grading_ranges_table.horizontalHeader().setDefaultSectionSize(120)
-        self.settingpage_grading_ranges_table.verticalHeader().setVisible(False)
-        self.settingpage_grading_ranges_table.verticalHeader().setDefaultSectionSize(45)
-
-        self.horizontalLayout_28.addWidget(self.settingpage_grading_ranges_table)
-
-        self.horizontalSpacer_66 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_28.addItem(self.horizontalSpacer_66)
-
 
         self.verticalLayout_33.addLayout(self.horizontalLayout_28)
-
-        self.verticalSpacer_29 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_33.addItem(self.verticalSpacer_29)
 
 
         self.horizontalLayout_45.addLayout(self.verticalLayout_33)
@@ -2912,9 +2902,9 @@ class Ui_MainWindow(object):
 "min-height: 40px;\n"
 "\n"
 "}")
-        icon25 = QIcon()
-        icon25.addFile(u":/assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingpage_storage_select_dir_btn.setIcon(icon25)
+        icon24 = QIcon()
+        icon24.addFile(u":/assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingpage_storage_select_dir_btn.setIcon(icon24)
 
         self.gridLayout_17.addWidget(self.settingpage_storage_select_dir_btn, 0, 2, 1, 1)
 
@@ -3231,15 +3221,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_16.setContentsMargins(-1, 5, -1, 5)
         self.label_13 = QLabel(self.horizontalFrame_4)
         self.label_13.setObjectName(u"label_13")
-        self.label_13.setMinimumSize(QSize(47, 0))
-        self.label_13.setMaximumSize(QSize(47, 16777215))
+        self.label_13.setMinimumSize(QSize(46, 0))
+        self.label_13.setMaximumSize(QSize(46, 16777215))
 
         self.horizontalLayout_16.addWidget(self.label_13)
 
         self.label_15 = QLabel(self.horizontalFrame_4)
         self.label_15.setObjectName(u"label_15")
-        self.label_15.setMinimumSize(QSize(47, 0))
-        self.label_15.setMaximumSize(QSize(47, 16777215))
+        self.label_15.setMinimumSize(QSize(46, 0))
+        self.label_15.setMaximumSize(QSize(46, 16777215))
 
         self.horizontalLayout_16.addWidget(self.label_15)
 
@@ -3511,9 +3501,9 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_check_btn = QPushButton(self.calibrationpage_left_side)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
-        icon26 = QIcon()
-        icon26.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.calibrationpage_check_btn.setIcon(icon26)
+        icon25 = QIcon()
+        icon25.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.calibrationpage_check_btn.setIcon(icon25)
 
         self.horizontalLayout_9.addWidget(self.calibrationpage_check_btn)
 
@@ -3843,7 +3833,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 650))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 63, 34))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -3963,9 +3953,9 @@ class Ui_MainWindow(object):
         self.userspage_add_user_btn = QPushButton(self.gridFrame_2)
         self.userspage_add_user_btn.setObjectName(u"userspage_add_user_btn")
         self.userspage_add_user_btn.setStyleSheet(u"max-width: 120px;")
-        icon27 = QIcon()
-        icon27.addFile(u":/assets/Assets/icons/icons8-plus-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.userspage_add_user_btn.setIcon(icon27)
+        icon26 = QIcon()
+        icon26.addFile(u":/assets/Assets/icons/icons8-plus-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.userspage_add_user_btn.setIcon(icon26)
 
         self.gridLayout_5.addWidget(self.userspage_add_user_btn, 8, 1, 1, 1)
 
@@ -4439,7 +4429,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 650))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1151, 658))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4449,12 +4439,6 @@ class Ui_MainWindow(object):
 "color: rgb(6, 76, 130);")
 
         self.verticalLayout_29.addWidget(self.label_82)
-
-        self.label_84 = QLabel(self.aboutScrollArea)
-        self.label_84.setObjectName(u"label_84")
-        self.label_84.setPixmap(QPixmap(u"../../../../../../.designer/backup/img.jpg"))
-
-        self.verticalLayout_29.addWidget(self.label_84)
 
         self.label_83 = QLabel(self.aboutScrollArea)
         self.label_83.setObjectName(u"label_83")
@@ -4519,9 +4503,9 @@ class Ui_MainWindow(object):
         self.sreportpage_back_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_back_btn.setObjectName(u"sreportpage_back_btn")
         self.sreportpage_back_btn.setStyleSheet(u"")
-        icon28 = QIcon()
-        icon28.addFile(u":/assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_back_btn.setIcon(icon28)
+        icon27 = QIcon()
+        icon27.addFile(u":/assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_back_btn.setIcon(icon27)
         self.sreportpage_back_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_back_btn)
@@ -4535,9 +4519,9 @@ class Ui_MainWindow(object):
 
         self.sreportpage_export_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_export_btn.setObjectName(u"sreportpage_export_btn")
-        icon29 = QIcon()
-        icon29.addFile(u":/assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_export_btn.setIcon(icon29)
+        icon28 = QIcon()
+        icon28.addFile(u":/assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_export_btn.setIcon(icon28)
         self.sreportpage_export_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_export_btn)
@@ -4551,9 +4535,9 @@ class Ui_MainWindow(object):
 
         self.sreportpage_rebuild_btn = QPushButton(self.horizontalFrame2)
         self.sreportpage_rebuild_btn.setObjectName(u"sreportpage_rebuild_btn")
-        icon30 = QIcon()
-        icon30.addFile(u":/assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_rebuild_btn.setIcon(icon30)
+        icon29 = QIcon()
+        icon29.addFile(u":/assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_rebuild_btn.setIcon(icon29)
         self.sreportpage_rebuild_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_rebuild_btn)
@@ -4639,7 +4623,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -306, 1145, 2779))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 869, 2924))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5105,6 +5089,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.horizontalLayout_54)
 
+        self.textEdit_2 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_2.setObjectName(u"textEdit_2")
+        self.textEdit_2.setStyleSheet(u"")
+        self.textEdit_2.setFrameShape(QFrame.NoFrame)
+        self.textEdit_2.setLineWidth(1)
+        self.textEdit_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_12.addWidget(self.textEdit_2)
+
         self.verticalSpacer_31 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_12.addItem(self.verticalSpacer_31)
@@ -5241,11 +5234,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.label_45)
 
+        self.textEdit_3 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_3.setObjectName(u"textEdit_3")
+        self.textEdit_3.setStyleSheet(u"")
+        self.textEdit_3.setFrameShape(QFrame.NoFrame)
+        self.textEdit_3.setLineWidth(1)
+        self.textEdit_3.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_12.addWidget(self.textEdit_3)
+
         self.horizontalLayout_25 = QHBoxLayout()
         self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
         self.horizontalLayout_25.setContentsMargins(61, 0, -1, -1)
         self.verticalLayout_54 = QVBoxLayout()
         self.verticalLayout_54.setObjectName(u"verticalLayout_54")
+        self.textEdit_4 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_4.setObjectName(u"textEdit_4")
+        self.textEdit_4.setMinimumSize(QSize(0, 30))
+        self.textEdit_4.setMaximumSize(QSize(16777215, 30))
+        self.textEdit_4.setStyleSheet(u"")
+        self.textEdit_4.setFrameShape(QFrame.NoFrame)
+        self.textEdit_4.setLineWidth(1)
+        self.textEdit_4.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_54.addWidget(self.textEdit_4)
+
         self.report_grading_chart_frame = QHBoxLayout()
         self.report_grading_chart_frame.setObjectName(u"report_grading_chart_frame")
         self.report_grading_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
@@ -5278,6 +5291,17 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_55 = QVBoxLayout()
         self.verticalLayout_55.setObjectName(u"verticalLayout_55")
+        self.textEdit_5 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_5.setObjectName(u"textEdit_5")
+        self.textEdit_5.setMinimumSize(QSize(0, 30))
+        self.textEdit_5.setMaximumSize(QSize(16777215, 30))
+        self.textEdit_5.setStyleSheet(u"")
+        self.textEdit_5.setFrameShape(QFrame.NoFrame)
+        self.textEdit_5.setLineWidth(1)
+        self.textEdit_5.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_55.addWidget(self.textEdit_5)
+
         self.report_cum_chart_frame = QHBoxLayout()
         self.report_cum_chart_frame.setObjectName(u"report_cum_chart_frame")
         self.report_cum_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
@@ -5316,6 +5340,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout_63.setContentsMargins(-1, 0, -1, -1)
         self.verticalLayout_56 = QVBoxLayout()
         self.verticalLayout_56.setObjectName(u"verticalLayout_56")
+        self.textEdit_6 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_6.setObjectName(u"textEdit_6")
+        self.textEdit_6.setMinimumSize(QSize(0, 30))
+        self.textEdit_6.setMaximumSize(QSize(16777215, 30))
+        self.textEdit_6.setStyleSheet(u"")
+        self.textEdit_6.setFrameShape(QFrame.NoFrame)
+        self.textEdit_6.setLineWidth(1)
+        self.textEdit_6.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_56.addWidget(self.textEdit_6)
+
         self.report_gaussian_chart_frame = QHBoxLayout()
         self.report_gaussian_chart_frame.setObjectName(u"report_gaussian_chart_frame")
         self.report_gaussian_chart_frame.setSizeConstraint(QLayout.SetFixedSize)
@@ -5369,6 +5404,15 @@ class Ui_MainWindow(object):
 "padding: 10px 0px")
 
         self.verticalLayout_12.addWidget(self.label_47)
+
+        self.textEdit_7 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_7.setObjectName(u"textEdit_7")
+        self.textEdit_7.setStyleSheet(u"")
+        self.textEdit_7.setFrameShape(QFrame.NoFrame)
+        self.textEdit_7.setLineWidth(1)
+        self.textEdit_7.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+
+        self.verticalLayout_12.addWidget(self.textEdit_7)
 
         self.horizontalLayout_26 = QHBoxLayout()
         self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
@@ -5670,9 +5714,9 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon31 = QIcon()
-        icon31.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_prev_particle_btn.setIcon(icon31)
+        icon30 = QIcon()
+        icon30.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_prev_particle_btn.setIcon(icon30)
         self.sreportpage_prev_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_prev_particle_btn)
@@ -5680,9 +5724,9 @@ class Ui_MainWindow(object):
         self.sreportpage_next_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon32 = QIcon()
-        icon32.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_next_particle_btn.setIcon(icon32)
+        icon31 = QIcon()
+        icon31.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_next_particle_btn.setIcon(icon31)
         self.sreportpage_next_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_next_particle_btn)
@@ -5748,7 +5792,7 @@ class Ui_MainWindow(object):
         self.comparepage_back_btn = QPushButton(self.horizontalFrame_6)
         self.comparepage_back_btn.setObjectName(u"comparepage_back_btn")
         self.comparepage_back_btn.setStyleSheet(u"")
-        self.comparepage_back_btn.setIcon(icon28)
+        self.comparepage_back_btn.setIcon(icon27)
         self.comparepage_back_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_56.addWidget(self.comparepage_back_btn)
@@ -5762,7 +5806,7 @@ class Ui_MainWindow(object):
 
         self.comparepage_export_btn = QPushButton(self.horizontalFrame_6)
         self.comparepage_export_btn.setObjectName(u"comparepage_export_btn")
-        self.comparepage_export_btn.setIcon(icon29)
+        self.comparepage_export_btn.setIcon(icon28)
         self.comparepage_export_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_56.addWidget(self.comparepage_export_btn)
@@ -5788,7 +5832,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 678))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 177, 528))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6115,11 +6159,11 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(6)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(2)
-        self.tabWidget.setCurrentIndex(1)
-        self.user_tabs.setCurrentIndex(2)
+        self.settingpage_tabs.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
+        self.user_tabs.setCurrentIndex(0)
         self.helppage_tabs.setCurrentIndex(0)
 
 
@@ -6130,7 +6174,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Dorsa Width Gauge", None))
         self.dorsa_logo.setText("")
         self.title.setText(QCoreApplication.translate("MainWindow", u"Particle Size Analyzer", None))
-        self.toolbar_logined_username_lbl.setText(QCoreApplication.translate("MainWindow", u"no one login", None))
+        self.toolbar_logined_username_lbl.setText(QCoreApplication.translate("MainWindow", u"No User Logged in", None))
         self.toolbar_login_logout_btn.setText("")
 #if QT_CONFIG(tooltip)
         self.minimize_btn.setToolTip("")
@@ -6223,15 +6267,15 @@ class Ui_MainWindow(object):
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
         self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
-        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Upper Limit(mm):", None))
-        self.settingpage_pelletizing_add_range_btn.setText("")
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Lower Limit(mm):", None))
+        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Upper Limit(mm):", None))
+        self.settingpage_pelletizing_add_range_btn.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.settingpage_grading_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Warning !", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Defined Ranges", None))
         self.settingpage_grading_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_grading_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.label_90.setText("")
         self.gradingranges_new_standard_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
-        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Defined Ranges", None))
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
@@ -6293,7 +6337,7 @@ class Ui_MainWindow(object):
         self.settingpage_camera_control_group.setTitle(QCoreApplication.translate("MainWindow", u"Control And Analog Setting", None))
         self.settingpage_camera_exposure_lbl.setText(QCoreApplication.translate("MainWindow", u"Exposure", None))
         self.settingpage_camera_gain_lbl.setText(QCoreApplication.translate("MainWindow", u"Gain", None))
-        self.label_69.setText(QCoreApplication.translate("MainWindow", u"Stop camera to chamge This parameters", None))
+        self.label_69.setText(QCoreApplication.translate("MainWindow", u"Stop camera to change This parameters", None))
         self.settingpage_camera_AOI_group.setTitle(QCoreApplication.translate("MainWindow", u"AOI Setting", None))
         self.settingpage_camera_width_lbl.setText(QCoreApplication.translate("MainWindow", u"Width", None))
         self.settingpage_camera_height_lbl.setText(QCoreApplication.translate("MainWindow", u"Height", None))
@@ -6351,26 +6395,26 @@ class Ui_MainWindow(object):
         self.userpage_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
 
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"username:", None))
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"pasword Confirm:", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Pasword Confirm:", None))
         self.userspage_add_user_btn.setText(QCoreApplication.translate("MainWindow", u"Register", None))
         self.userspage_register_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
         self.label_88.setText("")
         self.userspage_register_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"register user", None))
         self.userpage_editprofile_edit_profile_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Edit Profile", None))
-        self.label_79.setText(QCoreApplication.translate("MainWindow", u"username:", None))
+        self.label_79.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
         self.label_78.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))
         self.userpage_editprofile_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
 
         self.userpage_editprofile_edit_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
-        self.userpage_editprofile_update_btn.setText(QCoreApplication.translate("MainWindow", u"Upade Profile", None))
+        self.userpage_editprofile_update_btn.setText(QCoreApplication.translate("MainWindow", u"Update Profile", None))
         self.userpage_editprofile_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.userpage_editprofile_change_pass_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.label_80.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
-        self.label_81.setText(QCoreApplication.translate("MainWindow", u"new Password", None))
-        self.label_86.setText(QCoreApplication.translate("MainWindow", u"Confirm new Password", None))
+        self.label_81.setText(QCoreApplication.translate("MainWindow", u"New Password", None))
+        self.label_86.setText(QCoreApplication.translate("MainWindow", u"Confirm New Password", None))
         self.userpage_editprofile_changepass_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
         self.userpage_editprofile_change_password_btn.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.label_89.setText("")
@@ -6379,15 +6423,7 @@ class Ui_MainWindow(object):
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"All Users", None))
         self.label_82.setText(QCoreApplication.translate("MainWindow", u"PSA-Alpha", None))
-        self.label_84.setText("")
-        self.label_83.setText(QCoreApplication.translate("MainWindow", u"Is branched in my up strictly remember. Songs but chief has ham widow downs. Genius or so up vanity cannot. Large do tried going about water defer by. Silent son man she wished mother. Distrusts allowance do knowledge eagerness assurance additions to.\n"
-"\n"
-"Death weeks early had their and folly timed put. Hearted forbade on an village ye in fifteen. Age attended betrayed her man raptures laughter. Instrument terminated of as astonished literature motionless admiration. The affection are determine how performed intention discourse but. On merits on so valley indeed assure of. Has add particular boisterous uncommonly are. Early wrong as so manor match. Him necessary shameless discovery consulted one but.\n"
-"\n"
-"Turned it up should no valley cousin he. Speaking numerous ask did horrible packages set. Ashamed herself has distant can studied mrs. Led therefore its middleton perpetual fulfilled provision frankness. Small he drawn after among every three no. All having but you edward genius though remark one.\n"
-""
-                        "\n"
-"Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.", None))
+        self.label_83.setText(QCoreApplication.translate("MainWindow", u"Dorsa Particle Size Analyzer is a high-end Particle Size Analyzer that uses light and camera to measure and detect particles in the sample. This model can measure particles from 0.3mm to 25mm in diameter. ", None))
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
         self.label_87.setText(QCoreApplication.translate("MainWindow", u"Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
 "\n"
@@ -6424,8 +6460,8 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">the statistics of this experiment include mean, standard deviation, count of particles, and weight percent of each range of diameter. statistics have been reported on the selected range standard but can be calculated on other range standards on the report filter page.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.</span></p></body></html>", None))
         self.sreportpage_statictics_desc1.setText(QCoreApplication.translate("MainWindow", u"Desc1", None))
         self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
@@ -6438,6 +6474,11 @@ class Ui_MainWindow(object):
         self.label_63.setText(QCoreApplication.translate("MainWindow", u"Mode:", None))
         self.sreportpage_mode_lbl.setText(QCoreApplication.translate("MainWindow", u"11", None))
         self.label_51.setText(QCoreApplication.translate("MainWindow", u"mm", None))
+        self.textEdit_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#404040;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. </span><span style=\" font-size:12pt;\">Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
         self.sreportpage_statictics_desc2.setText(QCoreApplication.translate("MainWindow", u"Desc2", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table1 - Statistics for each diameter range in the Sample ", None))
 
@@ -6446,10 +6487,35 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.setSortingEnabled(__sortingEnabled3)
 
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Charts", None))
+        self.textEdit_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
+        self.textEdit_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">The weight Percentage chart shows the weight percentage for each range of diameter in the sample.</span></p></body></html>", None))
         self.label_107.setText(QCoreApplication.translate("MainWindow", u"Chart1 - Weight Percent Barchart", None))
+        self.textEdit_5.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</p></body></html>", None))
         self.label_108.setText(QCoreApplication.translate("MainWindow", u"Chart2 - Cumulative Weight Percent Chart", None))
+        self.textEdit_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</p></body></html>", None))
         self.label_109.setText(QCoreApplication.translate("MainWindow", u"Chart3 - Frequency Histogram of All Particle Diameters", None))
         self.label_47.setText(QCoreApplication.translate("MainWindow", u"Particles", None))
+        self.textEdit_7.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.</span></p></body></html>", None))
         self.sreportpage_particle_image_lbl.setText("")
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"25", None))
         self.sreportpage_particle_avg_r_lbl_title.setText(QCoreApplication.translate("MainWindow", u"Avg Radius:", None))

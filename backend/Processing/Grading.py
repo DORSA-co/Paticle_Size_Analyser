@@ -2,31 +2,56 @@ import numpy as np
 from backend.Processing import utiltsCython
 from Constants import CONSTANTS
 from backend.Processing.particlesBuffer import particlesBuffer
+from backend.Processing.Particel import Particle
+from backend.Processing import gradingUtils 
 
-class Grading:
-    def __init__(self, sift_ranges) -> None:
-        self.sift_ranges = np.array(sift_ranges, dtype=np.float64 )
-        #save weighted histogram corespond to self.sift_ranges
-        self.ranges_hist = np.zeros( (len(self.sift_ranges)) )
+
+
+class gradingABstract:
+
+    def __init__(self, ranges) -> None:
+        self.sieve_ranges = self.generate_ranges(ranges)
+        self.ranges_hist = np.zeros( (len(self.sieve_ranges)) )
+    
+    def generate_ranges(self, ranges):
+        return np.array(ranges, dtype=np.float64 )
 
     def clear(self,):
-        self.ranges_hist = np.zeros( (len(self.sift_ranges)) )
+        self.ranges_hist = np.zeros( (len(self.sieve_ranges)) )
 
-    def append(self, particles:particlesBuffer):
-        """append new particels and calculate 
+    def append_particle(self, particle:Particle):
+        sieve_idx = gradingUtils.get_sift_idx(particle.max_radius, ranges=self.sieve_ranges)
+        if sieve_idx>=0:
+            self.ranges_hist[sieve_idx] += particle.avg_volume
+        return sieve_idx
 
-        Args:
-            particles (particlesBuffer): _description_
-        """
+
+
+class Grading(gradingABstract):
+    def __init__(self, sieve_ranges) -> None:
+        super().__init__(sieve_ranges)
+        
+
+    # def append(self, particles:particlesBuffer):
+    #     """append new particels and calculate 
+
+    #     Args:
+    #         particles (particlesBuffer): _description_
+    #     """
     
-        #extract informations
-        max_radiuses = particles.get_feature('max_radius')
-        avg_volumes = particles.get_feature('avg_volume')
+    #     #extract informations
+    #     max_radiuses = particles.get_feature('max_radius')
+    #     avg_volumes = particles.get_feature('avg_volume')
         
+    #     #res = utiltsCython.histogram(max_radiuses, self.sieve_ranges, avg_volumes)
         
-        res = utiltsCython.histogram(max_radiuses, self.sift_ranges, avg_volumes)
-        self.ranges_hist += res
 
+    #     particels_range_idx, hist = utiltsCython.sieve(max_radiuses, self.sieve_ranges,avg_volumes)
+    #     self.ranges_hist += hist
+
+    #     return particels_range_idx
+
+    
         
         
     def get_hist(self, )-> np.ndarray:
@@ -52,3 +77,59 @@ class Grading:
             
         return res
     
+
+
+
+
+
+
+
+
+class cumGrading(gradingABstract):
+    step = 0.25
+    def __init__(self, full_range) -> None:
+        super().__init__(full_range)
+
+    def generate_ranges(self, full_range):
+        n_ranges = (full_range[1] - full_range[0]) // self.step + 1
+        n_ranges = int(n_ranges)
+
+        sieve_ranges = []
+        lower_limit = full_range[0]
+        for i in range(n_ranges):
+            sieve_ranges.append( [lower_limit, lower_limit + self.step] )
+            lower_limit+= self.step
+        
+        return np.array(sieve_ranges)
+
+        
+
+    # def append(self, particles:particlesBuffer):
+    #     """append new particels and calculate 
+
+    #     Args:
+    #         particles (particlesBuffer): _description_
+    #     """
+    
+    #     #extract informations
+    #     max_radiuses = particles.get_feature('max_radius')
+    #     avg_volumes = particles.get_feature('avg_volume')
+        
+        
+    #     res = utiltsCython.histogram(max_radiuses, self.sieve_ranges, avg_volumes)
+    #     self.ranges_hist += res
+
+    def get_data(self, )-> np.ndarray:
+        """return histogram percentage
+
+        Returns:
+            np.ndarray: 1d array of percentage in each range
+        """
+        percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
+        xs = np.mean(self.sieve_ranges, axis=1)
+        ys = np.cumsum(percentage_hist)
+        return xs, ys
+    
+
+
+  

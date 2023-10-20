@@ -23,6 +23,7 @@ class myThread(QThread):
 class mainPageAPI:
     refresh_time = time.time()
     max_fps = 20
+    DEBUG_PROCESS_THREAD = False
     #max_thread = 3
 
     def __init__(self, ui:mainPageUI, cameras:dorsaPylon, database:mainDatabase, ):
@@ -35,6 +36,7 @@ class mainPageAPI:
         self.external_report_event_func = None
         self.is_running = False
         self.during_processing = False
+        self.processing_time = 0
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
@@ -46,7 +48,7 @@ class mainPageAPI:
         self.ui.report_button_connector(self.report_button_event)
 
         self.test_img_idx = 0
-        self.report = Report()
+        self.report:Report = None
         self.detector = None
         self.startup()
     
@@ -84,11 +86,11 @@ class mainPageAPI:
         pass
 
     def process_image(self):
-        print('process_image')
+        #print('process_image')
         if not self.during_processing and self.is_running:
             
             self.during_processing = True
-            print('process_image OK')
+            #print('process_image OK')
             #calculate FPS-----------------------
             self.ui.set_information({"fps": self.calc_fps()})
             #________________________________ONLY FOR TEST________________________________________________
@@ -99,9 +101,12 @@ class mainPageAPI:
             if self.test_img_idx>4:
                 self.test_img_idx = 0
             #________________________________ONLY FOR TEST________________________________________________
+            self.processing_time = time.time()
+
             self.thread = myThread()
             self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
-            self.worker.moveToThread(self.thread)
+            if not self.DEBUG_PROCESS_THREAD:
+                self.worker.moveToThread(self.thread)
             self.thread.started.connect(self.worker.run_process)
             self.worker.finished_processing.connect(self.show_live_info)
             self.worker.finished.connect(self.thread.quit)
@@ -109,8 +114,12 @@ class mainPageAPI:
             self.worker.finished.connect(self.__set_processing_finish__)
             self.worker.finished.connect(self.worker.deleteLater)
             
-            print('new thread start')
-            self.thread.start()
+            if self.DEBUG_PROCESS_THREAD:
+                #print('DEBUG MODE: not on thread')
+                self.worker.run_process()
+            else:
+                #print('new thread start')
+                self.thread.start()
             #print('process_image FINISH')
 
     
@@ -118,17 +127,19 @@ class mainPageAPI:
     def __set_processing_finish__(self,):
         #print('__set_processing_finish__')
         self.during_processing = False
+        self.processing_time = time.time() - self.processing_time
+        print('processing_time = ', self.processing_time)
 
 
 
     def show_live_info(self):
-        print('show_live_info')
+        #print('show_live_info')
         t = time.time()
         
         if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
             self.refresh_time = time.time()
 
-            particle_buffer = self.worker.get_particles()
+            particles = self.worker.get_particles()
             img = self.worker.img
 
             #calculate statistics information like std and avg
@@ -146,11 +157,11 @@ class mainPageAPI:
             toolboxes_state = self.ui.get_toolboxes()
             if toolboxes_state['live']:
                 if toolboxes_state['drawing']:
-                    img = particlesDetector.draw_particles(img, particle_buffer.get_particels())
+                    img = particlesDetector.draw_particles(img, particles)
                 self.ui.set_live_img(img)
             
                     
-        print('show_live_info FINISH')
+        #print('show_live_info FINISH')
             
 
 
@@ -276,6 +287,7 @@ class mainPageAPI:
             return
 
         self.is_running = False
+        self.during_processing = False
         
 
         for camera in self.cameras.values():
@@ -350,7 +362,7 @@ class mainPageAPI:
         #-----------------------------------------------------------------------------------------
         main_path = self.database.setting_db.storage_db.load()['path']
         settings =  self.database.setting_db.sample_db.load()
-        
+        #-----------------------------------------------------------------------------------------
         self.report = Report( info['name'],
                               standard,
                               self.logined_username,
@@ -411,25 +423,24 @@ class ProcessingWorker(QObject):
     
     def run_process(self,):
         for i in range(1):
-            self.particles_buffer = self.detector.detect(self.img)
+            self.current_particles = self.detector.detect(self.img, self.report)
             #extend new particels into particles buffer
-            self.report.append(self.particles_buffer)
             #print('finished_processing EMIT')
-            print('process finished')
+            #print('process finished')
             self.finished_processing.emit()
         
             if self.report.settings['save_image']:
-                for particle in self.particles_buffer.get_particels():
+                for particle in self.current_particles:
                     p_img = particle.get_roi_image(self.img)
                     img_id = particle.get_id()
                     self.report_saver.save_image(p_img, img_id)
 
-            print('THREAD finished')
+            #print('THREAD finished')
         #print('FINISH signal--')
         self.finished.emit()
         #print('FINISH signal**')
 
     def get_particles(self, ):
-        return copy.copy(self.particles_buffer)
+        return copy.copy(self.current_particles)
     
 

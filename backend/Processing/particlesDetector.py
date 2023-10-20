@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 import pandas as pd
 from backend.Processing.Particel import Particle
-from backend.Processing.particlesBuffer import particlesBuffer
-
-
+from backend.Processing.particlesBuffer import particlesBuffer, sieveParticlesBuffer
+from backend.Processing.Report import Report
+import time
 
 class particlesDetector:
 
@@ -42,7 +42,7 @@ class particlesDetector:
 
 
 
-    def detect(self, img,) -> particlesBuffer:
+    def detect(self, img, report:Report) -> list[Particle]:
         """returns list of paricles in the given image
 
         Args:
@@ -51,8 +51,8 @@ class particlesDetector:
         Returns:
             list[Particle]: founded particles
         """
-
         #convert image to gray scale if it is a color image
+        
         if len(img.shape) == 3:
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -67,11 +67,14 @@ class particlesDetector:
         #particles = list(map( lambda cnt: Particle(cnt, self.px2mm_ratio), cnts ))
 
         
-        particles = particlesBuffer()
+        # particles = particlesBuffer()
+        particles = []
         for cnt in cnts:
                 particle = Particle(cnt, self.px2mm_ratio, self.particle_id)
+                report.append_particle(particle)
                 particles.append(particle)
                 self.particle_id+=1
+                
 
         self.img_id+=1
         return particles
@@ -96,11 +99,14 @@ def draw_particles(img, particles: list[Particle], color:tuple=(40, 40, 200), th
     Returns:
         _type_: drawed image
     """
+    #t = time.time()
     if len(img.shape) == 2:
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
 
     cnts = list( map( lambda x:x.cnt, particles))
-    return cv2.drawContours(img, cnts, -1, color, thickness=thickness)
+    res = cv2.drawContours(img, cnts, -1, color, thickness=thickness)
+    #print(time.time() - t)
+    return res
 
 
 

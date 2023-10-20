@@ -62,7 +62,6 @@ class reportPageAPI:
             report (Report): _description_
         """
         self.report = report
-        self.report.render()
         self.particles_count = self.report.get_particles_count()
         self.particle_maximum_page = (self.particles_count // self.PARTICLE_PER_PAGE)
         
@@ -152,7 +151,7 @@ class reportPageAPI:
         imgs = []
         if self.report.settings['save_image']:
 
-            for particle in self.report.Buffer.get_particels()[self.particles_page * self.PARTICLE_PER_PAGE:
+            for particle in self.report.Buffer.total_buffer.get_particels()[self.particles_page * self.PARTICLE_PER_PAGE:
                                                                (self.particles_page + 1) * self.PARTICLE_PER_PAGE]:
                 p_id = particle.get_id()
                 img = self.report_file_handler.load_image(p_id)
@@ -168,7 +167,7 @@ class reportPageAPI:
             idx (_type_): a number that shows which particle in table clicked
         """
         idx = self.particles_page * self.PARTICLE_PER_PAGE + idx
-        particle = self.report.Buffer.get_particel(idx)
+        particle = self.report.Buffer.total_buffer.get_particel(idx)
         info = particle.get_info()
         self.ui.set_particle_information(info)
         #------------------------------------------------

@@ -1,5 +1,6 @@
 from backend.Processing.Particel import Particle
 from backend.Utils import dataUtils
+from backend.Processing import gradingUtils
 import numpy as np
 
 class particlesBuffer:
@@ -10,6 +11,8 @@ class particlesBuffer:
         'max_radius':1,
         'avg_radius':2,
         'avg_volume':3,
+        'circularity': 4
+        
     }
 
     def __init__(self,) -> None:
@@ -29,6 +32,7 @@ class particlesBuffer:
         pdata[self.COLS_IDX['max_radius']] = particel.max_radius
         pdata[self.COLS_IDX['avg_radius']] = particel.avg_radius
         pdata[self.COLS_IDX['avg_volume']] = particel.avg_volume
+        pdata[self.COLS_IDX['circularity']] = particel.circularity
         pdata = np.array( pdata )
 
         #store particles in list[Particle] format for better and easy access
@@ -80,8 +84,38 @@ class particlesBuffer:
             np.ndarray: _description_
         """
         return np.round(self.data[:, self.COLS_IDX[name]], decimals=decimals)
-    
 
 
 
-    
+        
+
+
+class sieveParticlesBuffer:
+
+
+    def __init__(self, ranges) -> None:
+        self.ranges = ranges
+        self.total_buffer = particlesBuffer()
+        self.sieve_buffers:list[particlesBuffer] = []
+        self.initial_sieve_buffers()
+
+    def set_ranges(self, ranges):
+        self.ranges = ranges
+        self.initial_sieve_buffers()
+
+    def initial_sieve_buffers(self,):
+        self.sieve_buffers = []
+        for i in range(len(self.ranges)):
+            #each buffer is for specific range
+            self.sieve_buffers.append(particlesBuffer())
+
+    def append_particle(self, particle:Particle, sieve_idx:int, sive_only=False):
+        
+        if sieve_idx >= 0:
+            self.sieve_buffers[sieve_idx].append(particle)
+        
+        if not sive_only:
+            self.total_buffer.append(particle)
+
+    def clear(self,):
+        self.initial_sieve_buffers()

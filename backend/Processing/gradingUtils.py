@@ -9,7 +9,16 @@ def get_sift_idx(x , ranges):
     return -1
 
 
-def sift(xs, ranges: list[list]) -> list[np.ndarray]:
+def sift(xs:np.ndarray, ranges: list[list]) -> list[np.ndarray]:
+    """sift xs radiuses base on ranges
+
+    Args:
+        xs (_type_): _description_
+        ranges (list[list]): _description_
+
+    Returns:
+        list[np.ndarray]: _description_
+    """
     sift_results = []
     for i in range(len(ranges)):
         sift_results.append([])

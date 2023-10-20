@@ -344,7 +344,7 @@ class reportsPageUI(commonUI):
         samples = samples.copy()
         GUIBackend.set_table_dim(self.samples_table, row=len(samples), col=None)
         self.samples_table_checkbox = {}
-
+        samples.reverse()
         for i,sample in enumerate(samples):
             for feature_name, feature_value in sample.items():
                 if feature_name == 'date':

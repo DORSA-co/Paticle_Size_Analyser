@@ -15,10 +15,18 @@ class Particle:
         self.cnt = cnt
         self.px2mm = px2mm
         self.img_id = img_id
+        self.area = None
+        self.center = None
+        self.max_radius = None
         self.calc_area()
         self.calc_max_radius()
         self.calc_avrage_radius()
         self.calc_avrage_valoum()
+        self.calc_cirvularity()
+    
+
+    def calc_cirvularity(self,):
+        self.circularity = self.area / (np.pi * self.max_radius **2) 
 
     def calc_area(self):
         """calculate area of a particle
@@ -71,7 +79,9 @@ class Particle:
         info['area'] = np.round(self.area, CONSTANTS.DECIMAL_ROUND )
         info['avrage_radius'] = np.round(self.avg_radius, CONSTANTS.DECIMAL_ROUND )
         info['volume'] = np.round(self.avg_volume, CONSTANTS.DECIMAL_ROUND )
+        info['circularity'] = np.round(self.circularity, CONSTANTS.DECIMAL_ROUND )
         return info
+
 
 
     def get_id(self):

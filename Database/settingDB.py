@@ -37,6 +37,7 @@ class settingDB:
         self.algorithm_db = settingAlgorithmDB(self.db_manager)
         self.storage_db = settingStorageDB(self.db_manager)
         self.sample_db = settingSampleDB(self.db_manager)
+        self.export_db = settingExportDB(self.db_manager)
         
 
 
@@ -280,3 +281,53 @@ class settingStorageDB(parentSettingDB):
 
 
 
+
+
+
+
+class settingExportDB(parentSettingDB):
+    TABLE_NAME = 'export_setting'
+
+    TABLE_COLS = [ 
+                   {'col_name': 'report_excel',      'type':'TEXT', 'len':300},
+                   {'col_name': 'compare_excel',     'type':'TEXT', 'len':300},
+                ]
+    
+    TABLE_DEFAULT_DATAS= [{  
+                            'report_excel': 'files//export_formats//report_format.xlsx',
+                            'compare_excel': 'files//export_formats//compare_format.xlsx',
+                            }
+                        ]
+    
+            
+    PRIMERY_KEY_COL_NAME = 'id'
+
+
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
+        self.__create_table__()
+        
+        
+    def is_exist(self, id):
+        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
+        if len(founded_records)>0:
+            return True
+        return False
+
+
+    def save(self, data):
+        data['id'] = 1
+        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
+            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
+        else:
+            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+    
+
+    def load(self):
+        id = 1
+        record =  self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
+        if len(record)>0:
+            record = record[0]
+            record.pop('id')
+            return record
+        return {}

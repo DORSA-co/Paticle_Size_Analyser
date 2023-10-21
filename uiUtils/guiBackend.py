@@ -522,6 +522,9 @@ class GUIBackend:
 
     def get_textarea_text(inpt:QtWidgets.QTextEdit) -> str:
         return inpt.toPlainText()
+    
+    def set_textarea_text(inpt:QtWidgets.QTextEdit, txt) -> str:
+        return inpt.setPlainText(txt)
 
 
     #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------    

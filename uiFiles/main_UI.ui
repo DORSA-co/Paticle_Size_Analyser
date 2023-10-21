@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -4009,7 +4009,8 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
 #settingpage_storage_tab,
 #settingpage_pelletizing_tab,
 #settingpage_algorithm_tab,
-#settingpage_sample_tab
+#settingpage_sample_tab,
+#settingpage_export_tab
 {
 	background-color:rgb(255, 255, 255);
 }
@@ -4022,7 +4023,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>2</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4806,6 +4807,264 @@ QLabel
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_100">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="settingpage_export_tab">
+                <attribute name="title">
+                 <string>Export</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_59">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_67">
+                   <item>
+                    <widget class="QLabel" name="label_113">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">min-width:100px;</string>
+                     </property>
+                     <property name="text">
+                      <string>Report Excel Format    </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="settingpage_export_report_excel_path_input">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>730</width>
+                       <height>41</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>310</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLineEdit{
+min-width: 700px;
+
+}</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_export_load_report_excel_btn">
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton{
+min-width:40px;
+min-height: 40px;
+
+}</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="Assets/Assets.qrc">
+                       <normaloff>:/assets/icons/icons8-folder-50.png</normaloff>:/assets/icons/icons8-folder-50.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_66">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_68">
+                   <item>
+                    <widget class="QLabel" name="label_114">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">min-width:100px;</string>
+                     </property>
+                     <property name="text">
+                      <string>Compare Excel Format</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="settingpage_export_compare_excel_path_input">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>730</width>
+                       <height>41</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>310</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QLineEdit{
+min-width: 700px;
+
+}</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_export_load_compare_excel_btn">
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton{
+min-width:40px;
+min-height: 40px;
+
+}</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="Assets/Assets.qrc">
+                       <normaloff>:/assets/icons/icons8-folder-50.png</normaloff>:/assets/icons/icons8-folder-50.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_112">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QTabWidget" name="tabWidget_2">
+                   <property name="styleSheet">
+                    <string notr="true">
+QTabBar::tab:selected {
+    background:rgb(90, 117, 127);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+QTabBar::tab:!selected {
+	border-left: 1px solid rgb(199, 199, 199);
+	border-right: 1px solid rgb(199, 199, 199);
+}
+
+QTabBar::tab{
+	height:40px;
+	width: 250px;
+	background-color: rgb(200, 200, 200);
+	color: rgb(255,255,255);
+	font-size: 16px;
+}
+
+
+QTabWidget::pane { /* The tab widget frame */
+    border-top: 2px solid rgb(6, 76, 130);
+
+
+}
+QTabWidget{
+background-color: rgb(48, 48, 48)
+}</string>
+                   </property>
+                   <property name="currentIndex">
+                    <number>1</number>
+                   </property>
+                   <widget class="QWidget" name="tab">
+                    <attribute name="title">
+                     <string>Report Code</string>
+                    </attribute>
+                   </widget>
+                   <widget class="QWidget" name="tab_5">
+                    <attribute name="title">
+                     <string>Compare Codes</string>
+                    </attribute>
+                   </widget>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_70">
+                   <item>
+                    <spacer name="horizontalSpacer_113">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_export_save_btn">
+                     <property name="text">
+                      <string>Save</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_export_cancel_btn">
+                     <property name="text">
+                      <string>Cancel</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_export_restore_btn">
+                     <property name="text">
+                      <string>Restore Default</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_114">
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
                      </property>
@@ -7892,7 +8151,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-430</y>
+                <y>0</y>
                 <width>1145</width>
                 <height>3055</height>
                </rect>

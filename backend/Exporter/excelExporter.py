@@ -1,7 +1,12 @@
+if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.getcwd())
 
 import openpyxl
-#import xlsxwriter
 from openpyxl.cell.cell import Cell
+
+
 from backend.Processing.Report import Report
 
 class reportExcelExporter:
@@ -18,9 +23,17 @@ class reportExcelExporter:
         self.__find_codes()
 
     def save(self,path):
-        if path[-len(self.file_type):] != self.file_type:
-            path = path + self.file_type
-        self.workbook.save(path)
+        try:
+            if len(path) > len(self.file_type):
+                if path[-len(self.file_type):] != self.file_type:
+                    path = path + self.file_type
+            else:
+                path = path + self.file_type
+
+            self.workbook.save(path)
+            return True, None
+        except Exception as e:
+            return False, str(e)
     
     def __find_codes(self,):
         self.codes = {}
@@ -38,26 +51,122 @@ class reportExcelExporter:
         """copy style of cell1 into cell2
         """
         if cell1.has_style:
-            cell2.font = cell2.font
-            cell2.border = cell2.border
-            cell2.fill = cell2.fill
-            cell2.number_format = cell2.number_format
-            cell2.protection = cell2.protection
-            cell2.alignment = cell2.alignment
-
-    def export(self, report:Report):
-        for code,pos in self.codes.items():
+            cell2.font = cell1.font.copy()
+            cell2.border = cell1.border.copy()
+            cell2.fill = cell1.fill.copy()
+            cell2.number_format = cell1.number_format
+            cell2.protection = cell1.protection.copy()
+            cell2.alignment = cell1.alignment.copy()
+    
+    def __update_pos(self, start_pos, insert_col, insert_row):
+        for code, pos in self.codes.items():
+            pos = list(pos)
+            if pos[0] > start_pos[0]:
+                pos[0] = pos[0] + insert_row
             
+            if pos[1] > start_pos[1]:
+                pos[1] = pos[1] + insert_col
+            
+            pos = tuple(pos)
+            self.codes[code] = pos
+            
+
+    def __set_list_values(self, datas:list, start_pos:tuple[int], oriation='v') -> int:
+        """set list values into excel, this function inster rows or colums from start point
+
+        Args:
+            datas (list): list of data
+            start_pos (tuple[int]): _description_
+            oriation (str, optional): _description_. Defaults to 'v'.
+
+        Returns:
+            int: number of row or col insert
+        """
+        i,j = start_pos
+        # count = len(datas)
+        # if oriation.lower() == 'h':
+        #     self.sheet.insert_cols(i+1, count - 1)
+        #     self.__update_pos(start_pos, 0, count -1)
+
+        # elif oriation.lower() == 'v':
+        #     self.sheet.insert_rows(j+1, count - 1)
+        #     self.__update_pos(start_pos, count -1, 0)
+
+
+        for data in datas:
+            self.copy_style(self.sheet.cell(*start_pos), 
+                            self.sheet.cell(i,j))
+            self.sheet.cell(i,j).value = data
+            if oriation.lower() == 'h':
+                j+=1
+            elif oriation.lower() == 'v':
+                i+=1
+        
+
+    def render(self, report:Report):
+        range_statistics = report.get_ranges_statistics()
+        global_statistics = report.get_global_statistics()
+        
+
+        wrong_codes = []
+        
+        for code,pos in self.codes.items():
+            datas = None
+
             if code == '%NAME%':
                 self.sheet.cell(*pos).value = report.name
 
-            if code == '%DATE%':
+            elif code == '%DATE%':
                 self.sheet.cell(*pos).value = report.date.strftime('%Y-%M-%D')
             
+            elif code == '%TIME%':
+                self.sheet.cell(*pos).value = report.time.strftime('%H:%m')
 
-# if __name__ == '__main__':
-#     excel = reportExcelExporter('format.xlsx',None)
-#     excel.find_codes()
-#     excel.save('testtt')
+            elif code == '%USER%':
+                self.sheet.cell(*pos).value = report.username
+            
+            elif code == '%STANDARD%':
+                self.sheet.cell(*pos).value = report.standard['name']
+            
+            elif code == '%TOTAL_AVRAGE%':
+                self.sheet.cell(*pos).value = global_statistics['avrage']
+            
+            elif code == '%TOTAL_STD%':
+                self.sheet.cell(*pos).value = global_statistics['std']
+            
+            elif code in ['%RANGE_NAME_VERTICALLY%', '%RANGE_NAME_HORIZONTAL%']:
+                datas = report.ranges_string
+            
+            elif code in ['%RANGE_PERCENT_VERTICALLY%', '%RANGE_PERCENT_HORIZONTAL%']:
+                datas = list(map(lambda x:x['percent'], range_statistics))
+            
+            elif code in ['%RANGE_AVRAGE_VERTICALLY%', '%RANGE_AVRAGE_HORIZONTAL%']:
+                datas = list(map(lambda x:x['avrage'], range_statistics))
+
+            elif code in ['%RANGE_STD_VERTICALLY%', '%RANGE_STD_HORIZONTAL%']:
+                datas = list(map(lambda x:x['std'], range_statistics))
+
+            else:
+                wrong_codes.append(code)
+
+            if datas is not None:
+                if 'VERTICALLY' in code:
+                    self.__set_list_values(datas, pos, oriation='v')
+
+                elif 'HORIZONTAL' in code:
+                    self.__set_list_values(datas, pos, oriation='h')
+            
+        return wrong_codes       
+
+        
+
+
     
-#     pass
+
+
+if __name__ == '__main__':
+    excel = reportExcelExporter('format.xlsx')
+    excel.sheet.insert_cols(2,4)
+    excel.save('testtt')
+    
+    pass

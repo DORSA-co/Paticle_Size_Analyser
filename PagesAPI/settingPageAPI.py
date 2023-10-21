@@ -1,6 +1,6 @@
 from backend.Camera.dorsaPylon import Collector, Camera
-from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB
-from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI
+from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB
+from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
 import os
@@ -11,7 +11,7 @@ class settingPageAPI:
         self.algorithmSetting = algorithmSettingTabAPI(ui.algorithmSettingTab, database.algorithm_db)
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
-
+        self.exportSetting = exportSettingTabAPI(ui.exportSettingTab, database.export_db)
         # ui.cameraSettingTab.save_state(True)
         # ui.algorithmSettingTab.save_state(True)
         # ui.storageSettingTab.save_state(True)
@@ -312,9 +312,60 @@ class algorithmSettingTabAPI:
     
 
     def cancel(self):
+        state = self.ui.show_confirm_box("Cancel", "Are You Sure?", 
+                                 buttons=['yes','no'])
+        if state == 'no':
+            return
         self.load_from_db()
 
     
     def restor(self):
         self.database.restor_default()
         self.load_from_db()
+
+
+
+
+class exportSettingTabAPI:
+
+    def __init__(self, ui:exportSettingTabUI ,database:settingExportDB):
+        self.ui = ui
+        self.database = database
+
+        self.ui.select_dir_buttons_connector(self.load_file)
+        self.ui.save_button_connector(self.save)
+        self.ui.restor_button_connector(self.restore_default)
+
+        self.load_from_db()
+    
+    def load_file(self, setting_name:str):
+        """_summary_
+
+        Args:
+            setting_name (str): shows button of which one of 'report_excel' or 'compare_excel' clicked
+        """
+        path = self.ui.open_select_file_dialog()
+        data = {}
+        data[setting_name] = path
+        self.ui.set_setting(data)
+    
+
+    def save(self,):
+        data = self.ui.get_settings()
+        self.database.save(data)
+        self.ui.save_state(True)
+
+    def cancel(self,):
+        self.load_from_db()
+        self.ui.save_state(True)
+
+    def restore_default(self,):
+        self.database.restor_default()
+        self.load_from_db()
+        self.ui.save_state(True)
+
+    def load_from_db(self,):        
+        data = self.database.load()
+        self.ui.set_setting(data)
+        self.ui.save_state(True)
+        

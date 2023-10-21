@@ -9,6 +9,7 @@ class settingPageUI:
         self.algorithmSettingTab = algorithmSettingTabUI(ui)
         self.storageSettingTab = storageSettingTabUI(ui)
         self.sampleSettingTab = sampleSettingTabUI(ui)
+        self.exportSettingTab = exportSettingTabUI(ui)
 
 
 
@@ -21,6 +22,8 @@ class commonSettingUI(commonUI):
         self.gif_lbl = self.ui.settingpage_save_gif_lbl
         self.gif_player = GUIComponents.gifPlayer(self.gif_lbl, ':/assets/gifs/Rolling_bg.gif')
 
+        self.save_btn = None
+        self.cancel_btn = None
 
     def __show_saved_massage__(self, is_saved):
 
@@ -314,7 +317,6 @@ class cameraSettingTabUI(commonSettingUI):
         
         self.__mange_fields_enable__()
         self.__settings_change_connector__()
-        self.save_button_connector(self.__internal_save_event__)
     
     def reset(self):
         self.__is_start__ = False
@@ -484,11 +486,6 @@ class cameraSettingTabUI(commonSettingUI):
     def get_selected_camera_application(self,):
         return self.camera_application
     
-
-    def __internal_save_event__(self):
-        self.save_state(True)
-        GUIBackend.set_disable(self.save_btn)
-    
     def disable_save_btn(self,):
         GUIBackend.set_disable(self.save_btn)
 
@@ -510,7 +507,6 @@ class algorithmSettingTabUI(commonSettingUI):
         self.cancel_btn = self.ui.settingpage_algorithm_cancel_btn
         self.restor_default_btn = self.ui.settingpage_algorithm_restor_default_btn
         self.__change_state_connector__()
-        self.save_state(True)
     
     def __change_state_connector__(self,):
         #make save button enable and wrote *not_save if any input changed
@@ -542,4 +538,60 @@ class algorithmSettingTabUI(commonSettingUI):
 
 
 
+
+
+class exportSettingTabUI(commonSettingUI):
+
+    def __init__(self, ui) -> None:
+        super(exportSettingTabUI , self).__init__(ui)
+        self.ui = ui
+        self.select_dir_btn = self.ui.settingpage_storage_select_dir_btn
+        self.save_btn = self.ui.settingpage_export_save_btn
+        self.cancel_btn = self.ui.settingpage_export_cancel_btn
+        self.restore_btn = self.ui.settingpage_export_restore_btn
+
+        self.load_report_excel_btn = self.ui.settingpage_export_load_report_excel_btn
+        self.load_compare_excel_btn = self.ui.settingpage_export_load_compare_excel_btn
+
+        self.settings = {
+            'report_excel': self.ui.settingpage_export_report_excel_path_input,
+            'compare_excel': self.ui.settingpage_export_compare_excel_path_input
+        }
+
+        self.__setting_change_connector__()
+
+    def __setting_change_connector__(self,):
+        for setting_name,  field_obj in self.settings.items():
+                GUIBackend.connector(field_obj,  lambda : self.save_state(False))
+
+
+    def select_dir_buttons_connector(self, func):
+        GUIBackend.button_connector_argument_pass(self.load_report_excel_btn, 
+                                                  func, 
+                                                  ('report_excel',) )
+
+        GUIBackend.button_connector_argument_pass(self.load_compare_excel_btn, 
+                                                  func, 
+                                                  ('compare_excel',) )
     
+    def open_select_file_dialog(self,):
+        return GUIComponents.selectFileDialog('Excel', '.xlsx')[0]
+    
+    def set_setting(self, settings:dict[str:str]):
+        for name, value in settings.items():
+            GUIBackend.set_input(self.settings[name], value)
+
+    def get_settings(self, )-> dict:
+        data = {}
+        for name,  field_obj in self.settings.items():
+                data[name] = GUIBackend.get_input(field_obj)
+        return data
+
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
+
+    def cancel_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_btn, func)
+    
+    def restor_button_connector(self, func):
+        GUIBackend.button_connector(self.restore_btn, func)

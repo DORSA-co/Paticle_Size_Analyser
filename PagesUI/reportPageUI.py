@@ -1,17 +1,22 @@
+import cv2
+import math
 
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from uiUtils.Charts.barChart import BarChart
 from uiUtils.Charts.lineChart import LineChart, Trend
-import cv2
-import math
+from PagesUI.dialogWindows.exportResultDialogUI import exportResultDialogUI
+from PagesUI.PageUI import commonUI
 
-class reportPageUI:
+
+class reportPageUI(commonUI):
     
 
     def __init__(self, ui,single_rebuild_manual_ui):
+        super().__init__()
         self.ui = ui
         self.rebuild_win_ui = single_rebuild_manual_ui
+        self.exportDialog = exportResultDialogUI()
 
         self.back_btn = self.ui.sreportpage_back_btn
         self.export_btn = self.ui.sreportpage_export_btn
@@ -21,6 +26,8 @@ class reportPageUI:
         self.particle_image_event_func = None
         self.current_page = self.ui.sreportpage_current_page
         self.end_page = self.ui.sreportpage_end_page
+
+        
 
         #self.description_lbl = self.ui.sreportpage_description_lbl
 
@@ -275,8 +282,8 @@ class reportPageUI:
             GUIBackend.set_disable_enable(self.particle_navigator_buttons['prev'], True)
         
         
-    def set_description(self, name, idx, text):
-        GUIBackend.set_label_text( self.descriptions[name][idx], text)
+    # def set_description(self, name, idx, text):
+    #     GUIBackend.set_label_text( self.descriptions[name][idx], text)
 
     def show_page_number(self, curent:int, end:int):
         GUIBackend.set_label_text(self.current_page, str(curent))

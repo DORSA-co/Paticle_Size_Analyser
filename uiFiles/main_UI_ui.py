@@ -2372,7 +2372,8 @@ class Ui_MainWindow(object):
 "#settingpage_storage_tab,\n"
 "#settingpage_pelletizing_tab,\n"
 "#settingpage_algorithm_tab,\n"
-"#settingpage_sample_tab\n"
+"#settingpage_sample_tab,\n"
+"#settingpage_export_tab\n"
 "{\n"
 "	background-color:rgb(255, 255, 255);\n"
 "}\n"
@@ -2799,6 +2800,159 @@ class Ui_MainWindow(object):
         self.verticalLayout_41.addLayout(self.horizontalLayout_59)
 
         self.settingpage_tabs.addTab(self.settingpage_sample_tab, "")
+        self.settingpage_export_tab = QWidget()
+        self.settingpage_export_tab.setObjectName(u"settingpage_export_tab")
+        self.verticalLayout_59 = QVBoxLayout(self.settingpage_export_tab)
+        self.verticalLayout_59.setObjectName(u"verticalLayout_59")
+        self.horizontalLayout_67 = QHBoxLayout()
+        self.horizontalLayout_67.setObjectName(u"horizontalLayout_67")
+        self.label_113 = QLabel(self.settingpage_export_tab)
+        self.label_113.setObjectName(u"label_113")
+        self.label_113.setMinimumSize(QSize(110, 0))
+        self.label_113.setStyleSheet(u"min-width:100px;")
+
+        self.horizontalLayout_67.addWidget(self.label_113)
+
+        self.settingpage_export_report_excel_path_input = QLineEdit(self.settingpage_export_tab)
+        self.settingpage_export_report_excel_path_input.setObjectName(u"settingpage_export_report_excel_path_input")
+        self.settingpage_export_report_excel_path_input.setEnabled(False)
+        self.settingpage_export_report_excel_path_input.setMinimumSize(QSize(730, 41))
+        self.settingpage_export_report_excel_path_input.setMaximumSize(QSize(310, 16777215))
+        self.settingpage_export_report_excel_path_input.setStyleSheet(u"QLineEdit{\n"
+"min-width: 700px;\n"
+"\n"
+"}")
+
+        self.horizontalLayout_67.addWidget(self.settingpage_export_report_excel_path_input)
+
+        self.settingpage_export_load_report_excel_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_load_report_excel_btn.setObjectName(u"settingpage_export_load_report_excel_btn")
+        self.settingpage_export_load_report_excel_btn.setStyleSheet(u"QPushButton{\n"
+"min-width:40px;\n"
+"min-height: 40px;\n"
+"\n"
+"}")
+        icon24 = QIcon()
+        icon24.addFile(u":/assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingpage_export_load_report_excel_btn.setIcon(icon24)
+
+        self.horizontalLayout_67.addWidget(self.settingpage_export_load_report_excel_btn)
+
+        self.horizontalSpacer_66 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_67.addItem(self.horizontalSpacer_66)
+
+
+        self.verticalLayout_59.addLayout(self.horizontalLayout_67)
+
+        self.horizontalLayout_68 = QHBoxLayout()
+        self.horizontalLayout_68.setObjectName(u"horizontalLayout_68")
+        self.label_114 = QLabel(self.settingpage_export_tab)
+        self.label_114.setObjectName(u"label_114")
+        self.label_114.setMinimumSize(QSize(110, 0))
+        self.label_114.setStyleSheet(u"min-width:100px;")
+
+        self.horizontalLayout_68.addWidget(self.label_114)
+
+        self.settingpage_export_compare_excel_path_input = QLineEdit(self.settingpage_export_tab)
+        self.settingpage_export_compare_excel_path_input.setObjectName(u"settingpage_export_compare_excel_path_input")
+        self.settingpage_export_compare_excel_path_input.setEnabled(False)
+        self.settingpage_export_compare_excel_path_input.setMinimumSize(QSize(730, 41))
+        self.settingpage_export_compare_excel_path_input.setMaximumSize(QSize(310, 16777215))
+        self.settingpage_export_compare_excel_path_input.setStyleSheet(u"QLineEdit{\n"
+"min-width: 700px;\n"
+"\n"
+"}")
+
+        self.horizontalLayout_68.addWidget(self.settingpage_export_compare_excel_path_input)
+
+        self.settingpage_export_load_compare_excel_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_load_compare_excel_btn.setObjectName(u"settingpage_export_load_compare_excel_btn")
+        self.settingpage_export_load_compare_excel_btn.setStyleSheet(u"QPushButton{\n"
+"min-width:40px;\n"
+"min-height: 40px;\n"
+"\n"
+"}")
+        self.settingpage_export_load_compare_excel_btn.setIcon(icon24)
+
+        self.horizontalLayout_68.addWidget(self.settingpage_export_load_compare_excel_btn)
+
+        self.horizontalSpacer_112 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_68.addItem(self.horizontalSpacer_112)
+
+
+        self.verticalLayout_59.addLayout(self.horizontalLayout_68)
+
+        self.tabWidget_2 = QTabWidget(self.settingpage_export_tab)
+        self.tabWidget_2.setObjectName(u"tabWidget_2")
+        self.tabWidget_2.setStyleSheet(u"\n"
+"QTabBar::tab:selected {\n"
+"    background:rgb(90, 117, 127);\n"
+"	font-weight: bold;\n"
+"	font-size: 20px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected {\n"
+"	border-left: 1px solid rgb(199, 199, 199);\n"
+"	border-right: 1px solid rgb(199, 199, 199);\n"
+"}\n"
+"\n"
+"QTabBar::tab{\n"
+"	height:40px;\n"
+"	width: 250px;\n"
+"	background-color: rgb(200, 200, 200);\n"
+"	color: rgb(255,255,255);\n"
+"	font-size: 16px;\n"
+"}\n"
+"\n"
+"\n"
+"QTabWidget::pane { /* The tab widget frame */\n"
+"    border-top: 2px solid rgb(6, 76, 130);\n"
+"\n"
+"\n"
+"}\n"
+"QTabWidget{\n"
+"background-color: rgb(48, 48, 48)\n"
+"}")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.tabWidget_2.addTab(self.tab, "")
+        self.tab_5 = QWidget()
+        self.tab_5.setObjectName(u"tab_5")
+        self.tabWidget_2.addTab(self.tab_5, "")
+
+        self.verticalLayout_59.addWidget(self.tabWidget_2)
+
+        self.horizontalLayout_70 = QHBoxLayout()
+        self.horizontalLayout_70.setObjectName(u"horizontalLayout_70")
+        self.horizontalSpacer_113 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_70.addItem(self.horizontalSpacer_113)
+
+        self.settingpage_export_save_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_save_btn.setObjectName(u"settingpage_export_save_btn")
+
+        self.horizontalLayout_70.addWidget(self.settingpage_export_save_btn)
+
+        self.settingpage_export_cancel_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_cancel_btn.setObjectName(u"settingpage_export_cancel_btn")
+
+        self.horizontalLayout_70.addWidget(self.settingpage_export_cancel_btn)
+
+        self.settingpage_export_restore_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_restore_btn.setObjectName(u"settingpage_export_restore_btn")
+
+        self.horizontalLayout_70.addWidget(self.settingpage_export_restore_btn)
+
+        self.horizontalSpacer_114 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_70.addItem(self.horizontalSpacer_114)
+
+
+        self.verticalLayout_59.addLayout(self.horizontalLayout_70)
+
+        self.settingpage_tabs.addTab(self.settingpage_export_tab, "")
         self.settingpage_storage_tab = QWidget()
         self.settingpage_storage_tab.setObjectName(u"settingpage_storage_tab")
         self.verticalLayout_24 = QVBoxLayout(self.settingpage_storage_tab)
@@ -2902,8 +3056,6 @@ class Ui_MainWindow(object):
 "min-height: 40px;\n"
 "\n"
 "}")
-        icon24 = QIcon()
-        icon24.addFile(u":/assets/icons/icons8-folder-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.settingpage_storage_select_dir_btn.setIcon(icon24)
 
         self.gridLayout_17.addWidget(self.settingpage_storage_select_dir_btn, 0, 2, 1, 1)
@@ -4623,7 +4775,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -430, 1145, 3055))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3055))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6307,9 +6459,10 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(0)
+        self.settingpage_tabs.setCurrentIndex(2)
+        self.tabWidget_2.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(0)
         self.helppage_tabs.setCurrentIndex(0)
@@ -6467,6 +6620,16 @@ class Ui_MainWindow(object):
         self.settingpage_sample_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_sample_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_sample_tab), QCoreApplication.translate("MainWindow", u"Sample", None))
+        self.label_113.setText(QCoreApplication.translate("MainWindow", u"Report Excel Format    ", None))
+        self.settingpage_export_load_report_excel_btn.setText("")
+        self.label_114.setText(QCoreApplication.translate("MainWindow", u"Compare Excel Format", None))
+        self.settingpage_export_load_compare_excel_btn.setText("")
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Report Code", None))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), QCoreApplication.translate("MainWindow", u"Compare Codes", None))
+        self.settingpage_export_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.settingpage_export_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.settingpage_export_restore_btn.setText(QCoreApplication.translate("MainWindow", u"Restore Default", None))
+        self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_export_tab), QCoreApplication.translate("MainWindow", u"Export", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Database", None))
         self.label_98.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"Username:", None))

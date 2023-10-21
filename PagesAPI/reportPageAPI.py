@@ -1,10 +1,14 @@
+import cv2
+import os
+
 from PagesUI.reportPageUI import reportPageUI
 from backend.Processing.Report import Report
 from Database.reportsDB import reportFileHandler
 from Database.mainDatabase  import mainDatabase
 from backend.Rebuild.rebuidReport import RebuildReport
 from backend.Exporter.excelExporter import reportExcelExporter
-import cv2
+
+
 class reportPageAPI:
     PARTICLE_PER_PAGE = 48
     PARTICLE_PAGE_COL = 8
@@ -182,19 +186,48 @@ class reportPageAPI:
         #------------------------------------------------
         
     def set_description(self, ):
-        p1, p2 = reportDescriptions.get_statistic_desc()
-        self.ui.set_description('statictics',0, p1)
-        self.ui.set_description('statictics',1, p2)
+        pass
+        # p1, p2 = reportDescriptions.get_statistic_desc()
+        # self.ui.set_description('statictics',0, p1)
+        # self.ui.set_description('statictics',1, p2)
         
-        # p = """<p> testttttt</p>"""
-        # self.ui.ui.textEdit.setHtml(p)
 
     def export(self,):
-        exporter = reportExcelExporter('format.xlsx')
-        path,_ = self.ui.open_export_file_dialog()
-        exporter.export(self.report)
-        exporter.save(path)
-        print(path)
+        try:
+            path = self.database.setting_db.export_db.load()['report_excel']
+            if not os.path.exists(path):
+                self.ui.show_confirm_box('Error', 
+                                         "Excel format file doesn't exist. Go to setting>>export and set an excel format for report",
+                                         buttons=['ok']
+                                         )
+                return
+            
+            exporter = reportExcelExporter(path)
+            path,_ = self.ui.open_export_file_dialog()
+            wrong_codes = exporter.render(self.report)
+            flag,e = exporter.save(path)
+
+            self.ui.exportDialog.set_wrong_codes(wrong_codes)
+
+            if flag:
+                self.ui.exportDialog.set_massage('Export successfuly')
+                self.ui.exportDialog.set_exception_msg(None)
+
+            else:
+                self.ui.exportDialog.set_massage('Failed to export')
+                self.ui.exportDialog.set_exception_msg(e)
+            self.ui.exportDialog.show()
+
+        except Exception as e:
+            self.ui.exportDialog.set_massage('Some Error Happend')
+            self.ui.exportDialog.set_exception_msg('')
+            self.ui.exportDialog.show()
+        
+            
+            
+
+        
+
 
 
 

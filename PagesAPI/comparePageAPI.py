@@ -1,13 +1,13 @@
+import cv2
+import numpy as np
+import os
+
+
 from PagesUI.comparePageUI import comparePageUI
 from backend.Processing.Report import Report
 from Database.reportsDB import reportFileHandler
 from Database.mainDatabase import mainDatabase
 from backend.Processing.Compare import Compare
-from backend.Utils.datetimeUtils import datetimeFormat
-
-import cv2
-import numpy as np
-import os
 
 
 class comparePageAPI:
@@ -35,7 +35,12 @@ class comparePageAPI:
         "connect an external function to back button click event"
         self.external_back_event_func = func
     
-    def change_attribute(self, atr):
+    def change_attribute(self, atr:str):
+        """this method called when compare combobox in ui changed
+
+        Args:
+            atr (str): selected attribue in comboboc
+        """
         self.set_compare_data(self.compare)
 
     def set_compare_data(self, compare:Compare = None):

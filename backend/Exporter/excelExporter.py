@@ -165,12 +165,12 @@ class reportExcelExporter(excelExporter):
                     self.__set_list_values__(datas, pos, oriation='h')
 
 
-        # chart:BarChart = self.sheet._charts[0]
-        # x = Reference(self.sheet, min_row=10, min_col=1, max_col=5)
-        # y = Reference(self.sheet, min_row=11, min_col=1, max_col=5)
-        # s = Series(values=y, xvalues=x)
-        # chart.add_data(y)
-        # chart.set_categories(x)
+        chart:BarChart = self.sheet._charts[0]
+        x = Reference(self.sheet, min_row=10, min_col=1, max_col=5)
+        y = Reference(self.sheet, min_row=11, min_col=1, max_col=5)
+        s = Series(values=y, xvalues=x)
+        chart.add_data(y)
+        chart.set_categories(x)
         #self.sheet.add_chart(copy.deepcopy(chart))
         return wrong_codes       
 

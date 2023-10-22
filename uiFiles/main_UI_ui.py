@@ -4775,7 +4775,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3055))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -315, 1145, 3092))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5068,12 +5068,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.textEdit)
 
-        self.sreportpage_statictics_desc1 = QLabel(self.scrollAreaWidgetContents)
-        self.sreportpage_statictics_desc1.setObjectName(u"sreportpage_statictics_desc1")
-        self.sreportpage_statictics_desc1.setWordWrap(True)
-
-        self.verticalLayout_12.addWidget(self.sreportpage_statictics_desc1)
-
         self.verticalSpacer_46 = QSpacerItem(20, 15, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_12.addItem(self.verticalSpacer_46)
@@ -5244,6 +5238,7 @@ class Ui_MainWindow(object):
 
         self.textEdit_2 = QTextEdit(self.scrollAreaWidgetContents)
         self.textEdit_2.setObjectName(u"textEdit_2")
+        self.textEdit_2.setMinimumSize(QSize(0, 120))
         self.textEdit_2.setStyleSheet(u"")
         self.textEdit_2.setFrameShape(QFrame.NoFrame)
         self.textEdit_2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
@@ -5562,9 +5557,11 @@ class Ui_MainWindow(object):
 
         self.textEdit_7 = QTextEdit(self.scrollAreaWidgetContents)
         self.textEdit_7.setObjectName(u"textEdit_7")
+        self.textEdit_7.setMinimumSize(QSize(0, 110))
         self.textEdit_7.setStyleSheet(u"")
         self.textEdit_7.setFrameShape(QFrame.NoFrame)
         self.textEdit_7.setLineWidth(1)
+        self.textEdit_7.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.textEdit_7.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
 
         self.verticalLayout_12.addWidget(self.textEdit_7)
@@ -5989,7 +5986,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 701))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, -256, 1144, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6114,6 +6111,36 @@ class Ui_MainWindow(object):
         self.verticalSpacer_40 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_40.addItem(self.verticalSpacer_40)
+
+        self.label_84 = QLabel(self.compareScrollAreaWidget)
+        self.label_84.setObjectName(u"label_84")
+        self.label_84.setStyleSheet(u"color: rgb(6, 76, 130);\n"
+"font-size: 20px;\n"
+"font-weight: bold;\n"
+"max-height: 22px;")
+
+        self.verticalLayout_40.addWidget(self.label_84)
+
+        self.frame_3 = QFrame(self.compareScrollAreaWidget)
+        self.frame_3.setObjectName(u"frame_3")
+        self.frame_3.setMinimumSize(QSize(0, 500))
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_60 = QVBoxLayout(self.frame_3)
+        self.verticalLayout_60.setObjectName(u"verticalLayout_60")
+        self.charts_layout = QVBoxLayout()
+        self.charts_layout.setObjectName(u"charts_layout")
+        self.charts_layout.setSizeConstraint(QLayout.SetFixedSize)
+        self.charts_layout.setContentsMargins(-1, 10, -1, -1)
+
+        self.verticalLayout_60.addLayout(self.charts_layout)
+
+
+        self.verticalLayout_40.addWidget(self.frame_3)
+
+        self.verticalSpacer_48 = QSpacerItem(20, 50, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_40.addItem(self.verticalSpacer_48)
 
         self.label_56 = QLabel(self.compareScrollAreaWidget)
         self.label_56.setObjectName(u"label_56")
@@ -6459,7 +6486,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(8)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(2)
         self.tabWidget_2.setCurrentIndex(1)
@@ -6779,7 +6806,6 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.</span></p></body></html>", None))
-        self.sreportpage_statictics_desc1.setText(QCoreApplication.translate("MainWindow", u"Desc1", None))
         self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
         self.label_59.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
@@ -6795,7 +6821,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
         self.sreportpage_statictics_desc2.setText(QCoreApplication.translate("MainWindow", u"Desc2", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table1 - Statistics for each diameter range in the Sample ", None))
 
@@ -6808,7 +6834,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#282828;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
         self.textEdit_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -6832,7 +6858,7 @@ class Ui_MainWindow(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the partcle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will apear on the left side.</span></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
         self.sreportpage_particle_image_lbl.setText("")
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"25", None))
         self.sreportpage_particle_avg_r_lbl_title.setText(QCoreApplication.translate("MainWindow", u"Avg Radius:", None))
@@ -6867,6 +6893,7 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setSortingEnabled(False)
         self.comparepage_compare_table.setSortingEnabled(__sortingEnabled5)
 
+        self.label_84.setText(QCoreApplication.translate("MainWindow", u"Charts", None))
         self.label_56.setText(QCoreApplication.translate("MainWindow", u"Avrage Overview", None))
         self.label_112.setText(QCoreApplication.translate("MainWindow", u"Table2 -", None))
 

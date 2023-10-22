@@ -2,9 +2,9 @@
 from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
 from uiUtils import GUIComponents
-from uiUtils.Charts import barChart
-import cv2
-
+from uiUtils.Charts.lineChart import LineChart, Trend
+import random
+import numpy as np
 
 class comparePageUI(commonUI):
     
@@ -15,12 +15,35 @@ class comparePageUI(commonUI):
         self.compare_table = self.ui.comparepage_compare_table
         self.total_mean_table = self.ui.comparepage_compare_mean_table
         self.progressbar = self.ui.comparepage_progressbar
+        self.charts_layout = self.ui.charts_layout
+        
+        
         
 
         self.compare_table_headrs = ['name', 'date', 'time']
         GUIBackend.set_table_dim(self.total_mean_table,row=1, col=None)
+        self.init_trend_chart()
+        GUIBackend.add_widget(self.charts_layout, self.trends_chart)
+        
 
 
+    def init_trend_chart(self,):
+        self.trends_chart  = LineChart(
+                    chart_title = 'Trends',
+                    chart_title_color = '#404040',
+                    axisX_label = 'Samples',
+                    axisY_label = 'Percent',
+                    chart_background_color = '#f0f0f0',
+                    chart_legend=True,
+                    axis_color = '#404040',
+                    axisX_grid=True,
+                    axisY_grid=True,
+                    axisY_grid_color='#40404040',
+                    axisY_range = (0, 100),
+                    axisX_tickCount = 10,
+                    axisY_tickCount = 10,
+                    animation = False,
+                )
 
 
     def back_button_connector(self, func):
@@ -84,4 +107,24 @@ class comparePageUI(commonUI):
 
 
 
-    
+    def show_trends_chart(self, datas:np.ndarray, ranges:list[list]):
+        sample_count = len(datas)
+        y_range_max = int(datas.max()) + 5
+
+        
+        self.trends_chart.set_axisY_range((0,y_range_max))
+        #self.trends_chart.remove_all_trends()
+        
+        
+        for i, _range in enumerate(ranges):
+            range_str = f'{_range[0]}mm - {_range[1]}mm'
+            
+            color = random.randrange(0, 2**24)
+            color = str(hex(color))
+            color = '#' + color[2:]
+
+            trend = Trend(name=range_str, line_color=color, line_width=2)
+            trend.add_data(np.arange(sample_count), datas[:,i])
+            self.trends_chart.add_trend(trend)
+
+            

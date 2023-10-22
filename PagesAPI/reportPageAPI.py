@@ -204,6 +204,9 @@ class reportPageAPI:
             
             exporter = reportExcelExporter(path)
             path,_ = self.ui.open_export_file_dialog()
+            if path == '':
+                return
+            
             wrong_codes = exporter.render(self.report)
             flag,e = exporter.save(path)
 
@@ -220,7 +223,7 @@ class reportPageAPI:
 
         except Exception as e:
             self.ui.exportDialog.set_massage('Some Error Happend')
-            self.ui.exportDialog.set_exception_msg('')
+            self.ui.exportDialog.set_exception_msg(e)
             self.ui.exportDialog.show()
         
             

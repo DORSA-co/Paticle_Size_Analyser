@@ -89,7 +89,7 @@ class LineChart(QtCharts.QChartView):
                 animation: bool = True,
                 ):
 
-        self.chart = QtCharts.QChart()
+        self.chart:QtCharts.QChart = QtCharts.QChart()
         super().__init__(self.chart, parent)
         self.chart.legend().setVisible(False)
 
@@ -247,4 +247,7 @@ class LineChart(QtCharts.QChartView):
         self.chart.setContentsMargins(-9, -9, -9, -9)
         self.chart.legend().hide()
         self.setRenderHint(QPainter.Antialiasing)
-        
+    
+
+    def remove_all_trends(self,):
+        self.chart.removeAllSeries()

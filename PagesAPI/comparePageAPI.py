@@ -14,7 +14,7 @@ class comparePageAPI:
     
     def __init__(self, ui:comparePageUI, database:mainDatabase):
         self.ui = ui
-
+        self.reports = []
         self.external_back_event_func = None
         
         self.ui.back_button_connector(self.back)
@@ -38,13 +38,16 @@ class comparePageAPI:
         #set selected ranges into table header
         self.ui.set_compare_table_ranges_header(ranges)
 
-        data = []
         samples_count = len(self.compare.samples)
+        data = []
         hists = []
+        self.reports = []
+
         for i,sample in enumerate(self.compare.samples):
             sample_name = sample['name']
             rfh = reportFileHandler(sample)
             report = rfh.load_report()
+            self.reports.append(report)
 
             #-------------------------------------------------------------------------
             if report is None:
@@ -70,6 +73,7 @@ class comparePageAPI:
             self.ui.set_compare_table(data)
             self.ui.set_total_mean_table(hists_mean)
             self.ui.show_page_content(True)
+            self.ui.show_trends_chart(hists, compare.standard['ranges'])
             
 
 

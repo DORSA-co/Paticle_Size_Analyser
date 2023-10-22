@@ -27,7 +27,7 @@ class reportPageUI(commonUI):
         self.current_page = self.ui.sreportpage_current_page
         self.end_page = self.ui.sreportpage_end_page
 
-        
+
 
         #self.description_lbl = self.ui.sreportpage_description_lbl
 
@@ -38,12 +38,7 @@ class reportPageUI(commonUI):
             
         }
 
-        self.descriptions = {
-            'statictics' : [
-                                self.ui.sreportpage_statictics_desc1,
-                                self.ui.sreportpage_statictics_desc2,
-                            ]
-        }
+
 
         self.general_information = {
             'name':self.ui.sreportpage_name_lbl,

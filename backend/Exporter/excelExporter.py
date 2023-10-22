@@ -5,22 +5,47 @@ if __name__ == '__main__':
 
 import openpyxl
 from openpyxl.cell.cell import Cell
-
+from openpyxl.chart import  Reference, Series, BarChart
+import copy
+#from openpyxl.chart.series import Series
 
 from backend.Processing.Report import Report
 
-class reportExcelExporter:
-    MAX_COL = 50
+class excelExporter:
     MAX_ROW = 100
-    def __init__(self,path:str,) -> None:
+    MAX_COL = 100
+    def __init__(self,path_format:str,) -> None:
         self.file_type = '.xlsx'
-        self.path = path
-        self.workbook = openpyxl.load_workbook(filename = self.path)
-
+        self.path_format = path_format
+        self.workbook = openpyxl.load_workbook(filename = self.path_format)
         self.sheet_name = self.workbook.sheetnames[0]
         self.sheet = self.workbook[self.sheet_name]
 
-        self.__find_codes()
+        self.__find_codes__()
+    
+    def __find_codes__(self,):
+        self.codes = {}
+        for i in range(1,self.MAX_ROW):
+            for j in range(1,self.MAX_COL):
+                value = self.sheet.cell(row=i, column=j).value
+                if value is not None:
+                    value = value.strip()
+
+                    if len(value) > 3:
+                        if value[0] == '%' and value[-1] == '%':
+                            self.codes[value.upper()] = (i,j)
+        
+
+    def copy_style(self,cell1:Cell, cell2:Cell):
+        """copy style of cell1 into cell2
+        """
+        if cell1.has_style:
+            cell2.font = cell1.font.copy()
+            cell2.border = cell1.border.copy()
+            cell2.fill = cell1.fill.copy()
+            cell2.number_format = cell1.number_format
+            cell2.protection = cell1.protection.copy()
+            cell2.alignment = cell1.alignment.copy()
 
     def save(self,path):
         try:
@@ -35,43 +60,8 @@ class reportExcelExporter:
         except Exception as e:
             return False, str(e)
     
-    def __find_codes(self,):
-        self.codes = {}
-        for i in range(1,self.MAX_ROW):
-            for j in range(1,self.MAX_COL):
-                value = self.sheet.cell(row=i, column=j).value
-                if value is not None:
-                    value = value.strip()
 
-                    if len(value) > 3:
-                        if value[0] == '%' and value[-1] == '%':
-                            self.codes[value.upper()] = (i,j)
-    
-    def copy_style(self,cell1:Cell, cell2:Cell):
-        """copy style of cell1 into cell2
-        """
-        if cell1.has_style:
-            cell2.font = cell1.font.copy()
-            cell2.border = cell1.border.copy()
-            cell2.fill = cell1.fill.copy()
-            cell2.number_format = cell1.number_format
-            cell2.protection = cell1.protection.copy()
-            cell2.alignment = cell1.alignment.copy()
-    
-    def __update_pos(self, start_pos, insert_col, insert_row):
-        for code, pos in self.codes.items():
-            pos = list(pos)
-            if pos[0] > start_pos[0]:
-                pos[0] = pos[0] + insert_row
-            
-            if pos[1] > start_pos[1]:
-                pos[1] = pos[1] + insert_col
-            
-            pos = tuple(pos)
-            self.codes[code] = pos
-            
-
-    def __set_list_values(self, datas:list, start_pos:tuple[int], oriation='v') -> int:
+    def __set_list_values__(self, datas:list, start_pos:tuple[int], oriation='v') -> int:
         """set list values into excel, this function inster rows or colums from start point
 
         Args:
@@ -101,13 +91,31 @@ class reportExcelExporter:
                 j+=1
             elif oriation.lower() == 'v':
                 i+=1
-        
+
+
+class reportExcelExporter(excelExporter):
+    MAX_COL = 50
+    MAX_ROW = 100
+    
+
+    def __update_pos(self, start_pos, insert_col, insert_row):
+        for code, pos in self.codes.items():
+            pos = list(pos)
+            if pos[0] > start_pos[0]:
+                pos[0] = pos[0] + insert_row
+            
+            if pos[1] > start_pos[1]:
+                pos[1] = pos[1] + insert_col
+            
+            pos = tuple(pos)
+            self.codes[code] = pos
+            
+
 
     def render(self, report:Report):
         range_statistics = report.get_ranges_statistics()
         global_statistics = report.get_global_statistics()
         
-
         wrong_codes = []
         
         for code,pos in self.codes.items():
@@ -151,22 +159,77 @@ class reportExcelExporter:
 
             if datas is not None:
                 if 'VERTICALLY' in code:
-                    self.__set_list_values(datas, pos, oriation='v')
+                    self.__set_list_values__(datas, pos, oriation='v')
 
                 elif 'HORIZONTAL' in code:
-                    self.__set_list_values(datas, pos, oriation='h')
-            
+                    self.__set_list_values__(datas, pos, oriation='h')
+
+
+        # chart:BarChart = self.sheet._charts[0]
+        # x = Reference(self.sheet, min_row=10, min_col=1, max_col=5)
+        # y = Reference(self.sheet, min_row=11, min_col=1, max_col=5)
+        # s = Series(values=y, xvalues=x)
+        # chart.add_data(y)
+        # chart.set_categories(x)
+        #self.sheet.add_chart(copy.deepcopy(chart))
         return wrong_codes       
 
+
+
+
+class compareExcelExporter(excelExporter):
+    MAX_COL = 100
+    MAX_ROW = 100
+
+            
+
+    def render(self, reports:list[Report]):
         
+        wrong_codes = []
+        
+        for code,pos in self.codes.items():
+            datas = None
+
+
+            if code in ['%NAMES_VERTICALLY%', '%NAMES_HORIZONTAL%']:
+                datas = list(map(lambda x:x.name, reports))
+
+            elif code in ['%DATES_VERTICALLY%', '%DATES_HORIZONTAL%']:
+                datas = list(map(lambda x:x.date.strftime('%Y-%M-%D'), reports))
+
+            elif code in ['%TIMES_VERTICALLY%', '%TIMES_HORIZONTAL%']:
+                datas = list(map(lambda x:x.time.strftime('%H:%m'), reports))
+            
+            elif code in ['%USERS_VERTICALLY%', '%USERS_HORIZONTAL%']:
+                datas = list(map(lambda x:x.time.strftime('%H:%m'), reports))
+
+            elif code in ['%RANGES_NAME_VERTICALLY%', '%RANGES_NAME_HORIZONTAL%']:
+                datas = reports[0].standard['ranges']
+            
+
+
+            else:
+                wrong_codes.append(code)
+
+            if datas is not None:
+                if 'VERTICALLY' in code:
+                    self.__set_list_values__(datas, pos, oriation='v')
+
+                elif 'HORIZONTAL' in code:
+                    self.__set_list_values__(datas, pos, oriation='h')
+            
+        return wrong_codes
 
 
     
 
 
 if __name__ == '__main__':
-    excel = reportExcelExporter('format.xlsx')
-    excel.sheet.insert_cols(2,4)
+    from backend.Utils.StorageUtils import objectSaver
+
+    report = objectSaver.load(r'C:\Users\amir\AppData\Local\Dorsa-PSA-Reports\20231021_1524_admin_20231021_152422\report')
+    excel = reportExcelExporter(r'files\export_formats\report_format.xlsx')
+    excel.render(report)
     excel.save('testtt')
     
     pass

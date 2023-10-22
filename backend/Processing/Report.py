@@ -74,7 +74,7 @@ class Report:
         return info
     
 
-    def get_ranges_statistics(self,):
+    def get_ranges_statistics(self,) -> list[dict]:
         res = []
         hist = self.Grading.get_hist()
         for i,range_name in enumerate(self.ranges_string):
@@ -89,11 +89,11 @@ class Report:
                 data['circularity'] = np.round( range_buffer.get_feature('circularity').mean(), CONSTANTS.DECIMAL_ROUND )
             else:
                 data['range'] = range_name
-                data['std'] = '-'
-                data['avrage'] = '-'
+                data['std'] = 0
+                data['avrage'] = 0
                 data['count'] = 0
                 data['percent'] = 0
-                data['circularity'] = '-'
+                data['circularity'] = 0
             res.append(data)
 
         return res

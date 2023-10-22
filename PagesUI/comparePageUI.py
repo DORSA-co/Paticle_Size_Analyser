@@ -16,6 +16,7 @@ class comparePageUI(commonUI):
         self.total_mean_table = self.ui.comparepage_compare_mean_table
         self.progressbar = self.ui.comparepage_progressbar
         self.charts_layout = self.ui.charts_layout
+        self.compare_attribute_combobox = self.ui.compare_attribute_combobox
         
         
         
@@ -49,6 +50,18 @@ class comparePageUI(commonUI):
     def back_button_connector(self, func):
         GUIBackend.button_connector(self.back_btn, func)
 
+    def get_compare_attribute(self,) -> str:
+        return GUIBackend.get_combobox_selected(self.compare_attribute_combobox)
+    
+    def set_compare_attribute_items(self, items:list[str]):
+        GUIBackend.set_combobox_items(self.compare_attribute_combobox, items)
+    
+    def set_default_compare_attribute(self, item:str):
+        GUIBackend.set_combobox_current_item(self.compare_attribute_combobox, item)
+    
+    def compare_attribute_combo_connector(self,func):
+        GUIBackend.combobox_changeg_connector(self.compare_attribute_combobox, func)
+
     def set_compare_table_ranges_header(self, ranges):
 
         ranges_str = list(map( lambda x:f"{x[0]}mm - {x[1]}mm", ranges))
@@ -71,7 +84,7 @@ class comparePageUI(commonUI):
                                       )
 
 
-    def set_compare_table(self, data: list[list]):
+    def set_compare_table(self, data: list[list], unit=''):
 
         GUIBackend.set_table_dim(self.compare_table, row=len(data), col=None)
         start_ranges_idx = len(self.compare_table_headrs) 
@@ -79,7 +92,7 @@ class comparePageUI(commonUI):
         for row_idx, row in enumerate(data):
             for col_idx, value in enumerate(row):
                 if start_ranges_idx<=col_idx< end_ranges_idx:
-                    value = str(value) + ' %'
+                    value = str(value) + ' ' + unit
                 
                 GUIBackend.set_table_cell_value(self.compare_table, (row_idx, col_idx), value)
 

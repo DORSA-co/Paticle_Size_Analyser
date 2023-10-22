@@ -5972,6 +5972,26 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_39.addWidget(self.horizontalFrame_6)
 
+        self.horizontalLayout_69 = QHBoxLayout()
+        self.horizontalLayout_69.setObjectName(u"horizontalLayout_69")
+        self.horizontalLayout_69.setContentsMargins(0, 15, -1, 15)
+        self.label_115 = QLabel(self.compare_page)
+        self.label_115.setObjectName(u"label_115")
+
+        self.horizontalLayout_69.addWidget(self.label_115)
+
+        self.compare_attribute_combobox = QComboBox(self.compare_page)
+        self.compare_attribute_combobox.setObjectName(u"compare_attribute_combobox")
+
+        self.horizontalLayout_69.addWidget(self.compare_attribute_combobox)
+
+        self.horizontalSpacer_115 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_69.addItem(self.horizontalSpacer_115)
+
+
+        self.verticalLayout_39.addLayout(self.horizontalLayout_69)
+
         self.comparepage_progressbar = QProgressBar(self.compare_page)
         self.comparepage_progressbar.setObjectName(u"comparepage_progressbar")
         self.comparepage_progressbar.setValue(100)
@@ -6886,6 +6906,7 @@ class Ui_MainWindow(object):
         self.alaki_btn.setText(QCoreApplication.translate("MainWindow", u"alaki", None))
         self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.label_115.setText(QCoreApplication.translate("MainWindow", u"Compare By:", None))
         self.label_57.setText(QCoreApplication.translate("MainWindow", u"Samples", None))
         self.label_111.setText(QCoreApplication.translate("MainWindow", u"Table1 - ", None))
 

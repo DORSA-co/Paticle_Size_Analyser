@@ -16,31 +16,48 @@ class comparePageAPI:
         self.ui = ui
         self.reports = []
         self.external_back_event_func = None
+        self.attribute_dict = {
+            'Grading percent': ('percent', '%'),
+            'size': ('avrage', 'mm'),
+            'std': ('std', 'mm')
+        }
+        self.compare = None
         
         self.ui.back_button_connector(self.back)
+        self.ui.compare_attribute_combo_connector(self.change_attribute)
+        self.ui.set_compare_attribute_items(list(self.attribute_dict.keys()))
+        self.ui.set_default_compare_attribute('Grading percent')
+        
+
     
-
-
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
         self.external_back_event_func = func
+    
+    def change_attribute(self, atr):
+        self.set_compare_data(self.compare)
 
-    def set_compare_data(self, compare:Compare):
+    def set_compare_data(self, compare:Compare = None):
         
         #hide content and show progressbar
         self.ui.show_page_content(False)
         #progress bar 0
         self.ui.set_progressbar(0)
+        atr = self.ui.get_compare_attribute()
+        attribute_key, attribute_unit =  self.attribute_dict[atr]
 
         self.compare = compare
+        if self.compare is None:
+            return
+        
         ranges = self.compare.standard['ranges']
         #set selected ranges into table header
         self.ui.set_compare_table_ranges_header(ranges)
 
         samples_count = len(self.compare.samples)
         data = []
-        hists = []
+        samples_ranges_data = []
         self.reports = []
 
         for i,sample in enumerate(self.compare.samples):
@@ -56,24 +73,24 @@ class comparePageAPI:
             #-------------------------------------------------------------------------
             else:
                 report.change_standard(compare.standard)
-            
-                hist = list(report.Grading.get_hist())
-                hists.append(hist)
-                table_record = [sample_name, sample['date'], sample['time'] ] + hist
+                ranges_data = report.get_ranges_statistics()
+                ranges_data = list(map( lambda x:x[attribute_key], ranges_data))
+                samples_ranges_data.append(ranges_data)
+                table_record = [sample_name, sample['date'], sample['time'] ] + ranges_data
                 data.append( table_record )
 
             #--------------------------------------------------
             percent =  ( i + 1 )/samples_count * 100 
             self.ui.set_progressbar(percent)
             #--------------------------------------------------
-        if len(hists)!=0:
-            hists = np.array( hists )
-            hists_mean = np.round(np.mean( hists, axis=0), 0 )
+        if len(samples_ranges_data)!=0:
+            samples_ranges_data = np.array( samples_ranges_data )
+            data_mean = np.round(np.mean( samples_ranges_data, axis=0), 0 )
 
-            self.ui.set_compare_table(data)
-            self.ui.set_total_mean_table(hists_mean)
+            self.ui.set_compare_table(data, attribute_unit)
+            self.ui.set_total_mean_table(data_mean)
             self.ui.show_page_content(True)
-            self.ui.show_trends_chart(hists, compare.standard['ranges'])
+            self.ui.show_trends_chart(samples_ranges_data, compare.standard['ranges'])
             
 
 

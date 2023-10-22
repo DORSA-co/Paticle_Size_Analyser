@@ -3,9 +3,10 @@ if __name__ == '__main__':
     import sys
     sys.path.append(os.getcwd())
 
-import openpyxl
+import openpyxl #3.1.2
 from openpyxl.cell.cell import Cell
 from openpyxl.chart import  Reference, Series, BarChart
+from openpyxl.worksheet.worksheet import Worksheet
 import copy
 #from openpyxl.chart.series import Series
 
@@ -18,9 +19,10 @@ class excelExporter:
         self.file_type = '.xlsx'
         self.path_format = path_format
         self.workbook = openpyxl.load_workbook(filename = self.path_format)
-        self.sheet_name = self.workbook.sheetnames[0]
-        self.sheet = self.workbook[self.sheet_name]
-
+        self.sheet_name:str = self.workbook.sheetnames[0]
+        self.sheet:Worksheet = self.workbook[self.sheet_name]
+        self.sheet_format:Worksheet = copy.deepcopy(self.sheet)
+        self.charts_data = {}
         self.__find_codes__()
     
     def __find_codes__(self,):
@@ -61,7 +63,7 @@ class excelExporter:
             return False, str(e)
     
 
-    def __set_list_values__(self, datas:list, start_pos:tuple[int], oriation='v') -> int:
+    def set_list_values(self, datas:list, start_pos:tuple[int], oriation='v') -> int:
         """set list values into excel, this function inster rows or colums from start point
 
         Args:
@@ -70,18 +72,9 @@ class excelExporter:
             oriation (str, optional): _description_. Defaults to 'v'.
 
         Returns:
-            int: number of row or col insert
+            tuple: end cell
         """
         i,j = start_pos
-        # count = len(datas)
-        # if oriation.lower() == 'h':
-        #     self.sheet.insert_cols(i+1, count - 1)
-        #     self.__update_pos(start_pos, 0, count -1)
-
-        # elif oriation.lower() == 'v':
-        #     self.sheet.insert_rows(j+1, count - 1)
-        #     self.__update_pos(start_pos, count -1, 0)
-
 
         for data in datas:
             self.copy_style(self.sheet.cell(*start_pos), 
@@ -91,6 +84,67 @@ class excelExporter:
                 j+=1
             elif oriation.lower() == 'v':
                 i+=1
+        
+        if oriation.lower() == 'h':
+            j-=1
+        elif oriation.lower() == 'v':
+            i-=1
+        return (i,j)
+
+
+    def get_chart_serie_cells(self, serie:Series) -> tuple[ tuple, tuple]:
+        """returns first x cell and y cell of a chart series
+
+        Args:
+            series (Series): table serie
+
+        Returns:
+            tuple: x cell position, y cell position
+        """
+        x_refrence = serie.tx.strRef.f
+        y_refrence = serie.val.numRef.ref
+
+        x_cell = self.chart_refrence_to_cell_index(x_refrence)
+        y_cell = self.chart_refrence_to_cell_index(y_refrence)
+        return x_cell , y_cell
+
+
+    def chart_refrence_to_cell_index(self, ref:str) -> tuple:
+        """extract firts cell of chart data refrence
+
+        Args:
+            ref (str): _description_
+
+        Returns:
+            tuple: cell index (row, col)
+        """
+        #ref example for one cell 'Sheet1!$A$10' for multi cell 'Sheet1!$A$10'  
+        ref = ref.replace(self.sheet_name, '')
+        ref = ref.replace('$', '')
+        ref = ref.replace('!', '')
+
+        if ':' in ref:
+            idx = ref.find(':')
+            ref = ref[:idx]
+        cell = self.sheet[ref]
+        return cell.row, cell.column
+
+
+    def make_chart_refrence(self, start_cell, end_cell) -> str:
+        #ref example 'Sheet1!$A$11:$B$11'
+        start_cell = self.sheet.cell(*start_cell)
+        end_cell = self.sheet.cell(*end_cell)
+        ref = f'{self.sheet_name}!'
+        ref = ref + f'${start_cell.column_letter}${start_cell.row}'
+        ref = ref + ':'
+        ref = ref + f'${end_cell.column_letter}${end_cell.row}'
+        return ref
+    
+    def set_chart_ref(self, serie, x_refrence, y_refrence):
+        serie.tx.strRef.f = x_refrence
+        serie.val.numRef.ref = y_refrence
+
+
 
 
 class reportExcelExporter(excelExporter):
@@ -110,6 +164,26 @@ class reportExcelExporter(excelExporter):
             pos = tuple(pos)
             self.codes[code] = pos
             
+    def render_charts(self, datas_end_cell: dict):
+        charts = self.sheet._charts
+        for chart in charts:
+            series = chart.series
+            for serie in series:
+                x_start_cell_pos, y_start_cell_pos = self.get_chart_serie_cells(serie)
+                x_cell_code = self.sheet_format.cell(*x_start_cell_pos).value
+                y_cell_code = self.sheet_format.cell(*y_start_cell_pos).value
+
+                if x_cell_code in datas_end_cell.keys() and y_cell_code in datas_end_cell.keys():
+                    x_end_cell_pos = datas_end_cell[x_cell_code] 
+                    y_end_cell_pos = datas_end_cell[y_cell_code]
+
+                    y_ref = self.make_chart_refrence(y_start_cell_pos, y_end_cell_pos)
+                    x_ref = self.make_chart_refrence(x_start_cell_pos, x_end_cell_pos)
+
+                    self.set_chart_ref(serie, x_ref, y_ref)
+
+
+
 
 
     def render(self, report:Report):
@@ -117,6 +191,8 @@ class reportExcelExporter(excelExporter):
         global_statistics = report.get_global_statistics()
         
         wrong_codes = []
+        self.datas_end_cell = {}
+        
         
         for code,pos in self.codes.items():
             datas = None
@@ -158,78 +234,32 @@ class reportExcelExporter(excelExporter):
                 wrong_codes.append(code)
 
             if datas is not None:
+                end_cell = None
                 if 'VERTICALLY' in code:
-                    self.__set_list_values__(datas, pos, oriation='v')
+                    end_cell = self.set_list_values(datas, pos, oriation='v')
 
                 elif 'HORIZONTAL' in code:
-                    self.__set_list_values__(datas, pos, oriation='h')
+                    end_cell = self.set_list_values(datas, pos, oriation='h')
+                
+                self.datas_end_cell[code] = end_cell
 
+        self.render_charts( self.datas_end_cell)
 
-        chart:BarChart = self.sheet._charts[0]
-        x = Reference(self.sheet, min_row=10, min_col=1, max_col=5)
-        y = Reference(self.sheet, min_row=11, min_col=1, max_col=5)
-        s = Series(values=y, xvalues=x)
-        chart.add_data(y)
-        chart.set_categories(x)
-        #self.sheet.add_chart(copy.deepcopy(chart))
-        return wrong_codes       
+        return wrong_codes   
 
+    
 
-
-
-class compareExcelExporter(excelExporter):
-    MAX_COL = 100
-    MAX_ROW = 100
-
-            
-
-    def render(self, reports:list[Report]):
-        
-        wrong_codes = []
-        
-        for code,pos in self.codes.items():
-            datas = None
-
-
-            if code in ['%NAMES_VERTICALLY%', '%NAMES_HORIZONTAL%']:
-                datas = list(map(lambda x:x.name, reports))
-
-            elif code in ['%DATES_VERTICALLY%', '%DATES_HORIZONTAL%']:
-                datas = list(map(lambda x:x.date.strftime('%Y-%M-%D'), reports))
-
-            elif code in ['%TIMES_VERTICALLY%', '%TIMES_HORIZONTAL%']:
-                datas = list(map(lambda x:x.time.strftime('%H:%m'), reports))
-            
-            elif code in ['%USERS_VERTICALLY%', '%USERS_HORIZONTAL%']:
-                datas = list(map(lambda x:x.time.strftime('%H:%m'), reports))
-
-            elif code in ['%RANGES_NAME_VERTICALLY%', '%RANGES_NAME_HORIZONTAL%']:
-                datas = reports[0].standard['ranges']
-            
-
-
-            else:
-                wrong_codes.append(code)
-
-            if datas is not None:
-                if 'VERTICALLY' in code:
-                    self.__set_list_values__(datas, pos, oriation='v')
-
-                elif 'HORIZONTAL' in code:
-                    self.__set_list_values__(datas, pos, oriation='h')
-            
-        return wrong_codes
 
 
     
 
 
-if __name__ == '__main__':
-    from backend.Utils.StorageUtils import objectSaver
+# if __name__ == '__main__':
+#     from backend.Utils.StorageUtils import objectSaver
 
-    report = objectSaver.load(r'C:\Users\amir\AppData\Local\Dorsa-PSA-Reports\20231021_1524_admin_20231021_152422\report')
-    excel = reportExcelExporter(r'files\export_formats\report_format.xlsx')
-    excel.render(report)
-    excel.save('testtt')
+#     report = objectSaver.load(r'C:\Users\amir\AppData\Local\Dorsa-PSA-Reports\20231021_1524_admin_20231021_152422\report')
+#     excel = reportExcelExporter(r'files\export_formats\report_format.xlsx')
+#     excel.render(report)
+#     excel.save('test')
     
-    pass
+#     pass

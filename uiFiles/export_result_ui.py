@@ -24,8 +24,8 @@ class Ui_rebuild_win(object):
     def setupUi(self, rebuild_win):
         if not rebuild_win.objectName():
             rebuild_win.setObjectName(u"rebuild_win")
-        rebuild_win.resize(700, 558)
-        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        rebuild_win.resize(700, 596)
+        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(rebuild_win.sizePolicy().hasHeightForWidth())

@@ -2884,9 +2884,18 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_59.addLayout(self.horizontalLayout_68)
 
+        self.verticalSpacer_8 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_59.addItem(self.verticalSpacer_8)
+
         self.tabWidget_2 = QTabWidget(self.settingpage_export_tab)
         self.tabWidget_2.setObjectName(u"tabWidget_2")
-        self.tabWidget_2.setStyleSheet(u"\n"
+        self.tabWidget_2.setStyleSheet(u"#tab,\n"
+"#tab1{\n"
+"	background-color:rgb(90, 117, 127);\n"
+"\n"
+"\n"
+"}\n"
 "QTabBar::tab:selected {\n"
 "    background:rgb(90, 117, 127);\n"
 "	font-weight: bold;\n"
@@ -2908,15 +2917,102 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "QTabWidget::pane { /* The tab widget frame */\n"
-"    border-top: 2px solid rgb(6, 76, 130);\n"
-"\n"
-"\n"
-"}\n"
-"QTabWidget{\n"
-"background-color: rgb(48, 48, 48)\n"
+"    border: none\n"
 "}")
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
+        self.verticalLayout_61 = QVBoxLayout(self.tab)
+        self.verticalLayout_61.setObjectName(u"verticalLayout_61")
+        self.verticalSpacer_28 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_61.addItem(self.verticalSpacer_28)
+
+        self.tableWidget = QTableWidget(self.tab)
+        if (self.tableWidget.columnCount() < 2):
+            self.tableWidget.setColumnCount(2)
+        if (self.tableWidget.rowCount() < 16):
+            self.tableWidget.setRowCount(16)
+        brush = QBrush(QColor(40, 40, 40, 255))
+        brush.setStyle(Qt.NoBrush)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        __qtablewidgetitem2.setTextAlignment(Qt.AlignCenter);
+        __qtablewidgetitem2.setForeground(brush);
+        self.tableWidget.setItem(0, 0, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableWidget.setItem(0, 1, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        __qtablewidgetitem4.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(1, 0, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        __qtablewidgetitem5.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(2, 0, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        __qtablewidgetitem6.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(3, 0, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        __qtablewidgetitem7.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(4, 0, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        __qtablewidgetitem8.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(5, 0, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        __qtablewidgetitem9.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(6, 0, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        __qtablewidgetitem10.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(7, 0, __qtablewidgetitem10)
+        __qtablewidgetitem11 = QTableWidgetItem()
+        __qtablewidgetitem11.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(8, 0, __qtablewidgetitem11)
+        __qtablewidgetitem12 = QTableWidgetItem()
+        __qtablewidgetitem12.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(9, 0, __qtablewidgetitem12)
+        __qtablewidgetitem13 = QTableWidgetItem()
+        __qtablewidgetitem13.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(10, 0, __qtablewidgetitem13)
+        __qtablewidgetitem14 = QTableWidgetItem()
+        __qtablewidgetitem14.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(11, 0, __qtablewidgetitem14)
+        __qtablewidgetitem15 = QTableWidgetItem()
+        __qtablewidgetitem15.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(12, 0, __qtablewidgetitem15)
+        __qtablewidgetitem16 = QTableWidgetItem()
+        __qtablewidgetitem16.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(13, 0, __qtablewidgetitem16)
+        __qtablewidgetitem17 = QTableWidgetItem()
+        __qtablewidgetitem17.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(14, 0, __qtablewidgetitem17)
+        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setStyleSheet(u"QHeaderView::section {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"	color: #ffffff;\n"
+"    padding: 4px;\n"
+"    font-size: 10pt;\n"
+"	border: 1px solid rgb(12, 80, 139);\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+"QTableView::item{\n"
+"	border: 1px solid rgb(12, 80, 139);\n"
+"\n"
+"}")
+        self.tableWidget.setRowCount(16)
+        self.tableWidget.setColumnCount(2)
+        self.tableWidget.horizontalHeader().setVisible(False)
+        self.tableWidget.horizontalHeader().setMinimumSectionSize(50)
+        self.tableWidget.horizontalHeader().setDefaultSectionSize(300)
+        self.tableWidget.horizontalHeader().setHighlightSections(True)
+        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget.verticalHeader().setVisible(False)
+        self.tableWidget.verticalHeader().setCascadingSectionResizes(False)
+        self.tableWidget.verticalHeader().setDefaultSectionSize(60)
+        self.tableWidget.verticalHeader().setHighlightSections(True)
+        self.tableWidget.verticalHeader().setProperty("showSortIndicator", False)
+        self.tableWidget.verticalHeader().setStretchLastSection(False)
+
+        self.verticalLayout_61.addWidget(self.tableWidget)
+
         self.tabWidget_2.addTab(self.tab, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName(u"tab_5")
@@ -3825,14 +3921,14 @@ class Ui_MainWindow(object):
             self.calibrationpage_last_calib_tabel.setColumnCount(4)
         if (self.calibrationpage_last_calib_tabel.rowCount() < 1):
             self.calibrationpage_last_calib_tabel.setRowCount(1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 0, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 1, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 2, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 3, __qtablewidgetitem5)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 0, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 1, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 2, __qtablewidgetitem20)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 3, __qtablewidgetitem21)
         self.calibrationpage_last_calib_tabel.setObjectName(u"calibrationpage_last_calib_tabel")
         self.calibrationpage_last_calib_tabel.setEnabled(True)
         self.calibrationpage_last_calib_tabel.setSizeIncrement(QSize(0, 0))
@@ -3985,7 +4081,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 673))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4010,15 +4106,29 @@ class Ui_MainWindow(object):
         self.main_pages_stackw.addWidget(self.calibration_page)
         self.users_page = QWidget()
         self.users_page.setObjectName(u"users_page")
+        self.users_page.setStyleSheet(u"#user_tabs\n"
+"{\n"
+"\n"
+"	background-color:#ffffff;\n"
+"}\n"
+"")
         self.verticalLayout_9 = QVBoxLayout(self.users_page)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.user_tabs = QTabWidget(self.users_page)
         self.user_tabs.setObjectName(u"user_tabs")
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.verticalLayout_10 = QVBoxLayout(self.tab_2)
+        self.user_tabs.setStyleSheet(u"#all_users_tab,\n"
+"#user_profile_tab,\n"
+"#user_register_tab\n"
+"{\n"
+"	\n"
+"	background-color: #ffffff;\n"
+"\n"
+"}")
+        self.user_register_tab = QWidget()
+        self.user_register_tab.setObjectName(u"user_register_tab")
+        self.verticalLayout_10 = QVBoxLayout(self.user_register_tab)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.gridFrame_2 = QFrame(self.tab_2)
+        self.gridFrame_2 = QFrame(self.user_register_tab)
         self.gridFrame_2.setObjectName(u"gridFrame_2")
         self.gridFrame_2.setStyleSheet(u"QLabel{\n"
 "	font-size: 16px;\n"
@@ -4118,7 +4228,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addItem(self.verticalSpacer_20)
 
-        self.userspage_register_error_lbl = QLabel(self.tab_2)
+        self.userspage_register_error_lbl = QLabel(self.user_register_tab)
         self.userspage_register_error_lbl.setObjectName(u"userspage_register_error_lbl")
         self.userspage_register_error_lbl.setMinimumSize(QSize(310, 35))
         self.userspage_register_error_lbl.setStyleSheet(u"font-size: 16px;\n"
@@ -4133,7 +4243,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addWidget(self.userspage_register_error_lbl)
 
-        self.userspage_register_success_frame = QFrame(self.tab_2)
+        self.userspage_register_success_frame = QFrame(self.user_register_tab)
         self.userspage_register_success_frame.setObjectName(u"userspage_register_success_frame")
         self.userspage_register_success_frame.setStyleSheet(u"QFrame{\n"
 "background-color: rgb(58, 209, 154);\n"
@@ -4173,12 +4283,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addItem(self.verticalSpacer_11)
 
-        self.user_tabs.addTab(self.tab_2, "")
-        self.tab_3 = QWidget()
-        self.tab_3.setObjectName(u"tab_3")
-        self.verticalLayout_21 = QVBoxLayout(self.tab_3)
+        self.user_tabs.addTab(self.user_register_tab, "")
+        self.user_profile_tab = QWidget()
+        self.user_profile_tab.setObjectName(u"user_profile_tab")
+        self.verticalLayout_21 = QVBoxLayout(self.user_profile_tab)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
-        self.userpage_editprofile_edit_profile_groupbox = QGroupBox(self.tab_3)
+        self.userpage_editprofile_edit_profile_groupbox = QGroupBox(self.user_profile_tab)
         self.userpage_editprofile_edit_profile_groupbox.setObjectName(u"userpage_editprofile_edit_profile_groupbox")
         self.userpage_editprofile_edit_profile_groupbox.setStyleSheet(u"QLabel{\n"
 "	font-size: 16px;\n"
@@ -4283,7 +4393,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addItem(self.verticalSpacer_35)
 
-        self.userpage_editprofile_change_pass_groupbox = QGroupBox(self.tab_3)
+        self.userpage_editprofile_change_pass_groupbox = QGroupBox(self.user_profile_tab)
         self.userpage_editprofile_change_pass_groupbox.setObjectName(u"userpage_editprofile_change_pass_groupbox")
         self.userpage_editprofile_change_pass_groupbox.setStyleSheet(u"QLabel{\n"
 "	font-size: 16px;\n"
@@ -4384,7 +4494,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addWidget(self.userpage_editprofile_change_pass_groupbox)
 
-        self.userspage_editprofile_success_frame = QFrame(self.tab_3)
+        self.userspage_editprofile_success_frame = QFrame(self.user_profile_tab)
         self.userspage_editprofile_success_frame.setObjectName(u"userspage_editprofile_success_frame")
         self.userspage_editprofile_success_frame.setStyleSheet(u"QFrame{\n"
 "background-color: rgb(58, 209, 154);\n"
@@ -4424,12 +4534,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_21.addItem(self.verticalSpacer_36)
 
-        self.user_tabs.addTab(self.tab_3, "")
-        self.tab_4 = QWidget()
-        self.tab_4.setObjectName(u"tab_4")
-        self.verticalLayout_11 = QVBoxLayout(self.tab_4)
+        self.user_tabs.addTab(self.user_profile_tab, "")
+        self.all_users_tab = QWidget()
+        self.all_users_tab.setObjectName(u"all_users_tab")
+        self.verticalLayout_11 = QVBoxLayout(self.all_users_tab)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.userspage_user_heading_lbl = QLabel(self.tab_4)
+        self.userspage_user_heading_lbl = QLabel(self.all_users_tab)
         self.userspage_user_heading_lbl.setObjectName(u"userspage_user_heading_lbl")
         self.userspage_user_heading_lbl.setStyleSheet(u"font-size: 16px;\n"
 "font-weight: bold;\n"
@@ -4439,7 +4549,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.userspage_user_heading_lbl)
 
-        self.userpage_all_users_table = QTableWidget(self.tab_4)
+        self.userpage_all_users_table = QTableWidget(self.all_users_tab)
         if (self.userpage_all_users_table.columnCount() < 5):
             self.userpage_all_users_table.setColumnCount(5)
         if (self.userpage_all_users_table.rowCount() < 3):
@@ -4485,7 +4595,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.userpage_all_users_table)
 
-        self.user_tabs.addTab(self.tab_4, "")
+        self.user_tabs.addTab(self.all_users_tab, "")
 
         self.verticalLayout_9.addWidget(self.user_tabs)
 
@@ -4775,7 +4885,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -315, 1145, 3092))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3092))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5285,10 +5395,10 @@ class Ui_MainWindow(object):
             self.sreportpage_statictics_table.setColumnCount(5)
         if (self.sreportpage_statictics_table.rowCount() < 4):
             self.sreportpage_statictics_table.setRowCount(4)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.sreportpage_statictics_table.setItem(0, 1, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem7)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        self.sreportpage_statictics_table.setItem(0, 1, __qtablewidgetitem22)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem23)
         self.sreportpage_statictics_table.setObjectName(u"sreportpage_statictics_table")
         self.sreportpage_statictics_table.setEnabled(True)
         sizePolicy4 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -5763,8 +5873,8 @@ class Ui_MainWindow(object):
             self.sreportpage_particels_table.setColumnCount(4)
         if (self.sreportpage_particels_table.rowCount() < 1):
             self.sreportpage_particels_table.setRowCount(1)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem8)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem24)
         self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
         self.sreportpage_particels_table.setEnabled(True)
         sizePolicy4.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
@@ -6006,7 +6116,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, -256, 1144, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6049,10 +6159,10 @@ class Ui_MainWindow(object):
             self.comparepage_compare_table.setColumnCount(5)
         if (self.comparepage_compare_table.rowCount() < 4):
             self.comparepage_compare_table.setRowCount(4)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem10)
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem25)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem26)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
         sizePolicy4.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
@@ -6202,8 +6312,8 @@ class Ui_MainWindow(object):
             self.comparepage_compare_mean_table.setColumnCount(5)
         if (self.comparepage_compare_mean_table.rowCount() < 1):
             self.comparepage_compare_mean_table.setRowCount(1)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem11)
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem27)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
         sizePolicy4.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
@@ -6506,12 +6616,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(8)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(2)
-        self.tabWidget_2.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(0)
+        self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.user_tabs.setCurrentIndex(0)
+        self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
 
@@ -6671,7 +6781,44 @@ class Ui_MainWindow(object):
         self.settingpage_export_load_report_excel_btn.setText("")
         self.label_114.setText(QCoreApplication.translate("MainWindow", u"Compare Excel Format", None))
         self.settingpage_export_load_compare_excel_btn.setText("")
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Report Code", None))
+
+        __sortingEnabled2 = self.tableWidget.isSortingEnabled()
+        self.tableWidget.setSortingEnabled(False)
+        ___qtablewidgetitem1 = self.tableWidget.item(0, 0)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"%NAME%", None));
+        ___qtablewidgetitem2 = self.tableWidget.item(0, 1)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Name of sample", None));
+        ___qtablewidgetitem3 = self.tableWidget.item(1, 0)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"%DATE%", None));
+        ___qtablewidgetitem4 = self.tableWidget.item(2, 0)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"%TIME%", None));
+        ___qtablewidgetitem5 = self.tableWidget.item(3, 0)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"%STANDARD%", None));
+        ___qtablewidgetitem6 = self.tableWidget.item(4, 0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"%USER%", None));
+        ___qtablewidgetitem7 = self.tableWidget.item(5, 0)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"%TOTAL_AVRAGE%", None));
+        ___qtablewidgetitem8 = self.tableWidget.item(6, 0)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"%TOTAL_STD%", None));
+        ___qtablewidgetitem9 = self.tableWidget.item(7, 0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"%RANGE_NAME_VERTICALLY%", None));
+        ___qtablewidgetitem10 = self.tableWidget.item(8, 0)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"%RANGE_NAME_HORIZONTAL%", None));
+        ___qtablewidgetitem11 = self.tableWidget.item(9, 0)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"%RANGE_PERCENT_VERTICALLY%", None));
+        ___qtablewidgetitem12 = self.tableWidget.item(10, 0)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"%RANGE_PERCENT_HORIZONTAL%", None));
+        ___qtablewidgetitem13 = self.tableWidget.item(11, 0)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"%RANGE_AVRAGE_VERTICALLY%", None));
+        ___qtablewidgetitem14 = self.tableWidget.item(12, 0)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"%RANGE_AVRAGE_HORIZONTAL%", None));
+        ___qtablewidgetitem15 = self.tableWidget.item(13, 0)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"%RANGE_STD_VERTICALLY%", None));
+        ___qtablewidgetitem16 = self.tableWidget.item(14, 0)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"%RANGE_STD_HORIZONTAL%", None));
+        self.tableWidget.setSortingEnabled(__sortingEnabled2)
+
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Report Codes", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), QCoreApplication.translate("MainWindow", u"Compare Codes", None))
         self.settingpage_export_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_export_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
@@ -6738,15 +6885,15 @@ class Ui_MainWindow(object):
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"Accuracy After Calibration:", None))
         self.calibrationpage_new_acc_lbl.setText(QCoreApplication.translate("MainWindow", u"0.08 mm", None))
 
-        __sortingEnabled2 = self.calibrationpage_last_calib_tabel.isSortingEnabled()
+        __sortingEnabled3 = self.calibrationpage_last_calib_tabel.isSortingEnabled()
         self.calibrationpage_last_calib_tabel.setSortingEnabled(False)
-        ___qtablewidgetitem1 = self.calibrationpage_last_calib_tabel.item(0, 0)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
-        ___qtablewidgetitem2 = self.calibrationpage_last_calib_tabel.item(0, 1)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
-        ___qtablewidgetitem3 = self.calibrationpage_last_calib_tabel.item(0, 2)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
-        self.calibrationpage_last_calib_tabel.setSortingEnabled(__sortingEnabled2)
+        ___qtablewidgetitem17 = self.calibrationpage_last_calib_tabel.item(0, 0)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
+        ___qtablewidgetitem18 = self.calibrationpage_last_calib_tabel.item(0, 1)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
+        ___qtablewidgetitem19 = self.calibrationpage_last_calib_tabel.item(0, 2)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
+        self.calibrationpage_last_calib_tabel.setSortingEnabled(__sortingEnabled3)
 
         self.calibrationpage_last_calib_tabel.setProperty("Date", "")
         self.calibrationpage_liveimage_lbl.setText("")
@@ -6766,7 +6913,7 @@ class Ui_MainWindow(object):
         self.userspage_register_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Username exist", None))
         self.label_88.setText("")
         self.userspage_register_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
-        self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"register user", None))
+        self.user_tabs.setTabText(self.user_tabs.indexOf(self.user_register_tab), QCoreApplication.translate("MainWindow", u"register user", None))
         self.userpage_editprofile_edit_profile_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.label_79.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
         self.label_78.setText(QCoreApplication.translate("MainWindow", u"User Role:", None))
@@ -6783,9 +6930,9 @@ class Ui_MainWindow(object):
         self.userpage_editprofile_change_password_btn.setText(QCoreApplication.translate("MainWindow", u"Change Password", None))
         self.label_89.setText("")
         self.userspage_editprofile_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
-        self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Edit Profile", None))
+        self.user_tabs.setTabText(self.user_tabs.indexOf(self.user_profile_tab), QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
-        self.user_tabs.setTabText(self.user_tabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"All Users", None))
+        self.user_tabs.setTabText(self.user_tabs.indexOf(self.all_users_tab), QCoreApplication.translate("MainWindow", u"All Users", None))
         self.label_82.setText(QCoreApplication.translate("MainWindow", u"PSA-Alpha", None))
         self.label_83.setText(QCoreApplication.translate("MainWindow", u"Dorsa Particle Size Analyzer is a high-end Particle Size Analyzer that uses light and camera to measure and detect particles in the sample. This model can measure particles from 0.3mm to 25mm in diameter. ", None))
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
@@ -6845,9 +6992,9 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_desc2.setText(QCoreApplication.translate("MainWindow", u"Desc2", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table1 - Statistics for each diameter range in the Sample ", None))
 
-        __sortingEnabled3 = self.sreportpage_statictics_table.isSortingEnabled()
+        __sortingEnabled4 = self.sreportpage_statictics_table.isSortingEnabled()
         self.sreportpage_statictics_table.setSortingEnabled(False)
-        self.sreportpage_statictics_table.setSortingEnabled(__sortingEnabled3)
+        self.sreportpage_statictics_table.setSortingEnabled(__sortingEnabled4)
 
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Charts", None))
         self.textEdit_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -6893,9 +7040,9 @@ class Ui_MainWindow(object):
         self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"17", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
 
-        __sortingEnabled4 = self.sreportpage_particels_table.isSortingEnabled()
+        __sortingEnabled5 = self.sreportpage_particels_table.isSortingEnabled()
         self.sreportpage_particels_table.setSortingEnabled(False)
-        self.sreportpage_particels_table.setSortingEnabled(__sortingEnabled4)
+        self.sreportpage_particels_table.setSortingEnabled(__sortingEnabled5)
 
         self.label_100.setText(QCoreApplication.translate("MainWindow", u"Page ", None))
         self.sreportpage_current_page.setText(QCoreApplication.translate("MainWindow", u"-", None))
@@ -6910,17 +7057,17 @@ class Ui_MainWindow(object):
         self.label_57.setText(QCoreApplication.translate("MainWindow", u"Samples", None))
         self.label_111.setText(QCoreApplication.translate("MainWindow", u"Table1 - ", None))
 
-        __sortingEnabled5 = self.comparepage_compare_table.isSortingEnabled()
+        __sortingEnabled6 = self.comparepage_compare_table.isSortingEnabled()
         self.comparepage_compare_table.setSortingEnabled(False)
-        self.comparepage_compare_table.setSortingEnabled(__sortingEnabled5)
+        self.comparepage_compare_table.setSortingEnabled(__sortingEnabled6)
 
         self.label_84.setText(QCoreApplication.translate("MainWindow", u"Charts", None))
         self.label_56.setText(QCoreApplication.translate("MainWindow", u"Avrage Overview", None))
         self.label_112.setText(QCoreApplication.translate("MainWindow", u"Table2 -", None))
 
-        __sortingEnabled6 = self.comparepage_compare_mean_table.isSortingEnabled()
+        __sortingEnabled7 = self.comparepage_compare_mean_table.isSortingEnabled()
         self.comparepage_compare_mean_table.setSortingEnabled(False)
-        self.comparepage_compare_mean_table.setSortingEnabled(__sortingEnabled6)
+        self.comparepage_compare_mean_table.setSortingEnabled(__sortingEnabled7)
 
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Designed and Developed by Dideh Rayan Sanati Esfahan (Dorsa)", None))
     # retranslateUi

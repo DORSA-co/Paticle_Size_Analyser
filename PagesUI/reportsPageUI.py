@@ -183,7 +183,7 @@ class reportsPageUI(commonUI):
     def render_ranges_filter_table(self, standard):
         """show ranges in filter ranges box, corespond to selected standard
         """
-        GUIBackend.set_table_dim(self.ranges_filter_table, row=len(standard.get('ranges',[])) , col=None)
+        GUIBackend.set_table_dim(self.ranges_filter_table, row=len(standard.get('ranges',[])) , col=4)
         self.ranges_filter = []
         for i,(low,high) in enumerate(standard['ranges']):
             text = f'{low}mm - {high}mm'
@@ -206,6 +206,7 @@ class reportsPageUI(commonUI):
                     'input': input,
                 }
             )
+        GUIBackend.set_cell_width_content_adjust(self.ranges_filter_table, None)
 
 
     

@@ -310,7 +310,7 @@ class cameraSettingTabUI(commonSettingUI):
 
         self.fields_enable_status = {
             True: ['gain', 'exposure'],
-            False: ['width','height' ]
+            False: ['width','height', ]
         }
 
         GUIBackend.button_connector(self.camera_start_btn, self.__internal_start_event__)
@@ -408,7 +408,7 @@ class cameraSettingTabUI(commonSettingUI):
         for fields_name in self.fields_enable_status[not(self.__is_start__)]:
             GUIBackend.set_disable(self.settings['camera_setting'][fields_name])
 
-        GUIBackend.set_disable_enable( self.devices_combobox, self.__is_start__ )
+        GUIBackend.set_disable_enable( self.devices_combobox, not(self.__is_start__) )
 
     
     def set_camera_devices(self, devices:list):

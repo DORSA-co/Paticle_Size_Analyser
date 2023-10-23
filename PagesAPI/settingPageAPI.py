@@ -229,6 +229,9 @@ class cameraSettingTabAPI:
     def set_allowed_values_camera_setting(self):
         camera_application = self.ui.get_selected_camera_application()
         spinboxs_range = {}
+        if self.get_camera_parms_range_funcs.get(camera_application) is None:
+            return
+        
         for field_name , get_range_func in self.get_camera_parms_range_funcs[camera_application].items():
             spinboxs_range[ field_name] = get_range_func()
         

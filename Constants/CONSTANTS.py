@@ -10,6 +10,32 @@ class screen:
     H = 0
 
 
+class Color:
+    CHART_TRENDS_COLOR = [
+
+        #dark color
+        '#083782',
+        '#c44b00',
+        '#7a6800',
+        '#2b7a00',
+        '#31f0a6',
+        '#09827e',
+        '#50107d',
+
+        #light color
+        '#5780c2',
+        '#820808',
+        '#e0986c',
+        '#dec63c',
+        '#a9ff7a',
+        '#66e8e4',
+        '#b968f2',
+        '#e673d6',
+        
+
+    ]
+
+
 
 
 

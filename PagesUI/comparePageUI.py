@@ -3,6 +3,7 @@ from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
 from uiUtils import GUIComponents
 from uiUtils.Charts.lineChart import LineChart, Trend
+from Constants import CONSTANTS
 import random
 import numpy as np
 
@@ -120,23 +121,28 @@ class comparePageUI(commonUI):
 
 
 
-    def show_trends_chart(self, datas:np.ndarray, ranges:list[list]):
+    def show_trends_chart(self, datas:np.ndarray, ranges:list[list], y_lable):
         sample_count = len(datas)
         y_range_max = int(datas.max()) + 5
 
         
         self.trends_chart.set_axisY_range((0,y_range_max))
-        #self.trends_chart.remove_all_trends()
+        self.trends_chart.remove_all_trends()
+        self.trends_chart.set_axisY_label(y_lable)
         
         
         for i, _range in enumerate(ranges):
             range_str = f'{_range[0]}mm - {_range[1]}mm'
             
-            color = random.randrange(0, 2**24)
-            color = str(hex(color))
-            color = '#' + color[2:]
+            color = None
+            if i < len(CONSTANTS.Color.CHART_TRENDS_COLOR):
+                color = CONSTANTS.Color.CHART_TRENDS_COLOR[i]
+            else:
+                color = random.randrange(0, 2**24)
+                color = str(hex(color))
+                color = '#' + color[2:]
 
-            trend = Trend(name=range_str, line_color=color, line_width=2)
+            trend = Trend(name=range_str, line_color=color, line_width=3)
             trend.add_data(np.arange(sample_count), datas[:,i])
             self.trends_chart.add_trend(trend)
 

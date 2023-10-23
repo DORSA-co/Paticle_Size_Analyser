@@ -90,9 +90,9 @@ class settingCameraDB(parentSettingDB):
             self.db_manager.add_record_dict(self.TABLE_NAME, data)
     
 
-    def load(self, camera_number):
+    def load(self, camera_application):
 
-        record =  self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, camera_number)
+        record =  self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, camera_application)
         if len(record)>0:
             return record[0]
         return {}

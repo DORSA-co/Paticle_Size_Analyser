@@ -115,8 +115,10 @@ class main_API(QObject):
         
 
     def creat_camera(self)-> Camera:
-
-        for camera_application, serial_number in cameras_serial_number.items():
+        camera_application = 'standard'
+        settings = self.db.setting_db.camera_db.load(camera_application)
+        serial_number = settings['serial_number']
+        if serial_number in cameras_serial_number.items():
             collector = Collector()
             camera = collector.get_camera_by_serial(serial_number)
         

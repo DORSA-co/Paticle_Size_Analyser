@@ -49,8 +49,8 @@ class comparePageAPI:
         self.ui.show_page_content(False)
         #progress bar 0
         self.ui.set_progressbar(0)
-        atr = self.ui.get_compare_attribute()
-        attribute_key, attribute_unit =  self.attribute_dict[atr]
+        attribute = self.ui.get_compare_attribute()
+        attribute_key, attribute_unit =  self.attribute_dict[attribute]
 
         self.compare = compare
         if self.compare is None:
@@ -95,7 +95,10 @@ class comparePageAPI:
             self.ui.set_compare_table(data, attribute_unit)
             self.ui.set_total_mean_table(data_mean)
             self.ui.show_page_content(True)
-            self.ui.show_trends_chart(samples_ranges_data, compare.standard['ranges'])
+            self.ui.show_trends_chart(samples_ranges_data,
+                                      compare.standard['ranges'],
+                                      y_lable=attribute
+                                      )
             
 
 

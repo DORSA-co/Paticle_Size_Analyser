@@ -357,8 +357,10 @@ class GUIBackend:
             combo (QtWidgets.QComboBox): Qt comboBox object
             items (list[str]): list of string items
         """
+        #GUIBackend.set_signal_connection(combo,False)
         combo.clear()
         combo.insertItems(0, items)
+        #GUIBackend.set_signal_connection(combo,True)
 
     @staticmethod
     def add_combobox_item( combo: QtWidgets.QComboBox, item: str):

@@ -1,9 +1,12 @@
+import os
+
 from backend.Camera.dorsaPylon import Collector, Camera
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
-import os
+from uiUtils import GUIComponents
+
 
 class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database:settingDB, cameras):
@@ -165,8 +168,41 @@ class cameraSettingTabAPI:
 
         self.set_camera_parms_funcs = { }
         self.get_camera_parms_range_funcs = {}
+        self.external_camera_change_event = None
+
+        self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_devices_event)
 
         #camera_application could be 'standard' and 'zoom' corespond to camera usage for measuring particles
+        
+
+        
+        self.setup_camera_funcs()
+        self.load_from_database()
+        self.ui.change_setting_event_connector(self.update_setting_event)
+        self.ui.start_stop_event_connector( self.play_stop_camera )
+        self.ui.save_button_connector(self.save_setting)
+        self.ui.cancel_button_connector(self.cancel)
+        self.ui.restor_button_connector(self.restor)
+        self.ui.change_camera_connector(self.change_camera)
+        self.set_allowed_values_camera_setting()
+        
+
+    def startup(self):
+        self.ui.reset()
+        self.device_checker_timer.start()
+
+    def endup(self,) -> bool:
+        """_summary_
+
+        Returns:
+            bool: permition for change page. if True page change is acceptable
+        """
+        for  camera in self.cameras.values():
+            camera.Operations.stop_grabbing()
+        self.device_checker_timer.stop()
+        return True
+    
+    def setup_camera_funcs(self,):
         for camera_application in self.cameras.keys():
         
             set_funcs = {
@@ -186,28 +222,6 @@ class cameraSettingTabAPI:
             self.set_camera_parms_funcs[camera_application] = set_funcs
             self.get_camera_parms_range_funcs[camera_application] = range_funcs
 
-        self.load_from_database()
-        self.ui.change_setting_event_connector(self.update_setting_event)
-        self.ui.start_stop_event_connector( self.play_stop_camera )
-        self.ui.save_button_connector(self.save_setting)
-        self.ui.cancel_button_connector(self.cancel)
-        self.ui.restor_button_connector(self.restor)
-        self.set_allowed_values_camera_setting()
-        
-
-    def startup(self):
-        self.ui.reset()
-
-    def endup(self,) -> bool:
-        """_summary_
-
-        Returns:
-            bool: permition for change page. if True page change is acceptable
-        """
-        for  camera in self.cameras.values():
-            camera.Operations.stop_grabbing()
-        return True
-
     def update_setting_event(self, group_setting, camera_application, settings = None):
         #when event happend, settings argument got value from ui
         #if settings is None:
@@ -217,6 +231,17 @@ class cameraSettingTabAPI:
         else:
             pass
 
+    def set_camera_device_change_event(self, func):
+        self.external_camera_change_event = func
+
+    def change_camera(self,):
+        device = {'application':'standard',
+                  'serial_number': self.ui.get_camera_device()
+                  }
+        if self.external_camera_change_event is not None:
+            self.external_camera_change_event(device)
+
+        self.setup_camera_funcs()
     
     def set_camera_setting(self,camera_application, settings):
         #select which camera should be update
@@ -237,6 +262,8 @@ class cameraSettingTabAPI:
         
         self.ui.set_camera_settings_spinbox_ranges(spinboxs_range)
         #----------
+    
+    def check_devices_event(self,):
         available_devices = self.camera_collector.get_all_serials()
         self.ui.set_camera_devices(available_devices)
 
@@ -267,6 +294,7 @@ class cameraSettingTabAPI:
         settings['application'] = camera_application
         self.database.save(settings)
         self.set_camera_setting(camera_application, settings)
+        self.ui.save_state(True)
 
     def cancel(self):
         state = self.ui.show_confirm_box("Cancel", "Are You Sure?", 

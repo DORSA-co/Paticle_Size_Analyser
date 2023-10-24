@@ -1,6 +1,7 @@
 import cv2
 from PySide6.QtCore import QThread, QObject
 from datetime import datetime
+import time
 
 from backend.Camera import dorsaPylon, PylonFlags
 from backend.Camera.dorsaPylon import Collector, Camera
@@ -28,7 +29,7 @@ from appUI import mainUI
 #from PySide6.QtCore import QTimer
 from subPrograms.dbInit.dbInitAPI import dbInitAPI
 
-cameras_serial_number = {'standard': '23804186'}
+#cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
     def __init__(self, ui:mainUI) -> None:
         self.ui = ui
@@ -42,9 +43,11 @@ class main_API(QObject):
         else:
             self.db.build()
 
-        self.cameras = {}
-        self.creat_camera()
-        self.run_camera_grabbing()
+        self.cameras: dict[str, Camera] = {}
+        cameras_serial_numbers = self.db.setting_db.camera_db.get_camera_devices()
+        for cam_device_info in cameras_serial_numbers:
+            self.creat_camera(cam_device_info)
+            self.run_camera_grabbing()
         
 
         #apps-----------------------------------------
@@ -74,6 +77,7 @@ class main_API(QObject):
         self.reportsPageAPI.set_compare_event_func(self.show_compare_event)
         self.gradingRangesPageAPI.set_new_standard_event_func( self.standard_event )
         self.gradingRangesPageAPI.set_remove_standard_event_func( self.standard_event )
+        self.settingPageAPI.cameraSetting.set_camera_device_change_event(self.update_camera_device_event)
 
 
 
@@ -114,43 +118,66 @@ class main_API(QObject):
         self.ui.usersPage.loginUserBox.show_login()
         
 
-    def creat_camera(self)-> Camera:
-        camera_application = 'standard'
-        settings = self.db.setting_db.camera_db.load(camera_application)
-        serial_number = settings['serial_number']
-        if serial_number in cameras_serial_number.items():
-            collector = Collector()
-            camera = collector.get_camera_by_serial(serial_number)
+    def creat_camera(self, camera_device_info)-> Camera:
+        cam_application = camera_device_info['application']
+        serial_number = camera_device_info['serial_number']
         
-            if camera is None:
-                #self.mainPageAPI
-                collector.enable_camera_emulation(1)
-                camera = collector.get_all_cameras(camera_class=PylonFlags.CamersClass.emulation)[0]
+        collector = Collector()
+        collector.enable_camera_emulation(1)
+        cameras_serial_number = collector.get_all_serials()
         
-            camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
+        if serial_number in cameras_serial_number:
             
-            self.cameras[camera_application] = camera
+            camera = collector.get_camera_by_serial(serial_number)
+            camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
+            self.cameras[cam_application] = camera
+
+            #self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
+        else:
+            pass
+            #self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
 
 
     def run_camera_grabbing(self,):
 
         self.camera_workers = {}
-        self.cam_threads = {}
+        self.camera_threads = {}
         for camera_name, camera in self.cameras.items():
             camera.Operations.open()
 
             self.camera_workers[camera_name] = cameraWorker( camera )
-            self.cam_threads[camera_name] = QThread()
-            self.camera_workers[camera_name].moveToThread( self.cam_threads[camera_name] )
-            self.cam_threads[camera_name].started.connect( self.camera_workers[camera_name].grabber )
+            self.camera_threads[camera_name] = QThread()
+            self.camera_workers[camera_name].moveToThread( self.camera_threads[camera_name] )
+            self.camera_threads[camera_name].started.connect( self.camera_workers[camera_name].grabber )
             self.camera_workers[camera_name].success_grab_signal.connect(self.grabbed_image_event)
-            self.cam_threads[camera_name].start()
+
+            self.camera_workers[camera_name].finished.connect(self.camera_threads[camera_name].quit)
+            self.camera_threads[camera_name].finished.connect(self.camera_threads[camera_name].deleteLater)
+            self.camera_workers[camera_name].finished.connect(self.camera_workers[camera_name].deleteLater)
+            self.camera_workers[camera_name].finished.connect(self.test)
+            
+            self.camera_threads[camera_name].start()
+
+    def test(self,):
+        print('test')
 
 
     #_________________________________________________________________________________________________________________________
     #
     #
     #_________________________________________________________________________________________________________________________
+    def update_camera_device_event(self, camera_device_info: dict):
+        cam_application = camera_device_info['application']
+        #cam_sn = list(camera_serial_number.values())[0]
+        self.cameras[cam_application].Operations.close()
+
+        self.camera_workers[cam_application].stop()
+        self.creat_camera(camera_device_info)
+        
+        #self.run_camera_grabbing()
+        
+
+
 
     def page_change_event(self, current_page_name, new_page_name):
 

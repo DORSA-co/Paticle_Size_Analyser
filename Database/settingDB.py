@@ -96,7 +96,18 @@ class settingCameraDB(parentSettingDB):
         if len(record)>0:
             return record[0]
         return {}
+    
+    def get_camera_devices(self,) -> dict:
+        records =  self.db_manager.get_all_content(self.TABLE_NAME)
+        res = []
+        for record in records:
+            res.append(
+                {'application': record['application'],
+                  'serial_number': record['serial_number'] }
+            )
 
+
+        return res
 
 
 

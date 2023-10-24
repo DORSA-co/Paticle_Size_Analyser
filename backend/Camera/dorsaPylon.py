@@ -112,9 +112,18 @@ class Camera:
 
         
         self.converter = self.build_converter(PixelType.BGR8)
+        self.nodes_name = self.get_available_nodes()
         self.timeout = 5000
         self.image = None
 
+    def get_available_nodes(self,):
+        nodeMap = self.camera_device.GetNodeMap()
+        nodes = nodeMap.GetNodes()
+        return list(map(lambda x:x.Node.Name, nodes))
+
+
+    def is_node_available(self, node_name):
+        return node_name in self.nodes_name
     
     def reset(self,):
         """Reset all camera settings
@@ -268,9 +277,9 @@ class CameraStatus:
         Returns:
             float: device tempreture
         """
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('DeviceTemperature'):
             return self.camera_object.camera_device.DeviceTemperature.GetValue()
-        else:
+        elif self.camera_object.is_node_available('TemperatureAbs'):
             return self.camera_object.camera_device.TemperatureAbs.GetValue()
 
 
@@ -310,6 +319,8 @@ class CameraOperations:
 class CameraParms:
     def __init__(self, camera_object: Camera):
         self.camera_object = camera_object
+
+    
 
     def __set_value__(self, value, parameter):
         if not self.camera_object.Status.is_open():
@@ -444,45 +455,48 @@ class CameraParms:
 
     def set_gain(self, gain: int) -> None:
         """set gain of camera"""
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('Gain'):
             self.__set_value__(gain, self.camera_object.camera_device.Gain)
-        else:
+        elif self.camera_object.is_node_available('GainRaw'):
             self.__set_value__(gain, self.camera_object.camera_device.GainRaw)
     
     def get_gain(self) -> int:
         """get gain of camera"""
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('Gain'):
             return self.__get_value__( self.camera_object.camera_device.Gain)
-        else:
+        elif self.camera_object.is_node_available('GainRaw'):
             return self.__get_value__( self.camera_object.camera_device.GainRaw)
 
     def get_gain_range(self) -> tuple[int, int]:
         """get allowable range of gain of camera"""
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('Gain'):
             return self.__get_value_range__( self.camera_object.camera_device.Gain)
-        else:
+        elif self.camera_object.is_node_available('GainRaw'):
             return self.__get_value_range__( self.camera_object.camera_device.GainRaw)
 
 
     def set_exposureTime(self, exposure: int) -> None:
         """set ExposureTime of camera"""
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('ExposureTime'):
             self.__set_value__(exposure, self.camera_object.camera_device.ExposureTime)
-        else:
+
+        elif self.camera_object.is_node_available('ExposureTimeAbs'):
             self.__set_value__(exposure, self.camera_object.camera_device.ExposureTimeAbs)
     
     def get_exposureTime(self) -> int:
         """get ExposureTime of camera"""
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('ExposureTime'):
             return self.__get_value__( self.camera_object.camera_device.ExposureTime)
-        else:
+        
+        elif self.camera_object.is_node_available('ExposureTimeAbs'):
             return self.__get_value__(self.camera_object.camera_device.ExposureTimeAbs)
 
     def get_exposureTime_range(self) -> tuple [int, int]:
         """get allowable range of ExposureTime of camera"""
-        if self.camera_object.Infos.is_PRO():
+        if self.camera_object.is_node_available('ExposureTime'):
             return self.__get_value_range__( self.camera_object.camera_device.ExposureTime)
-        else:
+        
+        elif self.camera_object.is_node_available('ExposureTimeAbs'):
             return self.__get_value_range__(self.camera_object.camera_device.ExposureTimeAbs)
 
 
@@ -738,10 +752,10 @@ class Collector:
     
     def get_all_serials(self,) -> list[str]:
         """return list of serialnumber of available cameras"""
-        cameras = self.get_all_cameras()
+        self.devices = self.get_available_devices(None)
         serial_list = []
-        for cam in cameras:
-            sn = cam.Infos.get_serialnumber()
+        for device in self.devices:
+            sn = device.GetSerialNumber()
             serial_list.append(sn)
         return serial_list
 

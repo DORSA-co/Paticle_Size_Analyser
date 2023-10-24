@@ -358,8 +358,14 @@ class cameraSettingTabUI(commonSettingUI):
         """
         for setting_type in self.settings.keys():
             for field_name, field in self.settings[setting_type].items():
-                if GUIBackend.is_spinbox(field):
-                    GUIBackend.spinbox_connector(field, self.__internal_change_setting_event__(setting_type, field_name))
+                if field_name =='serial_number':
+                    continue
+
+                
+                GUIBackend.connector(field, self.__internal_change_setting_event__(setting_type, field_name))
+    
+    def change_camera_connector(self, func):
+        GUIBackend.combobox_changeg_connector(self.settings['others']['serial_number'], func)
 
 
     
@@ -417,7 +423,14 @@ class cameraSettingTabUI(commonSettingUI):
         Args:
             devices (list): list of camera devices
         """
+        GUIBackend.set_signal_connection(self.devices_combobox, False)
+
+        current_device = GUIBackend.get_combobox_selected(self.devices_combobox)
         GUIBackend.set_combobox_items(self.devices_combobox, devices)
+        if current_device!='':
+            GUIBackend.set_combobox_current_item(self.devices_combobox, current_device)
+
+        GUIBackend.set_signal_connection(self.devices_combobox, True)
 
 
     def get_camera_device(self,):

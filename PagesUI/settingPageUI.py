@@ -358,10 +358,9 @@ class cameraSettingTabUI(commonSettingUI):
         """
         for setting_type in self.settings.keys():
             for field_name, field in self.settings[setting_type].items():
-                if field_name =='serial_number':
-                    continue
-
-                
+                # if field_name =='serial_number':
+                #     continue
+  
                 GUIBackend.connector(field, self.__internal_change_setting_event__(setting_type, field_name))
     
     def change_camera_connector(self, func):

@@ -1,4 +1,5 @@
 import os
+from PySide6.QtCore import QThread, QObject, Signal, QMutex
 
 from backend.Camera.dorsaPylon import Collector, Camera
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB
@@ -158,7 +159,7 @@ class storageSettingTabAPI:
 
 
 class cameraSettingTabAPI:
-
+    DEBUG_PROCESS_THREAD = False    
     def __init__(self, ui:cameraSettingTabUI ,database:settingCameraDB, cameras: dict[str, Camera]):
         self.ui = ui
         self.database = database
@@ -239,6 +240,7 @@ class cameraSettingTabAPI:
                   'serial_number': self.ui.get_camera_device()
                   }
         if self.external_camera_change_event is not None:
+            pass
             self.external_camera_change_event(device)
 
         self.setup_camera_funcs()
@@ -264,10 +266,27 @@ class cameraSettingTabAPI:
         #----------
     
     def check_devices_event(self,):
-        available_devices = self.camera_collector.get_all_serials()
-        self.ui.set_camera_devices(available_devices)
+        self.device_checker_thread = QThread()
+        self.device_checker_worker = DeviceTrackingWorker(self.camera_collector)
+        if not self.DEBUG_PROCESS_THREAD:
+            self.device_checker_worker.moveToThread(self.device_checker_thread)
+        self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
+        self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
+        self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
+        self.device_checker_worker.finished.connect(self.refresh_devices)
+        self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
 
-        
+        if self.DEBUG_PROCESS_THREAD:
+            self.device_checker_worker.serial_number_finder()
+        else:
+            self.device_checker_thread.start()
+
+
+    def refresh_devices(self):
+        list_of_available_cameras = self.device_checker_worker.get_available_serials()
+        self.ui.set_camera_devices(list_of_available_cameras)
+
+
     def play_stop_camera(self,is_playing):
         self.is_playing = is_playing
         camera_application = self.ui.get_selected_camera_application()
@@ -400,3 +419,20 @@ class exportSettingTabAPI:
         self.ui.set_setting(data)
         self.ui.save_state(True)
         
+
+class DeviceTrackingWorker(QObject):
+    finished = Signal()
+    finished_processing = Signal()
+    def __init__(self, collector: Collector) -> None:
+        self.collector = collector
+        super().__init__()
+
+    def serial_number_finder(self):
+        for i in range(1):
+            self.available_serials = self.collector.get_all_serials()
+        self.finished.emit()
+
+    def get_available_serials(self):
+        return self.available_serials
+    
+

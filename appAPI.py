@@ -32,6 +32,7 @@ from subPrograms.dbInit.dbInitAPI import dbInitAPI
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
     def __init__(self, ui:mainUI) -> None:
+        self.tflag = False
         self.ui = ui
         self.db = mainDatabase()
         db_status = self.db.connect()
@@ -80,7 +81,7 @@ class main_API(QObject):
         self.settingPageAPI.cameraSetting.set_camera_device_change_event(self.update_camera_device_event)
 
 
-
+        
 
         #this functions should run when each page load
         self.pages_startups = {
@@ -139,27 +140,47 @@ class main_API(QObject):
 
 
     def run_camera_grabbing(self,):
-
-        self.camera_workers = {}
-        self.camera_threads = {}
+        print('run_grabbing')
+        self.camera_workers:dict[str, cameraWorker] = {}
+        self.camera_threads:dict[str, QThread]= {}
         for camera_name, camera in self.cameras.items():
+            print(camera_name)
             camera.Operations.open()
-
+            print('1') 
             self.camera_workers[camera_name] = cameraWorker( camera )
             self.camera_threads[camera_name] = QThread()
+            print('2') 
+
             self.camera_workers[camera_name].moveToThread( self.camera_threads[camera_name] )
             self.camera_threads[camera_name].started.connect( self.camera_workers[camera_name].grabber )
             self.camera_workers[camera_name].success_grab_signal.connect(self.grabbed_image_event)
 
+            
             self.camera_workers[camera_name].finished.connect(self.camera_threads[camera_name].quit)
             self.camera_threads[camera_name].finished.connect(self.camera_threads[camera_name].deleteLater)
             self.camera_workers[camera_name].finished.connect(self.camera_workers[camera_name].deleteLater)
             self.camera_workers[camera_name].finished.connect(self.test)
             
+            
+            #if not self.tflag:
             self.camera_threads[camera_name].start()
+            print('3') 
+        # time.sleep(2)
+        # self.camera_workers['standard'].stop()
+        # self.camera_workers['standard'].finished.emit()
+        # print('test stop handly')
+
 
     def test(self,):
         print('test')
+        cam_application = self.camera_device_info['application']
+        while not self.camera_threads[cam_application ].isFinished():
+            print('aaaaa')
+        print('afrer')
+        #time.sleep(1)
+        self.creat_camera(self.camera_device_info)
+        self.run_camera_grabbing()
+
 
 
     #_________________________________________________________________________________________________________________________
@@ -167,12 +188,26 @@ class main_API(QObject):
     #
     #_________________________________________________________________________________________________________________________
     def update_camera_device_event(self, camera_device_info: dict):
+        print(camera_device_info)
         cam_application = camera_device_info['application']
         #cam_sn = list(camera_serial_number.values())[0]
+        print( self.cameras)
         self.cameras[cam_application].Operations.close()
-
+        time.sleep(0.5)
+        self.camera_device_info = camera_device_info
+        #self.creat_camera(self.camera_device_info)
+        #self.camera_workers[cam_application].change_camera(self.cameras[cam_application])
         self.camera_workers[cam_application].stop()
-        self.creat_camera(camera_device_info)
+        #self.camera_workers[cam_application].finished.emit()
+        
+        print('end of update_camera_device_event')
+        
+        self.tflag = True
+        #time.sleep(1)
+        #self.run_camera_grabbing()
+
+        
+        #self.creat_camera(camera_device_info)
         
         #self.run_camera_grabbing()
         

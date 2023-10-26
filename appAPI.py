@@ -43,8 +43,10 @@ class main_API(QObject):
             
         else:
             self.db.build()
-
+        self.camera_device_info = {}
         self.cameras: dict[str, Camera] = {}
+        collector = Collector()
+        collector.enable_camera_emulation(1)
         cameras_serial_numbers = self.db.setting_db.camera_db.get_camera_devices()
         for cam_device_info in cameras_serial_numbers:
             self.creat_camera(cam_device_info)
@@ -59,6 +61,7 @@ class main_API(QObject):
         print(f'{self.storageCleanerApp.removed_counter} samples removed')
 
         #Pages_api------------------------------------
+        #self.mainPageAPI = None
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
         self.gradingRangesPageAPI = standardsPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
         self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db )
@@ -109,7 +112,6 @@ class main_API(QObject):
             'compare': None,
         }
 
-        
 
         #TEMP
         self.login_user_event()
@@ -124,7 +126,6 @@ class main_API(QObject):
         serial_number = camera_device_info['serial_number']
         
         collector = Collector()
-        collector.enable_camera_emulation(1)
         cameras_serial_number = collector.get_all_serials()
         
         if serial_number in cameras_serial_number:
@@ -135,21 +136,20 @@ class main_API(QObject):
 
             #self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
         else:
-            pass
+            print('Camera serial number is not avaiable')
             #self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
 
 
     def run_camera_grabbing(self,):
-        print('run_grabbing')
         self.camera_workers:dict[str, cameraWorker] = {}
         self.camera_threads:dict[str, QThread]= {}
         for camera_name, camera in self.cameras.items():
-            print(camera_name)
+            self.camera_device_info['application'] = camera_name
+            self.camera_device_info['serial_number']= camera.Infos.get_serialnumber()
             camera.Operations.open()
-            print('1') 
+
             self.camera_workers[camera_name] = cameraWorker( camera )
             self.camera_threads[camera_name] = QThread()
-            print('2') 
 
             self.camera_workers[camera_name].moveToThread( self.camera_threads[camera_name] )
             self.camera_threads[camera_name].started.connect( self.camera_workers[camera_name].grabber )
@@ -159,27 +159,15 @@ class main_API(QObject):
             self.camera_workers[camera_name].finished.connect(self.camera_threads[camera_name].quit)
             self.camera_threads[camera_name].finished.connect(self.camera_threads[camera_name].deleteLater)
             self.camera_workers[camera_name].finished.connect(self.camera_workers[camera_name].deleteLater)
-            self.camera_workers[camera_name].finished.connect(self.test)
+            #self.camera_workers[camera_name].finished.connect(self.test)
             
             
-            #if not self.tflag:
             self.camera_threads[camera_name].start()
-            print('3') 
-        # time.sleep(2)
-        # self.camera_workers['standard'].stop()
-        # self.camera_workers['standard'].finished.emit()
-        # print('test stop handly')
 
 
-    def test(self,):
-        print('test')
-        cam_application = self.camera_device_info['application']
-        while not self.camera_threads[cam_application ].isFinished():
-            print('aaaaa')
-        print('afrer')
-        #time.sleep(1)
-        self.creat_camera(self.camera_device_info)
-        self.run_camera_grabbing()
+    # def test(self,):
+    #     print('test')
+ 
 
 
 
@@ -188,29 +176,13 @@ class main_API(QObject):
     #
     #_________________________________________________________________________________________________________________________
     def update_camera_device_event(self, camera_device_info: dict):
-        print(camera_device_info)
         cam_application = camera_device_info['application']
-        #cam_sn = list(camera_serial_number.values())[0]
-        print( self.cameras)
         self.cameras[cam_application].Operations.close()
         time.sleep(0.5)
-        self.camera_device_info = camera_device_info
-        #self.creat_camera(self.camera_device_info)
-        #self.camera_workers[cam_application].change_camera(self.cameras[cam_application])
-        self.camera_workers[cam_application].stop()
-        #self.camera_workers[cam_application].finished.emit()
-        
-        print('end of update_camera_device_event')
-        
-        self.tflag = True
-        #time.sleep(1)
-        #self.run_camera_grabbing()
 
-        
-        #self.creat_camera(camera_device_info)
-        
-        #self.run_camera_grabbing()
-        
+        self.creat_camera(camera_device_info)
+        self.camera_workers[cam_application].camera  = self.cameras[cam_application]
+
 
 
 

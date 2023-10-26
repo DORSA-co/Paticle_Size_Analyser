@@ -172,7 +172,10 @@ class cameraSettingTabAPI:
         self.external_camera_change_event = None
 
         self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_devices_event)
+        self.device_checker_timer.start()
 
+        collerctor = Collector()
+        self.ui.set_camera_devices(collerctor.get_all_serials())
         #camera_application could be 'standard' and 'zoom' corespond to camera usage for measuring particles
         
 
@@ -190,7 +193,7 @@ class cameraSettingTabAPI:
 
     def startup(self):
         self.ui.reset()
-        self.device_checker_timer.start()
+        
 
     def endup(self,) -> bool:
         """_summary_
@@ -200,7 +203,7 @@ class cameraSettingTabAPI:
         """
         for  camera in self.cameras.values():
             camera.Operations.stop_grabbing()
-        self.device_checker_timer.stop()
+        #self.device_checker_timer.stop()
         return True
     
     def setup_camera_funcs(self,):
@@ -236,7 +239,7 @@ class cameraSettingTabAPI:
         self.external_camera_change_event = func
 
     def change_camera(self,):
-        device = {'application':'standard',
+        device = {'application': self.ui.get_selected_camera_application(),
                   'serial_number': self.ui.get_camera_device()
                   }
         if self.external_camera_change_event is not None:
@@ -271,9 +274,9 @@ class cameraSettingTabAPI:
         if not self.DEBUG_PROCESS_THREAD:
             self.device_checker_worker.moveToThread(self.device_checker_thread)
         self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
+        self.device_checker_worker.serials_ready.connect(self.refresh_devices)
         self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
         self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
-        self.device_checker_worker.finished.connect(self.refresh_devices)
         self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
 
         if self.DEBUG_PROCESS_THREAD:
@@ -422,7 +425,8 @@ class exportSettingTabAPI:
 
 class DeviceTrackingWorker(QObject):
     finished = Signal()
-    finished_processing = Signal()
+
+    serials_ready = Signal()
     def __init__(self, collector: Collector) -> None:
         self.collector = collector
         super().__init__()
@@ -430,6 +434,7 @@ class DeviceTrackingWorker(QObject):
     def serial_number_finder(self):
         for i in range(1):
             self.available_serials = self.collector.get_all_serials()
+            self.serials_ready.emit()
         self.finished.emit()
 
     def get_available_serials(self):

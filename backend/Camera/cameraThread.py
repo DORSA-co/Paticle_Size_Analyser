@@ -1,7 +1,7 @@
 #from PySide6.QtCore import QObject
 from PySide6.QtCore import QThread
 from PySide6.QtCore import Signal, QMutex, QObject
-from backend.Camera.dorsaPylon import Camera
+from backend.Camera.dorsaPylon import Camera, Collector
 import cv2
 import time
 
@@ -42,3 +42,24 @@ class cameraWorker(QObject):
                 print('camera Error happend in thread while !', e)
         print('end of Camra Thread While')
         self.finished.emit()
+
+
+
+
+
+class DeviceCheckerWorker(QObject):
+    finished = Signal()
+
+    serials_ready = Signal()
+    def __init__(self, collector: Collector) -> None:
+        self.collector = collector
+        super().__init__()
+
+    def serial_number_finder(self):
+        for i in range(1):
+            self.available_serials = self.collector.get_all_serials()
+            # self.serials_ready.emit()
+        self.finished.emit()
+
+    def get_available_serials(self):
+        return self.available_serials

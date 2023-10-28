@@ -171,8 +171,7 @@ class cameraSettingTabAPI:
         self.get_camera_parms_range_funcs = {}
         self.external_camera_change_event = None
 
-        self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_devices_event)
-        self.device_checker_timer.start()
+        
 
         collerctor = Collector()
         self.ui.set_camera_devices(collerctor.get_all_serials())
@@ -247,13 +246,15 @@ class cameraSettingTabAPI:
             self.external_camera_change_event(device)
 
         self.setup_camera_funcs()
+        self.set_allowed_values_camera_setting()
     
     def set_camera_setting(self,camera_application, settings):
-        #select which camera should be update
-        for setting_name , value in settings.items():
-            corespond_parm_function = self.set_camera_parms_funcs[camera_application].get(setting_name)
-            if corespond_parm_function is not None:
-                corespond_parm_function( value )
+        if self.set_camera_parms_funcs.get(camera_application) is not None:
+            #select which camera should be update
+            for setting_name , value in settings.items():
+                corespond_parm_function = self.set_camera_parms_funcs[camera_application].get(setting_name)
+                if corespond_parm_function is not None:
+                    corespond_parm_function( value )
 
 
     def set_allowed_values_camera_setting(self):
@@ -268,25 +269,10 @@ class cameraSettingTabAPI:
         self.ui.set_camera_settings_spinbox_ranges(spinboxs_range)
         #----------
     
-    def check_devices_event(self,):
-        self.device_checker_thread = QThread()
-        self.device_checker_worker = DeviceTrackingWorker(self.camera_collector)
-        if not self.DEBUG_PROCESS_THREAD:
-            self.device_checker_worker.moveToThread(self.device_checker_thread)
-        self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
-        self.device_checker_worker.serials_ready.connect(self.refresh_devices)
-        self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
-        self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
-        self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
-
-        if self.DEBUG_PROCESS_THREAD:
-            self.device_checker_worker.serial_number_finder()
-        else:
-            self.device_checker_thread.start()
+    
 
 
-    def refresh_devices(self):
-        list_of_available_cameras = self.device_checker_worker.get_available_serials()
+    def set_devices(self, list_of_available_cameras):
         self.ui.set_camera_devices(list_of_available_cameras)
 
 
@@ -296,12 +282,14 @@ class cameraSettingTabAPI:
         if is_playing:
             settings = self.ui.get_camera_settings()
             self.set_camera_setting(camera_application, settings)
-            cam = self.cameras[camera_application]
-            cam.Operations.start_grabbing()
+            cam = self.cameras.get(camera_application)
+            if cam is not None:
+                cam.Operations.start_grabbing()
         
         else:
-            cam = self.cameras[camera_application]
-            cam.Operations.stop_grabbing()
+            cam = self.cameras.get(camera_application)
+            if cam is not None:
+                cam.Operations.stop_grabbing()
     
     def show_live_image(self,):
         camera_application = self.ui.get_selected_camera_application()
@@ -423,21 +411,6 @@ class exportSettingTabAPI:
         self.ui.save_state(True)
         
 
-class DeviceTrackingWorker(QObject):
-    finished = Signal()
 
-    serials_ready = Signal()
-    def __init__(self, collector: Collector) -> None:
-        self.collector = collector
-        super().__init__()
-
-    def serial_number_finder(self):
-        for i in range(1):
-            self.available_serials = self.collector.get_all_serials()
-            self.serials_ready.emit()
-        self.finished.emit()
-
-    def get_available_serials(self):
-        return self.available_serials
     
 

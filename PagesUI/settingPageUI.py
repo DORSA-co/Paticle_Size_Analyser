@@ -282,6 +282,7 @@ class cameraSettingTabUI(commonSettingUI):
         self.__is_start__ = False
         self.__connection_event_function__ = None
         self.__change_setting_event_function__ = None
+        self._serial_number = ''
 
         
 
@@ -428,6 +429,8 @@ class cameraSettingTabUI(commonSettingUI):
         GUIBackend.set_combobox_items(self.devices_combobox, devices)
         if current_device!='':
             GUIBackend.set_combobox_current_item(self.devices_combobox, current_device)
+        else:
+            GUIBackend.set_combobox_current_item(self.devices_combobox, self._serial_number)
 
         GUIBackend.set_signal_connection(self.devices_combobox, True)
 
@@ -478,6 +481,7 @@ class cameraSettingTabUI(commonSettingUI):
     
     def set_all_settings(self, settings:dict):
         if settings.get('serial_number'):
+            self._serial_number = settings['serial_number']
             GUIBackend.set_combobox_current_item(self.devices_combobox, settings['serial_number'])
         
         if settings.get('fps'):

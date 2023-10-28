@@ -313,4 +313,5 @@ class mainUI:
         GUIBackend.set_win_frameless(self.db_init_ui)
         GUIBackend.show_window(self.db_init_ui, True)
 
-    
+    def change_cursure(self, name):
+        GUIBackend.cursor_changer(name)

@@ -1,11 +1,15 @@
-from PySide6 import QtWidgets, QtCore, QtGui 
+from PySide6 import QtWidgets, QtCore, QtGui
+from PySide6.QtCore import Qt
 from functools import partial
 import cv2 
 from datetime import datetime, date
 import sys
 from PySide6.QtGui import QMovie
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QApplication
 from Constants import CONSTANTS
+
+
 
 
 class GUIBackend:
@@ -147,8 +151,15 @@ class GUIBackend:
         """
         wdgt.setEnabled(status)
 
-    
-    
+    @staticmethod
+    def cursor_changer(cursor_shape:str):
+        dict_cur = {
+            'wait': Qt.CursorShape.WaitCursor,
+        }
+        if cursor_shape is None:
+            QApplication.restoreOverrideCursor()
+        else:
+            QApplication.setOverrideCursor(dict_cur[cursor_shape])
 
 
 

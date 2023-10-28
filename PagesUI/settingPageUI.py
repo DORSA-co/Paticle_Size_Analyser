@@ -387,7 +387,9 @@ class cameraSettingTabUI(commonSettingUI):
                 self.__change_setting_event_function__(setting_group, self.camera_application, arg)
         return func
 
-
+    def stop(self):
+        if self.__is_start__:
+            self.__internal_start_event__()
     
     def __internal_start_event__(self,):
         """this function called when the start button clicked. this function calls manage disable and enable fields and call external function
@@ -417,7 +419,7 @@ class cameraSettingTabUI(commonSettingUI):
         GUIBackend.set_disable_enable( self.devices_combobox, not(self.__is_start__) )
 
     
-    def set_camera_devices(self, devices:list):
+    def set_camera_devices(self, devices:list, current=None):
         """set camera divices comboBox items
 
         Args:
@@ -427,10 +429,16 @@ class cameraSettingTabUI(commonSettingUI):
 
         current_device = GUIBackend.get_combobox_selected(self.devices_combobox)
         GUIBackend.set_combobox_items(self.devices_combobox, devices)
+
         if current_device!='':
-            GUIBackend.set_combobox_current_item(self.devices_combobox, current_device)
+            if current is not None:
+                GUIBackend.set_combobox_current_item(self.devices_combobox, current)
+            
+            else:
+                GUIBackend.set_combobox_current_item(self.devices_combobox, current_device)
+
         else:
-            GUIBackend.set_combobox_current_item(self.devices_combobox, self._serial_number)
+             GUIBackend.set_combobox_current_item(self.devices_combobox, self._serial_number)
 
         GUIBackend.set_signal_connection(self.devices_combobox, True)
 

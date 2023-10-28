@@ -31,7 +31,7 @@ from subPrograms.dbInit.dbInitAPI import dbInitAPI
 
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
-    DEBUG_PROCESS_THREAD = False
+    DEBUG_PROCESS_THREAD = True
     def __init__(self, ui:mainUI) -> None:
         self.tflag = False
         self.ui = ui
@@ -59,7 +59,7 @@ class main_API(QObject):
 
         self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_camera_devices_event)
         self.device_checker_timer.start()
-        self.test = True
+
 
         #apps-----------------------------------------
         self.storageCleanerApp = storageCleaner( settings= self.db.setting_db.storage_db.load(),
@@ -181,7 +181,8 @@ class main_API(QObject):
             time.sleep(0.5)
             
         self.creat_camera(camera_device_info)
-        self.camera_workers[cam_application].camera  = self.cameras[cam_application]
+        self.camera_workers[cam_application].change_camera( self.cameras[cam_application] )
+        #self.camera_workers[cam_application].camera  = self.cameras[cam_application]
         self.ui.change_cursure(None)
 
     def check_camera_devices_event(self,):
@@ -203,13 +204,12 @@ class main_API(QObject):
         
     
     def refresh_camera_devices_event(self):
-        if self.test:
-            self.test = False
-            cameras_sn = self.device_checker_worker.get_available_serials()
-            self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
-            for cam_aplication, camera in self.cameras.items():
-                if camera.Infos.get_serialnumber() not in cameras_sn:
-                    self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+
+        cameras_sn = self.device_checker_worker.get_available_serials()
+        self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
+        for cam_aplication, camera in self.cameras.items():
+            if camera.Infos.get_serialnumber() not in cameras_sn:
+                self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
             else:
                 self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
 

@@ -9,18 +9,23 @@ class cameraWorker(QObject):
     success_grab_signal = Signal()
     finished = Signal()
 
+    
+
+
     def __init__(self, camera):
         super().__init__()
         self.camera:Camera = camera
         self.grabbing = True
         self.new_camera = None
 
-    
-    def stop(self,):
-        self.grabbing = False
+    def change_camera(self, new_camera):
+        self.new_camera = new_camera
+
+    # def stop(self,):
+    #     self.grabbing = False
     
     def grabber(self,):
-        t = 0
+        # t = 0
         while self.grabbing:
 
             # if t%500 == 0:
@@ -31,6 +36,10 @@ class cameraWorker(QObject):
             # time.sleep(0.002)
 
             try:
+                if self.new_camera:
+                    self.camera = self.new_camera
+                    self.new_camera = None
+                    
                 if self.camera.Status.is_grabbing():
                     img = self.camera.getPictures(img_when_error=None)
                     if img is not None:
@@ -40,6 +49,7 @@ class cameraWorker(QObject):
 
             except Exception as e:
                 print('camera Error happend in thread while !', e)
+
         print('end of Camra Thread While')
         self.finished.emit()
 

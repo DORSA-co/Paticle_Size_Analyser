@@ -272,8 +272,32 @@ class cameraSettingTabAPI:
     
 
 
-    def set_devices(self, list_of_available_cameras):
-        self.ui.set_camera_devices(list_of_available_cameras)
+    def set_devices(self, list_of_available_cameras:list):
+        
+        reconnect = False
+        current_device = self.ui.get_camera_device()
+        if current_device == 'disconnect':
+            if self.disconnected_devices in list_of_available_cameras:
+                current_device = self.disconnected_devices
+                reconnect = True
+            else:
+                current_device = 'disconnect'
+                list_of_available_cameras.append(current_device)
+            
+
+
+        else:
+            if current_device not in list_of_available_cameras:
+                self.disconnected_devices = current_device
+                current_device = 'disconnect'
+                list_of_available_cameras.append(current_device)
+                self.ui.stop()
+        
+        self.ui.set_camera_devices(list_of_available_cameras, current_device)
+        if reconnect:
+            self.change_camera()
+        
+
 
 
     def play_stop_camera(self,is_playing):

@@ -26,7 +26,7 @@ class mainPageAPI:
     DEBUG_PROCESS_THREAD = False
     #max_thread = 3
 
-    def __init__(self, ui:mainPageUI, cameras:dorsaPylon, database:mainDatabase, ):
+    def __init__(self, ui:mainPageUI, cameras:dict[str,dorsaPylon.Camera], database:mainDatabase, ):
         self.ui = ui
         self.database = database
         self.cameras = cameras
@@ -83,7 +83,19 @@ class mainPageAPI:
 
     def check_warnings(self,):
         ##print('camera Error')
-        pass
+        warning_flag_temp = True
+        for cam in self.cameras.values():
+            temp = cam.Status.get_tempreture()
+            self.ui.set_information({'tempreture':temp})
+            if temp > CONSTANTS.MAX_CAMERA_TEMP:
+                warning_flag_temp = False
+                break
+                
+
+        self.ui.set_warning_buttons_status('tempreture', warning_flag_temp)
+        
+
+
 
     def process_image(self):
         #print('process_image')

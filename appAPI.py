@@ -31,7 +31,7 @@ from subPrograms.dbInit.dbInitAPI import dbInitAPI
 
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
-    DEBUG_PROCESS_THREAD = True
+    DEBUG_PROCESS_THREAD = False
     def __init__(self, ui:mainUI) -> None:
         self.tflag = False
         self.ui = ui
@@ -57,7 +57,8 @@ class main_API(QObject):
             self.run_camera_grabbing()
         
 
-        self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_camera_devices_event)
+        self.is_during_checking_device = False
+        self.device_checker_timer = GUIComponents.timerBuilder(500, self.check_camera_devices_event)
         self.device_checker_timer.start()
 
 
@@ -140,11 +141,8 @@ class main_API(QObject):
             camera = self.collector.get_camera_by_serial(serial_number)
             camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
             self.cameras[cam_application] = camera
-
-            #self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
         else:
             print('Camera serial number is not avaiable')
-            #self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
 
 
     def run_camera_grabbing(self,):
@@ -186,21 +184,24 @@ class main_API(QObject):
         self.ui.change_cursure(None)
 
     def check_camera_devices_event(self,):
-       
-        self.device_checker_thread = QThread()
-        self.device_checker_worker = DeviceCheckerWorker(self.collector)
-        if not self.DEBUG_PROCESS_THREAD:
-            self.device_checker_worker.moveToThread(self.device_checker_thread)
-        self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
-        self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
-        self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
-        self.device_checker_worker.finished.connect(self.refresh_camera_devices_event)
-        self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
-        if self.DEBUG_PROCESS_THREAD:
-            print('Device Checker on Debug mode')
-            self.device_checker_worker.serial_number_finder()
-        else:
-            self.device_checker_thread.start()
+        if not self.is_during_checking_device:
+            self.is_during_checking_device = True
+
+            self.device_checker_thread = QThread()
+            self.device_checker_worker = DeviceCheckerWorker(self.collector)
+            if not self.DEBUG_PROCESS_THREAD:
+                self.device_checker_worker.moveToThread(self.device_checker_thread)
+            self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
+            self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
+            self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
+            self.device_checker_worker.serials_ready.connect(self.refresh_camera_devices_event)
+            self.device_checker_worker.finished.connect(self.finished_camera_devices_checking)
+            self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
+            if self.DEBUG_PROCESS_THREAD:
+                print('Device Checker on Debug mode')
+                self.device_checker_worker.serial_number_finder()
+            else:
+                self.device_checker_thread.start()
         
     
     def refresh_camera_devices_event(self):
@@ -210,9 +211,13 @@ class main_API(QObject):
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:
                 self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+                
             else:
                 self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
+                
 
+    def finished_camera_devices_checking(self,):
+        self.is_during_checking_device = False
 
     def page_change_event(self, current_page_name, new_page_name):
 

@@ -40,7 +40,7 @@ class Color:
 
 
 
-
+MAX_CAMERA_TEMP = 65
 
 MIN_PASS_LENGHT = 1
 MIN_USERNAME_LENGHT = 1

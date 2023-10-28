@@ -27,24 +27,32 @@ class mainPageUI:
             'camera_connection': {
                 'btn':self.ui.mainpage_camera_connection_warning_btn,
                 'ok-icon':':/assets/icons/icons8-connection-green-50.png',
-                'warning-icon':':/assets/icons/icons8-connection-red-50.png'
+                'warning-icon':':/assets/icons/icons8-connection-red-50.png',
+                'status': True,
+                'massage': 'Please make sure the camaera cable is connected correctly, otherwise disconnect and reconnect camera cable again'
                 },
             'camera_grabbing': {
                 'btn': self.ui.mainpage_camera_grabbing_warning_btn,
                 'ok-icon':':/assets/icons/icons8-camera-green-50.png',
-                'warning-icon':':/assets/icons/icons8-camera-red-50.png'
+                'warning-icon':':/assets/icons/icons8-camera-red-50.png',
+                'status': True,
+                'massage': 'Error'
                 },
 
             'illumination': {
                 'btn': self.ui.mainpage_illumination_warning_btn,
                 'ok-icon':':/assets/icons/icons8-headlight-green-50.png',
-                'warning-icon':':/assets/icons/icons8-headlight-red-50.png'
+                'warning-icon':':/assets/icons/icons8-headlight-red-50.png',
+                'status': True,
+                'massage': 'Error'
             },
                              
             'tempreture': {
                 'btn': self.ui.mainpage_tempreture_warning_btn,
                 'ok-icon':':/assets/icons/icons8-thermometer-green-50.png',
-                'warning-icon':':/assets/icons/icons8-thermometer-red-50.png'
+                'warning-icon':':/assets/icons/icons8-thermometer-red-50.png',
+                'status': True,
+                'massage': 'The temperature of the camera is very high, please turn off the camera for a while'
             }
         }
         
@@ -53,7 +61,8 @@ class mainPageUI:
             'avrage' : self.ui.mainpage_avrage_lbl,
             'std'    : self.ui.mainpage_std_lbl,
             'fps'    : self.ui.mainpage_fps_lbl,
-            'timer'  : self.ui.mainpage_timer_lbl
+            'timer'  : self.ui.mainpage_timer_lbl,
+            'tempreture': self.ui.mainpage_tempreture_lbl
 
         }
 
@@ -137,6 +146,12 @@ class mainPageUI:
             self.open_warning_msg()
             if self.external_warning_button_event_func is not None:
                 self.external_warning_button_event_func(name)
+            if self.warning_btns[name]['status']:
+                self.set_warning_massage('', True)
+            else:
+                self.set_warning_massage(self.warning_btns[name]['massage'], False)
+            
+            
         
         return func
     
@@ -204,6 +219,8 @@ class mainPageUI:
         else:
             GUIBackend.set_button_icon(self.warning_btns[name]['btn'],
                                      self.warning_btns[name]['warning-icon'])
+        
+        self.warning_btns[name]['status'] = status
             
     
     def report_button_connector(self, func):
@@ -281,8 +298,9 @@ class mainPageUI:
         headers = [''] + headers
         GUIBackend.set_table_cheaders(self.statistics_table, headers)
 
-    def set_warning_massage(self, text):
-        text = "Warning: " + text
+    def set_warning_massage(self, text, status):
+        if not status:
+            text = "Warning: " + text
         self.warning_msg_lbl.setText(text)
         GUIBackend.set_wgt_visible(self.warning_msg_lbl, True)
 

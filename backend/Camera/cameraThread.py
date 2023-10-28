@@ -39,7 +39,7 @@ class cameraWorker(QObject):
                 if self.new_camera:
                     self.camera = self.new_camera
                     self.new_camera = None
-                    
+
                 if self.camera.Status.is_grabbing():
                     img = self.camera.getPictures(img_when_error=None)
                     if img is not None:
@@ -67,8 +67,11 @@ class DeviceCheckerWorker(QObject):
 
     def serial_number_finder(self):
         for i in range(1):
-            self.available_serials = self.collector.get_all_serials()
-            # self.serials_ready.emit()
+            try:
+                self.available_serials = self.collector.get_all_serials()
+                self.serials_ready.emit()
+            except:
+                self.available_serials = []
         self.finished.emit()
 
     def get_available_serials(self):

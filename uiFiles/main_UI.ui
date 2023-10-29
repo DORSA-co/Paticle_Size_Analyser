@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1369</width>
-    <height>908</height>
+    <height>917</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -8145,8 +8145,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>158</width>
-                    <height>1702</height>
+                    <width>1151</width>
+                    <height>690</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8418,8 +8418,8 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>869</width>
-                <height>3003</height>
+                <width>1149</width>
+                <height>3005</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -9423,7 +9423,7 @@ p, li { white-space: pre-wrap; }
 }</string>
                      </property>
                      <property name="text">
-                      <string>Table1 - Statistics for each diameter range in the Sample </string>
+                      <string>Table2 - Statistics for each diameter range in the Sample </string>
                      </property>
                      <property name="textFormat">
                       <enum>Qt::PlainText</enum>

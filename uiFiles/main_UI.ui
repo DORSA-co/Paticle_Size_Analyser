@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -8478,7 +8478,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-2232</y>
                 <width>1149</width>
                 <height>2985</height>
                </rect>
@@ -10284,7 +10284,7 @@ Line{
                              <item row="0" column="1">
                               <widget class="QLabel" name="sreportpage_particle_area_lbl">
                                <property name="text">
-                                <string>25</string>
+                                <string>-</string>
                                </property>
                               </widget>
                              </item>
@@ -10320,7 +10320,7 @@ margin: 5px 0px;</string>
                              <item row="1" column="1">
                               <widget class="QLabel" name="sreportpage_particle_volume_lbl">
                                <property name="text">
-                                <string>64</string>
+                                <string>-</string>
                                </property>
                               </widget>
                              </item>
@@ -10367,7 +10367,7 @@ margin: 5px 0px;</string>
                              <item row="2" column="1">
                               <widget class="QLabel" name="sreportpage_particle_avg_r_lbl">
                                <property name="text">
-                                <string>28mm</string>
+                                <string>-</string>
                                </property>
                               </widget>
                              </item>
@@ -10406,7 +10406,7 @@ margin: 5px 0px;</string>
                              <item row="3" column="1">
                               <widget class="QLabel" name="sreportpage_particle_max_r_lbl">
                                <property name="text">
-                                <string>17</string>
+                                <string>-</string>
                                </property>
                               </widget>
                              </item>

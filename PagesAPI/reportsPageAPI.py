@@ -64,6 +64,7 @@ class reportsPageAPI:
         
         self.set_standards()
         self.refresh_table()
+        self.ui.startup()
         
 
     def refresh_table(self,):

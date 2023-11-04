@@ -1,4 +1,6 @@
 import os
+import threading
+
 from PySide6.QtCore import QThread, QObject, Signal, QMutex
 
 from backend.Camera.dorsaPylon import Collector, Camera
@@ -7,7 +9,6 @@ from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSe
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
 from uiUtils import GUIComponents
-
 
 class settingPageAPI:
     def __init__(self, ui:settingPageUI ,database:settingDB, cameras):
@@ -420,7 +421,10 @@ class exportSettingTabAPI:
         file_path = settings[setting_name]
         if os.path.exists(file_path):
             file_path = os.path.abspath(file_path)
-            os.startfile(file_path)
+
+            open_file_thread = threading.Thread(target=os.startfile, args=(file_path,))
+            open_file_thread.start()
+            
 
     def save(self,):
         data = self.ui.get_settings()

@@ -94,7 +94,9 @@ class reportsPageUI(commonUI):
 
         for filter_name in self.filters_frame.keys():
             self.show_filter(filter_name, False)
-
+    
+    def startup(self,):
+        GUIBackend.set_checkbox_value(self.select_all_checkbox, False)
 
     def select_all_samples(self,st):
         status = GUIBackend.get_checkbox_value(self.select_all_checkbox)

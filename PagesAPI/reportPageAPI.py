@@ -17,8 +17,6 @@ class reportPageAPI:
     def __init__(self, ui:reportPageUI, database:mainDatabase):
         self.ui = ui
         self.database = database
-        
-        
 
         self.external_back_event_func = None
         self.particle_idx = 0

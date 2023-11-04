@@ -65,6 +65,17 @@ class GUIBackend:
             ui.showNormal()
         else:
             ui.showMaximized()
+    
+    @staticmethod
+    def adjustsize( wgt: QtWidgets.QWidget):
+        """adjust size of Qwidget . for example if you hide some widgets, you 
+            can adjust window to resize
+
+        Args:
+            wgt (QtWidgets.QWidget): _description_
+        """
+        wgt.adjustSize()
+
 
     @staticmethod
     def minimize_win(ui):

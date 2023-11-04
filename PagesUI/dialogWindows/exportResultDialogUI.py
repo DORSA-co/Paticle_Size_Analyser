@@ -31,6 +31,9 @@ class exportResultDialogUI:
             GUIBackend.set_textarea_text(self.wrong_codes, txt)
         else:
             GUIBackend.set_wgt_visible(self.wrong_codes_frame, False)
+        
+        #GUIBackend.adjustsize(self.wrong_codes_frame)
+        GUIBackend.adjustsize(self.ui)
 
     def set_exception_msg(self, e):
         if e is None:
@@ -39,7 +42,9 @@ class exportResultDialogUI:
             e = str(e)
             GUIBackend.set_wgt_visible(self.exception_frame, True)
             GUIBackend.set_textarea_text(self.exception_error, e)
-    
+
+        #GUIBackend.adjustsize(self.exception_frame)
+        GUIBackend.adjustsize(self.ui)
 
     def show(self,):
         GUIBackend.show_window(self.ui, True)

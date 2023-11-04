@@ -281,6 +281,7 @@ class CameraStatus:
             return self.camera_object.camera_device.DeviceTemperature.GetValue()
         elif self.camera_object.is_node_available('TemperatureAbs'):
             return self.camera_object.camera_device.TemperatureAbs.GetValue()
+        
 
 
 class CameraOperations:

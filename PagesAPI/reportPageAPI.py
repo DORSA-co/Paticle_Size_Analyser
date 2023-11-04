@@ -78,7 +78,6 @@ class reportPageAPI:
         self.show_ranges_statistics()
         self.show_charts()
         self.refresh_particles_page()
-        self.set_description()
     
     
 
@@ -185,11 +184,7 @@ class reportPageAPI:
         self.ui.set_particle_image(particle_img)
         #------------------------------------------------
         
-    def set_description(self, ):
-        pass
-        # p1, p2 = reportDescriptions.get_statistic_desc()
-        # self.ui.set_description('statictics',0, p1)
-        # self.ui.set_description('statictics',1, p2)
+
         
 
     def export(self,):
@@ -224,21 +219,6 @@ class reportPageAPI:
         except Exception as e:
             self.ui.exportDialog.set_massage('Some Error Happend')
             self.ui.exportDialog.set_exception_msg(e)
-            self.ui.exportDialog.show()
-        
-            
-            
-
-        
+            self.ui.exportDialog.show()                
 
 
-
-
-class reportDescriptions:
-    
-    @staticmethod
-    def get_statistic_desc():
-        p1 = ""
-        p2 = ""
-        
-        return p1.replace('\n', ''), p2.replace('\n', '')

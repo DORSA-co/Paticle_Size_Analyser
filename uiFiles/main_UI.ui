@@ -8152,20 +8152,38 @@ background-color:#ffffff;
                   <layout class="QVBoxLayout" name="verticalLayout_29">
                    <item>
                     <widget class="QLabel" name="label_82">
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <pointsize>-1</pointsize>
+                       <weight>75</weight>
+                       <italic>false</italic>
+                       <bold>true</bold>
+                      </font>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">font-size: 18px;
 font-weight: bold;
 color: rgb(6, 76, 130);</string>
                      </property>
                      <property name="text">
-                      <string>PSA-Alpha</string>
+                      <string>DPSA-Alpha (Dorsa Particle Size Analyzer - Alpha Version</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QLabel" name="label_83">
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <pointsize>12</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="text">
-                      <string>Dorsa Particle Size Analyzer is a high-end Particle Size Analyzer that uses light and camera to measure and detect particles in the sample. This model can measure particles from 0.3mm to 25mm in diameter. </string>
+                      <string>Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters including shape, ovality, and so on.</string>
                      </property>
                      <property name="wordWrap">
                       <bool>true</bool>
@@ -8186,14 +8204,17 @@ color: rgb(6, 76, 130);</string>
                    </item>
                    <item>
                     <widget class="QLabel" name="label_87">
+                     <property name="font">
+                      <font>
+                       <family>Arial</family>
+                       <pointsize>12</pointsize>
+                       <weight>50</weight>
+                       <italic>false</italic>
+                       <bold>false</bold>
+                      </font>
+                     </property>
                      <property name="text">
-                      <string>Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.
-
-Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.
-
-Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.
-
-Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.</string>
+                      <string/>
                      </property>
                      <property name="wordWrap">
                       <bool>true</bool>
@@ -8417,9 +8438,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-459</y>
                 <width>1149</width>
-                <height>3005</height>
+                <height>2985</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -9365,16 +9386,6 @@ p, li { white-space: pre-wrap; }
                   </size>
                  </property>
                 </spacer>
-               </item>
-               <item>
-                <widget class="QLabel" name="sreportpage_statictics_desc2">
-                 <property name="text">
-                  <string>Desc2</string>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>true</bool>
-                 </property>
-                </widget>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_7">

@@ -86,10 +86,13 @@ class mainPageAPI:
         warning_flag_temp = True
         for cam in self.cameras.values():
             temp = cam.Status.get_tempreture()
-            self.ui.set_information({'tempreture':temp})
-            if temp > CONSTANTS.MAX_CAMERA_TEMP:
-                warning_flag_temp = False
-                break
+            if temp is None:
+                self.ui.set_information({'tempreture':'not avaiable'})
+            else:
+                self.ui.set_information({'tempreture':temp})
+                if temp > CONSTANTS.MAX_CAMERA_TEMP:
+                    warning_flag_temp = False
+                    break
                 
 
         self.ui.set_warning_buttons_status('tempreture', warning_flag_temp)

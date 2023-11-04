@@ -22,8 +22,8 @@ class myThread(QThread):
 
 class mainPageAPI:
     refresh_time = time.time()
-    max_fps = 20
-    DEBUG_PROCESS_THREAD = False
+    max_fps = 10
+    DEBUG_PROCESS_THREAD = True
     #max_thread = 3
 
     def __init__(self, ui:mainPageUI, cameras:dict[str,dorsaPylon.Camera], database:mainDatabase, ):
@@ -32,11 +32,14 @@ class mainPageAPI:
         self.cameras = cameras
 
         self.t_frame = 0
+        self.permissible_fps = self.max_fps
+        self.fps = 0
         self.logined_username = ''
         self.external_report_event_func = None
         self.is_running = False
         self.during_processing = False
         self.processing_time = 0
+        
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
@@ -74,10 +77,11 @@ class mainPageAPI:
 
 
     def calc_fps(self):
-        fps = 1/(time.time() - self.t_frame)
+        fps = 1/(abs((time.time() - self.t_frame )) + 1e-5)
+        #fps = self.fps * 0.8 + fps*0.2 #movig avrage 
         self.t_frame = time.time()
-        fps = np.round(fps, 1)
-        return fps
+        self.fps = np.round(fps, 1)
+        return self.fps
     
         
 
@@ -87,7 +91,7 @@ class mainPageAPI:
         for cam in self.cameras.values():
             if cam.Status.is_open():
                 temp = cam.Status.get_tempreture()
-                
+
                 if temp is None:
                     self.ui.set_information({'tempreture':'not avaiable'})
                 else:
@@ -109,7 +113,8 @@ class mainPageAPI:
             self.during_processing = True
             #print('process_image OK')
             #calculate FPS-----------------------
-            self.ui.set_information({"fps": self.calc_fps()})
+            self.calc_fps()
+            #self.ui.set_information({"fps": self.calc_fps()})
             #________________________________ONLY FOR TEST________________________________________________
             fname = "{}.png".format(self.test_img_idx)
             img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
@@ -117,6 +122,7 @@ class mainPageAPI:
             self.test_img_idx+=1
             if self.test_img_idx>4:
                 self.test_img_idx = 0
+            #img = self.cameras['standard'].image
             #________________________________ONLY FOR TEST________________________________________________
             self.processing_time = time.time()
 
@@ -145,7 +151,7 @@ class mainPageAPI:
         #print('__set_processing_finish__')
         self.during_processing = False
         self.processing_time = time.time() - self.processing_time
-        print('processing_time = ', self.processing_time)
+        #print('processing_time = ', self.processing_time)
 
 
 
@@ -153,30 +159,47 @@ class mainPageAPI:
         #print('show_live_info')
         t = time.time()
         
-        if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
+        if 1/(t - self.refresh_time) < self.permissible_fps and self.is_running:
             self.refresh_time = time.time()
 
+            t1= time.time()
             particles = self.worker.get_particles()
             img = self.worker.img
+            #print(time.time()- t1, 'load from worker')
 
             #calculate statistics information like std and avg
+            #t2 = time.time()
             infos = self.report.get_global_statistics()
             self.ui.set_information(infos)
+            #print( time.time()- t2,'global info')
 
             #calculate histogram and upadte chart
+            #t2 = time.time()
             grading_percents = self.report.Grading.get_hist()
             self.ui.set_grading_chart_values(grading_percents)
+            #print( time.time()- t2,'chart 1')
 
             #radiuses, cum_precents = self.report.get_accumulative_grading()
+            #t2 = time.time()
+
             radiuses, cum_precents = self.report.cumGrading.get_data()
             self.ui.set_cumulative_chart_value(radiuses, cum_precents)
+            #print( time.time()- t2,'chart 2')
 
             toolboxes_state = self.ui.get_toolboxes()
             if toolboxes_state['live']:
                 if toolboxes_state['drawing']:
+                    #t2 = time.time()
                     img = particlesDetector.draw_particles(img, particles)
+                    #print(time.time()- t2, 'draw particles')
                 self.ui.set_live_img(img)
-            
+            #print(time.time()- t1, 'total')
+
+            delay_time = time.time() - self.refresh_time
+            real_fps = 1 / (delay_time + 1e-3)
+            real_fps *= 0.1 #for safity
+            #print('real_fps', real_fps)
+            self.permissible_fps = min(self.max_fps, real_fps)
                     
         #print('show_live_info FINISH')
             
@@ -409,7 +432,9 @@ class mainPageAPI:
     def running_one_second_event(self,):
         self.running_timer.count(second=1)
         if self.is_running:
-            info = {'timer' : self.running_timer.get_fstr('%M:%S')}
+            info = {'timer' : self.running_timer.get_fstr('%M:%S'),
+                    'fps': self.fps,
+                    }
             self.ui.set_information(info)
 
 
@@ -439,18 +464,23 @@ class ProcessingWorker(QObject):
 
     
     def run_process(self,):
+        #print('Start thead process')
+        time.sleep(0.1)
         for i in range(1):
-            self.current_particles = self.detector.detect(self.img, self.report)
-            #extend new particels into particles buffer
-            #print('finished_processing EMIT')
-            #print('process finished')
-            self.finished_processing.emit()
-        
-            if self.report.settings['save_image']:
-                for particle in self.current_particles:
-                    p_img = particle.get_roi_image(self.img)
-                    img_id = particle.get_id()
-                    self.report_saver.save_image(p_img, img_id)
+            try:
+                self.current_particles = self.detector.detect(self.img, self.report)
+                #extend new particels into particles buffer
+                #print('finished_processing EMIT')
+                #print('process finished')
+                self.finished_processing.emit()
+            
+                if self.report.settings['save_image']:
+                    for particle in self.current_particles:
+                        p_img = particle.get_roi_image(self.img)
+                        img_id = particle.get_id()
+                        self.report_saver.save_image(p_img, img_id)
+            except Exception as e:
+                print(e)
 
             #print('THREAD finished')
         #print('FINISH signal--')

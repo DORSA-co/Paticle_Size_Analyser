@@ -69,10 +69,15 @@ class Report:
 
     def get_global_statistics(self):
         info = {}
-        info['avrage'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
-        info['std'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
-        return info
-    
+        if self.get_particles_count() != 0:
+            info['avrage'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
+            info['std'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
+
+        else:
+            info['avrage'] = 0
+            info['std'] = 0
+
+        return info    
 
     def get_ranges_statistics(self,) -> list[dict]:
         res = []

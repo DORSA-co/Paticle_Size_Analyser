@@ -49,12 +49,15 @@ class main_API(QObject):
         #------------------------------------------------------------------------------------------
         self.camera_device_info = {}
         self.cameras: dict[str, Camera] = {}
+        self.camera_workers:dict[str, cameraWorker] = {}
+        self.camera_threads:dict[str, QThread]= {}
+
         self.collector = Collector()
         self.collector.enable_camera_emulation(1)
         cameras_serial_numbers = self.db.setting_db.camera_db.get_camera_devices()
         for cam_device_info in cameras_serial_numbers:
             self.creat_camera(cam_device_info)
-            self.run_camera_grabbing()
+            self.run_camera_grabbing(cam_device_info['application'])
         
 
         self.is_during_checking_device = False
@@ -145,26 +148,24 @@ class main_API(QObject):
             print('Camera serial number is not avaiable')
 
 
-    def run_camera_grabbing(self,):
-        self.camera_workers:dict[str, cameraWorker] = {}
-        self.camera_threads:dict[str, QThread]= {}
-        for camera_name, camera in self.cameras.items():
-            self.camera_device_info['application'] = camera_name
-            self.camera_device_info['serial_number']= camera.Infos.get_serialnumber()
-            camera.Operations.open()
+    def run_camera_grabbing(self,camera_application): 
+        if self.cameras.get(camera_application) is not None:
+            self.camera_device_info['application'] = camera_application
+            self.camera_device_info['serial_number']= self.cameras[camera_application].Infos.get_serialnumber()
+            self.cameras[camera_application].Operations.open()
 
-            self.camera_workers[camera_name] = cameraWorker( camera )
-            self.camera_threads[camera_name] = QThread()
+            self.camera_workers[camera_application] = cameraWorker( self.cameras[camera_application] )
+            self.camera_threads[camera_application] = QThread()
 
-            self.camera_workers[camera_name].moveToThread( self.camera_threads[camera_name] )
-            self.camera_threads[camera_name].started.connect( self.camera_workers[camera_name].grabber )
-            self.camera_workers[camera_name].success_grab_signal.connect(self.grabbed_image_event)
+            self.camera_workers[camera_application].moveToThread( self.camera_threads[camera_application] )
+            self.camera_threads[camera_application].started.connect( self.camera_workers[camera_application].grabber )
+            self.camera_workers[camera_application].success_grab_signal.connect(self.grabbed_image_event)
 
-            self.camera_workers[camera_name].finished.connect(self.camera_threads[camera_name].quit)
-            self.camera_threads[camera_name].finished.connect(self.camera_threads[camera_name].deleteLater)
-            self.camera_workers[camera_name].finished.connect(self.camera_workers[camera_name].deleteLater)
+            self.camera_workers[camera_application].finished.connect(self.camera_threads[camera_application].quit)
+            self.camera_threads[camera_application].finished.connect(self.camera_threads[camera_application].deleteLater)
+            self.camera_workers[camera_application].finished.connect(self.camera_workers[camera_application].deleteLater)
             
-            self.camera_threads[camera_name].start()
+            self.camera_threads[camera_application].start()
 
 
     #_________________________________________________________________________________________________________________________
@@ -177,9 +178,13 @@ class main_API(QObject):
         if self.cameras.get(cam_application) is not None:
             self.cameras[cam_application].Operations.close()
             time.sleep(0.5)
-            
+        
+        
         self.creat_camera(camera_device_info)
-        self.camera_workers[cam_application].change_camera( self.cameras[cam_application] )
+        if self.camera_workers.get(cam_application) is not None:
+            self.camera_workers[cam_application].change_camera( self.cameras[cam_application] )
+        else:
+            self.run_camera_grabbing(cam_application)
         #self.camera_workers[cam_application].camera  = self.cameras[cam_application]
         self.ui.change_cursure(None)
 
@@ -208,6 +213,9 @@ class main_API(QObject):
 
         cameras_sn = self.device_checker_worker.get_available_serials()
         self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
+        if len(self.cameras) == 0:
+            self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:
                 self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)

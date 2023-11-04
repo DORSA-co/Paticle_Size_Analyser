@@ -54,7 +54,7 @@ class settingCameraDB(parentSettingDB):
                 ]
     
     TABLE_DEFAULT_DATAS= [ {
-                            'serial_number': '',
+                            'serial_number': '0815-0000',
                             'gain': 50,           
                             'exposure': 50,       
                             'width':  2000,          

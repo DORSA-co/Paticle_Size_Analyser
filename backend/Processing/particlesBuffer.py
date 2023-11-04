@@ -83,7 +83,10 @@ class particlesBuffer:
         Returns:
             np.ndarray: _description_
         """
-        return np.round(self.data[:, self.COLS_IDX[name]], decimals=decimals)
+        if len(self.data):
+            return np.round(self.data[:, self.COLS_IDX[name]], decimals=decimals)
+        else:
+            return []
 
 
 

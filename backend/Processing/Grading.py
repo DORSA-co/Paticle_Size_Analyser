@@ -60,8 +60,12 @@ class Grading(gradingABstract):
         Returns:
             np.ndarray: 1d array of percentage in each range
         """
-        percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
-        return np.round(percentage_hist, 1 )
+        sum_bins = np.sum(self.ranges_hist) 
+        if sum_bins != 0:
+            percentage_hist = self.ranges_hist / sum_bins * 100.
+            return np.round(percentage_hist, 1 )
+
+        return self.ranges_hist #all are zero
     
 
 
@@ -125,10 +129,14 @@ class cumGrading(gradingABstract):
         Returns:
             np.ndarray: 1d array of percentage in each range
         """
-        percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
-        xs = np.mean(self.sieve_ranges, axis=1)
-        ys = np.cumsum(percentage_hist)
-        return xs, ys
+        sum_ranges =  np.sum(self.ranges_hist)
+        if sum_ranges!=0:
+            percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
+            xs = np.mean(self.sieve_ranges, axis=1)
+            ys = np.cumsum(percentage_hist)
+            return xs, ys   
+        else:
+            return [],[]
     
 
 

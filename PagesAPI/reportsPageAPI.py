@@ -357,12 +357,19 @@ class removeSamplesWorkder(QObject):
 
     def run(self,):
         total_count = len(self.selection_samples)
-        for i,sample in enumerate(self.selection_samples):
-            rfh = reportFileHandler(sample)
-            rfh.remove()
-            self.db.remove(sample)
-            self.all_samples.remove(sample)
-            self.progressBar.emit(i, total_count)
+        #for i,sample in enumerate(self.selection_samples):
+        i=0
+        while self.selection_samples:
+            try:
+                rfh = reportFileHandler(self.selection_samples[0])
+                rfh.remove()
+                self.db.remove(self.selection_samples[0])
+                self.all_samples.remove(self.selection_samples[0])
+                self.selection_samples.pop(0)
+                i+=1
+                self.progressBar.emit(i, total_count)
+            except Exception as e:
+                print(e)
 
         self.finished.emit()
 

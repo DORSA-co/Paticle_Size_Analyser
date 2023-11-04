@@ -398,6 +398,7 @@ class exportSettingTabAPI:
         self.database = database
 
         self.ui.select_dir_buttons_connector(self.load_file)
+        self.ui.open_export_file_buttons_connector(self.open_file)
         self.ui.save_button_connector(self.save)
         self.ui.restor_button_connector(self.restore_default)
 
@@ -414,6 +415,12 @@ class exportSettingTabAPI:
         data[setting_name] = path
         self.ui.set_setting(data)
     
+    def open_file(self, setting_name:str):
+        settings = self.ui.get_settings()
+        file_path = settings[setting_name]
+        if os.path.exists(file_path):
+            file_path = os.path.abspath(file_path)
+            os.startfile(file_path)
 
     def save(self,):
         data = self.ui.get_settings()

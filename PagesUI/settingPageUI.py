@@ -576,6 +576,8 @@ class exportSettingTabUI(commonSettingUI):
 
         self.load_report_excel_btn = self.ui.settingpage_export_load_report_excel_btn
         self.load_compare_excel_btn = self.ui.settingpage_export_load_compare_excel_btn
+        self.open_report_excel_btn = self.ui.settingpage_export_open_report_excel_btn
+        self.open_compare_excel_btn = self.ui.settingpage_export_open_compare_excel_btn
 
         self.settings = {
             'report_excel': self.ui.settingpage_export_report_excel_path_input,
@@ -595,6 +597,15 @@ class exportSettingTabUI(commonSettingUI):
                                                   ('report_excel',) )
 
         GUIBackend.button_connector_argument_pass(self.load_compare_excel_btn, 
+                                                  func, 
+                                                  ('compare_excel',) )
+        
+    def open_export_file_buttons_connector(self, func):
+        GUIBackend.button_connector_argument_pass(self.open_report_excel_btn, 
+                                                  func, 
+                                                  ('report_excel',) )
+
+        GUIBackend.button_connector_argument_pass(self.open_compare_excel_btn, 
                                                   func, 
                                                   ('compare_excel',) )
     

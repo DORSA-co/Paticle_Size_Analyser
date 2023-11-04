@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -4892,6 +4892,26 @@ min-height: 40px;
                     </widget>
                    </item>
                    <item>
+                    <widget class="QPushButton" name="settingpage_export_open_report_excel_btn">
+                     <property name="maximumSize">
+                      <size>
+                       <width>40</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton{
+min-width:40px;
+min-height: 40px;
+
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Open</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
                     <spacer name="horizontalSpacer_66">
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
@@ -4964,6 +4984,26 @@ min-height: 40px;
                      <property name="icon">
                       <iconset resource="Assets/Assets.qrc">
                        <normaloff>:/assets/icons/icons8-folder-50.png</normaloff>:/assets/icons/icons8-folder-50.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="settingpage_export_open_compare_excel_btn">
+                     <property name="maximumSize">
+                      <size>
+                       <width>40</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">QPushButton{
+min-width:40px;
+min-height: 40px;
+
+}</string>
+                     </property>
+                     <property name="text">
+                      <string>Open</string>
                      </property>
                     </widget>
                    </item>
@@ -8438,7 +8478,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-459</y>
+                <y>0</y>
                 <width>1149</width>
                 <height>2985</height>
                </rect>

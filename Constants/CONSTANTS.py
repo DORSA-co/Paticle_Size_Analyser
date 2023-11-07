@@ -36,7 +36,8 @@ class Color:
     ]
 
 
-
+class TimeOut:
+    TIMEOUT_CHECKING_DEVICE = 3
 
 
 

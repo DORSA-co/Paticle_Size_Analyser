@@ -1,8 +1,6 @@
 import os
 import threading
 
-from PySide6.QtCore import QThread, QObject, Signal, QMutex
-
 from backend.Camera.dorsaPylon import Collector, Camera
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI

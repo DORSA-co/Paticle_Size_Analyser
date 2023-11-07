@@ -504,7 +504,8 @@ class cameraSettingTabUI(commonSettingUI):
 
 
     def show_live_image(self, img):
-        GUIBackend.set_label_image( self.live_img_lbl, img )
+        if img is not None:
+            GUIBackend.set_label_image( self.live_img_lbl, img )
 
 
     def get_selected_camera_application(self,):

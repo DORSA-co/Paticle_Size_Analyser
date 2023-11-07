@@ -14,16 +14,18 @@ from backend.Camera import dorsaPylon
 from backend.Processing import particlesDetector
 from backend.Processing.Report import Report
 from backend.Utils.datetimeUtils import timerCounter
-class myThread(QThread):
-    def quit(self) -> None:
-        #print('Quit thread')
-        return super().quit()
+import threading
+
+# class myThread(QThread):
+#     def quit(self) -> None:
+#         print('Quit thread')
+#         return super().quit()
 
 
 class mainPageAPI:
     refresh_time = time.time()
-    max_fps = 10
-    DEBUG_PROCESS_THREAD = True
+    max_fps = 15
+    DEBUG_PROCESS_THREAD = False
     #max_thread = 3
 
     def __init__(self, ui:mainPageUI, cameras:dict[str,dorsaPylon.Camera], database:mainDatabase, ):
@@ -43,6 +45,11 @@ class mainPageAPI:
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
         self.warning_checker_timer.start()
+
+        self.system_timer_thread = GUIComponents.timerBuilder(1000, self.running_one_second_event)
+        self.system_timer_thread.start()
+        self.running_timer = timerCounter()
+
 
         self.ui.player_buttons_connect('fast_start', self.fast_start)
         self.ui.player_buttons_connect('start', self.start)
@@ -86,7 +93,6 @@ class mainPageAPI:
         
 
     def check_warnings(self,):
-        ##print('camera Error')
         warning_flag_temp = True
         for cam in self.cameras.values():
             if cam.Status.is_open():
@@ -108,50 +114,58 @@ class mainPageAPI:
 
     def process_image(self):
         #print('process_image')
-        if not self.during_processing and self.is_running:
-            
-            self.during_processing = True
-            #print('process_image OK')
-            #calculate FPS-----------------------
-            self.calc_fps()
-            #self.ui.set_information({"fps": self.calc_fps()})
-            #________________________________ONLY FOR TEST________________________________________________
-            fname = "{}.png".format(self.test_img_idx)
-            img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
-            #cv2.circle(img, (10,10), 10, (np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255),), -1)
-            self.test_img_idx+=1
-            if self.test_img_idx>4:
-                self.test_img_idx = 0
-            #img = self.cameras['standard'].image
-            #________________________________ONLY FOR TEST________________________________________________
-            self.processing_time = time.time()
+        if self.is_running:
+            if not self.during_processing:
+                
+                self.during_processing = True
+                #print('process_image OK')
+                #calculate FPS-----------------------
+                self.calc_fps()
+                #self.ui.set_information({"fps": self.calc_fps()})
+                #________________________________ONLY FOR TEST________________________________________________
+                fname = "{}.png".format(self.test_img_idx)
+                img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
+                #cv2.circle(img, (10,10), 10, (np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255),), -1)
+                self.test_img_idx+=1
+                if self.test_img_idx>4:
+                    self.test_img_idx = 0
+                #img = self.cameras['standard'].image
+                #________________________________ONLY FOR TEST________________________________________________
+                self.processing_time = time.time()
 
-            self.thread = myThread()
-            self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
-            if not self.DEBUG_PROCESS_THREAD:
-                self.worker.moveToThread(self.thread)
-            self.thread.started.connect(self.worker.run_process)
-            self.worker.finished_processing.connect(self.show_live_info)
-            self.worker.finished.connect(self.thread.quit)
-            self.thread.finished.connect(self.thread.deleteLater)
-            self.worker.finished.connect(self.__set_processing_finish__)
-            self.worker.finished.connect(self.worker.deleteLater)
-            
-            if self.DEBUG_PROCESS_THREAD:
-                #print('DEBUG MODE: not on thread')
-                self.worker.run_process()
+                
+                self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
+                self.thread = threading.Thread(target=self.worker.run_process)
+                #if not self.DEBUG_PROCESS_THREAD:
+                #    self.worker.moveToThread(self.thread)
+
+                #self.thread.started.connect(self.worker.run_process)
+                self.worker.finished_processing.connect(self.show_live_info)
+                #self.worker.finished.connect(self.thread.quit)
+                #self.thread.finished.connect(self.thread.deleteLater)
+                self.worker.finished.connect(self.__set_processing_finish__)
+                #self.worker.finished.connect(self.worker.deleteLater)
+                
+                if self.DEBUG_PROCESS_THREAD:
+                    #print('DEBUG MODE: not on thread')
+                    self.worker.run_process()
+                else:
+                    #print('new thread start')
+                    self.thread.start()
+                #print('process_image FINISH')
             else:
-                #print('new thread start')
-                self.thread.start()
-            #print('process_image FINISH')
+                if ( time.time() - self.refresh_time ) >=1:
+                    print('TimeOut')
+                    self.thread.quit()
+                    self.during_processing = False
 
     
 
     def __set_processing_finish__(self,):
-        #print('__set_processing_finish__')
+        print('__set_processing_finish__')
         self.during_processing = False
         self.processing_time = time.time() - self.processing_time
-        #print('processing_time = ', self.processing_time)
+        print('processing_time = ', self.processing_time)
 
 
 
@@ -159,7 +173,7 @@ class mainPageAPI:
         #print('show_live_info')
         t = time.time()
         
-        if 1/(t - self.refresh_time) < self.permissible_fps and self.is_running:
+        if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
             self.refresh_time = time.time()
 
             t1= time.time()
@@ -201,7 +215,7 @@ class mainPageAPI:
             #print('real_fps', real_fps)
             self.permissible_fps = min(self.max_fps, real_fps)
                     
-        #print('show_live_info FINISH')
+        
             
 
 
@@ -318,13 +332,15 @@ class mainPageAPI:
         self.run_start()
 
 
-    def stop(self,):
-        flag = self.ui.show_dialog_box( 'Stop',
-                                        'Are You shure you want to stop the measuring?',
-                                        buttons=['yes', 'cancel']
-                                        )
-        if flag == 'cancel':
-            return
+    def stop(self,ask=True):
+
+        if ask:
+            flag = self.ui.show_dialog_box( 'Stop',
+                                            'Are You shure you want to stop the measuring?',
+                                            buttons=['yes', 'cancel']
+                                            )
+            if flag == 'cancel':
+                return
 
         self.is_running = False
         self.during_processing = False
@@ -333,11 +349,7 @@ class mainPageAPI:
         for camera in self.cameras.values():
             camera.Operations.stop_grabbing()     
         
-        #print('camera stop')
-        #disable stop button
-        self.system_timer_thread.timer.stop()
-        self.ui.set_player_buttons_status('stop')
-        self.ui.enable_report(True)
+        
         self.report_saver.save_report(self.report)
         #-----------------------------------------------------------------------------------------
         db_data = self.report.get_database_record()
@@ -345,6 +357,9 @@ class mainPageAPI:
         #-----------------------------------------------------------------------------------------
         
         self.ui.set_live_img(CONSTANTS.IMAGES.STOP_SAMPLING)
+
+        self.ui.enable_report(True)
+        self.ui.set_player_buttons_status('stop')
         #print('stop FINISH')
 
     
@@ -381,8 +396,7 @@ class mainPageAPI:
         #self.running_timer.set_external_event(self.running_one_second_event)
         #self.running_timer.run()
 
-        self.system_timer_thread = GUIComponents.timerBuilder(1000, self.running_one_second_event)
-        self.system_timer_thread.start()
+        
 
 
 
@@ -465,7 +479,6 @@ class ProcessingWorker(QObject):
     
     def run_process(self,):
         #print('Start thead process')
-        time.sleep(0.1)
         for i in range(1):
             try:
                 self.current_particles = self.detector.detect(self.img, self.report)
@@ -482,10 +495,13 @@ class ProcessingWorker(QObject):
             except Exception as e:
                 print(e)
 
+            #time.sleep(0.002)
+
             #print('THREAD finished')
-        #print('FINISH signal--')
+        
+        print('FINISH signal--')
         self.finished.emit()
-        #print('FINISH signal**')
+        print('FINISH signal**')
 
     def get_particles(self, ):
         return copy.copy(self.current_particles)

@@ -1,5 +1,6 @@
 import cv2
 from PySide6.QtCore import QThread, QObject
+import threading
 from datetime import datetime
 import time
 
@@ -45,12 +46,12 @@ class main_API(QObject):
         else:
             self.db.build()
 
-
+        self.checked_device_time = 0
         #------------------------------------------------------------------------------------------
         self.camera_device_info = {}
         self.cameras: dict[str, Camera] = {}
         self.camera_workers:dict[str, cameraWorker] = {}
-        self.camera_threads:dict[str, QThread]= {}
+        self.camera_threads:dict[str, threading.Thread]= {}
 
         self.collector = Collector()
         self.collector.enable_camera_emulation(1)
@@ -58,10 +59,11 @@ class main_API(QObject):
         for cam_device_info in cameras_serial_numbers:
             self.creat_camera(cam_device_info)
             self.run_camera_grabbing(cam_device_info['application'])
+        #-----------------------------------------------------------------------------------------
         
 
         self.is_during_checking_device = False
-        self.device_checker_timer = GUIComponents.timerBuilder(500, self.check_camera_devices_event)
+        self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_camera_devices_event)
         self.device_checker_timer.start()
 
 
@@ -82,6 +84,10 @@ class main_API(QObject):
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
         self.validationPageAPI = validationPageAPI(ui=self.ui.validationPage, database=self.db)
+
+        #for cam_device_info in cameras_serial_numbers:
+            #self.creat_camera(cam_device_info)
+            #self.run_camera_grabbing(cam_device_info['application'])
 
         #events----------------------------------------------
         self.ui.change_page_connector(self.page_change_event)
@@ -155,15 +161,16 @@ class main_API(QObject):
             self.cameras[camera_application].Operations.open()
 
             self.camera_workers[camera_application] = cameraWorker( self.cameras[camera_application] )
-            self.camera_threads[camera_application] = QThread()
+            self.camera_threads[camera_application] = threading.Thread(target=self.camera_workers[camera_application].grabber)
 
-            self.camera_workers[camera_application].moveToThread( self.camera_threads[camera_application] )
-            self.camera_threads[camera_application].started.connect( self.camera_workers[camera_application].grabber )
+            #self.camera_workers[camera_application].moveToThread( self.camera_threads[camera_application] )
+            #self.camera_threads[camera_application].started.connect( self.camera_workers[camera_application].grabber )
             self.camera_workers[camera_application].success_grab_signal.connect(self.grabbed_image_event)
+            #self.camera_workers[camera_application].success_grab_signal.connect(self.mainPageAPI.process_image)
 
-            self.camera_workers[camera_application].finished.connect(self.camera_threads[camera_application].quit)
-            self.camera_threads[camera_application].finished.connect(self.camera_threads[camera_application].deleteLater)
-            self.camera_workers[camera_application].finished.connect(self.camera_workers[camera_application].deleteLater)
+            #self.camera_workers[camera_application].finished.connect(self.camera_threads[camera_application].quit)
+            #self.camera_threads[camera_application].finished.connect(self.camera_threads[camera_application].deleteLater)
+            #self.camera_workers[camera_application].finished.connect(self.camera_workers[camera_application].deleteLater)
             
             self.camera_threads[camera_application].start()
 
@@ -190,45 +197,56 @@ class main_API(QObject):
 
     def check_camera_devices_event(self,):
         if not self.is_during_checking_device:
+            self.checked_device_time = time.time()
+            
             self.is_during_checking_device = True
 
-            self.device_checker_thread = QThread()
+            
             self.device_checker_worker = DeviceCheckerWorker(self.collector)
-            if not self.DEBUG_PROCESS_THREAD:
-                self.device_checker_worker.moveToThread(self.device_checker_thread)
-            self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
-            self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
-            self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
+            self.device_checker_thread = threading.Thread(target= self.device_checker_worker.serial_number_finder)
+            # if not self.DEBUG_PROCESS_THREAD:
+            #     self.device_checker_worker.moveToThread(self.device_checker_thread)
+            #self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
+            #self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
+            #self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
             self.device_checker_worker.serials_ready.connect(self.refresh_camera_devices_event)
             self.device_checker_worker.finished.connect(self.finished_camera_devices_checking)
-            self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
+            #self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
             if self.DEBUG_PROCESS_THREAD:
                 print('Device Checker on Debug mode')
                 self.device_checker_worker.serial_number_finder()
             else:
                 self.device_checker_thread.start()
-        
-    
-    def refresh_camera_devices_event(self):
 
+        else:
+            if time.time() - self.checked_device_time  > CONSTANTS.TimeOut.TIMEOUT_CHECKING_DEVICE:
+                self.is_during_checking_device = False
+    
+    
+    def finished_camera_devices_checking(self,):
+        self.is_during_checking_device = False
+
+
+    def refresh_camera_devices_event(self):
         cameras_sn = self.device_checker_worker.get_available_serials()
         self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
         if len(self.cameras) == 0:
             self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+            self.camera_disconnect_event()
 
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:
                 self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+                self.camera_disconnect_event()
                 
             else:
                 self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
                 
+    def camera_disconnect_event(self,):
+        self.mainPageAPI.stop(ask=False)
 
-    def finished_camera_devices_checking(self,):
-        self.is_during_checking_device = False
 
     def page_change_event(self, current_page_name, new_page_name):
-
         #call startup method of API of corespond page
         change_Page_permition = True
         if self.pages_endup[current_page_name] is not None:

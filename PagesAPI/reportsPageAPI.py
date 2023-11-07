@@ -91,15 +91,15 @@ class reportsPageAPI:
         self.ui.enable_rebuild_win_buttons('rebuild', False)
 
         self.rebuild_worker = rebuildWorker(self.rebuilder, self.all_samples, self.database.reports_db)
-        self.thread_rebuild = QThread()
+        self.thread_rebuild = threading.Thread(target=self.rebuild_worker.rebuild)
 
-        self.rebuild_worker.moveToThread(self.thread_rebuild)
-        self.thread_rebuild.started.connect(self.rebuild_worker.rebuild)
+        #self.rebuild_worker.moveToThread(self.thread_rebuild)
+        #self.thread_rebuild.started.connect(self.rebuild_worker.rebuild)
         self.rebuild_worker.finished.connect(self.rebuild_complete)
         self.rebuild_worker.progressBar.connect(self.ui.set_rebuild_progress_bar)
-        self.rebuild_worker.finished.connect(self.thread_rebuild.quit)
-        self.thread_rebuild.finished.connect(self.thread_rebuild.deleteLater)
-        self.rebuild_worker.finished.connect(self.rebuild_worker.deleteLater)
+        #self.rebuild_worker.finished.connect(self.thread_rebuild.quit)
+        #self.thread_rebuild.finished.connect(self.thread_rebuild.deleteLater)
+        #self.rebuild_worker.finished.connect(self.rebuild_worker.deleteLater)
 
         self.thread_rebuild.start()
     

@@ -32,6 +32,7 @@ class mainPageAPI:
         self.ui = ui
         self.database = database
         self.cameras = cameras
+        self.default_camera_status = False
 
         self.t_frame = 0
         self.permissible_fps = self.max_fps
@@ -267,6 +268,11 @@ class mainPageAPI:
 
     def start(self,):
         standards = self.database.standards_db.load_all()
+
+        ######## check camera status
+        if not self.default_camera_status:
+            self.ui.write_error_msg("chosen camera in settings is not connected")
+            return
         
         #error if no standards definded
         if not self.handle_standard_error(standards):
@@ -293,9 +299,21 @@ class mainPageAPI:
         #show sample information box
         self.ui.show_sample_info_window()
 
+    ############################## event default camera status ###############################
+
+    def default_camera_status_event(self, status: bool):
+        self.default_camera_status = status
+        self.ui.set_warning_buttons_status('camera_connection', status)
+
 
     def fast_start(self,):
         standards = self.database.standards_db.load_all()
+
+
+        ######## check camera status
+        if not self.default_camera_status:
+            self.ui.write_error_msg("chosen camera in settings is not connected")
+            return
         
         if not self.handle_standard_error(standards):
             return

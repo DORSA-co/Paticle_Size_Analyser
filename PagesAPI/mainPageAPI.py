@@ -119,8 +119,6 @@ class mainPageAPI:
             if not self.during_processing:
                 
                 self.during_processing = True
-                #print('process_image OK')
-                #calculate FPS-----------------------
                 self.calc_fps()
                 #self.ui.set_information({"fps": self.calc_fps()})
                 #________________________________ONLY FOR TEST________________________________________________
@@ -137,23 +135,15 @@ class mainPageAPI:
                 
                 self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
                 self.thread = threading.Thread(target=self.worker.run_process)
-                #if not self.DEBUG_PROCESS_THREAD:
-                #    self.worker.moveToThread(self.thread)
 
-                #self.thread.started.connect(self.worker.run_process)
                 self.worker.finished_processing.connect(self.show_live_info)
-                #self.worker.finished.connect(self.thread.quit)
-                #self.thread.finished.connect(self.thread.deleteLater)
                 self.worker.finished.connect(self.__set_processing_finish__)
-                #self.worker.finished.connect(self.worker.deleteLater)
                 
                 if self.DEBUG_PROCESS_THREAD:
-                    #print('DEBUG MODE: not on thread')
                     self.worker.run_process()
                 else:
-                    #print('new thread start')
                     self.thread.start()
-                #print('process_image FINISH')
+
             else:
                 if ( time.time() - self.refresh_time ) >=1:
                     print('TimeOut')
@@ -163,15 +153,14 @@ class mainPageAPI:
     
 
     def __set_processing_finish__(self,):
-        print('__set_processing_finish__')
+        #print('__set_processing_finish__')
         self.during_processing = False
         self.processing_time = time.time() - self.processing_time
-        print('processing_time = ', self.processing_time)
+        #print('processing_time = ', self.processing_time)
 
 
 
     def show_live_info(self):
-        #print('show_live_info')
         t = time.time()
         
         if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
@@ -180,35 +169,22 @@ class mainPageAPI:
             t1= time.time()
             particles = self.worker.get_particles()
             img = self.worker.img
-            #print(time.time()- t1, 'load from worker')
 
-            #calculate statistics information like std and avg
-            #t2 = time.time()
             infos = self.report.get_global_statistics()
             self.ui.set_information(infos)
-            #print( time.time()- t2,'global info')
 
-            #calculate histogram and upadte chart
-            #t2 = time.time()
             grading_percents = self.report.Grading.get_hist()
             self.ui.set_grading_chart_values(grading_percents)
-            #print( time.time()- t2,'chart 1')
-
-            #radiuses, cum_precents = self.report.get_accumulative_grading()
-            #t2 = time.time()
 
             radiuses, cum_precents = self.report.cumGrading.get_data()
             self.ui.set_cumulative_chart_value(radiuses, cum_precents)
-            #print( time.time()- t2,'chart 2')
 
             toolboxes_state = self.ui.get_toolboxes()
             if toolboxes_state['live']:
                 if toolboxes_state['drawing']:
-                    #t2 = time.time()
                     img = particlesDetector.draw_particles(img, particles)
-                    #print(time.time()- t2, 'draw particles')
+
                 self.ui.set_live_img(img)
-            #print(time.time()- t1, 'total')
 
             delay_time = time.time() - self.refresh_time
             real_fps = 1 / (delay_time + 1e-3)
@@ -496,13 +472,11 @@ class ProcessingWorker(QObject):
 
     
     def run_process(self,):
-        #print('Start thead process')
+
         for i in range(1):
             try:
                 self.current_particles = self.detector.detect(self.img, self.report)
-                #extend new particels into particles buffer
-                #print('finished_processing EMIT')
-                #print('process finished')
+
                 self.finished_processing.emit()
             
                 if self.report.settings['save_image']:
@@ -513,13 +487,9 @@ class ProcessingWorker(QObject):
             except Exception as e:
                 print(e)
 
-            #time.sleep(0.002)
-
-            #print('THREAD finished')
-        
-        print('FINISH signal--')
+        #print('FINISH signal--')
         self.finished.emit()
-        print('FINISH signal**')
+        #print('FINISH signal**')
 
     def get_particles(self, ):
         return copy.copy(self.current_particles)

@@ -26,14 +26,14 @@ from backend.Processing.Compare import Compare
 from backend.miniApps.storageCleaner import storageCleaner
 import Constants.CONSTANTS as CONSTANTS
 from PagesUI.PageUI import commonUI
-from appUI import mainUI
+#from appUI import mainUI
 from uiUtils import GUIComponents
 from subPrograms.dbInit.dbInitAPI import dbInitAPI
 
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
     DEBUG_PROCESS_THREAD = False
-    def __init__(self, ui:mainUI) -> None:
+    def __init__(self, ui) -> None:
         self.tflag = False
         self.ui = ui
         self.db = mainDatabase()
@@ -162,16 +162,8 @@ class main_API(QObject):
 
             self.camera_workers[camera_application] = cameraWorker( self.cameras[camera_application] )
             self.camera_threads[camera_application] = threading.Thread(target=self.camera_workers[camera_application].grabber)
-
-            #self.camera_workers[camera_application].moveToThread( self.camera_threads[camera_application] )
-            #self.camera_threads[camera_application].started.connect( self.camera_workers[camera_application].grabber )
             self.camera_workers[camera_application].success_grab_signal.connect(self.grabbed_image_event)
-            #self.camera_workers[camera_application].success_grab_signal.connect(self.mainPageAPI.process_image)
 
-            #self.camera_workers[camera_application].finished.connect(self.camera_threads[camera_application].quit)
-            #self.camera_threads[camera_application].finished.connect(self.camera_threads[camera_application].deleteLater)
-            #self.camera_workers[camera_application].finished.connect(self.camera_workers[camera_application].deleteLater)
-            
             self.camera_threads[camera_application].start()
 
 
@@ -204,14 +196,8 @@ class main_API(QObject):
             
             self.device_checker_worker = DeviceCheckerWorker(self.collector)
             self.device_checker_thread = threading.Thread(target= self.device_checker_worker.serial_number_finder)
-            # if not self.DEBUG_PROCESS_THREAD:
-            #     self.device_checker_worker.moveToThread(self.device_checker_thread)
-            #self.device_checker_thread.started.connect(self.device_checker_worker.serial_number_finder)
-            #self.device_checker_worker.finished.connect(self.device_checker_thread.quit)
-            #self.device_checker_thread.finished.connect(self.device_checker_thread.deleteLater)
             self.device_checker_worker.serials_ready.connect(self.refresh_camera_devices_event)
             self.device_checker_worker.finished.connect(self.finished_camera_devices_checking)
-            #self.device_checker_worker.finished.connect(self.device_checker_worker.deleteLater)
             if self.DEBUG_PROCESS_THREAD:
                 print('Device Checker on Debug mode')
                 self.device_checker_worker.serial_number_finder()

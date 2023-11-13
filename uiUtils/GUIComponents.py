@@ -1,7 +1,6 @@
 from typing import Optional
 from PySide6 import QtWidgets, QtCore, QtGui
 import PySide6.QtWidgets 
-import Assets
 from guiBackend import GUIBackend
 
 CODE_NAME_BUTTON_STYLE ={

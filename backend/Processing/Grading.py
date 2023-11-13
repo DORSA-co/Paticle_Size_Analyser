@@ -106,23 +106,6 @@ class cumGrading(gradingABstract):
         
         return np.array(sieve_ranges)
 
-        
-
-    # def append(self, particles:particlesBuffer):
-    #     """append new particels and calculate 
-
-    #     Args:
-    #         particles (particlesBuffer): _description_
-    #     """
-    
-    #     #extract informations
-    #     max_radiuses = particles.get_feature('max_radius')
-    #     avg_volumes = particles.get_feature('avg_volume')
-        
-        
-    #     res = utiltsCython.histogram(max_radiuses, self.sieve_ranges, avg_volumes)
-    #     self.ranges_hist += res
-
     def get_data(self, )-> np.ndarray:
         """return histogram percentage
 
@@ -134,6 +117,7 @@ class cumGrading(gradingABstract):
             percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
             xs = np.mean(self.sieve_ranges, axis=1)
             ys = np.cumsum(percentage_hist)
+            ys[-1] = 100
             return xs, ys   
         else:
             return [],[]

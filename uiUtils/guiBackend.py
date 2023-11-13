@@ -57,7 +57,20 @@ class GUIBackend:
         ui.setWindowFlags(QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint))
 
     @staticmethod
-    def close_app(ui ):
+    def move(ui:QtWidgets.QMainWindow, pos:tuple[int]):
+        point = QtCore.QPoint(*pos)
+        ui.move(point)
+
+    @staticmethod
+    def relative_move(ui:QtWidgets.QMainWindow, diff_pos:tuple[int]):
+        diff_pos = QtCore.QPoint(*diff_pos)
+        new_pos = ui.pos() + diff_pos
+        ui.move(new_pos)
+
+
+
+    @staticmethod
+    def close_app(ui:QtWidgets.QMainWindow ):
         # close app window and exit the program
         ui.close()
         sys.exit()

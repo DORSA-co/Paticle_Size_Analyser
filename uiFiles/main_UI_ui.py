@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -24,15 +24,14 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
     QTextEdit, QVBoxLayout, QWidget)
 import Assets_rc
-import Assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1369, 908)
+        MainWindow.resize(1369, 926)
         icon = QIcon()
-        icon.addFile(u"../../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -868,9 +867,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_5 = QVBoxLayout(self.mainpage_livebox_frame)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(5, 0, 5, 5)
-        self.horizontalFrame = QFrame(self.mainpage_livebox_frame)
-        self.horizontalFrame.setObjectName(u"horizontalFrame")
-        self.horizontalFrame.setStyleSheet(u".QPushButton{\n"
+        self.horizontalFrame_8 = QFrame(self.mainpage_livebox_frame)
+        self.horizontalFrame_8.setObjectName(u"horizontalFrame_8")
+        self.horizontalFrame_8.setStyleSheet(u".QPushButton{\n"
 "	border-radius:3px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color:rgb(22, 38, 76)\n"
@@ -885,9 +884,9 @@ class Ui_MainWindow(object):
 "background-color:rgb(147, 147, 147);\n"
 "}\n"
 "")
-        self.horizontalLayout_5 = QHBoxLayout(self.horizontalFrame)
+        self.horizontalLayout_5 = QHBoxLayout(self.horizontalFrame_8)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.mainpage_start_btn = QPushButton(self.horizontalFrame)
+        self.mainpage_start_btn = QPushButton(self.horizontalFrame_8)
         self.mainpage_start_btn.setObjectName(u"mainpage_start_btn")
         self.mainpage_start_btn.setEnabled(True)
         self.mainpage_start_btn.setStyleSheet(u"")
@@ -897,7 +896,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.mainpage_start_btn)
 
-        self.mainpage_faststart_btn = QPushButton(self.horizontalFrame)
+        self.mainpage_faststart_btn = QPushButton(self.horizontalFrame_8)
         self.mainpage_faststart_btn.setObjectName(u"mainpage_faststart_btn")
         self.mainpage_faststart_btn.setEnabled(False)
         self.mainpage_faststart_btn.setStyleSheet(u"")
@@ -907,7 +906,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_5.addWidget(self.mainpage_faststart_btn)
 
-        self.mainpage_stop_btn = QPushButton(self.horizontalFrame)
+        self.mainpage_stop_btn = QPushButton(self.horizontalFrame_8)
         self.mainpage_stop_btn.setObjectName(u"mainpage_stop_btn")
         self.mainpage_stop_btn.setEnabled(False)
         self.mainpage_stop_btn.setStyleSheet(u"")
@@ -918,7 +917,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.mainpage_stop_btn)
 
 
-        self.verticalLayout_5.addWidget(self.horizontalFrame)
+        self.verticalLayout_5.addWidget(self.horizontalFrame_8)
 
         self.mainpage_informaition_groupBox = QGroupBox(self.mainpage_livebox_frame)
         self.mainpage_informaition_groupBox.setObjectName(u"mainpage_informaition_groupBox")
@@ -936,10 +935,33 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setHorizontalSpacing(5)
         self.gridLayout_12.setVerticalSpacing(0)
         self.gridLayout_12.setContentsMargins(-1, 10, -1, 6)
-        self.mainpage_timer_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_timer_lbl.setObjectName(u"mainpage_timer_lbl")
+        self.label_3 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;\n"
+"")
+        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.mainpage_timer_lbl, 3, 4, 1, 1)
+        self.gridLayout_12.addWidget(self.label_3, 1, 7, 1, 1)
+
+        self.mainpage_std_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_std_lbl.setObjectName(u"mainpage_std_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_std_lbl, 1, 5, 1, 1)
+
+        self.mainpage_fps_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 2, 1, 1)
+
+        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 1, 8, 1, 1)
+
+        self.horizontalSpacer_40 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_40, 1, 9, 1, 1)
 
         self.label_34 = QLabel(self.mainpage_informaition_groupBox)
         self.label_34.setObjectName(u"label_34")
@@ -947,46 +969,25 @@ class Ui_MainWindow(object):
 "font-weight: bold;")
         self.label_34.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.label_34, 3, 3, 1, 1)
+        self.gridLayout_12.addWidget(self.label_34, 3, 4, 1, 1)
 
-        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
+        self.mainpage_tempreture_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_tempreture_lbl.setObjectName(u"mainpage_tempreture_lbl")
 
-        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 1, 7, 1, 1)
-
-        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_41, 3, 2, 1, 1)
-
-        self.mainpage_fps_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
-
-        self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 1, 1, 1)
-
-        self.mainpage_avrage_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_avrage_lbl.setObjectName(u"mainpage_avrage_lbl")
-        self.mainpage_avrage_lbl.setTextFormat(Qt.AutoText)
-        self.mainpage_avrage_lbl.setWordWrap(False)
-        self.mainpage_avrage_lbl.setTextInteractionFlags(Qt.LinksAccessibleByMouse)
-
-        self.gridLayout_12.addWidget(self.mainpage_avrage_lbl, 1, 1, 1, 1)
-
-        self.label_5 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;")
-        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_12.addWidget(self.label_5, 1, 0, 1, 1)
-
-        self.mainpage_std_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_std_lbl.setObjectName(u"mainpage_std_lbl")
-
-        self.gridLayout_12.addWidget(self.mainpage_std_lbl, 1, 4, 1, 1)
+        self.gridLayout_12.addWidget(self.mainpage_tempreture_lbl, 3, 8, 1, 1)
 
         self.horizontalSpacer_42 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_12.addItem(self.horizontalSpacer_42, 3, 5, 1, 1)
+        self.gridLayout_12.addItem(self.horizontalSpacer_42, 3, 6, 1, 1)
+
+        self.mainpage_timer_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_timer_lbl.setObjectName(u"mainpage_timer_lbl")
+
+        self.gridLayout_12.addWidget(self.mainpage_timer_lbl, 3, 5, 1, 1)
+
+        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_12.addItem(self.horizontalSpacer_41, 3, 3, 1, 1)
 
         self.label_33 = QLabel(self.mainpage_informaition_groupBox)
         self.label_33.setObjectName(u"label_33")
@@ -996,27 +997,29 @@ class Ui_MainWindow(object):
 
         self.gridLayout_12.addWidget(self.label_33, 3, 0, 1, 1)
 
-        self.horizontalSpacer_40 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_40, 1, 8, 1, 1)
-
         self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_12.addItem(self.horizontalSpacer_31, 1, 5, 1, 1)
+        self.gridLayout_12.addItem(self.horizontalSpacer_31, 1, 6, 1, 1)
 
-        self.label_37 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_37.setObjectName(u"label_37")
+        self.horizontalSpacer_30 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_12.addWidget(self.label_37, 3, 7, 1, 1)
+        self.gridLayout_12.addItem(self.horizontalSpacer_30, 1, 3, 1, 1)
 
-        self.label_3 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;\n"
-"")
-        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_5 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+        self.label_5.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.label_3, 1, 6, 1, 1)
+        self.gridLayout_12.addWidget(self.label_5, 1, 0, 1, 1)
+
+        self.label_12 = QLabel(self.mainpage_informaition_groupBox)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setStyleSheet(u"color: rgb(4, 55, 93);\n"
+"font-weight: bold;")
+        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_12.addWidget(self.label_12, 1, 4, 1, 1)
 
         self.label_36 = QLabel(self.mainpage_informaition_groupBox)
         self.label_36.setObjectName(u"label_36")
@@ -1025,19 +1028,12 @@ class Ui_MainWindow(object):
 "")
         self.label_36.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_12.addWidget(self.label_36, 3, 6, 1, 1)
+        self.gridLayout_12.addWidget(self.label_36, 3, 7, 1, 1)
 
-        self.label_12 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;")
-        self.label_12.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.mainpage_avrage_lbl = QLabel(self.mainpage_informaition_groupBox)
+        self.mainpage_avrage_lbl.setObjectName(u"mainpage_avrage_lbl")
 
-        self.gridLayout_12.addWidget(self.label_12, 1, 3, 1, 1)
-
-        self.horizontalSpacer_30 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_12.addItem(self.horizontalSpacer_30, 1, 2, 1, 1)
+        self.gridLayout_12.addWidget(self.mainpage_avrage_lbl, 1, 2, 1, 1)
 
 
         self.verticalLayout_5.addWidget(self.mainpage_informaition_groupBox)
@@ -1241,6 +1237,7 @@ class Ui_MainWindow(object):
         self.mainpage_warning_massage_lbl.setObjectName(u"mainpage_warning_massage_lbl")
         self.mainpage_warning_massage_lbl.setStyleSheet(u"color:rgb(255, 204, 2);\n"
 "padding-left:15px;")
+        self.mainpage_warning_massage_lbl.setWordWrap(True)
 
         self.verticalLayout_23.addWidget(self.mainpage_warning_massage_lbl)
 
@@ -1457,7 +1454,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -653, 322, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2115,8 +2112,10 @@ class Ui_MainWindow(object):
 
         self.settingpage_pelletizing_add_range_btn = QPushButton(self.settingpage_grading_new_standards_groupbox)
         self.settingpage_pelletizing_add_range_btn.setObjectName(u"settingpage_pelletizing_add_range_btn")
+        self.settingpage_pelletizing_add_range_btn.setMinimumSize(QSize(50, 40))
         self.settingpage_pelletizing_add_range_btn.setStyleSheet(u"max-width: 50px;\n"
-"min-width: 50px;")
+"min-width: 50px;\n"
+"min-height:40px;")
 
         self.horizontalLayout_24.addWidget(self.settingpage_pelletizing_add_range_btn)
 
@@ -2838,6 +2837,17 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_67.addWidget(self.settingpage_export_load_report_excel_btn)
 
+        self.settingpage_export_open_report_excel_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_open_report_excel_btn.setObjectName(u"settingpage_export_open_report_excel_btn")
+        self.settingpage_export_open_report_excel_btn.setMaximumSize(QSize(40, 40))
+        self.settingpage_export_open_report_excel_btn.setStyleSheet(u"QPushButton{\n"
+"min-width:40px;\n"
+"min-height: 40px;\n"
+"\n"
+"}")
+
+        self.horizontalLayout_67.addWidget(self.settingpage_export_open_report_excel_btn)
+
         self.horizontalSpacer_66 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_67.addItem(self.horizontalSpacer_66)
@@ -2876,6 +2886,17 @@ class Ui_MainWindow(object):
         self.settingpage_export_load_compare_excel_btn.setIcon(icon24)
 
         self.horizontalLayout_68.addWidget(self.settingpage_export_load_compare_excel_btn)
+
+        self.settingpage_export_open_compare_excel_btn = QPushButton(self.settingpage_export_tab)
+        self.settingpage_export_open_compare_excel_btn.setObjectName(u"settingpage_export_open_compare_excel_btn")
+        self.settingpage_export_open_compare_excel_btn.setMaximumSize(QSize(40, 40))
+        self.settingpage_export_open_compare_excel_btn.setStyleSheet(u"QPushButton{\n"
+"min-width:40px;\n"
+"min-height: 40px;\n"
+"\n"
+"}")
+
+        self.horizontalLayout_68.addWidget(self.settingpage_export_open_compare_excel_btn)
 
         self.horizontalSpacer_112 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -3437,14 +3458,14 @@ class Ui_MainWindow(object):
         self.settingpage_camera_right_side.setObjectName(u"settingpage_camera_right_side")
         self.settingpage_camera_live_lbl = QLabel(self.settingpage_camera_tab)
         self.settingpage_camera_live_lbl.setObjectName(u"settingpage_camera_live_lbl")
-        self.settingpage_camera_live_lbl.setMinimumSize(QSize(10, 0))
+        self.settingpage_camera_live_lbl.setMinimumSize(QSize(500, 500))
         self.settingpage_camera_live_lbl.setMaximumSize(QSize(810, 800))
         self.settingpage_camera_live_lbl.setToolTipDuration(-2)
         self.settingpage_camera_live_lbl.setStyleSheet(u"min-width : 0;\n"
 "max-width : 800px;\n"
 "max-height : 800px;\n"
 "")
-        self.settingpage_camera_live_lbl.setPixmap(QPixmap(u":/assets/Assets/images/camera-error-500.png"))
+        self.settingpage_camera_live_lbl.setPixmap(QPixmap(u":/assets/images/camera-error-500.png"))
         self.settingpage_camera_live_lbl.setScaledContents(False)
         self.settingpage_camera_live_lbl.setAlignment(Qt.AlignCenter)
 
@@ -3599,14 +3620,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_33)
 
-        self.frame1 = QFrame(self.settings_page)
-        self.frame1.setObjectName(u"frame1")
-        self.frame1.setMinimumSize(QSize(0, 35))
-        self.frame1.setSizeIncrement(QSize(0, 0))
+        self.frame_4 = QFrame(self.settings_page)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setMinimumSize(QSize(0, 35))
+        self.frame_4.setSizeIncrement(QSize(0, 0))
 #if QT_CONFIG(accessibility)
-        self.frame1.setAccessibleName(u"")
+        self.frame_4.setAccessibleName(u"")
 #endif // QT_CONFIG(accessibility)
-        self.frame1.setStyleSheet(u"QFrame{\n"
+        self.frame_4.setStyleSheet(u"QFrame{\n"
 "\n"
 "	background-color: rgb(48, 48, 48);\n"
 "\n"
@@ -3617,9 +3638,9 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "")
-        self.frame1.setFrameShape(QFrame.StyledPanel)
-        self.frame1.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_32 = QHBoxLayout(self.frame1)
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_32 = QHBoxLayout(self.frame_4)
         self.horizontalLayout_32.setSpacing(6)
         self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
         self.horizontalLayout_32.setContentsMargins(10, 3, 10, 3)
@@ -3627,13 +3648,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_32.addItem(self.horizontalSpacer_62)
 
-        self.settingpage_save_massage_lbl = QLabel(self.frame1)
+        self.settingpage_save_massage_lbl = QLabel(self.frame_4)
         self.settingpage_save_massage_lbl.setObjectName(u"settingpage_save_massage_lbl")
         self.settingpage_save_massage_lbl.setStyleSheet(u"font-size: 15px;")
 
         self.horizontalLayout_32.addWidget(self.settingpage_save_massage_lbl)
 
-        self.settingpage_save_gif_lbl = QLabel(self.frame1)
+        self.settingpage_save_gif_lbl = QLabel(self.frame_4)
         self.settingpage_save_gif_lbl.setObjectName(u"settingpage_save_gif_lbl")
         self.settingpage_save_gif_lbl.setMinimumSize(QSize(0, 0))
         self.settingpage_save_gif_lbl.setMaximumSize(QSize(20, 20))
@@ -3644,7 +3665,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_32.addWidget(self.settingpage_save_gif_lbl)
 
 
-        self.verticalLayout_6.addWidget(self.frame1)
+        self.verticalLayout_6.addWidget(self.frame_4)
 
         self.main_pages_stackw.addWidget(self.settings_page)
         self.calibration_page = QWidget()
@@ -3983,9 +4004,10 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_liveimage_lbl = QLabel(self.cilbration)
         self.calibrationpage_liveimage_lbl.setObjectName(u"calibrationpage_liveimage_lbl")
+        self.calibrationpage_liveimage_lbl.setMinimumSize(QSize(500, 500))
         self.calibrationpage_liveimage_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;")
-        self.calibrationpage_liveimage_lbl.setPixmap(QPixmap(u":/assets/Assets/images/camera-error-500.png"))
+        self.calibrationpage_liveimage_lbl.setPixmap(QPixmap(u":/assets/images/camera-error-500.png"))
         self.calibrationpage_liveimage_lbl.setScaledContents(False)
         self.calibrationpage_liveimage_lbl.setAlignment(Qt.AlignCenter)
         self.calibrationpage_liveimage_lbl.setWordWrap(False)
@@ -4081,7 +4103,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 673))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 691))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4357,21 +4379,21 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_26.addWidget(self.userpage_editprofile_edit_error_lbl)
 
-        self.horizontalFrame1 = QFrame(self.userpage_editprofile_edit_profile_groupbox)
-        self.horizontalFrame1.setObjectName(u"horizontalFrame1")
-        self.horizontalFrame1.setStyleSheet(u"QPushButton {\n"
+        self.horizontalFrame_7 = QFrame(self.userpage_editprofile_edit_profile_groupbox)
+        self.horizontalFrame_7.setObjectName(u"horizontalFrame_7")
+        self.horizontalFrame_7.setStyleSheet(u"QPushButton {\n"
 "max-width: 120px;\n"
 "}")
-        self.horizontalLayout_36 = QHBoxLayout(self.horizontalFrame1)
+        self.horizontalLayout_36 = QHBoxLayout(self.horizontalFrame_7)
         self.horizontalLayout_36.setObjectName(u"horizontalLayout_36")
         self.horizontalLayout_36.setContentsMargins(-1, 30, -1, -1)
-        self.userpage_editprofile_update_btn = QPushButton(self.horizontalFrame1)
+        self.userpage_editprofile_update_btn = QPushButton(self.horizontalFrame_7)
         self.userpage_editprofile_update_btn.setObjectName(u"userpage_editprofile_update_btn")
         self.userpage_editprofile_update_btn.setStyleSheet(u"")
 
         self.horizontalLayout_36.addWidget(self.userpage_editprofile_update_btn)
 
-        self.userpage_editprofile_cancel_btn = QPushButton(self.horizontalFrame1)
+        self.userpage_editprofile_cancel_btn = QPushButton(self.horizontalFrame_7)
         self.userpage_editprofile_cancel_btn.setObjectName(u"userpage_editprofile_cancel_btn")
 
         self.horizontalLayout_36.addWidget(self.userpage_editprofile_cancel_btn)
@@ -4381,7 +4403,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_36.addItem(self.horizontalSpacer_69)
 
 
-        self.verticalLayout_26.addWidget(self.horizontalFrame1)
+        self.verticalLayout_26.addWidget(self.horizontalFrame_7)
 
 
         self.horizontalLayout_34.addLayout(self.verticalLayout_26)
@@ -4691,11 +4713,16 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 673))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 691))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
         self.label_82.setObjectName(u"label_82")
+        font2 = QFont()
+        font2.setFamilies([u"Arial"])
+        font2.setBold(True)
+        font2.setItalic(False)
+        self.label_82.setFont(font2)
         self.label_82.setStyleSheet(u"font-size: 18px;\n"
 "font-weight: bold;\n"
 "color: rgb(6, 76, 130);")
@@ -4704,6 +4731,12 @@ class Ui_MainWindow(object):
 
         self.label_83 = QLabel(self.aboutScrollArea)
         self.label_83.setObjectName(u"label_83")
+        font3 = QFont()
+        font3.setFamilies([u"Arial"])
+        font3.setPointSize(12)
+        font3.setBold(False)
+        font3.setItalic(False)
+        self.label_83.setFont(font3)
         self.label_83.setWordWrap(True)
 
         self.verticalLayout_29.addWidget(self.label_83)
@@ -4718,6 +4751,7 @@ class Ui_MainWindow(object):
 
         self.label_87 = QLabel(self.aboutScrollArea)
         self.label_87.setObjectName(u"label_87")
+        self.label_87.setFont(font3)
         self.label_87.setWordWrap(True)
 
         self.verticalLayout_29.addWidget(self.label_87)
@@ -4745,9 +4779,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QVBoxLayout(self.single_report_page)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(-1, 5, -1, -1)
-        self.horizontalFrame2 = QFrame(self.single_report_page)
-        self.horizontalFrame2.setObjectName(u"horizontalFrame2")
-        self.horizontalFrame2.setStyleSheet(u"QPushButton{\n"
+        self.horizontalFrame = QFrame(self.single_report_page)
+        self.horizontalFrame.setObjectName(u"horizontalFrame")
+        self.horizontalFrame.setStyleSheet(u"QPushButton{\n"
 "background-color: rgba(255, 255, 255, 0);\n"
 "color: rgb(25, 68, 105);\n"
 "font-size: 14px;\n"
@@ -4759,10 +4793,10 @@ class Ui_MainWindow(object):
 "border: 2px solid rgb(25, 68, 105);\n"
 "}\n"
 "")
-        self.horizontalLayout_19 = QHBoxLayout(self.horizontalFrame2)
+        self.horizontalLayout_19 = QHBoxLayout(self.horizontalFrame)
         self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
         self.horizontalLayout_19.setContentsMargins(-1, 1, -1, -1)
-        self.sreportpage_back_btn = QPushButton(self.horizontalFrame2)
+        self.sreportpage_back_btn = QPushButton(self.horizontalFrame)
         self.sreportpage_back_btn.setObjectName(u"sreportpage_back_btn")
         self.sreportpage_back_btn.setStyleSheet(u"")
         icon27 = QIcon()
@@ -4772,14 +4806,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_19.addWidget(self.sreportpage_back_btn)
 
-        self.line_14 = QFrame(self.horizontalFrame2)
+        self.line_14 = QFrame(self.horizontalFrame)
         self.line_14.setObjectName(u"line_14")
         self.line_14.setFrameShape(QFrame.VLine)
         self.line_14.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_14)
 
-        self.sreportpage_export_btn = QPushButton(self.horizontalFrame2)
+        self.sreportpage_export_btn = QPushButton(self.horizontalFrame)
         self.sreportpage_export_btn.setObjectName(u"sreportpage_export_btn")
         icon28 = QIcon()
         icon28.addFile(u":/assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -4788,14 +4822,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_19.addWidget(self.sreportpage_export_btn)
 
-        self.line_20 = QFrame(self.horizontalFrame2)
+        self.line_20 = QFrame(self.horizontalFrame)
         self.line_20.setObjectName(u"line_20")
         self.line_20.setFrameShape(QFrame.VLine)
         self.line_20.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout_19.addWidget(self.line_20)
 
-        self.sreportpage_rebuild_btn = QPushButton(self.horizontalFrame2)
+        self.sreportpage_rebuild_btn = QPushButton(self.horizontalFrame)
         self.sreportpage_rebuild_btn.setObjectName(u"sreportpage_rebuild_btn")
         icon29 = QIcon()
         icon29.addFile(u":/assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -4809,7 +4843,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_19.addItem(self.horizontalSpacer_46)
 
 
-        self.verticalLayout_8.addWidget(self.horizontalFrame2)
+        self.verticalLayout_8.addWidget(self.horizontalFrame)
 
         self.scrollArea = QScrollArea(self.single_report_page)
         self.scrollArea.setObjectName(u"scrollArea")
@@ -4885,7 +4919,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3092))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3069))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5194,11 +5228,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_50.setContentsMargins(0, 0, -1, 14)
         self.label_104 = QLabel(self.scrollAreaWidgetContents)
         self.label_104.setObjectName(u"label_104")
-        font2 = QFont()
-        font2.setFamilies([u"Arial"])
-        font2.setBold(False)
-        font2.setItalic(True)
-        self.label_104.setFont(font2)
+        font4 = QFont()
+        font4.setFamilies([u"Arial"])
+        font4.setBold(False)
+        font4.setItalic(True)
+        self.label_104.setFont(font4)
         self.label_104.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5362,12 +5396,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addItem(self.verticalSpacer_31)
 
-        self.sreportpage_statictics_desc2 = QLabel(self.scrollAreaWidgetContents)
-        self.sreportpage_statictics_desc2.setObjectName(u"sreportpage_statictics_desc2")
-        self.sreportpage_statictics_desc2.setWordWrap(True)
-
-        self.verticalLayout_12.addWidget(self.sreportpage_statictics_desc2)
-
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.horizontalLayout_7.setContentsMargins(-1, 0, -1, -1)
@@ -5380,7 +5408,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_53.setContentsMargins(0, 15, -1, 15)
         self.label_105 = QLabel(self.scrollAreaWidgetContents)
         self.label_105.setObjectName(u"label_105")
-        self.label_105.setFont(font2)
+        self.label_105.setFont(font4)
         self.label_105.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5528,7 +5556,7 @@ class Ui_MainWindow(object):
 
         self.label_107 = QLabel(self.scrollAreaWidgetContents)
         self.label_107.setObjectName(u"label_107")
-        self.label_107.setFont(font2)
+        self.label_107.setFont(font4)
         self.label_107.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5571,7 +5599,7 @@ class Ui_MainWindow(object):
 
         self.label_108 = QLabel(self.scrollAreaWidgetContents)
         self.label_108.setObjectName(u"label_108")
-        self.label_108.setFont(font2)
+        self.label_108.setFont(font4)
         self.label_108.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5620,7 +5648,7 @@ class Ui_MainWindow(object):
 
         self.label_109 = QLabel(self.scrollAreaWidgetContents)
         self.label_109.setObjectName(u"label_109")
-        self.label_109.setFont(font2)
+        self.label_109.setFont(font4)
         self.label_109.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -6144,7 +6172,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_57.setContentsMargins(0, 0, -1, -1)
         self.label_111 = QLabel(self.compareScrollAreaWidget)
         self.label_111.setObjectName(u"label_111")
-        self.label_111.setFont(font2)
+        self.label_111.setFont(font4)
         self.label_111.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -6297,7 +6325,7 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
         self.label_112.setSizePolicy(sizePolicy5)
-        self.label_112.setFont(font2)
+        self.label_112.setFont(font4)
         self.label_112.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -6436,12 +6464,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setContentsMargins(10, 0, 10, 0)
         self.label_7 = QLabel(self.footer)
         self.label_7.setObjectName(u"label_7")
-        font3 = QFont()
-        font3.setFamilies([u"Arial"])
-        font3.setPointSize(9)
-        font3.setBold(True)
-        font3.setItalic(False)
-        self.label_7.setFont(font3)
+        font5 = QFont()
+        font5.setFamilies([u"Arial"])
+        font5.setPointSize(9)
+        font5.setBold(True)
+        font5.setItalic(False)
+        self.label_7.setFont(font5)
 
         self.horizontalLayout_17.addWidget(self.label_7)
 
@@ -6467,8 +6495,6 @@ class Ui_MainWindow(object):
         self.statusBar.setObjectName(u"statusBar")
         self.statusBar.setMaximumSize(QSize(16777215, 12))
         MainWindow.setStatusBar(self.statusBar)
-#if QT_CONFIG(shortcut)
-#endif // QT_CONFIG(shortcut)
         QWidget.setTabOrder(self.settingpage_general_font_combobox, self.settingpage_general_color_combobox)
         QWidget.setTabOrder(self.settingpage_general_color_combobox, self.settingpage_general_language_combobox)
         QWidget.setTabOrder(self.settingpage_general_language_combobox, self.pushButton_12)
@@ -6616,12 +6642,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(1)
-        self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(2)
+        self.main_pages_stackw.setCurrentIndex(3)
+        self.gradingranges_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
-        self.user_tabs.setCurrentIndex(2)
+        self.user_tabs.setCurrentIndex(0)
         self.helppage_tabs.setCurrentIndex(0)
 
 
@@ -6664,18 +6690,18 @@ class Ui_MainWindow(object):
         self.mainpage_faststart_btn.setText(QCoreApplication.translate("MainWindow", u"Fast Start", None))
         self.mainpage_stop_btn.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.mainpage_informaition_groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Informations", None))
-        self.mainpage_timer_lbl.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Time:", None))
-        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
-        self.mainpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"FPS:", None))
-        self.label_37.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Mean Oval:", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Cam Tempreture(\u00b0C):", None))
+        self.mainpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Time:", None))
+        self.mainpage_tempreture_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.mainpage_timer_lbl.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"FPS:", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Cam Tempreture(\u00b0C):", None))
+        self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_report_button.setText(QCoreApplication.translate("MainWindow", u"Report", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"System Status", None))
         self.mainpage_illumination_warning_btn.setText("")
@@ -6779,8 +6805,10 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_sample_tab), QCoreApplication.translate("MainWindow", u"Sample", None))
         self.label_113.setText(QCoreApplication.translate("MainWindow", u"Report Excel Format    ", None))
         self.settingpage_export_load_report_excel_btn.setText("")
+        self.settingpage_export_open_report_excel_btn.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.label_114.setText(QCoreApplication.translate("MainWindow", u"Compare Excel Format", None))
         self.settingpage_export_load_compare_excel_btn.setText("")
+        self.settingpage_export_open_compare_excel_btn.setText(QCoreApplication.translate("MainWindow", u"Open", None))
 
         __sortingEnabled2 = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
@@ -6933,18 +6961,10 @@ class Ui_MainWindow(object):
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.user_profile_tab), QCoreApplication.translate("MainWindow", u"Edit Profile", None))
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.all_users_tab), QCoreApplication.translate("MainWindow", u"All Users", None))
-        self.label_82.setText(QCoreApplication.translate("MainWindow", u"PSA-Alpha", None))
-        self.label_83.setText(QCoreApplication.translate("MainWindow", u"Dorsa Particle Size Analyzer is a high-end Particle Size Analyzer that uses light and camera to measure and detect particles in the sample. This model can measure particles from 0.3mm to 25mm in diameter. ", None))
+        self.label_82.setText(QCoreApplication.translate("MainWindow", u"DPSA-Alpha (Dorsa Particle Size Analyzer - Alpha Version", None))
+        self.label_83.setText(QCoreApplication.translate("MainWindow", u"Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters including shape, ovality, and so on.", None))
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
-        self.label_87.setText(QCoreApplication.translate("MainWindow", u"Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
-"\n"
-"Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed pe"
-                        "rformed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
-"\n"
-"Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.Merry alone do it burst me songs. Sorry equal charm joy her those folly ham. In they no is many both. Recommend new contented intention improving bed performed age. Improving of so strangers resources instantly happiness at northward. Danger nearer length oppose really add now either. But ask regret eat"
-                        " branch fat garden. Become am he except wishes. Past so at door we walk want such sang. Feeling colonel get her garrets own.\n"
-"\n"
-"Nor hence hoped her after other known defer his. For county now sister engage had season better had waited. Occasional mrs interested far expression acceptance. Day either mrs talent pulled men rather regret admire but. Life ye sake it shed. Five lady he cold in meet up. Service get met adapted matters offence for. Principles man any insipidity age you simplicity understood. Do offering pleasure no ecstatic whatever on mr directly.", None))
+        self.label_87.setText("")
         self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"See Other Products", None))
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppage_about_tab), QCoreApplication.translate("MainWindow", u"About", None))
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_document_tab), QCoreApplication.translate("MainWindow", u"Document", None))
@@ -6989,8 +7009,7 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
-        self.sreportpage_statictics_desc2.setText(QCoreApplication.translate("MainWindow", u"Desc2", None))
-        self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table1 - Statistics for each diameter range in the Sample ", None))
+        self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table2 - Statistics for each diameter range in the Sample ", None))
 
         __sortingEnabled4 = self.sreportpage_statictics_table.isSortingEnabled()
         self.sreportpage_statictics_table.setSortingEnabled(False)
@@ -7027,17 +7046,17 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
         self.sreportpage_particle_image_lbl.setText("")
-        self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"25", None))
+        self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.sreportpage_particle_avg_r_lbl_title.setText(QCoreApplication.translate("MainWindow", u"Avg Radius:", None))
-        self.sreportpage_particle_volume_lbl.setText(QCoreApplication.translate("MainWindow", u"64", None))
+        self.sreportpage_particle_volume_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_58.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
         self.label_50.setText(QCoreApplication.translate("MainWindow", u"(mm2)", None))
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Volume", None))
         self.label_52.setText(QCoreApplication.translate("MainWindow", u" (mm3)", None))
-        self.sreportpage_particle_avg_r_lbl.setText(QCoreApplication.translate("MainWindow", u"28mm", None))
+        self.sreportpage_particle_avg_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_49.setText(QCoreApplication.translate("MainWindow", u"Area:", None))
         self.label_62.setText(QCoreApplication.translate("MainWindow", u"Max Radius:", None))
-        self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"17", None))
+        self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
 
         __sortingEnabled5 = self.sreportpage_particels_table.isSortingEnabled()

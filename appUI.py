@@ -1,8 +1,11 @@
 import os
 import sys
-import Constants.CONSTANTS as CONSTANTS
+import time
 
+from uiFiles.main_UI_ui import Ui_MainWindow
+from PySide6.QtWidgets import QMainWindow
 
+#----------------------Compile Resource File-----------------------
 sys.path.append( os.getcwd() + "/pagesUI" )
 sys.path.append( os.getcwd() + "/uiUtils" )
 sys.path.append( os.getcwd() + "/backend" )
@@ -24,65 +27,38 @@ from PagesUI.comparePageUI import comparePageUI
 #---------------------------------------------------------
 from uiUtils import GUIComponents
 from uiUtils.guiBackend import GUIBackend
-
-class routerUI:
-
-    def __init__(self, ui) -> None:
-        self.ui = ui
-        self.pages_index = {
-            'main'              : 0,
-            'reports'           : 1,
-            'grading_ranges'    : 2,
-            'settings'          : 3,
-            'calibration'       : 4,
-            'user'              : 5,
-            'help'              : 6
-        }
-
-        self.tabs = {
-            'general_setting':   (self.ui.settingpage_tabs, 0),
-            'sample_setting':    (self.ui.settingpage_tabs, 1),
-            'export_setting':    (self.ui.settingpage_tabs, 2),
-            'storage_setting':   (self.ui.settingpage_tabs, 3),
-            'camera_setting':    (self.ui.settingpage_tabs, 4),
-            'algorithm_setting': (self.ui.settingpage_tabs, 5),
-            
-            
-            
-
-            'register_user':     (self.ui.user_tabs, 0),
-            'edit_user':         (self.ui.user_tabs, 1),
-            'all_users':         (self.ui.user_tabs, 2),
-        }
-
-        self.main_pages_stackw = self.ui.main_pages_stackw
-        
-    def go(self, pagename, tabname=None):
-        GUIBackend.set_stack_widget_idx(self.main_pages_stackw, self.pages_index[pagename])
-
-        if tabname is not None:
-            tab_obj, idx = self.tabs[tabname]
-            GUIBackend.set_current_tab( tab_obj,  idx)
+import Constants.CONSTANTS as CONSTANTS
+from uiUtils.IO.Mouse import mouseHandeler, MouseEvent
 
 
-class mainUI:
+
+class mainUI(QMainWindow):
     def __init__(self, ui, login_ui, sample_info, edit_user, auto_rebuild_ui, single_rebuild_manual_ui, db_init_ui):
         #self.__global_setting__ = GlobalUI(ui)
-        self.ui = ui
+        super(mainUI,self).__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+
+        self.mouseHandeler = mouseHandeler()
+
+        self.sample_info = sample_info
         self.login_ui = login_ui
         self.sample_info = sample_info
         self.edit_user = edit_user
         self.auto_rebuild_ui = auto_rebuild_ui
         self.db_init_ui = db_init_ui
 
-        self.settingPage = settingPageUI(ui)
-        self.reportsPage = reportsPageUI(ui, auto_rebuild_ui)
-        self.gradingRange = standardsPageUI(ui)
-        self.mainPage = mainPageUI(ui, sample_info)
-        self.reportPage = reportPageUI(ui, single_rebuild_manual_ui)
-        self.usersPage = usersPageUI(ui, login_ui, edit_user)
-        self.comparePage = comparePageUI(ui)
-        self.validationPage = validationPageUI(ui)
+        self.__win_old_pos = (0,0)
+        self.move_refresh_time = 0
+
+        self.settingPage = settingPageUI(self.ui)
+        self.reportsPage = reportsPageUI(self.ui, auto_rebuild_ui)
+        self.gradingRange = standardsPageUI(self.ui)
+        self.mainPage = mainPageUI(self.ui, sample_info)
+        self.reportPage = reportPageUI(self.ui, single_rebuild_manual_ui)
+        self.usersPage = usersPageUI(self.ui, login_ui, edit_user)
+        self.comparePage = comparePageUI(self.ui)
+        self.validationPage = validationPageUI(self.ui)
 
         #self.router = routerUI(ui)
 
@@ -137,11 +113,23 @@ class mainUI:
 
         self.header_button_connector()
         self.sidebar_button_connector()
-        GUIBackend.set_win_frameless(self.ui)
+        GUIBackend.set_win_frameless(self)
+        
 
-   
+        self.mouseHandeler.connect_all(self.ui.header, self.header_mouse_event)
 
+    def header_mouse_event(self,e:MouseEvent):
+        if e.is_move():
+            #update moving window every 10ms
+            if time.time() - self.move_refresh_time > 0.01:
+                self.move_refresh_time = time.time()
+                new_pos = e.get_postion()
+                delta = new_pos - self.__win_old_pos
+                GUIBackend.relative_move(self, tuple(delta))
 
+        elif e.is_click() and e.is_left_btn():
+            self.__win_old_pos = e.get_postion()
+ 
     #-------------------------------------------------------------------------------------------
     def change_page_connector(self,func):
         self.external_change_page_event = func
@@ -162,9 +150,9 @@ class mainUI:
     def header_button_connector(self):
         """this function is used to connect ui buttons to their functions
         """
-        GUIBackend.button_connector( self.headrs_button['minimize'], lambda :GUIBackend.minimize_win(self.ui) )
-        GUIBackend.button_connector( self.headrs_button['maximize'], lambda :GUIBackend.maxmize_minimize(self.ui) )
-        GUIBackend.button_connector( self.headrs_button['close'], self.close )
+        GUIBackend.button_connector( self.headrs_button['minimize'], lambda :GUIBackend.minimize_win(self) )
+        GUIBackend.button_connector( self.headrs_button['maximize'], lambda :GUIBackend.maxmize_minimize(self) )
+        GUIBackend.button_connector( self.headrs_button['close'], self.close_win )
     
     
 
@@ -284,16 +272,17 @@ class mainUI:
                 GUIBackend.set_visible_tab(obj, idx, not(flag))
 
     def show(self,):
-        self.ui.showMaximized()
+        self.showMaximized()
 
-    def close(self, force=False):
+    def close_win(self, force=False):
         """shows dialog box for closing application
         """
         if not force:
             btn = self.show_confirm_box('Close', 'Are you sure close app?',['yes','no'])
             if btn == 'no':
                 return
-        GUIBackend.close_app(self.ui)
+    
+        GUIBackend.close_app(self)
 
     
     def show_sidebar(self, flag):
@@ -315,3 +304,6 @@ class mainUI:
 
     def change_cursure(self, name):
         GUIBackend.cursor_changer(name)
+
+
+

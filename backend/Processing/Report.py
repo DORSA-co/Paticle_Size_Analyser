@@ -123,6 +123,9 @@ class Report:
     def get_date_str(self,):
         return self.date_time.strftime("%Y/%m/%d")
     
+    def get_full_time_str(self):
+        return self.date_time.strftime("%Y/%m/%d %H:%M:%S")
+    
 
     def change_standard(self, standard:dict, ):
         #t = time.time()

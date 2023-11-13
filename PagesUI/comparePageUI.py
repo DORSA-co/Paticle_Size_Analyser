@@ -2,7 +2,7 @@
 from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
 from uiUtils import GUIComponents
-from uiUtils.Charts.lineChart import LineChart, Trend
+from uiUtils.Charts.CategoricalLineChart import CategoricalLineChart, Trend
 from Constants import CONSTANTS
 import random
 import numpy as np
@@ -30,7 +30,7 @@ class comparePageUI(commonUI):
 
 
     def init_trend_chart(self,):
-        self.trends_chart  = LineChart(
+        self.trends_chart  = CategoricalLineChart(
                     chart_title = 'Trends',
                     chart_title_color = '#404040',
                     axisX_label = 'Samples',
@@ -42,7 +42,7 @@ class comparePageUI(commonUI):
                     axisY_grid=True,
                     axisY_grid_color='#40404040',
                     axisY_range = (0, 100),
-                    axisX_tickCount = 10,
+                    #axisX_range= (0,5),
                     axisY_tickCount = 10,
                     animation = False,
                 )
@@ -121,12 +121,15 @@ class comparePageUI(commonUI):
 
 
 
-    def show_trends_chart(self, datas:np.ndarray, ranges:list[list], y_lable):
+    def show_trends_chart(self, datas:np.ndarray, dates:list[str], ranges:list[list], y_lable):
         sample_count = len(datas)
+        
+
         y_range_max = int(datas.max()) + 5
 
         
         self.trends_chart.set_axisY_range((0,y_range_max))
+        self.trends_chart.set_axisX_range((0,sample_count - 0.5))
         self.trends_chart.remove_all_trends()
         self.trends_chart.set_axisY_label(y_lable)
         
@@ -143,7 +146,7 @@ class comparePageUI(commonUI):
                 color = '#' + color[2:]
 
             trend = Trend(name=range_str, line_color=color, line_width=3)
-            trend.add_data(np.arange(sample_count), datas[:,i])
+            trend.add_data(dates, datas[:,i])
             self.trends_chart.add_trend(trend)
 
             

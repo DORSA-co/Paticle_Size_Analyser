@@ -62,7 +62,8 @@ class comparePageAPI:
 
         samples_count = len(self.compare.samples)
         data = []
-        samples_ranges_data = []
+        samples_ranges_percents = []
+        samples_date = []
         self.reports = []
 
         for i,sample in enumerate(self.compare.samples):
@@ -78,24 +79,29 @@ class comparePageAPI:
             #-------------------------------------------------------------------------
             else:
                 report.change_standard(compare.standard)
+
+                #get total info of each ranges in format of list[dict]. each dict is info of one range
                 ranges_data = report.get_ranges_statistics()
-                ranges_data = list(map( lambda x:x[attribute_key], ranges_data))
-                samples_ranges_data.append(ranges_data)
-                table_record = [sample_name, sample['date'], sample['time'] ] + ranges_data
+                #extract precents of each range from ranges_data
+                ranges_percent = list(map( lambda x:x[attribute_key], ranges_data))
+                samples_ranges_percents.append(ranges_percent)
+                table_record = [sample_name, sample['date'], sample['time'] ] + ranges_percent
                 data.append( table_record )
+                samples_date.append(report.get_full_time_str())
 
             #--------------------------------------------------
             percent =  ( i + 1 )/samples_count * 100 
             self.ui.set_progressbar(percent)
             #--------------------------------------------------
-        if len(samples_ranges_data)!=0:
-            samples_ranges_data = np.array( samples_ranges_data )
-            data_mean = np.round(np.mean( samples_ranges_data, axis=0), 0 )
+        if len(samples_ranges_percents)!=0:
+            samples_ranges_percents = np.array( samples_ranges_percents )
+            data_mean = np.round(np.mean( samples_ranges_percents, axis=0), 0 )
 
             self.ui.set_compare_table(data, attribute_unit)
             self.ui.set_total_mean_table(data_mean)
             self.ui.show_page_content(True)
-            self.ui.show_trends_chart(samples_ranges_data,
+            self.ui.show_trends_chart(samples_ranges_percents,
+                                      samples_date,
                                       compare.standard['ranges'],
                                       y_lable=attribute
                                       )

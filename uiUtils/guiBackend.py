@@ -1,13 +1,17 @@
-from PySide6 import QtWidgets, QtCore, QtGui
-from PySide6.QtCore import Qt
 from functools import partial
-import cv2 
 from datetime import datetime, date
 import sys
+
+import cv2 
 from PySide6.QtGui import QMovie
+from PySide6 import QtWidgets, QtCore, QtGui
+from PySide6.QtCore import Qt
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QApplication
+#from PyQt5 import uic
+
 from Constants import CONSTANTS
+
 
 
 
@@ -16,9 +20,13 @@ class GUIBackend:
 
 
     @staticmethod
-    def load_ui(path):
-        loader = QUiLoader()
-        window = loader.load(path, None)
+    def load_ui(path, parent=None, byQt=False):
+        if not byQt:
+            loader = QUiLoader()
+            window = loader.load(path, parent)
+        else:
+            pass
+            #window = uic.loadUi(path)
         return window
 
     @staticmethod

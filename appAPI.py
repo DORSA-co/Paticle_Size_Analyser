@@ -236,11 +236,12 @@ class main_API(QObject):
 
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:
-                self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+                self.mainPageAPI.default_camera_status_event(status=False)
                 self.camera_disconnect_event()
                 
             else:
-                self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', True)
+                self.mainPageAPI.default_camera_status_event(status=True)
+                
                 
     def camera_disconnect_event(self,):
         self.mainPageAPI.stop(ask=False)

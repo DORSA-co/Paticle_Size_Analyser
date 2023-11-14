@@ -82,52 +82,6 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=JGPQDKRT
 
-[Document3]
-DocumentPath=FTDI module.SchLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=TZHMRBCQ
-
-[Document4]
-DocumentPath=FTDI module.PcbLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=WMXLUWFR
-
-[GeneratedDocument1]
-DocumentPath=FTDI module.cmp
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=FTDI module.csv
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=FTDI module.rep
-DItemRevisionGUID=
-
 [OutputGroup1]
 Name=Netlist Outputs
 Description=

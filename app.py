@@ -45,12 +45,13 @@ if __name__ == '__main__':
     single_rebuild_manual_ui = loader.load(single_rebuild_manual_ui_file, None)
     db_init_ui = loader.load(db_init_ui_file, None)
 
-    main_ui = mainUI(window, login_ui,
-                             sample_info,
-                             edit_user,
-                                         auto_rebuild_ui,
-                             single_rebuild_manual_ui,
-                             db_init_ui)
+    main_ui = mainUI(window, 
+                     login_ui,
+                     sample_info,
+                     edit_user,
+                     auto_rebuild_ui,
+                     single_rebuild_manual_ui,
+                     db_init_ui)
 
     
     api = main_API(main_ui)

@@ -76,7 +76,7 @@ class GUIBackend:
         sys.exit()
 
     @staticmethod
-    def maxmize_minimize(ui):
+    def maxmize_minimize(ui:QtWidgets.QMainWindow):
         """
         this function chages the window size of app
         Inputs: None
@@ -86,6 +86,15 @@ class GUIBackend:
             ui.showNormal()
         else:
             ui.showMaximized()
+
+    def is_maximize(ui:QtWidgets.QMainWindow):
+        return ui.isMaximized()
+    
+    def show_normal(ui:QtWidgets.QMainWindow):
+        ui.showNormal()
+
+    def show_maximize(ui:QtWidgets.QMainWindow):
+        ui.showMaximized()
     
     @staticmethod
     def adjustsize( wgt: QtWidgets.QWidget):

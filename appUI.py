@@ -122,6 +122,9 @@ class mainUI(QMainWindow):
         if e.is_move():
             #update moving window every 10ms
             if time.time() - self.move_refresh_time > 0.01:
+                if GUIBackend.is_maximize(self):
+                    GUIBackend.show_normal(self)
+                    
                 self.move_refresh_time = time.time()
                 new_pos = e.get_postion()
                 delta = new_pos - self.__win_old_pos

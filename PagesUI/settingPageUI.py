@@ -278,6 +278,7 @@ class cameraSettingTabUI(commonSettingUI):
         self.cancel_btn = self.ui.settingpage_camera_cancel_btn
         self.restor_btn = self.ui.settingpage_camera_restore_btn
         self.live_img_lbl = self.ui.settingpage_camera_live_lbl
+        self.port_connection_lbl = self.ui.settingpage_camera_port_connection_lbl
         
         self.__is_start__ = False
         self.__connection_event_function__ = None
@@ -299,6 +300,7 @@ class cameraSettingTabUI(commonSettingUI):
             },
             'others':{
                 'fps': self.ui.settingpage_camera_fps_spinbox,
+                'port': self.ui.settingpage_camera_ports_combobox,
                 'serial_number': self.ui.settingpage_camera_device_combobox
             }
             #'fps': self.ui.settingpage_camera_fps_spinbox,
@@ -366,7 +368,6 @@ class cameraSettingTabUI(commonSettingUI):
     
     def change_camera_connector(self, func):
         GUIBackend.combobox_changeg_connector(self.settings['others']['serial_number'], func)
-
 
     
     def __internal_change_setting_event__(self,setting_group, setting_name):
@@ -442,6 +443,9 @@ class cameraSettingTabUI(commonSettingUI):
 
         GUIBackend.set_signal_connection(self.devices_combobox, True)
 
+    def set_ports_item(self, ports:list[str]):
+        GUIBackend.set_combobox_items(self.settings['others']['port'], ports)
+
 
     def get_camera_device(self,):
         """returns camera diveces that selected in combobox
@@ -470,6 +474,7 @@ class cameraSettingTabUI(commonSettingUI):
         res = self.get_camera_settings()
         res['fps'] = self.get_fps()
         res['serial_number'] = self.get_camera_device()
+        res['port'] = GUIBackend.get_combobox_selected(self.settings['others']['port'])
         return res
 
     def set_camera_settings(self, settings:dict):
@@ -488,12 +493,9 @@ class cameraSettingTabUI(commonSettingUI):
 
     
     def set_all_settings(self, settings:dict):
-        if settings.get('serial_number'):
-            self._serial_number = settings['serial_number']
-            GUIBackend.set_combobox_current_item(self.devices_combobox, settings['serial_number'])
-        
-        if settings.get('fps'):
-            GUIBackend.set_input(self.fps_spinbox, settings['fps'])
+        for name in self.settings['others']:
+            if settings.get(name):
+                GUIBackend.set_input(self.settings['others'][name], settings[name] )
 
         self.set_camera_settings(settings)
 
@@ -515,6 +517,15 @@ class cameraSettingTabUI(commonSettingUI):
         GUIBackend.set_disable(self.save_btn)
 
 
+    def set_com_connection_status(self, status):
+        if status:
+            GUIBackend.set_label_text(self.port_connection_lbl, 'Ok')
+            GUIBackend.set_style(self.port_connection_lbl, "color:rgb(58, 209, 154);")
+            
+        else:
+            GUIBackend.set_label_text(self.port_connection_lbl, 'Not Ok')
+            GUIBackend.set_style(self.port_connection_lbl, "color:rgb(255, 95, 84);")
+            
 
 
 

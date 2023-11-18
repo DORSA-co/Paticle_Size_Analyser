@@ -3287,21 +3287,29 @@ class Ui_MainWindow(object):
         self.settingpage_camera_device_group.setAutoFillBackground(False)
         self.gridLayout_7 = QGridLayout(self.settingpage_camera_device_group)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer_12, 0, 3, 1, 1)
-
         self.settingpage_camera_device_lbl = QLabel(self.settingpage_camera_device_group)
         self.settingpage_camera_device_lbl.setObjectName(u"settingpage_camera_device_lbl")
         self.settingpage_camera_device_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl, 0, 0, 1, 1)
 
-        self.settingpage_camera_fps_lbl = QLabel(self.settingpage_camera_device_group)
-        self.settingpage_camera_fps_lbl.setObjectName(u"settingpage_camera_fps_lbl")
-        self.settingpage_camera_fps_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.settingpage_camera_ports_combobox = QComboBox(self.settingpage_camera_device_group)
+        self.settingpage_camera_ports_combobox.setObjectName(u"settingpage_camera_ports_combobox")
+        self.settingpage_camera_ports_combobox.setStyleSheet(u"min-width:90px;\n"
+"max-width:90px;")
 
-        self.gridLayout_7.addWidget(self.settingpage_camera_fps_lbl, 1, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.settingpage_camera_ports_combobox, 1, 4, 1, 1)
+
+        self.settingpage_camera_ports_lbl = QLabel(self.settingpage_camera_device_group)
+        self.settingpage_camera_ports_lbl.setObjectName(u"settingpage_camera_ports_lbl")
+        self.settingpage_camera_ports_lbl.setMinimumSize(QSize(60, 0))
+        self.settingpage_camera_ports_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_ports_lbl, 1, 3, 1, 1)
+
+        self.horizontalSpacer_33 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_33, 0, 1, 1, 1)
 
         self.settingpage_camera_device_combobox = QComboBox(self.settingpage_camera_device_group)
         self.settingpage_camera_device_combobox.setObjectName(u"settingpage_camera_device_combobox")
@@ -3312,12 +3320,25 @@ class Ui_MainWindow(object):
         self.settingpage_camera_fps_spinbox = QSpinBox(self.settingpage_camera_device_group)
         self.settingpage_camera_fps_spinbox.setObjectName(u"settingpage_camera_fps_spinbox")
         self.settingpage_camera_fps_spinbox.setEnabled(True)
+        self.settingpage_camera_fps_spinbox.setMinimum(10)
+        self.settingpage_camera_fps_spinbox.setMaximum(100)
 
         self.gridLayout_7.addWidget(self.settingpage_camera_fps_spinbox, 1, 2, 1, 1)
 
-        self.horizontalSpacer_33 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+        self.settingpage_camera_fps_lbl = QLabel(self.settingpage_camera_device_group)
+        self.settingpage_camera_fps_lbl.setObjectName(u"settingpage_camera_fps_lbl")
+        self.settingpage_camera_fps_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_7.addItem(self.horizontalSpacer_33, 0, 1, 1, 1)
+        self.gridLayout_7.addWidget(self.settingpage_camera_fps_lbl, 1, 0, 1, 1)
+
+        self.settingpage_camera_port_connection_lbl = QLabel(self.settingpage_camera_device_group)
+        self.settingpage_camera_port_connection_lbl.setObjectName(u"settingpage_camera_port_connection_lbl")
+        self.settingpage_camera_port_connection_lbl.setMinimumSize(QSize(50, 0))
+        self.settingpage_camera_port_connection_lbl.setStyleSheet(u"min-width:50px;\n"
+"padding:0px;\n"
+"margin:0px;")
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_port_connection_lbl, 1, 5, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
 
 
         self.camera_setting_lef_side.addWidget(self.settingpage_camera_device_group)
@@ -3458,7 +3479,7 @@ class Ui_MainWindow(object):
         self.settingpage_camera_right_side.setObjectName(u"settingpage_camera_right_side")
         self.settingpage_camera_live_lbl = QLabel(self.settingpage_camera_tab)
         self.settingpage_camera_live_lbl.setObjectName(u"settingpage_camera_live_lbl")
-        self.settingpage_camera_live_lbl.setMinimumSize(QSize(500, 500))
+        self.settingpage_camera_live_lbl.setMinimumSize(QSize(10, 500))
         self.settingpage_camera_live_lbl.setMaximumSize(QSize(810, 800))
         self.settingpage_camera_live_lbl.setToolTipDuration(-2)
         self.settingpage_camera_live_lbl.setStyleSheet(u"min-width : 0;\n"
@@ -4103,7 +4124,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 691))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4713,7 +4734,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 691))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 521, 180))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4919,7 +4940,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3069))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 3069))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6144,7 +6165,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6869,7 +6890,9 @@ class Ui_MainWindow(object):
         self.settingpage_camera_start_btn.setText("")
         self.settingpage_camera_device_group.setTitle(QCoreApplication.translate("MainWindow", u"Device Setting", None))
         self.settingpage_camera_device_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera", None))
+        self.settingpage_camera_ports_lbl.setText(QCoreApplication.translate("MainWindow", u"PORT", None))
         self.settingpage_camera_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"FPS", None))
+        self.settingpage_camera_port_connection_lbl.setText(QCoreApplication.translate("MainWindow", u"Not Ok", None))
         self.settingpage_camera_control_group.setTitle(QCoreApplication.translate("MainWindow", u"Control And Analog Setting", None))
         self.settingpage_camera_exposure_lbl.setText(QCoreApplication.translate("MainWindow", u"Exposure", None))
         self.settingpage_camera_gain_lbl.setText(QCoreApplication.translate("MainWindow", u"Gain", None))

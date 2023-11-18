@@ -1,4 +1,5 @@
 import os
+import time
 import threading
 
 from backend.Camera.dorsaPylon import Collector, Camera
@@ -7,10 +8,12 @@ from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSe
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
 from uiUtils import GUIComponents
+from backend.Serial.armSerial import armSerial
+
 
 class settingPageAPI:
-    def __init__(self, ui:settingPageUI ,database:settingDB, cameras):
-        self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, cameras)
+    def __init__(self, ui:settingPageUI ,database:settingDB, cameras, serial_micro:armSerial):
+        self.cameraSetting = cameraSettingTabAPI(ui.cameraSettingTab, database.camera_db, cameras, serial_micro)
         self.algorithmSetting = algorithmSettingTabAPI(ui.algorithmSettingTab, database.algorithm_db)
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
@@ -159,7 +162,7 @@ class storageSettingTabAPI:
 
 class cameraSettingTabAPI:
     DEBUG_PROCESS_THREAD = False    
-    def __init__(self, ui:cameraSettingTabUI ,database:settingCameraDB, cameras: dict[str, Camera]):
+    def __init__(self, ui:cameraSettingTabUI ,database:settingCameraDB, cameras: dict[str, Camera], serial_micro=armSerial):
         self.ui = ui
         self.database = database
         self.cameras = cameras
@@ -174,10 +177,12 @@ class cameraSettingTabAPI:
 
         collerctor = Collector()
         self.ui.set_camera_devices(collerctor.get_all_serials())
+        self.serial_micro = serial_micro
+        
         #camera_application could be 'standard' and 'zoom' corespond to camera usage for measuring particles
         
 
-        
+        self.ui.set_ports_item(self.serial_micro.get_serial_pots())
         self.setup_camera_funcs()
         self.load_from_database()
         self.ui.change_setting_event_connector(self.update_setting_event)
@@ -187,6 +192,7 @@ class cameraSettingTabAPI:
         self.ui.restor_button_connector(self.restor)
         self.ui.change_camera_connector(self.change_camera)
         self.set_allowed_values_camera_setting()
+        self.connect_to_micro(None)
         
 
     def startup(self):
@@ -224,14 +230,34 @@ class cameraSettingTabAPI:
             self.set_camera_parms_funcs[camera_application] = set_funcs
             self.get_camera_parms_range_funcs[camera_application] = range_funcs
 
-    def update_setting_event(self, group_setting, camera_application, settings = None):
+    def update_setting_event(self, group_setting, camera_application, settings:dict = None):
         #when event happend, settings argument got value from ui
         #if settings is None:
         #    settings = self.ui.get_camera_settings()
         if group_setting == 'camera_setting':
             self.set_camera_setting(camera_application, settings)
         else:
-            pass
+            if settings.get('fps') is not None:
+                self.serial_micro.set_fps(settings['fps'])
+                #time.sleep(0.005)
+                print('befor')
+                print(self.serial_micro.read_all())
+                print('after')
+            
+            elif settings.get('port') is not None:
+                self.connect_to_micro(settings['port'])
+                
+    
+    def connect_to_micro(self, port):
+        if port is None:
+            port = self.ui.get_all_settings()['port']
+
+        self.serial_micro.disconnect()
+        self.serial_micro.set_port(port)
+        time.sleep(0.5)
+        connection_status = self.serial_micro.connect()
+        self.ui.set_com_connection_status(connection_status)
+
 
     def set_camera_device_change_event(self, func):
         self.external_camera_change_event = func
@@ -241,7 +267,6 @@ class cameraSettingTabAPI:
                   'serial_number': self.ui.get_camera_device()
                   }
         if self.external_camera_change_event is not None:
-            pass
             self.external_camera_change_event(device)
 
         self.setup_camera_funcs()

@@ -50,6 +50,7 @@ class settingCameraDB(parentSettingDB):
                    {'col_name': 'width',            'type':'INT', },
                    {'col_name': 'height',           'type':'INT', },
                    {'col_name': 'fps',              'type':'INT', },
+                   {'col_name': 'port',             'type':'VARCHAR(255)', 'len':20},
                    {'col_name': 'application',      'type':'VARCHAR(255)', 'len':20},
                 ]
     
@@ -59,7 +60,8 @@ class settingCameraDB(parentSettingDB):
                             'exposure': 50,       
                             'width':  2000,          
                             'height': 1800,         
-                            'fps': 15,            
+                            'fps': 15,
+                            'port': 'COM3',            
                             'application': 'standard',   
                         }   
                     ]

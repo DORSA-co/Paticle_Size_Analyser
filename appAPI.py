@@ -29,6 +29,7 @@ from PagesUI.PageUI import commonUI
 #from appUI import mainUI
 from uiUtils import GUIComponents
 from subPrograms.dbInit.dbInitAPI import dbInitAPI
+from backend.Serial.armSerial import armSerial
 
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
@@ -66,7 +67,8 @@ class main_API(QObject):
         self.device_checker_timer = GUIComponents.timerBuilder(1000, self.check_camera_devices_event)
         self.device_checker_timer.start()
 
-
+        #micro serial---------------------------------
+        self.serial_micro = armSerial()
         #apps-----------------------------------------
         self.storageCleanerApp = storageCleaner( settings= self.db.setting_db.storage_db.load(),
                                                 reports_db= self.db.reports_db
@@ -78,7 +80,7 @@ class main_API(QObject):
         #self.mainPageAPI = None
         self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
         self.gradingRangesPageAPI = standardsPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
-        self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db )
+        self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db , serial_micro=self.serial_micro)
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage, database=self.db)
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)

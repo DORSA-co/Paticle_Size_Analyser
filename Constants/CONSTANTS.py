@@ -9,6 +9,10 @@ class screen:
     W = 0
     H = 0
 
+class serialInfo:
+    MAX_PORT_COM = 5
+    BAUD_RATE = 9600
+
 
 class Color:
     CHART_TRENDS_COLOR = [

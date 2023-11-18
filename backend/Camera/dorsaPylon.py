@@ -251,6 +251,9 @@ class CameraInfo:
          """ return True if camera is GigE class"""
          return self.camera_object.camera_device.IsGigE()
 
+    def is_Simulation(self,) -> bool :
+         """ return True if camera is GigE class"""
+         return self.get_class() == 'BaslerCamEmu'
 
 
 
@@ -562,8 +565,11 @@ class CameraParms:
             selector (_type_, optional): trigger selector. Defaults to Trigger.selector.frame_start.
         """
         self.set_trigger_on()
-        self.__set_value__(source, self.camera_object.camera_device.TriggerSource)
-        self.__set_value__(selector, self.camera_object.camera_device.TriggerSelector)
+        if source is not None:
+            self.__set_value__(source, self.camera_object.camera_device.TriggerSource)
+        
+        if selector is not None:
+            self.__set_value__(selector, self.camera_object.camera_device.TriggerSelector)
 
     def get_trigger_option(self) -> tuple[str, str]:
         """return values of TriggerSource and TriggerSelector
@@ -601,6 +607,9 @@ class CameraParms:
     def set_trigger_off(self) -> None:
         """trun trigger `Off` """
         self.__set_value__('Off', self.camera_object.camera_device.TriggerMode)
+
+    def set_trigger_delay(self, delay:int):
+        self.__set_value__(delay, self.camera_object.camera_device.TriggerDelay)
 
     def get_trigger_mode(self) -> str:
         """return trigger mode value (`On` or `Off`)"""

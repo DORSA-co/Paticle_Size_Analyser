@@ -44,6 +44,11 @@ class TimeOut:
     TIMEOUT_CHECKING_DEVICE = 3
 
 
+class CameraParms:
+    SYNCHRONIZE = ['software', 'hardware']
+    TRIGGER_DELAY = 500
+
+
 
 MAX_CAMERA_TEMP = 65
 

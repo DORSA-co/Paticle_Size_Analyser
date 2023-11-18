@@ -327,6 +327,8 @@ class mainPageAPI:
 
 
     def stop(self,ask=True):
+        if not self.is_running:
+            return
 
         if ask:
             flag = self.ui.show_dialog_box( 'Stop',

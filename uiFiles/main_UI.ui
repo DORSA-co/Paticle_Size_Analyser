@@ -5754,40 +5754,6 @@ background-color:rgb(175, 175, 175);
                        <string>Device Setting</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_7">
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="settingpage_camera_device_lbl">
-                         <property name="text">
-                          <string>Camera</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="4">
-                        <widget class="QComboBox" name="settingpage_camera_ports_combobox">
-                         <property name="styleSheet">
-                          <string notr="true">min-width:90px;
-max-width:90px;</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="3">
-                        <widget class="QLabel" name="settingpage_camera_ports_lbl">
-                         <property name="minimumSize">
-                          <size>
-                           <width>60</width>
-                           <height>0</height>
-                          </size>
-                         </property>
-                         <property name="text">
-                          <string>PORT</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="0" column="1">
                         <spacer name="horizontalSpacer_33">
                          <property name="orientation">
@@ -5804,14 +5770,7 @@ max-width:90px;</string>
                          </property>
                         </spacer>
                        </item>
-                       <item row="0" column="2">
-                        <widget class="QComboBox" name="settingpage_camera_device_combobox">
-                         <property name="enabled">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="2">
+                       <item row="2" column="2">
                         <widget class="QSpinBox" name="settingpage_camera_fps_spinbox">
                          <property name="enabled">
                           <bool>true</bool>
@@ -5824,17 +5783,37 @@ max-width:90px;</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="1" column="0">
-                        <widget class="QLabel" name="settingpage_camera_fps_lbl">
+                       <item row="0" column="2">
+                        <widget class="QComboBox" name="settingpage_camera_device_combobox">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="2">
+                        <widget class="QComboBox" name="settingpage_camera_synchronizer_combobox">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="3">
+                        <widget class="QLabel" name="settingpage_camera_ports_lbl">
+                         <property name="minimumSize">
+                          <size>
+                           <width>90</width>
+                           <height>0</height>
+                          </size>
+                         </property>
                          <property name="text">
-                          <string>FPS</string>
+                          <string>PORT</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                          </property>
                         </widget>
                        </item>
-                       <item row="1" column="5" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                       <item row="2" column="5" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                         <widget class="QLabel" name="settingpage_camera_port_connection_lbl">
                          <property name="minimumSize">
                           <size>
@@ -5849,6 +5828,48 @@ margin:0px;</string>
                          </property>
                          <property name="text">
                           <string>Not Ok</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="settingpage_camera_fps_lbl">
+                         <property name="text">
+                          <string>FPS</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="settingpage_camera_device_lbl">
+                         <property name="text">
+                          <string>Camera</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="4">
+                        <widget class="QComboBox" name="settingpage_camera_ports_combobox">
+                         <property name="styleSheet">
+                          <string notr="true">min-width:90px;
+max-width:90px;</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="settingpage_camera_device_lbl_2">
+                         <property name="styleSheet">
+                          <string notr="true">min-width:95px;
+</string>
+                         </property>
+                         <property name="text">
+                          <string>synchronizer</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                          </property>
                         </widget>
                        </item>
@@ -7227,8 +7248,8 @@ max-height : 800px;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>55</width>
-                    <height>39</height>
+                    <width>1143</width>
+                    <height>691</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -8221,8 +8242,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>521</width>
-                    <height>180</height>
+                    <width>1143</width>
+                    <height>691</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8515,7 +8536,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>892</width>
+                <width>1145</width>
                 <height>3069</height>
                </rect>
               </property>
@@ -10958,7 +10979,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>181</width>
+                <width>1144</width>
                 <height>1182</height>
                </rect>
               </property>

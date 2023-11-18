@@ -56,8 +56,8 @@ class main_API(QObject):
 
         self.collector = Collector()
         self.collector.enable_camera_emulation(1)
-        cameras_serial_numbers = self.db.setting_db.camera_db.get_camera_devices()
-        for cam_device_info in cameras_serial_numbers:
+        self.camera_device_info = self.db.setting_db.camera_db.get_camera_devices()
+        for cam_device_info in self.camera_device_info:
             self.creat_camera(cam_device_info)
             self.run_camera_grabbing(cam_device_info['application'])
         #-----------------------------------------------------------------------------------------
@@ -158,8 +158,6 @@ class main_API(QObject):
 
     def run_camera_grabbing(self,camera_application): 
         if self.cameras.get(camera_application) is not None:
-            self.camera_device_info['application'] = camera_application
-            self.camera_device_info['serial_number']= self.cameras[camera_application].Infos.get_serialnumber()
             self.cameras[camera_application].Operations.open()
 
             self.camera_workers[camera_application] = cameraWorker( self.cameras[camera_application] )
@@ -180,7 +178,7 @@ class main_API(QObject):
             self.cameras[cam_application].Operations.close()
             time.sleep(0.5)
         
-        
+        #self.camera_device_info = self.c
         self.creat_camera(camera_device_info)
         if self.camera_workers.get(cam_application) is not None:
             self.camera_workers[cam_application].change_camera( self.cameras[cam_application] )
@@ -221,6 +219,13 @@ class main_API(QObject):
         if len(self.cameras) == 0:
             self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
             self.camera_disconnect_event()
+
+        for device_info in self.camera_device_info:
+            application = device_info['application']
+            sn = device_info['serial_number']
+            if self.cameras.get(application) is None:
+                if sn in cameras_sn:
+                    self.creat_camera(device_info)
 
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:

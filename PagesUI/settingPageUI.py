@@ -297,11 +297,13 @@ class cameraSettingTabUI(commonSettingUI):
                 'height': self.ui.settingpage_camera_height_spinbox,
                 'gain': self.ui.settingpage_camera_gain_spinbox,
                 'exposure': self.ui.settingpage_camera_exposure_spinbox,
+                'synchronize': self.ui.settingpage_camera_synchronizer_combobox
             },
             'others':{
                 'fps': self.ui.settingpage_camera_fps_spinbox,
                 'port': self.ui.settingpage_camera_ports_combobox,
-                'serial_number': self.ui.settingpage_camera_device_combobox
+                'serial_number': self.ui.settingpage_camera_device_combobox,
+                
             }
             #'fps': self.ui.settingpage_camera_fps_spinbox,
             }
@@ -443,8 +445,11 @@ class cameraSettingTabUI(commonSettingUI):
 
         GUIBackend.set_signal_connection(self.devices_combobox, True)
 
-    def set_ports_item(self, ports:list[str]):
+    def set_ports_items(self, ports:list[str]):
         GUIBackend.set_combobox_items(self.settings['others']['port'], ports)
+
+    def set_synchronize_items(self, items:list[str]):
+        GUIBackend.set_combobox_items(self.settings['camera_setting']['synchronize'], items)
 
 
     def get_camera_device(self,):
@@ -475,6 +480,7 @@ class cameraSettingTabUI(commonSettingUI):
         res['fps'] = self.get_fps()
         res['serial_number'] = self.get_camera_device()
         res['port'] = GUIBackend.get_combobox_selected(self.settings['others']['port'])
+        #res['synchronize'] = GUIBackend.get_combobox_selected(self.settings['camera_setting']['synchronize'])
         return res
 
     def set_camera_settings(self, settings:dict):

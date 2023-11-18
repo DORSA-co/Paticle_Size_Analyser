@@ -3,6 +3,7 @@ import time
 import threading
 
 from backend.Camera.dorsaPylon import Collector, Camera
+from backend.Camera import PylonFlags
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI
 from backend.Utils.StorageUtils import storageManager
@@ -182,7 +183,10 @@ class cameraSettingTabAPI:
         #camera_application could be 'standard' and 'zoom' corespond to camera usage for measuring particles
         
 
-        self.ui.set_ports_item(self.serial_micro.get_serial_pots())
+        self.ui.set_ports_items(self.serial_micro.get_serial_pots())
+        self.ui.set_synchronize_items(CONSTANTS.CameraParms.SYNCHRONIZE)
+
+
         self.setup_camera_funcs()
         self.load_from_database()
         self.ui.change_setting_event_connector(self.update_setting_event)
@@ -211,6 +215,19 @@ class cameraSettingTabAPI:
         return True
     
     def setup_camera_funcs(self,):
+
+        def set_synchronize(value):
+            if not self.cameras[camera_application].Infos.is_Simulation():
+                if value == 'hardware':
+                    self.cameras[camera_application].Parms.set_trigger_on()
+                    self.cameras[camera_application].Parms.set_trigger_option(  None,
+                                                                                PylonFlags.TrigggerSource.hardware_line1)
+                    self.cameras[camera_application].Parms.set_trigger_delay(CONSTANTS.CameraParms.TRIGGER_DELAY)
+            
+                else:
+                    self.cameras[camera_application].Parms.set_trigger_off()
+
+            
         for camera_application in self.cameras.keys():
         
             set_funcs = {
@@ -218,6 +235,7 @@ class cameraSettingTabAPI:
                 'exposure': self.cameras[camera_application].Parms.set_exposureTime,
                 'width': lambda w: self.cameras[camera_application].Parms.set_roi(None, w, None, None),
                 'height': lambda h: self.cameras[camera_application].Parms.set_roi(h, None, None, None),
+                'synchronize' : set_synchronize
             }
 
             range_funcs = {
@@ -225,6 +243,7 @@ class cameraSettingTabAPI:
             'exposure': self.cameras[camera_application].Parms.get_exposureTime_range,
             'width': lambda : self.cameras[camera_application].Parms.get_roi_range()[1],
             'height': lambda : self.cameras[camera_application].Parms.get_roi_range()[0],
+            'synchronize': None
             }
 
             self.set_camera_parms_funcs[camera_application] = set_funcs
@@ -288,6 +307,8 @@ class cameraSettingTabAPI:
             return
         
         for field_name , get_range_func in self.get_camera_parms_range_funcs[camera_application].items():
+            if get_range_func is None:
+                continue
             spinboxs_range[ field_name] = get_range_func()
         
         self.ui.set_camera_settings_spinbox_ranges(spinboxs_range)

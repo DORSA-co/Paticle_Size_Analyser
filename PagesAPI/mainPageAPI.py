@@ -150,7 +150,7 @@ class mainPageAPI:
             else:
                 if ( time.time() - self.refresh_time ) >=1:
                     print('TimeOut')
-                    self.thread.quit()
+                    #self.thread.quit()
                     self.during_processing = False
 
     

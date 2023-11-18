@@ -131,9 +131,9 @@ def draw_particles_size(img, particles: list[Particle], color:tuple=(40, 40, 200
 
     for particle in particles:
         center = particle.center
-        radius = particle.avg_radius
-        radius = np.round(radius, 2)
-        text = str(radius) + ' mm'
+        diameter = particle.avg_radius * 2
+        diameter = np.round(diameter, 2)
+        text = str(diameter) + ' mm'
         res = cv2.putText(  img, 
                             text=text, 
                             org=(int(center[0]), int(center[1]) ),

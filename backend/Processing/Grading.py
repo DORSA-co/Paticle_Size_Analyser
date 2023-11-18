@@ -20,7 +20,8 @@ class gradingABstract:
         self.ranges_hist = np.zeros( (len(self.sieve_ranges)) )
 
     def append_particle(self, particle:Particle):
-        sieve_idx = gradingUtils.get_sift_idx(particle.max_radius, ranges=self.sieve_ranges)
+        diameter = particle.max_radius * 2
+        sieve_idx = gradingUtils.get_sift_idx(diameter, ranges=self.sieve_ranges)
         if sieve_idx>=0:
             self.ranges_hist[sieve_idx] += particle.avg_volume
         return sieve_idx

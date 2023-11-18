@@ -70,8 +70,9 @@ class Report:
     def get_global_statistics(self):
         info = {}
         if self.get_particles_count() != 0:
-            info['avrage'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
-            info['std'] = np.round( self.Buffer.total_buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
+            max_diameter = self.Buffer.total_buffer.get_feature('max_radius') * 2
+            info['avrage'] = np.round( max_diameter.mean(), CONSTANTS.DECIMAL_ROUND )
+            info['std'] = np.round( max_diameter.std(), CONSTANTS.DECIMAL_ROUND )
 
         else:
             info['avrage'] = 0
@@ -86,9 +87,11 @@ class Report:
             data = {}
             range_buffer = self.Buffer.sieve_buffers[i]
             if len(range_buffer.particels) > 0:
+                diameter = range_buffer.get_feature('max_radius') * 2
+
                 data['range'] = range_name
-                data['std'] = np.round( range_buffer.get_feature('max_radius').std(), CONSTANTS.DECIMAL_ROUND )
-                data['avrage'] = np.round( range_buffer.get_feature('max_radius').mean(), CONSTANTS.DECIMAL_ROUND )
+                data['std'] = np.round( diameter.std(), CONSTANTS.DECIMAL_ROUND )
+                data['avrage'] = np.round( diameter.mean(), CONSTANTS.DECIMAL_ROUND )
                 data['count'] = len( range_buffer.get_particels() )
                 data['percent'] = hist[i]
                 data['circularity'] = np.round( range_buffer.get_feature('circularity').mean(), CONSTANTS.DECIMAL_ROUND )
@@ -160,14 +163,14 @@ class Report:
     
 
     def get_gaussian_data(self,step=1):
-        radiuses = self.Buffer.total_buffer.get_feature('max_radius')
+        diameters = self.Buffer.total_buffer.get_feature('max_radius') * 2
         volumes = self.Buffer.total_buffer.get_feature('avg_volume')
         #return np.vstack((radiuses, volumes)).T
         volumes_percent = volumes
         r_min, r_max = self.get_full_range()
         bins = np.arange(r_min, r_max, step)
 
-        ys, _ = np.histogram(radiuses, bins, weights=volumes_percent)
+        ys, _ = np.histogram(diameters, bins, weights=volumes_percent)
         ys = ys / np.sum(ys) * 100
         
         center_xs = []

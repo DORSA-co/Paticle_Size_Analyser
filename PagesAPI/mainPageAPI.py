@@ -406,7 +406,9 @@ class mainPageAPI:
         #load algorithm parms from database
         algorithm_data = self.database.setting_db.algorithm_db.load()
         #build detector
-        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 0.1, algorithm_data['border'])
+        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 
+                                                            CONSTANTS.Calibration.PX2MM, 
+                                                            algorithm_data['border'])
         #-----------------------------------------------------------------------------------------
         #load selected standard from databasr
         standard = self.database.standards_db.load(info['standard'])

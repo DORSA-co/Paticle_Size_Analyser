@@ -58,6 +58,10 @@ class particlesDetector:
 
         _, mask = cv2.threshold(img, self.thresh, 255, cv2.THRESH_BINARY_INV)
 
+        mask = cv2.erode(mask, np.ones((3,3)), iterations=2)
+        mask = cv2.dilate(mask, np.ones((3,3)), iterations=3)
+        mask = cv2.erode(mask, np.ones((3,3)), iterations=1)
+
         cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         
         #filter pellets that are in defeinded image area
@@ -109,7 +113,7 @@ def draw_particles(img, particles: list[Particle], color:tuple=(40, 40, 200), th
     #print(time.time() - t)
     return res
 
-def draw_particles_size(img, particles: list[Particle], color:tuple=(40, 40, 200), thickness:int=5, font_scale=2):
+def draw_particles_size(img, particles: list[Particle], color:tuple=(40, 40, 200), thickness:int=5, font_scale=4):
     """draw particles conture on image
 
     Args:

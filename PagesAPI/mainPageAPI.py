@@ -122,13 +122,16 @@ class mainPageAPI:
                 self.calc_fps()
                 #self.ui.set_information({"fps": self.calc_fps()})
                 #________________________________ONLY FOR TEST________________________________________________
-                fname = "{}.png".format(self.test_img_idx)
-                img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
-                #cv2.circle(img, (10,10), 10, (np.random.randint(0,255),np.random.randint(0,255),np.random.randint(0,255),), -1)
-                self.test_img_idx+=1
-                if self.test_img_idx>4:
-                    self.test_img_idx = 0
-                #img = self.cameras['standard'].image
+                img = None
+                if self.cameras['standard'].Infos.is_Simulation():
+                    fname = "{}.png".format(self.test_img_idx)
+                    img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
+                    
+                    self.test_img_idx+=1
+                    if self.test_img_idx>4:
+                        self.test_img_idx = 0
+                else:
+                    img = self.cameras['standard'].image
                 #________________________________ONLY FOR TEST________________________________________________
                 self.processing_time = time.time()
 

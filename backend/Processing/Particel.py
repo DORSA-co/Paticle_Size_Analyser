@@ -38,12 +38,12 @@ class Particle:
         """calculate max radius of the particle
         """
         self.center, self.max_radius = cv2.minEnclosingCircle(self.cnt)
-        self.max_radius = self.max_radius * self.px2mm
+        self.max_radius = self.max_radius * self.px2mm * 2
 
     def calc_avrage_radius(self):
         """calculates avrage radius of a particle
         """
-        self.avg_radius = np.sqrt(self.area / np.pi)  #area = pi*r^2
+        self.avg_radius = np.sqrt(self.area / np.pi) * 2  #area = pi*r^2
     
     def calc_avrage_valoum(self):
         """calc volume of the particle by its avg_radius

@@ -71,7 +71,9 @@ class calibrationTab:
 
         #build detector ----------------------------------------------
         algorithm_data = self.database.setting_db.algorithm_db.load()
-        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 0.1, algorithm_data['border'])
+        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'],
+                                                            CONSTANTS.Calibration.PX2MM,
+                                                            algorithm_data['border'])
         #-------------------------------------------------------------
 
         for camera in self.cameras.values():
@@ -83,7 +85,7 @@ class calibrationTab:
         cam_application = 'standard'
         if self.calibration_flag:
             image = self.cameras[cam_application].image
-            image = cv2.imread('backend/Processing/test_imgs/0.png',0)
+            #image = cv2.imread('backend/Processing/test_imgs/0.png',0)
             
             self.calib_image = image.copy()
             self.particles = self.detector.detect(image, None)

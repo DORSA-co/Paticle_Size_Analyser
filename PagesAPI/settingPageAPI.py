@@ -197,6 +197,10 @@ class cameraSettingTabAPI:
         self.ui.change_camera_connector(self.change_camera)
         self.set_allowed_values_camera_setting()
         self.connect_to_micro(None)
+
+        camera_application = self.ui.get_selected_camera_application()
+        settings = self.ui.get_camera_settings()
+        self.set_camera_setting(camera_application, settings)
         
 
     def startup(self):
@@ -250,18 +254,16 @@ class cameraSettingTabAPI:
             self.get_camera_parms_range_funcs[camera_application] = range_funcs
 
     def update_setting_event(self, group_setting, camera_application, settings:dict = None):
-        #when event happend, settings argument got value from ui
-        #if settings is None:
-        #    settings = self.ui.get_camera_settings()
+
         if group_setting == 'camera_setting':
             self.set_camera_setting(camera_application, settings)
         else:
             if settings.get('fps') is not None:
                 self.serial_micro.set_fps(settings['fps'])
                 #time.sleep(0.005)
-                print('befor')
-                print(self.serial_micro.read_all())
-                print('after')
+                #print('befor')
+                #print(self.serial_micro.read_all())
+                #print('after')
             
             elif settings.get('port') is not None:
                 self.connect_to_micro(settings['port'])
@@ -343,7 +345,7 @@ class cameraSettingTabAPI:
             self.change_camera()
         
 
-
+    
 
     def play_stop_camera(self,is_playing):
         self.is_playing = is_playing

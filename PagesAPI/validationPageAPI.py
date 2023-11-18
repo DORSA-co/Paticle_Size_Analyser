@@ -1,24 +1,100 @@
 import numpy as np
+import cv2
 
+from backend.Processing import particlesDetector
 import Constants.CONSTANTS as CONSTANTS
 from PagesUI.validationPageUI import validationPageUI, statisticalHypothesisTab, calibrationTabUI, testSectionUI
 from Database.mainDatabase import mainDatabase
 from Database.reportsDB import reportFileHandler
 from backend.Processing.Report import Report
 from backend.Calibration.testsValidation import weightDifferenceValidation, tTestValidation
+from backend.Camera.dorsaPylon import Collector, Camera
+from uiUtils.IO.Mouse import MouseEvent
 
 storage_path = 'data/'
 
 class validationPageAPI:
 
-    def __init__(self, ui:validationPageUI, database:mainDatabase, ):
+    def __init__(self, ui:validationPageUI, database:mainDatabase, cameras: dict[str, Camera]):
         self.statisticalHypothesisTab = statisticalHypothesisTabAPI(ui.statisticalHypothesisTab, database)
+        self.calibrationTab = calibrationTab(ui.calibrationTab, database=database, cameras=cameras)
     
     def startup(self,):
         self.statisticalHypothesisTab.startup()
 
 
+class calibrationTab:
 
+    def __init__(self, ui:calibrationTabUI, database: mainDatabase, cameras: dict[str, Camera]) -> None:
+        self.ui = ui
+        self.database = database
+        self.cameras = cameras
+        
+        self.calibration_flag = False
+        self.particles = []
+        self.calib_image = None
+        self.detector: particlesDetector.particlesDetector = None
+        
+        
+
+        self.ui.check_button_connector(self.check_calibration_placement)
+        self.ui.start_button_connector(self.start_calibration)
+        self.ui.connect_image_mouse_event(self.image_mouse_event)
+
+    def image_mouse_event(self, event:MouseEvent):
+        if event.is_click() and event.is_left_btn():
+            pos = event.get_relative_postion()
+   
+            pos = self.calib_image.shape[::-1] * pos
+            pos = pos.astype(np.int32)
+
+
+
+            for particle in self.particles:
+                cnt = particle.cnt
+                dist = cv2.pointPolygonTest(cnt,pos.tolist(), False)
+                if dist > 0:
+                    img = self.calib_image.copy()
+                    img = particlesDetector.draw_particles(img, self.particles, (255,0,0), 5 )
+                    img = particlesDetector.draw_particles(img, [particle], (0,255,0), 5 )
+                    img = particlesDetector.draw_particles_size(img, [particle], color=(0,0,255))
+                    self.ui.show_live(img)
+                    
+        
+
+    def check_calibration_placement(self,):
+        return True
+    
+
+    def start_calibration(self,):
+        self.calibration_flag = True
+
+        #build detector ----------------------------------------------
+        algorithm_data = self.database.setting_db.algorithm_db.load()
+        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 0.1, algorithm_data['border'])
+        #-------------------------------------------------------------
+
+        for camera in self.cameras.values():
+            camera.Operations.start_grabbing()
+        
+
+    
+    def camera_image_event(self,):
+        cam_application = 'standard'
+        if self.calibration_flag:
+            image = self.cameras[cam_application].image
+            image = cv2.imread('backend/Processing/test_imgs/0.png',0)
+            
+            self.calib_image = image.copy()
+            self.particles = self.detector.detect(image, None)
+
+            image = particlesDetector.draw_particles(image, self.particles )
+            self.ui.show_live(image)
+            self.calibration_flag = False
+
+    
+
+    
 
 
 

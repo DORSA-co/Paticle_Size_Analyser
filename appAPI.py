@@ -85,7 +85,7 @@ class main_API(QObject):
         self.reportPageAPI = reportPageAPI(ui = self.ui.reportPage, database=self.db)
         self.reportsPageAPI = reportsPageAPI(ui=self.ui.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
-        self.validationPageAPI = validationPageAPI(ui=self.ui.validationPage, database=self.db)
+        self.validationPageAPI = validationPageAPI(ui=self.ui.validationPage, database=self.db, cameras=self.cameras)
 
         #for cam_device_info in cameras_serial_numbers:
             #self.creat_camera(cam_device_info)
@@ -261,8 +261,12 @@ class main_API(QObject):
         
         if current_page == 'main':
             self.mainPageAPI.process_image()
+
         elif current_page == 'settings':
             self.settingPageAPI.cameraSetting.show_live_image()
+        
+        elif current_page == 'calibration':
+            self.validationPageAPI.calibrationTab.camera_image_event()
         
 
 

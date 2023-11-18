@@ -22,14 +22,21 @@ BUTTONS = {
 
 class MouseEvent:
 
-    def __init__(self, e:QtGui.QMouseEvent) -> None:
+    def __init__(self, e:QtGui.QMouseEvent, widget:QtWidgets.QWidget) -> None:
         self.x = e.x()
         self.y = e.y()
         self.button = e.button()
         self.type = e.type()
+        self.width = widget.width()
+        self.height = widget.height()
+        
     
     def get_postion(self):
         return np.array([self.x, self.y])
+
+    def get_relative_postion(self):
+        print(self.width, self.height, self.x , self.y)
+        return np.array([self.x/ self.width, self.y / self.height])
     
     def is_move(self,) -> bool:
         return self.type == QEvent.Type.MouseMove
@@ -57,24 +64,24 @@ class mouseHandeler(QObject):
         self.events = {}
     
 
-    def __generate_event_func(self, function):
+    def __generate_event_func(self, function, widget:QtWidgets.QWidget):
         def _event_( e:QtGui.QMouseEvent):
-            function(MouseEvent(e))
+            function(MouseEvent(e, widget))
             
         return _event_
     
 
     def connet_dbclick(self, widget:QtWidgets.QWidget, function):
-        widget.mouseDoubleClickEvent = self.__generate_event_func( function)
+        widget.mouseDoubleClickEvent = self.__generate_event_func( function, widget)
 
     def connect_click(self, widget:QtWidgets.QWidget, function ):
-        widget.mousePressEvent =self.__generate_event_func(function)
+        widget.mousePressEvent =self.__generate_event_func(function, widget)
 
     def connect_move(self, widget:QtWidgets.QWidget, function ):
-        widget.mouseMoveEvent =self.__generate_event_func(function)
+        widget.mouseMoveEvent =self.__generate_event_func(function, widget)
 
     def connect_release(self, widget:QtWidgets.QWidget, function ):
-        widget.mouseReleaseEvent =self.__generate_event_func(function)
+        widget.mouseReleaseEvent =self.__generate_event_func(function, widget)
 
     def connect_all(self, widget:QtWidgets.QWidget, function ):
         self.connet_dbclick(widget , function)

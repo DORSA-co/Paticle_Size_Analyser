@@ -7,6 +7,8 @@ from PagesUI.dialogWindows.samplesDialogUI import samplesDialogUI
 from backend.Utils.datetimeUtils import datetimeFormat
 from PagesUI.PageUI import commonUI
 from PagesUI.dialogWindows.verficationResultDialogUI import verficationResultDialogUI
+from uiUtils.IO.Mouse import mouseHandeler
+
 
 class validationPageUI:
 
@@ -20,6 +22,8 @@ class calibrationTabUI(commonUI):
     def __init__(self, ui) -> None:
         
         self.ui = ui
+        self.mouseHandeler = mouseHandeler()
+
 
         self.check_btn = self.ui.calibrationpage_check_btn
         self.start_calib_btn = self.ui.calibrationpage_calib_btn
@@ -30,12 +34,24 @@ class calibrationTabUI(commonUI):
         self.new_acc_lbl = self.ui.calibrationpage_new_acc_lbl
         self.old_acc_lbl = self.ui.calibrationpage_prev_acc_lbl
         self.result_box = self.ui.calibrationpage_result_groupbox
+        self.progress_bar = self.ui.calibrationpage_process_progressbar
 
         self.tabel_headers = ['date', 'time', 'accuracy (mm)', 'type', 'iterations']
+
+        self.image_mouse_evnt_func = None
         
         GUIBackend.set_table_dim(self.calib_tabel, 1, len(self.tabel_headers))
         GUIBackend.set_table_cheaders(self.calib_tabel, self.tabel_headers)
+        GUIBackend.set_wgt_visible(self.progress_bar, False)
         self.show_calib_result(False)
+
+    
+
+    def connect_image_mouse_event(self, func):
+        self.image_mouse_evnt_func = func
+        
+    
+    
 
     def check_button_connector(self, func):
         """Connect a function into check button clicled
@@ -84,7 +100,9 @@ class calibrationTabUI(commonUI):
 
     
     def show_live(self,img):
-        pass
+        pixmap = GUIBackend.set_label_image(self.liveimage_lbl, img)
+        GUIBackend.fit_label_to_pixmap(self.liveimage_lbl, pixmap)
+        self.mouseHandeler.connect_all(self.liveimage_lbl, self.image_mouse_evnt_func)
 
 
 

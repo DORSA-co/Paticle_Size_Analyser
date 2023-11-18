@@ -71,7 +71,8 @@ class particlesDetector:
         particles = []
         for cnt in cnts:
                 particle = Particle(cnt, self.px2mm_ratio, self.particle_id)
-                report.append_particle(particle)
+                if report is not None:
+                    report.append_particle(particle)
                 particles.append(particle)
                 self.particle_id+=1
                 
@@ -106,6 +107,39 @@ def draw_particles(img, particles: list[Particle], color:tuple=(40, 40, 200), th
     cnts = list( map( lambda x:x.cnt, particles))
     res = cv2.drawContours(img, cnts, -1, color, thickness=thickness)
     #print(time.time() - t)
+    return res
+
+def draw_particles_size(img, particles: list[Particle], color:tuple=(40, 40, 200), thickness:int=5, font_scale=2):
+    """draw particles conture on image
+
+    Args:
+        img (_type_): input image
+        particles (list[Particle]): list of partiles
+        color (tuple, optional): color of drawing . Defaults to (200,0,0).
+        thickness (int, optional): thickness of drawing. Defaults to 2.
+
+    Returns:
+        _type_: drawed image
+    """
+    #t = time.time()
+    if len(img.shape) == 2:
+        img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+
+    for particle in particles:
+        center = particle.center
+        radius = particle.avg_radius
+        radius = np.round(radius, 2)
+        text = str(radius) + ' mm'
+        res = cv2.putText(  img, 
+                            text=text, 
+                            org=(int(center[0]), int(center[1]) ),
+                            fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                            fontScale=font_scale,
+                            color=color,
+                            thickness=thickness
+                        )
+
+
     return res
 
 

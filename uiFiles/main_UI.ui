@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -5866,7 +5866,7 @@ max-width:90px;</string>
 </string>
                          </property>
                          <property name="text">
-                          <string>synchronizer</string>
+                          <string>Harware Sync</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -6839,7 +6839,7 @@ margin-right:5px;</string>
                      <string notr="true"/>
                     </property>
                     <property name="value">
-                     <number>24</number>
+                     <number>0</number>
                     </property>
                    </widget>
                   </item>
@@ -7080,9 +7080,17 @@ margin-right:5px;</string>
                    <height>500</height>
                   </size>
                  </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>804</width>
+                   <height>804</height>
+                  </size>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">max-width : 800px;
-max-height : 800px;</string>
+max-height : 800px;
+
+border: 2px solid #404040;</string>
                  </property>
                  <property name="text">
                   <string/>

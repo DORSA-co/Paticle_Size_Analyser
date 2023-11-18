@@ -307,6 +307,7 @@ class mainUI(QMainWindow):
 
     def change_cursure(self, name):
         GUIBackend.cursor_changer(name)
+        
 
 
 

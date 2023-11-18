@@ -3925,7 +3925,7 @@ class Ui_MainWindow(object):
         self.calibrationpage_process_progressbar = QProgressBar(self.calibrationpage_left_side)
         self.calibrationpage_process_progressbar.setObjectName(u"calibrationpage_process_progressbar")
         self.calibrationpage_process_progressbar.setStyleSheet(u"")
-        self.calibrationpage_process_progressbar.setValue(24)
+        self.calibrationpage_process_progressbar.setValue(0)
 
         self.verticalLayout_3.addWidget(self.calibrationpage_process_progressbar)
 
@@ -4040,8 +4040,11 @@ class Ui_MainWindow(object):
         self.calibrationpage_liveimage_lbl = QLabel(self.cilbration)
         self.calibrationpage_liveimage_lbl.setObjectName(u"calibrationpage_liveimage_lbl")
         self.calibrationpage_liveimage_lbl.setMinimumSize(QSize(500, 500))
+        self.calibrationpage_liveimage_lbl.setMaximumSize(QSize(804, 804))
         self.calibrationpage_liveimage_lbl.setStyleSheet(u"max-width : 800px;\n"
-"max-height : 800px;")
+"max-height : 800px;\n"
+"\n"
+"border: 2px solid #404040;")
         self.calibrationpage_liveimage_lbl.setPixmap(QPixmap(u":/assets/images/camera-error-500.png"))
         self.calibrationpage_liveimage_lbl.setScaledContents(False)
         self.calibrationpage_liveimage_lbl.setAlignment(Qt.AlignCenter)
@@ -6677,7 +6680,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
@@ -6907,7 +6910,7 @@ class Ui_MainWindow(object):
         self.settingpage_camera_port_connection_lbl.setText(QCoreApplication.translate("MainWindow", u"Not Ok", None))
         self.settingpage_camera_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"FPS", None))
         self.settingpage_camera_device_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera", None))
-        self.settingpage_camera_device_lbl_2.setText(QCoreApplication.translate("MainWindow", u"synchronizer", None))
+        self.settingpage_camera_device_lbl_2.setText(QCoreApplication.translate("MainWindow", u"Harware Sync", None))
         self.settingpage_camera_control_group.setTitle(QCoreApplication.translate("MainWindow", u"Control And Analog Setting", None))
         self.settingpage_camera_exposure_lbl.setText(QCoreApplication.translate("MainWindow", u"Exposure", None))
         self.settingpage_camera_gain_lbl.setText(QCoreApplication.translate("MainWindow", u"Gain", None))

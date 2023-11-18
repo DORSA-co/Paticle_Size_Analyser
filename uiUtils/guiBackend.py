@@ -495,7 +495,7 @@ class GUIBackend:
 
     
     @staticmethod
-    def set_label_image(lbl: QtWidgets.QLabel, image):
+    def set_label_image(lbl: QtWidgets.QLabel, image) -> QtGui.QPixmap:
 
         if isinstance(image, str):
             image = cv2.imread(image)        
@@ -526,8 +526,14 @@ class GUIBackend:
             qformat)
         
         img = img.rgbSwapped()
-        lbl.setPixmap(QtGui.QPixmap.fromImage(img))
+        pixmap = QtGui.QPixmap.fromImage(img)
+        lbl.setPixmap(pixmap)
         lbl.setAlignment(QtCore.Qt.AlignCenter)
+        return pixmap
+    
+    @staticmethod
+    def fit_label_to_pixmap(lbl: QtWidgets.QLabel, pixmap:QtGui.QPixmap):
+        lbl.setFixedSize(pixmap.size())
 
     
     def set_label_scale(lbl: QtWidgets.QLabel, active:bool):

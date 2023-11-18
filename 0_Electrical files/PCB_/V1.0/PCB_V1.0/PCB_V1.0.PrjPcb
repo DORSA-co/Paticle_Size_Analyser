@@ -83,108 +83,6 @@ GenerateClassCluster=0
 DocumentUniqueId=MEKPLSWT
 
 [Document3]
-DocumentPath=..\..\..\..\Electrical_docs\Altium designer files\Altium Designer Libraries\Behyaar_LIBRARY\Behyaar_All_v1.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document4]
-DocumentPath=..\..\..\..\Electrical_docs\Altium designer files\Altium Designer Libraries\Behyaar_LIBRARY\Behyaar_CONNECTORS AND SOKET_v1.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document5]
-DocumentPath=..\..\..\..\Electrical_docs\Altium designer files\Altium Designer Libraries\Behyaar_LIBRARY\Behyaar_IC_v1.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document6]
-DocumentPath=..\..\..\..\Electrical_docs\Altium designer files\Altium Designer Libraries\Behyaar_LIBRARY\Behyaar_others_v1.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document7]
-DocumentPath=..\..\..\..\Electrical_docs\Altium designer files\Altium Designer Libraries\Behyaar_LIBRARY\Behyaar_RLCD_v1.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document8]
-DocumentPath=..\..\..\..\Electrical_docs\Altium designer files\Altium Designer Libraries\Behyaar_LIBRARY\Behyaar_SWITCH_v1.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document9]
 DocumentPath=PCB_V1.0.Annotation
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -201,7 +99,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document10]
+[Document4]
 DocumentPath=Libraries\Blue Pill library\Project Outputs for Blue Pill\Blue Pill\Project Outputs for Blue Pill\Blue Pill.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -218,7 +116,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document11]
+[Document5]
 DocumentPath=Libraries\FTDI module library\Project Outputs for FTDI module\FTDI module\Project Outputs for FTDI module\FTDI module.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -235,7 +133,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document12]
+[Document6]
 DocumentPath=Libraries\lm2596 module library\Project Outputs for lm2596 module\lm2596 module.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1

@@ -7,6 +7,7 @@ class armSerial:
     def __init__(self) -> None:
         self.port = None
         self.serial = None
+        self.connection_status = False
 
     def set_port(self, port:str):
         self.port = port.upper()
@@ -15,27 +16,34 @@ class armSerial:
         if self.port is not None:
             try:
                 self.serial = serial.Serial(self.port, serialInfo.BAUD_RATE)
-                return True
+                self.connection_status = True
+
             except:
-                return False
+                self.connection_status = False
         else:
             print('ERROR:port is not defined')
-        return False
+            self.connection_status = False
+
+        return self.connection_status
 
     
     def set_fps(self, fps:int):
         self.write(f'%{{:02d}}'.format(fps))
 
     def write(self, packet:str):
-        self.serial.write(packet.encode())
+        if self.connection_status:
+            self.serial.write(packet.encode())
     
     def read_all(self,) -> str:
-        return self.serial.read(2).decode("utf-8") 
+        if self.connection_status:
+            return self.serial.read(2).decode("utf-8") 
 
     
     def disconnect(self,):
         if self.serial is not None:
             self.serial.close()
+        self.connection_status = False
+
         
         
 

@@ -3287,10 +3287,6 @@ class Ui_MainWindow(object):
         self.settingpage_camera_device_group.setAutoFillBackground(False)
         self.gridLayout_7 = QGridLayout(self.settingpage_camera_device_group)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.horizontalSpacer_33 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer_33, 0, 1, 1, 1)
-
         self.settingpage_camera_fps_spinbox = QSpinBox(self.settingpage_camera_device_group)
         self.settingpage_camera_fps_spinbox.setObjectName(u"settingpage_camera_fps_spinbox")
         self.settingpage_camera_fps_spinbox.setEnabled(True)
@@ -3299,17 +3295,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.settingpage_camera_fps_spinbox, 2, 2, 1, 1)
 
-        self.settingpage_camera_device_combobox = QComboBox(self.settingpage_camera_device_group)
-        self.settingpage_camera_device_combobox.setObjectName(u"settingpage_camera_device_combobox")
-        self.settingpage_camera_device_combobox.setEnabled(False)
+        self.settingpage_camera_device_lbl = QLabel(self.settingpage_camera_device_group)
+        self.settingpage_camera_device_lbl.setObjectName(u"settingpage_camera_device_lbl")
+        self.settingpage_camera_device_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_7.addWidget(self.settingpage_camera_device_combobox, 0, 2, 1, 1)
+        self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl, 0, 0, 1, 1)
 
-        self.settingpage_camera_synchronizer_combobox = QComboBox(self.settingpage_camera_device_group)
-        self.settingpage_camera_synchronizer_combobox.setObjectName(u"settingpage_camera_synchronizer_combobox")
-        self.settingpage_camera_synchronizer_combobox.setEnabled(True)
+        self.horizontalSpacer_33 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
-        self.gridLayout_7.addWidget(self.settingpage_camera_synchronizer_combobox, 1, 2, 1, 1)
+        self.gridLayout_7.addItem(self.horizontalSpacer_33, 0, 1, 1, 1)
 
         self.settingpage_camera_ports_lbl = QLabel(self.settingpage_camera_device_group)
         self.settingpage_camera_ports_lbl.setObjectName(u"settingpage_camera_ports_lbl")
@@ -3317,6 +3311,19 @@ class Ui_MainWindow(object):
         self.settingpage_camera_ports_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_7.addWidget(self.settingpage_camera_ports_lbl, 2, 3, 1, 1)
+
+        self.settingpage_camera_device_combobox = QComboBox(self.settingpage_camera_device_group)
+        self.settingpage_camera_device_combobox.setObjectName(u"settingpage_camera_device_combobox")
+        self.settingpage_camera_device_combobox.setEnabled(False)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_device_combobox, 0, 2, 1, 1)
+
+        self.settingpage_camera_ports_combobox = QComboBox(self.settingpage_camera_device_group)
+        self.settingpage_camera_ports_combobox.setObjectName(u"settingpage_camera_ports_combobox")
+        self.settingpage_camera_ports_combobox.setStyleSheet(u"min-width:90px;\n"
+"max-width:90px;")
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_ports_combobox, 2, 4, 1, 1)
 
         self.settingpage_camera_port_connection_lbl = QLabel(self.settingpage_camera_device_group)
         self.settingpage_camera_port_connection_lbl.setObjectName(u"settingpage_camera_port_connection_lbl")
@@ -3333,19 +3340,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.settingpage_camera_fps_lbl, 2, 0, 1, 1)
 
-        self.settingpage_camera_device_lbl = QLabel(self.settingpage_camera_device_group)
-        self.settingpage_camera_device_lbl.setObjectName(u"settingpage_camera_device_lbl")
-        self.settingpage_camera_device_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl, 0, 0, 1, 1)
-
-        self.settingpage_camera_ports_combobox = QComboBox(self.settingpage_camera_device_group)
-        self.settingpage_camera_ports_combobox.setObjectName(u"settingpage_camera_ports_combobox")
-        self.settingpage_camera_ports_combobox.setStyleSheet(u"min-width:90px;\n"
-"max-width:90px;")
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_ports_combobox, 2, 4, 1, 1)
-
         self.settingpage_camera_device_lbl_2 = QLabel(self.settingpage_camera_device_group)
         self.settingpage_camera_device_lbl_2.setObjectName(u"settingpage_camera_device_lbl_2")
         self.settingpage_camera_device_lbl_2.setStyleSheet(u"min-width:95px;\n"
@@ -3353,6 +3347,22 @@ class Ui_MainWindow(object):
         self.settingpage_camera_device_lbl_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl_2, 1, 0, 1, 1)
+
+        self.settingpage_camera_synchronizer_combobox = QComboBox(self.settingpage_camera_device_group)
+        self.settingpage_camera_synchronizer_combobox.setObjectName(u"settingpage_camera_synchronizer_combobox")
+        self.settingpage_camera_synchronizer_combobox.setEnabled(True)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_synchronizer_combobox, 1, 2, 1, 1)
+
+        self.settingpage_camera_serial_retry_btn = QPushButton(self.settingpage_camera_device_group)
+        self.settingpage_camera_serial_retry_btn.setObjectName(u"settingpage_camera_serial_retry_btn")
+        self.settingpage_camera_serial_retry_btn.setStyleSheet(u"max-width:50px;\n"
+"min-width:50px;")
+        icon25 = QIcon()
+        icon25.addFile(u":/assets/icons/icons8-retry-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingpage_camera_serial_retry_btn.setIcon(icon25)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_serial_retry_btn, 2, 6, 1, 1)
 
 
         self.camera_setting_lef_side.addWidget(self.settingpage_camera_device_group)
@@ -3805,9 +3815,9 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_check_btn = QPushButton(self.calibrationpage_left_side)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
-        icon25 = QIcon()
-        icon25.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.calibrationpage_check_btn.setIcon(icon25)
+        icon26 = QIcon()
+        icon26.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.calibrationpage_check_btn.setIcon(icon26)
 
         self.horizontalLayout_9.addWidget(self.calibrationpage_check_btn)
 
@@ -4275,9 +4285,9 @@ class Ui_MainWindow(object):
         self.userspage_add_user_btn = QPushButton(self.gridFrame_2)
         self.userspage_add_user_btn.setObjectName(u"userspage_add_user_btn")
         self.userspage_add_user_btn.setStyleSheet(u"max-width: 120px;")
-        icon26 = QIcon()
-        icon26.addFile(u":/assets/Assets/icons/icons8-plus-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.userspage_add_user_btn.setIcon(icon26)
+        icon27 = QIcon()
+        icon27.addFile(u":/assets/Assets/icons/icons8-plus-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.userspage_add_user_btn.setIcon(icon27)
 
         self.gridLayout_5.addWidget(self.userspage_add_user_btn, 8, 1, 1, 1)
 
@@ -4751,7 +4761,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 521, 180))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1143, 691))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4837,9 +4847,9 @@ class Ui_MainWindow(object):
         self.sreportpage_back_btn = QPushButton(self.horizontalFrame)
         self.sreportpage_back_btn.setObjectName(u"sreportpage_back_btn")
         self.sreportpage_back_btn.setStyleSheet(u"")
-        icon27 = QIcon()
-        icon27.addFile(u":/assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_back_btn.setIcon(icon27)
+        icon28 = QIcon()
+        icon28.addFile(u":/assets/icons/icons8-back-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_back_btn.setIcon(icon28)
         self.sreportpage_back_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_back_btn)
@@ -4853,9 +4863,9 @@ class Ui_MainWindow(object):
 
         self.sreportpage_export_btn = QPushButton(self.horizontalFrame)
         self.sreportpage_export_btn.setObjectName(u"sreportpage_export_btn")
-        icon28 = QIcon()
-        icon28.addFile(u":/assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_export_btn.setIcon(icon28)
+        icon29 = QIcon()
+        icon29.addFile(u":/assets/icons/icons8-export-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_export_btn.setIcon(icon29)
         self.sreportpage_export_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_export_btn)
@@ -4869,9 +4879,9 @@ class Ui_MainWindow(object):
 
         self.sreportpage_rebuild_btn = QPushButton(self.horizontalFrame)
         self.sreportpage_rebuild_btn.setObjectName(u"sreportpage_rebuild_btn")
-        icon29 = QIcon()
-        icon29.addFile(u":/assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_rebuild_btn.setIcon(icon29)
+        icon30 = QIcon()
+        icon30.addFile(u":/assets/icons/icons8-retweet-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_rebuild_btn.setIcon(icon30)
         self.sreportpage_rebuild_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_19.addWidget(self.sreportpage_rebuild_btn)
@@ -4957,7 +4967,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2333, 1145, 3069))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3069))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6042,9 +6052,9 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon30 = QIcon()
-        icon30.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_prev_particle_btn.setIcon(icon30)
+        icon31 = QIcon()
+        icon31.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_prev_particle_btn.setIcon(icon31)
         self.sreportpage_prev_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_prev_particle_btn)
@@ -6052,9 +6062,9 @@ class Ui_MainWindow(object):
         self.sreportpage_next_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon31 = QIcon()
-        icon31.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_next_particle_btn.setIcon(icon31)
+        icon32 = QIcon()
+        icon32.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_next_particle_btn.setIcon(icon32)
         self.sreportpage_next_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_next_particle_btn)
@@ -6122,7 +6132,7 @@ class Ui_MainWindow(object):
         self.comparepage_back_btn = QPushButton(self.horizontalFrame_6)
         self.comparepage_back_btn.setObjectName(u"comparepage_back_btn")
         self.comparepage_back_btn.setStyleSheet(u"")
-        self.comparepage_back_btn.setIcon(icon27)
+        self.comparepage_back_btn.setIcon(icon28)
         self.comparepage_back_btn.setIconSize(QSize(25, 25))
 
         self.horizontalLayout_56.addWidget(self.comparepage_back_btn)
@@ -6136,7 +6146,7 @@ class Ui_MainWindow(object):
 
         self.comparepage_export_btn = QPushButton(self.horizontalFrame_6)
         self.comparepage_export_btn.setObjectName(u"comparepage_export_btn")
-        self.comparepage_export_btn.setIcon(icon28)
+        self.comparepage_export_btn.setIcon(icon29)
         self.comparepage_export_btn.setIconSize(QSize(30, 30))
 
         self.horizontalLayout_56.addWidget(self.comparepage_export_btn)
@@ -6182,7 +6192,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6680,7 +6690,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
@@ -6906,11 +6916,12 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_storage_tab), QCoreApplication.translate("MainWindow", u"Storage", None))
         self.settingpage_camera_start_btn.setText("")
         self.settingpage_camera_device_group.setTitle(QCoreApplication.translate("MainWindow", u"Device Setting", None))
+        self.settingpage_camera_device_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera", None))
         self.settingpage_camera_ports_lbl.setText(QCoreApplication.translate("MainWindow", u"PORT", None))
         self.settingpage_camera_port_connection_lbl.setText(QCoreApplication.translate("MainWindow", u"Not Ok", None))
         self.settingpage_camera_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"FPS", None))
-        self.settingpage_camera_device_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera", None))
         self.settingpage_camera_device_lbl_2.setText(QCoreApplication.translate("MainWindow", u"Harware Sync", None))
+        self.settingpage_camera_serial_retry_btn.setText("")
         self.settingpage_camera_control_group.setTitle(QCoreApplication.translate("MainWindow", u"Control And Analog Setting", None))
         self.settingpage_camera_exposure_lbl.setText(QCoreApplication.translate("MainWindow", u"Exposure", None))
         self.settingpage_camera_gain_lbl.setText(QCoreApplication.translate("MainWindow", u"Gain", None))

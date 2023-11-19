@@ -279,6 +279,7 @@ class cameraSettingTabUI(commonSettingUI):
         self.restor_btn = self.ui.settingpage_camera_restore_btn
         self.live_img_lbl = self.ui.settingpage_camera_live_lbl
         self.port_connection_lbl = self.ui.settingpage_camera_port_connection_lbl
+        self.serial_retry_btn = self.ui.settingpage_camera_serial_retry_btn
         
         self.__is_start__ = False
         self.__connection_event_function__ = None
@@ -357,6 +358,9 @@ class cameraSettingTabUI(commonSettingUI):
 
     def restor_button_connector(self, func):
         GUIBackend.button_connector(self.restor_btn, func)
+    
+    def serial_retry_button_connector(self, func):
+        GUIBackend.button_connector(self.serial_retry_btn, func)
 
     def __settings_change_connector__(self,):
         """connect all input fields of setting into an internal function

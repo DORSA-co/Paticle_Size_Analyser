@@ -197,6 +197,7 @@ class cameraSettingTabAPI:
         self.ui.cancel_button_connector(self.cancel)
         self.ui.restor_button_connector(self.restor)
         self.ui.change_camera_connector(self.change_camera)
+        self.ui.serial_retry_button_connector(self.retry_serial_setup)
         self.set_allowed_values_camera_setting()
         self.connect_to_micro(None)
 
@@ -273,6 +274,11 @@ class cameraSettingTabAPI:
             
             elif settings.get('port') is not None:
                 self.connect_to_micro(settings['port'])
+    
+    def retry_serial_setup(self,):
+        settings = self.ui.get_all_settings()
+        self.connect_to_micro(settings['port'])
+        self.serial_micro.set_fps(settings['fps'])
                 
     
     def connect_to_micro(self, port):
@@ -281,7 +287,6 @@ class cameraSettingTabAPI:
 
         self.serial_micro.disconnect()
         self.serial_micro.set_port(port)
-        time.sleep(0.5)
         connection_status = self.serial_micro.connect()
         self.ui.set_com_connection_status(connection_status)
 

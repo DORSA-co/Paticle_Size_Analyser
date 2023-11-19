@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -5754,6 +5754,29 @@ background-color:rgb(175, 175, 175);
                        <string>Device Setting</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_7">
+                       <item row="2" column="2">
+                        <widget class="QSpinBox" name="settingpage_camera_fps_spinbox">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
+                         <property name="minimum">
+                          <number>10</number>
+                         </property>
+                         <property name="maximum">
+                          <number>100</number>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="settingpage_camera_device_lbl">
+                         <property name="text">
+                          <string>Camera</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="0" column="1">
                         <spacer name="horizontalSpacer_33">
                          <property name="orientation">
@@ -5770,33 +5793,6 @@ background-color:rgb(175, 175, 175);
                          </property>
                         </spacer>
                        </item>
-                       <item row="2" column="2">
-                        <widget class="QSpinBox" name="settingpage_camera_fps_spinbox">
-                         <property name="enabled">
-                          <bool>true</bool>
-                         </property>
-                         <property name="minimum">
-                          <number>10</number>
-                         </property>
-                         <property name="maximum">
-                          <number>100</number>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="2">
-                        <widget class="QComboBox" name="settingpage_camera_device_combobox">
-                         <property name="enabled">
-                          <bool>false</bool>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="1" column="2">
-                        <widget class="QComboBox" name="settingpage_camera_synchronizer_combobox">
-                         <property name="enabled">
-                          <bool>true</bool>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="2" column="3">
                         <widget class="QLabel" name="settingpage_camera_ports_lbl">
                          <property name="minimumSize">
@@ -5810,6 +5806,21 @@ background-color:rgb(175, 175, 175);
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="0" column="2">
+                        <widget class="QComboBox" name="settingpage_camera_device_combobox">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="4">
+                        <widget class="QComboBox" name="settingpage_camera_ports_combobox">
+                         <property name="styleSheet">
+                          <string notr="true">min-width:90px;
+max-width:90px;</string>
                          </property>
                         </widget>
                        </item>
@@ -5841,24 +5852,6 @@ margin:0px;</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="settingpage_camera_device_lbl">
-                         <property name="text">
-                          <string>Camera</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="4">
-                        <widget class="QComboBox" name="settingpage_camera_ports_combobox">
-                         <property name="styleSheet">
-                          <string notr="true">min-width:90px;
-max-width:90px;</string>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="0">
                         <widget class="QLabel" name="settingpage_camera_device_lbl_2">
                          <property name="styleSheet">
@@ -5870,6 +5863,28 @@ max-width:90px;</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="2">
+                        <widget class="QComboBox" name="settingpage_camera_synchronizer_combobox">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="6">
+                        <widget class="QPushButton" name="settingpage_camera_serial_retry_btn">
+                         <property name="styleSheet">
+                          <string notr="true">max-width:50px;
+min-width:50px;</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="Assets/Assets.qrc">
+                           <normaloff>:/assets/icons/icons8-retry-50.png</normaloff>:/assets/icons/icons8-retry-50.png</iconset>
                          </property>
                         </widget>
                        </item>
@@ -8250,8 +8265,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>521</width>
-                    <height>180</height>
+                    <width>1143</width>
+                    <height>691</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8543,7 +8558,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-2333</y>
+                <y>0</y>
                 <width>1145</width>
                 <height>3069</height>
                </rect>
@@ -10987,7 +11002,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1144</width>
+                <width>181</width>
                 <height>1182</height>
                </rect>
               </property>

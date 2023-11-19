@@ -61,7 +61,7 @@ class settingCameraDB(parentSettingDB):
                             'exposure': 45,       
                             'width':  2440,          
                             'height': 2048,         
-                            'fps': 15,
+                            'fps': 19,
                             'port': 'COM1',  
                             'synchronize': 'software',     
                             'application': 'standard',   

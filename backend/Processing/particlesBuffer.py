@@ -28,6 +28,7 @@ class particlesBuffer:
 
         #store some data like max_radius in np.ndarray for fast access to a specific information for all particles
         pdata = [0,] * len(self.COLS_IDX)
+        #
         pdata[self.COLS_IDX['area']] = particel.area
         pdata[self.COLS_IDX['max_radius']] = particel.max_radius
         pdata[self.COLS_IDX['avg_radius']] = particel.avg_radius
@@ -37,7 +38,7 @@ class particlesBuffer:
 
         #store particles in list[Particle] format for better and easy access
         self.particels.append( particel )
-
+        pdata = pdata.reshape((1,-1))
 
         if len(self.data) != 0:
             self.data = np.vstack((self.data, pdata))

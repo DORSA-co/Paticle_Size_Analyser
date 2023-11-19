@@ -164,11 +164,15 @@ class Report:
 
     def get_gaussian_data(self,step=1):
         diameters = self.Buffer.total_buffer.get_feature('max_radius') * 2
+        if len(diameters) == 0:
+            return [], []
         volumes = self.Buffer.total_buffer.get_feature('avg_volume')
         #return np.vstack((radiuses, volumes)).T
         volumes_percent = volumes
         r_min, r_max = self.get_full_range()
-        bins = np.arange(r_min, r_max, step)
+        d_min = r_min * 2
+        d_max = r_max * 2
+        bins = np.arange(d_min, d_max, step)
 
         ys, _ = np.histogram(diameters, bins, weights=volumes_percent)
         ys = ys / np.sum(ys) * 100

@@ -24,7 +24,7 @@ import threading
 
 class mainPageAPI:
     refresh_time = time.time()
-    max_fps = 15
+    max_fps = 20
     DEBUG_PROCESS_THREAD = False
     #max_thread = 3
 
@@ -481,7 +481,7 @@ class ProcessingWorker(QObject):
     def run_process(self,):
 
         for i in range(1):
-            try:
+            #try:
                 self.current_particles = self.detector.detect(self.img, self.report)
 
                 self.finished_processing.emit()
@@ -491,8 +491,8 @@ class ProcessingWorker(QObject):
                         p_img = particle.get_roi_image(self.img)
                         img_id = particle.get_id()
                         self.report_saver.save_image(p_img, img_id)
-            except Exception as e:
-                print(e)
+            #except Exception as e:
+            #    print(e)
 
         #print('FINISH signal--')
         self.finished.emit()

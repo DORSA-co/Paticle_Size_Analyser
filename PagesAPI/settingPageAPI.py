@@ -173,11 +173,13 @@ class cameraSettingTabAPI:
         self.set_camera_parms_funcs = { }
         self.get_camera_parms_range_funcs = {}
         self.external_camera_change_event = None
-
+        self.disconnected_devices = ''
         
 
         collerctor = Collector()
-        self.ui.set_camera_devices(collerctor.get_all_serials())
+        devices = collerctor.get_all_serials()
+        devices.insert(0, '--select--')
+        self.ui.set_camera_devices(devices)
         self.serial_micro = serial_micro
         
         #camera_application could be 'standard' and 'zoom' corespond to camera usage for measuring particles
@@ -205,6 +207,8 @@ class cameraSettingTabAPI:
 
     def startup(self):
         self.ui.reset()
+
+    
         
 
     def endup(self,) -> bool:
@@ -226,6 +230,8 @@ class cameraSettingTabAPI:
                     self.cameras[camera_application].Parms.set_trigger_on()
                     self.cameras[camera_application].Parms.set_trigger_option(  None,
                                                                                 PylonFlags.TrigggerSource.hardware_line1)
+                    
+                    
                     self.cameras[camera_application].Parms.set_trigger_delay(CONSTANTS.CameraParms.TRIGGER_DELAY)
             
                 else:
@@ -287,6 +293,9 @@ class cameraSettingTabAPI:
         device = {'application': self.ui.get_selected_camera_application(),
                   'serial_number': self.ui.get_camera_device()
                   }
+        if device['serial_number'] == '--select--':
+            return
+        
         if self.external_camera_change_event is not None:
             self.external_camera_change_event(device)
 
@@ -323,23 +332,24 @@ class cameraSettingTabAPI:
         
         reconnect = False
         current_device = self.ui.get_camera_device()
-        if current_device == 'disconnect':
+        if current_device == '--select--':
             if self.disconnected_devices in list_of_available_cameras:
                 current_device = self.disconnected_devices
                 reconnect = True
             else:
-                current_device = 'disconnect'
-                list_of_available_cameras.append(current_device)
+                current_device = '--select--'
+            
             
 
 
         else:
             if current_device not in list_of_available_cameras:
                 self.disconnected_devices = current_device
-                current_device = 'disconnect'
+                current_device = '--select--'
                 list_of_available_cameras.append(current_device)
                 self.ui.stop()
         
+        list_of_available_cameras.insert(0, '--select--')
         self.ui.set_camera_devices(list_of_available_cameras, current_device)
         if reconnect:
             self.change_camera()
@@ -391,6 +401,7 @@ class cameraSettingTabAPI:
         settings = self.database.load(camera_application)
         self.ui.set_all_settings(settings)
         self.ui.save_state(True)
+        self.disconnected_devices = settings['serial_number']
         return settings
 
     def restor(self):

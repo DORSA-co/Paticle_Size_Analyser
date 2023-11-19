@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -7256,8 +7256,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1143</width>
-                    <height>691</height>
+                    <width>55</width>
+                    <height>39</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -8250,8 +8250,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1143</width>
-                    <height>691</height>
+                    <width>521</width>
+                    <height>180</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8543,7 +8543,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-2333</y>
                 <width>1145</width>
                 <height>3069</height>
                </rect>
@@ -10362,7 +10362,7 @@ color: #ffffff;
 margin: 5px 0px;</string>
                                </property>
                                <property name="text">
-                                <string>Avg Radius:</string>
+                                <string>Avrage Diameter</string>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -10461,7 +10461,7 @@ color: #ffffff;
 margin: 5px 0px;</string>
                                </property>
                                <property name="text">
-                                <string>Max Radius:</string>
+                                <string>Max Diameter:</string>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

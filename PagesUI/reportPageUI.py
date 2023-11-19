@@ -53,8 +53,8 @@ class reportPageUI(commonUI):
         }
 
         self.particle_information = {
-            'max_radius': self.ui.sreportpage_particle_max_r_lbl,
-            'avrage_radius': self.ui.sreportpage_particle_avg_r_lbl,
+            'max_diameter': self.ui.sreportpage_particle_max_r_lbl,
+            'avrage_diameter': self.ui.sreportpage_particle_avg_r_lbl,
             'area': self.ui.sreportpage_particle_area_lbl,
             'volume': self.ui.sreportpage_particle_volume_lbl,
             'max_radius': self.ui.sreportpage_particle_max_r_lbl,
@@ -203,8 +203,9 @@ class reportPageUI(commonUI):
 
     def set_cumulative_chart_value(self, xs, ys):
         self.clear_cumulative_chart()
-        self.cumulative_chart.set_axisX_range((min(xs), max(xs)))
-        self.cumulative_trend.add_data(xs, ys)
+        if len(xs) > 0:
+            self.cumulative_chart.set_axisX_range((min(xs), max(xs)))
+            self.cumulative_trend.add_data(xs, ys)
         
     def clear_cumulative_chart(self,):
         self.cumulative_trend.clear()
@@ -212,10 +213,10 @@ class reportPageUI(commonUI):
     
     def set_gaussian_chart_value(self, xs, ys):
         self.clear_gaussian_chart()
-
-        self.gaussian_chart.set_axisX_range((min(xs), max(xs)))
-        self.gaussian_chart.set_axisY_range((min(ys), max(ys)))
-        self.gaussian_trend.add_data(xs, ys)
+        if len(xs) > 0:
+            self.gaussian_chart.set_axisX_range((min(xs), max(xs)))
+            self.gaussian_chart.set_axisY_range((min(ys), max(ys)))
+            self.gaussian_trend.add_data(xs, ys)
         
     def clear_gaussian_chart(self,):
         self.gaussian_trend.clear()

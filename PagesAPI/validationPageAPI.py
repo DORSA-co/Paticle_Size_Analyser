@@ -71,7 +71,10 @@ class calibrationTab:
 
         #build detector ----------------------------------------------
         algorithm_data = self.database.setting_db.algorithm_db.load()
-        self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'],
+        # self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'],
+        #                                                     CONSTANTS.Calibration.PX2MM,
+        #                                                     algorithm_data['border'])
+        self.detector = particlesDetector.particlesDetector(CONSTANTS.Calibration.THRESH,
                                                             CONSTANTS.Calibration.PX2MM,
                                                             algorithm_data['border'])
         #-------------------------------------------------------------

@@ -59,6 +59,7 @@ class Calibration:
     PIXEL_SIZE_UM = 3.45
     LENZ_MAG = 0.095
     PX2MM = (3.45 / 1000) / 0.095
+    THRESH = 30
 
 
 

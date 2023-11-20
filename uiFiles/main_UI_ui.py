@@ -3061,29 +3061,29 @@ class Ui_MainWindow(object):
         self.verticalLayout_24 = QVBoxLayout(self.settingpage_storage_tab)
         self.verticalLayout_24.setSpacing(30)
         self.verticalLayout_24.setObjectName(u"verticalLayout_24")
-        self.groupBox_4 = QGroupBox(self.settingpage_storage_tab)
-        self.groupBox_4.setObjectName(u"groupBox_4")
-        self.groupBox_4.setEnabled(False)
-        self.gridLayout_24 = QGridLayout(self.groupBox_4)
+        self.settingpage_storage_database_groupbox = QGroupBox(self.settingpage_storage_tab)
+        self.settingpage_storage_database_groupbox.setObjectName(u"settingpage_storage_database_groupbox")
+        self.settingpage_storage_database_groupbox.setEnabled(False)
+        self.gridLayout_24 = QGridLayout(self.settingpage_storage_database_groupbox)
         self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.label_98 = QLabel(self.groupBox_4)
+        self.label_98 = QLabel(self.settingpage_storage_database_groupbox)
         self.label_98.setObjectName(u"label_98")
         self.label_98.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_24.addWidget(self.label_98, 1, 0, 1, 1)
 
-        self.label_35 = QLabel(self.groupBox_4)
+        self.label_35 = QLabel(self.settingpage_storage_database_groupbox)
         self.label_35.setObjectName(u"label_35")
         self.label_35.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_24.addWidget(self.label_35, 0, 0, 1, 1)
 
-        self.settingpage_db_password = QLineEdit(self.groupBox_4)
+        self.settingpage_db_password = QLineEdit(self.settingpage_storage_database_groupbox)
         self.settingpage_db_password.setObjectName(u"settingpage_db_password")
 
         self.gridLayout_24.addWidget(self.settingpage_db_password, 1, 1, 1, 1)
 
-        self.settingpage_db_username = QLineEdit(self.groupBox_4)
+        self.settingpage_db_username = QLineEdit(self.settingpage_storage_database_groupbox)
         self.settingpage_db_username.setObjectName(u"settingpage_db_username")
 
         self.gridLayout_24.addWidget(self.settingpage_db_username, 0, 1, 1, 1)
@@ -3092,19 +3092,19 @@ class Ui_MainWindow(object):
 
         self.gridLayout_24.addItem(self.horizontalSpacer_111, 0, 2, 1, 1)
 
-        self.label_102 = QLabel(self.groupBox_4)
+        self.label_102 = QLabel(self.settingpage_storage_database_groupbox)
         self.label_102.setObjectName(u"label_102")
         self.label_102.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_24.addWidget(self.label_102, 2, 0, 1, 1)
 
-        self.settingpage_db_host = QLineEdit(self.groupBox_4)
+        self.settingpage_db_host = QLineEdit(self.settingpage_storage_database_groupbox)
         self.settingpage_db_host.setObjectName(u"settingpage_db_host")
 
         self.gridLayout_24.addWidget(self.settingpage_db_host, 2, 1, 1, 1)
 
 
-        self.verticalLayout_24.addWidget(self.groupBox_4)
+        self.verticalLayout_24.addWidget(self.settingpage_storage_database_groupbox)
 
         self.groupBox_5 = QGroupBox(self.settingpage_storage_tab)
         self.groupBox_5.setObjectName(u"groupBox_5")
@@ -4747,7 +4747,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, -40, 1123, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1123, 731))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -6687,9 +6687,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(2)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(4)
+        self.settingpage_tabs.setCurrentIndex(3)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(0)
@@ -6895,11 +6895,11 @@ class Ui_MainWindow(object):
         self.settingpage_export_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_export_restore_btn.setText(QCoreApplication.translate("MainWindow", u"Restore Default", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_export_tab), QCoreApplication.translate("MainWindow", u"Export", None))
-        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"Database", None))
+        self.settingpage_storage_database_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Database", None))
         self.label_98.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
         self.label_102.setText(QCoreApplication.translate("MainWindow", u"Host:", None))
-        self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Sorage Manager", None))
+        self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Storage Manager", None))
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Report Life Time (days) :", None))
         self.settingpage_storage_auto_clean_checkbox.setText("")
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"Auto Clean:", None))

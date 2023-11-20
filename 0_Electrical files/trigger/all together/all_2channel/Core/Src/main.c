@@ -7,7 +7,7 @@ uint8_t UART1_tx_ok[3] = {"OK"};
 
 uint8_t data[2] = {'1','0'};
 
-int wanted_freq = 10;
+int wanted_freq = 19;
 int wanted_comp = 49999;
 
 
@@ -39,7 +39,7 @@ int main(void)
 
 	
 	
-			wanted_comp=(500000 / 15)-1;
+			wanted_comp=(500000 / wanted_freq)-1;
 ////////////frequency
 		TIM2->ARR=wanted_comp;
 /////////////duty cycle

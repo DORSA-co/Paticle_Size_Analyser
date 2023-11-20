@@ -118,7 +118,7 @@ class cumGrading(gradingABstract):
             percentage_hist = self.ranges_hist / np.sum(self.ranges_hist) * 100.
             xs = np.mean(self.sieve_ranges, axis=1)
             ys = np.cumsum(percentage_hist)
-            ys[-1] = 100
+            #ys[-1] = 100
             return xs, ys   
         else:
             return [],[]

@@ -1,3 +1,6 @@
+import os
+
+
 class meta:
     MASTER_PASSWORD = '1111'
 
@@ -39,6 +42,9 @@ class Color:
 
     ]
 
+class Files:
+    DEMO_IMGS_DIR = 'files//demo_imgs'
+    DEMO_COUNT = os.listdir(DEMO_IMGS_DIR)
 
 class TimeOut:
     TIMEOUT_CHECKING_DEVICE = 3

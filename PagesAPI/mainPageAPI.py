@@ -1,9 +1,13 @@
 from datetime import datetime
+import copy
+import time
+import os
+
 import cv2
 import numpy as np
-import time
+
 from PySide6.QtCore import QThread, QObject, Signal, QMutex
-import copy
+
 
 import Constants.CONSTANTS as CONSTANTS
 from PagesUI.mainPageUI import mainPageUI
@@ -124,14 +128,20 @@ class mainPageAPI:
                 #________________________________ONLY FOR TEST________________________________________________
                 img = None
                 if self.cameras['standard'].Infos.is_Simulation():
-                    fname = "{}.png".format(self.test_img_idx)
-                    img = cv2.imread(f"backend\Processing\\test_imgs\\{fname}", 0)
-                    
+                    fname = "{}.jpg".format(self.test_img_idx)
+                    path = os.path.join(CONSTANTS.Files.DEMO_IMGS_DIR, fname)
+                    img = cv2.imread(path, 0)
+
+                
                     self.test_img_idx+=1
-                    if self.test_img_idx>4:
+                    if self.test_img_idx>=len(os.listdir(CONSTANTS.Files.DEMO_IMGS_DIR)):
                         self.test_img_idx = 0
                 else:
                     img = self.cameras['standard'].image
+                
+                if img is None:
+                    self.during_processing = False
+                    return
                 #________________________________ONLY FOR TEST________________________________________________
                 self.processing_time = time.time()
 
@@ -148,10 +158,12 @@ class mainPageAPI:
                     self.thread.start()
 
             else:
+                print(time.time() - self.refresh_time)
                 if ( time.time() - self.refresh_time ) >=1:
                     print('TimeOut')
                     #self.thread.quit()
                     self.during_processing = False
+                    self.refresh_time = time.time()
 
     
 
@@ -481,7 +493,7 @@ class ProcessingWorker(QObject):
     def run_process(self,):
 
         for i in range(1):
-            #try:
+            try:
                 self.current_particles = self.detector.detect(self.img, self.report)
 
                 self.finished_processing.emit()
@@ -491,8 +503,8 @@ class ProcessingWorker(QObject):
                         p_img = particle.get_roi_image(self.img)
                         img_id = particle.get_id()
                         self.report_saver.save_image(p_img, img_id)
-            #except Exception as e:
-            #    print(e)
+            except Exception as e:
+                print(e)
 
         #print('FINISH signal--')
         self.finished.emit()

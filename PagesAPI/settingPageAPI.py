@@ -232,8 +232,8 @@ class cameraSettingTabAPI:
                     self.cameras[camera_application].Parms.set_trigger_option(  None,
                                                                                 PylonFlags.TrigggerSource.hardware_line1)
                     
-                    
-                    self.cameras[camera_application].Parms.set_trigger_delay(CONSTANTS.CameraParms.TRIGGER_DELAY)
+                    trigger_delay = int( 1000 / self.ui.get_fps() * 0.1 / 2)
+                    self.cameras[camera_application].Parms.set_trigger_delay(trigger_delay)
             
                 else:
                     self.cameras[camera_application].Parms.set_trigger_off()

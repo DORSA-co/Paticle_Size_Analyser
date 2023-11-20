@@ -3,22 +3,15 @@ from PySide6.QtCore import QMargins
 from PySide6.QtGui import QPainter, QColor, QFont
 from PySide6 import QtCharts
 
-class Font:
-    def __init__(self, font: str = None, font_size: int = None, bold: bool = None) -> None:
-        if font:
-            self.font = font
-        else:
-            self.font = 'Arial'
+from uiUtils.Charts.chartUtils import Font
 
-        if font_size:
-            self.font_size = font_size
-        else:
-            self.font_size = 8
-
-        if bold:
-            self.bold = bold
-        else:
-            self.bold = False
+LABEL_POSITION = {
+    'in_center': QtCharts.QAbstractBarSeries.LabelsPosition.LabelsCenter,
+    'in_bottom': QtCharts.QAbstractBarSeries.LabelsPosition.LabelsInsideBase,
+    'in_top': QtCharts.QAbstractBarSeries.LabelsPosition.LabelsInsideEnd,
+    'out': QtCharts.QAbstractBarSeries.LabelsPosition.LabelsOutsideEnd,
+    
+}
 
 class BarChart(QtCharts.QChartView):
     def __init__(self, 
@@ -41,16 +34,26 @@ class BarChart(QtCharts.QChartView):
                 animation: bool = True,
                 bar_width: float = 1,
                 inner_margin = 20,
+                visible_label = True,
+                default_label_color = '#404040',
+                label_position = 'out'
                 ):
 
-        self.chart = QtCharts.QChart()
-        super().__init__(self.chart, parent)
-        self.chart.legend().setVisible(False)
+        self.chart_ = QtCharts.QChart()
+        super().__init__(self.chart_, parent)
 
+        self.default_label_color = default_label_color
+
+        self.chart_.legend().setVisible(False)
         self.set_inner_margin(inner_margin)
 
         self.series = QtCharts.QBarSeries()
-        self.chart.addSeries(self.series)
+        self.series.setLabelsVisible(visible_label)
+        self.series.setLabelsPosition(LABEL_POSITION[label_position])
+
+        self.series.labelsPosition()
+
+        self.chart_.addSeries(self.series)
 
         if chart_title:
             self.set_chart_title(chart_title)
@@ -84,18 +87,18 @@ class BarChart(QtCharts.QChartView):
         self.setup_chart()
 
     def set_chart_title(self, title):
-        self.chart.setTitle(title)
+        self.chart_.setTitle(title)
 
     def set_chart_title_font(self, font):
         assert(isinstance(font, Font))
         font = QFont(font.font, font.font_size, QFont.Bold if font.bold else QFont.Normal)
-        self.chart.setTitleFont(font)
+        self.chart_.setTitleFont(font)
 
     def set_chart_title_color(self, color):
-        self.chart.setTitleBrush(QColor(color))
+        self.chart_.setTitleBrush(QColor(color))
 
     def set_background_color(self, background_color: str) -> None:
-        self.chart.setBackgroundBrush(QColor(background_color))
+        self.chart_.setBackgroundBrush(QColor(background_color))
 
     def __set_axisX(self, categories):
         self.axisX = QtCharts.QBarCategoryAxis()
@@ -112,15 +115,17 @@ class BarChart(QtCharts.QChartView):
         if self.axisX_grid_color:
             self.axisX.setGridLineColor(self.axisX_grid_color)
         self.axisX.append(categories)
-        self.chart.setAxisX(self.axisX, self.series)  
+        self.chart_.setAxisX(self.axisX, self.series)  
 
     def __set_axisY(self, values):
         self.axisY = QtCharts.QValueAxis()
+        
         if self.axisY_label:
             self.axisY.setTitleText(self.axisY_label)
+
         if self.axis_color:
             self.axisY.setTitleBrush(QColor(self.axis_color))
-            self.axisY.setLabelsColor(QColor(self.axis_color))
+            #self.axisY.setLabelsColor(QColor(self.axis_color))
         if self.axis_font:
             assert(isinstance(self.axis_font, Font))
             font = QFont(self.axis_font.font, self.axis_font.font_size, QFont.Bold if self.axis_font.bold else QFont.Normal)
@@ -134,7 +139,7 @@ class BarChart(QtCharts.QChartView):
             self.axisY.setRange(0, max(values))
         if self.axisY_tickCount:
             self.axisY.setTickCount(self.axisY_tickCount)
-        self.chart.setAxisY(self.axisY, self.series)
+        self.chart_.setAxisY(self.axisY, self.series)
 
     def set_axisX_label(self, label):
         self.axisX_label = label
@@ -198,9 +203,9 @@ class BarChart(QtCharts.QChartView):
 
     def set_animation(self, animation):
         if animation:
-            self.chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            self.chart_.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
         else:
-            self.chart.setAnimationOptions(QtCharts.QChart.NoAnimation)
+            self.chart_.setAnimationOptions(QtCharts.QChart.NoAnimation)
 
     def clear_chart(self):
         self.series.clear()
@@ -211,8 +216,10 @@ class BarChart(QtCharts.QChartView):
         self.__set_axisY(axisY_values)
 
         self.bar_set = QtCharts.QBarSet(self.axisY_label)
+        self.bar_set.setLabelColor(QColor(self.default_label_color))
         for value in axisY_values:
             self.bar_set.append(value)
+            
         self.series.append(self.bar_set)
 
         if self.bar_color:
@@ -225,17 +232,17 @@ class BarChart(QtCharts.QChartView):
         self.__set_axisX(axisX_ranges)
 
     def setup_chart(self):
-        self.chart.setMargins(QMargins(0, 0, 0, 0))
-        self.chart.setBackgroundRoundness(0)
-        self.chart.setContentsMargins(-9, -9, -9, -9)
-        self.chart.legend().hide()
+        self.chart_.setMargins(QMargins(0, 0, 0, 0))
+        self.chart_.setBackgroundRoundness(0)
+        self.chart_.setContentsMargins(-9, -9, -9, -9)
+        self.chart_.legend().hide()
         self.setRenderHint(QPainter.Antialiasing)
         
 
 
     def set_inner_margin(self, border):
         if isinstance(border, int):
-            self.chart.layout().setContentsMargins(border, border, border, border)
+            self.chart_.layout().setContentsMargins(border, border, border, border)
         
         if isinstance(border, tuple):
-            self.chart.layout().setContentsMargins(*border)
+            self.chart_.layout().setContentsMargins(*border)

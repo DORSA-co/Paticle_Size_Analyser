@@ -72,6 +72,7 @@ class LoginBoxAPI:
         self.ui.profile_login_logout_button_connector(self.login_logout)
         #this button is login button on login dialog box
         self.ui.login_button_connector(self.login)
+        self.ui.set_logedin_username(None)
 
     def set_login_event_func(self, func):
         self.login_event_func = func
@@ -129,7 +130,7 @@ class LoginBoxAPI:
         #clear logedin user info
         self.data_passer.logined_user = {}
         #clear logedin username on top of sofrware
-        self.ui.set_logedin_username("")
+        self.ui.set_logedin_username(None)
         self.ui.set_toolbar_login_button_icon('login')
 
         if self.login_event_func is not None:

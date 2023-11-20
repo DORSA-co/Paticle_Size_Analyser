@@ -1,6 +1,7 @@
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from uiUtils.Charts.barChart import BarChart
+from uiUtils.Charts.chartUtils import Font
 from uiUtils.Charts.lineChart import LineChart, Trend
 import time
 
@@ -76,7 +77,8 @@ class mainPageUI:
         self.grading_chart = BarChart(
                     chart_title = 'Total Grading',
                     chart_title_color = None,
-                    axisX_label = 'Rages',
+                    chart_title_font= Font( font_size=12, bold=True),
+                    axisX_label = 'Diameters',
                     axisY_label = 'Percents',
                     chart_background_color = '#f0f0f0',
                     bar_color = '#4caf50',
@@ -90,8 +92,9 @@ class mainPageUI:
         
         self.cumulative_chart  = LineChart(
                     chart_title = 'Cumulative',
+                    chart_title_font= Font( font_size=12, bold=True),
                     chart_title_color = '#404040',
-                    axisX_label = 'Rages',
+                    axisX_label = 'Diameters',
                     axisY_label = 'Percent',
                     chart_background_color = '#f0f0f0',
                     chart_legend=False,
@@ -386,7 +389,7 @@ class mainPageUI:
 
 
     def set_grading_chart_bars_ranges(self, ranges:list[list]):
-        ranges_str = list(map( lambda x: f"{x[0]}-{x[1]}", ranges))
+        ranges_str = list(map( lambda x: f"{x[0]}-{x[1]} mm", ranges))
         self.grading_chart.set_chart_x(ranges_str)
         #self.cumulative_chart.set_axisX_range()
     

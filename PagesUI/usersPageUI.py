@@ -76,9 +76,10 @@ class LoginUserBoxUI:
 
     def set_logedin_username(self, username):
         if username is None:
-            GUIBackend.set_wgt_visible(self.logined_username_lbl, False)
+            #GUIBackend.set_wgt_visible(self.logined_username_lbl, False)
+            GUIBackend.set_label_text( self.logined_username_lbl, 'Login')
         else:
-            GUIBackend.set_wgt_visible(self.logined_username_lbl, True)
+            #GUIBackend.set_wgt_visible(self.logined_username_lbl, True)
             GUIBackend.set_label_text( self.logined_username_lbl, username)
 
 

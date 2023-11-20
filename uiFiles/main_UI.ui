@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1790,7 +1790,7 @@ QPushButton
                        </size>
                       </property>
                       <property name="title">
-                       <string>System Status</string>
+                       <string>System Status And Warnings</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_2">
                        <property name="bottomMargin">
@@ -2068,7 +2068,7 @@ background-color: rgba(255,255,255,20);
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>20</width>
-                  <height>30</height>
+                  <height>20</height>
                  </size>
                 </property>
                </spacer>
@@ -3999,7 +3999,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>4</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -6641,39 +6641,44 @@ min-width:157px;
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_3">
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_9">
-                    <item>
-                     <widget class="QLabel" name="calibrationpage_step1_lbl">
-                      <property name="text">
-                       <string>Step 1</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="calibrationpage_check_btn">
-                      <property name="text">
-                       <string> Check</string>
-                      </property>
-                      <property name="icon">
-                       <iconset resource="Assets/Assets.qrc">
-                        <normaloff>:/assets/icons/icons8-eye-50.png</normaloff>:/assets/icons/icons8-eye-50.png</iconset>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_3">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
+                   <widget class="QFrame" name="calibration_step1_frame">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_9">
+                     <item>
+                      <widget class="QLabel" name="calibrationpage_step1_lbl">
+                       <property name="text">
+                        <string>Step 1</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="calibrationpage_check_btn">
+                       <property name="text">
+                        <string> Check</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="Assets/Assets.qrc">
+                         <normaloff>:/assets/icons/icons8-eye-50.png</normaloff>:/assets/icons/icons8-eye-50.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_3">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                   <item>
                    <widget class="Line" name="line_10">
@@ -6683,99 +6688,104 @@ min-width:157px;
                    </widget>
                   </item>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_10">
-                    <item>
-                     <widget class="QLabel" name="calibrationpage_step2_lbl">
-                      <property name="text">
-                       <string>Step 2</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_12">
-                        <item>
-                         <widget class="QLabel" name="label_8">
-                          <property name="styleSheet">
-                           <string notr="true">font-size:16px;
+                   <widget class="QFrame" name="calibration_step2_frame">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_10">
+                     <item>
+                      <widget class="QLabel" name="calibrationpage_step2_lbl">
+                       <property name="text">
+                        <string>Step 2</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_12">
+                         <item>
+                          <widget class="QLabel" name="label_8">
+                           <property name="styleSheet">
+                            <string notr="true">font-size:16px;
 font-weight:normal;
 color:rgb(31, 31, 31);
 margin-right:5px;</string>
-                          </property>
-                          <property name="text">
-                           <string>Calibration Type :</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QComboBox" name="calibrationpage_calib_type_combobox">
-                          <property name="insertPolicy">
-                           <enum>QComboBox::InsertAtBottom</enum>
-                          </property>
-                          <property name="duplicatesEnabled">
-                           <bool>false</bool>
-                          </property>
-                          <property name="frame">
-                           <bool>true</bool>
-                          </property>
-                          <item>
-                           <property name="text">
-                            <string>Linear</string>
                            </property>
-                          </item>
-                          <item>
                            <property name="text">
-                            <string>Mean</string>
+                            <string>Calibration Type :</string>
                            </property>
-                          </item>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_14">
-                        <item>
-                         <widget class="QLabel" name="label_9">
-                          <property name="styleSheet">
-                           <string notr="true">font-size:16px;
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QComboBox" name="calibrationpage_calib_type_combobox">
+                           <property name="insertPolicy">
+                            <enum>QComboBox::InsertAtBottom</enum>
+                           </property>
+                           <property name="duplicatesEnabled">
+                            <bool>false</bool>
+                           </property>
+                           <property name="frame">
+                            <bool>true</bool>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Linear</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Mean</string>
+                            </property>
+                           </item>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_14">
+                         <item>
+                          <widget class="QLabel" name="label_9">
+                           <property name="styleSheet">
+                            <string notr="true">font-size:16px;
 font-weight:normal;
 color:rgb(31, 31, 31);
 margin-right:5px;</string>
-                          </property>
-                          <property name="text">
-                           <string>iteration</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QSpinBox" name="calibrationpage_calib_itrs_spinbox">
-                          <property name="minimumSize">
-                           <size>
-                            <width>187</width>
-                            <height>41</height>
-                           </size>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_4">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
+                           </property>
+                           <property name="text">
+                            <string>iteration</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QSpinBox" name="calibrationpage_calib_itrs_spinbox">
+                           <property name="minimumSize">
+                            <size>
+                             <width>187</width>
+                             <height>41</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_4">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                   <item>
                    <widget class="Line" name="line_11">
@@ -6796,7 +6806,7 @@ margin-right:5px;</string>
                     <item>
                      <widget class="QPushButton" name="calibrationpage_calib_btn">
                       <property name="text">
-                       <string>Start Calibration</string>
+                       <string>Capture</string>
                       </property>
                       <property name="icon">
                        <iconset resource="Assets/Assets.qrc">
@@ -7249,8 +7259,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>55</width>
-                    <height>39</height>
+                    <width>1143</width>
+                    <height>691</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">

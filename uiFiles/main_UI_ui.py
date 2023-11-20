@@ -1288,7 +1288,7 @@ class Ui_MainWindow(object):
 
         self.left_main_page_.addWidget(self.line_2)
 
-        self.verticalSpacer_37 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Maximum)
+        self.verticalSpacer_37 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
         self.left_main_page_.addItem(self.verticalSpacer_37)
 
@@ -3792,14 +3792,17 @@ class Ui_MainWindow(object):
         self.calibrationpage_left_side.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.calibrationpage_left_side)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.horizontalLayout_9 = QHBoxLayout()
+        self.calibration_step1_frame = QFrame(self.calibrationpage_left_side)
+        self.calibration_step1_frame.setObjectName(u"calibration_step1_frame")
+        self.calibration_step1_frame.setEnabled(False)
+        self.horizontalLayout_9 = QHBoxLayout(self.calibration_step1_frame)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.calibrationpage_step1_lbl = QLabel(self.calibrationpage_left_side)
+        self.calibrationpage_step1_lbl = QLabel(self.calibration_step1_frame)
         self.calibrationpage_step1_lbl.setObjectName(u"calibrationpage_step1_lbl")
 
         self.horizontalLayout_9.addWidget(self.calibrationpage_step1_lbl)
 
-        self.calibrationpage_check_btn = QPushButton(self.calibrationpage_left_side)
+        self.calibrationpage_check_btn = QPushButton(self.calibration_step1_frame)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
         icon26 = QIcon()
         icon26.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -3812,7 +3815,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
 
 
-        self.verticalLayout_3.addLayout(self.horizontalLayout_9)
+        self.verticalLayout_3.addWidget(self.calibration_step1_frame)
 
         self.line_10 = QFrame(self.calibrationpage_left_side)
         self.line_10.setObjectName(u"line_10")
@@ -3821,9 +3824,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.line_10)
 
-        self.horizontalLayout_10 = QHBoxLayout()
+        self.calibration_step2_frame = QFrame(self.calibrationpage_left_side)
+        self.calibration_step2_frame.setObjectName(u"calibration_step2_frame")
+        self.calibration_step2_frame.setEnabled(False)
+        self.horizontalLayout_10 = QHBoxLayout(self.calibration_step2_frame)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.calibrationpage_step2_lbl = QLabel(self.calibrationpage_left_side)
+        self.calibrationpage_step2_lbl = QLabel(self.calibration_step2_frame)
         self.calibrationpage_step2_lbl.setObjectName(u"calibrationpage_step2_lbl")
 
         self.horizontalLayout_10.addWidget(self.calibrationpage_step2_lbl)
@@ -3832,7 +3838,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.horizontalLayout_12 = QHBoxLayout()
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.label_8 = QLabel(self.calibrationpage_left_side)
+        self.label_8 = QLabel(self.calibration_step2_frame)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setStyleSheet(u"font-size:16px;\n"
 "font-weight:normal;\n"
@@ -3841,7 +3847,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_12.addWidget(self.label_8)
 
-        self.calibrationpage_calib_type_combobox = QComboBox(self.calibrationpage_left_side)
+        self.calibrationpage_calib_type_combobox = QComboBox(self.calibration_step2_frame)
         self.calibrationpage_calib_type_combobox.addItem("")
         self.calibrationpage_calib_type_combobox.addItem("")
         self.calibrationpage_calib_type_combobox.setObjectName(u"calibrationpage_calib_type_combobox")
@@ -3856,7 +3862,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14 = QHBoxLayout()
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.label_9 = QLabel(self.calibrationpage_left_side)
+        self.label_9 = QLabel(self.calibration_step2_frame)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setStyleSheet(u"font-size:16px;\n"
 "font-weight:normal;\n"
@@ -3865,7 +3871,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.label_9)
 
-        self.calibrationpage_calib_itrs_spinbox = QSpinBox(self.calibrationpage_left_side)
+        self.calibrationpage_calib_itrs_spinbox = QSpinBox(self.calibration_step2_frame)
         self.calibrationpage_calib_itrs_spinbox.setObjectName(u"calibrationpage_calib_itrs_spinbox")
         self.calibrationpage_calib_itrs_spinbox.setMinimumSize(QSize(187, 41))
 
@@ -3882,7 +3888,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.addItem(self.horizontalSpacer_4)
 
 
-        self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+        self.verticalLayout_3.addWidget(self.calibration_step2_frame)
 
         self.line_11 = QFrame(self.calibrationpage_left_side)
         self.line_11.setObjectName(u"line_11")
@@ -4137,7 +4143,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 691))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -6687,9 +6693,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(0)
@@ -6746,7 +6752,7 @@ class Ui_MainWindow(object):
         self.label_36.setText(QCoreApplication.translate("MainWindow", u"Camera Tempreture(\u00b0C):", None))
         self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_report_button.setText(QCoreApplication.translate("MainWindow", u"Report", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"System Status", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"System Status And Warnings", None))
         self.mainpage_illumination_warning_btn.setText("")
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Tempreture", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Camera Connection", None))
@@ -6953,7 +6959,7 @@ class Ui_MainWindow(object):
 
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"iteration", None))
         self.calibrationpage_step3_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 3", None))
-        self.calibrationpage_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Start Calibration", None))
+        self.calibrationpage_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Capture", None))
         self.calibrationpage_result_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Calibration Done", None))
         self.calibrationpage_prev_acc_lbl.setText(QCoreApplication.translate("MainWindow", u"0.1 mm", None))
         self.label_38.setText(QCoreApplication.translate("MainWindow", u"Accuracy Befor Calibration:", None))

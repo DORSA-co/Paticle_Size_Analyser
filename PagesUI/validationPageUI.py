@@ -42,8 +42,16 @@ class calibrationTabUI(commonUI):
         
         GUIBackend.set_table_dim(self.calib_tabel, 1, len(self.tabel_headers))
         GUIBackend.set_table_cheaders(self.calib_tabel, self.tabel_headers)
-        GUIBackend.set_wgt_visible(self.progress_bar, False)
         self.show_calib_result(False)
+
+        #--------------------------------------------------------------------
+        #SHOULD CHANGE FOR DEVELOPING
+        
+        GUIBackend.set_wgt_visible(self.progress_bar, False)
+        #GUIBackend.set_wgt_visible(self.ui.calibration_step2_frame, False)
+        #GUIBackend.set_wgt_visible(self.ui.calibration_step1_frame, False)
+        GUIBackend.set_wgt_visible(self.ui.calibrationpage_last_calib_tabel, False)
+        #--------------------------------------------------------------------
 
     
 
@@ -137,7 +145,9 @@ class statisticalHypothesisTab(commonUI):
             self.test_sections[i].append_to_layout(self.sections_layout)
             
 
+        
         GUIBackend.spinbox_connector(self.test_count_spinbox, self.test_count_event)
+
         self.show_test_sections(0)
 
     

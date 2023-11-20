@@ -18,6 +18,7 @@ class comparePageUI(commonUI):
         self.progressbar = self.ui.comparepage_progressbar
         self.charts_layout = self.ui.charts_layout
         self.compare_attribute_combobox = self.ui.compare_attribute_combobox
+        self.export_btn = self.ui.comparepage_export_btn
         
         
         
@@ -26,6 +27,7 @@ class comparePageUI(commonUI):
         GUIBackend.set_table_dim(self.total_mean_table,row=1, col=None)
         self.init_trend_chart()
         GUIBackend.add_widget(self.charts_layout, self.trends_chart)
+        GUIBackend.set_wgt_visible(self.export_btn, False)
         
 
 

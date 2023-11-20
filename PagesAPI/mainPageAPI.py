@@ -158,7 +158,6 @@ class mainPageAPI:
                     self.thread.start()
 
             else:
-                print(time.time() - self.refresh_time)
                 if ( time.time() - self.refresh_time ) >=1:
                     print('TimeOut')
                     #self.thread.quit()

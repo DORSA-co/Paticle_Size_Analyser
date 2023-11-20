@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QMainWindow, QProgressBar, QPushButton, QScrollArea,
     QSizePolicy, QSpacerItem, QSpinBox, QStackedWidget,
     QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
-    QTextEdit, QVBoxLayout, QWidget)
+    QTextBrowser, QTextEdit, QVBoxLayout, QWidget)
 import Assets_rc
 
 class Ui_MainWindow(object):
@@ -935,15 +935,6 @@ class Ui_MainWindow(object):
         self.gridLayout_12.setHorizontalSpacing(5)
         self.gridLayout_12.setVerticalSpacing(0)
         self.gridLayout_12.setContentsMargins(-1, 10, -1, 6)
-        self.label_3 = QLabel(self.mainpage_informaition_groupBox)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setStyleSheet(u"color: rgb(4, 55, 93);\n"
-"font-weight: bold;\n"
-"")
-        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_12.addWidget(self.label_3, 1, 7, 1, 1)
-
         self.mainpage_std_lbl = QLabel(self.mainpage_informaition_groupBox)
         self.mainpage_std_lbl.setObjectName(u"mainpage_std_lbl")
 
@@ -953,11 +944,6 @@ class Ui_MainWindow(object):
         self.mainpage_fps_lbl.setObjectName(u"mainpage_fps_lbl")
 
         self.gridLayout_12.addWidget(self.mainpage_fps_lbl, 3, 2, 1, 1)
-
-        self.mainpage_mean_oval_lbl = QLabel(self.mainpage_informaition_groupBox)
-        self.mainpage_mean_oval_lbl.setObjectName(u"mainpage_mean_oval_lbl")
-
-        self.gridLayout_12.addWidget(self.mainpage_mean_oval_lbl, 1, 8, 1, 1)
 
         self.horizontalSpacer_40 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -4151,7 +4137,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 77, 39))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4761,7 +4747,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 521, 180))
+        self.aboutScrollArea.setGeometry(QRect(0, -40, 1123, 731))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4777,17 +4763,23 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_29.addWidget(self.label_82)
 
-        self.label_83 = QLabel(self.aboutScrollArea)
-        self.label_83.setObjectName(u"label_83")
-        font3 = QFont()
-        font3.setFamilies([u"Arial"])
-        font3.setPointSize(12)
-        font3.setBold(False)
-        font3.setItalic(False)
-        self.label_83.setFont(font3)
-        self.label_83.setWordWrap(True)
+        self.textBrowser = QTextBrowser(self.aboutScrollArea)
+        self.textBrowser.setObjectName(u"textBrowser")
+        self.textBrowser.setMinimumSize(QSize(0, 165))
+        self.textBrowser.setStyleSheet(u"border:none;")
 
-        self.verticalLayout_29.addWidget(self.label_83)
+        self.verticalLayout_29.addWidget(self.textBrowser)
+
+        self.label_37 = QLabel(self.aboutScrollArea)
+        self.label_37.setObjectName(u"label_37")
+        sizePolicy1.setHeightForWidth(self.label_37.sizePolicy().hasHeightForWidth())
+        self.label_37.setSizePolicy(sizePolicy1)
+        self.label_37.setMaximumSize(QSize(690, 450))
+        self.label_37.setStyleSheet(u"margin-top:-300px;")
+        self.label_37.setPixmap(QPixmap(u":/assets/images/sorsa psa image.png"))
+        self.label_37.setScaledContents(True)
+
+        self.verticalLayout_29.addWidget(self.label_37, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.label_85 = QLabel(self.aboutScrollArea)
         self.label_85.setObjectName(u"label_85")
@@ -4799,6 +4791,11 @@ class Ui_MainWindow(object):
 
         self.label_87 = QLabel(self.aboutScrollArea)
         self.label_87.setObjectName(u"label_87")
+        font3 = QFont()
+        font3.setFamilies([u"Arial"])
+        font3.setPointSize(12)
+        font3.setBold(False)
+        font3.setItalic(False)
         self.label_87.setFont(font3)
         self.label_87.setWordWrap(True)
 
@@ -4967,7 +4964,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 3069))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3069))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6192,7 +6189,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6690,8 +6687,8 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
-        self.gradingranges_tabs.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(2)
+        self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
@@ -6738,17 +6735,15 @@ class Ui_MainWindow(object):
         self.mainpage_faststart_btn.setText(QCoreApplication.translate("MainWindow", u"Fast Start", None))
         self.mainpage_stop_btn.setText(QCoreApplication.translate("MainWindow", u"Stop", None))
         self.mainpage_informaition_groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Informations", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Mean Oval:", None))
         self.mainpage_std_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.mainpage_mean_oval_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_34.setText(QCoreApplication.translate("MainWindow", u"Time:", None))
         self.mainpage_tempreture_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_timer_lbl.setText(QCoreApplication.translate("MainWindow", u"05:31", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"FPS:", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Avrage:", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"STD:", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Cam Tempreture(\u00b0C):", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Camera Tempreture(\u00b0C):", None))
         self.mainpage_avrage_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_report_button.setText(QCoreApplication.translate("MainWindow", u"Report", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"System Status", None))
@@ -7014,7 +7009,13 @@ class Ui_MainWindow(object):
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.all_users_tab), QCoreApplication.translate("MainWindow", u"All Users", None))
         self.label_82.setText(QCoreApplication.translate("MainWindow", u"DPSA-Alpha (Dorsa Particle Size Analyzer - Alpha Version", None))
-        self.label_83.setText(QCoreApplication.translate("MainWindow", u"Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters including shape, ovality, and so on.", None))
+        self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are "
+                        "then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
+        self.label_37.setText("")
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
         self.label_87.setText("")
         self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"See Other Products", None))

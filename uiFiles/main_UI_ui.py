@@ -3746,12 +3746,7 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(6, 76, 130);\n"
 "}\n"
 "\n"
-".QLabel{\n"
-"	font-size:25px;\n"
-"	font-weight: bold;\n"
-"	color:rgb(11, 64, 120);\n"
-"	margin-right:30px;\n"
-"}\n"
+"\n"
 "\n"
 ".QPushButton\n"
 "{\n"
@@ -3799,6 +3794,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.calibrationpage_step1_lbl = QLabel(self.calibration_step1_frame)
         self.calibrationpage_step1_lbl.setObjectName(u"calibrationpage_step1_lbl")
+        self.calibrationpage_step1_lbl.setStyleSheet(u".QLabel{\n"
+"	font-size:25px;\n"
+"	font-weight: bold;\n"
+"	color:rgb(11, 64, 120);\n"
+"	margin-right:30px;\n"
+"}")
 
         self.horizontalLayout_9.addWidget(self.calibrationpage_step1_lbl)
 
@@ -3817,6 +3818,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.calibration_step1_frame)
 
+        self.calibrationpage_check_lbl = QLabel(self.calibrationpage_left_side)
+        self.calibrationpage_check_lbl.setObjectName(u"calibrationpage_check_lbl")
+        self.calibrationpage_check_lbl.setWordWrap(True)
+
+        self.verticalLayout_3.addWidget(self.calibrationpage_check_lbl)
+
         self.line_10 = QFrame(self.calibrationpage_left_side)
         self.line_10.setObjectName(u"line_10")
         self.line_10.setFrameShape(QFrame.HLine)
@@ -3831,6 +3838,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.calibrationpage_step2_lbl = QLabel(self.calibration_step2_frame)
         self.calibrationpage_step2_lbl.setObjectName(u"calibrationpage_step2_lbl")
+        self.calibrationpage_step2_lbl.setStyleSheet(u".QLabel{\n"
+"	font-size:25px;\n"
+"	font-weight: bold;\n"
+"	color:rgb(11, 64, 120);\n"
+"	margin-right:30px;\n"
+"}")
 
         self.horizontalLayout_10.addWidget(self.calibrationpage_step2_lbl)
 
@@ -3901,6 +3914,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
         self.calibrationpage_step3_lbl = QLabel(self.calibrationpage_left_side)
         self.calibrationpage_step3_lbl.setObjectName(u"calibrationpage_step3_lbl")
+        self.calibrationpage_step3_lbl.setStyleSheet(u".QLabel{\n"
+"	font-size:25px;\n"
+"	font-weight: bold;\n"
+"	color:rgb(11, 64, 120);\n"
+"	margin-right:30px;\n"
+"}")
 
         self.horizontalLayout_11.addWidget(self.calibrationpage_step3_lbl)
 
@@ -3946,10 +3965,10 @@ class Ui_MainWindow(object):
         self.calibrationpage_result_groupbox.setChecked(False)
         self.gridLayout = QGridLayout(self.calibrationpage_result_groupbox)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.calibrationpage_prev_acc_lbl = QLabel(self.calibrationpage_result_groupbox)
-        self.calibrationpage_prev_acc_lbl.setObjectName(u"calibrationpage_prev_acc_lbl")
+        self.calibrationpage_accuracy_lbl = QLabel(self.calibrationpage_result_groupbox)
+        self.calibrationpage_accuracy_lbl.setObjectName(u"calibrationpage_accuracy_lbl")
 
-        self.gridLayout.addWidget(self.calibrationpage_prev_acc_lbl, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.calibrationpage_accuracy_lbl, 0, 1, 1, 1)
 
         self.label_38 = QLabel(self.calibrationpage_result_groupbox)
         self.label_38.setObjectName(u"label_38")
@@ -3962,10 +3981,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.label_39, 1, 0, 1, 1)
 
-        self.calibrationpage_new_acc_lbl = QLabel(self.calibrationpage_result_groupbox)
-        self.calibrationpage_new_acc_lbl.setObjectName(u"calibrationpage_new_acc_lbl")
+        self.calibrationpage_precision_lbl = QLabel(self.calibrationpage_result_groupbox)
+        self.calibrationpage_precision_lbl.setObjectName(u"calibrationpage_precision_lbl")
 
-        self.gridLayout.addWidget(self.calibrationpage_new_acc_lbl, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.calibrationpage_precision_lbl, 1, 1, 1, 1)
 
 
         self.verticalLayout_3.addWidget(self.calibrationpage_result_groupbox)
@@ -4753,7 +4772,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1123, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 521, 281))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4970,7 +4989,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1145, 3069))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 3066))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6195,7 +6214,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1144, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6952,6 +6971,7 @@ class Ui_MainWindow(object):
         self.settingpage_save_gif_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.calibrationpage_step1_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 1", None))
         self.calibrationpage_check_btn.setText(QCoreApplication.translate("MainWindow", u" Check", None))
+        self.calibrationpage_check_lbl.setText(QCoreApplication.translate("MainWindow", u"check massage", None))
         self.calibrationpage_step2_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 2", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"Calibration Type :", None))
         self.calibrationpage_calib_type_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Linear", None))
@@ -6961,10 +6981,10 @@ class Ui_MainWindow(object):
         self.calibrationpage_step3_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 3", None))
         self.calibrationpage_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Capture", None))
         self.calibrationpage_result_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Calibration Done", None))
-        self.calibrationpage_prev_acc_lbl.setText(QCoreApplication.translate("MainWindow", u"0.1 mm", None))
-        self.label_38.setText(QCoreApplication.translate("MainWindow", u"Accuracy Befor Calibration:", None))
-        self.label_39.setText(QCoreApplication.translate("MainWindow", u"Accuracy After Calibration:", None))
-        self.calibrationpage_new_acc_lbl.setText(QCoreApplication.translate("MainWindow", u"0.08 mm", None))
+        self.calibrationpage_accuracy_lbl.setText(QCoreApplication.translate("MainWindow", u"0.1 mm", None))
+        self.label_38.setText(QCoreApplication.translate("MainWindow", u"Accuracy", None))
+        self.label_39.setText(QCoreApplication.translate("MainWindow", u"Precision", None))
+        self.calibrationpage_precision_lbl.setText(QCoreApplication.translate("MainWindow", u"0.08 mm", None))
 
         __sortingEnabled3 = self.calibrationpage_last_calib_tabel.isSortingEnabled()
         self.calibrationpage_last_calib_tabel.setSortingEnabled(False)

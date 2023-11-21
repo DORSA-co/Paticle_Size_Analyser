@@ -60,6 +60,15 @@ class Calibration:
     LENZ_MAG = 0.095
     PX2MM = (3.45 / 1000) / 0.095
     THRESH = 30
+    CALIBRATOR_CIRCLES_COUNT = 32
+    PARTICLES_SIZES_MM = [
+        1,
+        1,
+        1,
+        1,
+
+    ]
+
 
 
 

@@ -6590,12 +6590,7 @@ background-color: rgb(48, 48, 48);
 	border: 2px solid rgb(6, 76, 130);
 }
 
-.QLabel{
-	font-size:25px;
-	font-weight: bold;
-	color:rgb(11, 64, 120);
-	margin-right:30px;
-}
+
 
 .QPushButton
 {
@@ -6648,6 +6643,14 @@ min-width:157px;
                     <layout class="QHBoxLayout" name="horizontalLayout_9">
                      <item>
                       <widget class="QLabel" name="calibrationpage_step1_lbl">
+                       <property name="styleSheet">
+                        <string notr="true">.QLabel{
+	font-size:25px;
+	font-weight: bold;
+	color:rgb(11, 64, 120);
+	margin-right:30px;
+}</string>
+                       </property>
                        <property name="text">
                         <string>Step 1</string>
                        </property>
@@ -6681,6 +6684,16 @@ min-width:157px;
                    </widget>
                   </item>
                   <item>
+                   <widget class="QLabel" name="calibrationpage_check_lbl">
+                    <property name="text">
+                     <string>check massage</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
                    <widget class="Line" name="line_10">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -6695,6 +6708,14 @@ min-width:157px;
                     <layout class="QHBoxLayout" name="horizontalLayout_10">
                      <item>
                       <widget class="QLabel" name="calibrationpage_step2_lbl">
+                       <property name="styleSheet">
+                        <string notr="true">.QLabel{
+	font-size:25px;
+	font-weight: bold;
+	color:rgb(11, 64, 120);
+	margin-right:30px;
+}</string>
+                       </property>
                        <property name="text">
                         <string>Step 2</string>
                        </property>
@@ -6798,6 +6819,14 @@ margin-right:5px;</string>
                    <layout class="QHBoxLayout" name="horizontalLayout_11">
                     <item>
                      <widget class="QLabel" name="calibrationpage_step3_lbl">
+                      <property name="styleSheet">
+                       <string notr="true">.QLabel{
+	font-size:25px;
+	font-weight: bold;
+	color:rgb(11, 64, 120);
+	margin-right:30px;
+}</string>
+                      </property>
                       <property name="text">
                        <string>Step 3</string>
                       </property>
@@ -6882,7 +6911,7 @@ margin-right:5px;</string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout">
                      <item row="0" column="1">
-                      <widget class="QLabel" name="calibrationpage_prev_acc_lbl">
+                      <widget class="QLabel" name="calibrationpage_accuracy_lbl">
                        <property name="text">
                         <string>0.1 mm</string>
                        </property>
@@ -6894,19 +6923,19 @@ margin-right:5px;</string>
                         <string notr="true"/>
                        </property>
                        <property name="text">
-                        <string>Accuracy Befor Calibration:</string>
+                        <string>Accuracy</string>
                        </property>
                       </widget>
                      </item>
                      <item row="1" column="0">
                       <widget class="QLabel" name="label_39">
                        <property name="text">
-                        <string>Accuracy After Calibration:</string>
+                        <string>Precision</string>
                        </property>
                       </widget>
                      </item>
                      <item row="1" column="1">
-                      <widget class="QLabel" name="calibrationpage_new_acc_lbl">
+                      <widget class="QLabel" name="calibrationpage_precision_lbl">
                        <property name="text">
                         <string>0.08 mm</string>
                        </property>
@@ -8253,8 +8282,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1123</width>
-                    <height>731</height>
+                    <width>521</width>
+                    <height>281</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8576,8 +8605,8 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1145</width>
-                <height>3069</height>
+                <width>892</width>
+                <height>3066</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -11019,7 +11048,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1144</width>
+                <width>181</width>
                 <height>1182</height>
                </rect>
               </property>

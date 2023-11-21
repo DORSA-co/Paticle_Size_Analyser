@@ -31,10 +31,15 @@ class calibrationTabUI(commonUI):
         self.calib_itrs_spinbox = self.ui.calibrationpage_calib_itrs_spinbox
         self.liveimage_lbl = self.ui.calibrationpage_liveimage_lbl
         self.calib_tabel = self.ui.calibrationpage_last_calib_tabel
-        self.new_acc_lbl = self.ui.calibrationpage_new_acc_lbl
-        self.old_acc_lbl = self.ui.calibrationpage_prev_acc_lbl
         self.result_box = self.ui.calibrationpage_result_groupbox
         self.progress_bar = self.ui.calibrationpage_process_progressbar
+        self.check_message_lbl = self.ui.calibrationpage_check_lbl
+
+        self.result = {
+            'accuracy' : self.ui.calibrationpage_accuracy_lbl,
+            'precision' : self.ui.calibrationpage_precision_lbl
+        }
+
 
         self.tabel_headers = ['date', 'time', 'accuracy (mm)', 'type', 'iterations']
 
@@ -53,13 +58,36 @@ class calibrationTabUI(commonUI):
         GUIBackend.set_wgt_visible(self.ui.calibrationpage_last_calib_tabel, False)
         #--------------------------------------------------------------------
 
+
+    def set_progress_bar(self, i):
+        GUIBackend.set_progressbar_value(self.progress_bar, i)
+
+    
+    # def set_passed_step(self, step):
+    #     if step == 'none':
+    #         GUIBackend.set_enable(self.check_btn, True)
+    #         GUIBackend.set_enable(self.start_calib_btn, False )
     
 
     def connect_image_mouse_event(self, func):
         self.image_mouse_evnt_func = func
         
-    
-    
+    def write_check_massage(self, massage:str, status:bool=True):
+        if massage is None:
+            GUIBackend.set_wgt_visible(self.check_message_lbl, False )
+        else:
+
+            GUIBackend.set_label_text(self.check_message_lbl, massage)
+            if status:
+                GUIBackend.set_style(self.check_message_lbl, "color:rgb(58, 209, 154);")
+            else:
+                GUIBackend.set_style(self.check_message_lbl, "color:rgb(255, 95, 84);")
+            
+            GUIBackend.set_wgt_visible(self.check_message_lbl, True )
+            
+
+        
+        
 
     def check_button_connector(self, func):
         """Connect a function into check button clicled
@@ -101,10 +129,17 @@ class calibrationTabUI(commonUI):
         #show result
         self.show_calib_result(True)
     
-    def show_calib_result(self, status:bool):
+    def show_calib_result(self, result:dict):
         """show and hide result box
         """
-        GUIBackend.set_wgt_visible(self.result_box, status)
+        if result is None:
+            GUIBackend.set_wgt_visible(self.result_box, False)
+        else:
+            for key , value in result.items():
+                GUIBackend.set_label_text( self.result[key], value)
+
+            GUIBackend.set_wgt_visible(self.result_box, False)
+        
 
     
     def show_live(self,img):

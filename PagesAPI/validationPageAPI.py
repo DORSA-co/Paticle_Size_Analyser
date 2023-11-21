@@ -1,5 +1,10 @@
+import copy
+import time
+import threading
+
 import numpy as np
 import cv2
+from PySide6.QtCore import QThread, QObject, Signal, QMutex
 
 from backend.Processing import particlesDetector
 import Constants.CONSTANTS as CONSTANTS
@@ -10,8 +15,8 @@ from backend.Processing.Report import Report
 from backend.Calibration.testsValidation import weightDifferenceValidation, tTestValidation
 from backend.Camera.dorsaPylon import Collector, Camera
 from uiUtils.IO.Mouse import MouseEvent
+from backend.Processing.Calibration import Calibration
 
-storage_path = 'data/'
 
 class validationPageAPI:
 
@@ -21,25 +26,40 @@ class validationPageAPI:
     
     def startup(self,):
         self.statisticalHypothesisTab.startup()
+        self.calibrationTab.startup()
 
 
 class calibrationTab:
+    DEBUG_PROCESS_THREAD = False
 
     def __init__(self, ui:calibrationTabUI, database: mainDatabase, cameras: dict[str, Camera]) -> None:
         self.ui = ui
         self.database = database
         self.cameras = cameras
         
-        self.calibration_flag = False
+        self.during_processing = False
         self.particles = []
         self.calib_image = None
-        self.detector: particlesDetector.particlesDetector = None
-        
-        
+        self.calibration_step = 'none'
+        self.iteration = 0
+        self.total_iteration = CONSTANTS.Calibration.ITERATIONS
+        #self.detector: particlesDetector.particlesDetector = None
 
-        self.ui.check_button_connector(self.check_calibration_placement)
-        self.ui.start_button_connector(self.start_calibration)
+        algorithm_data = self.database.setting_db.algorithm_db.load()
+        self.calibration = Calibration(thresh=CONSTANTS.Calibration.THRESH,
+                                       border=algorithm_data['border'],
+                                       circularity=0.7,
+                                       min_diameter_mm=0.8)
+        
+        
+        self.ui.check_button_connector(self.set_step('check'))
+        self.ui.start_button_connector(self.set_step('start'))
         self.ui.connect_image_mouse_event(self.image_mouse_event)
+
+    def startup(self,):
+        self.ui.write_check_massage(None)
+        self.ui.set_progress_bar(0)
+
 
     def image_mouse_event(self, event:MouseEvent):
         if event.is_click() and event.is_left_btn():
@@ -47,8 +67,6 @@ class calibrationTab:
    
             pos = self.calib_image.shape[::-1] * pos
             pos = pos.astype(np.int32)
-
-
 
             for particle in self.particles:
                 cnt = particle.cnt
@@ -62,44 +80,103 @@ class calibrationTab:
                     
         
 
-    def check_calibration_placement(self,):
-        return True
+    def set_step(self, step):
+
+        def func():
+            self.calibration_step = step
+            if step == 'check':
+                self.ui.write_check_massage(None)
+
+            elif step == 'start':
+                self.calibration.reset()
+
+            for camera in self.cameras.values():
+                camera.Operations.start_grabbing()
+
+        return func
     
 
-    def start_calibration(self,):
-        self.calibration_flag = True
-
-        #build detector ----------------------------------------------
-        algorithm_data = self.database.setting_db.algorithm_db.load()
-        # self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'],
-        #                                                     CONSTANTS.Calibration.PX2MM,
-        #                                                     algorithm_data['border'])
-        self.detector = particlesDetector.particlesDetector(CONSTANTS.Calibration.THRESH,
-                                                            CONSTANTS.Calibration.PX2MM,
-                                                            algorithm_data['border'])
-        #-------------------------------------------------------------
-
-        for camera in self.cameras.values():
-            camera.Operations.start_grabbing()
-        
-
-    
     def camera_image_event(self,):
         cam_application = 'standard'
-        if self.calibration_flag:
-            image = self.cameras[cam_application].image
-            #image = cv2.imread('backend/Processing/test_imgs/0.png',0)
-            
-            self.calib_image = image.copy()
-            self.particles = self.detector.detect(image, None)
+        image = self.cameras[cam_application].image
 
+        if self.calibration_step == 'check':
+            self.check_calibration_placement(image)
+            
+        
+        elif self.calibration_step == 'start':
+            self.calibration_proccess()
+    
+    
+
+    def check_calibration_placement(self, image):
+        status, founded_count, real_count = self.calibration.check(image)
+        if status:
+            self.ui.write_check_massage('Ok', status=status)
+        else:
+            self.ui.write_check_massage(
+                massage=f""" found {founded_count} but should be {real_count} please sure calibrator placement is true and are glasses are clean""",
+                status= status
+            )
+
+    def calibration_proccess(self, image):
+        if not self.during_processing:
+            self.during_processing = True
+            if image is None:
+                self.during_processing = False
+                return
+            #________________________________ONLY FOR TEST________________________________________________
+            self.processing_time = time.time()
+            self.calibration_worker = calibrationWorker(image,
+                                            calibration=self.calibration,
+                                            total_steps= self.total_iteration
+                                            )
+            
+            self.thread = threading.Thread(target=self.calibration_worker.run_process)
+            self.calibration_worker.finished_processing.connect(self.update_calibration)
+            self.calibration_worker.finished.connect(self.__set_processing_finish__)
+            
+            if self.DEBUG_PROCESS_THREAD:
+                self.calibration_worker.run_process()
+            else:
+                self.thread.start()
+
+        else:
+            if ( time.time() - self.refresh_time ) >=1:
+                print('TimeOut')
+                self.during_processing = False
+                self.refresh_time = time.time()
+
+    
+
+    
+    
+            
+
+    
+
+    def __set_processing_finish__(self,):
+        self.during_processing = False
+        self.processing_time = time.time() - self.processing_time
+
+    
+    def update_calibration(self,):
+        self.iteration+=1
+        percent = int((self.iteration / self.total_iteration) * 100)
+        particles = self.calibration_worker.get_particles()
+        self.ui.set_progress_bar(percent)
+        
+        if particles is not None:
+            self.calib_image = self.calibration_worker.img.copy()
             image = particlesDetector.draw_particles(image, self.particles )
             self.ui.show_live(image)
-            self.calibration_flag = False
+        
+        if self.iteration == self.total_iteration:
+            self.calibration_step = 'none'
+            result = self.calibration.get_result()
+            self.ui.show_calib_result(result)
+            
 
-    
-
-    
 
 
 
@@ -244,4 +321,32 @@ class statisticalHypothesisTabAPI:
 
 
 
+class calibrationWorker(QObject):
+    finished = Signal()
+    finished_processing = Signal()
+    def __init__(self, 
+                 img:np.ndarray,
+                 calibration:Calibration,
+                 total_steps = 10
+                 ) -> None:
+        super(calibrationWorker,self).__init__()
+        self.img = img
+        self.calibration = calibration
+        self.total_steps = total_steps
 
+
+    
+    def run_process(self,):
+
+        for i in range(1):
+            try:
+                self.particles = self.calibration.calibration(self.img)
+                self.finished_processing.emit()
+       
+            except Exception as e:
+                print(e)
+
+        self.finished.emit()
+
+    def get_particles(self, ):
+        return copy.copy(self.particles)

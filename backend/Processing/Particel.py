@@ -23,6 +23,9 @@ class Particle:
         self.calc_avrage_radius()
         self.calc_avrage_valoum()
         self.calc_cirvularity()
+
+        self.max_diameter = self.max_radius * 2
+        self.avg_diameter = self.avg_radius * 2
     
 
     def calc_cirvularity(self,):

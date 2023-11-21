@@ -19,16 +19,20 @@ class reportPageAPI:
         self.database = database
 
         self.external_back_event_func = None
-        self.particle_idx = 0
-        self.img_id = -1
-        self.particles_page = 0
-
+        
+        self.startup()
         self.ui.back_button_connector(self.back)
         self.ui.rebuild_button_connector(self.show_rebuild)
         self.ui.dialog_rebuild_button_connector(self.run_rebuild)
         self.ui.navigator_button_connector(self.particles_navigation)
         self.ui.particle_click_connector(self.show_particle_information)
         self.ui.export_button_connector(self.export)
+        
+
+    def startup(self,):
+        self.particle_idx = 0
+        self.img_id = -1
+        self.particles_page = 0
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
@@ -64,6 +68,7 @@ class reportPageAPI:
         Args:
             report (Report): _description_
         """
+        self.startup()
         self.report = report
         self.particles_count = self.report.get_particles_count()
         self.particle_maximum_page = (self.particles_count // self.PARTICLE_PER_PAGE)

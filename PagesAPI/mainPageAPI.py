@@ -251,7 +251,7 @@ class mainPageAPI:
     def handle_standard_error(self, standards):
         #error if no standards definded
         if len(standards) == 0:
-            self.ui.write_error_msg("No standard defineded, Go to 'Standards >> New Standad' and define new one")
+            self.ui.write_error_msg("No standard defineded, Go to 'Standards >> New Standard' and define new one")
             return False
         return True
     

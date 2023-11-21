@@ -47,12 +47,12 @@ class calibrationTabUI(commonUI):
         
         GUIBackend.set_table_dim(self.calib_tabel, 1, len(self.tabel_headers))
         GUIBackend.set_table_cheaders(self.calib_tabel, self.tabel_headers)
-        self.show_calib_result(False)
+        self.show_calib_result(None)
 
         #--------------------------------------------------------------------
         #SHOULD CHANGE FOR DEVELOPING
         
-        GUIBackend.set_wgt_visible(self.progress_bar, False)
+        # GUIBackend.set_wgt_visible(self.progress_bar, False)
         #GUIBackend.set_wgt_visible(self.ui.calibration_step2_frame, False)
         #GUIBackend.set_wgt_visible(self.ui.calibration_step1_frame, False)
         GUIBackend.set_wgt_visible(self.ui.calibrationpage_last_calib_tabel, False)
@@ -79,9 +79,9 @@ class calibrationTabUI(commonUI):
 
             GUIBackend.set_label_text(self.check_message_lbl, massage)
             if status:
-                GUIBackend.set_style(self.check_message_lbl, "color:rgb(58, 209, 154);")
+                GUIBackend.set_style(self.check_message_lbl, "background-color:rgb(58, 209, 154); color:#ffffff;")
             else:
-                GUIBackend.set_style(self.check_message_lbl, "color:rgb(255, 95, 84);")
+                GUIBackend.set_style(self.check_message_lbl, "background-color:rgb(255, 95, 84); color:#ffffff;")
             
             GUIBackend.set_wgt_visible(self.check_message_lbl, True )
             
@@ -113,21 +113,21 @@ class calibrationTabUI(commonUI):
     def set_calib_tabel(self, datas):
         GUIBackend.set_table_row(self.calib_tabel, 0, datas)
 
-    def write_calib_result(self, old_acc, new_acc):
-        """show calibration results
+    # def write_calib_result(self, old_acc, new_acc):
+    #     """show calibration results
 
-        Args:
-            old_acc (_type_): accuracy defor calibration
-            new_acc (_type_): accuracy after calibration
-        """
-        old_acc = str( old_acc ) + " mm"
-        new_acc = str( new_acc ) + " mm"
+    #     Args:
+    #         old_acc (_type_): accuracy defor calibration
+    #         new_acc (_type_): accuracy after calibration
+    #     """
+    #     old_acc = str( old_acc ) + " mm"
+    #     new_acc = str( new_acc ) + " mm"
 
-        GUIBackend.set_label_text(self.new_acc_lbl, new_acc)
-        GUIBackend.set_label_text(self.old_acc_lbl, old_acc)
+    #     GUIBackend.set_label_text(self.new_acc_lbl, new_acc)
+    #     GUIBackend.set_label_text(self.old_acc_lbl, old_acc)
 
-        #show result
-        self.show_calib_result(True)
+    #     #show result
+    #     self.show_calib_result(None)
     
     def show_calib_result(self, result:dict):
         """show and hide result box
@@ -136,9 +136,9 @@ class calibrationTabUI(commonUI):
             GUIBackend.set_wgt_visible(self.result_box, False)
         else:
             for key , value in result.items():
-                GUIBackend.set_label_text( self.result[key], value)
+                GUIBackend.set_label_text( self.result[key], str(value))
 
-            GUIBackend.set_wgt_visible(self.result_box, False)
+            GUIBackend.set_wgt_visible(self.result_box, True)
         
 
     

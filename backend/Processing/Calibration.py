@@ -23,7 +23,7 @@ class Calibration:
         self.real_diamerers = np.array(self.real_diamerers)
         self.count = len(self.real_diamerers)
         
-        self.detector = particlesDetector(thresh=thresh, px2mm_ratio=CONSTANTS.Calibration.PX2MM, border=border)
+        self.detector = particlesDetector(thresh=thresh, px2mm_ratio=CONSTANTS.Calibration.PX2MM, detection_border=border)
     
 
     def __filter_particles(self, p:Particle):
@@ -33,7 +33,7 @@ class Calibration:
         particles = self.detector.detect(img, None)
         particles = list(filter( self.__filter_particles, particles))
         p_count = len(particles)
-        return  p_count== self.count, p_count, self.count
+        return  p_count== self.count, p_count, self.count, particles
         
 
     def calibration(self, img):
@@ -44,6 +44,7 @@ class Calibration:
         
         #if find more particles, remove aditional small particles
         if len(particles) > self.count:
+            return None
             particles = particles[-1: -self.count -1 : -1]
             particles.reverse()
 
@@ -59,7 +60,7 @@ class Calibration:
     
     def get_result(self,):
         accuracy = np.array(self.accuracy).mean()
-        precision = np.array(self.frames_diameters).std(axis=1).mean()
+        precision = np.array(self.frames_diameters).std(axis=0).mean()
         
         return {
             'accuracy':accuracy,

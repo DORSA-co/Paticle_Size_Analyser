@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.4
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1369, 926)
         icon = QIcon()
-        icon.addFile(u"../../../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -1440,7 +1440,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 316, 1667))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3789,7 +3789,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.calibration_step1_frame = QFrame(self.calibrationpage_left_side)
         self.calibration_step1_frame.setObjectName(u"calibration_step1_frame")
-        self.calibration_step1_frame.setEnabled(False)
+        self.calibration_step1_frame.setEnabled(True)
         self.horizontalLayout_9 = QHBoxLayout(self.calibration_step1_frame)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.calibrationpage_step1_lbl = QLabel(self.calibration_step1_frame)
@@ -3805,6 +3805,7 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_check_btn = QPushButton(self.calibration_step1_frame)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
+        self.calibrationpage_check_btn.setEnabled(True)
         icon26 = QIcon()
         icon26.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.calibrationpage_check_btn.setIcon(icon26)
@@ -3820,6 +3821,13 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_check_lbl = QLabel(self.calibrationpage_left_side)
         self.calibrationpage_check_lbl.setObjectName(u"calibrationpage_check_lbl")
+        self.calibrationpage_check_lbl.setMinimumSize(QSize(0, 25))
+        font1 = QFont()
+        font1.setFamilies([u"Arial"])
+        font1.setPointSize(10)
+        font1.setBold(False)
+        font1.setItalic(False)
+        self.calibrationpage_check_lbl.setFont(font1)
         self.calibrationpage_check_lbl.setWordWrap(True)
 
         self.verticalLayout_3.addWidget(self.calibrationpage_check_lbl)
@@ -4009,11 +4017,11 @@ class Ui_MainWindow(object):
         self.calibrationpage_last_calib_tabel.setObjectName(u"calibrationpage_last_calib_tabel")
         self.calibrationpage_last_calib_tabel.setEnabled(True)
         self.calibrationpage_last_calib_tabel.setSizeIncrement(QSize(0, 0))
-        font1 = QFont()
-        font1.setFamilies([u"Arial"])
-        font1.setBold(False)
-        font1.setItalic(False)
-        self.calibrationpage_last_calib_tabel.setFont(font1)
+        font2 = QFont()
+        font2.setFamilies([u"Arial"])
+        font2.setBold(False)
+        font2.setItalic(False)
+        self.calibrationpage_last_calib_tabel.setFont(font2)
         self.calibrationpage_last_calib_tabel.setMouseTracking(False)
         self.calibrationpage_last_calib_tabel.setStyleSheet(u"QHeaderView::section {\n"
 "    background-color:rgb(6, 76, 130);\n"
@@ -4061,7 +4069,7 @@ class Ui_MainWindow(object):
         self.calibrationpage_liveimage_lbl = QLabel(self.cilbration)
         self.calibrationpage_liveimage_lbl.setObjectName(u"calibrationpage_liveimage_lbl")
         self.calibrationpage_liveimage_lbl.setMinimumSize(QSize(500, 500))
-        self.calibrationpage_liveimage_lbl.setMaximumSize(QSize(804, 804))
+        self.calibrationpage_liveimage_lbl.setMaximumSize(QSize(1500, 1500))
         self.calibrationpage_liveimage_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;\n"
 "\n"
@@ -4071,7 +4079,7 @@ class Ui_MainWindow(object):
         self.calibrationpage_liveimage_lbl.setAlignment(Qt.AlignCenter)
         self.calibrationpage_liveimage_lbl.setWordWrap(False)
 
-        self.horizontalLayout_52.addWidget(self.calibrationpage_liveimage_lbl)
+        self.horizontalLayout_52.addWidget(self.calibrationpage_liveimage_lbl, 0, Qt.AlignHCenter|Qt.AlignVCenter)
 
         self.tabWidget.addTab(self.cilbration, "")
         self.tab_7 = QWidget()
@@ -4162,7 +4170,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1143, 691))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1151, 701))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4772,16 +4780,16 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 521, 281))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 708, 718))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
         self.label_82.setObjectName(u"label_82")
-        font2 = QFont()
-        font2.setFamilies([u"Arial"])
-        font2.setBold(True)
-        font2.setItalic(False)
-        self.label_82.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Arial"])
+        font3.setBold(True)
+        font3.setItalic(False)
+        self.label_82.setFont(font3)
         self.label_82.setStyleSheet(u"font-size: 18px;\n"
 "font-weight: bold;\n"
 "color: rgb(6, 76, 130);")
@@ -4816,12 +4824,12 @@ class Ui_MainWindow(object):
 
         self.label_87 = QLabel(self.aboutScrollArea)
         self.label_87.setObjectName(u"label_87")
-        font3 = QFont()
-        font3.setFamilies([u"Arial"])
-        font3.setPointSize(12)
-        font3.setBold(False)
-        font3.setItalic(False)
-        self.label_87.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Arial"])
+        font4.setPointSize(12)
+        font4.setBold(False)
+        font4.setItalic(False)
+        self.label_87.setFont(font4)
         self.label_87.setWordWrap(True)
 
         self.verticalLayout_29.addWidget(self.label_87)
@@ -4989,7 +4997,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 3066))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 869, 2985))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5298,11 +5306,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_50.setContentsMargins(0, 0, -1, 14)
         self.label_104 = QLabel(self.scrollAreaWidgetContents)
         self.label_104.setObjectName(u"label_104")
-        font4 = QFont()
-        font4.setFamilies([u"Arial"])
-        font4.setBold(False)
-        font4.setItalic(True)
-        self.label_104.setFont(font4)
+        font5 = QFont()
+        font5.setFamilies([u"Arial"])
+        font5.setBold(False)
+        font5.setItalic(True)
+        self.label_104.setFont(font5)
         self.label_104.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5478,7 +5486,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_53.setContentsMargins(0, 15, -1, 15)
         self.label_105 = QLabel(self.scrollAreaWidgetContents)
         self.label_105.setObjectName(u"label_105")
-        self.label_105.setFont(font4)
+        self.label_105.setFont(font5)
         self.label_105.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5507,7 +5515,7 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_statictics_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_statictics_table.setBaseSize(QSize(0, 0))
-        self.sreportpage_statictics_table.setFont(font1)
+        self.sreportpage_statictics_table.setFont(font2)
         self.sreportpage_statictics_table.setFocusPolicy(Qt.NoFocus)
         self.sreportpage_statictics_table.setStyleSheet(u"\n"
 "QHeaderView::section {\n"
@@ -5626,7 +5634,7 @@ class Ui_MainWindow(object):
 
         self.label_107 = QLabel(self.scrollAreaWidgetContents)
         self.label_107.setObjectName(u"label_107")
-        self.label_107.setFont(font4)
+        self.label_107.setFont(font5)
         self.label_107.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5669,7 +5677,7 @@ class Ui_MainWindow(object):
 
         self.label_108 = QLabel(self.scrollAreaWidgetContents)
         self.label_108.setObjectName(u"label_108")
-        self.label_108.setFont(font4)
+        self.label_108.setFont(font5)
         self.label_108.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5718,7 +5726,7 @@ class Ui_MainWindow(object):
 
         self.label_109 = QLabel(self.scrollAreaWidgetContents)
         self.label_109.setObjectName(u"label_109")
-        self.label_109.setFont(font4)
+        self.label_109.setFont(font5)
         self.label_109.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -5980,7 +5988,7 @@ class Ui_MainWindow(object):
         self.sreportpage_particels_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_particels_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_particels_table.setBaseSize(QSize(0, 0))
-        self.sreportpage_particels_table.setFont(font1)
+        self.sreportpage_particels_table.setFont(font2)
         self.sreportpage_particels_table.setFocusPolicy(Qt.NoFocus)
         self.sreportpage_particels_table.setStyleSheet(u"\n"
 "QHeaderView::section {\n"
@@ -6214,7 +6222,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 177, 1150))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6242,7 +6250,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_57.setContentsMargins(0, 0, -1, -1)
         self.label_111 = QLabel(self.compareScrollAreaWidget)
         self.label_111.setObjectName(u"label_111")
-        self.label_111.setFont(font4)
+        self.label_111.setFont(font5)
         self.label_111.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -6268,7 +6276,7 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setMaximumSize(QSize(16777215, 16777215))
         self.comparepage_compare_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_table.setBaseSize(QSize(0, 0))
-        self.comparepage_compare_table.setFont(font1)
+        self.comparepage_compare_table.setFont(font2)
         self.comparepage_compare_table.setFocusPolicy(Qt.NoFocus)
         self.comparepage_compare_table.setStyleSheet(u"\n"
 "QHeaderView::section {\n"
@@ -6395,7 +6403,7 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
         self.label_112.setSizePolicy(sizePolicy5)
-        self.label_112.setFont(font4)
+        self.label_112.setFont(font5)
         self.label_112.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
 "	font-style: italic;\n"
@@ -6419,7 +6427,7 @@ class Ui_MainWindow(object):
         self.comparepage_compare_mean_table.setMaximumSize(QSize(16777215, 100))
         self.comparepage_compare_mean_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_mean_table.setBaseSize(QSize(0, 0))
-        self.comparepage_compare_mean_table.setFont(font1)
+        self.comparepage_compare_mean_table.setFont(font2)
         self.comparepage_compare_mean_table.setFocusPolicy(Qt.NoFocus)
         self.comparepage_compare_mean_table.setStyleSheet(u"\n"
 "QHeaderView::section {\n"
@@ -6534,12 +6542,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setContentsMargins(10, 0, 10, 0)
         self.label_7 = QLabel(self.footer)
         self.label_7.setObjectName(u"label_7")
-        font5 = QFont()
-        font5.setFamilies([u"Arial"])
-        font5.setPointSize(9)
-        font5.setBold(True)
-        font5.setItalic(False)
-        self.label_7.setFont(font5)
+        font6 = QFont()
+        font6.setFamilies([u"Arial"])
+        font6.setPointSize(9)
+        font6.setBold(True)
+        font6.setItalic(False)
+        self.label_7.setFont(font6)
 
         self.horizontalLayout_17.addWidget(self.label_7)
 
@@ -6712,7 +6720,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(4)
+        self.main_pages_stackw.setCurrentIndex(0)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
@@ -6979,7 +6987,7 @@ class Ui_MainWindow(object):
 
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"iteration", None))
         self.calibrationpage_step3_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 3", None))
-        self.calibrationpage_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Capture", None))
+        self.calibrationpage_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Start Calibration", None))
         self.calibrationpage_result_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Calibration Done", None))
         self.calibrationpage_accuracy_lbl.setText(QCoreApplication.translate("MainWindow", u"0.1 mm", None))
         self.label_38.setText(QCoreApplication.translate("MainWindow", u"Accuracy", None))
@@ -7038,9 +7046,9 @@ class Ui_MainWindow(object):
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are "
-                        "then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are"
+                        " then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
         self.label_37.setText("")
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
         self.label_87.setText("")
@@ -7070,7 +7078,7 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.</span></p></body></html>", None))
         self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
@@ -7086,7 +7094,7 @@ class Ui_MainWindow(object):
         self.textEdit_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table2 - Statistics for each diameter range in the Sample ", None))
 
@@ -7098,31 +7106,31 @@ class Ui_MainWindow(object):
         self.textEdit_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
         self.textEdit_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">The weight Percentage chart shows the weight percentage for each range of diameter in the sample.</span></p></body></html>", None))
         self.label_107.setText(QCoreApplication.translate("MainWindow", u"Chart1 - Weight Percent Barchart", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</p></body></html>", None))
         self.label_108.setText(QCoreApplication.translate("MainWindow", u"Chart2 - Cumulative Weight Percent Chart", None))
         self.textEdit_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</p></body></html>", None))
         self.label_109.setText(QCoreApplication.translate("MainWindow", u"Chart3 - Frequency Histogram of All Particle Diameters", None))
         self.label_47.setText(QCoreApplication.translate("MainWindow", u"Particles", None))
         self.textEdit_7.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
         self.sreportpage_particle_image_lbl.setText("")
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))

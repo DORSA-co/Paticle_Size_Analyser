@@ -229,8 +229,9 @@ class cameraSettingTabAPI:
             if not self.cameras[camera_application].Infos.is_Simulation():
                 if value == 'hardware':
                     self.cameras[camera_application].Parms.set_trigger_on()
-                    self.cameras[camera_application].Parms.set_trigger_option(  None,
-                                                                                PylonFlags.TrigggerSource.hardware_line1)
+                    self.cameras[camera_application].Parms.set_trigger_option(  PylonFlags.TrigggerSource.hardware_line1,
+                                                                                None
+                                                                                )
                     
                     trigger_delay = int( 1000 / self.ui.get_fps() * 0.1 / 2)
                     self.cameras[camera_application].Parms.set_trigger_delay(trigger_delay)

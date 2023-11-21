@@ -18,6 +18,7 @@ from uiUtils.IO.Mouse import MouseEvent
 from backend.Processing.Calibration import Calibration
 
 
+
 class validationPageAPI:
 
     def __init__(self, ui:validationPageUI, database:mainDatabase, cameras: dict[str, Camera]):
@@ -41,7 +42,7 @@ class calibrationTab:
         self.particles = []
         self.calib_image = None
         self.calibration_step = 'none'
-        self.iteration = 0
+        self.iteration = 0 
         self.total_iteration = CONSTANTS.Calibration.ITERATIONS
         #self.detector: particlesDetector.particlesDetector = None
 
@@ -89,6 +90,8 @@ class calibrationTab:
 
             elif step == 'start':
                 self.calibration.reset()
+                self.iteration = 0
+                self.ui.set_progress_bar(0)
 
             for camera in self.cameras.values():
                 camera.Operations.start_grabbing()
@@ -100,24 +103,36 @@ class calibrationTab:
         cam_application = 'standard'
         image = self.cameras[cam_application].image
 
-        if self.calibration_step == 'check':
-            self.check_calibration_placement(image)
+        if image is not None:
+
+            if self.calibration_step == 'check':
+                self.check_calibration_placement(image)
+                
             
-        
-        elif self.calibration_step == 'start':
-            self.calibration_proccess()
+            elif self.calibration_step == 'start':
+                self.calibration_proccess(image)
+        else:
+            return
     
     
 
     def check_calibration_placement(self, image):
-        status, founded_count, real_count = self.calibration.check(image)
+        status, founded_count, real_count, particles = self.calibration.check(image)
+        image = particlesDetector.draw_particles(image, particles, color=(255,0,0))
+        # for part in particles:
+        #     print(part.avg_diameter)
+        self.ui.show_live(image)
         if status:
             self.ui.write_check_massage('Ok', status=status)
         else:
             self.ui.write_check_massage(
-                massage=f""" found {founded_count} but should be {real_count} please sure calibrator placement is true and are glasses are clean""",
+                massage=f""" found {founded_count} but should be {real_count} please sure calibrator placement is true and all glasses are clean""",
                 status= status
             )
+
+        self.calibration_step = 'none'
+        for camera in self.cameras.values():
+            camera.Operations.stop_grabbing()
 
     def calibration_proccess(self, image):
         if not self.during_processing:
@@ -142,16 +157,22 @@ class calibrationTab:
                 self.thread.start()
 
         else:
-            if ( time.time() - self.refresh_time ) >=1:
+            if ( time.time() - self.processing_time ) >=1:
                 print('TimeOut')
                 self.during_processing = False
-                self.refresh_time = time.time()
+                self.processing_time = time.time()
 
     
 
     
     
-            
+    def stop_calibration(self, ):
+        self.calibration_step = 'none'
+        for camera in self.cameras.values():
+            camera.Operations.stop_grabbing()
+        
+        self.calibration.reset()
+
 
     
 
@@ -167,15 +188,27 @@ class calibrationTab:
         self.ui.set_progress_bar(percent)
         
         if particles is not None:
+            self.particles = particles
             self.calib_image = self.calibration_worker.img.copy()
-            image = particlesDetector.draw_particles(image, self.particles )
+            image = particlesDetector.draw_particles(self.calibration_worker.img, self.particles )
             self.ui.show_live(image)
         
-        if self.iteration == self.total_iteration:
+        else:
             self.calibration_step = 'none'
+            self.stop_calibration()
+            self.ui.show_confirm_box('Warnings',
+                                     massage='Please check calibration placement',
+                                     buttons=['ok'])
+
+            self.ui.set_progress_bar(0)
+            
+        
+        if self.iteration == self.total_iteration:
             result = self.calibration.get_result()
             self.ui.show_calib_result(result)
+            self.stop_calibration()
             
+       
 
 
 

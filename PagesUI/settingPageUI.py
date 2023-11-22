@@ -324,6 +324,8 @@ class cameraSettingTabUI(commonSettingUI):
         
         self.__mange_fields_enable__()
         self.__settings_change_connector__()
+
+    
     
     def reset(self):
         self.__is_start__ = False
@@ -332,6 +334,7 @@ class cameraSettingTabUI(commonSettingUI):
         #enable and disable setting fields
         self.__mange_fields_enable__()
         GUIBackend.set_disable(self.save_btn)
+        self.load_default_image()
 
     def start_stop_event_connector(self, func):
         """connect a function to start and stop button vlick event
@@ -398,6 +401,13 @@ class cameraSettingTabUI(commonSettingUI):
     def stop(self):
         if self.__is_start__:
             self.__internal_start_event__()
+
+    
+    def load_default_image(self, ):
+        GUIBackend.set_label_image(self.live_img_lbl, CONSTANTS.IMAGES.NO_IMAGE)
+
+
+
     
     def __internal_start_event__(self,):
         """this function called when the start button clicked. this function calls manage disable and enable fields and call external function
@@ -411,6 +421,9 @@ class cameraSettingTabUI(commonSettingUI):
         #call exteral function as event
         if self.__connection_event_function__ is not None:
             self.__connection_event_function__(self.__is_start__)
+
+        if not self.__is_start__:
+            self.load_default_image()
 
 
     def __mange_fields_enable__(self):

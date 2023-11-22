@@ -8,6 +8,7 @@ from backend.Utils.datetimeUtils import datetimeFormat
 from PagesUI.PageUI import commonUI
 from PagesUI.dialogWindows.verficationResultDialogUI import verficationResultDialogUI
 from uiUtils.IO.Mouse import mouseHandeler
+from Constants import CONSTANTS
 
 
 class validationPageUI:
@@ -58,10 +59,15 @@ class calibrationTabUI(commonUI):
         GUIBackend.set_wgt_visible(self.ui.calibrationpage_last_calib_tabel, False)
         #--------------------------------------------------------------------
 
+    def startup(self,):
+        GUIBackend.set_label_image(self.liveimage_lbl, CONSTANTS.IMAGES.NO_IMAGE)
+        self.set_progress_bar(0)
+        self.write_check_massage(None)
 
     def set_progress_bar(self, i):
         GUIBackend.set_progressbar_value(self.progress_bar, i)
 
+    
     
     # def set_passed_step(self, step):
     #     if step == 'none':

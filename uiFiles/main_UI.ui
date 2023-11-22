@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1250,7 +1250,7 @@ background-color:rgb(50,50,50);
                    <enum>Qt::AutoText</enum>
                   </property>
                   <property name="pixmap">
-                   <pixmap>:/assets/Assets/images/camera-error-500.png</pixmap>
+                   <pixmap resource="Assets/Assets.qrc">:/assets/images/camera-error-500.png</pixmap>
                   </property>
                   <property name="scaledContents">
                    <bool>false</bool>
@@ -2253,8 +2253,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>316</width>
-                   <height>1667</height>
+                   <width>309</width>
+                   <height>1705</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -3931,7 +3931,7 @@ color: #ffffff;
             <number>0</number>
            </property>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_33">
+            <layout class="QVBoxLayout" name="verticalLayout_62">
              <property name="leftMargin">
               <number>10</number>
              </property>
@@ -3942,7 +3942,7 @@ color: #ffffff;
               <number>10</number>
              </property>
              <item>
-              <spacer name="horizontalSpacer_63">
+              <spacer name="horizontalSpacer_64">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -3958,6 +3958,12 @@ color: #ffffff;
               <widget class="QTabWidget" name="settingpage_tabs">
                <property name="enabled">
                 <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
                <property name="autoFillBackground">
                 <bool>false</bool>
@@ -5650,6 +5656,12 @@ min-width: 700px;
                 <layout class="QHBoxLayout" name="horizontalLayout_15">
                  <item>
                   <widget class="QFrame" name="settingpage_camera_left_side">
+                   <property name="maximumSize">
+                    <size>
+                     <width>800</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
                    <property name="styleSheet">
                     <string notr="true"/>
                    </property>
@@ -6102,26 +6114,29 @@ color: rgb(6, 76, 130);</string>
                   <layout class="QVBoxLayout" name="settingpage_camera_right_side">
                    <item>
                     <widget class="QLabel" name="settingpage_camera_live_lbl">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                       <horstretch>1</horstretch>
+                       <verstretch>1</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
-                       <width>10</width>
+                       <width>94</width>
                        <height>500</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>810</width>
-                       <height>800</height>
+                       <width>814</width>
+                       <height>804</height>
                       </size>
                      </property>
-                     <property name="toolTipDuration">
-                      <number>-2</number>
-                     </property>
                      <property name="styleSheet">
-                      <string notr="true">min-width : 0;
-max-width : 800px;
+                      <string notr="true">max-width : 800px;
 max-height : 800px;
-</string>
+
+border: 2px solid #404040;</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -6134,6 +6149,9 @@ max-height : 800px;
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>false</bool>
                      </property>
                     </widget>
                    </item>
@@ -6414,7 +6432,7 @@ background-color:rgb(240,240,240)
               </widget>
              </item>
              <item>
-              <spacer name="horizontalSpacer_64">
+              <spacer name="horizontalSpacer_63">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -6583,6 +6601,18 @@ background-color: rgb(48, 48, 48);
               <layout class="QHBoxLayout" name="horizontalLayout_52">
                <item>
                 <widget class="QFrame" name="calibrationpage_left_side">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>550</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">#calibrationpage_left_side{
 	padding: 10px;
@@ -7110,54 +7140,67 @@ margin-right:5px;</string>
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_2">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                <layout class="QVBoxLayout" name="verticalLayout_63">
+                 <property name="leftMargin">
+                  <number>0</number>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-                <widget class="QLabel" name="calibrationpage_liveimage_lbl">
-                 <property name="minimumSize">
-                  <size>
-                   <width>500</width>
-                   <height>500</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>1500</width>
-                   <height>1500</height>
-                  </size>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">max-width : 800px;
+                 <item>
+                  <spacer name="horizontalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                  <widget class="QLabel" name="calibrationpage_liveimage_lbl">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                     <horstretch>1</horstretch>
+                     <verstretch>1</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>500</width>
+                     <height>500</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>1000</width>
+                     <height>1000</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">max-width : 800px;
 max-height : 800px;
 
 border: 2px solid #404040;</string>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="pixmap">
-                  <pixmap resource="Assets/Assets.qrc">:/assets/images/camera-error-500.png</pixmap>
-                 </property>
-                 <property name="scaledContents">
-                  <bool>false</bool>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>false</bool>
-                 </property>
-                </widget>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="pixmap">
+                    <pixmap resource="Assets/Assets.qrc">:/assets/images/camera-error-500.png</pixmap>
+                   </property>
+                   <property name="scaledContents">
+                    <bool>false</bool>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>

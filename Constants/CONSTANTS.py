@@ -168,4 +168,4 @@ HIDE_SIDEBAR_PAGES = [
 
 class IMAGES:
     STOP_SAMPLING = 'uiFiles\Assets\images\camera-finish.png'
-    NO_IMAGE = 'uiFiles\Assets\images\\camera-error.png'
+    NO_IMAGE = 'uiFiles\Assets\images\\camera-error-500.png'

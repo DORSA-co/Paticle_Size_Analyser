@@ -827,7 +827,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         self.mainpage_live_image_lbl.setTextFormat(Qt.AutoText)
-        self.mainpage_live_image_lbl.setPixmap(QPixmap(u":/assets/Assets/images/camera-error-500.png"))
+        self.mainpage_live_image_lbl.setPixmap(QPixmap(u":/assets/images/camera-error-500.png"))
         self.mainpage_live_image_lbl.setScaledContents(False)
         self.mainpage_live_image_lbl.setAlignment(Qt.AlignCenter)
         self.mainpage_live_image_lbl.setWordWrap(False)
@@ -1440,7 +1440,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 316, 1667))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 309, 1705))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2324,16 +2324,18 @@ class Ui_MainWindow(object):
         self.verticalLayout_6 = QVBoxLayout(self.settings_page)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.verticalLayout_6.setContentsMargins(0, -1, 0, 0)
-        self.horizontalLayout_33 = QHBoxLayout()
-        self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
-        self.horizontalLayout_33.setContentsMargins(10, 0, 10, -1)
-        self.horizontalSpacer_63 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.verticalLayout_62 = QVBoxLayout()
+        self.verticalLayout_62.setObjectName(u"verticalLayout_62")
+        self.verticalLayout_62.setContentsMargins(10, 0, 10, -1)
+        self.horizontalSpacer_64 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_33.addItem(self.horizontalSpacer_63)
+        self.verticalLayout_62.addItem(self.horizontalSpacer_64)
 
         self.settingpage_tabs = QTabWidget(self.settings_page)
         self.settingpage_tabs.setObjectName(u"settingpage_tabs")
         self.settingpage_tabs.setEnabled(True)
+        sizePolicy3.setHeightForWidth(self.settingpage_tabs.sizePolicy().hasHeightForWidth())
+        self.settingpage_tabs.setSizePolicy(sizePolicy3)
         self.settingpage_tabs.setAutoFillBackground(False)
         self.settingpage_tabs.setStyleSheet(u"#settingpage_tabs{\n"
 "}\n"
@@ -3225,6 +3227,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.settingpage_camera_left_side = QFrame(self.settingpage_camera_tab)
         self.settingpage_camera_left_side.setObjectName(u"settingpage_camera_left_side")
+        self.settingpage_camera_left_side.setMaximumSize(QSize(800, 16777215))
         self.settingpage_camera_left_side.setStyleSheet(u"")
         self.camera_setting_lef_side = QVBoxLayout(self.settingpage_camera_left_side)
         self.camera_setting_lef_side.setObjectName(u"camera_setting_lef_side")
@@ -3489,16 +3492,21 @@ class Ui_MainWindow(object):
         self.settingpage_camera_right_side.setObjectName(u"settingpage_camera_right_side")
         self.settingpage_camera_live_lbl = QLabel(self.settingpage_camera_tab)
         self.settingpage_camera_live_lbl.setObjectName(u"settingpage_camera_live_lbl")
-        self.settingpage_camera_live_lbl.setMinimumSize(QSize(10, 500))
-        self.settingpage_camera_live_lbl.setMaximumSize(QSize(810, 800))
-        self.settingpage_camera_live_lbl.setToolTipDuration(-2)
-        self.settingpage_camera_live_lbl.setStyleSheet(u"min-width : 0;\n"
-"max-width : 800px;\n"
+        sizePolicy4 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy4.setHorizontalStretch(1)
+        sizePolicy4.setVerticalStretch(1)
+        sizePolicy4.setHeightForWidth(self.settingpage_camera_live_lbl.sizePolicy().hasHeightForWidth())
+        self.settingpage_camera_live_lbl.setSizePolicy(sizePolicy4)
+        self.settingpage_camera_live_lbl.setMinimumSize(QSize(94, 500))
+        self.settingpage_camera_live_lbl.setMaximumSize(QSize(814, 804))
+        self.settingpage_camera_live_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;\n"
-"")
+"\n"
+"border: 2px solid #404040;")
         self.settingpage_camera_live_lbl.setPixmap(QPixmap(u":/assets/images/camera-error-500.png"))
         self.settingpage_camera_live_lbl.setScaledContents(False)
         self.settingpage_camera_live_lbl.setAlignment(Qt.AlignCenter)
+        self.settingpage_camera_live_lbl.setWordWrap(False)
 
         self.settingpage_camera_right_side.addWidget(self.settingpage_camera_live_lbl)
 
@@ -3642,14 +3650,14 @@ class Ui_MainWindow(object):
 
         self.settingpage_tabs.addTab(self.settingpage_algorithm_tab, "")
 
-        self.horizontalLayout_33.addWidget(self.settingpage_tabs)
+        self.verticalLayout_62.addWidget(self.settingpage_tabs)
 
-        self.horizontalSpacer_64 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_63 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_33.addItem(self.horizontalSpacer_64)
+        self.verticalLayout_62.addItem(self.horizontalSpacer_63)
 
 
-        self.verticalLayout_6.addLayout(self.horizontalLayout_33)
+        self.verticalLayout_6.addLayout(self.verticalLayout_62)
 
         self.frame_4 = QFrame(self.settings_page)
         self.frame_4.setObjectName(u"frame_4")
@@ -3740,6 +3748,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
         self.calibrationpage_left_side = QFrame(self.cilbration)
         self.calibrationpage_left_side.setObjectName(u"calibrationpage_left_side")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
+        self.calibrationpage_left_side.setSizePolicy(sizePolicy5)
+        self.calibrationpage_left_side.setMaximumSize(QSize(550, 16777215))
         self.calibrationpage_left_side.setStyleSheet(u"#calibrationpage_left_side{\n"
 "	padding: 10px;\n"
 "	padding-top: 30px;\n"
@@ -4062,14 +4076,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_52.addWidget(self.calibrationpage_left_side)
 
+        self.verticalLayout_63 = QVBoxLayout()
+        self.verticalLayout_63.setObjectName(u"verticalLayout_63")
+        self.verticalLayout_63.setContentsMargins(0, -1, -1, -1)
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_52.addItem(self.horizontalSpacer_2)
+        self.verticalLayout_63.addItem(self.horizontalSpacer_2)
 
         self.calibrationpage_liveimage_lbl = QLabel(self.cilbration)
         self.calibrationpage_liveimage_lbl.setObjectName(u"calibrationpage_liveimage_lbl")
+        sizePolicy4.setHeightForWidth(self.calibrationpage_liveimage_lbl.sizePolicy().hasHeightForWidth())
+        self.calibrationpage_liveimage_lbl.setSizePolicy(sizePolicy4)
         self.calibrationpage_liveimage_lbl.setMinimumSize(QSize(500, 500))
-        self.calibrationpage_liveimage_lbl.setMaximumSize(QSize(1500, 1500))
+        self.calibrationpage_liveimage_lbl.setMaximumSize(QSize(1000, 1000))
         self.calibrationpage_liveimage_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;\n"
 "\n"
@@ -4079,7 +4098,10 @@ class Ui_MainWindow(object):
         self.calibrationpage_liveimage_lbl.setAlignment(Qt.AlignCenter)
         self.calibrationpage_liveimage_lbl.setWordWrap(False)
 
-        self.horizontalLayout_52.addWidget(self.calibrationpage_liveimage_lbl, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.verticalLayout_63.addWidget(self.calibrationpage_liveimage_lbl, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+
+
+        self.horizontalLayout_52.addLayout(self.verticalLayout_63)
 
         self.tabWidget.addTab(self.cilbration, "")
         self.tab_7 = QWidget()
@@ -5507,11 +5529,11 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem23)
         self.sreportpage_statictics_table.setObjectName(u"sreportpage_statictics_table")
         self.sreportpage_statictics_table.setEnabled(True)
-        sizePolicy4 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_statictics_table.setSizePolicy(sizePolicy4)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_statictics_table.setSizePolicy(sizePolicy6)
         self.sreportpage_statictics_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_statictics_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_statictics_table.setBaseSize(QSize(0, 0))
@@ -5983,8 +6005,8 @@ class Ui_MainWindow(object):
         self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem24)
         self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
         self.sreportpage_particels_table.setEnabled(True)
-        sizePolicy4.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_particels_table.setSizePolicy(sizePolicy4)
+        sizePolicy6.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_particels_table.setSizePolicy(sizePolicy6)
         self.sreportpage_particels_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_particels_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_particels_table.setBaseSize(QSize(0, 0))
@@ -6271,8 +6293,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem26)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
-        sizePolicy4.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_table.setSizePolicy(sizePolicy4)
+        sizePolicy6.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_table.setSizePolicy(sizePolicy6)
         self.comparepage_compare_table.setMaximumSize(QSize(16777215, 16777215))
         self.comparepage_compare_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_table.setBaseSize(QSize(0, 0))
@@ -6398,11 +6420,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_58.setContentsMargins(0, 0, -1, -1)
         self.label_112 = QLabel(self.compareScrollAreaWidget)
         self.label_112.setObjectName(u"label_112")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
-        self.label_112.setSizePolicy(sizePolicy5)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
+        self.label_112.setSizePolicy(sizePolicy7)
         self.label_112.setFont(font5)
         self.label_112.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
@@ -6422,8 +6444,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem27)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
-        sizePolicy4.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy4)
+        sizePolicy6.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy6)
         self.comparepage_compare_mean_table.setMaximumSize(QSize(16777215, 100))
         self.comparepage_compare_mean_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_mean_table.setBaseSize(QSize(0, 0))
@@ -6720,7 +6742,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(4)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)

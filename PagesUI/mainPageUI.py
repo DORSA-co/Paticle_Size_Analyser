@@ -310,7 +310,8 @@ class mainPageUI:
 
     
     def set_live_img(self, img):
-        GUIBackend.set_label_image(self.live_img_lbl, img)
+        pixmap = GUIBackend.set_label_image(self.live_img_lbl, img)
+        GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
         
 
     

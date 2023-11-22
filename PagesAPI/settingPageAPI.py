@@ -205,6 +205,7 @@ class cameraSettingTabAPI:
         settings = self.ui.get_camera_settings()
         self.set_camera_setting(camera_application, settings)
         
+        
 
     def startup(self):
         self.ui.reset()

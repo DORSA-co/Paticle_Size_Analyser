@@ -139,6 +139,7 @@ class main_API(QObject):
         #---------------------------------------------------
         self.ui.show()
         self.ui.usersPage.loginUserBox.show_login()
+        print('__init__ appAPI finised')
         
 
     def creat_camera(self, camera_device_info)-> Camera:

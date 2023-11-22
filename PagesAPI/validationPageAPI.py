@@ -58,8 +58,8 @@ class calibrationTab:
         self.ui.connect_image_mouse_event(self.image_mouse_event)
 
     def startup(self,):
-        self.ui.write_check_massage(None)
-        self.ui.set_progress_bar(0)
+        self.ui.startup()
+
 
 
     def image_mouse_event(self, event:MouseEvent):

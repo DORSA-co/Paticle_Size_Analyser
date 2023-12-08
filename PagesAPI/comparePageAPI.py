@@ -49,6 +49,7 @@ class comparePageAPI:
         self.ui.show_page_content(False)
         #progress bar 0
         self.ui.set_progressbar(0)
+        #specific compare by STD, AVG or Grading Percent
         attribute = self.ui.get_compare_attribute()
         attribute_key, attribute_unit =  self.attribute_dict[attribute]
 
@@ -71,7 +72,6 @@ class comparePageAPI:
             rfh = reportFileHandler(sample)
             report = rfh.load_report()
             self.reports.append(report)
-
             #-------------------------------------------------------------------------
             if report is None:
                 self.ui.show_confirm_box("Error", f"Report {sample_name} not exits. it's file maybe deleted", ['ignore'])
@@ -93,6 +93,7 @@ class comparePageAPI:
             percent =  ( i + 1 )/samples_count * 100 
             self.ui.set_progressbar(percent)
             #--------------------------------------------------
+            
         if len(samples_ranges_percents)!=0:
             samples_ranges_percents = np.array( samples_ranges_percents )
             data_mean = np.round(np.mean( samples_ranges_percents, axis=0), 0 )

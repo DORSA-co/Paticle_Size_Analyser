@@ -30,7 +30,6 @@ class mainPageAPI:
     refresh_time = time.time()
     max_fps = 20
     DEBUG_PROCESS_THREAD = False
-    #max_thread = 3
 
     def __init__(self, ui:mainPageUI, cameras:dict[str,dorsaPylon.Camera], database:mainDatabase, ):
         self.ui = ui

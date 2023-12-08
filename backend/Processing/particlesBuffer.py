@@ -100,26 +100,52 @@ class sieveParticlesBuffer:
     def __init__(self, ranges) -> None:
         self.ranges = ranges
         self.total_buffer = particlesBuffer()
-        self.sieve_buffers:list[particlesBuffer] = []
+        self.sieve_particles_membership:list[np.ndarray] = []
         self.initial_sieve_buffers()
 
     def set_ranges(self, ranges):
         self.ranges = ranges
         self.initial_sieve_buffers()
 
+    def set_sieve_memberships(self, sived_memberships:list[np.ndarray]):
+        self.sieve_particles_membership =  sived_memberships
+
     def initial_sieve_buffers(self,):
-        self.sieve_buffers = []
-        for i in range(len(self.ranges)):
-            #each buffer is for specific range
-            self.sieve_buffers.append(particlesBuffer())
+        self.sieve_particles_membership = []
+        for _ in range(len(self.ranges)):
+            self.sieve_particles_membership.append(np.array([], dtype='bool'))
 
     def append_particle(self, particle:Particle, sieve_idx:int, sive_only=False):
         
-        if sieve_idx >= 0:
-            self.sieve_buffers[sieve_idx].append(particle)
+        #if sieve_idx >= 0:
+        for i in range(len(self.ranges)):
+            #append True in the range idx that is sieve idx
+            if i == sieve_idx:
+                new = np.append(self.sieve_particles_membership[i], True)
+            else:
+                new = np.append(self.sieve_particles_membership[i], False)
+            
+            self.sieve_particles_membership[i] = new
         
         if not sive_only:
             self.total_buffer.append(particle)
+
+    def get_feature(self, name: str, decimals=2, sive_idx = None) -> np.ndarray:
+        """returns a 1d numpy array that shows a specific feature for all particles
+
+        Args:
+            name (str): name of the desired feature that can be one of the [ 'area', 'max_radius', 'avg_radius', 'avg_volume' ]
+
+        Returns:
+            np.ndarray: _description_
+        """
+        results = self.total_buffer.get_feature(name, decimals )
+        if len(results):
+            if sive_idx is not None:
+                results = results[ self.sieve_particles_membership[sive_idx] ]
+        return results
+        
+
 
     def clear(self,):
         self.initial_sieve_buffers()

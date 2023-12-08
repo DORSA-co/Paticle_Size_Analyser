@@ -85,16 +85,18 @@ class Report:
         hist = self.Grading.get_hist()
         for i,range_name in enumerate(self.ranges_string):
             data = {}
-            range_buffer = self.Buffer.sieve_buffers[i]
-            if len(range_buffer.particels) > 0:
-                diameter = range_buffer.get_feature('max_radius') * 2
+            diameters = self.Buffer.get_feature('max_radius', sive_idx=i) * 2
+            circularites = self.Buffer.get_feature('circularity', sive_idx=i)
+            count = len(diameters)
+            if count > 0:
+                
 
                 data['range'] = range_name
-                data['std'] = np.round( diameter.std(), CONSTANTS.DECIMAL_ROUND )
-                data['avrage'] = np.round( diameter.mean(), CONSTANTS.DECIMAL_ROUND )
-                data['count'] = len( range_buffer.get_particels() )
+                data['std'] = np.round( diameters.std(), CONSTANTS.DECIMAL_ROUND )
+                data['avrage'] = np.round( diameters.mean(), CONSTANTS.DECIMAL_ROUND )
+                data['count'] = count
                 data['percent'] = hist[i]
-                data['circularity'] = np.round( range_buffer.get_feature('circularity').mean(), CONSTANTS.DECIMAL_ROUND )
+                data['circularity'] = np.round( circularites.mean(), CONSTANTS.DECIMAL_ROUND )
             else:
                 data['range'] = range_name
                 data['std'] = 0
@@ -130,24 +132,23 @@ class Report:
         return self.date_time.strftime("%Y/%m/%d %H:%M:%S")
     
 
-    def change_standard(self, standard:dict, ):
+    def change_standard(self, new_standard:dict, ):
         #t = time.time()
-        if standard['ranges'] != self.standard['ranges'] :
-            self.standard = standard
-            self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
+        if new_standard['ranges'] != self.standard['ranges'] :
+            self.standard = new_standard
+            standard_ranges = new_standard['ranges']
+            self.ranges_string = reportUtils.ranges2str(standard_ranges)
             
-            self.Grading = Grading(self.standard['ranges'])
+            self.Grading = Grading(standard_ranges)
             self.cumGrading = cumGrading(self.get_full_range())
-            particles = self.Buffer.total_buffer.get_particels()
-            self.Buffer.set_ranges(self.standard['ranges'])
-            
-            for particle in particles:
-                sieve_idx = self.Grading.append_particle( particle )
-                self.cumGrading.append_particle(particle)
-                self.Buffer.append_particle(particle,sieve_idx, sive_only=True)
+            self.Buffer.set_ranges(standard_ranges)
 
-        
-        self.standard = standard.copy()
+            max_diameters = self.Buffer.total_buffer.get_feature('max_radius') * 2
+            avg_volume = self.Buffer.total_buffer.get_feature('avg_volume')
+
+            self.cumGrading.sieve_all(max_diameters, avg_volume)
+            sieve_partices_membership = self.Grading.sieve_all(max_diameters, avg_volume)
+            self.Buffer.set_sieve_memberships(sieve_partices_membership)
 
     
     def get_standard_ranges(self,):

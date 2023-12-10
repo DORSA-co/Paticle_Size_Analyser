@@ -90,7 +90,8 @@ class reportsDB:
         records =  self.db_manager.get_all_content(self.TABLE_NAME)
         for record in records:
             record = self.__pre_process_to_load__(record)
-        return records
+        records.reverse()
+        return  records
     
 
     def is_exist(self, sample_id):

@@ -22,6 +22,7 @@ class proggressDialogUI:
         self.progress_frame = self.ui.progress_frame
         self.complete_count_lbl = self.ui.complete_count_lbl
         self.total_count_lbl = self.ui.total_count_lbl
+        self.cancel_btn = self.ui.cancel_btn
 
         self.setup(title, description, show_info, operation_name)
         GUIBackend.set_win_frameless(self.ui)
@@ -45,12 +46,20 @@ class proggressDialogUI:
     
     
 
-    def set_value(self, n, total=100):
+    def set_delete_progress_value(self, n, total=100):
         GUIBackend.set_label_text(self.complete_count_lbl, str(int(n)))
         GUIBackend.set_label_text(self.total_count_lbl, str(total))
 
         percent = n / total * 100
         GUIBackend.set_progressbar_value(self.progressbar, percent)
+
+    def cancel_button_connector(self,func):
+        GUIBackend.button_connector(self.cancel_btn, func)
+
+    
+    def show_confirm_massage(self, title, text, buttons):
+        dialog =  GUIComponents.confirmMessageBox(title, text, buttons, parent=self.ui)
+        return dialog.render()
 
 
     def show(self,):

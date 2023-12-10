@@ -352,7 +352,7 @@ class inputTable(QtWidgets.QLineEdit):
 
 
 class confirmMessageBox:
-    def __init__(self, title, text, buttons, min_height=300, min_width=400 ):
+    def __init__(self, title, text, buttons, min_height=300, min_width=400, parent=None ):
         self.STANDARD_BUTTONS = {
             'yes': QtWidgets.QMessageBox.Yes,
             'no': QtWidgets.QMessageBox.No,
@@ -369,7 +369,7 @@ class confirmMessageBox:
 
         text = text + " " * 100 + "\n"
 
-        self.msg = QtWidgets.QMessageBox( text=text)
+        self.msg = QtWidgets.QMessageBox( text=text, parent=parent)
         self.msg.setWindowTitle(title)
         self.msg.setStyleSheet(CONFIRMBOX_STYLESHEET)
         self.msg.setWindowIcon(self.icon)
@@ -389,7 +389,7 @@ class confirmMessageBox:
         self.msg.setStandardButtons(selected_buttons_obj)
         #---------------------------------------------------
 
-    def render(self):
+    def render(self) -> str:
         retval = self.msg.exec_()
         for btn_name in self.buttons:
             if self.STANDARD_BUTTONS[btn_name] == retval:

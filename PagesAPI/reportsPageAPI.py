@@ -45,6 +45,7 @@ class reportsPageAPI:
         self.ui.delete_selections_button_connector(self.delete_selections)
         self.ui.dialogbox_rebuild_btn_connector(self.rebuild_reports)
         self.ui.rebuid_close_button_connector(self.close_rebild)
+        self.ui.deleteSamplesDialog.cancel_button_connector(self.cancel_removing_samples)
         self.startup()
 
 
@@ -284,6 +285,7 @@ class reportsPageAPI:
 
         compare = Compare(samples, standard)
 
+        
         self.compare_event_func(compare)
 
         
@@ -324,26 +326,28 @@ class reportsPageAPI:
         if state == 'cancel':
             return
         
-        self.ui.progessBarDialog.setup('Remove samples','', operation_name='removed')
-        self.ui.progessBarDialog.show()
+        self.ui.deleteSamplesDialog.show()
         samples = self.database.reports_db.load_by_name_ids(ids)
 
 
-        self.worker_remove = removeSamplesWorkder(self.all_samples, samples, self.database.reports_db)
-        self.thread_remove = QThread()
+        self.remove_worker = removeSamplesWorkder(self.all_samples, samples, self.database.reports_db)
+        self.thread_remove = threading.Thread(target=self.remove_worker.run)
 
-        self.worker_remove.moveToThread(self.thread_remove)
-        self.thread_remove.started.connect(self.worker_remove.run)
-        self.worker_remove.finished.connect(self.ui.progessBarDialog.close)
-        self.worker_remove.finished.connect(self.refresh_table)
-        self.worker_remove.progressBar.connect(self.ui.progessBarDialog.set_value)
-        self.worker_remove.finished.connect(self.thread_remove.quit)
-        self.thread_remove.finished.connect(self.thread_remove.deleteLater)
-        self.thread_remove.finished.connect(self.worker_remove.deleteLater)
-        
+        self.remove_worker.finished.connect(self.ui.deleteSamplesDialog.close)
+        self.remove_worker.finished.connect(self.refresh_table)
+        self.remove_worker.progressBar.connect(self.ui.deleteSamplesDialog.set_delete_progress_value)
         self.thread_remove.start()
 
-
+    def cancel_removing_samples(self,):
+        self.remove_worker.pause(True)
+        res = self.ui.deleteSamplesDialog.show_confirm_massage( title='Cancel Removing',
+                                                                text= 'Are you sure cancel the progress?',
+                                                                buttons=['yes','no']
+        )
+        if res == 'yes':
+            self.remove_worker.stop()
+        else:
+            self.remove_worker.pause(False)
 
 
 
@@ -357,14 +361,32 @@ class removeSamplesWorkder(QObject):
         super(removeSamplesWorkder, self).__init__()
 
         self.selection_samples = selection_samples
+        #get all samples list to update it. after finish, remain samples set into table
         self.all_samples = all_samples
         self.db = db
+        self.pause_flag = False
+        self.stop_flag = False
+
+    def pause(self, status):
+        self.pause_flag = status
+
+    def stop(self,):
+        self.stop_flag = True
 
     def run(self,):
         total_count = len(self.selection_samples)
         #for i,sample in enumerate(self.selection_samples):
         i=0
         while self.selection_samples:
+    
+            if self.stop_flag:
+                break
+
+            if self.pause_flag:
+                time.sleep(0.02)
+                continue
+
+
             try:
                 rfh = reportFileHandler(self.selection_samples[0])
                 rfh.remove()
@@ -375,6 +397,9 @@ class removeSamplesWorkder(QObject):
                 self.progressBar.emit(i, total_count)
             except Exception as e:
                 print(e)
+
+            #delay for help to user to cancel soon
+            time.sleep(0.3)
 
         self.finished.emit()
 

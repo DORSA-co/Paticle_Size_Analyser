@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1371, 908)
+        MainWindow.resize(1482, 908)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -828,7 +828,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.mainpage_live_image_lbl.sizePolicy().hasHeightForWidth())
         self.mainpage_live_image_lbl.setSizePolicy(sizePolicy1)
         self.mainpage_live_image_lbl.setMinimumSize(QSize(400, 400))
-        self.mainpage_live_image_lbl.setMaximumSize(QSize(16777215, 16777215))
+        self.mainpage_live_image_lbl.setMaximumSize(QSize(704, 704))
         self.mainpage_live_image_lbl.setSizeIncrement(QSize(1, 1))
         self.mainpage_live_image_lbl.setStyleSheet(u"border: 2px solid rgb(50, 50, 50);\n"
 "border-radius: 0px;\n"
@@ -1458,7 +1458,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 2170))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3518,14 +3518,19 @@ class Ui_MainWindow(object):
 
         self.settingpage_camera_right_side = QVBoxLayout()
         self.settingpage_camera_right_side.setObjectName(u"settingpage_camera_right_side")
-        self.settingpage_camera_live_lbl = QLabel(self.settingpage_camera_tab)
+        self.verticalFrame64 = QFrame(self.settingpage_camera_tab)
+        self.verticalFrame64.setObjectName(u"verticalFrame64")
+        self.verticalLayout_64 = QVBoxLayout(self.verticalFrame64)
+        self.verticalLayout_64.setObjectName(u"verticalLayout_64")
+        self.verticalLayout_64.setContentsMargins(-1, 1, -1, -1)
+        self.settingpage_camera_live_lbl = QLabel(self.verticalFrame64)
         self.settingpage_camera_live_lbl.setObjectName(u"settingpage_camera_live_lbl")
         sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy5.setHorizontalStretch(1)
         sizePolicy5.setVerticalStretch(1)
         sizePolicy5.setHeightForWidth(self.settingpage_camera_live_lbl.sizePolicy().hasHeightForWidth())
         self.settingpage_camera_live_lbl.setSizePolicy(sizePolicy5)
-        self.settingpage_camera_live_lbl.setMinimumSize(QSize(94, 500))
+        self.settingpage_camera_live_lbl.setMinimumSize(QSize(500, 500))
         self.settingpage_camera_live_lbl.setMaximumSize(QSize(814, 804))
         self.settingpage_camera_live_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;\n"
@@ -3536,7 +3541,10 @@ class Ui_MainWindow(object):
         self.settingpage_camera_live_lbl.setAlignment(Qt.AlignCenter)
         self.settingpage_camera_live_lbl.setWordWrap(False)
 
-        self.settingpage_camera_right_side.addWidget(self.settingpage_camera_live_lbl)
+        self.verticalLayout_64.addWidget(self.settingpage_camera_live_lbl)
+
+
+        self.settingpage_camera_right_side.addWidget(self.verticalFrame64)
 
         self.horizontalFrame_4 = QFrame(self.settingpage_camera_tab)
         self.horizontalFrame_4.setObjectName(u"horizontalFrame_4")
@@ -4219,7 +4227,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1310, 2219))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -5046,7 +5054,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1340, 1147, 3302))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1147, 3302))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6798,7 +6806,7 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(0)
+        self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(2)

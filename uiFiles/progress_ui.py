@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'progress.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,22 +16,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout,
-    QLabel, QProgressBar, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
-import Assets_rc
+    QLabel, QProgressBar, QPushButton, QSizePolicy,
+    QSpacerItem, QVBoxLayout, QWidget)
 
 class Ui_rebuild_win(object):
     def setupUi(self, rebuild_win):
         if not rebuild_win.objectName():
             rebuild_win.setObjectName(u"rebuild_win")
-        rebuild_win.resize(700, 226)
+        rebuild_win.resize(700, 300)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(rebuild_win.sizePolicy().hasHeightForWidth())
         rebuild_win.setSizePolicy(sizePolicy)
-        rebuild_win.setMinimumSize(QSize(700, 200))
-        rebuild_win.setMaximumSize(QSize(700, 300))
+        rebuild_win.setMinimumSize(QSize(700, 300))
+        rebuild_win.setMaximumSize(QSize(700, 400))
         rebuild_win.setStyleSheet(u"*{\n"
 "	\n"
 "	font: auto \"Arial\";\n"
@@ -250,6 +249,25 @@ class Ui_rebuild_win(object):
 
         self.verticalLayout_2.addWidget(self.progress_frame)
 
+        self.buttons_frame = QFrame(rebuild_win)
+        self.buttons_frame.setObjectName(u"buttons_frame")
+        self.buttons_frame.setMinimumSize(QSize(0, 75))
+        self.buttons_frame.setStyleSheet(u"QPushButton{\n"
+"\n"
+"	border: 2px solid #404040;\n"
+"	max-width:100px;\n"
+"}")
+        self.horizontalLayout_3 = QHBoxLayout(self.buttons_frame)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(1, 20, -1, -1)
+        self.cancel_btn = QPushButton(self.buttons_frame)
+        self.cancel_btn.setObjectName(u"cancel_btn")
+
+        self.horizontalLayout_3.addWidget(self.cancel_btn)
+
+
+        self.verticalLayout_2.addWidget(self.buttons_frame)
+
         self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_3)
@@ -271,5 +289,6 @@ class Ui_rebuild_win(object):
         self.label_2.setText(QCoreApplication.translate("rebuild_win", u"/", None))
         self.total_count_lbl.setText(QCoreApplication.translate("rebuild_win", u"-", None))
         self.progress_operetion_lbl.setText(QCoreApplication.translate("rebuild_win", u"removed", None))
+        self.cancel_btn.setText(QCoreApplication.translate("rebuild_win", u"Cancel", None))
     # retranslateUi
 

@@ -15,7 +15,8 @@ class reportsPageUI(commonUI):
     def __init__(self, ui, auto_rebuild_ui):
         self.ui = ui
         self.auto_rebuild_ui = auto_rebuild_ui
-        self.progessBarDialog = proggressDialogUI()
+        self.deleteSamplesDialog = proggressDialogUI()
+        self.deleteSamplesDialog.setup('Remove samples','', operation_name='removed')
 
         
         
@@ -100,7 +101,7 @@ class reportsPageUI(commonUI):
         for filter_name in self.filters_frame.keys():
             self.show_filter(filter_name, False)
 
-        self.popupFrame = GUIComponents.overlayMassage(text='Loadin...')
+        self.popupFrame = GUIComponents.overlayMassage(text='Loading...')
     
     def startup(self,):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, False)
@@ -369,12 +370,13 @@ class reportsPageUI(commonUI):
         """
         self.external_delete_samples_event_func = func
 
+    
+
     def set_samples_table(self, samples: list[dict]):
         
         samples = samples.copy()
         GUIBackend.set_table_dim(self.samples_table, row=len(samples), col=None)
         self.samples_table_checkbox = {}
-        samples.reverse()
         for i,sample in enumerate(samples):
             for feature_name, feature_value in sample.items():
                 if feature_name == 'date':

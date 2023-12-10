@@ -1,8 +1,8 @@
-from typing import Optional
-import cv2
-from datetime import datetime, date
 import threading
+from datetime import datetime, date
+
 import numpy as np
+import cv2
 from PySide6.QtCore import QThread, QObject, Signal
 
 from PagesUI.reportsPageUI import reportsPageUI
@@ -62,9 +62,14 @@ class reportsPageAPI:
         if self.logined_username != '':
             self.check_rebuild()
         
+        t = time.time()
         self.set_standards()
+        print(time.time()- t)
+        t = time.time()
         self.refresh_table()
+        print(time.time()- t)
         self.ui.startup()
+        
         
 
     def refresh_table(self,):

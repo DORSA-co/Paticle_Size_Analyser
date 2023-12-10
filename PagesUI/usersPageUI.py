@@ -283,7 +283,10 @@ class AllUserTabUI(commonUI):
 
             #insert buttons into table
             GUIBackend.set_table_cell_widget(self.users_table, (row, info_count), edit_btn)
-            GUIBackend.set_table_cell_widget(self.users_table, (row, info_count+1), del_btn)
+
+            if user['id'] != 1:
+                #we shouldn't remove main user
+                GUIBackend.set_table_cell_widget(self.users_table, (row, info_count+1), del_btn)
 
     
 

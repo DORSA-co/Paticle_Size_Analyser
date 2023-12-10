@@ -5031,7 +5031,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1197, 3104))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1340, 1197, 3302))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5643,12 +5643,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.textEdit_3)
 
-        self.horizontalLayout_25 = QHBoxLayout()
+        self.frame1 = QFrame(self.scrollAreaWidgetContents)
+        self.frame1.setObjectName(u"frame1")
+        self.frame1.setMinimumSize(QSize(0, 400))
+        self.horizontalLayout_25 = QHBoxLayout(self.frame1)
         self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
-        self.horizontalLayout_25.setContentsMargins(61, 0, -1, -1)
+        self.horizontalLayout_25.setContentsMargins(1, 1, -1, -1)
         self.verticalLayout_54 = QVBoxLayout()
         self.verticalLayout_54.setObjectName(u"verticalLayout_54")
-        self.textEdit_4 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_4 = QTextEdit(self.frame1)
         self.textEdit_4.setObjectName(u"textEdit_4")
         self.textEdit_4.setMinimumSize(QSize(0, 30))
         self.textEdit_4.setMaximumSize(QSize(16777215, 30))
@@ -5666,7 +5669,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_54.addLayout(self.report_grading_chart_frame)
 
-        self.label_107 = QLabel(self.scrollAreaWidgetContents)
+        self.label_107 = QLabel(self.frame1)
         self.label_107.setObjectName(u"label_107")
         self.label_107.setFont(font5)
         self.label_107.setStyleSheet(u"QLabel{\n"
@@ -5681,7 +5684,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25.addLayout(self.verticalLayout_54)
 
-        self.line_18 = QFrame(self.scrollAreaWidgetContents)
+        self.line_18 = QFrame(self.frame1)
         self.line_18.setObjectName(u"line_18")
         self.line_18.setMinimumSize(QSize(3, 0))
         self.line_18.setFrameShape(QFrame.VLine)
@@ -5691,7 +5694,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_55 = QVBoxLayout()
         self.verticalLayout_55.setObjectName(u"verticalLayout_55")
-        self.textEdit_5 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_5 = QTextEdit(self.frame1)
         self.textEdit_5.setObjectName(u"textEdit_5")
         self.textEdit_5.setMinimumSize(QSize(0, 30))
         self.textEdit_5.setMaximumSize(QSize(16777215, 30))
@@ -5709,7 +5712,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_55.addLayout(self.report_cum_chart_frame)
 
-        self.label_108 = QLabel(self.scrollAreaWidgetContents)
+        self.label_108 = QLabel(self.frame1)
         self.label_108.setObjectName(u"label_108")
         self.label_108.setFont(font5)
         self.label_108.setStyleSheet(u"QLabel{\n"
@@ -5729,7 +5732,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_25.addItem(self.verticalSpacer_32)
 
 
-        self.verticalLayout_12.addLayout(self.horizontalLayout_25)
+        self.verticalLayout_12.addWidget(self.frame1)
 
         self.verticalSpacer_21 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Maximum)
 
@@ -5738,9 +5741,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_63 = QHBoxLayout()
         self.horizontalLayout_63.setObjectName(u"horizontalLayout_63")
         self.horizontalLayout_63.setContentsMargins(-1, 0, -1, -1)
-        self.verticalLayout_56 = QVBoxLayout()
+        self.report_page_chart3_gaussian_frame = QFrame(self.scrollAreaWidgetContents)
+        self.report_page_chart3_gaussian_frame.setObjectName(u"report_page_chart3_gaussian_frame")
+        self.report_page_chart3_gaussian_frame.setMinimumSize(QSize(0, 400))
+        self.verticalLayout_56 = QVBoxLayout(self.report_page_chart3_gaussian_frame)
         self.verticalLayout_56.setObjectName(u"verticalLayout_56")
-        self.textEdit_6 = QTextEdit(self.scrollAreaWidgetContents)
+        self.textEdit_6 = QTextEdit(self.report_page_chart3_gaussian_frame)
         self.textEdit_6.setObjectName(u"textEdit_6")
         self.textEdit_6.setMinimumSize(QSize(0, 30))
         self.textEdit_6.setMaximumSize(QSize(16777215, 30))
@@ -5758,8 +5764,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_56.addLayout(self.report_gaussian_chart_frame)
 
-        self.label_109 = QLabel(self.scrollAreaWidgetContents)
+        self.label_109 = QLabel(self.report_page_chart3_gaussian_frame)
         self.label_109.setObjectName(u"label_109")
+        self.label_109.setMaximumSize(QSize(16777215, 70))
         self.label_109.setFont(font5)
         self.label_109.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
@@ -5771,7 +5778,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_56.addWidget(self.label_109, 0, Qt.AlignHCenter)
 
 
-        self.horizontalLayout_63.addLayout(self.verticalLayout_56)
+        self.horizontalLayout_63.addWidget(self.report_page_chart3_gaussian_frame)
 
         self.line_30 = QFrame(self.scrollAreaWidgetContents)
         self.line_30.setObjectName(u"line_30")
@@ -6774,7 +6781,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(7)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)

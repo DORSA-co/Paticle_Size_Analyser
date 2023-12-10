@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2122,7 +2122,7 @@ QGroupBox
 }
 
 QGroupBox::indicator:checked {
-	image: url(:/assets/Assets/icons/icons8-check-50.png);
+	image: url(:/assets/icons/icons8-check-50.png);
 	background-color: rgb(6, 76, 130);
 }
 
@@ -8376,8 +8376,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>712</width>
-                    <height>731</height>
+                    <width>1195</width>
+                    <height>879</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">

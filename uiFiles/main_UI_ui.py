@@ -1337,7 +1337,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QGroupBox::indicator:checked {\n"
-"	image: url(:/assets/Assets/icons/icons8-check-50.png);\n"
+"	image: url(:/assets/icons/icons8-check-50.png);\n"
 "	background-color: rgb(6, 76, 130);\n"
 "}\n"
 "\n"
@@ -4815,7 +4815,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 712, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1195, 879))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -6775,7 +6775,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(1)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)

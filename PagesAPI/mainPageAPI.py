@@ -216,8 +216,9 @@ class mainPageAPI:
         idx = 0
         name = ''
         while idx < len(name_struct):
-            if name_struct[idx] == CONSTANTS.NAME_CODE_SPACER:
-                name += CONSTANTS.NAME_CODE_SPACER
+            if name_struct[idx] in [CONSTANTS.NAME_CODES['dash'],
+                                    CONSTANTS.NAME_CODES['spacer'],]:
+                name += name_struct[idx]
             
             elif name_struct[idx] == CONSTANTS.NAME_CODE_CHAR:
                 code_end_idx = name_struct.find(CONSTANTS.NAME_CODE_CHAR, idx+1)

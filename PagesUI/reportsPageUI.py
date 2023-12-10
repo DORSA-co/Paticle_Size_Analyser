@@ -68,7 +68,7 @@ class reportsPageUI(commonUI):
 
         self.standards_filter_checkbox = {}
         self.samples_table_checkbox = {}
-        self.samples_table_headers= ['compare', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
+        self.samples_table_headers= ['-', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
         self.external_see_report_event_func = None
         self.external_delete_samples_event_func = None
 
@@ -358,7 +358,7 @@ class reportsPageUI(commonUI):
 
 
             checkbox = GUIComponents.tabelCheckbox()
-            j = self.samples_table_headers.index('compare')
+            j = self.samples_table_headers.index('-')
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox, True) 
             self.samples_table_checkbox[sample['name_id']] = checkbox
 

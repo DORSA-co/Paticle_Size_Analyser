@@ -143,6 +143,7 @@ NAME_CODE_CHAR = '%'
 NAME_CODE_SPACER = '_'
 NAME_CODES = {
             'spacer':   '_',
+            'dash':     '-',
             'year':     '%YEAR%',
             'month':    '%MONTH%',
             'day':      '%DAY%',

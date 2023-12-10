@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -4005,7 +4005,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>4</number>
+                <number>1</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4201,7 +4201,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                   <widget class="QGroupBox" name="settingpage_sample_auto_name_groupbox">
                    <property name="styleSheet">
                     <string notr="true">QGroupBox::indicator:checked {
-	image: url(:/assets/Assets/icons/icons8-check-50.png);
+	image: url(:/assets/icons/icons8-check-50.png);
 	background-color: rgb(6, 76, 130);
 }
 
@@ -4314,7 +4314,105 @@ QLabel
                              <property name="topMargin">
                               <number>1</number>
                              </property>
-                             <item row="0" column="2">
+                             <item row="0" column="0">
+                              <widget class="QLabel" name="label_103">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>110</width>
+                                 <height>0</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>210</width>
+                                 <height>16777215</height>
+                                </size>
+                               </property>
+                               <property name="text">
+                                <string>_</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="2">
+                              <spacer name="horizontalSpacer_104">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeType">
+                                <enum>QSizePolicy::Maximum</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="0" column="5">
+                              <widget class="QLabel" name="label_99">
+                               <property name="text">
+                                <string>%TEXT1%</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="5">
+                              <widget class="QPushButton" name="settingpage_sample_text1_code_btn">
+                               <property name="text">
+                                <string>Text1</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="3">
+                              <widget class="QPushButton" name="settingpage_sample_username_code_btn">
+                               <property name="text">
+                                <string>Username</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="6">
+                              <spacer name="horizontalSpacer_94">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QPushButton" name="settingpage_sample_spacer_code_btn">
+                               <property name="text">
+                                <string>Spacer</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="4">
+                              <spacer name="horizontalSpacer_102">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeType">
+                                <enum>QSizePolicy::Maximum</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="0" column="3">
                               <widget class="QLabel" name="label_106">
                                <property name="sizePolicy">
                                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -4340,62 +4438,14 @@ QLabel
                               </widget>
                              </item>
                              <item row="1" column="1">
-                              <spacer name="horizontalSpacer_104">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeType">
-                                <enum>QSizePolicy::Maximum</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item row="1" column="3">
-                              <spacer name="horizontalSpacer_102">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeType">
-                                <enum>QSizePolicy::Maximum</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item row="0" column="4">
-                              <widget class="QLabel" name="label_99">
+                              <widget class="QPushButton" name="settingpage_sample_dash_code_btn">
                                <property name="text">
-                                <string>%TEXT1%</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignCenter</set>
+                                <string>Dash</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="1" column="5">
-                              <spacer name="horizontalSpacer_94">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item row="0" column="0">
-                              <widget class="QLabel" name="label_103">
+                             <item row="0" column="1">
+                              <widget class="QLabel" name="label_117">
                                <property name="minimumSize">
                                 <size>
                                  <width>110</width>
@@ -4409,31 +4459,10 @@ QLabel
                                 </size>
                                </property>
                                <property name="text">
-                                <string>_</string>
+                                <string>-</string>
                                </property>
                                <property name="alignment">
                                 <set>Qt::AlignCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="4">
-                              <widget class="QPushButton" name="settingpage_sample_text1_code_btn">
-                               <property name="text">
-                                <string>Text1</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="0">
-                              <widget class="QPushButton" name="settingpage_sample_spacer_code_btn">
-                               <property name="text">
-                                <string>Spacer</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="2">
-                              <widget class="QPushButton" name="settingpage_sample_username_code_btn">
-                               <property name="text">
-                                <string>Username</string>
                                </property>
                               </widget>
                              </item>
@@ -7452,7 +7481,7 @@ border: 2px solid #404040;</string>
 }</string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="user_register_tab">
               <attribute name="title">
@@ -8698,7 +8727,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-2145</y>
+                <y>0</y>
                 <width>1197</width>
                 <height>3104</height>
                </rect>
@@ -11171,7 +11200,7 @@ QFrame{
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-353</y>
+                <y>0</y>
                 <width>1196</width>
                 <height>1182</height>
                </rect>

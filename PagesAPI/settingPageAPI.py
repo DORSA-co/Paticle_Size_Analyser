@@ -59,7 +59,7 @@ class sampleSettingTabAPI:
         self.load_from_db()
 
     def code_name_button_event(self, name):
-        if CONSTANTS.NAME_CODES[name] not in self.autoname_struct or name == 'spacer':
+        if CONSTANTS.NAME_CODES[name] not in self.autoname_struct or name in ['spacer', 'dash']:
             self.autoname_struct += CONSTANTS.NAME_CODES[name]
             self.ui.set_autoname_struct_input(self.autoname_struct)
 
@@ -67,7 +67,8 @@ class sampleSettingTabAPI:
         if len(self.autoname_struct) == 0:
             return
         #check if last character is spacer, remove only that
-        if self.autoname_struct[-1] == CONSTANTS.NAME_CODE_SPACER:
+        if self.autoname_struct[-1] in [CONSTANTS.NAME_CODES['spacer'],
+                                        CONSTANTS.NAME_CODES['dash'] ]:
             self.autoname_struct = self.autoname_struct[:-1]
         
         #check if struct finish by a shortcode, remove that

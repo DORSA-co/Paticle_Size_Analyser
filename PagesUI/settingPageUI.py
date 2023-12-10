@@ -150,10 +150,11 @@ class sampleSettingTabUI(commonSettingUI):
 
         self.name_code_btns = {
             'spacer':   self.ui.settingpage_sample_spacer_code_btn,
+            'dash':     self.ui.settingpage_sample_dash_code_btn,
             'year':     self.ui.settingpage_sample_year_code_btn,
             'month':    self.ui.settingpage_sample_month_code_btn,
             'day':      self.ui.settingpage_sample_day_code_btn,
-            'hour':    self.ui.settingpage_sample_houre_code_btn,
+            'hour':     self.ui.settingpage_sample_houre_code_btn,
             'minute':   self.ui.settingpage_sample_minute_code_btn,
             #'standard': self.ui.settingpage_sample_standard_code_btn,
             'username': self.ui.settingpage_sample_username_code_btn,
@@ -200,7 +201,7 @@ class sampleSettingTabUI(commonSettingUI):
         """
         GUIBackend.set_input(self.autoname_struct_field, txt)
         for btn_name, btn in self.name_code_btns.items():
-            if  CONSTANTS.NAME_CODES[btn_name] in txt and btn_name!='spacer':
+            if  CONSTANTS.NAME_CODES[btn_name] in txt and btn_name not in ['spacer','dash']:
                 GUIBackend.set_style(btn, GUIComponents.CODE_NAME_BUTTON_STYLE['active'])
 
             else:

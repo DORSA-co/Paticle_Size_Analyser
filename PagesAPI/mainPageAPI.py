@@ -179,7 +179,6 @@ class mainPageAPI:
         if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
             self.refresh_time = time.time()
 
-            t1= time.time()
             particles = self.worker.get_particles()
             img = self.worker.img
 

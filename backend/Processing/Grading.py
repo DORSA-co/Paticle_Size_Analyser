@@ -5,7 +5,7 @@ from backend.Processing.particlesBuffer import particlesBuffer
 from backend.Processing.Particel import Particle
 from backend.Processing import gradingUtils 
 
-
+from matplotlib import pyplot as plt
 
 class gradingABstract:
 
@@ -116,7 +116,7 @@ class Grading(gradingABstract):
 
 
 class cumGrading(gradingABstract):
-    step = 0.25
+    step = 0.5
     def __init__(self, full_range) -> None:
         super().__init__(full_range)
 
@@ -144,7 +144,28 @@ class cumGrading(gradingABstract):
             xs = np.mean(self.sieve_ranges, axis=1)
             ys = np.cumsum(percentage_hist)
             #ys[-1] = 100
+
+            # i=0
+            # while i < (len(ys)-2):
+            #     if i>= (len(ys)-2):
+            #         break
+            #     if ys[i] != 0 and ys[i]!=100:
+            #         if ys[i] == ys[i+1]:
+            #             ys = np.delete(ys, [i+1])
+            #             xs = np.delete(xs, [i+1])
+            #             i-=1
+            #     i+=1
+            win_size = 3
+            
+            #padding 100 
+            ys = np.concatenate((ys, np.ones((win_size-1,))*100 ))
+            #moving_avrage
+            ys = np.convolve(ys, np.ones(win_size)/win_size, 'valid')
+
+            ys - np.clip(0,100, ys)
+
             return xs, ys   
+        
         else:
             return [],[]
     

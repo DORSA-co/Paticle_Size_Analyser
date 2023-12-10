@@ -1,4 +1,4 @@
-from PySide6.QtCore import QMargins, QPoint, Qt
+from PySide6.QtCore import QMargins, QPoint, Qt, QPointF
 from PySide6.QtGui import QPainter, QColor, QFont, QPen
 from PySide6 import QtCharts
 
@@ -43,7 +43,9 @@ class Trend(QtCharts.QLineSeries):
     def add_data(self, axisX_values, axisY_values):
         assert len(axisX_values)==len(axisY_values)
         for x, y in zip(axisX_values, axisY_values):
-            self.append(QPoint(x, y))
+            self.append(QPointF(x, y))
+            
+            
 
 
 

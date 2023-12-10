@@ -3554,20 +3554,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.label_15)
 
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.horizontalLayout_16.addItem(self.horizontalSpacer_10)
-
-        self.label_20 = QLabel(self.horizontalFrame_4)
-        self.label_20.setObjectName(u"label_20")
-
-        self.horizontalLayout_16.addWidget(self.label_20)
-
-        self.label_21 = QLabel(self.horizontalFrame_4)
-        self.label_21.setObjectName(u"label_21")
-
-        self.horizontalLayout_16.addWidget(self.label_21)
-
         self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_11)
@@ -6790,7 +6776,7 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(2)
@@ -7033,8 +7019,6 @@ class Ui_MainWindow(object):
         self.settingpage_camera_live_lbl.setText("")
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"RGB:", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Temp: ", None))
-        self.label_21.setText(QCoreApplication.translate("MainWindow", u"55", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_camera_tab), QCoreApplication.translate("MainWindow", u"Camera", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"border", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Threshould", None))

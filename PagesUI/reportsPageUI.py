@@ -80,6 +80,8 @@ class reportsPageUI(commonUI):
         
         GUIBackend.set_date_input(self.end_date_filter, datetime.now())
         GUIBackend.set_date_input(self.start_date_filter, datetime.now())
+        GUIBackend.date_input_connector(self.start_date_filter, self.__internal_date_change_event__)
+        GUIBackend.date_input_connector(self.end_date_filter, self.__internal_date_change_event__)
 
         self.__groupbox_filter_event_connector__()
         GUIBackend.set_cell_width_content_adjust(self.standards_filter_table, None)
@@ -98,8 +100,27 @@ class reportsPageUI(commonUI):
     def startup(self,):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, False)
 
+    
+    def __internal_date_change_event__(self,):
+        """set input date ranges to prevent start_date be bigger than end date
+        and end_date be lower than start_date.
+        this function call when coresponds input change
+        """
+        from_date,to_date = self.get_date_filter()
+        GUIBackend.set_date_input_range(self.start_date_filter, max_date=to_date)
+        GUIBackend.set_date_input_range(self.end_date_filter, min_date=from_date)
+
+
     def select_all_samples(self,st):
+        """select and unselect all samples , corspond to status
+        of 'select all' checkbox
+
+        Args:
+            st (_type_): _description_
+        """
+        #get status of all checkbox
         status = GUIBackend.get_checkbox_value(self.select_all_checkbox)
+        #set status to all checkboxes of samples
         for sample_checkbox in self.samples_table_checkbox.values():
             GUIBackend.set_checkbox_value(sample_checkbox, status)
 

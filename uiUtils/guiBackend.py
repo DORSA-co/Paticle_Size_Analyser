@@ -903,7 +903,24 @@ class GUIBackend:
 
         date = QtCore.QDate(date.year, date.month, date.day)
         return obj.setDate(date)
+    
+
+    def date_input_connector( obj: QtWidgets.QDateEdit, func):
+        obj.dateChanged.connect(lambda: func())
+    
+    def get_date_input_range(obj: QtWidgets.QDateEdit)-> tuple[datetime]:
+        return obj.minimumDate().toPython(), obj.maximumDate().toPython()
+    
+    def set_date_input_range(obj: QtWidgets.QDateEdit,
+                             min_date:datetime=None, 
+                             max_date:datetime=None):
+        if min_date is not None:
+            min_date = QtCore.QDate(min_date.year, min_date.month, min_date.day)
+            obj.setMinimumDate(min_date)
         
+        if max_date is not None:
+            max_date = QtCore.QDate(max_date.year, max_date.month, max_date.day)
+            obj.setMaximumDate(max_date)
     
 
     #--------------------------------- GLOBAL Tabs FUNCTIONs ---------------------------------

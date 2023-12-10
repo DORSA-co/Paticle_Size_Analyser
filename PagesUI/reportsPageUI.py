@@ -7,6 +7,9 @@ from PagesUI.dialogWindows.proggressDialogUI import proggressDialogUI
 from PagesUI.PageUI import commonUI
 
 
+
+
+
 class reportsPageUI(commonUI):
 
     def __init__(self, ui, auto_rebuild_ui):
@@ -96,9 +99,12 @@ class reportsPageUI(commonUI):
 
         for filter_name in self.filters_frame.keys():
             self.show_filter(filter_name, False)
+
+        self.popupFrame = GUIComponents.overlayMassage(text='Loadin...')
     
     def startup(self,):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, False)
+
 
     
     def __internal_date_change_event__(self,):

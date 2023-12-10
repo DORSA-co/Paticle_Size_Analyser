@@ -57,18 +57,18 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
+        self.ui.popupFrame.show()
+        #--------------------------
         self.all_samples = self.database.reports_db.load_all()
         #show rebuild if user login
         if self.logined_username != '':
             self.check_rebuild()
         
-        t = time.time()
         self.set_standards()
-        print(time.time()- t)
-        t = time.time()
         self.refresh_table()
-        print(time.time()- t)
         self.ui.startup()
+        #--------------------------
+        self.ui.popupFrame.close()
         
         
 

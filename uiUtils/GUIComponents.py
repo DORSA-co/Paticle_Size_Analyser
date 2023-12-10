@@ -560,3 +560,68 @@ def selectFileDialog(file_name:str = 'All', file_extention:str='.*'):
     return path
 
 
+
+
+class overlayMassage(QtWidgets.QWidget):
+    def __init__(self, 
+                 text,
+                 fill_overlay_color:tuple=(30, 30, 30, 200),
+                 popup_bg:tuple=(0,0,0,0),
+                 popup_card_size = (120,300),
+                 font_size = 48,
+                 text_color:tuple = (220,220,220), 
+                 parent=None):
+        
+        super(overlayMassage, self).__init__()
+
+        self.text = text
+        self.popup_bg = QtGui.QColor(*popup_bg)
+        self.overlay_color = fill_overlay_color
+        self.fill_overlay_color = QtGui.QColor(*fill_overlay_color)
+        self.popup_fillColor = QtGui.QColor(*popup_bg)
+        self.popup_card_size = popup_card_size
+        self.font_size = font_size
+        self.text_color = text_color
+
+        # make the window frameless
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+
+
+
+
+    def paintEvent(self, event):
+        # This method is, in practice, drawing the contents of
+        # your window.
+
+        # get current window size
+        s = self.size()
+        qp = QtGui.QPainter()
+        qp.begin(self)
+        qp.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        qp.setBrush(self.fill_overlay_color)
+        qp.drawRect(0, 0, s.width(), s.height())
+
+        # drawpopup
+        qp.setBrush(self.popup_bg)
+        popup_width = self.popup_card_size[0]
+        popup_height = self.popup_card_size[1]
+        ow = int(s.width()/2-popup_width/2)
+        oh = int(s.height()/2-popup_height/2)
+        qp.drawRoundedRect(ow, oh, popup_width, popup_height, 5, 5)
+
+        font = QtGui.QFont()
+        font.setPixelSize(self.font_size)
+        font.setBold(True)
+        qp.setFont(font)
+        qp.setPen(QtGui.QColor(*self.text_color))
+        tolw, tolh = 80, -5
+        qp.drawText(ow + int(popup_width/2) - tolw, oh + int(popup_height/2) - tolh, self.text)
+
+        qp.end()
+
+
+    def show(self,):
+        self.showMaximized()
+
+

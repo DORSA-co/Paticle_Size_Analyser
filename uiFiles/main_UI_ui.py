@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1221, 908)
+        MainWindow.resize(1371, 908)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -740,7 +740,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.mainpage_left_frame_2 = QFrame(self.main_page)
         self.mainpage_left_frame_2.setObjectName(u"mainpage_left_frame_2")
-        self.mainpage_left_frame_2.setMinimumSize(QSize(500, 0))
+        self.mainpage_left_frame_2.setMinimumSize(QSize(650, 0))
         self.mainpage_left_frame_2.setMaximumSize(QSize(16777215, 16777215))
         self.mainpage_left_frame = QVBoxLayout(self.mainpage_left_frame_2)
         self.mainpage_left_frame.setObjectName(u"mainpage_left_frame")
@@ -886,7 +886,8 @@ class Ui_MainWindow(object):
         self.horizontalFrame_8.setStyleSheet(u".QPushButton{\n"
 "	border-radius:3px;\n"
 "	color: rgb(255, 255, 255);\n"
-"	background-color:rgb(22, 38, 76)\n"
+"	background-color:rgb(22, 38, 76);\n"
+"	margin: 5px;\n"
 "	\n"
 "}\n"
 "\n"
@@ -4828,7 +4829,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1195, 879))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1125, 731))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -5045,7 +5046,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1340, 1197, 3302))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -1340, 1147, 3302))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6297,7 +6298,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1196, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1146, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6795,7 +6796,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)

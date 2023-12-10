@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
+    <width>1371</width>
     <height>908</height>
    </rect>
   </property>
@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1044,7 +1044,7 @@ QPushButton:disabled{
             <widget class="QFrame" name="mainpage_left_frame_2">
              <property name="minimumSize">
               <size>
-               <width>500</width>
+               <width>650</width>
                <height>0</height>
               </size>
              </property>
@@ -1357,7 +1357,8 @@ max-width: 16777px;
                     <string notr="true">.QPushButton{
 	border-radius:3px;
 	color: rgb(255, 255, 255);
-	background-color:rgb(22, 38, 76)
+	background-color:rgb(22, 38, 76);
+	margin: 5px;
 	
 }
 
@@ -8413,8 +8414,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1195</width>
-                    <height>879</height>
+                    <width>1125</width>
+                    <height>731</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8736,7 +8737,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>-1340</y>
-                <width>1197</width>
+                <width>1147</width>
                 <height>3302</height>
                </rect>
               </property>
@@ -11231,7 +11232,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1196</width>
+                <width>1146</width>
                 <height>1182</height>
                </rect>
               </property>

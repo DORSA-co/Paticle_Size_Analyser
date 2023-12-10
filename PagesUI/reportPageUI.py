@@ -58,6 +58,7 @@ class reportPageUI(commonUI):
             'area': self.ui.sreportpage_particle_area_lbl,
             'volume': self.ui.sreportpage_particle_volume_lbl,
             'max_radius': self.ui.sreportpage_particle_max_r_lbl,
+            'circularity': self.ui.sreportpage_particle_circularity_lbl
         }
 
         self.particle_image_lbl = self.ui.sreportpage_particle_image_lbl

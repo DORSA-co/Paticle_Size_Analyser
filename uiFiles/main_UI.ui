@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2253,7 +2253,7 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>322</width>
+                   <width>327</width>
                    <height>1758</height>
                   </rect>
                  </property>
@@ -7382,8 +7382,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1195</width>
-                    <height>879</height>
+                    <width>55</width>
+                    <height>39</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -8698,9 +8698,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>892</width>
-                <height>3069</height>
+                <y>-2145</y>
+                <width>1197</width>
+                <height>3104</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -10501,89 +10501,6 @@ Line{
                              <property name="topMargin">
                               <number>8</number>
                              </property>
-                             <item row="0" column="1">
-                              <widget class="QLabel" name="sreportpage_particle_area_lbl">
-                               <property name="text">
-                                <string>-</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="2" column="0">
-                              <widget class="QLabel" name="sreportpage_particle_avg_r_lbl_title">
-                               <property name="styleSheet">
-                                <string notr="true">font-size: 15px;
-font-weight: bold;
-color: #ffffff;
-margin: 5px 0px;</string>
-                               </property>
-                               <property name="text">
-                                <string>Avrage Diameter</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="3">
-                              <spacer name="horizontalSpacer_87">
-                               <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                               </property>
-                               <property name="sizeHint" stdset="0">
-                                <size>
-                                 <width>40</width>
-                                 <height>20</height>
-                                </size>
-                               </property>
-                              </spacer>
-                             </item>
-                             <item row="1" column="1">
-                              <widget class="QLabel" name="sreportpage_particle_volume_lbl">
-                               <property name="text">
-                                <string>-</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="2" column="2">
-                              <widget class="QLabel" name="label_58">
-                               <property name="layoutDirection">
-                                <enum>Qt::LeftToRight</enum>
-                               </property>
-                               <property name="text">
-                                <string>(mm)</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="0" column="2">
-                              <widget class="QLabel" name="label_50">
-                               <property name="text">
-                                <string>(mm2)</string>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="0">
-                              <widget class="QLabel" name="label_55">
-                               <property name="styleSheet">
-                                <string notr="true">font-size: 15px;
-font-weight: bold;
-color: #ffffff;
-margin: 5px 0px;</string>
-                               </property>
-                               <property name="text">
-                                <string>Volume</string>
-                               </property>
-                               <property name="alignment">
-                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                               </property>
-                              </widget>
-                             </item>
-                             <item row="1" column="2">
-                              <widget class="QLabel" name="label_52">
-                               <property name="text">
-                                <string> (mm3)</string>
-                               </property>
-                              </widget>
-                             </item>
                              <item row="2" column="1">
                               <widget class="QLabel" name="sreportpage_particle_avg_r_lbl">
                                <property name="text">
@@ -10607,6 +10524,34 @@ margin: 5px 0px;</string>
                                </property>
                               </widget>
                              </item>
+                             <item row="1" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_volume_lbl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="1" column="2">
+                              <widget class="QLabel" name="label_52">
+                               <property name="text">
+                                <string> (mm3)</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="3" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_max_r_lbl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="2">
+                              <widget class="QLabel" name="label_50">
+                               <property name="text">
+                                <string>(mm2)</string>
+                               </property>
+                              </widget>
+                             </item>
                              <item row="3" column="0">
                               <widget class="QLabel" name="label_62">
                                <property name="styleSheet">
@@ -10623,10 +10568,13 @@ margin: 5px 0px;</string>
                                </property>
                               </widget>
                              </item>
-                             <item row="3" column="1">
-                              <widget class="QLabel" name="sreportpage_particle_max_r_lbl">
+                             <item row="2" column="2">
+                              <widget class="QLabel" name="label_58">
+                               <property name="layoutDirection">
+                                <enum>Qt::LeftToRight</enum>
+                               </property>
                                <property name="text">
-                                <string>-</string>
+                                <string>(mm)</string>
                                </property>
                               </widget>
                              </item>
@@ -10634,6 +10582,88 @@ margin: 5px 0px;</string>
                               <widget class="QLabel" name="label_64">
                                <property name="text">
                                 <string>(mm)</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="2" column="0">
+                              <widget class="QLabel" name="sreportpage_particle_avg_r_lbl_title">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Avrage Diameter</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_area_lbl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="0" column="3">
+                              <spacer name="horizontalSpacer_87">
+                               <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                               </property>
+                               <property name="sizeHint" stdset="0">
+                                <size>
+                                 <width>40</width>
+                                 <height>20</height>
+                                </size>
+                               </property>
+                              </spacer>
+                             </item>
+                             <item row="1" column="0">
+                              <widget class="QLabel" name="label_55">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Volume</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="0">
+                              <widget class="QLabel" name="label_83">
+                               <property name="styleSheet">
+                                <string notr="true">font-size: 15px;
+font-weight: bold;
+color: #ffffff;
+margin: 5px 0px;</string>
+                               </property>
+                               <property name="text">
+                                <string>Circularity</string>
+                               </property>
+                               <property name="alignment">
+                                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="1">
+                              <widget class="QLabel" name="sreportpage_particle_circularity_lbl">
+                               <property name="text">
+                                <string>-</string>
+                               </property>
+                              </widget>
+                             </item>
+                             <item row="4" column="2">
+                              <widget class="QLabel" name="label_116">
+                               <property name="text">
+                                <string>%</string>
                                </property>
                               </widget>
                              </item>
@@ -11141,8 +11171,8 @@ QFrame{
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>181</width>
+                <y>-353</y>
+                <width>1196</width>
                 <height>1182</height>
                </rect>
               </property>

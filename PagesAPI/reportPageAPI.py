@@ -183,7 +183,11 @@ class reportPageAPI:
         if self.img_id != particle.img_id:
             p_id = particle.get_id()
             particle_img = self.report_file_handler.load_image(p_id)
+            particle_img = cv2.cvtColor(particle_img, cv2.COLOR_GRAY2BGR)
         
+        center, radius = particle.get_enclosing_circle(transorm_to_single_img=True)
+
+        particle_img = cv2.circle(particle_img, center,radius, color=(0,0,255), thickness=2)
         self.ui.set_particle_image(particle_img)
         #------------------------------------------------
         

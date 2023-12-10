@@ -238,6 +238,8 @@ class reportPageUI(commonUI):
             lbl.set_size(90,90)
             if idx<imgs_count:
                 #GUIBackend.set_label_scale(lbl, False)
+                if imgs[idx] is None:
+                    continue
                 GUIBackend.set_label_image(lbl, imgs[idx])
                 
                 #lbl.mousePressEvent = lambda x:print('s',x)

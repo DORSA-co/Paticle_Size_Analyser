@@ -40,8 +40,9 @@ class Particle:
     def calc_max_radius(self):
         """calculate max radius of the particle
         """
-        self.center, self.max_radius = cv2.minEnclosingCircle(self.cnt)
-        self.max_radius = self.max_radius * self.px2mm
+        self.center, self.max_radius_px = cv2.minEnclosingCircle(self.cnt)
+        self.max_radius = self.max_radius_px * self.px2mm
+        self.max_radius_px = int(self.max_radius_px)
 
     def calc_avrage_radius(self):
         """calculates avrage radius of a particle
@@ -54,7 +55,7 @@ class Particle:
         self.avg_volume = 4/3 * np.pi * (self.avg_radius ** 3)
 
     
-    def get_roi(self, border=10) -> tuple:
+    def get_roi(self, border=20) -> tuple:
         """returns a bounding box that is a crop of orginal image that particle is in it
 
         Args:
@@ -63,28 +64,56 @@ class Particle:
         Returns:
             tuple:  (min_x, min_y), (max_x, max_y)
         """
-        min_x, min_y = np.min(self.cnt, axis=(0,1)) - border
-        max_x, max_y = np.max(self.cnt, axis=(0,1)) + border
+        cx, cy = self.center
+        cx , cy = int(cx), int(cy)
+        dist = self.max_radius_px
+        dist += border
+        
+        min_x = cx - dist
+        min_y = cy - dist
+        max_x = cx + dist
+        max_y = cy + dist
+       
+        
+        # else:
+        #     min_x, min_y = np.min(self.cnt, axis=(0,1)) - border
+        #     max_x, max_y = np.max(self.cnt, axis=(0,1)) + border
 
         min_x = max(min_x, 0)
         min_y = max(min_y, 0)
         return (min_x, min_y), (max_x, max_y)
     
 
-    def get_roi_image(self, image, border = 10):
-        (x1,y1),(x2,y2) = self.get_roi()
+    def get_roi_image(self, image, border = 20):
+        (x1,y1),(x2,y2) = self.get_roi(border)
         return image[y1:y2, x1:x2]
+
     
 
     def get_info(self):
         info = {}
-        info['max_diameter'] = np.round(self.max_radius * 2, CONSTANTS.DECIMAL_ROUND )
+        info['max_diameter'] = np.round(self.max_diameter, CONSTANTS.DECIMAL_ROUND )
         info['area'] = np.round(self.area, CONSTANTS.DECIMAL_ROUND )
-        info['avrage_diameter'] = np.round(self.avg_radius * 2, CONSTANTS.DECIMAL_ROUND )
+        info['avrage_diameter'] = np.round(self.avg_diameter, CONSTANTS.DECIMAL_ROUND )
         info['volume'] = np.round(self.avg_volume, CONSTANTS.DECIMAL_ROUND )
         info['circularity'] = np.round(self.circularity, CONSTANTS.DECIMAL_ROUND )
         return info
 
+
+    def get_enclosing_circle(self, transorm_to_single_img=False, to_int=True):
+        center = self.center
+        radius = self.max_radius_px
+        if transorm_to_single_img:
+            x,y = center
+            (x1,y1), _ = self.get_roi()
+            x = max(x - x1,0)
+            y = max(y - y1,0)
+            center = x,y
+        
+        if to_int:
+            center = int(center[0]), int(center[1])
+            radius = int(radius)
+        return center, radius
 
 
     def get_id(self):

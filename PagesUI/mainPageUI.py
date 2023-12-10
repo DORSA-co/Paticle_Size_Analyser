@@ -118,7 +118,7 @@ class mainPageUI:
         for name in self.warning_btns.keys():
             GUIBackend.button_connector(self.warning_btns[name]['btn'], self.internal_warning_button_event(name))
         GUIBackend.button_connector(self.close_warning_msg_btn, self.close_warning_msg)
-        GUIBackend.set_relation_size(self.live_img_lbl, 0.45, 0.5)
+        #GUIBackend.set_relation_size(self.live_img_lbl, 0.45, 0.5)
         #Startup operations-----------------
         #-----------------------------------------------------------
         #self.startup()
@@ -311,7 +311,7 @@ class mainPageUI:
     
     def set_live_img(self, img):
         pixmap = GUIBackend.set_label_image(self.live_img_lbl, img)
-        GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
+        #GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
         
 
     

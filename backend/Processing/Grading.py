@@ -28,18 +28,20 @@ class gradingABstract:
 
 
     
-    def append_particle(self, particle:Particle):
-        diameter = particle.max_diameter
-        sieve_idx = self.__get_sift_idx(diameter, ranges=self.sieve_ranges)
+    def append_particle(self, particle:Particle, grading_parm):
+        #diameter = particle.min_diameter
+        info = particle.get_info()
+        x = info[grading_parm]
+        sieve_idx = self.__get_sift_idx(x, ranges=self.sieve_ranges)
         if sieve_idx>=0:
-            self.ranges_hist[sieve_idx] += particle.avg_volume
+            self.ranges_hist[sieve_idx] += info['volume']
         return sieve_idx
     
 
-    def sieve_all(self, diameters:np.ndarray, volumes:np.ndarray) -> list[np.ndarray]:
+    def sieve_all(self, xs:np.ndarray, volumes:np.ndarray) -> list[np.ndarray]:
         sieve_partices_membership = []
         for i,(low, high) in enumerate(self.sieve_ranges):
-            membership = np.bitwise_and( diameters>=low , diameters<high )
+            membership = np.bitwise_and( xs>=low , xs<high )
             sieve_partices_membership.append(membership)
             
             if membership.shape[0] !=0:

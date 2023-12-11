@@ -42,6 +42,7 @@ class sampleSettingTabAPI:
 
         self.autoname_struct = ''
 
+        self.ui.set_grading_parms_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
         self.ui.code_name_buttons_connector(self.code_name_button_event)
         self.ui.clear_name_struct_button_connector(self.clear_struct_button_event)
         self.ui.save_button_connector(self.save_setting)

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'single_rebuild_manual.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -15,22 +15,22 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QHBoxLayout,
-    QLabel, QPushButton, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QGridLayout,
+    QHBoxLayout, QLabel, QPushButton, QSizePolicy,
+    QSpacerItem, QVBoxLayout, QWidget)
 import Assets_rc
 
 class Ui_rebuild_win(object):
     def setupUi(self, rebuild_win):
         if not rebuild_win.objectName():
             rebuild_win.setObjectName(u"rebuild_win")
-        rebuild_win.resize(700, 266)
+        rebuild_win.resize(700, 260)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(rebuild_win.sizePolicy().hasHeightForWidth())
         rebuild_win.setSizePolicy(sizePolicy)
-        rebuild_win.setMinimumSize(QSize(700, 200))
+        rebuild_win.setMinimumSize(QSize(700, 260))
         rebuild_win.setMaximumSize(QSize(700, 350))
         rebuild_win.setStyleSheet(u"*{\n"
 "	\n"
@@ -126,7 +126,7 @@ class Ui_rebuild_win(object):
 "	border:2px solid rgb(6, 76, 130);\n"
 "    border-radius: 3px;\n"
 "    padding: 1px 18px 1px 8px;\n"
-"    min-width: 6em;\n"
+"    min-width: 200px;\n"
 "	min-height: 35px;\n"
 "	font-size: 14px;\n"
 "}\n"
@@ -152,8 +152,8 @@ class Ui_rebuild_win(object):
 "\n"
 "QComboBox::drop-down\n"
 "{\n"
-"	 background-color: rgb(238, 134"
-                        ", 44);\n"
+"	 background-color: rgb(238, 1"
+                        "34, 44);\n"
 "	 min-width: 30px;\n"
 "}\n"
 "\n"
@@ -217,29 +217,39 @@ class Ui_rebuild_win(object):
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(50, 10, 50, 20)
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, -1, -1)
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
-
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(-1, 0, -1, -1)
         self.label_2 = QLabel(rebuild_win)
         self.label_2.setObjectName(u"label_2")
 
-        self.horizontalLayout_3.addWidget(self.label_2)
+        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
 
         self.standards_combobox = QComboBox(rebuild_win)
         self.standards_combobox.setObjectName(u"standards_combobox")
 
-        self.horizontalLayout_3.addWidget(self.standards_combobox)
+        self.gridLayout.addWidget(self.standards_combobox, 0, 1, 1, 1)
+
+        self.grading_parm_combobox = QComboBox(rebuild_win)
+        self.grading_parm_combobox.setObjectName(u"grading_parm_combobox")
+
+        self.gridLayout.addWidget(self.grading_parm_combobox, 2, 1, 1, 1)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
+        self.gridLayout.addItem(self.horizontalSpacer_2, 0, 2, 1, 1)
+
+        self.label_3 = QLabel(rebuild_win)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+
+        self.verticalSpacer = QSpacerItem(20, 10, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout.addItem(self.verticalSpacer, 1, 0, 1, 1)
 
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
+        self.verticalLayout_2.addLayout(self.gridLayout)
 
         self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
@@ -292,6 +302,7 @@ class Ui_rebuild_win(object):
         rebuild_win.setWindowTitle(QCoreApplication.translate("rebuild_win", u"Edit User", None))
         self.close_btn.setText("")
         self.label_2.setText(QCoreApplication.translate("rebuild_win", u"New Standard", None))
+        self.label_3.setText(QCoreApplication.translate("rebuild_win", u"New Grading Parm", None))
         self.rebuild_btn.setText(QCoreApplication.translate("rebuild_win", u"Run Rebuild", None))
     # retranslateUi
 

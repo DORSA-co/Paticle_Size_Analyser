@@ -11,7 +11,8 @@ class particlesBuffer:
         'max_radius':1,
         'avg_radius':2,
         'avg_volume':3,
-        'circularity': 4
+        'circularity': 4,
+        'min_radius': 5
         
     }
 
@@ -34,6 +35,7 @@ class particlesBuffer:
         pdata[self.COLS_IDX['avg_radius']] = particel.avg_radius
         pdata[self.COLS_IDX['avg_volume']] = particel.avg_volume
         pdata[self.COLS_IDX['circularity']] = particel.circularity
+        pdata[self.COLS_IDX['min_radius']] = particel.min_raduis
         pdata = np.array( pdata )
 
         #store particles in list[Particle] format for better and easy access
@@ -84,10 +86,17 @@ class particlesBuffer:
         Returns:
             np.ndarray: _description_
         """
+        res = []
         if len(self.data):
-            return np.round(self.data[:, self.COLS_IDX[name]], decimals=decimals)
-        else:
-            return []
+            if 'diameter' in name:
+                name = name.replace('diameter', 'radius')
+                res = self.data[:, self.COLS_IDX[name]] * 2
+            else:
+                res = self.data[:, self.COLS_IDX[name]]
+            
+            res = np.round(res, decimals=decimals)
+
+        return res
 
 
 

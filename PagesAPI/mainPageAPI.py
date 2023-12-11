@@ -60,6 +60,7 @@ class mainPageAPI:
         self.ui.player_buttons_connect('stop', self.stop)
         self.ui.run_button_connect(self.run_start)
         self.ui.report_button_connector(self.report_button_event)
+        self.ui.set_sample_info_grading_parms_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
 
         self.test_img_idx = 0
         self.report:Report = None
@@ -276,6 +277,8 @@ class mainPageAPI:
         self.ui.set_sample_info_standards_items(standards_name)
         self.ui.set_sample_info_selected_standard( sample_setting['default_standard'])
         #---------------------------------------------------------------------------
+        self.ui.set_sample_info_grading_parm(sample_setting['default_grading_parm'])
+        #---------------------------------------------------------------------------
         
         if sample_setting['autoname_enable']:
             name = self.build_autoname_sample(sample_setting)
@@ -325,6 +328,7 @@ class mainPageAPI:
             return
 
         self.ui.set_sample_info_selected_standard( sample_setting['default_standard'])
+        self.ui.set_sample_info_grading_parm( sample_setting['default_grading_parm'])
         #---------------------------------------------------------------------------
 
         if not sample_setting['autoname_enable']:
@@ -433,7 +437,8 @@ class mainPageAPI:
                               self.logined_username,
                               main_path,
                               settings=settings,
-                              description = info['description'] 
+                              description = info['description'] ,
+                              grading_parm = info['grading_parm']
                               )
         args = {'path':main_path, 'name':self.report.name, 'date':self.report.date, 'time':self.report.time}
         self.report_saver = reportFileHandler(args)
@@ -502,7 +507,7 @@ class ProcessingWorker(QObject):
                         img_id = particle.get_id()
                         self.report_saver.save_image(p_img, img_id)
             except Exception as e:
-                print(e)
+                print('ERROR in ProcessingWorker', e)
 
         #print('FINISH signal--')
         self.finished.emit()

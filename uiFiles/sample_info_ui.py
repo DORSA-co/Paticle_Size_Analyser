@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'sample_info.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -25,14 +25,14 @@ class Ui_dialog_window(object):
     def setupUi(self, dialog_window):
         if not dialog_window.objectName():
             dialog_window.setObjectName(u"dialog_window")
-        dialog_window.resize(550, 700)
+        dialog_window.resize(600, 800)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(dialog_window.sizePolicy().hasHeightForWidth())
         dialog_window.setSizePolicy(sizePolicy)
-        dialog_window.setMinimumSize(QSize(550, 700))
-        dialog_window.setMaximumSize(QSize(550, 700))
+        dialog_window.setMinimumSize(QSize(600, 800))
+        dialog_window.setMaximumSize(QSize(600, 800))
         dialog_window.setStyleSheet(u"*{\n"
 "	\n"
 "	font: auto \"Arial\";\n"
@@ -192,20 +192,30 @@ class Ui_dialog_window(object):
 
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
-        self.sample_name_input = QLineEdit(dialog_window)
-        self.sample_name_input.setObjectName(u"sample_name_input")
+        self.standards_name_combobox = QComboBox(dialog_window)
+        self.standards_name_combobox.setObjectName(u"standards_name_combobox")
 
-        self.gridLayout.addWidget(self.sample_name_input, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.standards_name_combobox, 1, 1, 1, 1)
 
         self.label_2 = QLabel(dialog_window)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 1, 0, 1, 1)
 
-        self.standards_name_combobox = QComboBox(dialog_window)
-        self.standards_name_combobox.setObjectName(u"standards_name_combobox")
+        self.sample_name_input = QLineEdit(dialog_window)
+        self.sample_name_input.setObjectName(u"sample_name_input")
 
-        self.gridLayout.addWidget(self.standards_name_combobox, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.sample_name_input, 0, 1, 1, 1)
+
+        self.label_4 = QLabel(dialog_window)
+        self.label_4.setObjectName(u"label_4")
+
+        self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
+
+        self.grading_parm_combobox = QComboBox(dialog_window)
+        self.grading_parm_combobox.setObjectName(u"grading_parm_combobox")
+
+        self.gridLayout.addWidget(self.grading_parm_combobox, 2, 1, 1, 1)
 
 
         self.verticalLayout.addLayout(self.gridLayout)
@@ -287,8 +297,9 @@ class Ui_dialog_window(object):
     def retranslateUi(self, dialog_window):
         dialog_window.setWindowTitle(QCoreApplication.translate("dialog_window", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("dialog_window", u"Sample Name", None))
-        self.sample_name_input.setText("")
         self.label_2.setText(QCoreApplication.translate("dialog_window", u"Standard", None))
+        self.sample_name_input.setText("")
+        self.label_4.setText(QCoreApplication.translate("dialog_window", u"Grading Parameter", None))
         self.label_3.setText(QCoreApplication.translate("dialog_window", u"Description (optional)", None))
         self.error_lbl.setText(QCoreApplication.translate("dialog_window", u"Error", None))
         self.run_btn.setText(QCoreApplication.translate("dialog_window", u"Run", None))

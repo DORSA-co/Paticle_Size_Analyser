@@ -23,6 +23,7 @@ class Particle:
         self.calc_avrage_radius()
         self.calc_avrage_valoum()
         self.calc_cirvularity()
+        self.calc_min_radius()
 
         self.max_diameter = self.max_radius * 2
         self.avg_diameter = self.avg_radius * 2
@@ -36,6 +37,15 @@ class Particle:
         """
         self.area = cv2.contourArea(self.cnt)
         self.area = self.area * ( self.px2mm ** 2 )
+
+    def calc_min_radius(self):
+        """calculate min radius of the particle
+        """
+        _, (w, h), _ = cv2.minAreaRect(self.cnt)
+        self.min_diameter = min(w, h)
+        self.min_diameter = self.min_diameter * self.px2mm
+        self.min_raduis = self.min_diameter / 2
+        
     
     def calc_max_radius(self):
         """calculate max radius of the particle
@@ -93,10 +103,15 @@ class Particle:
     def get_info(self):
         info = {}
         info['max_diameter'] = np.round(self.max_diameter, CONSTANTS.DECIMAL_ROUND )
+        info['avg_diameter'] = np.round(self.avg_diameter, CONSTANTS.DECIMAL_ROUND )
+        info['min_diameter'] = np.round(self.min_diameter, CONSTANTS.DECIMAL_ROUND )
+        info['max_radius'] =  np.round(self.max_radius, CONSTANTS.DECIMAL_ROUND )
+        info['avg_radius'] =  np.round(self.avg_radius, CONSTANTS.DECIMAL_ROUND )
+        info['min_dradius'] = np.round(self.min_raduis, CONSTANTS.DECIMAL_ROUND )
         info['area'] = np.round(self.area, CONSTANTS.DECIMAL_ROUND )
-        info['avrage_diameter'] = np.round(self.avg_diameter, CONSTANTS.DECIMAL_ROUND )
         info['volume'] = np.round(self.avg_volume, CONSTANTS.DECIMAL_ROUND )
         info['circularity'] = np.round(self.circularity, CONSTANTS.DECIMAL_ROUND )
+        
         return info
 
 

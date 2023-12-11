@@ -124,14 +124,17 @@ class settingSampleDB(parentSettingDB):
     TABLE_COLS = [ {'col_name': 'autoname_enable',      'type':'INT', },
                    {'col_name': 'autoname_struct',      'type':'VARCHAR(255)', 'len':300},
                    {'col_name': 'default_standard',     'type':'VARCHAR(255)', 'len':300},
-                   {'col_name': 'text1',     'type':'VARCHAR(255)', 'len':300},
-                   {'col_name': 'save_image',    'type':'INT', },
+                   {'col_name': 'default_grading_parm','type':'VARCHAR(255)', 'len':300},
+                   {'col_name': 'application',          'type':'VARCHAR(255)', 'len':20},
+                   {'col_name': 'text1',                'type':'VARCHAR(255)', 'len':300},
+                   {'col_name': 'save_image',           'type':'INT', },
                 ]
     
     TABLE_DEFAULT_DATAS= [{  
                             'autoname_enable': 0,
                             'autoname_struct': '%YEAR%%MONTH%%DAY%_%HOUR%%MINUTE%_%USERNAME%',
                             'default_standard': '',
+                            'default_grading_parm': 'min_radius',
                             'text1': '',
                             'save_image': 1,
                             }

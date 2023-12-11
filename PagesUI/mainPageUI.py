@@ -1,9 +1,12 @@
+import time
+
+from Constants import CONSTANTS
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from uiUtils.Charts.barChart import BarChart
 from uiUtils.Charts.chartUtils import Font
 from uiUtils.Charts.lineChart import LineChart, Trend
-import time
+
 
 
 
@@ -320,6 +323,18 @@ class mainPageUI:
 
     def set_sample_info_selected_standard(self, item: str) -> None: 
         GUIBackend.set_combobox_current_item(self.sample_info.standards_name_combobox, item)
+
+    def set_sample_info_grading_parms_items(self, items:list[str]) -> None:
+        GUIBackend.set_combobox_items(self.sample_info.grading_parm_combobox, items)
+    
+    def set_sample_info_grading_parm(self, parm:str) -> None:
+        for key, value in CONSTANTS.Sample.GRADING_PARMS.items():
+            if value == parm:
+                GUIBackend.set_combobox_current_item(self.sample_info.grading_parm_combobox, key)
+                break
+
+    def get_sample_info_grading_parm(self) -> None:
+        return GUIBackend.get_combobox_selected(self.sample_info.grading_parm_combobox)
     
     def set_sample_info_sample_name(self, name:str):
         GUIBackend.set_input(self.sample_info.sample_name_input, name)
@@ -331,6 +346,9 @@ class mainPageUI:
         info = {}
         info['name'] = GUIBackend.get_input_text(self.sample_info.sample_name_input)
         info['standard'] = GUIBackend.get_combobox_selected(self.sample_info.standards_name_combobox)
+        info['grading_parm'] = CONSTANTS.Sample.GRADING_PARMS[ 
+            GUIBackend.get_combobox_selected(self.sample_info.grading_parm_combobox)
+                    ]
         info['description'] = GUIBackend.get_textarea_text(self.sample_info.description_inpt)
         return info
     

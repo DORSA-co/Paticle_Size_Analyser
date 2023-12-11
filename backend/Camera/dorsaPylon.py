@@ -729,9 +729,13 @@ class Collector:
         """
         self.devices = self.get_available_devices(None)
         for device in self.devices:
-            camera = pylon.InstantCamera(self.__tl_factory.CreateDevice(device))
-            if camera.GetDeviceInfo().GetSerialNumber() == serial_number:
-                return Camera(camera)
+            try:
+                camera = pylon.InstantCamera(self.__tl_factory.CreateDevice(device))
+                if camera.GetDeviceInfo().GetSerialNumber() == serial_number:
+                    return Camera(camera)
+            except:
+                print('Build Camera Device Error')    
+            
         return None
 
     def get_all_cameras(self, camera_class=None) -> list[Camera]:

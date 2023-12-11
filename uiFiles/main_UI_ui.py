@@ -1458,7 +1458,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2761,6 +2761,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_43.setObjectName(u"verticalLayout_43")
         self.gridLayout_14 = QGridLayout()
         self.gridLayout_14.setObjectName(u"gridLayout_14")
+        self.settingpage_sample_default_standard_comboxos = QComboBox(self.groupBox_6)
+        self.settingpage_sample_default_standard_comboxos.setObjectName(u"settingpage_sample_default_standard_comboxos")
+
+        self.gridLayout_14.addWidget(self.settingpage_sample_default_standard_comboxos, 0, 1, 1, 1)
+
         self.label_66 = QLabel(self.groupBox_6)
         self.label_66.setObjectName(u"label_66")
 
@@ -2770,20 +2775,25 @@ class Ui_MainWindow(object):
 
         self.gridLayout_14.addItem(self.horizontalSpacer_98, 0, 2, 1, 1)
 
-        self.settingpage_sample_default_standard_comboxos = QComboBox(self.groupBox_6)
-        self.settingpage_sample_default_standard_comboxos.setObjectName(u"settingpage_sample_default_standard_comboxos")
-
-        self.gridLayout_14.addWidget(self.settingpage_sample_default_standard_comboxos, 0, 1, 1, 1)
-
         self.label_93 = QLabel(self.groupBox_6)
         self.label_93.setObjectName(u"label_93")
 
-        self.gridLayout_14.addWidget(self.label_93, 1, 0, 1, 1)
+        self.gridLayout_14.addWidget(self.label_93, 2, 0, 1, 1)
 
         self.settingpage_sample_save_image_checkbox = QCheckBox(self.groupBox_6)
         self.settingpage_sample_save_image_checkbox.setObjectName(u"settingpage_sample_save_image_checkbox")
 
-        self.gridLayout_14.addWidget(self.settingpage_sample_save_image_checkbox, 1, 1, 1, 1)
+        self.gridLayout_14.addWidget(self.settingpage_sample_save_image_checkbox, 2, 1, 1, 1)
+
+        self.label_120 = QLabel(self.groupBox_6)
+        self.label_120.setObjectName(u"label_120")
+
+        self.gridLayout_14.addWidget(self.label_120, 1, 0, 1, 1)
+
+        self.settingpage_sample_default_grading_parm_comboxos = QComboBox(self.groupBox_6)
+        self.settingpage_sample_default_grading_parm_comboxos.setObjectName(u"settingpage_sample_default_grading_parm_comboxos")
+
+        self.gridLayout_14.addWidget(self.settingpage_sample_default_grading_parm_comboxos, 1, 1, 1, 1)
 
 
         self.verticalLayout_43.addLayout(self.gridLayout_14)
@@ -3530,7 +3540,7 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(1)
         sizePolicy5.setHeightForWidth(self.settingpage_camera_live_lbl.sizePolicy().hasHeightForWidth())
         self.settingpage_camera_live_lbl.setSizePolicy(sizePolicy5)
-        self.settingpage_camera_live_lbl.setMinimumSize(QSize(500, 500))
+        self.settingpage_camera_live_lbl.setMinimumSize(QSize(94, 500))
         self.settingpage_camera_live_lbl.setMaximumSize(QSize(814, 804))
         self.settingpage_camera_live_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;\n"
@@ -4837,7 +4847,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1125, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1236, 731))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -5054,7 +5064,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1147, 3302))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2584, 1258, 3337))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5923,10 +5933,40 @@ class Ui_MainWindow(object):
         self.gridLayout_21 = QGridLayout()
         self.gridLayout_21.setObjectName(u"gridLayout_21")
         self.gridLayout_21.setContentsMargins(3, 8, -1, -1)
+        self.sreportpage_particle_area_lbl = QLabel(self.signle_pellet_info_groupbox)
+        self.sreportpage_particle_area_lbl.setObjectName(u"sreportpage_particle_area_lbl")
+
+        self.gridLayout_21.addWidget(self.sreportpage_particle_area_lbl, 0, 1, 1, 1)
+
         self.sreportpage_particle_avg_r_lbl = QLabel(self.signle_pellet_info_groupbox)
         self.sreportpage_particle_avg_r_lbl.setObjectName(u"sreportpage_particle_avg_r_lbl")
 
         self.gridLayout_21.addWidget(self.sreportpage_particle_avg_r_lbl, 2, 1, 1, 1)
+
+        self.label_50 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_50.setObjectName(u"label_50")
+
+        self.gridLayout_21.addWidget(self.label_50, 0, 2, 1, 1)
+
+        self.label_58 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_58.setObjectName(u"label_58")
+        self.label_58.setLayoutDirection(Qt.LeftToRight)
+
+        self.gridLayout_21.addWidget(self.label_58, 2, 2, 1, 1)
+
+        self.horizontalSpacer_87 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_21.addItem(self.horizontalSpacer_87, 0, 3, 1, 1)
+
+        self.label_83 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_83.setObjectName(u"label_83")
+        self.label_83.setStyleSheet(u"font-size: 15px;\n"
+"font-weight: bold;\n"
+"color: #ffffff;\n"
+"margin: 5px 0px;")
+        self.label_83.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_21.addWidget(self.label_83, 5, 0, 1, 1)
 
         self.label_49 = QLabel(self.signle_pellet_info_groupbox)
         self.label_49.setObjectName(u"label_49")
@@ -5938,25 +5978,20 @@ class Ui_MainWindow(object):
 
         self.gridLayout_21.addWidget(self.label_49, 0, 0, 1, 1)
 
+        self.label_116 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_116.setObjectName(u"label_116")
+
+        self.gridLayout_21.addWidget(self.label_116, 5, 2, 1, 1)
+
         self.sreportpage_particle_volume_lbl = QLabel(self.signle_pellet_info_groupbox)
         self.sreportpage_particle_volume_lbl.setObjectName(u"sreportpage_particle_volume_lbl")
 
         self.gridLayout_21.addWidget(self.sreportpage_particle_volume_lbl, 1, 1, 1, 1)
 
-        self.label_52 = QLabel(self.signle_pellet_info_groupbox)
-        self.label_52.setObjectName(u"label_52")
-
-        self.gridLayout_21.addWidget(self.label_52, 1, 2, 1, 1)
-
         self.sreportpage_particle_max_r_lbl = QLabel(self.signle_pellet_info_groupbox)
         self.sreportpage_particle_max_r_lbl.setObjectName(u"sreportpage_particle_max_r_lbl")
 
         self.gridLayout_21.addWidget(self.sreportpage_particle_max_r_lbl, 3, 1, 1, 1)
-
-        self.label_50 = QLabel(self.signle_pellet_info_groupbox)
-        self.label_50.setObjectName(u"label_50")
-
-        self.gridLayout_21.addWidget(self.label_50, 0, 2, 1, 1)
 
         self.label_62 = QLabel(self.signle_pellet_info_groupbox)
         self.label_62.setObjectName(u"label_62")
@@ -5968,16 +6003,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_21.addWidget(self.label_62, 3, 0, 1, 1)
 
-        self.label_58 = QLabel(self.signle_pellet_info_groupbox)
-        self.label_58.setObjectName(u"label_58")
-        self.label_58.setLayoutDirection(Qt.LeftToRight)
+        self.label_52 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_52.setObjectName(u"label_52")
 
-        self.gridLayout_21.addWidget(self.label_58, 2, 2, 1, 1)
+        self.gridLayout_21.addWidget(self.label_52, 1, 2, 1, 1)
 
-        self.label_64 = QLabel(self.signle_pellet_info_groupbox)
-        self.label_64.setObjectName(u"label_64")
+        self.sreportpage_particle_circularity_lbl = QLabel(self.signle_pellet_info_groupbox)
+        self.sreportpage_particle_circularity_lbl.setObjectName(u"sreportpage_particle_circularity_lbl")
 
-        self.gridLayout_21.addWidget(self.label_64, 3, 2, 1, 1)
+        self.gridLayout_21.addWidget(self.sreportpage_particle_circularity_lbl, 5, 1, 1, 1)
 
         self.sreportpage_particle_avg_r_lbl_title = QLabel(self.signle_pellet_info_groupbox)
         self.sreportpage_particle_avg_r_lbl_title.setObjectName(u"sreportpage_particle_avg_r_lbl_title")
@@ -5989,14 +6023,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_21.addWidget(self.sreportpage_particle_avg_r_lbl_title, 2, 0, 1, 1)
 
-        self.sreportpage_particle_area_lbl = QLabel(self.signle_pellet_info_groupbox)
-        self.sreportpage_particle_area_lbl.setObjectName(u"sreportpage_particle_area_lbl")
+        self.label_64 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_64.setObjectName(u"label_64")
 
-        self.gridLayout_21.addWidget(self.sreportpage_particle_area_lbl, 0, 1, 1, 1)
-
-        self.horizontalSpacer_87 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_21.addItem(self.horizontalSpacer_87, 0, 3, 1, 1)
+        self.gridLayout_21.addWidget(self.label_64, 3, 2, 1, 1)
 
         self.label_55 = QLabel(self.signle_pellet_info_groupbox)
         self.label_55.setObjectName(u"label_55")
@@ -6008,25 +6038,25 @@ class Ui_MainWindow(object):
 
         self.gridLayout_21.addWidget(self.label_55, 1, 0, 1, 1)
 
-        self.label_83 = QLabel(self.signle_pellet_info_groupbox)
-        self.label_83.setObjectName(u"label_83")
-        self.label_83.setStyleSheet(u"font-size: 15px;\n"
+        self.label_118 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_118.setObjectName(u"label_118")
+        self.label_118.setStyleSheet(u"font-size: 15px;\n"
 "font-weight: bold;\n"
 "color: #ffffff;\n"
 "margin: 5px 0px;")
-        self.label_83.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_118.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_21.addWidget(self.label_83, 4, 0, 1, 1)
+        self.gridLayout_21.addWidget(self.label_118, 4, 0, 1, 1)
 
-        self.sreportpage_particle_circularity_lbl = QLabel(self.signle_pellet_info_groupbox)
-        self.sreportpage_particle_circularity_lbl.setObjectName(u"sreportpage_particle_circularity_lbl")
+        self.sreportpage_particle_min_r_lbl = QLabel(self.signle_pellet_info_groupbox)
+        self.sreportpage_particle_min_r_lbl.setObjectName(u"sreportpage_particle_min_r_lbl")
 
-        self.gridLayout_21.addWidget(self.sreportpage_particle_circularity_lbl, 4, 1, 1, 1)
+        self.gridLayout_21.addWidget(self.sreportpage_particle_min_r_lbl, 4, 1, 1, 1)
 
-        self.label_116 = QLabel(self.signle_pellet_info_groupbox)
-        self.label_116.setObjectName(u"label_116")
+        self.label_119 = QLabel(self.signle_pellet_info_groupbox)
+        self.label_119.setObjectName(u"label_119")
 
-        self.gridLayout_21.addWidget(self.label_116, 4, 2, 1, 1)
+        self.gridLayout_21.addWidget(self.label_119, 4, 2, 1, 1)
 
 
         self.verticalLayout_37.addLayout(self.gridLayout_21)
@@ -6306,7 +6336,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1146, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1257, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6806,7 +6836,7 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(4)
+        self.settingpage_tabs.setCurrentIndex(1)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(2)
@@ -6962,6 +6992,7 @@ class Ui_MainWindow(object):
         self.label_66.setText(QCoreApplication.translate("MainWindow", u"Default Standard ", None))
         self.label_93.setText(QCoreApplication.translate("MainWindow", u"Save Particels Image: ", None))
         self.settingpage_sample_save_image_checkbox.setText("")
+        self.label_120.setText(QCoreApplication.translate("MainWindow", u"Default Grading Parameter", None))
         self.settingpage_sample_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.settingpage_sample_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_sample_tab), QCoreApplication.translate("MainWindow", u"Sample", None))
@@ -7217,21 +7248,24 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
         self.sreportpage_particle_image_lbl.setText("")
-        self.sreportpage_particle_avg_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_49.setText(QCoreApplication.translate("MainWindow", u"Area:", None))
-        self.sreportpage_particle_volume_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_52.setText(QCoreApplication.translate("MainWindow", u" (mm3)", None))
-        self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_50.setText(QCoreApplication.translate("MainWindow", u"(mm2)", None))
-        self.label_62.setText(QCoreApplication.translate("MainWindow", u"Max Diameter:", None))
-        self.label_58.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
-        self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
-        self.sreportpage_particle_avg_r_lbl_title.setText(QCoreApplication.translate("MainWindow", u"Avrage Diameter", None))
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_55.setText(QCoreApplication.translate("MainWindow", u"Volume", None))
+        self.sreportpage_particle_avg_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"(mm2)", None))
+        self.label_58.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
         self.label_83.setText(QCoreApplication.translate("MainWindow", u"Circularity", None))
-        self.sreportpage_particle_circularity_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_49.setText(QCoreApplication.translate("MainWindow", u"Area:", None))
         self.label_116.setText(QCoreApplication.translate("MainWindow", u"%", None))
+        self.sreportpage_particle_volume_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.sreportpage_particle_max_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_62.setText(QCoreApplication.translate("MainWindow", u"Max Diameter:", None))
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u" (mm3)", None))
+        self.sreportpage_particle_circularity_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.sreportpage_particle_avg_r_lbl_title.setText(QCoreApplication.translate("MainWindow", u"Avrage Diameter", None))
+        self.label_64.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
+        self.label_55.setText(QCoreApplication.translate("MainWindow", u"Volume", None))
+        self.label_118.setText(QCoreApplication.translate("MainWindow", u"Min Diameter:", None))
+        self.sreportpage_particle_min_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.label_119.setText(QCoreApplication.translate("MainWindow", u"(mm)", None))
 
         __sortingEnabled5 = self.sreportpage_particels_table.isSortingEnabled()
         self.sreportpage_particels_table.setSortingEnabled(False)

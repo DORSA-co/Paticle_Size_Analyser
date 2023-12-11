@@ -234,7 +234,7 @@ class reportsPageAPI:
                 else:
                     rfh = reportFileHandler(sample)
                     report = rfh.load_report()
-                    report.change_standard(range_filter_standard)
+                    report.rebuild(range_filter_standard)
                     sample_grading_result = report.Grading.get_hist()
                 #-----------------------------------------------------------------------------
 

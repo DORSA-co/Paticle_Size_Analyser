@@ -139,6 +139,7 @@ class sampleSettingTabUI(commonSettingUI):
         self.cancel_btn = self.ui.settingpage_sample_cancel_btn
         self.autoame_struct_clear_btn = self.ui.settingpage_sample_auto_name_clear_btn
         self.standards_name_combobox = self.ui.settingpage_sample_default_standard_comboxos
+        self.grading_parms_combobox = self.ui.settingpage_sample_default_grading_parm_comboxos
         self.save_image_checkbox =  self.ui.settingpage_sample_save_image_checkbox
 
         self.custom_texts_inputs = {
@@ -225,7 +226,7 @@ class sampleSettingTabUI(commonSettingUI):
             GUIBackend.input_text_connector(custom_field, lambda :self.save_state(False) )
         GUIBackend.groupbox_checkbox_connector(self.autoname_groupbox, lambda :self.save_state(False) )    
         GUIBackend.combobox_changeg_connector(self.standards_name_combobox, lambda :self.save_state(False) )
-
+        GUIBackend.combobox_changeg_connector(self.grading_parms_combobox, lambda :self.save_state(False) )
         GUIBackend.checkbox_connector(self.save_image_checkbox, lambda x:self.save_state(False) )
         
         
@@ -244,6 +245,12 @@ class sampleSettingTabUI(commonSettingUI):
 
             elif setting_name == 'save_image':
                 GUIBackend.set_checkbox_value(self.save_image_checkbox, setting_value)
+
+            elif setting_name == 'default_grading_parm':
+                for key, value in CONSTANTS.Sample.GRADING_PARMS.items():
+                    if value == setting_value:
+                        GUIBackend.set_combobox_current_item(self.grading_parms_combobox, key)
+                        break
             
             elif setting_name in self.custom_texts_inputs.keys():
                 GUIBackend.set_input_text(self.custom_texts_inputs[setting_name], setting_value)
@@ -253,6 +260,10 @@ class sampleSettingTabUI(commonSettingUI):
         data['autoname_struct'] = GUIBackend.get_input(self.autoname_struct_field)
         data['autoname_enable'] = GUIBackend.is_groupbox_checked(self.autoname_groupbox)
         data['default_standard'] = GUIBackend.get_combobox_selected(self.standards_name_combobox)
+        data['default_grading_parm'] = CONSTANTS.Sample.GRADING_PARMS[
+                    GUIBackend.get_combobox_selected(self.grading_parms_combobox)
+                    ]
+        
         data['save_image'] = GUIBackend.get_checkbox_value(self.save_image_checkbox)
         for custom_text in self.custom_texts_inputs.keys():
             data[custom_text] = GUIBackend.get_input(self.custom_texts_inputs[custom_text])
@@ -262,6 +273,11 @@ class sampleSettingTabUI(commonSettingUI):
     def set_standards(self, items:list[str]):
         GUIBackend.set_combobox_items(self.standards_name_combobox, items)
     
+    def set_grading_parms_items(self, items:list[str]):
+        GUIBackend.set_combobox_items(self.grading_parms_combobox, items)
+    
+    # def set_grading_parm(self, parm_name):
+    #     GUIBackend.set_combobox_current_item(self.grading_parms_combobox, parm_name)
     
 
 

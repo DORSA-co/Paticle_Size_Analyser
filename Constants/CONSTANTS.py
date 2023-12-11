@@ -100,7 +100,14 @@ class Calibration:
 
     ]
 
-
+class Sample:
+    GRADING_PARMS = {'maximum radius':'max_radius',
+                    'minimum radius':'min_radius',
+                    'avrage radius':'avg_radius',
+                    'maximum diameter':'max_diameter',
+                    'minimum diameter':'min_diameter',
+                    'avrage diameter':'avg_diameter'
+                    }
 
 
 MAX_CAMERA_TEMP = 65

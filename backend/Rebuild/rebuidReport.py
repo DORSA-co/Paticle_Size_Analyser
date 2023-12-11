@@ -4,14 +4,14 @@ from backend.Processing.Report import Report
 class RebuildReport:
 
     @staticmethod
-    def rebuild( sample_record:dict, report:Report , new_standard:dict)-> tuple[dict, Report]:
-        sample_record, report = RebuildReport.__change_standard__(sample_record, report, new_standard)
+    def rebuild( sample_record:dict, report:Report , new_standard:dict, grading_parm:str=None)-> tuple[dict, Report]:
+        sample_record, report = RebuildReport.__change_standard__(sample_record, report, new_standard, grading_parm)
         return sample_record, report
         
 
     @staticmethod 
-    def __change_standard__( sample_record:dict, report:Report, standard:dict ) -> tuple[dict, Report]:
-        report.change_standard(standard)
+    def __change_standard__( sample_record:dict, report:Report, standard:dict , grading_parm:str=None) -> tuple[dict, Report]:
+        report.rebuild(standard, grading_parm)
         sample_record['grading_result'] = report.Grading.get_hist()
         sample_record['standard'] = standard['name']
 

@@ -7,6 +7,7 @@ from uiUtils.Charts.barChart import BarChart
 from uiUtils.Charts.lineChart import LineChart, Trend
 from PagesUI.dialogWindows.exportResultDialogUI import exportResultDialogUI
 from PagesUI.PageUI import commonUI
+from Constants import CONSTANTS
 
 
 class reportPageUI(commonUI):
@@ -54,11 +55,13 @@ class reportPageUI(commonUI):
 
         self.particle_information = {
             'max_diameter': self.ui.sreportpage_particle_max_r_lbl,
-            'avrage_diameter': self.ui.sreportpage_particle_avg_r_lbl,
+            'avg_diameter': self.ui.sreportpage_particle_avg_r_lbl,
+            'min_diameter': self.ui.sreportpage_particle_min_r_lbl,
             'area': self.ui.sreportpage_particle_area_lbl,
             'volume': self.ui.sreportpage_particle_volume_lbl,
-            'max_radius': self.ui.sreportpage_particle_max_r_lbl,
-            'circularity': self.ui.sreportpage_particle_circularity_lbl
+            'circularity': self.ui.sreportpage_particle_circularity_lbl,
+            
+            
         }
 
         self.particle_image_lbl = self.ui.sreportpage_particle_image_lbl
@@ -295,14 +298,26 @@ class reportPageUI(commonUI):
     def close_rebuild_win(self):
         GUIBackend.close_window(self.rebuild_win_ui)
 
-    def set_rebuild_standards(self, standards:list[str]):
+    def set_rebuild_standards_items(self, standards:list[str]):
         GUIBackend.set_combobox_items(self.rebuild_win_ui.standards_combobox, standards)
-    
+
     def set_rebuild_current_standard(self, stanndard_name:str):
         GUIBackend.set_combobox_current_item(self.rebuild_win_ui.standards_combobox, stanndard_name)
+    
+    def set_rebuild_grading_parm_items(self, grading_parms:list[str]):
+        GUIBackend.set_combobox_items(self.rebuild_win_ui.grading_parm_combobox, grading_parms)
+
+    def set_rebuild_current_grading_parm(self, grading_parm:str):
+        for key, value in CONSTANTS.Sample.GRADING_PARMS.items():
+            if value == grading_parm:
+                GUIBackend.set_combobox_current_item(self.rebuild_win_ui.grading_parm_combobox, key)
 
     def get_rebuild_standard(self,) -> str:
         return GUIBackend.get_combobox_selected(self.rebuild_win_ui.standards_combobox)
+    
+    def get_rebuild_grading_parm(self,) -> str:
+        name =  GUIBackend.get_combobox_selected(self.rebuild_win_ui.grading_parm_combobox)
+        return CONSTANTS.Sample.GRADING_PARMS[name]
     
     def open_export_file_dialog(self,):
         return GUIComponents.selectSaveFile(file_name='Excel',file_extention='.xlsx')

@@ -7,6 +7,7 @@ from Database.reportsDB import reportFileHandler
 from Database.mainDatabase  import mainDatabase
 from backend.Rebuild.rebuidReport import RebuildReport
 from backend.Exporter.excelExporter import reportExcelExporter
+from Constants import CONSTANTS
 
 
 class reportPageAPI:
@@ -40,18 +41,26 @@ class reportPageAPI:
 
     def show_rebuild(self,):
         standards_name = self.database.standards_db.load_standards_name()
-        self.ui.set_rebuild_standards(standards_name)
+        self.ui.set_rebuild_standards_items(standards_name)
         self.ui.set_rebuild_current_standard(self.report.standard['name'])
+        self.ui.set_rebuild_grading_parm_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
+        self.ui.set_rebuild_current_grading_parm(self.report.grading_parm)
         self.ui.show_rebuild_win()
 
     def run_rebuild(self,):
         """rebuild curent report into new standard
         """
         new_standard_name = self.ui.get_rebuild_standard()
+        new_grading_parm = self.ui.get_rebuild_grading_parm()
         new_standard = self.database.standards_db.load(new_standard_name)
         name_id = self.report.generate_uniq_id()
         report_record = self.database.reports_db.load_by_name_ids( [name_id] )[0]
-        new_report_record, new_report = RebuildReport.rebuild(report_record, self.report, new_standard)
+        new_report_record, new_report = RebuildReport.rebuild(report_record, 
+                                                              self.report, 
+                                                              new_standard= new_standard,
+                                                              grading_parm= new_grading_parm
+
+                                                              )
         
         rfh = reportFileHandler(report_record)
         self.database.reports_db.update(new_report_record)

@@ -15,7 +15,14 @@ from backend.Processing.Particel import Particle
 class Report:
     """store all information of a sample
     """
-    def __init__(self, name = '', standard = None, username = '', main_path ='', settings={}, description='') -> None:
+    def __init__(self, 
+                 name = '', 
+                 standard = None, 
+                 username = '', 
+                 main_path ='', 
+                 settings={}, 
+                 description='', 
+                 grading_parm='') -> None:
         
         
         self.name = name
@@ -28,6 +35,7 @@ class Report:
         self.settings = settings
         self.description = description
         self.name_id = self.generate_uniq_id()
+        self.grading_parm = grading_parm
 
     
         self.ranges_string = reportUtils.ranges2str(self.standard['ranges'])
@@ -57,8 +65,8 @@ class Report:
     #     self.Buffer.extend(buffer)
     
     def append_particle(self, particle:Particle):        
-        sieve_idx = self.Grading.append_particle(particle)
-        _ = self.cumGrading.append_particle(particle)
+        sieve_idx = self.Grading.append_particle(particle, self.grading_parm)
+        _ = self.cumGrading.append_particle(particle, self.grading_parm)
         self.Buffer.append_particle(particle, sieve_idx)
 
    
@@ -70,9 +78,9 @@ class Report:
     def get_global_statistics(self):
         info = {}
         if self.get_particles_count() != 0:
-            max_diameter = self.Buffer.total_buffer.get_feature('max_radius') * 2
-            info['avrage'] = np.round( max_diameter.mean(), CONSTANTS.DECIMAL_ROUND )
-            info['std'] = np.round( max_diameter.std(), CONSTANTS.DECIMAL_ROUND )
+            xs = self.Buffer.total_buffer.get_feature(self.grading_parm)
+            info['avrage'] = np.round( xs.mean(), CONSTANTS.DECIMAL_ROUND )
+            info['std'] = np.round( xs.std(), CONSTANTS.DECIMAL_ROUND )
 
         else:
             info['avrage'] = 0
@@ -85,15 +93,15 @@ class Report:
         hist = self.Grading.get_hist()
         for i,range_name in enumerate(self.ranges_string):
             data = {}
-            diameters = self.Buffer.get_feature('max_radius', sive_idx=i) * 2
+            parms = self.Buffer.get_feature(self.grading_parm, sive_idx=i)
             circularites = self.Buffer.get_feature('circularity', sive_idx=i)
-            count = len(diameters)
+            count = len(parms)
             if count > 0:
                 
 
                 data['range'] = range_name
-                data['std'] = np.round( diameters.std(), CONSTANTS.DECIMAL_ROUND )
-                data['avrage'] = np.round( diameters.mean(), CONSTANTS.DECIMAL_ROUND )
+                data['std'] = np.round( parms.std(), CONSTANTS.DECIMAL_ROUND )
+                data['avrage'] = np.round( parms.mean(), CONSTANTS.DECIMAL_ROUND )
                 data['count'] = count
                 data['percent'] = hist[i]
                 data['circularity'] = np.round( circularites.mean(), CONSTANTS.DECIMAL_ROUND )
@@ -119,7 +127,7 @@ class Report:
             'time': self.date_time.time(),
             'username': self.username,
             'grading_result': self.Grading.get_hist(),
-            'max_radiuses': self.Buffer.total_buffer.get_feature('max_radius')
+            'max_radiuses': self.Buffer.total_buffer.get_feature(self.grading_parm)
         }
 
         return db_data
@@ -132,9 +140,15 @@ class Report:
         return self.date_time.strftime("%Y/%m/%d %H:%M:%S")
     
 
-    def change_standard(self, new_standard:dict, ):
+    def rebuild(self, new_standard:dict, new_grading_parm=None):
+        grading_parm_is_changed = False
+        if new_grading_parm is not None:
+            if self.grading_parm != new_grading_parm:
+                grading_parm_is_changed = True
+                self.grading_parm = new_grading_parm
+
         #t = time.time()
-        if new_standard['ranges'] != self.standard['ranges'] :
+        if new_standard['ranges'] != self.standard['ranges'] or grading_parm_is_changed :
             self.standard = new_standard
             standard_ranges = new_standard['ranges']
             self.ranges_string = reportUtils.ranges2str(standard_ranges)
@@ -143,11 +157,11 @@ class Report:
             self.cumGrading = cumGrading(self.get_full_range())
             self.Buffer.set_ranges(standard_ranges)
 
-            max_diameters = self.Buffer.total_buffer.get_feature('max_radius') * 2
+            xs = self.Buffer.total_buffer.get_feature(self.grading_parm)
             avg_volume = self.Buffer.total_buffer.get_feature('avg_volume')
 
-            self.cumGrading.sieve_all(max_diameters, avg_volume)
-            sieve_partices_membership = self.Grading.sieve_all(max_diameters, avg_volume)
+            self.cumGrading.sieve_all(xs, avg_volume)
+            sieve_partices_membership = self.Grading.sieve_all(xs, avg_volume)
             self.Buffer.set_sieve_memberships(sieve_partices_membership)
 
     
@@ -164,7 +178,7 @@ class Report:
     
 
     def get_gaussian_data(self,step=1):
-        diameters = self.Buffer.total_buffer.get_feature('max_radius') * 2
+        diameters = self.Buffer.total_buffer.get_feature(self.grading_parm)
         if len(diameters) == 0:
             return [], []
         volumes = self.Buffer.total_buffer.get_feature('avg_volume')

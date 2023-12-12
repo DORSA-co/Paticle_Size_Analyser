@@ -78,7 +78,7 @@ class comparePageAPI:
             
             #-------------------------------------------------------------------------
             else:
-                report.change_standard(compare.standard)
+                report.rebuild(compare.standard)
 
                 #get total info of each ranges in format of list[dict]. each dict is info of one range
                 ranges_data = report.get_ranges_statistics()

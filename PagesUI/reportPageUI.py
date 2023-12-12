@@ -72,7 +72,7 @@ class reportPageUI(commonUI):
         self.grading_chart = BarChart(
                     chart_title = 'Grading',
                     chart_title_color = None,
-                    axisX_label = 'Rages',
+                    axisX_label = 'Ranges',
                     axisY_label = 'Percents',
                     chart_background_color = '#f0f0f0',
                     bar_color = '#4caf50',
@@ -88,7 +88,7 @@ class reportPageUI(commonUI):
         self.cumulative_chart  = LineChart(
                     chart_title = 'Cumulative',
                     chart_title_color = '#404040',
-                    axisX_label = 'Rages',
+                    axisX_label = 'Ranges',
                     axisY_label = 'Percent',
                     chart_background_color = '#f0f0f0',
                     chart_legend=False,
@@ -107,7 +107,7 @@ class reportPageUI(commonUI):
         self.gaussian_chart  = LineChart(
                     chart_title = 'Guassian',
                     chart_title_color = '#404040',
-                    axisX_label = 'Rages',
+                    axisX_label = 'Ranges',
                     axisY_label = 'Percent',
                     chart_background_color = '#f0f0f0',
                     chart_legend=False,

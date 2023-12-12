@@ -397,7 +397,7 @@ class testSectionUI:
     
     def __percent_inputs_event__(self,):
         res = self.get_sieve_percents()
-        percents_sum =  res.sum()
+        percents_sum =  np.round(res.sum(),2)
         GUIBackend.set_label_text(self.sum_percents_lbl, f'{percents_sum} %')
         if percents_sum == 100:
             GUIBackend.set_style(self.warning_lamp, 'background-color:rgb(58, 209, 154);') #green color

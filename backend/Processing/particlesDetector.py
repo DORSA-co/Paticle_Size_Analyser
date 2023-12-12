@@ -58,9 +58,9 @@ class particlesDetector:
 
         _, mask = cv2.threshold(img, self.thresh, 255, cv2.THRESH_BINARY_INV)
 
-        mask = cv2.erode(mask, np.ones((3,3)), iterations=2)
-        mask = cv2.dilate(mask, np.ones((3,3)), iterations=3)
-        mask = cv2.erode(mask, np.ones((3,3)), iterations=1)
+        mask = cv2.erode(mask, np.ones((2,2)), iterations=1)
+        mask = cv2.dilate(mask, np.ones((2,2)), iterations=1)
+        #mask = cv2.erode(mask, np.ones((3,3)), iterations=1)
 
         cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         

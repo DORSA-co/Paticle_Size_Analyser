@@ -284,7 +284,7 @@ class statisticalHypothesisTabAPI:
         """
         flag = True
         for i , percents in enumerate(test_percents):
-            sum_p = percents.sum()
+            sum_p = np.round(percents.sum(),3)
             if sum_p != 100:
                 self.ui.get_test_section(i).write_error(f'sum of percents should be 100% but is {sum_p}%')
                 flag = False

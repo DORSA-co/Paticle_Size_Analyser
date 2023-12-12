@@ -100,7 +100,6 @@ class tTestValidation(Validation):
         #               )
         # degree_of_freedom = len(system_test_mean) + len(sieve_tests_mean) - 2
         # t_value = n / ( d + 1e-5)
-        
         res = stats.ttest_ind(system_test_mean, sieve_tests_mean)
         t_score, p_value, df = res.statistic, res.pvalue, res.df
 

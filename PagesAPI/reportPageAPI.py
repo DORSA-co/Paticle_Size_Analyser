@@ -1,5 +1,6 @@
 import cv2
 import os
+from matplotlib import pyplot as plt
 
 from PagesUI.reportPageUI import reportPageUI
 from backend.Processing.Report import Report
@@ -90,7 +91,12 @@ class reportPageAPI:
         self.show_ranges_statistics()
         self.show_charts()
         self.refresh_particles_page()
-    
+
+        #------------------------------------------------------------
+        #min_rs = self.report.Buffer.get_feature('avg_diameter')
+        #max_rs = self.report.Buffer.get_feature('avg_diameter')
+        #plt.scatter(min_rs, max_rs)
+        #plt.show()
     
 
     
@@ -196,7 +202,7 @@ class reportPageAPI:
         
         center, radius = particle.get_enclosing_circle(transorm_to_single_img=True)
 
-        particle_img = cv2.circle(particle_img, center,radius, color=(0,0,255), thickness=2)
+        particle_img = cv2.circle(particle_img, center,radius+2, color=(0,0,255), thickness=2)
         self.ui.set_particle_image(particle_img)
         #------------------------------------------------
         

@@ -5109,7 +5109,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2188, 1258, 3406))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -400, 1258, 3406))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5729,10 +5729,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_25.setContentsMargins(1, 1, -1, -1)
         self.verticalLayout_54 = QVBoxLayout()
         self.verticalLayout_54.setObjectName(u"verticalLayout_54")
+        self.verticalLayout_54.setContentsMargins(10, -1, 10, -1)
         self.textEdit_4 = QTextEdit(self.frame1)
         self.textEdit_4.setObjectName(u"textEdit_4")
-        self.textEdit_4.setMinimumSize(QSize(0, 30))
-        self.textEdit_4.setMaximumSize(QSize(16777215, 30))
+        self.textEdit_4.setMinimumSize(QSize(0, 50))
+        self.textEdit_4.setMaximumSize(QSize(16777215, 60))
         self.textEdit_4.setStyleSheet(u"")
         self.textEdit_4.setFrameShape(QFrame.NoFrame)
         self.textEdit_4.setLineWidth(1)
@@ -5772,10 +5773,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_55 = QVBoxLayout()
         self.verticalLayout_55.setObjectName(u"verticalLayout_55")
+        self.verticalLayout_55.setContentsMargins(10, -1, 10, -1)
         self.textEdit_5 = QTextEdit(self.frame1)
         self.textEdit_5.setObjectName(u"textEdit_5")
-        self.textEdit_5.setMinimumSize(QSize(0, 30))
-        self.textEdit_5.setMaximumSize(QSize(16777215, 30))
+        self.textEdit_5.setMinimumSize(QSize(0, 50))
+        self.textEdit_5.setMaximumSize(QSize(16777215, 60))
         self.textEdit_5.setStyleSheet(u"")
         self.textEdit_5.setFrameShape(QFrame.NoFrame)
         self.textEdit_5.setLineWidth(1)

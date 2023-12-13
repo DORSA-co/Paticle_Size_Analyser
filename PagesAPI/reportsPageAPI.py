@@ -66,6 +66,7 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
+        self.page_idx = 0
         self.uiHandeler.popupFrame.show()
         #--------------------------
         t = time.time()
@@ -88,6 +89,8 @@ class reportsPageAPI:
         t = time.time()
         self.uiHandeler.startup()
         print('startup',time.time() - t)
+        
+        self.navigation_pages('none')
         #--------------------------
         self.uiHandeler.popupFrame.close()
         

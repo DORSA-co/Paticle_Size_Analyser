@@ -604,6 +604,7 @@ class overlayMassage(QtWidgets.QWidget):
 
         # drawpopup
         qp.setBrush(self.popup_bg)
+        qp.setPen(self.popup_bg)
         popup_width = self.popup_card_size[0]
         popup_height = self.popup_card_size[1]
         ow = int(s.width()/2-popup_width/2)

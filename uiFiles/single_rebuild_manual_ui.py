@@ -17,20 +17,20 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QGridLayout,
     QHBoxLayout, QLabel, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
 import Assets_rc
 
 class Ui_rebuild_win(object):
     def setupUi(self, rebuild_win):
         if not rebuild_win.objectName():
             rebuild_win.setObjectName(u"rebuild_win")
-        rebuild_win.resize(700, 260)
+        rebuild_win.resize(700, 300)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(rebuild_win.sizePolicy().hasHeightForWidth())
         rebuild_win.setSizePolicy(sizePolicy)
-        rebuild_win.setMinimumSize(QSize(700, 260))
+        rebuild_win.setMinimumSize(QSize(700, 300))
         rebuild_win.setMaximumSize(QSize(700, 350))
         rebuild_win.setStyleSheet(u"*{\n"
 "	\n"
@@ -217,20 +217,32 @@ class Ui_rebuild_win(object):
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(50, 10, 50, 20)
+        self.pages = QStackedWidget(rebuild_win)
+        self.pages.setObjectName(u"pages")
+        self.pages.setStyleSheet(u"#setting,\n"
+"#finish\n"
+"{\n"
+"	background-color:#fff;\n"
+"\n"
+"}")
+        self.setting = QWidget()
+        self.setting.setObjectName(u"setting")
+        self.verticalLayout_3 = QVBoxLayout(self.setting)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(-1, 0, -1, -1)
-        self.label_2 = QLabel(rebuild_win)
+        self.label_2 = QLabel(self.setting)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
 
-        self.standards_combobox = QComboBox(rebuild_win)
+        self.standards_combobox = QComboBox(self.setting)
         self.standards_combobox.setObjectName(u"standards_combobox")
 
         self.gridLayout.addWidget(self.standards_combobox, 0, 1, 1, 1)
 
-        self.grading_parm_combobox = QComboBox(rebuild_win)
+        self.grading_parm_combobox = QComboBox(self.setting)
         self.grading_parm_combobox.setObjectName(u"grading_parm_combobox")
 
         self.gridLayout.addWidget(self.grading_parm_combobox, 2, 1, 1, 1)
@@ -239,7 +251,7 @@ class Ui_rebuild_win(object):
 
         self.gridLayout.addItem(self.horizontalSpacer_2, 0, 2, 1, 1)
 
-        self.label_3 = QLabel(rebuild_win)
+        self.label_3 = QLabel(self.setting)
         self.label_3.setObjectName(u"label_3")
 
         self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
@@ -249,15 +261,15 @@ class Ui_rebuild_win(object):
         self.gridLayout.addItem(self.verticalSpacer, 1, 0, 1, 1)
 
 
-        self.verticalLayout_2.addLayout(self.gridLayout)
+        self.verticalLayout_3.addLayout(self.gridLayout)
 
         self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_2.addItem(self.verticalSpacer_3)
+        self.verticalLayout_3.addItem(self.verticalSpacer_3)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.rebuild_btn = QPushButton(rebuild_win)
+        self.rebuild_btn = QPushButton(self.setting)
         self.rebuild_btn.setObjectName(u"rebuild_btn")
         self.rebuild_btn.setEnabled(True)
         self.rebuild_btn.setStyleSheet(u"QPushButton{\n"
@@ -283,17 +295,63 @@ class Ui_rebuild_win(object):
         self.horizontalLayout.addWidget(self.rebuild_btn)
 
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self.verticalLayout_3.addLayout(self.horizontalLayout)
 
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_2.addItem(self.verticalSpacer_2)
+        self.verticalLayout_3.addItem(self.verticalSpacer_2)
+
+        self.pages.addWidget(self.setting)
+        self.finish = QWidget()
+        self.finish.setObjectName(u"finish")
+        self.verticalLayout_4 = QVBoxLayout(self.finish)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.finish_massage = QLabel(self.finish)
+        self.finish_massage.setObjectName(u"finish_massage")
+
+        self.verticalLayout_4.addWidget(self.finish_massage, 0, Qt.AlignHCenter)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.finish_btn = QPushButton(self.finish)
+        self.finish_btn.setObjectName(u"finish_btn")
+        self.finish_btn.setStyleSheet(u"QPushButton{\n"
+"\n"
+"background-color: rgb(58, 209, 154);\n"
+"color:#ffffff;\n"
+"max-width: 200px;\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton:hover{\n"
+"\n"
+"background-color: rgb(49, 177, 130);\n"
+"color:#ffffff;\n"
+"}\n"
+"\n"
+"QPushButton:disabled{\n"
+"background-color: rgb(220, 220, 220);\n"
+"color:#909090;\n"
+"max-width: 200px;\n"
+"}")
+
+        self.horizontalLayout_3.addWidget(self.finish_btn)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_3)
+
+        self.pages.addWidget(self.finish)
+
+        self.verticalLayout_2.addWidget(self.pages)
 
 
         self.verticalLayout.addLayout(self.verticalLayout_2)
 
 
         self.retranslateUi(rebuild_win)
+
+        self.pages.setCurrentIndex(0)
+
 
         QMetaObject.connectSlotsByName(rebuild_win)
     # setupUi
@@ -304,5 +362,7 @@ class Ui_rebuild_win(object):
         self.label_2.setText(QCoreApplication.translate("rebuild_win", u"New Standard", None))
         self.label_3.setText(QCoreApplication.translate("rebuild_win", u"New Grading Parm", None))
         self.rebuild_btn.setText(QCoreApplication.translate("rebuild_win", u"Run Rebuild", None))
+        self.finish_massage.setText(QCoreApplication.translate("rebuild_win", u"The rebuild was successful. All related charts and tables were updated", None))
+        self.finish_btn.setText(QCoreApplication.translate("rebuild_win", u"finish", None))
     # retranslateUi
 

@@ -5,17 +5,19 @@ from uiUtils import GUIComponents
 from backend.Utils.datetimeUtils import datetimeFormat
 from PagesUI.dialogWindows.proggressDialogUI import proggressDialogUI
 from PagesUI.PageUI import commonUI
-
+from dialogWindows.autoRebuildDialogUI import autoRebuildDialogUI
 
 
 
 
 class reportsPageUI(commonUI):
 
-    def __init__(self, ui, auto_rebuild_ui):
+    def __init__(self, ui):
         self.ui = ui
-        self.auto_rebuild_ui = auto_rebuild_ui
+        self.autoRebuildDialog = autoRebuildDialogUI()
         self.deleteSamplesDialog = proggressDialogUI()
+
+        
         self.deleteSamplesDialog.setup('Remove samples','', operation_name='removed')
 
         
@@ -64,19 +66,12 @@ class reportsPageUI(commonUI):
         
         }
 
-        self.rebuilds_button = {
-            'rebuild': self.auto_rebuild_ui.rebuild_btn,
-            'close': self.auto_rebuild_ui.close_btn,
-        }
-        
-
         self.standards_filter_checkbox = {}
         self.samples_table_checkbox = {}
         self.samples_table_headers= ['-', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
         self.external_see_report_event_func = None
         self.external_delete_samples_event_func = None
 
-        GUIBackend.set_win_frameless(self.auto_rebuild_ui)
 
         GUIBackend.set_table_dim(self.samples_table, row=None, col = len(self.samples_table_headers))
         GUIBackend.set_table_cheaders(self.samples_table, self.samples_table_headers)
@@ -92,8 +87,7 @@ class reportsPageUI(commonUI):
         GUIBackend.set_cell_width_content_adjust(self.ranges_filter_table, None)
         GUIBackend.checkbox_connector(self.select_all_checkbox, self.select_all_samples)
         GUIBackend.combobox_changeg_connector(self.ranges_filter_standards_combobox, self.__ranges_filter_standard_changed__)
-        GUIBackend.button_connector(self.rebuild_btn, self.show_rebuild_win)
-        #GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, self.close_rebuild_win)
+        GUIBackend.button_connector(self.rebuild_btn, self.autoRebuildDialog.show)
 
         GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, False)
         GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, False)
@@ -427,32 +421,5 @@ class reportsPageUI(commonUI):
         return GUIBackend.get_combobox_selected(self.compare_standards_combobox)
     
 
-    def show_rebuild_win(self,):
-        self.set_rebuild_progress_bar(0)
-        #GUIBackend.set_disable_enable(self.auto_rebuild_ui.close_btn, False)
-        GUIBackend.show_window(self.auto_rebuild_ui, True)
-
-    def enable_rebuild_win_buttons(self, btn_name, state):
-        GUIBackend.set_disable_enable(self.rebuilds_button[btn_name], state)
-
-    def close_rebuild_win(self,):
-        GUIBackend.close_window(self.auto_rebuild_ui)
-    
-    def hide_rebuild_win(self,):
-        GUIBackend.hide_window(self.auto_rebuild_ui)
-    
-    def dialogbox_rebuild_btn_connector(self, func):
-        GUIBackend.button_connector(self.auto_rebuild_ui.rebuild_btn, func)
-
-    def set_rebuild_progress_bar(self, value):
-        value = int(value)
-        GUIBackend.set_progressbar_value(self.auto_rebuild_ui.converting_progressbar, value)
-
-    def rebuid_close_button_connector(self, func):
-        GUIBackend.button_connector(self.auto_rebuild_ui.close_btn, func)
-        
-
-
-    
     
 

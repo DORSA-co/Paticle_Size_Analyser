@@ -16,19 +16,19 @@ class reportPageAPI:
     PARTICLE_PAGE_COL = 8
     assert PARTICLE_PER_PAGE % PARTICLE_PAGE_COL==0, "Particle Row count should be int"
 
-    def __init__(self, ui:reportPageUI, database:mainDatabase):
-        self.ui = ui
+    def __init__(self, uiHandeler:reportPageUI, database:mainDatabase):
+        self.uiHandeler = uiHandeler
         self.database = database
 
         self.external_back_event_func = None
         
         self.startup()
-        self.ui.back_button_connector(self.back)
-        self.ui.rebuild_button_connector(self.show_rebuild)
-        self.ui.dialog_rebuild_button_connector(self.run_rebuild)
-        self.ui.navigator_button_connector(self.particles_navigation)
-        self.ui.particle_click_connector(self.show_particle_information)
-        self.ui.export_button_connector(self.export)
+        self.uiHandeler.back_button_connector(self.back)
+        self.uiHandeler.rebuild_button_connector(self.show_rebuild)
+        self.uiHandeler.rebuildDialog.button_connector('rebuild', self.run_rebuild)
+        self.uiHandeler.navigator_button_connector(self.particles_navigation)
+        self.uiHandeler.particle_click_connector(self.show_particle_information)
+        self.uiHandeler.export_button_connector(self.export)
         
 
     def startup(self,):
@@ -42,24 +42,23 @@ class reportPageAPI:
 
     def show_rebuild(self,):
         standards_name = self.database.standards_db.load_standards_name()
-        self.ui.set_rebuild_standards_items(standards_name)
-        self.ui.set_rebuild_current_standard(self.report.standard['name'])
-        self.ui.set_rebuild_grading_parm_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
-        self.ui.set_rebuild_current_grading_parm(self.report.grading_parm)
-        self.ui.show_rebuild_win()
+        self.uiHandeler.rebuildDialog.set_standards_items(standards_name)
+        self.uiHandeler.rebuildDialog.set_current_standard(self.report.standard['name'])
+        self.uiHandeler.rebuildDialog.set_grading_parm_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
+        self.uiHandeler.rebuildDialog.set_current_grading_parm(self.report.grading_parm)
+        self.uiHandeler.rebuildDialog.show()
 
     def run_rebuild(self,):
         """rebuild curent report into new standard
         """
-        new_standard_name = self.ui.get_rebuild_standard()
-        new_grading_parm = self.ui.get_rebuild_grading_parm()
-        new_standard = self.database.standards_db.load(new_standard_name)
+        rebuild_settings = self.uiHandeler.rebuildDialog.get_settings()
+        new_standard = self.database.standards_db.load(rebuild_settings['standard_name'])
         name_id = self.report.generate_uniq_id()
         report_record = self.database.reports_db.load_by_name_ids( [name_id] )[0]
         new_report_record, new_report = RebuildReport.rebuild(report_record, 
                                                               self.report, 
                                                               new_standard= new_standard,
-                                                              grading_parm= new_grading_parm
+                                                              grading_parm= rebuild_settings['grading_parm']
 
                                                               )
         
@@ -67,7 +66,8 @@ class reportPageAPI:
         self.database.reports_db.update(new_report_record)
         rfh.save_report(new_report)
         self.set_report(new_report)
-        self.ui.close_rebuild_win()
+        self.uiHandeler.rebuildDialog.go_to_finish()
+        #self.uiHandeler.show_confirm_box('result', 'Rebuild Success', ['ok'])
         
 
 
@@ -126,22 +126,22 @@ class reportPageAPI:
         for key, value in statictics.items():
             info[key] = str(value)
 
-        self.ui.set_general_information(info)
+        self.uiHandeler.set_general_information(info)
 
     
 
     def show_ranges_statistics(self,):
         data = self.report.get_ranges_statistics()
-        self.ui.set_ranges_statistics_tabel(data)
+        self.uiHandeler.set_ranges_statistics_tabel(data)
 
 
     def show_charts(self,):
-        self.ui.set_grading_chart( values=self.report.Grading.get_hist(), 
+        self.uiHandeler.set_grading_chart( values=self.report.Grading.get_hist(), 
                                   ranges= self.report.ranges_string)
         
-        self.ui.set_cumulative_chart_value( *self.report.cumGrading.get_data())
+        self.uiHandeler.set_cumulative_chart_value( *self.report.cumGrading.get_data())
 
-        self.ui.set_gaussian_chart_value(*self.report.get_gaussian_data())
+        self.uiHandeler.set_gaussian_chart_value(*self.report.get_gaussian_data())
         
 
     def back(self, ):
@@ -164,8 +164,8 @@ class reportPageAPI:
         self.refresh_particles_page()
 
     def refresh_particles_page(self, ):
-        self.ui.handle_navigation_button_enabality(self.particles_page, 0, self.particle_maximum_page)
-        self.ui.show_page_number(self.particles_page + 1, self.particle_maximum_page + 1)
+        self.uiHandeler.handle_navigation_button_enabality(self.particles_page, 0, self.particle_maximum_page)
+        self.uiHandeler.show_page_number(self.particles_page + 1, self.particle_maximum_page + 1)
         self.show_particels_img()
 
 
@@ -179,7 +179,7 @@ class reportPageAPI:
                 img = self.report_file_handler.load_image(p_id)
                 imgs.append(img)
 
-        self.ui.set_particles_image(imgs,ncol=self.PARTICLE_PAGE_COL, nrow=int(self.PARTICLE_PER_PAGE/self.PARTICLE_PAGE_COL))
+        self.uiHandeler.set_particles_image(imgs,ncol=self.PARTICLE_PAGE_COL, nrow=int(self.PARTICLE_PER_PAGE/self.PARTICLE_PAGE_COL))
 
     
     def show_particle_information(self, idx:int):
@@ -191,7 +191,7 @@ class reportPageAPI:
         idx = self.particles_page * self.PARTICLE_PER_PAGE + idx
         particle = self.report.Buffer.total_buffer.get_particel(idx)
         info = particle.get_info()
-        self.ui.set_particle_information(info)
+        self.uiHandeler.set_particle_information(info)
         #------------------------------------------------
         
         #check if particle is in a diffrent image, load it
@@ -203,7 +203,7 @@ class reportPageAPI:
         center, radius = particle.get_enclosing_circle(transorm_to_single_img=True)
 
         particle_img = cv2.circle(particle_img, center,radius+2, color=(0,0,255), thickness=2)
-        self.ui.set_particle_image(particle_img)
+        self.uiHandeler.set_particle_image(particle_img)
         #------------------------------------------------
         
 
@@ -213,34 +213,34 @@ class reportPageAPI:
         try:
             path = self.database.setting_db.export_db.load()['report_excel']
             if not os.path.exists(path):
-                self.ui.show_confirm_box('Error', 
+                self.uiHandeler.show_confirm_box('Error', 
                                          "Excel format file doesn't exist. Go to setting>>export and set an excel format for report",
                                          buttons=['ok']
                                          )
                 return
             
             exporter = reportExcelExporter(path)
-            path,_ = self.ui.open_export_file_dialog()
+            path,_ = self.uiHandeler.open_export_file_dialog()
             if path == '':
                 return
             
             wrong_codes = exporter.render(self.report)
             flag,e = exporter.save(path)
 
-            self.ui.exportDialog.set_wrong_codes(wrong_codes)
+            self.uiHandeler.exportDialog.set_wrong_codes(wrong_codes)
 
             if flag:
-                self.ui.exportDialog.set_massage('Export successfuly')
-                self.ui.exportDialog.set_exception_msg(None)
+                self.uiHandeler.exportDialog.set_massage('Export successfuly')
+                self.uiHandeler.exportDialog.set_exception_msg(None)
 
             else:
-                self.ui.exportDialog.set_massage('Failed to export')
-                self.ui.exportDialog.set_exception_msg(e)
-            self.ui.exportDialog.show()
+                self.uiHandeler.exportDialog.set_massage('Failed to export')
+                self.uiHandeler.exportDialog.set_exception_msg(e)
+            self.uiHandeler.exportDialog.show()
 
         except Exception as e:
-            self.ui.exportDialog.set_massage('Some Error Happend')
-            self.ui.exportDialog.set_exception_msg(e)
-            self.ui.exportDialog.show()                
+            self.uiHandeler.exportDialog.set_massage('Some Error Happend')
+            self.uiHandeler.exportDialog.set_exception_msg(e)
+            self.uiHandeler.exportDialog.show()                
 
 

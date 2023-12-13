@@ -33,7 +33,7 @@ from uiUtils.IO.Mouse import mouseHandeler, MouseEvent
 
 
 class mainUI(QMainWindow):
-    def __init__(self, ui, login_ui, sample_info, edit_user, auto_rebuild_ui, single_rebuild_manual_ui, db_init_ui):
+    def __init__(self, ui, login_ui, sample_info, edit_user, db_init_ui):
         #self.__global_setting__ = GlobalUI(ui)
         super(mainUI,self).__init__()
         self.ui = Ui_MainWindow()
@@ -45,17 +45,16 @@ class mainUI(QMainWindow):
         self.login_ui = login_ui
         self.sample_info = sample_info
         self.edit_user = edit_user
-        self.auto_rebuild_ui = auto_rebuild_ui
         self.db_init_ui = db_init_ui
 
         self.__win_old_pos = (0,0)
         self.move_refresh_time = 0
 
         self.settingPage = settingPageUI(self.ui)
-        self.reportsPage = reportsPageUI(self.ui, auto_rebuild_ui)
+        self.reportsPage = reportsPageUI(self.ui)
         self.gradingRange = standardsPageUI(self.ui)
         self.mainPage = mainPageUI(self.ui, sample_info)
-        self.reportPage = reportPageUI(self.ui, single_rebuild_manual_ui)
+        self.reportPage = reportPageUI(self.ui)
         self.usersPage = usersPageUI(self.ui, login_ui, edit_user)
         self.comparePage = comparePageUI(self.ui)
         self.validationPage = validationPageUI(self.ui)

@@ -307,6 +307,16 @@ border: 2px solid #404040;
       </spacer>
      </item>
      <item>
+      <widget class="QLabel" name="massage_lbl">
+       <property name="styleSheet">
+        <string notr="true">color:rgb(41, 147, 108);</string>
+       </property>
+       <property name="text">
+        <string>Rebuilde Success</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QPushButton" name="rebuild_btn">
@@ -339,37 +349,6 @@ max-width: 200px;
          </property>
          <property name="shortcut">
           <string>Return</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="close_btn22">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-max-width: 200px;
-background-color: rgb(197, 63, 59);
-color:#ffffff;
-
-}
-
-QPushButton:disabled{
-background-color: rgb(220, 220, 220);
-color:#909090;
-max-width: 200px;
-}
-
-
-QPushButton:hover{
-
-background-color: rgb(152, 46, 44);
-color:#ffffff;
-}</string>
-         </property>
-         <property name="text">
-          <string>Close</string>
          </property>
         </widget>
        </item>

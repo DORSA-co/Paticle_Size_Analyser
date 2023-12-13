@@ -8,15 +8,16 @@ from uiUtils.Charts.lineChart import LineChart, Trend
 from PagesUI.dialogWindows.exportResultDialogUI import exportResultDialogUI
 from PagesUI.PageUI import commonUI
 from Constants import CONSTANTS
+from dialogWindows.manualRebuildDialogUI import manualRebuildDialogUI
 
 
 class reportPageUI(commonUI):
     
 
-    def __init__(self, ui,single_rebuild_manual_ui):
+    def __init__(self, ui):
         super().__init__()
         self.ui = ui
-        self.rebuild_win_ui = single_rebuild_manual_ui
+        self.rebuildDialog = manualRebuildDialogUI()
         self.exportDialog = exportResultDialogUI()
 
         self.back_btn = self.ui.sreportpage_back_btn
@@ -135,8 +136,6 @@ class reportPageUI(commonUI):
         GUIBackend.add_widget( self.ui.report_grading_chart_frame, self.grading_chart )
         GUIBackend.add_widget( self.ui.report_cum_chart_frame, self.cumulative_chart )
         GUIBackend.add_widget( self.ui.report_gaussian_chart_frame, self.gaussian_chart )
-        GUIBackend.button_connector(self.rebuild_win_ui.close_btn, self.close_rebuild_win)
-        GUIBackend.set_win_frameless(self.rebuild_win_ui)
 
     def create_connect(func, *args):
         return lambda: func(*args)
@@ -174,12 +173,7 @@ class reportPageUI(commonUI):
         """connects a function to rebuild button in top of report page
         """
         GUIBackend.button_connector(self.rebuild_btn, func)
-    
-    def dialog_rebuild_button_connector(self, func):
-        """connects a function to rebuild button that is in the 
-          rebuild dialog
-        """
-        GUIBackend.button_connector(self.rebuild_win_ui.rebuild_btn, func)
+
 
 
     def set_ranges_statistics_tabel(self, data: list[dict]):
@@ -291,33 +285,6 @@ class reportPageUI(commonUI):
         GUIBackend.set_label_text(self.current_page, str(curent))
         GUIBackend.set_label_text(self.end_page, str(end))
 
-    
-    def show_rebuild_win(self,):
-        GUIBackend.show_window(self.rebuild_win_ui, True)
 
-    def close_rebuild_win(self):
-        GUIBackend.close_window(self.rebuild_win_ui)
-
-    def set_rebuild_standards_items(self, standards:list[str]):
-        GUIBackend.set_combobox_items(self.rebuild_win_ui.standards_combobox, standards)
-
-    def set_rebuild_current_standard(self, stanndard_name:str):
-        GUIBackend.set_combobox_current_item(self.rebuild_win_ui.standards_combobox, stanndard_name)
-    
-    def set_rebuild_grading_parm_items(self, grading_parms:list[str]):
-        GUIBackend.set_combobox_items(self.rebuild_win_ui.grading_parm_combobox, grading_parms)
-
-    def set_rebuild_current_grading_parm(self, grading_parm:str):
-        for key, value in CONSTANTS.Sample.GRADING_PARMS.items():
-            if value == grading_parm:
-                GUIBackend.set_combobox_current_item(self.rebuild_win_ui.grading_parm_combobox, key)
-
-    def get_rebuild_standard(self,) -> str:
-        return GUIBackend.get_combobox_selected(self.rebuild_win_ui.standards_combobox)
-    
-    def get_rebuild_grading_parm(self,) -> str:
-        name =  GUIBackend.get_combobox_selected(self.rebuild_win_ui.grading_parm_combobox)
-        return CONSTANTS.Sample.GRADING_PARMS[name]
-    
     def open_export_file_dialog(self,):
         return GUIComponents.selectSaveFile(file_name='Excel',file_extention='.xlsx')

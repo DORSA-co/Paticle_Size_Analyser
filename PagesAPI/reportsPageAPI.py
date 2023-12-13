@@ -19,8 +19,8 @@ import time
 class reportsPageAPI:   
     FILTER_THREAD_COUNT = 5 
     MIN_SAMPLE_COUNT_THREADING = 50
-    def __init__(self, ui:reportsPageUI, database:mainDatabase):
-        self.ui = ui
+    def __init__(self, uiHandeler:reportsPageUI, database:mainDatabase):
+        self.uiHandeler = uiHandeler
         self.database = database
 
         self.see_report_event_func = None
@@ -38,14 +38,14 @@ class reportsPageAPI:
         }
 
 
-        self.ui.apply_filter_button_connector(self.apply_filters)
-        self.ui.external_see_report_button_connector(self.see_report)
-        self.ui.compare_button_connector(self.compare)
-        self.ui.set_delete_sample_event_func(self.delete_sample)
-        self.ui.delete_selections_button_connector(self.delete_selections)
-        self.ui.dialogbox_rebuild_btn_connector(self.rebuild_reports)
-        self.ui.rebuid_close_button_connector(self.close_rebild)
-        self.ui.deleteSamplesDialog.cancel_button_connector(self.cancel_removing_samples)
+        self.uiHandeler.apply_filter_button_connector(self.apply_filters)
+        self.uiHandeler.external_see_report_button_connector(self.see_report)
+        self.uiHandeler.compare_button_connector(self.compare)
+        self.uiHandeler.set_delete_sample_event_func(self.delete_sample)
+        self.uiHandeler.delete_selections_button_connector(self.delete_selections)
+        self.uiHandeler.autoRebuildDialog.button_connector('rebuild', self.rebuild_reports)
+        self.uiHandeler.autoRebuildDialog.button_connector('close', self.close_rebild)
+        self.uiHandeler.deleteSamplesDialog.cancel_button_connector(self.cancel_removing_samples)
         self.startup()
 
 
@@ -58,7 +58,7 @@ class reportsPageAPI:
     def startup(self,):
         """this function called from main_API when corespond page loaded
         """
-        self.ui.popupFrame.show()
+        self.uiHandeler.popupFrame.show()
         #--------------------------
         self.all_samples = self.database.reports_db.load_all()
         #show rebuild if user login
@@ -67,14 +67,14 @@ class reportsPageAPI:
         
         self.set_standards()
         self.refresh_table()
-        self.ui.startup()
+        self.uiHandeler.startup()
         #--------------------------
-        self.ui.popupFrame.close()
+        self.uiHandeler.popupFrame.close()
         
         
 
     def refresh_table(self,):
-        self.ui.set_samples_table(self.all_samples)
+        self.uiHandeler.set_samples_table(self.all_samples)
     
     def set_user_login(self, username):
         self.logined_username = username
@@ -85,16 +85,18 @@ class reportsPageAPI:
         self.rebuilder = autoRebuildReport(history.copy())
         
         if self.rebuilder.is_need(self.all_samples):
-                self.ui.set_rebuild_status(True)
-                self.ui.show_rebuild_win()
+                self.uiHandeler.set_rebuild_status(True)
+                self.uiHandeler.autoRebuildDialog.enable_buttons('rebuild', True)
+                self.uiHandeler.autoRebuildDialog.enable_buttons('close', False)
+                self.uiHandeler.autoRebuildDialog.show()
         else:
-            self.ui.set_rebuild_status(False)
+            self.uiHandeler.set_rebuild_status(False)
             self.database.standards_db.standardsHistoryTemp.remove_history()
     
 
     def rebuild_reports(self):
         self.in_rubuilding_flag = True
-        self.ui.enable_rebuild_win_buttons('rebuild', False)
+        self.uiHandeler.autoRebuildDialog.enable_buttons('rebuild', False)
 
         self.rebuild_worker = rebuildWorker(self.rebuilder, self.all_samples, self.database.reports_db)
         self.thread_rebuild = threading.Thread(target=self.rebuild_worker.rebuild)
@@ -102,7 +104,7 @@ class reportsPageAPI:
         #self.rebuild_worker.moveToThread(self.thread_rebuild)
         #self.thread_rebuild.started.connect(self.rebuild_worker.rebuild)
         self.rebuild_worker.finished.connect(self.rebuild_complete)
-        self.rebuild_worker.progressBar.connect(self.ui.set_rebuild_progress_bar)
+        self.rebuild_worker.progressBar.connect(self.uiHandeler.autoRebuildDialog.set_progress_bar)
         #self.rebuild_worker.finished.connect(self.thread_rebuild.quit)
         #self.thread_rebuild.finished.connect(self.thread_rebuild.deleteLater)
         #self.rebuild_worker.finished.connect(self.rebuild_worker.deleteLater)
@@ -115,28 +117,36 @@ class reportsPageAPI:
         if self.rebuild_worker.complete_success:
             self.database.standards_db.standardsHistoryTemp.remove_history()
             del(self.rebuilder)
-            self.ui.set_rebuild_status(False)
+            self.uiHandeler.set_rebuild_status(False)
+            self.uiHandeler.autoRebuildDialog.set_massage('Rebuld success', is_error=False)
+            self.uiHandeler.autoRebuildDialog.enable_buttons('close', True)
+            self.uiHandeler.autoRebuildDialog.enable_buttons('rebuild', False)
+        
+        else:
+            self.uiHandeler.autoRebuildDialog.set_massage('Some error happend', is_error=True)
+            self.uiHandeler.autoRebuildDialog.enable_buttons('close', True)
+            self.uiHandeler.autoRebuildDialog.enable_buttons('rebuild', True)
     
-        self.ui.enable_rebuild_win_buttons('rebuild', True)
+        
         self.refresh_table()
 
     
     def close_rebild(self,):
         if self.in_rubuilding_flag:
-            self.ui.hide_rebuild_win()
-            btn = self.ui.show_confirm_box('Cancel','Are You Sure to stop rebuilding', ['yes','cancel'])
+            self.uiHandeler.autoRebuildDialog.hide()
+            btn = self.uiHandeler.show_confirm_box('Cancel','Are You Sure to stop rebuilding', ['yes','cancel'])
             if btn == 'cancel':
-                self.ui.show_rebuild_win()
+                self.uiHandeler.autoRebuildDialog.show()
                 return 
             self.in_rubuilding_flag = False
             self.rebuild_worker.break_loop()
                 
-        self.ui.close_rebuild_win()
+        self.uiHandeler.autoRebuildDialog.close()
 
 
     def load_all_samples(self,):
         all_records = self.database.reports_db.load_all()
-        self.ui.set_samples_table(all_records)
+        self.uiHandeler.set_samples_table(all_records)
 
     
     def set_standards(self,):
@@ -146,15 +156,15 @@ class reportsPageAPI:
         if len(standards) > 0:
             standards_name = list(map( lambda x:x['name'], standards))
 
-        self.ui.set_standards_filter_table_data(standards_name)
-        self.ui.set_compare_standards_items(standards_name)
-        self.ui.set_ranges_filter_standards(standards_name, standards)
+        self.uiHandeler.set_standards_filter_table_data(standards_name)
+        self.uiHandeler.set_compare_standards_items(standards_name)
+        self.uiHandeler.set_ranges_filter_standards(standards_name, standards)
         
 
     
     def apply_filters(self,):
-        self.ui.set_select_all_samples(False)
-        self.ui.get_standards_filter()
+        self.uiHandeler.set_select_all_samples(False)
+        self.uiHandeler.get_standards_filter()
         all_samples = self.database.reports_db.load_all()
         filter_func = self.generate_filter()
         self.filterd_samples = []
@@ -182,7 +192,7 @@ class reportsPageAPI:
             self.__filter_loop__(all_samples, filter_func)
 
         
-        self.ui.set_samples_table(self.filterd_samples)
+        self.uiHandeler.set_samples_table(self.filterd_samples)
         self.filterd_samples.clear()
     
 
@@ -194,12 +204,12 @@ class reportsPageAPI:
     
     def generate_filter(self, ):
         
-        active_filters = self.ui.get_active_filters()
-        name = self.ui.get_name_filter()
-        username = self.ui.get_username_filter()
-        start_date, end_date = self.ui.get_date_filter()
-        standards_name = self.ui.get_standards_filter()
-        ranges_conditions, range_filter_standard_name = self.ui.get_ranges_filter()
+        active_filters = self.uiHandeler.get_active_filters()
+        name = self.uiHandeler.get_name_filter()
+        username = self.uiHandeler.get_username_filter()
+        start_date, end_date = self.uiHandeler.get_date_filter()
+        standards_name = self.uiHandeler.get_standards_filter()
+        ranges_conditions, range_filter_standard_name = self.uiHandeler.get_ranges_filter()
         
         if 'ranges' in active_filters:
             range_filter_standard = self.database.standards_db.load(range_filter_standard_name)
@@ -255,7 +265,7 @@ class reportsPageAPI:
         rfh = reportFileHandler(sample_record)
         report = rfh.load_report()
         if report is None:
-            self.ui.show_confirm_box('Error', "Report File dosen't exit. it may deleted", ['ok'])
+            self.uiHandeler.show_confirm_box('Error', "Report File dosen't exit. it may deleted", ['ok'])
         if self.see_report_event_func is not None:
             self.see_report_event_func( report, 'reports')
             
@@ -269,18 +279,18 @@ class reportsPageAPI:
 
 
     def compare(self,):
-        ids  = self.ui.get_selected_samples()
+        ids  = self.uiHandeler.get_selected_samples()
         if len(ids) == 0:
-            self.ui.show_confirm_box("ERROR!", massage="No Sample Selected", buttons=['ok'])
+            self.uiHandeler.show_confirm_box("ERROR!", massage="No Sample Selected", buttons=['ok'])
             return
         
         if len(ids) == 1:
-            self.ui.show_confirm_box("ERROR!", massage="only one sample selected. Please select at least two samples", buttons=['ok'])
+            self.uiHandeler.show_confirm_box("ERROR!", massage="only one sample selected. Please select at least two samples", buttons=['ok'])
             return
         #load selected sample for compare from database
         samples = self.database.reports_db.load_by_name_ids(ids)
         #get selected standard for compare
-        standard_name = self.ui.get_selected_standard_for_campare()
+        standard_name = self.uiHandeler.get_selected_standard_for_campare()
         standard = self.database.standards_db.load(standard_name)
 
         compare = Compare(samples, standard)
@@ -292,7 +302,7 @@ class reportsPageAPI:
         
     def delete_sample(self, sample):
 
-        state = self.ui.show_confirm_box(title='Delete Sample', 
+        state = self.uiHandeler.show_confirm_box(title='Delete Sample', 
                                  massage='Are you Sure delete sample?',
                                  buttons=['yes', 'cancel'])
         
@@ -311,36 +321,36 @@ class reportsPageAPI:
         """this functions calls when user want delete multi sample
            actuly calls when user clicked on delete button on top of table
         """
-        ids  = self.ui.get_selected_samples()
+        ids  = self.uiHandeler.get_selected_samples()
 
         if len(ids) == 0:
-            state = self.ui.show_confirm_box(title='Delete Sample', 
+            state = self.uiHandeler.show_confirm_box(title='Delete Sample', 
                                  massage=f'No Sample Selected',
                                  buttons=['ok'])
             return
         
-        state = self.ui.show_confirm_box(title='Delete Sample', 
+        state = self.uiHandeler.show_confirm_box(title='Delete Sample', 
                                  massage=f'Are you Sure delete {len(ids)} samples?',
                                  buttons=['yes', 'cancel'])
         
         if state == 'cancel':
             return
         
-        self.ui.deleteSamplesDialog.show()
+        self.uiHandeler.deleteSamplesDialog.show()
         samples = self.database.reports_db.load_by_name_ids(ids)
 
 
         self.remove_worker = removeSamplesWorkder(self.all_samples, samples, self.database.reports_db)
         self.thread_remove = threading.Thread(target=self.remove_worker.run)
 
-        self.remove_worker.finished.connect(self.ui.deleteSamplesDialog.close)
+        self.remove_worker.finished.connect(self.uiHandeler.deleteSamplesDialog.close)
         self.remove_worker.finished.connect(self.refresh_table)
-        self.remove_worker.progressBar.connect(self.ui.deleteSamplesDialog.set_delete_progress_value)
+        self.remove_worker.progressBar.connect(self.uiHandeler.deleteSamplesDialog.set_delete_progress_value)
         self.thread_remove.start()
 
     def cancel_removing_samples(self,):
         self.remove_worker.pause(True)
-        res = self.ui.deleteSamplesDialog.show_confirm_massage( title='Cancel Removing',
+        res = self.uiHandeler.deleteSamplesDialog.show_confirm_massage( title='Cancel Removing',
                                                                 text= 'Are you sure cancel the progress?',
                                                                 buttons=['yes','no']
         )

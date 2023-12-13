@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'rebuild.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -237,6 +237,12 @@ class Ui_rebuild_win(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_3)
 
+        self.massage_lbl = QLabel(rebuild_win)
+        self.massage_lbl.setObjectName(u"massage_lbl")
+        self.massage_lbl.setStyleSheet(u"color:rgb(41, 147, 108);")
+
+        self.verticalLayout_2.addWidget(self.massage_lbl)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.rebuild_btn = QPushButton(rebuild_win)
@@ -264,31 +270,6 @@ class Ui_rebuild_win(object):
 
         self.horizontalLayout.addWidget(self.rebuild_btn)
 
-        self.close_btn22 = QPushButton(rebuild_win)
-        self.close_btn22.setObjectName(u"close_btn22")
-        self.close_btn22.setEnabled(False)
-        self.close_btn22.setStyleSheet(u"QPushButton{\n"
-"max-width: 200px;\n"
-"background-color: rgb(197, 63, 59);\n"
-"color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"QPushButton:disabled{\n"
-"background-color: rgb(220, 220, 220);\n"
-"color:#909090;\n"
-"max-width: 200px;\n"
-"}\n"
-"\n"
-"\n"
-"QPushButton:hover{\n"
-"\n"
-"background-color: rgb(152, 46, 44);\n"
-"color:#ffffff;\n"
-"}")
-
-        self.horizontalLayout.addWidget(self.close_btn22)
-
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
@@ -309,10 +290,10 @@ class Ui_rebuild_win(object):
         rebuild_win.setWindowTitle(QCoreApplication.translate("rebuild_win", u"Edit User", None))
         self.close_btn.setText("")
         self.label.setText(QCoreApplication.translate("rebuild_win", u"You edit some standards, You should rebuild your database ", None))
+        self.massage_lbl.setText(QCoreApplication.translate("rebuild_win", u"Rebuilde Success", None))
         self.rebuild_btn.setText(QCoreApplication.translate("rebuild_win", u"Rebuild", None))
 #if QT_CONFIG(shortcut)
         self.rebuild_btn.setShortcut(QCoreApplication.translate("rebuild_win", u"Return", None))
 #endif // QT_CONFIG(shortcut)
-        self.close_btn22.setText(QCoreApplication.translate("rebuild_win", u"Close", None))
     # retranslateUi
 

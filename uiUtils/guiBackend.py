@@ -482,6 +482,14 @@ class GUIBackend:
         """
         chbox.stateChanged.connect(partial( func ))
 
+    def checkbox_connector_with_arg(chbox: QtWidgets.QCheckBox, func, args):
+
+        def event_func(x):
+            func(*args)
+        
+        chbox.stateChanged.connect(partial( event_func ))
+
+
     #--------------------------------- GLOBAL Label FUNCTIONs ---------------------------------
     @staticmethod
     def set_label_text(lbl: QtWidgets.QLabel, text:str):

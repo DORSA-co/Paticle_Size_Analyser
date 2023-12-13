@@ -19,6 +19,8 @@ import time
 class reportsPageAPI:   
     FILTER_THREAD_COUNT = 5 
     MIN_SAMPLE_COUNT_THREADING = 50
+    REPORTS_PER_PAGE = 15
+
     def __init__(self, uiHandeler:reportsPageUI, database:mainDatabase):
         self.uiHandeler = uiHandeler
         self.database = database
@@ -27,6 +29,8 @@ class reportsPageAPI:
         self.compare_event_func = None
         self.in_rubuilding_flag = False
         self.logined_username = ''
+        self.page_idx = 0
+        self.selected_samples = []
 
         self.operations_condition = {
             '>': lambda real_value, condition_value : real_value > condition_value,
@@ -39,10 +43,14 @@ class reportsPageAPI:
 
 
         self.uiHandeler.apply_filter_button_connector(self.apply_filters)
-        self.uiHandeler.external_see_report_button_connector(self.see_report)
         self.uiHandeler.compare_button_connector(self.compare)
-        self.uiHandeler.set_delete_sample_event_func(self.delete_sample)
+        self.uiHandeler.select_all_checkbox_connector(self.select_all_sample)
+        
         self.uiHandeler.delete_selections_button_connector(self.delete_selections)
+        self.uiHandeler.set_checkbox_sample_event_func(self.checked_sample)
+        self.uiHandeler.set_delete_sample_event_func(self.delete_sample)
+        self.uiHandeler.set_see_report_event_func(self.see_report)
+        self.uiHandeler.navigation_buttons_connector(self.navigation_pages)
         self.uiHandeler.autoRebuildDialog.button_connector('rebuild', self.rebuild_reports)
         self.uiHandeler.autoRebuildDialog.button_connector('close', self.close_rebild)
         self.uiHandeler.deleteSamplesDialog.cancel_button_connector(self.cancel_removing_samples)
@@ -67,6 +75,7 @@ class reportsPageAPI:
         t = time.time()
         if self.logined_username != '':
             self.check_rebuild()
+
         print('check rebuild', time.time() - t)
         t = time.time()
         self.set_standards()
@@ -82,10 +91,46 @@ class reportsPageAPI:
         #--------------------------
         self.uiHandeler.popupFrame.close()
         
+    def navigation_pages(self, status):
+        self.uiHandeler.popupFrame.show()
+        max_page = int(len(self.all_samples) // self.REPORTS_PER_PAGE)
         
+        if status == 'next':
+            self.page_idx += 1 
+            self.page_idx = min(self.page_idx, 
+                                max_page)
+        
+        elif status == 'prev':
+            self.page_idx -=1
+            self.page_idx = max(0, self.page_idx)
+        
+        
+        self.uiHandeler.set_navigation_enablity(self.page_idx, max_page )
+        self.refresh_table()
+
+        self.uiHandeler.popupFrame.close()
+
+
+    def select_all_sample(self, state):
+        if state:
+            self.selected_samples = self.all_samples.copy()
+        
+        else:
+            self.selected_samples = []
+
+        self.uiHandeler.select_all_samples(state)
+
+
 
     def refresh_table(self,):
-        self.uiHandeler.set_samples_table(self.all_samples)
+        page_samples = self.all_samples[self.page_idx*self.REPORTS_PER_PAGE:
+                                        ( self.page_idx + 1 ) * self.REPORTS_PER_PAGE
+                                        ]
+        
+        self.uiHandeler.set_samples_table(page_samples, self.selected_samples)
+
+    
+
     
     def set_user_login(self, username):
         self.logined_username = username
@@ -154,11 +199,6 @@ class reportsPageAPI:
                 
         self.uiHandeler.autoRebuildDialog.close()
 
-
-    def load_all_samples(self,):
-        all_records = self.database.reports_db.load_all()
-        self.uiHandeler.set_samples_table(all_records)
-
     
     def set_standards(self,):
         standards = self.database.standards_db.load_all()
@@ -203,7 +243,7 @@ class reportsPageAPI:
             self.__filter_loop__(all_samples, filter_func)
 
         
-        self.uiHandeler.set_samples_table(self.filterd_samples)
+        self.uiHandeler.set_samples_table(self.filterd_samples, self.selected_samples)
         self.filterd_samples.clear()
     
 
@@ -290,21 +330,19 @@ class reportsPageAPI:
 
 
     def compare(self,):
-        ids  = self.uiHandeler.get_selected_samples()
-        if len(ids) == 0:
+        
+        if len(self.selected_samples) == 0:
             self.uiHandeler.show_confirm_box("ERROR!", massage="No Sample Selected", buttons=['ok'])
             return
         
-        if len(ids) == 1:
+        if len(self.selected_samples) == 1:
             self.uiHandeler.show_confirm_box("ERROR!", massage="only one sample selected. Please select at least two samples", buttons=['ok'])
             return
-        #load selected sample for compare from database
-        samples = self.database.reports_db.load_by_name_ids(ids)
         #get selected standard for compare
         standard_name = self.uiHandeler.get_selected_standard_for_campare()
         standard = self.database.standards_db.load(standard_name)
 
-        compare = Compare(samples, standard)
+        compare = Compare(self.selected_samples, standard)
 
         
         self.compare_event_func(compare)
@@ -324,34 +362,43 @@ class reportsPageAPI:
         rfh.remove()
         self.database.reports_db.remove(sample)
         self.all_samples.remove(sample)
-
+        self.selected_samples.remove(sample)
         self.refresh_table()
+
+    def checked_sample(self, sample):
+        if sample in self.selected_samples:
+            self.selected_samples.remove(sample)
+        
+        else:
+            self.selected_samples.append(sample)
 
 
     def delete_selections(self,):
         """this functions calls when user want delete multi sample
            actuly calls when user clicked on delete button on top of table
         """
-        ids  = self.uiHandeler.get_selected_samples()
 
-        if len(ids) == 0:
+
+        if len(self.selected_samples) == 0:
             state = self.uiHandeler.show_confirm_box(title='Delete Sample', 
                                  massage=f'No Sample Selected',
                                  buttons=['ok'])
             return
         
         state = self.uiHandeler.show_confirm_box(title='Delete Sample', 
-                                 massage=f'Are you Sure delete {len(ids)} samples?',
+                                 massage=f'Are you Sure delete {len(self.selected_samples)} samples?',
                                  buttons=['yes', 'cancel'])
         
         if state == 'cancel':
             return
         
         self.uiHandeler.deleteSamplesDialog.show()
-        samples = self.database.reports_db.load_by_name_ids(ids)
 
 
-        self.remove_worker = removeSamplesWorkder(self.all_samples, samples, self.database.reports_db)
+        self.remove_worker = removeSamplesWorkder(self.all_samples, 
+                                                  self.selected_samples, 
+                                                  self.database.reports_db)
+        
         self.thread_remove = threading.Thread(target=self.remove_worker.run)
 
         self.remove_worker.finished.connect(self.uiHandeler.deleteSamplesDialog.close)

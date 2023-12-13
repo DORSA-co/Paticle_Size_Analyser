@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.0
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -1458,7 +1458,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 355, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1872,9 +1872,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_38.addWidget(self.line_21)
 
-        self.horizontalLayout_61 = QHBoxLayout()
-        self.horizontalLayout_61.setObjectName(u"horizontalLayout_61")
-        self.horizontalLayout_61.setContentsMargins(-1, 0, -1, -1)
+        self.verticalLayout_65 = QVBoxLayout()
+        self.verticalLayout_65.setObjectName(u"verticalLayout_65")
+        self.verticalLayout_65.setContentsMargins(-1, 0, -1, -1)
         self.reportpage_samples_table = QTableWidget(self.report_page)
         if (self.reportpage_samples_table.columnCount() < 5):
             self.reportpage_samples_table.setColumnCount(5)
@@ -1889,10 +1889,34 @@ class Ui_MainWindow(object):
         self.reportpage_samples_table.setColumnCount(5)
         self.reportpage_samples_table.verticalHeader().setDefaultSectionSize(45)
 
-        self.horizontalLayout_61.addWidget(self.reportpage_samples_table)
+        self.verticalLayout_65.addWidget(self.reportpage_samples_table)
+
+        self.horizontalLayout_61 = QHBoxLayout()
+        self.horizontalLayout_61.setObjectName(u"horizontalLayout_61")
+        self.horizontalLayout_61.setContentsMargins(0, 20, -1, -1)
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_61.addItem(self.horizontalSpacer_10)
+
+        self.reportpage_previouse_btn = QPushButton(self.report_page)
+        self.reportpage_previouse_btn.setObjectName(u"reportpage_previouse_btn")
+
+        self.horizontalLayout_61.addWidget(self.reportpage_previouse_btn)
+
+        self.reportpage_next_btn = QPushButton(self.report_page)
+        self.reportpage_next_btn.setObjectName(u"reportpage_next_btn")
+
+        self.horizontalLayout_61.addWidget(self.reportpage_next_btn)
+
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_61.addItem(self.horizontalSpacer_12)
 
 
-        self.verticalLayout_38.addLayout(self.horizontalLayout_61)
+        self.verticalLayout_65.addLayout(self.horizontalLayout_61)
+
+
+        self.verticalLayout_38.addLayout(self.verticalLayout_65)
 
 
         self.horizontalLayout_27.addLayout(self.verticalLayout_38)
@@ -4258,7 +4282,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 55, 39))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1256, 691))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4868,7 +4892,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 712, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1236, 731))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -5085,7 +5109,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 3337))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1257, 3337))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6357,7 +6381,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1257, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6855,11 +6879,11 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(1)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -6952,6 +6976,8 @@ class Ui_MainWindow(object):
         self.reportpage_rebuild_btn.setText(QCoreApplication.translate("MainWindow", u"Re-Build", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare:", None))
         self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
+        self.reportpage_previouse_btn.setText(QCoreApplication.translate("MainWindow", u"Previouse", None))
+        self.reportpage_next_btn.setText(QCoreApplication.translate("MainWindow", u"Next", None))
         self.settingpage_grading_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
 
         __sortingEnabled1 = self.settingpage_grading_standards_table.isSortingEnabled()

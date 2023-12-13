@@ -48,6 +48,11 @@ class reportsPageUI(commonUI):
 
         self.ranges_filter = []
 
+        self.navigation_btns = {
+            'next': self.ui.reportpage_next_btn,
+            'prev': self.ui.reportpage_previouse_btn,
+        }
+
         self.filters_groupbox = {
             'name': self.ui.reportpage_filtername_groupbox,
             'username': self.ui.reportpage_filterusername_groupbox,
@@ -71,6 +76,7 @@ class reportsPageUI(commonUI):
         self.samples_table_headers= ['-', 'name', 'standard', 'date', 'time', 'username', 'delete', 'see' ]
         self.external_see_report_event_func = None
         self.external_delete_samples_event_func = None
+        self.external_checkbox_samples_event_func = None
 
 
         GUIBackend.set_table_dim(self.samples_table, row=None, col = len(self.samples_table_headers))
@@ -85,7 +91,6 @@ class reportsPageUI(commonUI):
         self.__groupbox_filter_event_connector__()
         GUIBackend.set_cell_width_content_adjust(self.standards_filter_table, None)
         GUIBackend.set_cell_width_content_adjust(self.ranges_filter_table, None)
-        GUIBackend.checkbox_connector(self.select_all_checkbox, self.select_all_samples)
         GUIBackend.combobox_changeg_connector(self.ranges_filter_standards_combobox, self.__ranges_filter_standard_changed__)
         GUIBackend.button_connector(self.rebuild_btn, self.autoRebuildDialog.show)
 
@@ -100,7 +105,20 @@ class reportsPageUI(commonUI):
     def startup(self,):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, False)
 
+    def navigation_buttons_connector(self, func):
+        for name , btn in self.navigation_btns.items():
+            GUIBackend.button_connector_argument_pass(btn, func, (name,))
 
+    def set_navigation_enablity(self, idx, max_page):
+        if idx == 0:
+            GUIBackend.set_disable_enable(self.navigation_btns['prev'], False )
+        else:
+            GUIBackend.set_disable_enable(self.navigation_btns['prev'], True )
+        
+        if idx == max_page:
+            GUIBackend.set_disable_enable(self.navigation_btns['next'], False )
+        else:
+            GUIBackend.set_disable_enable(self.navigation_btns['next'], True )
     
     def __internal_date_change_event__(self,):
         """set input date ranges to prevent start_date be bigger than end date
@@ -111,8 +129,10 @@ class reportsPageUI(commonUI):
         GUIBackend.set_date_input_range(self.start_date_filter, max_date=to_date)
         GUIBackend.set_date_input_range(self.end_date_filter, min_date=from_date)
 
+    def select_all_checkbox_connector(self, func):
+        GUIBackend.checkbox_connector(self.select_all_checkbox, func)
 
-    def select_all_samples(self,st):
+    def select_all_samples(self,status):
         """select and unselect all samples , corspond to status
         of 'select all' checkbox
 
@@ -120,7 +140,6 @@ class reportsPageUI(commonUI):
             st (_type_): _description_
         """
         #get status of all checkbox
-        status = GUIBackend.get_checkbox_value(self.select_all_checkbox)
         #set status to all checkboxes of samples
         for sample_checkbox in self.samples_table_checkbox.values():
             GUIBackend.set_checkbox_value(sample_checkbox, status)
@@ -137,8 +156,6 @@ class reportsPageUI(commonUI):
         """
         GUIBackend.button_connector(self.apply_filter_btn, func)
 
-    def external_see_report_button_connector(self, func):
-        self.external_see_report_event_func = func
 
     def compare_button_connector(self, func):
         GUIBackend.button_connector(self.compare_btn, func)
@@ -364,9 +381,21 @@ class reportsPageUI(commonUI):
         """
         self.external_delete_samples_event_func = func
 
+    def set_see_report_event_func(self, func):
+        self.external_see_report_event_func = func
+
+    def set_checkbox_sample_event_func(self, func):
+        """set a python function as event of checkbox samples in table
+
+        Args:
+            func (_type_): python function
+        """
+        self.external_checkbox_samples_event_func = func
+
+    
     
 
-    def set_samples_table(self, samples: list[dict]):
+    def set_samples_table(self, samples: list[dict], selected_samples):
         
         samples = samples.copy()
         GUIBackend.set_table_dim(self.samples_table, row=len(samples), col=None)
@@ -384,6 +413,14 @@ class reportsPageUI(commonUI):
             j = self.samples_table_headers.index('-')
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox, True) 
             self.samples_table_checkbox[sample['name_id']] = checkbox
+            GUIBackend.checkbox_connector_with_arg(checkbox, 
+                                                   self.external_checkbox_samples_event_func, 
+                                                   args=(sample,))
+            
+            if sample in selected_samples:
+                GUIBackend.set_signal_connection(checkbox, False)
+                GUIBackend.set_checkbox_value(checkbox, True )
+                GUIBackend.set_signal_connection(checkbox, True)
 
 
             report_btn = GUIComponents.reportButton()
@@ -392,6 +429,7 @@ class reportsPageUI(commonUI):
                                                        self.external_see_report_event_func,
                                                        args=(sample,)
                                                        )
+            
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), report_btn, layout=True)
 
             #define delte button
@@ -403,19 +441,6 @@ class reportsPageUI(commonUI):
                                         args=(sample,)
                                         )
             
-            
-                
-    def get_selected_samples(self,) -> list[str]:
-        """returns id of those samples that are checked for compare
-
-        Returns:
-            list[str]: list of samples id
-        """
-        res = []
-        for sample_id, checkbox in self.samples_table_checkbox.items():
-            if GUIBackend.get_checkbox_value(checkbox):
-                res.append(sample_id)
-        return res
     
     def get_selected_standard_for_campare(self,):
         return GUIBackend.get_combobox_selected(self.compare_standards_combobox)

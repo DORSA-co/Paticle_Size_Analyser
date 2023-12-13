@@ -48,9 +48,13 @@ class cameraWorker(QObject):
                     if img is not None:
                         self.success_grab_signal.emit()
                         self.time = time.time()
+                
+                else:
+                    self.time = time.time()
 
-                if (time.time() - self.time()) * 1000 > self.timeout:
+                if (time.time() - self.time) * 1000 > self.timeout:
                     self.grabb_image_error.emit()
+                    self.time = time.time()
                 
                 
 

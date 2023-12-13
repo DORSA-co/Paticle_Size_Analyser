@@ -154,10 +154,10 @@ class main_API(QObject):
                 camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
                 self.cameras[cam_application] = camera
             except:
-                self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_connection', False)
+                self.mainPageAPI.set_system_status('camera_connection', False)
         else:
             print('Camera serial number is not avaiable')
-            self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_connection', False)
+            self.mainPageAPI.set_system_status('camera_connection', False)
 
 
     def run_camera_grabbing(self,camera_application): 
@@ -222,7 +222,7 @@ class main_API(QObject):
         cameras_sn = self.device_checker_worker.get_available_serials()
         self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
         if len(self.cameras) == 0:
-            self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_connection', False)
+            self.mainPageAPI.set_system_status('camera_connection', False)
             self.camera_disconnect_event()
 
         for device_info in self.camera_device_info:
@@ -234,15 +234,15 @@ class main_API(QObject):
 
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:
-                self.mainPageAPI.default_camera_status_event(status=False)
-                self.camera_disconnect_event()
+                self.mainPageAPI.set_system_status('camera_connection', status=False)
+                #self.camera_disconnect_event()
                 
             else:
-                self.mainPageAPI.default_camera_status_event(status=True)
+                self.mainPageAPI.set_system_status('camera_connection',status=True)
                 
                 
-    def camera_disconnect_event(self,):
-        self.mainPageAPI.stop(ask=False)
+    # def camera_disconnect_event(self,):
+    #     self.mainPageAPI.stop(ask=False)
 
 
     def page_change_event(self, current_page_name, new_page_name):
@@ -275,8 +275,7 @@ class main_API(QObject):
             self.validationPageAPI.calibrationTab.camera_image_event()
     
     def error_grab_image_event(self,):
-        self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', False)
-        self.mainPageAPI.uiHandeler.set_wa
+        self.mainPageAPI.set_system_status('camera_grabbing', False)
 
 
     def login_user_event(self,):

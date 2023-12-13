@@ -45,6 +45,14 @@ class mainPageAPI:
         self.is_running = False
         self.during_processing = False
         self.processing_time = 0
+
+        self.warnings_and_status = {
+            'camera_connection': True,
+            'camera_grabbing': True,
+            'illumination': True,
+            'tempreture': True
+
+        }
         
     
         self.warning_checker_timer = GUIComponents.timerBuilder(1000, self.check_warnings)
@@ -112,7 +120,7 @@ class mainPageAPI:
                         break
                     
 
-        self.uiHandeler.set_warning_buttons_status('tempreture', warning_flag_temp)
+        self.set_system_status('tempreture', warning_flag_temp)
         
 
 
@@ -260,7 +268,7 @@ class mainPageAPI:
         standards = self.database.standards_db.load_all()
 
         ######## check camera status
-        if not self.default_camera_status:
+        if not self.warnings_and_status['camera_connection']:
             self.uiHandeler.write_error_msg("chosen camera in settings is not connected")
             return
         
@@ -293,9 +301,13 @@ class mainPageAPI:
 
     ############################## event default camera status ###############################
 
-    def default_camera_status_event(self, status: bool):
-        self.default_camera_status = status
-        self.uiHandeler.set_warning_buttons_status('camera_connection', status)
+    def set_system_status(self, name,  status: bool):
+        self.warnings_and_status[name] = status
+        self.uiHandeler.set_warning_buttons_status(name, status)
+        if name in ['camera_connection', 'camera_grabbing'] and status == False:
+            if self.is_running:
+                self.stop(False)
+
 
 
     def fast_start(self,):
@@ -303,7 +315,7 @@ class mainPageAPI:
 
 
         ######## check camera status
-        if not self.default_camera_status:
+        if not self.warnings_and_status['camera_connection']:
             self.uiHandeler.write_error_msg("chosen camera in settings is not connected")
             return
         

@@ -231,7 +231,10 @@ class cameraSettingTabAPI:
     
     def mouse_event(self, e:MouseEvent):
         if e.is_move() or (e.is_click() and e.is_left_btn()):
-            x,y = e.get_postion()
+            x, y = e.get_relative_postion()
+            h , w = self.img.shape[:2]
+            x = int(x*w)
+            y = int(y*h)
             color = self.img[y,x]
             self.ui.set_color_rgb(color)
 

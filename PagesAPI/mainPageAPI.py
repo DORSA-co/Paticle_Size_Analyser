@@ -76,6 +76,8 @@ class mainPageAPI:
         self.startup()
     
     def startup(self,):
+        for name, status in self.warnings_and_status.items():
+            self.uiHandeler.set_warning_buttons_status(name, status)
         if not self.is_running:
             self.uiHandeler.set_live_img(CONSTANTS.IMAGES.NO_IMAGE)
         self.uiHandeler.startup()
@@ -302,8 +304,10 @@ class mainPageAPI:
     ############################## event default camera status ###############################
 
     def set_system_status(self, name,  status: bool):
-        self.warnings_and_status[name] = status
-        self.uiHandeler.set_warning_buttons_status(name, status)
+        if self.warnings_and_status[name] != status:
+            self.warnings_and_status[name] = status
+            self.uiHandeler.set_warning_buttons_status(name, status)
+        
         if name in ['camera_connection', 'camera_grabbing'] and status == False:
             if self.is_running:
                 self.stop(False)

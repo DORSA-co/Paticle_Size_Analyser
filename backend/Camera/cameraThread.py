@@ -43,6 +43,10 @@ class cameraWorker(QObject):
                     self.camera = self.new_camera
                     self.new_camera = None
 
+                if (time.time() - self.time) * 1000 > self.timeout:
+                    self.grabb_image_error.emit()
+                    self.time = time.time()
+
                 if self.camera.Status.is_grabbing():
                     img = self.camera.getPictures(img_when_error=None)
                     if img is not None:
@@ -52,9 +56,7 @@ class cameraWorker(QObject):
                 else:
                     self.time = time.time()
 
-                if (time.time() - self.time) * 1000 > self.timeout:
-                    self.grabb_image_error.emit()
-                    self.time = time.time()
+                
                 
                 
 

@@ -10,6 +10,7 @@ from PagesUI.PageUI import commonUI
 from Constants import CONSTANTS
 from dialogWindows.manualRebuildDialogUI import manualRebuildDialogUI
 
+import numpy as np
 
 class reportPageUI(commonUI):
     
@@ -38,6 +39,12 @@ class reportPageUI(commonUI):
             'prev': self.ui.sreportpage_prev_particle_btn,
             'next': self.ui.sreportpage_next_particle_btn,
             
+        }
+
+        self.draw_buttons= {
+            'circle': self.ui.sreportpage_darw_circle_btn,
+            'cnt':self.ui.sreportpage_darw_cnt_btn,
+            'none':self.ui.sreportpage_no_darw_btn,
         }
 
 
@@ -137,6 +144,10 @@ class reportPageUI(commonUI):
         GUIBackend.add_widget( self.ui.report_cum_chart_frame, self.cumulative_chart )
         GUIBackend.add_widget( self.ui.report_gaussian_chart_frame, self.gaussian_chart )
 
+
+    def startup(self,):
+        self.reset_particle_section()
+
     def create_connect(func, *args):
         return lambda: func(*args)
 
@@ -148,7 +159,10 @@ class reportPageUI(commonUI):
                                                       func,
                                                       args=(key,)
                                                 )
-            
+    
+    def draw_buttons_connector(self, func):
+        for name, btn in self.draw_buttons.items():
+            GUIBackend.button_connector_argument_pass(btn, func, (name,))
     
     def export_button_connector(self, func):
         GUIBackend.button_connector(self.export_btn, func)
@@ -165,6 +179,18 @@ class reportPageUI(commonUI):
         for name, value in infoes.items():
             if name in self.particle_information:
                 GUIBackend.set_label_text( self.particle_information[name] , str(value) )
+
+    def reset_particle_section(self,):
+        """reset image and info of particle section
+        """
+        for name, label in self.particle_information.items():
+            GUIBackend.set_label_text(label, '-')
+
+        default_img = np.zeros((300,300), dtype=np.uint8)
+        default_img[:,:] = 120
+        self.set_particle_image(default_img)
+        
+        
 
     def back_button_connector(self, func):
         GUIBackend.button_connector(self.back_btn, func)
@@ -223,8 +249,8 @@ class reportPageUI(commonUI):
 
 
     def set_particle_image(self, img):
-        #img = cv2.resize(img, None, fx=1, fy =1)
-        GUIBackend.set_label_image(self.particle_image_lbl, img)
+        if img is not None:
+            GUIBackend.set_label_image(self.particle_image_lbl, img)
 
     
     def set_particles_image(self, imgs, ncol, nrow):

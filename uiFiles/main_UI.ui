@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>7</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2292,7 +2292,7 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>355</width>
+                   <width>356</width>
                    <height>1758</height>
                   </rect>
                  </property>
@@ -8841,9 +8841,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>1257</width>
-                <height>3337</height>
+                <y>-2188</y>
+                <width>1258</width>
+                <height>3406</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -10550,6 +10550,116 @@ QLabel{
                       <property name="bottomMargin">
                        <number>15</number>
                       </property>
+                      <item>
+                       <widget class="QFrame" name="horizontalFrame_2">
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton{
+
+min-width:50px;
+max-width:50px;
+min-height:50px;
+max-height:50px;
+background-color:#00000000;
+}</string>
+                        </property>
+                        <layout class="QHBoxLayout" name="horizontalLayout_71">
+                         <property name="leftMargin">
+                          <number>1</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>1</number>
+                         </property>
+                         <item>
+                          <widget class="QPushButton" name="sreportpage_darw_circle_btn">
+                           <property name="styleSheet">
+                            <string notr="true">QPushButton:hover{
+	border: 2px solid rgb(235, 182, 10);
+}</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="Assets/Assets.qrc">
+                             <normaloff>:/assets/icons/icons8-circle-50.png</normaloff>:/assets/icons/icons8-circle-50.png</iconset>
+                           </property>
+                           <property name="iconSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="sreportpage_darw_cnt_btn">
+                           <property name="styleSheet">
+                            <string notr="true">QPushButton:hover{
+	border: 2px solid rgb(75, 231, 209);
+
+}</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="Assets/Assets.qrc">
+                             <normaloff>:/assets/icons/icons8-pen-50.png</normaloff>:/assets/icons/icons8-pen-50.png</iconset>
+                           </property>
+                           <property name="iconSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="sreportpage_no_darw_btn">
+                           <property name="styleSheet">
+                            <string notr="true">QPushButton:hover{
+	border: 2px solid rgb(255, 126, 126);
+
+}</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="Assets/Assets.qrc">
+                             <normaloff>:/assets/icons/icons8-erase-50.png</normaloff>:/assets/icons/icons8-erase-50.png</iconset>
+                           </property>
+                           <property name="iconSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <spacer name="horizontalSpacer_116">
+                           <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="Line" name="line_33">
+                        <property name="orientation">
+                         <enum>Qt::Horizontal</enum>
+                        </property>
+                       </widget>
+                      </item>
                       <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_65">
                         <property name="topMargin">

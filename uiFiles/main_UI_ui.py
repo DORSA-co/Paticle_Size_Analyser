@@ -1458,7 +1458,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 355, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -5109,7 +5109,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1257, 3337))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2188, 1258, 3406))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5928,6 +5928,71 @@ class Ui_MainWindow(object):
         self.verticalLayout_13 = QVBoxLayout(self.report_single_pellet_frame)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.verticalLayout_13.setContentsMargins(15, 15, 15, 15)
+        self.horizontalFrame_21 = QFrame(self.report_single_pellet_frame)
+        self.horizontalFrame_21.setObjectName(u"horizontalFrame_21")
+        self.horizontalFrame_21.setStyleSheet(u"QPushButton{\n"
+"\n"
+"min-width:50px;\n"
+"max-width:50px;\n"
+"min-height:50px;\n"
+"max-height:50px;\n"
+"background-color:#00000000;\n"
+"}")
+        self.horizontalLayout_71 = QHBoxLayout(self.horizontalFrame_21)
+        self.horizontalLayout_71.setObjectName(u"horizontalLayout_71")
+        self.horizontalLayout_71.setContentsMargins(1, 1, -1, -1)
+        self.sreportpage_darw_circle_btn = QPushButton(self.horizontalFrame_21)
+        self.sreportpage_darw_circle_btn.setObjectName(u"sreportpage_darw_circle_btn")
+        self.sreportpage_darw_circle_btn.setStyleSheet(u"QPushButton:hover{\n"
+"	border: 2px solid rgb(235, 182, 10);\n"
+"}")
+        icon31 = QIcon()
+        icon31.addFile(u":/assets/icons/icons8-circle-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_darw_circle_btn.setIcon(icon31)
+        self.sreportpage_darw_circle_btn.setIconSize(QSize(40, 40))
+
+        self.horizontalLayout_71.addWidget(self.sreportpage_darw_circle_btn)
+
+        self.sreportpage_darw_cnt_btn = QPushButton(self.horizontalFrame_21)
+        self.sreportpage_darw_cnt_btn.setObjectName(u"sreportpage_darw_cnt_btn")
+        self.sreportpage_darw_cnt_btn.setStyleSheet(u"QPushButton:hover{\n"
+"	border: 2px solid rgb(75, 231, 209);\n"
+"\n"
+"}")
+        icon32 = QIcon()
+        icon32.addFile(u":/assets/icons/icons8-pen-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_darw_cnt_btn.setIcon(icon32)
+        self.sreportpage_darw_cnt_btn.setIconSize(QSize(40, 40))
+
+        self.horizontalLayout_71.addWidget(self.sreportpage_darw_cnt_btn)
+
+        self.sreportpage_no_darw_btn = QPushButton(self.horizontalFrame_21)
+        self.sreportpage_no_darw_btn.setObjectName(u"sreportpage_no_darw_btn")
+        self.sreportpage_no_darw_btn.setStyleSheet(u"QPushButton:hover{\n"
+"	border: 2px solid rgb(255, 126, 126);\n"
+"\n"
+"}")
+        icon33 = QIcon()
+        icon33.addFile(u":/assets/icons/icons8-erase-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_no_darw_btn.setIcon(icon33)
+        self.sreportpage_no_darw_btn.setIconSize(QSize(40, 40))
+
+        self.horizontalLayout_71.addWidget(self.sreportpage_no_darw_btn)
+
+        self.horizontalSpacer_116 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_71.addItem(self.horizontalSpacer_116)
+
+
+        self.verticalLayout_13.addWidget(self.horizontalFrame_21)
+
+        self.line_33 = QFrame(self.report_single_pellet_frame)
+        self.line_33.setObjectName(u"line_33")
+        self.line_33.setFrameShape(QFrame.HLine)
+        self.line_33.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout_13.addWidget(self.line_33)
+
         self.horizontalLayout_65 = QHBoxLayout()
         self.horizontalLayout_65.setObjectName(u"horizontalLayout_65")
         self.horizontalLayout_65.setContentsMargins(-1, 16, -1, -1)
@@ -6241,9 +6306,9 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon31 = QIcon()
-        icon31.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_prev_particle_btn.setIcon(icon31)
+        icon34 = QIcon()
+        icon34.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_prev_particle_btn.setIcon(icon34)
         self.sreportpage_prev_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_prev_particle_btn)
@@ -6251,9 +6316,9 @@ class Ui_MainWindow(object):
         self.sreportpage_next_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon32 = QIcon()
-        icon32.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.sreportpage_next_particle_btn.setIcon(icon32)
+        icon35 = QIcon()
+        icon35.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.sreportpage_next_particle_btn.setIcon(icon35)
         self.sreportpage_next_particle_btn.setIconSize(QSize(35, 35))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_next_particle_btn)
@@ -6879,7 +6944,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(7)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
@@ -7295,6 +7360,9 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
+        self.sreportpage_darw_circle_btn.setText("")
+        self.sreportpage_darw_cnt_btn.setText("")
+        self.sreportpage_no_darw_btn.setText("")
         self.sreportpage_particle_image_lbl.setText("")
         self.sreportpage_particle_area_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.sreportpage_particle_avg_r_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))

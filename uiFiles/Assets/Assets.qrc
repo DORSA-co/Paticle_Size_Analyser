@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-circle-50.png</file>
+    <file>icons/icons8-pen-50.png</file>
+    <file>icons/icons8-erase-50.png</file>
+    <file>icons/icons8-erase-100.png</file>
     <file>images/sorsa psa image.png</file>
     <file>icons/icons8-retry-50.png</file>
     <file>icons/icons8-result-50.png</file>

@@ -129,6 +129,15 @@ class Particle:
             center = int(center[0]), int(center[1])
             radius = int(radius)
         return center, radius
+    
+    def get_contour(self, transorm_to_single_img=False):
+        cnt = self.cnt.copy()
+        if transorm_to_single_img:
+            (x1,y1), _ = self.get_roi()
+            cnt[:,0,0] = cnt[:,0,0] - x1
+            cnt[:,0,1] = cnt[:,0,1] - y1
+        
+        return cnt
 
 
     def get_id(self):

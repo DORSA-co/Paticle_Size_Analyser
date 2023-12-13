@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 
 from PagesUI.reportPageUI import reportPageUI
 from backend.Processing.Report import Report
+from backend.Processing.Particel import Particle
 from Database.reportsDB import reportFileHandler
 from Database.mainDatabase  import mainDatabase
 from backend.Rebuild.rebuidReport import RebuildReport
@@ -21,20 +22,24 @@ class reportPageAPI:
         self.database = database
 
         self.external_back_event_func = None
+        self.draw_mode = 'none'
+        self.current_particle_idx = -1
         
         self.startup()
         self.uiHandeler.back_button_connector(self.back)
         self.uiHandeler.rebuild_button_connector(self.show_rebuild)
         self.uiHandeler.rebuildDialog.button_connector('rebuild', self.run_rebuild)
         self.uiHandeler.navigator_button_connector(self.particles_navigation)
-        self.uiHandeler.particle_click_connector(self.show_particle_information)
+        self.uiHandeler.particle_click_connector(self.particle_select_event)
         self.uiHandeler.export_button_connector(self.export)
+        self.uiHandeler.draw_buttons_connector(self.change_draw_mode)
         
 
     def startup(self,):
         self.particle_idx = 0
         self.img_id = -1
         self.particles_page = 0
+        self.uiHandeler.startup()
 
     def set_back_event_func(self,func):
         "connect an external function to back button click event"
@@ -182,13 +187,22 @@ class reportPageAPI:
         self.uiHandeler.set_particles_image(imgs,ncol=self.PARTICLE_PAGE_COL, nrow=int(self.PARTICLE_PER_PAGE/self.PARTICLE_PAGE_COL))
 
     
-    def show_particle_information(self, idx:int):
+    def particle_select_event(self, idx:int):
         """this function called when user click on a particle
 
         Args:
             idx (_type_): a number that shows which particle in table clicked
         """
         idx = self.particles_page * self.PARTICLE_PER_PAGE + idx
+        self.current_particle_idx = idx
+        self.show_particle_information(self.current_particle_idx)
+
+
+    def show_particle_information(self, idx:int):
+        if idx<0:
+            self.uiHandeler.reset_particle_section()
+            return
+        
         particle = self.report.Buffer.total_buffer.get_particel(idx)
         info = particle.get_info()
         self.uiHandeler.set_particle_information(info)
@@ -198,16 +212,32 @@ class reportPageAPI:
         if self.img_id != particle.img_id:
             p_id = particle.get_id()
             particle_img = self.report_file_handler.load_image(p_id)
-            particle_img = cv2.cvtColor(particle_img, cv2.COLOR_GRAY2BGR)
+            
         
-        center, radius = particle.get_enclosing_circle(transorm_to_single_img=True)
-
-        particle_img = cv2.circle(particle_img, center,radius+2, color=(0,0,255), thickness=2)
+        particle_img = self.drawing_on_particle(particle, particle_img)
         self.uiHandeler.set_particle_image(particle_img)
         #------------------------------------------------
         
+    def change_draw_mode(self,mode):
+        self.draw_mode = mode
+        self.show_particle_information(self.current_particle_idx)
 
+    def drawing_on_particle(self, particle:Particle, particle_img):
+        if particle_img is None:
+            return None
         
+        particle_img = cv2.cvtColor(particle_img, cv2.COLOR_GRAY2BGR)
+
+        if self.draw_mode == 'circle':
+            center, radius = particle.get_enclosing_circle(transorm_to_single_img=True)
+            particle_img = cv2.circle(particle_img, center,radius+2, color=(10,182,235), thickness=2)
+        
+        elif self.draw_mode == 'cnt':
+            cnt = particle.get_contour(transorm_to_single_img=True)
+            particle_img = cv2.drawContours(particle_img, [cnt] , 0, color=(209,231,75), thickness=2 )
+            
+        return particle_img
+    
 
     def export(self,):
         try:

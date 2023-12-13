@@ -10,6 +10,8 @@ from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
 from uiUtils import GUIComponents
 from backend.Serial.armSerial import armSerial
+from uiUtils.IO.Mouse import MouseEvent
+
 
 
 class settingPageAPI:
@@ -200,6 +202,7 @@ class cameraSettingTabAPI:
         self.ui.restor_button_connector(self.restor)
         self.ui.change_camera_connector(self.change_camera)
         self.ui.serial_retry_button_connector(self.retry_serial_setup)
+        self.ui.connect_mouse_image_event(self.mouse_event)
         self.set_allowed_values_camera_setting()
         self.connect_to_micro(None)
 
@@ -225,6 +228,14 @@ class cameraSettingTabAPI:
             camera.Operations.stop_grabbing()
         #self.device_checker_timer.stop()
         return True
+    
+    def mouse_event(self, e:MouseEvent):
+        if e.is_move() or (e.is_click() and e.is_left_btn()):
+            x,y = e.get_postion()
+            color = self.img[y,x]
+            self.ui.set_color_rgb(color)
+
+            
     
     def setup_camera_funcs(self,):
 
@@ -383,9 +394,9 @@ class cameraSettingTabAPI:
     
     def show_live_image(self,):
         camera_application = self.ui.get_selected_camera_application()
-        img = self.cameras[camera_application].image
+        self.img = self.cameras[camera_application].image
         if self.is_playing:
-            self.ui.show_live_image(img)
+            self.ui.show_live_image(self.img)
 
 
     def save_setting(self,):

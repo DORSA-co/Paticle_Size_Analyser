@@ -31,8 +31,8 @@ class mainPageAPI:
     max_fps = 20
     DEBUG_PROCESS_THREAD = False
 
-    def __init__(self, ui:mainPageUI, cameras:dict[str,dorsaPylon.Camera], database:mainDatabase, ):
-        self.ui = ui
+    def __init__(self, uiHandeler:mainPageUI, cameras:dict[str,dorsaPylon.Camera], database:mainDatabase, ):
+        self.uiHandeler = uiHandeler
         self.database = database
         self.cameras = cameras
         self.default_camera_status = False
@@ -55,12 +55,12 @@ class mainPageAPI:
         self.running_timer = timerCounter()
 
 
-        self.ui.player_buttons_connect('fast_start', self.fast_start)
-        self.ui.player_buttons_connect('start', self.start)
-        self.ui.player_buttons_connect('stop', self.stop)
-        self.ui.run_button_connect(self.run_start)
-        self.ui.report_button_connector(self.report_button_event)
-        self.ui.set_sample_info_grading_parms_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
+        self.uiHandeler.player_buttons_connect('fast_start', self.fast_start)
+        self.uiHandeler.player_buttons_connect('start', self.start)
+        self.uiHandeler.player_buttons_connect('stop', self.stop)
+        self.uiHandeler.sampleInfoDialog.button_connector('run', self.run_start)
+        self.uiHandeler.report_button_connector(self.report_button_event)
+        self.uiHandeler.sampleInfoDialog.set_grading_parm_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
 
         self.test_img_idx = 0
         self.report:Report = None
@@ -69,8 +69,8 @@ class mainPageAPI:
     
     def startup(self,):
         if not self.is_running:
-            self.ui.set_live_img(CONSTANTS.IMAGES.NO_IMAGE)
-        self.ui.startup()
+            self.uiHandeler.set_live_img(CONSTANTS.IMAGES.NO_IMAGE)
+        self.uiHandeler.startup()
 
     def set_logined_user(self, username:str):
         """this function calls from main_API when a login or logout event happend and gets logined username
@@ -104,15 +104,15 @@ class mainPageAPI:
                 temp = cam.Status.get_tempreture()
 
                 if temp is None:
-                    self.ui.set_information({'tempreture':'not avaiable'})
+                    self.uiHandeler.set_information({'tempreture':'not avaiable'})
                 else:
-                    self.ui.set_information({'tempreture':temp})
+                    self.uiHandeler.set_information({'tempreture':temp})
                     if temp > CONSTANTS.MAX_CAMERA_TEMP:
                         warning_flag_temp = False
                         break
                     
 
-        self.ui.set_warning_buttons_status('tempreture', warning_flag_temp)
+        self.uiHandeler.set_warning_buttons_status('tempreture', warning_flag_temp)
         
 
 
@@ -124,7 +124,7 @@ class mainPageAPI:
                 
                 self.during_processing = True
                 self.calc_fps()
-                #self.ui.set_information({"fps": self.calc_fps()})
+                #self.uiHandeler.set_information({"fps": self.calc_fps()})
                 #________________________________ONLY FOR TEST________________________________________________
                 img = None
                 if self.cameras['standard'].Infos.is_Simulation():
@@ -184,20 +184,20 @@ class mainPageAPI:
             img = self.worker.img
 
             infos = self.report.get_global_statistics()
-            self.ui.set_information(infos)
+            self.uiHandeler.set_information(infos)
 
             grading_percents = self.report.Grading.get_hist()
-            self.ui.set_grading_chart_values(grading_percents)
+            self.uiHandeler.set_grading_chart_values(grading_percents)
 
             radiuses, cum_precents = self.report.cumGrading.get_data()
-            self.ui.set_cumulative_chart_value(radiuses, cum_precents)
+            self.uiHandeler.set_cumulative_chart_value(radiuses, cum_precents)
 
-            toolboxes_state = self.ui.get_toolboxes()
+            toolboxes_state = self.uiHandeler.get_toolboxes()
             if toolboxes_state['live']:
                 if toolboxes_state['drawing']:
                     img = particlesDetector.draw_particles(img, particles)
 
-                self.ui.set_live_img(img)
+                self.uiHandeler.set_live_img(img)
 
             delay_time = time.time() - self.refresh_time
             real_fps = 1 / (delay_time + 1e-3)
@@ -251,7 +251,7 @@ class mainPageAPI:
     def handle_standard_error(self, standards):
         #error if no standards definded
         if len(standards) == 0:
-            self.ui.write_error_msg("No standard defineded, Go to 'Standards >> New Standard' and define new one")
+            self.uiHandeler.write_error_msg("No standard defineded, Go to 'Standards >> New Standard' and define new one")
             return False
         return True
     
@@ -261,7 +261,7 @@ class mainPageAPI:
 
         ######## check camera status
         if not self.default_camera_status:
-            self.ui.write_error_msg("chosen camera in settings is not connected")
+            self.uiHandeler.write_error_msg("chosen camera in settings is not connected")
             return
         
         #error if no standards definded
@@ -274,28 +274,28 @@ class mainPageAPI:
         #extract name of standards from standards list
         standards_name = list(map( lambda x:x['name'], standards))
         #set standards into combobox
-        self.ui.set_sample_info_standards_items(standards_name)
-        self.ui.set_sample_info_selected_standard( sample_setting['default_standard'])
+        self.uiHandeler.sampleInfoDialog.set_standards_items(standards_name)
+        self.uiHandeler.sampleInfoDialog.set_current_standard( sample_setting['default_standard'])
         #---------------------------------------------------------------------------
-        self.ui.set_sample_info_grading_parm(sample_setting['default_grading_parm'])
+        self.uiHandeler.sampleInfoDialog.set_current_grading_parm(sample_setting['default_grading_parm'])
         #---------------------------------------------------------------------------
         
         if sample_setting['autoname_enable']:
             name = self.build_autoname_sample(sample_setting)
-            self.ui.set_sample_info_sample_name(name)
-            self.ui.disable_sample_info_sample_name(False)
+            self.uiHandeler.sampleInfoDialog.set_sample_name(name)
+            self.uiHandeler.sampleInfoDialog.disable_sample_name(False)
         else:
-            self.ui.disable_sample_info_sample_name(True)
+            self.uiHandeler.sampleInfoDialog.disable_sample_name(True)
 
         #---------------------------------------------------------------------------
         #show sample information box
-        self.ui.show_sample_info_window()
+        self.uiHandeler.sampleInfoDialog.show()
 
     ############################## event default camera status ###############################
 
     def default_camera_status_event(self, status: bool):
         self.default_camera_status = status
-        self.ui.set_warning_buttons_status('camera_connection', status)
+        self.uiHandeler.set_warning_buttons_status('camera_connection', status)
 
 
     def fast_start(self,):
@@ -304,7 +304,7 @@ class mainPageAPI:
 
         ######## check camera status
         if not self.default_camera_status:
-            self.ui.write_error_msg("chosen camera in settings is not connected")
+            self.uiHandeler.write_error_msg("chosen camera in settings is not connected")
             return
         
         if not self.handle_standard_error(standards):
@@ -316,29 +316,29 @@ class mainPageAPI:
         #extract name of standards from standards list
         standards_name = list(map( lambda x:x['name'], standards))
         #set standards into combobox
-        self.ui.set_sample_info_standards_items(standards_name)
+        self.uiHandeler.sampleInfoDialog.set_standards_items(standards_name)
 
         default_standard = sample_setting.get('default_standard')
         if default_standard == None or default_standard == '-':
-            self.ui.write_error_msg("No default standard selected. go to 'Settings >> sample Setting' and choose a default standard")
+            self.uiHandeler.write_error_msg("No default standard selected. go to 'Settings >> sample Setting' and choose a default standard")
             return
         
         if default_standard not in standards_name:
-            self.ui.write_error_msg("Couldn't find default standard. go to 'Settings >> sample Setting' and choose a default standard")
+            self.uiHandeler.write_error_msg("Couldn't find default standard. go to 'Settings >> sample Setting' and choose a default standard")
             return
 
-        self.ui.set_sample_info_selected_standard( sample_setting['default_standard'])
-        self.ui.set_sample_info_grading_parm( sample_setting['default_grading_parm'])
+        self.uiHandeler.sampleInfoDialog.set_current_standard( sample_setting['default_standard'])
+        self.uiHandeler.sampleInfoDialog.set_current_grading_parm( sample_setting['default_grading_parm'])
         #---------------------------------------------------------------------------
 
         if not sample_setting['autoname_enable']:
-            self.ui.write_error_msg("You Should enable 'Auto name' to use fast start. go to Settings >> sample Setting and setup 'Auto Sample Name'")
+            self.uiHandeler.write_error_msg("You Should enable 'Auto name' to use fast start. go to Settings >> sample Setting and setup 'Auto Sample Name'")
             return
         
             
         name = self.build_autoname_sample(sample_setting)
-        self.ui.set_sample_info_sample_name(name)
-        self.ui.disable_sample_info_sample_name(False)
+        self.uiHandeler.sampleInfoDialog.set_sample_name(name)
+        self.uiHandeler.sampleInfoDialog.disable_sample_name(False)
 
         self.run_start()
 
@@ -348,7 +348,7 @@ class mainPageAPI:
             return
 
         if ask:
-            flag = self.ui.show_dialog_box( 'Stop',
+            flag = self.uiHandeler.show_dialog_box( 'Stop',
                                             'Are You shure you want to stop the measuring?',
                                             buttons=['yes', 'cancel']
                                             )
@@ -369,10 +369,10 @@ class mainPageAPI:
         self.database.reports_db.save(db_data)
         #-----------------------------------------------------------------------------------------
         
-        self.ui.set_live_img(CONSTANTS.IMAGES.STOP_SAMPLING)
+        self.uiHandeler.set_live_img(CONSTANTS.IMAGES.STOP_SAMPLING)
 
-        self.ui.enable_report(True)
-        self.ui.set_player_buttons_status('stop')
+        self.uiHandeler.enable_report(True)
+        self.uiHandeler.set_player_buttons_status('stop')
         #print('stop FINISH')
 
     
@@ -384,21 +384,21 @@ class mainPageAPI:
         """this function called when run button in sample_info dialog box clicked
         """
         #get inputs
-        info = self.ui.get_sample_info()
+        info = self.uiHandeler.sampleInfoDialog.get_info()
 
         if info['name'] == "":
-            self.ui.write_sample_info_error_msg("Name field cann't be empty")
+            self.uiHandeler.sampleInfoDialog.write_error_massage("Name field cann't be empty")
             return
         #clear error from sample info window box
-        self.ui.write_sample_info_error_msg(None)
+        self.uiHandeler.sampleInfoDialog.write_error_massage(None)
 
         self.prepeard_measuring_system(info)
         
         #disable start and fast_start buttons and enable stop button
-        self.ui.set_player_buttons_status('start')
+        self.uiHandeler.set_player_buttons_status('start')
         #close sample info window
-        self.ui.close_sample_info_window()
-        self.ui.enable_report(False)
+        self.uiHandeler.sampleInfoDialog.close()
+        self.uiHandeler.enable_report(False)
         
         self.is_running = True
         
@@ -427,7 +427,7 @@ class mainPageAPI:
         #load selected standard from databasr
         standard = self.database.standards_db.load(info['standard'])
         #set ranges to chart
-        self.ui.set_grading_chart_bars_ranges(standard['ranges'])
+        self.uiHandeler.set_grading_chart_bars_ranges(standard['ranges'])
         #-----------------------------------------------------------------------------------------
         main_path = self.database.setting_db.storage_db.load()['path']
         settings =  self.database.setting_db.sample_db.load()
@@ -444,7 +444,7 @@ class mainPageAPI:
         self.report_saver = reportFileHandler(args)
         #-----------------------------------------------------------------------------------------
         min_v, max_v = self.report.get_full_range()
-        self.ui.set_cumulative_chart_range(min_v, max_v)
+        self.uiHandeler.set_cumulative_chart_range(min_v, max_v)
         
         self.t_frame = time.time()
         
@@ -452,7 +452,7 @@ class mainPageAPI:
     
     def endup(self):
         if self.is_running:
-            self.ui.show_dialog_box("Warning", 
+            self.uiHandeler.show_dialog_box("Warning", 
                                     "You can't leave this page when system is Running, Please stop it first",
                                     buttons=['ok'])
             return False
@@ -465,7 +465,7 @@ class mainPageAPI:
             info = {'timer' : self.running_timer.get_fstr('%M:%S'),
                     'fps': self.fps,
                     }
-            self.ui.set_information(info)
+            self.uiHandeler.set_information(info)
 
 
 

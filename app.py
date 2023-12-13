@@ -37,13 +37,11 @@ if __name__ == '__main__':
     #load .ui files
     window = loader.load(main_ui_file, None)
     login_ui = loader.load(login_ui_file, None)
-    sample_info = loader.load(sample_info_ui_file, None)
     edit_user = loader.load(edit_user_ui_file, None)
     db_init_ui = loader.load(db_init_ui_file, None)
 
     main_ui = mainUI(window, 
                      login_ui,
-                     sample_info,
                      edit_user,
                      db_init_ui)
 

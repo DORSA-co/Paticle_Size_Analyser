@@ -6,14 +6,14 @@ from uiUtils import GUIComponents
 from uiUtils.Charts.barChart import BarChart
 from uiUtils.Charts.chartUtils import Font
 from uiUtils.Charts.lineChart import LineChart, Trend
-
+from dialogWindows.sampleInfoDialogUI import sampleInfoDialogUI
 
 
 
 class mainPageUI:
-    def __init__(self, ui, sample_info):
+    def __init__(self, ui):
         self.ui = ui
-        self.sample_info = sample_info
+        self.sampleInfoDialog = sampleInfoDialogUI()
 
         self.current_status = 'stop'
         self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
@@ -40,7 +40,7 @@ class mainPageUI:
                 'ok-icon':':/assets/icons/icons8-camera-green-50.png',
                 'warning-icon':':/assets/icons/icons8-camera-red-50.png',
                 'status': True,
-                'massage': 'Error'
+                'massage': 'Grab image Failed, please check trigger connection if synchronizer is hardware'
                 },
 
             'illumination': {
@@ -117,7 +117,6 @@ class mainPageUI:
         
         GUIBackend.add_widget( self.ui.mainpage_grading_chart_frame, self.grading_chart )
         GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.cumulative_chart )
-        GUIBackend.button_connector(self.sample_info.cancel_btn, self.cancel_start )
         for name in self.warning_btns.keys():
             GUIBackend.button_connector(self.warning_btns[name]['btn'], self.internal_warning_button_event(name))
         GUIBackend.button_connector(self.close_warning_msg_btn, self.close_warning_msg)
@@ -129,7 +128,7 @@ class mainPageUI:
     def startup(self):
         self.write_error_msg(None)
         #self.close_warning_msg()
-        self.write_sample_info_error_msg(None)
+        self.sampleInfoDialog.write_error_massage(None)
         self.enable_report(False)
         self.set_player_buttons_status('stop')
         self.set_information(None)
@@ -167,10 +166,6 @@ class mainPageUI:
     def close_warning_msg(self,):
         self.error_slide_animation.backward()
 
-
-    def cancel_start(self):
-        GUIBackend.close_window(self.sample_info)
-
     
     def set_player_buttons_status(self,state:str):
         """manage enable and disable, player buttons in diffent state.
@@ -204,10 +199,6 @@ class mainPageUI:
             func (_type_): event function for click
         """
         GUIBackend.button_connector( self.player_btns[ name ], func)
-
-    
-    def run_button_connect(self, func):
-        GUIBackend.button_connector(self.sample_info.run_btn, func)
 
 
 
@@ -304,8 +295,8 @@ class mainPageUI:
         headers = [''] + headers
         GUIBackend.set_table_cheaders(self.statistics_table, headers)
 
-    def set_warning_massage(self, text, status):
-        if not status:
+    def set_warning_massage(self, text, is_error):
+        if not is_error:
             text = "Warning: " + text
         self.warning_msg_lbl.setText(text)
         GUIBackend.set_wgt_visible(self.warning_msg_lbl, True)
@@ -315,42 +306,8 @@ class mainPageUI:
     def set_live_img(self, img):
         pixmap = GUIBackend.set_label_image(self.live_img_lbl, img)
         #GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
-        
-
     
-    def set_sample_info_standards_items(self, items: list[str]) -> None: 
-        GUIBackend.set_combobox_items(self.sample_info.standards_name_combobox, items)
-
-    def set_sample_info_selected_standard(self, item: str) -> None: 
-        GUIBackend.set_combobox_current_item(self.sample_info.standards_name_combobox, item)
-
-    def set_sample_info_grading_parms_items(self, items:list[str]) -> None:
-        GUIBackend.set_combobox_items(self.sample_info.grading_parm_combobox, items)
     
-    def set_sample_info_grading_parm(self, parm:str) -> None:
-        for key, value in CONSTANTS.Sample.GRADING_PARMS.items():
-            if value == parm:
-                GUIBackend.set_combobox_current_item(self.sample_info.grading_parm_combobox, key)
-                break
-
-    def get_sample_info_grading_parm(self) -> None:
-        return GUIBackend.get_combobox_selected(self.sample_info.grading_parm_combobox)
-    
-    def set_sample_info_sample_name(self, name:str):
-        GUIBackend.set_input(self.sample_info.sample_name_input, name)
-
-    def disable_sample_info_sample_name(self, flag):
-        GUIBackend.set_disable_enable(self.sample_info.sample_name_input, flag)
-    
-    def get_sample_info(self, ) -> dict:
-        info = {}
-        info['name'] = GUIBackend.get_input_text(self.sample_info.sample_name_input)
-        info['standard'] = GUIBackend.get_combobox_selected(self.sample_info.standards_name_combobox)
-        info['grading_parm'] = CONSTANTS.Sample.GRADING_PARMS[ 
-            GUIBackend.get_combobox_selected(self.sample_info.grading_parm_combobox)
-                    ]
-        info['description'] = GUIBackend.get_textarea_text(self.sample_info.description_inpt)
-        return info
     
 
     def show_dialog_box(self, title, txt , buttons):
@@ -373,32 +330,7 @@ class mainPageUI:
             GUIBackend.set_label_text(self.ui.mainpage_error_lbl, txt)
             GUIComponents.single_timer_runner(10000, lambda : self.write_error_msg(None))
         
-    
-    def write_sample_info_error_msg(self, txt:str):
-        """Write Errors message in change password
 
-        Args:
-            txt (str): error message
-        """
-        if txt is None:
-            GUIBackend.set_wgt_visible(self.sample_info.error_lbl, False)
-        else:
-            GUIBackend.set_wgt_visible(self.sample_info.error_lbl, True)
-            GUIBackend.set_label_text(self.sample_info.error_lbl, txt)
-            
-
-
-    def show_sample_info_window(self,):
-        """show sample info dialog window
-        """
-        GUIBackend.set_input_text(self.sample_info.description_inpt,'')
-        GUIBackend.show_window(self.sample_info)
-        
-
-    def close_sample_info_window(self,):
-        """close sample info
-        """
-        GUIBackend.close_window(self.sample_info)
 
 
     def enable_report(self,flag):

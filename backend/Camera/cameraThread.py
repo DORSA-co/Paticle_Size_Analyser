@@ -7,16 +7,18 @@ import time
 
 class cameraWorker(QObject):
     success_grab_signal = Signal()
+    grabb_image_error = Signal()
     finished = Signal()
 
     
 
 
-    def __init__(self, camera):
+    def __init__(self, camera, timeout = 2000):
         super().__init__()
         self.camera:Camera = camera
         self.grabbing = True
         self.new_camera = None
+        self.timeout = timeout
 
     def change_camera(self, new_camera):
         self.new_camera = new_camera
@@ -26,6 +28,7 @@ class cameraWorker(QObject):
     
     def grabber(self,):
         # t = 0
+        self.time = time.time()
         while self.grabbing:
 
             # if t%500 == 0:
@@ -44,6 +47,10 @@ class cameraWorker(QObject):
                     img = self.camera.getPictures(img_when_error=None)
                     if img is not None:
                         self.success_grab_signal.emit()
+                        self.time = time.time()
+
+                if (time.time() - self.time()) * 1000 > self.timeout:
+                    self.grabb_image_error.emit()
                 
                 
 

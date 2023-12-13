@@ -78,7 +78,7 @@ class main_API(QObject):
 
         #Pages_api------------------------------------
         #self.mainPageAPI = None
-        self.mainPageAPI = mainPageAPI(ui= self.ui.mainPage, cameras = self.cameras, database = self.db)
+        self.mainPageAPI = mainPageAPI(uiHandeler= self.ui.mainPage, cameras = self.cameras, database = self.db)
         self.gradingRangesPageAPI = standardsPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
         self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db , serial_micro=self.serial_micro)
         self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
@@ -149,12 +149,15 @@ class main_API(QObject):
         cameras_serial_number = self.collector.get_all_serials()
         
         if serial_number in cameras_serial_number:
-            
-            camera = self.collector.get_camera_by_serial(serial_number)
-            camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
-            self.cameras[cam_application] = camera
+            try:
+                camera = self.collector.get_camera_by_serial(serial_number)
+                camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
+                self.cameras[cam_application] = camera
+            except:
+                self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_connection', False)
         else:
             print('Camera serial number is not avaiable')
+            self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_connection', False)
 
 
     def run_camera_grabbing(self,camera_application): 
@@ -164,6 +167,7 @@ class main_API(QObject):
             self.camera_workers[camera_application] = cameraWorker( self.cameras[camera_application] )
             self.camera_threads[camera_application] = threading.Thread(target=self.camera_workers[camera_application].grabber)
             self.camera_workers[camera_application].success_grab_signal.connect(self.grabbed_image_event)
+            self.camera_workers[camera_application].grabb_image_error.connect(self.error_grab_image_event)
 
             self.camera_threads[camera_application].start()
 
@@ -218,7 +222,7 @@ class main_API(QObject):
         cameras_sn = self.device_checker_worker.get_available_serials()
         self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
         if len(self.cameras) == 0:
-            self.mainPageAPI.ui.set_warning_buttons_status('camera_connection', False)
+            self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_connection', False)
             self.camera_disconnect_event()
 
         for device_info in self.camera_device_info:
@@ -258,6 +262,7 @@ class main_API(QObject):
 
 
     def grabbed_image_event(self,):
+        self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', True)
         current_page,_ = self.ui.get_current_page()
         
         if current_page == 'main':
@@ -268,7 +273,10 @@ class main_API(QObject):
         
         elif current_page == 'calibration':
             self.validationPageAPI.calibrationTab.camera_image_event()
-        
+    
+    def error_grab_image_event(self,):
+        self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', False)
+        self.mainPageAPI.uiHandeler.set_wa
 
 
     def login_user_event(self,):

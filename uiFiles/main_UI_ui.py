@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1482, 908)
+        MainWindow.resize(1482, 926)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -1458,7 +1458,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 322, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -3563,6 +3563,7 @@ class Ui_MainWindow(object):
 "	width:auto;\n"
 "	max-width: auto;\n"
 "	min-width: 0px;\n"
+"	margin:0px;\n"
 "\n"
 "}\n"
 "\n"
@@ -3575,17 +3576,37 @@ class Ui_MainWindow(object):
         self.horizontalLayout_16.setContentsMargins(-1, 5, -1, 5)
         self.label_13 = QLabel(self.horizontalFrame_4)
         self.label_13.setObjectName(u"label_13")
-        self.label_13.setMinimumSize(QSize(47, 0))
-        self.label_13.setMaximumSize(QSize(47, 16777215))
+        self.label_13.setMinimumSize(QSize(37, 0))
+        self.label_13.setMaximumSize(QSize(37, 16777215))
 
         self.horizontalLayout_16.addWidget(self.label_13)
 
-        self.label_15 = QLabel(self.horizontalFrame_4)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setMinimumSize(QSize(47, 0))
-        self.label_15.setMaximumSize(QSize(47, 16777215))
+        self.settingpage_camera_color_value_lbl = QLabel(self.horizontalFrame_4)
+        self.settingpage_camera_color_value_lbl.setObjectName(u"settingpage_camera_color_value_lbl")
+        self.settingpage_camera_color_value_lbl.setMinimumSize(QSize(37, 0))
+        self.settingpage_camera_color_value_lbl.setMaximumSize(QSize(37, 16777215))
 
-        self.horizontalLayout_16.addWidget(self.label_15)
+        self.horizontalLayout_16.addWidget(self.settingpage_camera_color_value_lbl)
+
+        self.settingpage_camera_color_img_lbl = QLabel(self.horizontalFrame_4)
+        self.settingpage_camera_color_img_lbl.setObjectName(u"settingpage_camera_color_img_lbl")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.settingpage_camera_color_img_lbl.sizePolicy().hasHeightForWidth())
+        self.settingpage_camera_color_img_lbl.setSizePolicy(sizePolicy6)
+        self.settingpage_camera_color_img_lbl.setMinimumSize(QSize(39, 32))
+        self.settingpage_camera_color_img_lbl.setMaximumSize(QSize(32, 32))
+        self.settingpage_camera_color_img_lbl.setStyleSheet(u"QLabel{\n"
+"min-width: 30px;\n"
+"max-width: 30px;\n"
+"min-height: 30px;\n"
+"max-height: 30px;\n"
+"border: 1px solid black;\n"
+"margin: 0px;\n"
+"}")
+
+        self.horizontalLayout_16.addWidget(self.settingpage_camera_color_img_lbl)
 
         self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -3780,11 +3801,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
         self.calibrationpage_left_side = QFrame(self.cilbration)
         self.calibrationpage_left_side.setObjectName(u"calibrationpage_left_side")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
-        self.calibrationpage_left_side.setSizePolicy(sizePolicy6)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
+        self.calibrationpage_left_side.setSizePolicy(sizePolicy7)
         self.calibrationpage_left_side.setMaximumSize(QSize(550, 16777215))
         self.calibrationpage_left_side.setStyleSheet(u"#calibrationpage_left_side{\n"
 "	padding: 10px;\n"
@@ -4847,7 +4868,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1236, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 712, 731))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -5064,7 +5085,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2584, 1258, 3337))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 892, 3337))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5574,11 +5595,11 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem23)
         self.sreportpage_statictics_table.setObjectName(u"sreportpage_statictics_table")
         self.sreportpage_statictics_table.setEnabled(True)
-        sizePolicy7 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_statictics_table.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_statictics_table.setSizePolicy(sizePolicy8)
         self.sreportpage_statictics_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_statictics_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_statictics_table.setBaseSize(QSize(0, 0))
@@ -6097,8 +6118,8 @@ class Ui_MainWindow(object):
         self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem24)
         self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
         self.sreportpage_particels_table.setEnabled(True)
-        sizePolicy7.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_particels_table.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_particels_table.setSizePolicy(sizePolicy8)
         self.sreportpage_particels_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_particels_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_particels_table.setBaseSize(QSize(0, 0))
@@ -6336,7 +6357,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1257, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 181, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6385,8 +6406,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem26)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
-        sizePolicy7.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_table.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_table.setSizePolicy(sizePolicy8)
         self.comparepage_compare_table.setMaximumSize(QSize(16777215, 16777215))
         self.comparepage_compare_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_table.setBaseSize(QSize(0, 0))
@@ -6512,11 +6533,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_58.setContentsMargins(0, 0, -1, -1)
         self.label_112 = QLabel(self.compareScrollAreaWidget)
         self.label_112.setObjectName(u"label_112")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
-        self.label_112.setSizePolicy(sizePolicy8)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
+        self.label_112.setSizePolicy(sizePolicy9)
         self.label_112.setFont(font5)
         self.label_112.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
@@ -6536,8 +6557,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem27)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
-        sizePolicy7.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy8)
         self.comparepage_compare_mean_table.setMaximumSize(QSize(16777215, 100))
         self.comparepage_compare_mean_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_mean_table.setBaseSize(QSize(0, 0))
@@ -6836,7 +6857,7 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(2)
@@ -7078,8 +7099,9 @@ class Ui_MainWindow(object):
         self.settingpage_camera_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_camera_restore_btn.setText(QCoreApplication.translate("MainWindow", u"Restore Default", None))
         self.settingpage_camera_live_lbl.setText("")
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"RGB:", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Color:", None))
+        self.settingpage_camera_color_value_lbl.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.settingpage_camera_color_img_lbl.setText(QCoreApplication.translate("MainWindow", u"red", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_camera_tab), QCoreApplication.translate("MainWindow", u"Camera", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"border", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Threshould", None))

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1482</width>
-    <height>908</height>
+    <height>926</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2292,7 +2292,7 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>356</width>
+                   <width>322</width>
                    <height>1758</height>
                   </rect>
                  </property>
@@ -4044,7 +4044,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>4</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -6250,6 +6250,7 @@ border: 2px solid #404040;</string>
 	width:auto;
 	max-width: auto;
 	min-width: 0px;
+	margin:0px;
 
 }
 
@@ -6269,37 +6270,72 @@ background-color:rgb(240,240,240)
                        <widget class="QLabel" name="label_13">
                         <property name="minimumSize">
                          <size>
-                          <width>47</width>
+                          <width>37</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>47</width>
+                          <width>37</width>
                           <height>16777215</height>
                          </size>
                         </property>
                         <property name="text">
-                         <string>RGB:</string>
+                         <string>Color:</string>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="label_15">
+                       <widget class="QLabel" name="settingpage_camera_color_value_lbl">
                         <property name="minimumSize">
                          <size>
-                          <width>47</width>
+                          <width>37</width>
                           <height>0</height>
                          </size>
                         </property>
                         <property name="maximumSize">
                          <size>
-                          <width>47</width>
+                          <width>37</width>
                           <height>16777215</height>
                          </size>
                         </property>
                         <property name="text">
                          <string>0</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="settingpage_camera_color_img_lbl">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>39</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>32</width>
+                          <height>32</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QLabel{
+min-width: 30px;
+max-width: 30px;
+min-height: 30px;
+max-height: 30px;
+border: 1px solid black;
+margin: 0px;
+}</string>
+                        </property>
+                        <property name="text">
+                         <string>red</string>
                         </property>
                        </widget>
                       </item>
@@ -8433,7 +8469,7 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1236</width>
+                    <width>712</width>
                     <height>731</height>
                    </rect>
                   </property>
@@ -8755,8 +8791,8 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-2584</y>
-                <width>1258</width>
+                <y>0</y>
+                <width>892</width>
                 <height>3337</height>
                </rect>
               </property>
@@ -11281,7 +11317,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1257</width>
+                <width>181</width>
                 <height>1182</height>
                </rect>
               </property>

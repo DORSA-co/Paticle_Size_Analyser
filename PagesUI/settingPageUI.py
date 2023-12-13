@@ -1,7 +1,10 @@
+import numpy as np
+
 from uiUtils import GUIComponents
 import Constants.CONSTANTS as CONSTANTS
 from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
+from uiUtils.IO.Mouse import mouseHandeler
 
 class settingPageUI:
     def __init__(self, ui) -> None:
@@ -288,6 +291,7 @@ class cameraSettingTabUI(commonSettingUI):
     def __init__(self, ui) -> None:
         super(cameraSettingTabUI, self).__init__(ui)
         self.ui = ui
+        self.mouseHandeler = mouseHandeler()
 
         self.devices_combobox = self.ui.settingpage_camera_device_combobox
         self.fps_spinbox = self.ui.settingpage_camera_fps_spinbox
@@ -299,10 +303,15 @@ class cameraSettingTabUI(commonSettingUI):
         self.port_connection_lbl = self.ui.settingpage_camera_port_connection_lbl
         self.serial_retry_btn = self.ui.settingpage_camera_serial_retry_btn
         
+        self.point_color_value = self.ui.settingpage_camera_color_value_lbl
+        self.point_color_image = self.ui.settingpage_camera_color_img_lbl
+
         self.__is_start__ = False
         self.__connection_event_function__ = None
         self.__change_setting_event_function__ = None
+        self.__image_mouse_event_func__ = None
         self._serial_number = ''
+        self.set_color_rgb(0)
 
         
 
@@ -342,7 +351,15 @@ class cameraSettingTabUI(commonSettingUI):
         self.__mange_fields_enable__()
         self.__settings_change_connector__()
 
-    
+    def connect_mouse_image_event(self, func):
+        self.image_mouse_event_func = func
+
+    def set_color_rgb(self, value):
+        GUIBackend.set_label_text(self.point_color_value, str(value))
+        img = np.zeros((50,50), dtype=np.uint8)
+        img[:,:] = int(value)
+        pixmap = GUIBackend.set_label_image(self.point_color_image, img)
+        GUIBackend.fit_label_to_pixmap(self.point_color_image, pixmap  )
     
     def reset(self):
         self.__is_start__ = False
@@ -548,7 +565,9 @@ class cameraSettingTabUI(commonSettingUI):
 
     def show_live_image(self, img):
         if img is not None:
-            GUIBackend.set_label_image( self.live_img_lbl, img )
+            pixmap = GUIBackend.set_label_image( self.live_img_lbl, img )
+            GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
+            self.mouseHandeler.connect_all(self.live_img_lbl, self.image_mouse_event_func)
 
 
     def get_selected_camera_application(self,):

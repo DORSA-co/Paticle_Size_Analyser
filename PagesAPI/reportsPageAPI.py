@@ -60,14 +60,25 @@ class reportsPageAPI:
         """
         self.uiHandeler.popupFrame.show()
         #--------------------------
+        t = time.time()
         self.all_samples = self.database.reports_db.load_all()
+        print('load all samples: ',time.time() - t)
         #show rebuild if user login
+        t = time.time()
         if self.logined_username != '':
             self.check_rebuild()
-        
+        print('check rebuild', time.time() - t)
+        t = time.time()
         self.set_standards()
+        print('set standard', time.time() - t)
+
+        t = time.time()
         self.refresh_table()
+        print('refresh table', time.time() - t)
+
+        t = time.time()
         self.uiHandeler.startup()
+        print('startup',time.time() - t)
         #--------------------------
         self.uiHandeler.popupFrame.close()
         

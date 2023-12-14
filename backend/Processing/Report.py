@@ -82,9 +82,14 @@ class Report:
             info['avrage'] = np.round( xs.mean(), CONSTANTS.DECIMAL_ROUND )
             info['std'] = np.round( xs.std(), CONSTANTS.DECIMAL_ROUND )
 
+            xs, ys = self.get_gaussian_data(step=0.5)
+            info['mode'] = xs[np.argmax(ys)]
+
+
         else:
             info['avrage'] = 0
             info['std'] = 0
+            info['mode'] = 0
 
         return info    
 

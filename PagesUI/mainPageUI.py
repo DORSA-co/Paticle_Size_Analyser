@@ -254,6 +254,9 @@ class mainPageUI:
         """
         if data is not None:
             for name, value in data.items():
+                if name not in self.informations.keys():
+                    continue
+                
                 if name in ['avrage', 'std']:
                     value = "{0:.2f} mm".format(value)
                 GUIBackend.set_label_text(  self.informations[name],

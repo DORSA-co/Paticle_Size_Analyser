@@ -124,8 +124,10 @@ class reportsPageAPI:
 
 
     def refresh_table(self,):
-        page_samples = self.all_samples[self.page_idx*self.REPORTS_PER_PAGE:
-                                        ( self.page_idx + 1 ) * self.REPORTS_PER_PAGE
+        start_idx = self.page_idx*self.REPORTS_PER_PAGE
+        end_idx = ( self.page_idx + 1 ) * self.REPORTS_PER_PAGE
+        page_samples = self.all_samples[start_idx:
+                                        end_idx
                                         ]
         
         self.uiHandeler.set_samples_table(page_samples, self.selected_samples)

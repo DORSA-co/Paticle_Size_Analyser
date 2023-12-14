@@ -5109,7 +5109,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -400, 1258, 3406))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2183, 1258, 3406))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5916,7 +5916,7 @@ class Ui_MainWindow(object):
         self.report_single_pellet_frame = QFrame(self.scrollAreaWidgetContents)
         self.report_single_pellet_frame.setObjectName(u"report_single_pellet_frame")
         self.report_single_pellet_frame.setMinimumSize(QSize(300, 0))
-        self.report_single_pellet_frame.setMaximumSize(QSize(400, 16777215))
+        self.report_single_pellet_frame.setMaximumSize(QSize(450, 16777215))
         self.report_single_pellet_frame.setStyleSheet(u"#report_single_pellet_frame{\n"
 "border: 1px solid rgb(12, 80, 139);\n"
 "border-radius: 10px;\n"

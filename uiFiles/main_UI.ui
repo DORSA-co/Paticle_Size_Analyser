@@ -8841,7 +8841,7 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-400</y>
+                <y>-2183</y>
                 <width>1258</width>
                 <height>3406</height>
                </rect>
@@ -10533,7 +10533,7 @@ p, li { white-space: pre-wrap; }
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>400</width>
+                       <width>450</width>
                        <height>16777215</height>
                       </size>
                      </property>

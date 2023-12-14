@@ -67,7 +67,6 @@ class reportsPageAPI:
         """this function called from main_API when corespond page loaded
         """
         self.page_idx = 0
-        self.uiHandeler.popupFrame.show()
         #--------------------------
         t = time.time()
         self.all_samples = self.database.reports_db.load_all()
@@ -92,10 +91,9 @@ class reportsPageAPI:
         
         self.navigation_pages('none')
         #--------------------------
-        self.uiHandeler.popupFrame.close()
         
     def navigation_pages(self, status):
-        self.uiHandeler.popupFrame.show()
+        self.uiHandeler.popupLoading.show()
         max_page = int(len(self.all_samples) // self.REPORTS_PER_PAGE)
         
         if status == 'next':
@@ -111,7 +109,7 @@ class reportsPageAPI:
         self.uiHandeler.set_navigation_enablity(self.page_idx, max_page )
         self.refresh_table()
 
-        self.uiHandeler.popupFrame.close()
+        self.uiHandeler.popupLoading.close()
 
 
     def select_all_sample(self, state):

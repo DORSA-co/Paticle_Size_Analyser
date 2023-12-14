@@ -33,11 +33,13 @@ from uiUtils.IO.Mouse import mouseHandeler, MouseEvent
 
 
 class mainUI(QMainWindow):
-    def __init__(self, ui, login_ui, edit_user, db_init_ui):
+    def __init__(self, login_ui, edit_user, db_init_ui):
         #self.__global_setting__ = GlobalUI(ui)
         super(mainUI,self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.popupLoading = GUIComponents.overlayMassage(text='Loading...')
 
         self.mouseHandeler = mouseHandeler()
 

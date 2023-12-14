@@ -16,7 +16,7 @@ class reportsPageUI(commonUI):
         self.ui = ui
         self.autoRebuildDialog = autoRebuildDialogUI()
         self.deleteSamplesDialog = proggressDialogUI()
-
+        self.popupLoading = GUIComponents.overlayMassage(text='Loading...')
         
         self.deleteSamplesDialog.setup('Remove samples','', operation_name='removed')
 
@@ -100,7 +100,7 @@ class reportsPageUI(commonUI):
         for filter_name in self.filters_frame.keys():
             self.show_filter(filter_name, False)
 
-        self.popupFrame = GUIComponents.overlayMassage(text='Loading...')
+        
     
     def startup(self,):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, False)

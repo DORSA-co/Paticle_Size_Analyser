@@ -35,12 +35,11 @@ if __name__ == '__main__':
     CONSTANTS.screen.W = screen.virtualSize().width()
     
     #load .ui files
-    window = loader.load(main_ui_file, None)
     login_ui = loader.load(login_ui_file, None)
     edit_user = loader.load(edit_user_ui_file, None)
     db_init_ui = loader.load(db_init_ui_file, None)
 
-    main_ui = mainUI(window, 
+    main_ui = mainUI( 
                      login_ui,
                      edit_user,
                      db_init_ui)

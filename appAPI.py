@@ -17,6 +17,7 @@ from PagesAPI.reportPageAPI import reportPageAPI
 from PagesAPI.reportsPageAPI import reportsPageAPI
 from PagesAPI.comparePageAPI import comparePageAPI
 from PagesAPI.validationPageAPI import validationPageAPI
+from appUI import mainUI
 #------------------------------------------------------------
 #from main_UI import mainUI
 #------------------------------------------------------------
@@ -34,9 +35,9 @@ from backend.Serial.armSerial import armSerial
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
     DEBUG_PROCESS_THREAD = False
-    def __init__(self, ui) -> None:
+    def __init__(self, uiHandeler:mainUI) -> None:
         self.tflag = False
-        self.ui = ui
+        self.uiHandeler = uiHandeler
         self.db = mainDatabase()
         db_status = self.db.connect()
         if not db_status:
@@ -78,21 +79,21 @@ class main_API(QObject):
 
         #Pages_api------------------------------------
         #self.mainPageAPI = None
-        self.mainPageAPI = mainPageAPI(uiHandeler= self.ui.mainPage, cameras = self.cameras, database = self.db)
-        self.gradingRangesPageAPI = standardsPageAPI(ui = self.ui.gradingRange, database = self.db.standards_db)
-        self.settingPageAPI = settingPageAPI( ui = self.ui.settingPage, cameras = self.cameras, database = self.db.setting_db , serial_micro=self.serial_micro)
-        self.usersPageAPI = usersPageAPI(ui= self.ui.usersPage, database = self.db.users_db)
-        self.reportPageAPI = reportPageAPI(uiHandeler = self.ui.reportPage, database=self.db)
-        self.reportsPageAPI = reportsPageAPI(uiHandeler=self.ui.reportsPage, database=self.db)
-        self.comparePageAPI = comparePageAPI(ui=self.ui.comparePage, database=self.db)
-        self.validationPageAPI = validationPageAPI(ui=self.ui.validationPage, database=self.db, cameras=self.cameras)
+        self.mainPageAPI = mainPageAPI(uiHandeler= self.uiHandeler.mainPage, cameras = self.cameras, database = self.db)
+        self.gradingRangesPageAPI = standardsPageAPI(ui = self.uiHandeler.gradingRange, database = self.db.standards_db)
+        self.settingPageAPI = settingPageAPI( ui = self.uiHandeler.settingPage, cameras = self.cameras, database = self.db.setting_db , serial_micro=self.serial_micro)
+        self.usersPageAPI = usersPageAPI(ui= self.uiHandeler.usersPage, database = self.db.users_db)
+        self.reportPageAPI = reportPageAPI(uiHandeler = self.uiHandeler.reportPage, database=self.db)
+        self.reportsPageAPI = reportsPageAPI(uiHandeler=self.uiHandeler.reportsPage, database=self.db)
+        self.comparePageAPI = comparePageAPI(ui=self.uiHandeler.comparePage, database=self.db)
+        self.validationPageAPI = validationPageAPI(ui=self.uiHandeler.validationPage, database=self.db, cameras=self.cameras)
 
         #for cam_device_info in cameras_serial_numbers:
             #self.creat_camera(cam_device_info)
             #self.run_camera_grabbing(cam_device_info['application'])
 
         #events----------------------------------------------
-        self.ui.change_page_connector(self.page_change_event)
+        self.uiHandeler.change_page_connector(self.page_change_event)
         self.usersPageAPI.set_login_event(self.login_user_event)
         self.mainPageAPI.set_report_button_event_func(self.show_report_event)
         self.reportsPageAPI.set_see_report_event_func(self.show_report_event)
@@ -137,8 +138,8 @@ class main_API(QObject):
         self.login_user_event()
         self.standard_event()
         #---------------------------------------------------
-        self.ui.show()
-        self.ui.usersPage.loginUserBox.show_login()
+        self.uiHandeler.show()
+        self.uiHandeler.usersPage.loginUserBox.show_login()
         print('__init__ appAPI finised')
         
 
@@ -177,7 +178,7 @@ class main_API(QObject):
     #
     #_________________________________________________________________________________________________________________________
     def change_camera_device_event(self, camera_device_info: dict):
-        self.ui.change_cursure('wait')
+        self.uiHandeler.change_cursure('wait')
         cam_application = camera_device_info['application']
         if self.cameras.get(cam_application) is not None:
             self.cameras[cam_application].Operations.close()
@@ -190,7 +191,7 @@ class main_API(QObject):
         else:
             self.run_camera_grabbing(cam_application)
         #self.camera_workers[cam_application].camera  = self.cameras[cam_application]
-        self.ui.change_cursure(None)
+        self.uiHandeler.change_cursure(None)
 
     def check_camera_devices_event(self,):
         if not self.is_during_checking_device:
@@ -223,7 +224,6 @@ class main_API(QObject):
         self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
         if len(self.cameras) == 0:
             self.mainPageAPI.set_system_status('camera_connection', False)
-            self.camera_disconnect_event()
 
         for device_info in self.camera_device_info:
             application = device_info['application']
@@ -246,6 +246,9 @@ class main_API(QObject):
 
 
     def page_change_event(self, current_page_name, new_page_name):
+
+        if new_page_name in ['report']:
+            self.uiHandeler.popupLoading.show()
         #call startup method of API of corespond page
         change_Page_permition = True
         if self.pages_endup[current_page_name] is not None:
@@ -257,13 +260,16 @@ class main_API(QObject):
             if self.pages_startups[new_page_name] is not None:
                 self.pages_startups[new_page_name].startup()
         
-            self.ui.go_to_page(new_page_name)
+            self.uiHandeler.go_to_page(new_page_name)
+        
+        #if new_page_name in ['report']:
+        self.uiHandeler.popupLoading.close()
         
 
 
     def grabbed_image_event(self,):
         self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', True)
-        current_page,_ = self.ui.get_current_page()
+        current_page,_ = self.uiHandeler.get_current_page()
         
         if current_page == 'main':
             self.mainPageAPI.process_image()
@@ -290,8 +296,8 @@ class main_API(QObject):
         pass
     
     def set_access(self, role):
-        self.ui.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
-        self.ui.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])
+        self.uiHandeler.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)
+        self.uiHandeler.set_access_tabs( CONSTANTS.ACCESS[role]['tabs'])
 
 
     def show_report_event(self, report:Report, master_page:str ):
@@ -302,11 +308,11 @@ class main_API(QObject):
         """
         self.reportPageAPI.set_master_page(master_page)
         self.reportPageAPI.set_report(report)
-        self.ui.go_to_page('report')
+        self.uiHandeler.go_to_page('report')
 
 
     def change_page(self, page_name):
-        self.ui.go_to_page(page_name)
+        self.uiHandeler.go_to_page(page_name)
 
     def show_compare_event(self, compare:Compare):
         """this event happend when compare button in reports page clicked
@@ -315,7 +321,7 @@ class main_API(QObject):
             compare (Compare): _description_
         """
         #compare = __load_obj__('test')
-        self.ui.go_to_page('compare')
+        self.uiHandeler.go_to_page('compare')
         self.comparePageAPI.set_compare_data(compare)
 
     def standard_event(self,): 

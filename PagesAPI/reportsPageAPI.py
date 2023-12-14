@@ -108,7 +108,6 @@ class reportsPageAPI:
         
         self.uiHandeler.set_navigation_enablity(self.page_idx, max_page )
         self.refresh_table()
-
         self.uiHandeler.popupLoading.close()
 
 
@@ -245,8 +244,9 @@ class reportsPageAPI:
         else:
             self.__filter_loop__(all_samples, filter_func)
 
-        
-        self.uiHandeler.set_samples_table(self.filterd_samples, self.selected_samples)
+        self.page_idx = 0
+        self.all_samples = self.filterd_samples.copy()
+        self.navigation_pages('none')
         self.filterd_samples.clear()
     
 

@@ -2454,48 +2454,22 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName(u"groupBox")
         self.gridLayout_10 = QGridLayout(self.groupBox)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label_30 = QLabel(self.groupBox)
+        self.label_30.setObjectName(u"label_30")
+        self.label_30.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
-        self.gridLayout_10.addItem(self.horizontalSpacer_17, 0, 3, 1, 1)
-
-        self.label_25 = QLabel(self.groupBox)
-        self.label_25.setObjectName(u"label_25")
-        self.label_25.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_10.addWidget(self.label_25, 1, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.label_30, 1, 0, 1, 1)
 
         self.settingpage_general_language_combobox = QComboBox(self.groupBox)
         self.settingpage_general_language_combobox.addItem("")
         self.settingpage_general_language_combobox.addItem("")
         self.settingpage_general_language_combobox.setObjectName(u"settingpage_general_language_combobox")
 
-        self.gridLayout_10.addWidget(self.settingpage_general_language_combobox, 2, 2, 1, 1)
+        self.gridLayout_10.addWidget(self.settingpage_general_language_combobox, 1, 1, 1, 1)
 
-        self.settingpage_general_color_combobox = QComboBox(self.groupBox)
-        self.settingpage_general_color_combobox.setObjectName(u"settingpage_general_color_combobox")
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_10.addWidget(self.settingpage_general_color_combobox, 1, 2, 1, 1)
-
-        self.settingpage_general_font_combobox = QComboBox(self.groupBox)
-        self.settingpage_general_font_combobox.setObjectName(u"settingpage_general_font_combobox")
-
-        self.gridLayout_10.addWidget(self.settingpage_general_font_combobox, 0, 2, 1, 1)
-
-        self.label_30 = QLabel(self.groupBox)
-        self.label_30.setObjectName(u"label_30")
-        self.label_30.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_10.addWidget(self.label_30, 2, 0, 1, 1)
-
-        self.label_23 = QLabel(self.groupBox)
-        self.label_23.setObjectName(u"label_23")
-        self.label_23.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_10.addWidget(self.label_23, 0, 0, 1, 1)
-
-        self.horizontalSpacer_32 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_10.addItem(self.horizontalSpacer_32, 0, 1, 1, 1)
+        self.gridLayout_10.addItem(self.horizontalSpacer_17, 0, 2, 1, 1)
 
 
         self.gridLayout_4.addWidget(self.groupBox, 0, 0, 1, 1)
@@ -6799,8 +6773,6 @@ class Ui_MainWindow(object):
         self.statusBar.setObjectName(u"statusBar")
         self.statusBar.setMaximumSize(QSize(16777215, 12))
         MainWindow.setStatusBar(self.statusBar)
-        QWidget.setTabOrder(self.settingpage_general_font_combobox, self.settingpage_general_color_combobox)
-        QWidget.setTabOrder(self.settingpage_general_color_combobox, self.settingpage_general_language_combobox)
         QWidget.setTabOrder(self.settingpage_general_language_combobox, self.pushButton_12)
         QWidget.setTabOrder(self.pushButton_12, self.pushButton_11)
         QWidget.setTabOrder(self.pushButton_11, self.pushButton_10)
@@ -6946,9 +6918,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(7)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(4)
+        self.settingpage_tabs.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(2)
@@ -7072,12 +7044,10 @@ class Ui_MainWindow(object):
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Restor Defualt", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Interface Setting", None))
-        self.label_25.setText(QCoreApplication.translate("MainWindow", u"App Color", None))
+        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Language", None))
         self.settingpage_general_language_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
         self.settingpage_general_language_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"Persian", None))
 
-        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Language", None))
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Font", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_general_tab), QCoreApplication.translate("MainWindow", u"General", None))
         self.settingpage_sample_auto_name_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Auto Sample Name", None))
         self.label_68.setText(QCoreApplication.translate("MainWindow", u"Custom Text 1", None))

@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -4094,7 +4094,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>4</number>
+                <number>0</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4194,30 +4194,17 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                     <string>Interface Setting</string>
                    </property>
                    <layout class="QGridLayout" name="gridLayout_10">
-                    <item row="0" column="3">
-                     <spacer name="horizontalSpacer_17">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
                     <item row="1" column="0">
-                     <widget class="QLabel" name="label_25">
+                     <widget class="QLabel" name="label_30">
                       <property name="text">
-                       <string>App Color</string>
+                       <string>Language</string>
                       </property>
                       <property name="alignment">
                        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                       </property>
                      </widget>
                     </item>
-                    <item row="2" column="2">
+                    <item row="1" column="1">
                      <widget class="QComboBox" name="settingpage_general_language_combobox">
                       <item>
                        <property name="text">
@@ -4231,43 +4218,14 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                       </item>
                      </widget>
                     </item>
-                    <item row="1" column="2">
-                     <widget class="QComboBox" name="settingpage_general_color_combobox"/>
-                    </item>
                     <item row="0" column="2">
-                     <widget class="QComboBox" name="settingpage_general_font_combobox"/>
-                    </item>
-                    <item row="2" column="0">
-                     <widget class="QLabel" name="label_30">
-                      <property name="text">
-                       <string>Language</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_23">
-                      <property name="text">
-                       <string>Font</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <spacer name="horizontalSpacer_32">
+                     <spacer name="horizontalSpacer_17">
                       <property name="orientation">
                        <enum>Qt::Horizontal</enum>
                       </property>
-                      <property name="sizeType">
-                       <enum>QSizePolicy::Maximum</enum>
-                      </property>
                       <property name="sizeHint" stdset="0">
                        <size>
-                        <width>25</width>
+                        <width>40</width>
                         <height>20</height>
                        </size>
                       </property>
@@ -12206,8 +12164,6 @@ QPushButton{
   </widget>
  </widget>
  <tabstops>
-  <tabstop>settingpage_general_font_combobox</tabstop>
-  <tabstop>settingpage_general_color_combobox</tabstop>
   <tabstop>settingpage_general_language_combobox</tabstop>
   <tabstop>pushButton_12</tabstop>
   <tabstop>pushButton_11</tabstop>

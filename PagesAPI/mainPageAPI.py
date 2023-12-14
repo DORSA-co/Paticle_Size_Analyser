@@ -378,16 +378,25 @@ class mainPageAPI:
         for camera in self.cameras.values():
             camera.Operations.stop_grabbing()     
         
-        
-        self.report_saver.save_report(self.report)
-        #-----------------------------------------------------------------------------------------
-        db_data = self.report.get_database_record()
-        self.database.reports_db.save(db_data)
-        #-----------------------------------------------------------------------------------------
+        if len(self.report.Buffer.total_buffer.particels):
+            self.report_saver.save_report(self.report)
+            #-----------------------------------------------------------------------------------------
+            db_data = self.report.get_database_record()
+            self.database.reports_db.save(db_data)
+            #-----------------------------------------------------------------------------------------
+            self.uiHandeler.enable_report(True)
+
+        else:
+            self.uiHandeler.enable_report(False)
+
+            self.uiHandeler.show_dialog_box( 'Warning',
+                                            'No Particle Founded.',
+                                            buttons=['ok']
+                                            )
+            
+
         
         self.uiHandeler.set_live_img(CONSTANTS.IMAGES.STOP_SAMPLING)
-
-        self.uiHandeler.enable_report(True)
         self.uiHandeler.set_player_buttons_status('stop')
         #print('stop FINISH')
 

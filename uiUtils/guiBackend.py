@@ -23,7 +23,7 @@ class GUIBackend:
     def load_ui(path, parent=None, byQt=False):
         if not byQt:
             loader = QUiLoader()
-            window = loader.load(path, parent)
+            window = loader.load(path, parentWidget=parent)
         else:
             pass
             #window = uic.loadUi(path)
@@ -130,7 +130,7 @@ class GUIBackend:
         signal.emit()
 
     @staticmethod
-    def show_window( ui, always_on_top=False):
+    def show_window( ui:QtWidgets.QMainWindow, always_on_top=False):
         if always_on_top:
             ui.setWindowFlag(QtCore.Qt.WindowStaysOnTopHint)
         ui.show()

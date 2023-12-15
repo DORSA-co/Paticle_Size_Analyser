@@ -515,6 +515,7 @@ class ProcessingWorker(QObject):
         self.report = report
         self.report_saver = report_saver
         self.remove_permit = False
+        self.current_particles = []
 
 
     

@@ -189,10 +189,8 @@ class Report:
         volumes = self.Buffer.total_buffer.get_feature('avg_volume')
         #return np.vstack((radiuses, volumes)).T
         volumes_percent = volumes
-        r_min, r_max = self.get_full_range()
-        d_min = r_min * 2
-        d_max = r_max * 2
-        bins = np.arange(d_min, d_max, step)
+        low, high = self.get_full_range()
+        bins = np.arange(low, high, step)
 
         ys, _ = np.histogram(diameters, bins, weights=volumes_percent)
         ys = ys / np.sum(ys) * 100

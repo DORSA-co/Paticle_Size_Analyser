@@ -3,7 +3,7 @@ from PySide6.QtGui import QPainter, QColor, QFont, QPen
 from PySide6 import QtCharts
 
 from uiUtils.Charts.chartUtils import Font
-
+import numpy as np
             
 
 class Trend(QtCharts.QLineSeries):
@@ -23,6 +23,29 @@ class Trend(QtCharts.QLineSeries):
         if self.name:
             self.setName(name)
 
+    def click_connector(self, func):
+        self.clicked.connect( lambda qpoint: func(qpoint.toTuple()
+                                    )
+                                    )
+    
+    def select_point_by_pos(self, pos:tuple[int]):
+        points = self.pointsVector()
+        #middle_idx = int(len(points) // 2)
+        min_dist = np.inf
+        selected_idx = -1
+        for idx, point in enumerate(points):
+            dist = abs(point.x() - pos[0])
+            if dist < min_dist:
+                selected_idx = idx
+                min_dist = dist
+            else:
+                break
+
+        self.selectPoint(selected_idx)
+
+                
+            
+    
     def set_line_color(self, color):
         self.line_color = color
         if self.line_color:
@@ -46,6 +69,43 @@ class Trend(QtCharts.QLineSeries):
             self.append(QPointF(x, y))
             
             
+
+class selectedPoint(QtCharts.QLineSeries):
+    def __init__(self,
+                color: str = None,
+                line_width: int = None,
+                show_label:bool = False
+            ) -> None:
+        
+        super().__init__()
+        self.set_line_color(color)
+        self.set_line_width(line_width)
+        self.show_label = show_label
+
+    def set_line_color(self, color):
+        self.line_color = color
+        if self.line_color:
+            pen = self.pen()
+            pen.setColor(QColor(self.line_color))
+            self.setPen(pen)
+    
+    
+    def set_line_width(self, width):
+        self.line_width = width
+        if self.line_width:
+            pen = self.pen()
+            pen.setWidth(self.line_width)
+            self.setPen(pen)
+
+    def show_point(self, point):
+        self.clear()
+        self.append(QPointF(*point))
+        self.selectAllPoints()
+        if self.show_label:
+            self.pointLabelsVisible()
+        
+
+    
 
 
 
@@ -78,6 +138,7 @@ class LineChart(QtCharts.QChartView):
         self.chart:QtCharts.QChart = QtCharts.QChart()
         super().__init__(self.chart, parent)
         self.chart.legend().setVisible(False)
+        
 
         self.__set_axis()
 
@@ -226,7 +287,7 @@ class LineChart(QtCharts.QChartView):
         series.attachAxis(self.axisX)
         series.attachAxis(self.axisY)
 
-        QtCharts.QChart.series
+        
 
     def setup_chart(self):
         self.chart.setMargins(QMargins(0, 0, 0, 0))
@@ -238,3 +299,5 @@ class LineChart(QtCharts.QChartView):
 
     def remove_all_trends(self,):
         self.chart.removeAllSeries()
+
+    

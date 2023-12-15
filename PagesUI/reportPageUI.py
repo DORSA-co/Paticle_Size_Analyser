@@ -4,11 +4,13 @@ import math
 from uiUtils.guiBackend import GUIBackend
 from uiUtils import GUIComponents
 from uiUtils.Charts.barChart import BarChart
-from uiUtils.Charts.lineChart import LineChart, Trend
+from uiUtils.Charts.lineChart import LineChart, Trend , selectedPoint
 from PagesUI.dialogWindows.exportResultDialogUI import exportResultDialogUI
 from PagesUI.PageUI import commonUI
 from Constants import CONSTANTS
 from dialogWindows.manualRebuildDialogUI import manualRebuildDialogUI
+from dialogWindows.PointDialogUI import Point2D
+from uiUtils.IO import Mouse
 
 import numpy as np
 
@@ -20,6 +22,9 @@ class reportPageUI(commonUI):
         self.ui = ui
         self.rebuildDialog = manualRebuildDialogUI()
         self.exportDialog = exportResultDialogUI()
+        self.pointdialog = Point2D()
+        self.mouse = Mouse.mouseHandeler()
+        
 
         self.back_btn = self.ui.sreportpage_back_btn
         self.export_btn = self.ui.sreportpage_export_btn
@@ -109,8 +114,11 @@ class reportPageUI(commonUI):
                     axisY_tickCount = 10,
                     animation = False,
                 )
-        self.cumulative_trend = Trend(name='', line_color='#20647d', line_width=2)
+        self.cumulative_trend = Trend(name='', line_color='#20647d', line_width=3)
+        self.cumulative_trend_selection = selectedPoint(color='#20647d', line_width=3, show_label=True)
         self.cumulative_chart.add_trend(self.cumulative_trend)
+        self.cumulative_chart.add_trend(self.cumulative_trend_selection)
+        
 
         self.gaussian_chart  = LineChart(
                     chart_title = 'Guassian',
@@ -129,7 +137,13 @@ class reportPageUI(commonUI):
                     animation = False,
                 )
         self.gaussian_trend = Trend(name='', line_color='#d4594e', line_width=4)
+        self.gaussian_trend_selection = selectedPoint(color='#d4594e', line_width=4)
         self.gaussian_chart.add_trend(self.gaussian_trend)
+        self.gaussian_chart.add_trend(self.gaussian_trend_selection)
+        #--------------------------------------------------------------------------------------------------------
+        self.gaussian_trend.click_connector(self.__gaussian_chart_click_event__)
+        self.cumulative_trend.click_connector(self.__cumulative_chart_click_event__)
+        
 
         #--------------------------------------------------------------------------------------------------------
 
@@ -146,11 +160,37 @@ class reportPageUI(commonUI):
 
 
     def startup(self,):
+        """this functon calls from reportPageAPI to init and reset ui of this page
+        """
         self.reset_particle_section()
 
-    def create_connect(func, *args):
-        return lambda: func(*args)
+    
+    def __gaussian_chart_click_event__(self, point:tuple[float]):
+        """this fucntion called when user click on guassian chart trend
 
+        Args:
+            point (tuple[float]): (x,y) of chart where user clicked
+        """
+        self.gaussian_trend_selection.show_point(point)
+
+        self.pointdialog.set_titles('size', 'percent')
+        self.pointdialog.set_value('x', point[0], after='mm')
+        self.pointdialog.set_value('y', point[1], after='%')
+        self.pointdialog.show(3000)
+
+
+    def __cumulative_chart_click_event__(self, point:tuple[float]):
+        """this fucntion called when user click on cumulative chart trend
+
+        Args:
+            point (tuple[float]): (x,y) of chart where user clicked
+        """
+        self.cumulative_trend_selection.show_point(point)
+
+        self.pointdialog.set_titles('size', 'percent')
+        self.pointdialog.set_value('x', point[0], after='mm')
+        self.pointdialog.set_value('y', point[1], after='%')
+        self.pointdialog.show(3000)
     
     def navigator_button_connector(self, func):
   
@@ -165,23 +205,45 @@ class reportPageUI(commonUI):
             GUIBackend.button_connector_argument_pass(btn, func, (name,))
     
     def export_button_connector(self, func):
+        """connects an external function to click event
+        of export_button
+
+        Args:
+            func (_type_): python function
+        """
         GUIBackend.button_connector(self.export_btn, func)
     
     
 
     def set_general_information(self, infoes:dict):
+        """set general information like date, user, time and other
+        in box in the top of report page
+
+        Args:
+            infoes (dict): general information dictionay. keys are
+            the name of date and values are values og that datas like {'date':'2022-11-08'}
+            see the self.general_information keys to know the available data
+        """
         for name, value in infoes.items():
             if name in self.general_information:
                 GUIBackend.set_label_text( self.general_information[name] , value )
 
 
     def set_particle_information(self, infoes:dict):
+        """set information of selected particle like area,diameter and ...
+        in the box of particle in report page
+
+        Args:
+            infoes (dict): partile information dictionay. keys are
+            the name of date and values are values og that datas like {'area':12.56}
+            see the self.particle_information keys to know the available data
+        """
         for name, value in infoes.items():
             if name in self.particle_information:
                 GUIBackend.set_label_text( self.particle_information[name] , str(value) )
 
     def reset_particle_section(self,):
-        """reset image and info of particle section
+        """reset image and info of particle section and empty all information
         """
         for name, label in self.particle_information.items():
             GUIBackend.set_label_text(label, '-')
@@ -193,6 +255,11 @@ class reportPageUI(commonUI):
         
 
     def back_button_connector(self, func):
+        """connect an external function to back button ( the button to exit from report page)
+
+        Args:
+            func (_type_): an external pytohn function
+        """
         GUIBackend.button_connector(self.back_btn, func)
 
     def rebuild_button_connector(self, func):
@@ -248,12 +315,25 @@ class reportPageUI(commonUI):
     
 
 
-    def set_particle_image(self, img):
+    def set_particle_image(self, img:np.ndarray):
+        """set the image of selected particle into particle image label
+
+        Args:
+            img (np.ndarray): opencv image
+        """
         if img is not None:
             GUIBackend.set_label_image(self.particle_image_lbl, img)
 
     
-    def set_particles_image(self, imgs, ncol, nrow):
+    def set_particles_image(self, imgs, ncol:int, nrow:int):
+        """set the mini image of particles in navigation
+        table of particles 
+
+        Args:
+            imgs (_type_): particle image
+            ncol (int): number of columns of table
+            nrow (int): number of rows of table
+        """
         imgs_count = len(imgs)
         GUIBackend.set_table_dim(self.particles_table, row=nrow, col=ncol)
         
@@ -277,7 +357,14 @@ class reportPageUI(commonUI):
                                                 layout=True)
 
     
-    def __particle_image_connector_maker__(self, img_num):
+    def __particle_image_connector_maker__(self, img_num:int):
+        """generate a function for click event on particles in table that
+        pass the number of clicked particles to external self.particle_image_event_fun
+        funcrtion
+
+        Args:
+            img_num (int): index of particle in table
+        """
         def func():
             self.particle_image_event_func(img_num)
         return func

@@ -146,7 +146,7 @@ class reportPageAPI:
         
         self.uiHandeler.set_cumulative_chart_value( *self.report.cumGrading.get_data())
 
-        self.uiHandeler.set_gaussian_chart_value(*self.report.get_gaussian_data())
+        self.uiHandeler.set_gaussian_chart_value(*self.report.get_gaussian_data(step=0.1))
         
 
     def back(self, ):

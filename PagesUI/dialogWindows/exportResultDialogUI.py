@@ -8,8 +8,8 @@ class exportResultDialogUI:
     ui_path = 'uiFiles\\export_result.ui'
     
 
-    def __init__(self) -> None:
-        self.ui = GUIBackend.load_ui(self.ui_path)
+    def __init__(self, parent=None) -> None:
+        self.ui = GUIBackend.load_ui(self.ui_path, parent=parent)
 
         self.massage_lbl = self.ui.message_lbl
         self.wrong_codes = self.ui.wrong_codes_text_edit

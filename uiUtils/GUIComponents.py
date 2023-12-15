@@ -1,4 +1,5 @@
-from typing import Optional
+import time
+
 from PySide6 import QtWidgets, QtCore, QtGui
 import PySide6.QtWidgets 
 from guiBackend import GUIBackend
@@ -414,6 +415,8 @@ class timerBuilder:
     def stop(self, ):
         self.timer.stop()
         self.timer.deleteLater()
+
+
 
     
 def single_timer_runner( t, func):

@@ -374,7 +374,7 @@ class reportsPageUI(commonUI):
 
     
     def set_delete_sample_event_func(self, func):
-        """set a python function as event of delete button samples in table
+        """set a python function as event of delete button of samples in table
 
         Args:
             func (_type_): python function

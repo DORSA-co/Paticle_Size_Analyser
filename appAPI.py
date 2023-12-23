@@ -155,10 +155,11 @@ class main_API(QObject):
                 camera.build_converter(pixel_type=dorsaPylon.PixelType.GRAY8)
                 self.cameras[cam_application] = camera
             except:
-                self.mainPageAPI.set_system_status('camera_connection', False)
+                print('Camera serial number is not avaiable')
+                # self.mainPageAPI.set_system_status('camera_connection', False)
         else:
             print('Camera serial number is not avaiable')
-            self.mainPageAPI.set_system_status('camera_connection', False)
+            # self.mainPageAPI.set_system_status('camera_connection', False)
 
 
     def run_camera_grabbing(self,camera_application): 

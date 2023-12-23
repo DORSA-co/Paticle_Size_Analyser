@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.4
+## Created by: Qt User Interface Compiler version 6.6.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -1458,7 +1458,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1758))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 360, 1667))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2410,71 +2410,6 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.setTabsClosable(False)
         self.settingpage_tabs.setMovable(False)
         self.settingpage_tabs.setTabBarAutoHide(False)
-        self.settingpage_general_tab = QWidget()
-        self.settingpage_general_tab.setObjectName(u"settingpage_general_tab")
-        self.gridLayout_4 = QGridLayout(self.settingpage_general_tab)
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_4.addItem(self.verticalSpacer_7, 3, 0, 1, 1)
-
-        self.horizontalFrame_3 = QFrame(self.settingpage_general_tab)
-        self.horizontalFrame_3.setObjectName(u"horizontalFrame_3")
-        self.horizontalFrame_3.setStyleSheet(u"color: #ffffff;")
-        self.horizontalLayout_21 = QHBoxLayout(self.horizontalFrame_3)
-        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
-        self.horizontalLayout_21.setContentsMargins(-1, 28, -1, -1)
-        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_21.addItem(self.horizontalSpacer_26)
-
-        self.pushButton_12 = QPushButton(self.horizontalFrame_3)
-        self.pushButton_12.setObjectName(u"pushButton_12")
-
-        self.horizontalLayout_21.addWidget(self.pushButton_12)
-
-        self.pushButton_11 = QPushButton(self.horizontalFrame_3)
-        self.pushButton_11.setObjectName(u"pushButton_11")
-
-        self.horizontalLayout_21.addWidget(self.pushButton_11)
-
-        self.pushButton_10 = QPushButton(self.horizontalFrame_3)
-        self.pushButton_10.setObjectName(u"pushButton_10")
-
-        self.horizontalLayout_21.addWidget(self.pushButton_10)
-
-        self.horizontalSpacer_27 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_21.addItem(self.horizontalSpacer_27)
-
-
-        self.gridLayout_4.addWidget(self.horizontalFrame_3, 2, 0, 1, 1)
-
-        self.groupBox = QGroupBox(self.settingpage_general_tab)
-        self.groupBox.setObjectName(u"groupBox")
-        self.gridLayout_10 = QGridLayout(self.groupBox)
-        self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.label_30 = QLabel(self.groupBox)
-        self.label_30.setObjectName(u"label_30")
-        self.label_30.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_10.addWidget(self.label_30, 1, 0, 1, 1)
-
-        self.settingpage_general_language_combobox = QComboBox(self.groupBox)
-        self.settingpage_general_language_combobox.addItem("")
-        self.settingpage_general_language_combobox.addItem("")
-        self.settingpage_general_language_combobox.setObjectName(u"settingpage_general_language_combobox")
-
-        self.gridLayout_10.addWidget(self.settingpage_general_language_combobox, 1, 1, 1, 1)
-
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_10.addItem(self.horizontalSpacer_17, 0, 2, 1, 1)
-
-
-        self.gridLayout_4.addWidget(self.groupBox, 0, 0, 1, 1)
-
-        self.settingpage_tabs.addTab(self.settingpage_general_tab, "")
         self.settingpage_sample_tab = QWidget()
         self.settingpage_sample_tab.setObjectName(u"settingpage_sample_tab")
         self.settingpage_sample_tab.setStyleSheet(u"")
@@ -2933,6 +2868,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_59.addItem(self.verticalSpacer_8)
 
+        self.textEdit_8 = QTextEdit(self.settingpage_export_tab)
+        self.textEdit_8.setObjectName(u"textEdit_8")
+        self.textEdit_8.setMinimumSize(QSize(0, 50))
+        self.textEdit_8.setMaximumSize(QSize(16777215, 50))
+        self.textEdit_8.setFrameShape(QFrame.NoFrame)
+        self.textEdit_8.setFrameShadow(QFrame.Plain)
+
+        self.verticalLayout_59.addWidget(self.textEdit_8)
+
         self.tabWidget_2 = QTabWidget(self.settingpage_export_tab)
         self.tabWidget_2.setObjectName(u"tabWidget_2")
         self.tabWidget_2.setStyleSheet(u"#tab,\n"
@@ -2989,44 +2933,72 @@ class Ui_MainWindow(object):
         __qtablewidgetitem4.setTextAlignment(Qt.AlignCenter);
         self.tableWidget.setItem(1, 0, __qtablewidgetitem4)
         __qtablewidgetitem5 = QTableWidgetItem()
-        __qtablewidgetitem5.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(2, 0, __qtablewidgetitem5)
+        self.tableWidget.setItem(1, 1, __qtablewidgetitem5)
         __qtablewidgetitem6 = QTableWidgetItem()
         __qtablewidgetitem6.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(3, 0, __qtablewidgetitem6)
+        self.tableWidget.setItem(2, 0, __qtablewidgetitem6)
         __qtablewidgetitem7 = QTableWidgetItem()
-        __qtablewidgetitem7.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(4, 0, __qtablewidgetitem7)
+        self.tableWidget.setItem(2, 1, __qtablewidgetitem7)
         __qtablewidgetitem8 = QTableWidgetItem()
         __qtablewidgetitem8.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(5, 0, __qtablewidgetitem8)
+        self.tableWidget.setItem(3, 0, __qtablewidgetitem8)
         __qtablewidgetitem9 = QTableWidgetItem()
-        __qtablewidgetitem9.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(6, 0, __qtablewidgetitem9)
+        self.tableWidget.setItem(3, 1, __qtablewidgetitem9)
         __qtablewidgetitem10 = QTableWidgetItem()
         __qtablewidgetitem10.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(7, 0, __qtablewidgetitem10)
+        self.tableWidget.setItem(4, 0, __qtablewidgetitem10)
         __qtablewidgetitem11 = QTableWidgetItem()
-        __qtablewidgetitem11.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(8, 0, __qtablewidgetitem11)
+        self.tableWidget.setItem(4, 1, __qtablewidgetitem11)
         __qtablewidgetitem12 = QTableWidgetItem()
         __qtablewidgetitem12.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(9, 0, __qtablewidgetitem12)
+        self.tableWidget.setItem(5, 0, __qtablewidgetitem12)
         __qtablewidgetitem13 = QTableWidgetItem()
-        __qtablewidgetitem13.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(10, 0, __qtablewidgetitem13)
+        self.tableWidget.setItem(5, 1, __qtablewidgetitem13)
         __qtablewidgetitem14 = QTableWidgetItem()
         __qtablewidgetitem14.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(11, 0, __qtablewidgetitem14)
+        self.tableWidget.setItem(6, 0, __qtablewidgetitem14)
         __qtablewidgetitem15 = QTableWidgetItem()
-        __qtablewidgetitem15.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(12, 0, __qtablewidgetitem15)
+        self.tableWidget.setItem(6, 1, __qtablewidgetitem15)
         __qtablewidgetitem16 = QTableWidgetItem()
         __qtablewidgetitem16.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(13, 0, __qtablewidgetitem16)
+        self.tableWidget.setItem(7, 0, __qtablewidgetitem16)
         __qtablewidgetitem17 = QTableWidgetItem()
-        __qtablewidgetitem17.setTextAlignment(Qt.AlignCenter);
-        self.tableWidget.setItem(14, 0, __qtablewidgetitem17)
+        self.tableWidget.setItem(7, 1, __qtablewidgetitem17)
+        __qtablewidgetitem18 = QTableWidgetItem()
+        __qtablewidgetitem18.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(8, 0, __qtablewidgetitem18)
+        __qtablewidgetitem19 = QTableWidgetItem()
+        self.tableWidget.setItem(8, 1, __qtablewidgetitem19)
+        __qtablewidgetitem20 = QTableWidgetItem()
+        __qtablewidgetitem20.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(9, 0, __qtablewidgetitem20)
+        __qtablewidgetitem21 = QTableWidgetItem()
+        self.tableWidget.setItem(9, 1, __qtablewidgetitem21)
+        __qtablewidgetitem22 = QTableWidgetItem()
+        __qtablewidgetitem22.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(10, 0, __qtablewidgetitem22)
+        __qtablewidgetitem23 = QTableWidgetItem()
+        self.tableWidget.setItem(10, 1, __qtablewidgetitem23)
+        __qtablewidgetitem24 = QTableWidgetItem()
+        __qtablewidgetitem24.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(11, 0, __qtablewidgetitem24)
+        __qtablewidgetitem25 = QTableWidgetItem()
+        self.tableWidget.setItem(11, 1, __qtablewidgetitem25)
+        __qtablewidgetitem26 = QTableWidgetItem()
+        __qtablewidgetitem26.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(12, 0, __qtablewidgetitem26)
+        __qtablewidgetitem27 = QTableWidgetItem()
+        self.tableWidget.setItem(12, 1, __qtablewidgetitem27)
+        __qtablewidgetitem28 = QTableWidgetItem()
+        __qtablewidgetitem28.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(13, 0, __qtablewidgetitem28)
+        __qtablewidgetitem29 = QTableWidgetItem()
+        self.tableWidget.setItem(13, 1, __qtablewidgetitem29)
+        __qtablewidgetitem30 = QTableWidgetItem()
+        __qtablewidgetitem30.setTextAlignment(Qt.AlignCenter);
+        self.tableWidget.setItem(14, 0, __qtablewidgetitem30)
+        __qtablewidgetitem31 = QTableWidgetItem()
+        self.tableWidget.setItem(14, 1, __qtablewidgetitem31)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setStyleSheet(u"QHeaderView::section {\n"
 "    background-color: rgb(255, 255, 255);\n"
@@ -3042,6 +3014,8 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(12, 80, 139);\n"
 "\n"
 "}")
+        self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.tableWidget.setDragDropOverwriteMode(False)
         self.tableWidget.setRowCount(16)
         self.tableWidget.setColumnCount(2)
         self.tableWidget.horizontalHeader().setVisible(False)
@@ -4071,14 +4045,14 @@ class Ui_MainWindow(object):
             self.calibrationpage_last_calib_tabel.setColumnCount(4)
         if (self.calibrationpage_last_calib_tabel.rowCount() < 1):
             self.calibrationpage_last_calib_tabel.setRowCount(1)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 0, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 1, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 2, __qtablewidgetitem20)
-        __qtablewidgetitem21 = QTableWidgetItem()
-        self.calibrationpage_last_calib_tabel.setItem(0, 3, __qtablewidgetitem21)
+        __qtablewidgetitem32 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 0, __qtablewidgetitem32)
+        __qtablewidgetitem33 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 1, __qtablewidgetitem33)
+        __qtablewidgetitem34 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 2, __qtablewidgetitem34)
+        __qtablewidgetitem35 = QTableWidgetItem()
+        self.calibrationpage_last_calib_tabel.setItem(0, 3, __qtablewidgetitem35)
         self.calibrationpage_last_calib_tabel.setObjectName(u"calibrationpage_last_calib_tabel")
         self.calibrationpage_last_calib_tabel.setEnabled(True)
         self.calibrationpage_last_calib_tabel.setSizeIncrement(QSize(0, 0))
@@ -4256,7 +4230,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1256, 691))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1264, 701))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4866,7 +4840,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1236, 731))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1264, 699))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -4884,7 +4858,10 @@ class Ui_MainWindow(object):
 
         self.textBrowser = QTextBrowser(self.aboutScrollArea)
         self.textBrowser.setObjectName(u"textBrowser")
-        self.textBrowser.setMinimumSize(QSize(0, 165))
+        sizePolicy2.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
+        self.textBrowser.setSizePolicy(sizePolicy2)
+        self.textBrowser.setMinimumSize(QSize(0, 80))
+        self.textBrowser.setSizeIncrement(QSize(0, 80))
         self.textBrowser.setStyleSheet(u"border:none;")
 
         self.verticalLayout_29.addWidget(self.textBrowser)
@@ -4893,12 +4870,12 @@ class Ui_MainWindow(object):
         self.label_37.setObjectName(u"label_37")
         sizePolicy.setHeightForWidth(self.label_37.sizePolicy().hasHeightForWidth())
         self.label_37.setSizePolicy(sizePolicy)
-        self.label_37.setMaximumSize(QSize(690, 450))
+        self.label_37.setMaximumSize(QSize(400, 250))
         self.label_37.setStyleSheet(u"margin-top:-300px;")
         self.label_37.setPixmap(QPixmap(u":/assets/images/sorsa psa image.png"))
         self.label_37.setScaledContents(True)
 
-        self.verticalLayout_29.addWidget(self.label_37, 0, Qt.AlignHCenter|Qt.AlignVCenter)
+        self.verticalLayout_29.addWidget(self.label_37)
 
         self.label_85 = QLabel(self.aboutScrollArea)
         self.label_85.setObjectName(u"label_85")
@@ -4930,9 +4907,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_28.addWidget(self.commandLinkButton)
 
         self.helppage_tabs.addTab(self.helppage_about_tab, "")
-        self.helppages_document_tab = QWidget()
-        self.helppages_document_tab.setObjectName(u"helppages_document_tab")
-        self.helppage_tabs.addTab(self.helppages_document_tab, "")
 
         self.verticalLayout_16.addWidget(self.helppage_tabs)
 
@@ -5083,7 +5057,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2183, 1258, 3406))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1262, 3326))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5587,10 +5561,10 @@ class Ui_MainWindow(object):
             self.sreportpage_statictics_table.setColumnCount(5)
         if (self.sreportpage_statictics_table.rowCount() < 4):
             self.sreportpage_statictics_table.setRowCount(4)
-        __qtablewidgetitem22 = QTableWidgetItem()
-        self.sreportpage_statictics_table.setItem(0, 1, __qtablewidgetitem22)
-        __qtablewidgetitem23 = QTableWidgetItem()
-        self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem23)
+        __qtablewidgetitem36 = QTableWidgetItem()
+        self.sreportpage_statictics_table.setItem(0, 1, __qtablewidgetitem36)
+        __qtablewidgetitem37 = QTableWidgetItem()
+        self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem37)
         self.sreportpage_statictics_table.setObjectName(u"sreportpage_statictics_table")
         self.sreportpage_statictics_table.setEnabled(True)
         sizePolicy8 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -6179,8 +6153,8 @@ class Ui_MainWindow(object):
             self.sreportpage_particels_table.setColumnCount(4)
         if (self.sreportpage_particels_table.rowCount() < 1):
             self.sreportpage_particels_table.setRowCount(1)
-        __qtablewidgetitem24 = QTableWidgetItem()
-        self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem24)
+        __qtablewidgetitem38 = QTableWidgetItem()
+        self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem38)
         self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
         self.sreportpage_particels_table.setEnabled(True)
         sizePolicy8.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
@@ -6422,7 +6396,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1257, 1182))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1265, 1150))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6465,10 +6439,10 @@ class Ui_MainWindow(object):
             self.comparepage_compare_table.setColumnCount(5)
         if (self.comparepage_compare_table.rowCount() < 4):
             self.comparepage_compare_table.setRowCount(4)
-        __qtablewidgetitem25 = QTableWidgetItem()
-        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem25)
-        __qtablewidgetitem26 = QTableWidgetItem()
-        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem26)
+        __qtablewidgetitem39 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(0, 1, __qtablewidgetitem39)
+        __qtablewidgetitem40 = QTableWidgetItem()
+        self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem40)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
         sizePolicy8.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
@@ -6618,8 +6592,8 @@ class Ui_MainWindow(object):
             self.comparepage_compare_mean_table.setColumnCount(5)
         if (self.comparepage_compare_mean_table.rowCount() < 1):
             self.comparepage_compare_mean_table.setRowCount(1)
-        __qtablewidgetitem27 = QTableWidgetItem()
-        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem27)
+        __qtablewidgetitem41 = QTableWidgetItem()
+        self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem41)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
         sizePolicy8.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
@@ -6773,10 +6747,6 @@ class Ui_MainWindow(object):
         self.statusBar.setObjectName(u"statusBar")
         self.statusBar.setMaximumSize(QSize(16777215, 12))
         MainWindow.setStatusBar(self.statusBar)
-        QWidget.setTabOrder(self.settingpage_general_language_combobox, self.pushButton_12)
-        QWidget.setTabOrder(self.pushButton_12, self.pushButton_11)
-        QWidget.setTabOrder(self.pushButton_11, self.pushButton_10)
-        QWidget.setTabOrder(self.pushButton_10, self.settingpage_sample_auto_name_groupbox)
         QWidget.setTabOrder(self.settingpage_sample_auto_name_groupbox, self.settingpage_sample_text1_input)
         QWidget.setTabOrder(self.settingpage_sample_text1_input, self.settingpage_sample_spacer_code_btn)
         QWidget.setTabOrder(self.settingpage_sample_spacer_code_btn, self.settingpage_sample_username_code_btn)
@@ -6918,11 +6888,11 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(0)
         self.gradingranges_tabs.setCurrentIndex(0)
         self.settingpage_tabs.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -7037,18 +7007,6 @@ class Ui_MainWindow(object):
         self.label_90.setText("")
         self.gradingranges_new_standard_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
-        self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-#if QT_CONFIG(shortcut)
-        self.pushButton_12.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
-#endif // QT_CONFIG(shortcut)
-        self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"Restor Defualt", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Interface Setting", None))
-        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Language", None))
-        self.settingpage_general_language_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
-        self.settingpage_general_language_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"Persian", None))
-
-        self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_general_tab), QCoreApplication.translate("MainWindow", u"General", None))
         self.settingpage_sample_auto_name_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Auto Sample Name", None))
         self.label_68.setText(QCoreApplication.translate("MainWindow", u"Custom Text 1", None))
         self.label_103.setText(QCoreApplication.translate("MainWindow", u"_", None))
@@ -7086,6 +7044,11 @@ class Ui_MainWindow(object):
         self.label_114.setText(QCoreApplication.translate("MainWindow", u"Compare Excel Format", None))
         self.settingpage_export_load_compare_excel_btn.setText("")
         self.settingpage_export_open_compare_excel_btn.setText(QCoreApplication.translate("MainWindow", u"Open", None))
+        self.textEdit_8.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Each field, as shown below, will show the variable explained. Open the Excel file for the report template, and place each variable where it is preferred.</span></p></body></html>", None))
 
         __sortingEnabled2 = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
@@ -7095,32 +7058,60 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Name of sample", None));
         ___qtablewidgetitem3 = self.tableWidget.item(1, 0)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"%DATE%", None));
-        ___qtablewidgetitem4 = self.tableWidget.item(2, 0)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"%TIME%", None));
-        ___qtablewidgetitem5 = self.tableWidget.item(3, 0)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"%STANDARD%", None));
-        ___qtablewidgetitem6 = self.tableWidget.item(4, 0)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"%USER%", None));
-        ___qtablewidgetitem7 = self.tableWidget.item(5, 0)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"%TOTAL_AVRAGE%", None));
-        ___qtablewidgetitem8 = self.tableWidget.item(6, 0)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"%TOTAL_STD%", None));
-        ___qtablewidgetitem9 = self.tableWidget.item(7, 0)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"%RANGE_NAME_VERTICALLY%", None));
-        ___qtablewidgetitem10 = self.tableWidget.item(8, 0)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"%RANGE_NAME_HORIZONTAL%", None));
-        ___qtablewidgetitem11 = self.tableWidget.item(9, 0)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"%RANGE_PERCENT_VERTICALLY%", None));
-        ___qtablewidgetitem12 = self.tableWidget.item(10, 0)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"%RANGE_PERCENT_HORIZONTAL%", None));
-        ___qtablewidgetitem13 = self.tableWidget.item(11, 0)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"%RANGE_AVRAGE_VERTICALLY%", None));
-        ___qtablewidgetitem14 = self.tableWidget.item(12, 0)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"%RANGE_AVRAGE_HORIZONTAL%", None));
-        ___qtablewidgetitem15 = self.tableWidget.item(13, 0)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"%RANGE_STD_VERTICALLY%", None));
-        ___qtablewidgetitem16 = self.tableWidget.item(14, 0)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"%RANGE_STD_HORIZONTAL%", None));
+        ___qtablewidgetitem4 = self.tableWidget.item(1, 1)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Date of Examination", None));
+        ___qtablewidgetitem5 = self.tableWidget.item(2, 0)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"%TIME%", None));
+        ___qtablewidgetitem6 = self.tableWidget.item(2, 1)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Time of Examination", None));
+        ___qtablewidgetitem7 = self.tableWidget.item(3, 0)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"%STANDARD%", None));
+        ___qtablewidgetitem8 = self.tableWidget.item(3, 1)
+        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"Standard used for examination", None));
+        ___qtablewidgetitem9 = self.tableWidget.item(4, 0)
+        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"%USER%", None));
+        ___qtablewidgetitem10 = self.tableWidget.item(4, 1)
+        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"User logged in to do the Examination", None));
+        ___qtablewidgetitem11 = self.tableWidget.item(5, 0)
+        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"%TOTAL_AVRAGE%", None));
+        ___qtablewidgetitem12 = self.tableWidget.item(5, 1)
+        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"Average of all particles seen", None));
+        ___qtablewidgetitem13 = self.tableWidget.item(6, 0)
+        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"%TOTAL_STD%", None));
+        ___qtablewidgetitem14 = self.tableWidget.item(6, 1)
+        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"Standard deviation of all particles seen", None));
+        ___qtablewidgetitem15 = self.tableWidget.item(7, 0)
+        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"%RANGE_NAME_VERTICALLY%", None));
+        ___qtablewidgetitem16 = self.tableWidget.item(7, 1)
+        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"Ranges Names Appear Vertically", None));
+        ___qtablewidgetitem17 = self.tableWidget.item(8, 0)
+        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"%RANGE_NAME_HORIZONTAL%", None));
+        ___qtablewidgetitem18 = self.tableWidget.item(8, 1)
+        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Ranges Names Appear Horizentally", None));
+        ___qtablewidgetitem19 = self.tableWidget.item(9, 0)
+        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"%RANGE_PERCENT_VERTICALLY%", None));
+        ___qtablewidgetitem20 = self.tableWidget.item(9, 1)
+        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"Ranges Percentages Appear Vertically", None));
+        ___qtablewidgetitem21 = self.tableWidget.item(10, 0)
+        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"%RANGE_PERCENT_HORIZONTAL%", None));
+        ___qtablewidgetitem22 = self.tableWidget.item(10, 1)
+        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"Ranges Percentages Appear Horizentally", None));
+        ___qtablewidgetitem23 = self.tableWidget.item(11, 0)
+        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"%RANGE_AVRAGE_VERTICALLY%", None));
+        ___qtablewidgetitem24 = self.tableWidget.item(11, 1)
+        ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"Ranges Percentages Average Appear Vertically", None));
+        ___qtablewidgetitem25 = self.tableWidget.item(12, 0)
+        ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"%RANGE_AVRAGE_HORIZONTAL%", None));
+        ___qtablewidgetitem26 = self.tableWidget.item(12, 1)
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"Ranges Percentages Average Appear Horizentally", None));
+        ___qtablewidgetitem27 = self.tableWidget.item(13, 0)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"%RANGE_STD_VERTICALLY%", None));
+        ___qtablewidgetitem28 = self.tableWidget.item(13, 1)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Ranges Percentages Standard deviation Appear Vertically", None));
+        ___qtablewidgetitem29 = self.tableWidget.item(14, 0)
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"%RANGE_STD_HORIZONTAL%", None));
+        ___qtablewidgetitem30 = self.tableWidget.item(14, 1)
+        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Ranges Percentages Standard deviation Appear Horizentally", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled2)
 
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Report Codes", None))
@@ -7196,12 +7187,12 @@ class Ui_MainWindow(object):
 
         __sortingEnabled3 = self.calibrationpage_last_calib_tabel.isSortingEnabled()
         self.calibrationpage_last_calib_tabel.setSortingEnabled(False)
-        ___qtablewidgetitem17 = self.calibrationpage_last_calib_tabel.item(0, 0)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
-        ___qtablewidgetitem18 = self.calibrationpage_last_calib_tabel.item(0, 1)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
-        ___qtablewidgetitem19 = self.calibrationpage_last_calib_tabel.item(0, 2)
-        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
+        ___qtablewidgetitem31 = self.calibrationpage_last_calib_tabel.item(0, 0)
+        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"2022-06-23", None));
+        ___qtablewidgetitem32 = self.calibrationpage_last_calib_tabel.item(0, 1)
+        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"Alimalek", None));
+        ___qtablewidgetitem33 = self.calibrationpage_last_calib_tabel.item(0, 2)
+        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"0.098", None));
         self.calibrationpage_last_calib_tabel.setSortingEnabled(__sortingEnabled3)
 
         self.calibrationpage_last_calib_tabel.setProperty("Date", "")
@@ -7246,15 +7237,15 @@ class Ui_MainWindow(object):
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are "
-                        "then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are"
+                        " then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
         self.label_37.setText("")
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
-        self.label_87.setText("")
+        self.label_87.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:10pt;\">Dorsa Imaging Solutions is a cutting-edge technology company specializing in image processing solutions tailored for industrial applications. With a keen focus on enhancing efficiency and precision in manufacturing processes, Dorsa employs advanced computer vision algorithms and machine learning techniques to analyze and interpret visual data within industrial settings. The company's innovative image processing solutions are pivotal in quality control, defect detection, and automation, ensuring seamless production workflows and minimizing downtime. Leveraging state-of-the-art hardware and software, Dorsa Imaging Solutions collaborates with industrial clients to develop bespoke solutions that address specific challenges in sectors such as automotive, electronics, and pharmaceuticals. By harnessing the power of image processing, the company is at the forefront of revolutionizing how industrial companies optimize their operations, ensuring a higher level of a"
+                        "ccuracy, productivity, and overall operational excellence.</span></p></body></html>", None))
         self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"See Other Products", None))
         self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppage_about_tab), QCoreApplication.translate("MainWindow", u"About", None))
-        self.helppage_tabs.setTabText(self.helppage_tabs.indexOf(self.helppages_document_tab), QCoreApplication.translate("MainWindow", u"Document", None))
         self.sreportpage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.sreportpage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.sreportpage_rebuild_btn.setText(QCoreApplication.translate("MainWindow", u"Re-Build", None))
@@ -7278,7 +7269,7 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.</span></p></body></html>", None))
         self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
@@ -7294,7 +7285,7 @@ class Ui_MainWindow(object):
         self.textEdit_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table2 - Statistics for each diameter range in the Sample ", None))
 
@@ -7306,31 +7297,31 @@ class Ui_MainWindow(object):
         self.textEdit_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
         self.textEdit_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">The weight Percentage chart shows the weight percentage for each range of diameter in the sample.</span></p></body></html>", None))
         self.label_107.setText(QCoreApplication.translate("MainWindow", u"Chart1 - Weight Percent Barchart", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</p></body></html>", None))
         self.label_108.setText(QCoreApplication.translate("MainWindow", u"Chart2 - Cumulative Weight Percent Chart", None))
         self.textEdit_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</p></body></html>", None))
         self.label_109.setText(QCoreApplication.translate("MainWindow", u"Chart3 - Frequency Histogram of All Particle Diameters", None))
         self.label_47.setText(QCoreApplication.translate("MainWindow", u"Particles", None))
         self.textEdit_7.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
         self.sreportpage_darw_circle_btn.setText("")
         self.sreportpage_darw_cnt_btn.setText("")

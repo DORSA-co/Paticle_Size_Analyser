@@ -1036,7 +1036,7 @@ QPushButton:disabled{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2292,8 +2292,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>356</width>
-                   <height>1758</height>
+                   <width>360</width>
+                   <height>1667</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -4108,134 +4108,6 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                <property name="tabBarAutoHide">
                 <bool>false</bool>
                </property>
-               <widget class="QWidget" name="settingpage_general_tab">
-                <attribute name="title">
-                 <string>General</string>
-                </attribute>
-                <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="3" column="0">
-                  <spacer name="verticalSpacer_7">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QFrame" name="horizontalFrame_3">
-                   <property name="styleSheet">
-                    <string notr="true">color: #ffffff;</string>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_21">
-                    <property name="topMargin">
-                     <number>28</number>
-                    </property>
-                    <item>
-                     <spacer name="horizontalSpacer_26">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_12">
-                      <property name="text">
-                       <string>Save</string>
-                      </property>
-                      <property name="shortcut">
-                       <string>Ctrl+S</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_11">
-                      <property name="text">
-                       <string>Cancel</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_10">
-                      <property name="text">
-                       <string>Restor Defualt</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <spacer name="horizontalSpacer_27">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QGroupBox" name="groupBox">
-                   <property name="title">
-                    <string>Interface Setting</string>
-                   </property>
-                   <layout class="QGridLayout" name="gridLayout_10">
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="label_30">
-                      <property name="text">
-                       <string>Language</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QComboBox" name="settingpage_general_language_combobox">
-                      <item>
-                       <property name="text">
-                        <string>English</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Persian</string>
-                       </property>
-                      </item>
-                     </widget>
-                    </item>
-                    <item row="0" column="2">
-                     <spacer name="horizontalSpacer_17">
-                      <property name="orientation">
-                       <enum>Qt::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
                <widget class="QWidget" name="settingpage_sample_tab">
                 <property name="styleSheet">
                  <string notr="true"/>
@@ -5104,6 +4976,35 @@ min-height: 40px;
                   </spacer>
                  </item>
                  <item>
+                  <widget class="QTextEdit" name="textEdit_8">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Plain</enum>
+                   </property>
+                   <property name="html">
+                    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Each field, as shown below, will show the variable explained. Open the Excel file for the report template, and place each variable where it is preferred.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QTabWidget" name="tabWidget_2">
                    <property name="styleSheet">
                     <string notr="true">#tab,
@@ -5177,6 +5078,12 @@ QTableView::item{
 	border: 1px solid rgb(12, 80, 139);
 
 }</string>
+                       </property>
+                       <property name="editTriggers">
+                        <set>QAbstractItemView::NoEditTriggers</set>
+                       </property>
+                       <property name="dragDropOverwriteMode">
+                        <bool>false</bool>
                        </property>
                        <property name="rowCount">
                         <number>16</number>
@@ -5265,12 +5172,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="1" column="1">
+                        <property name="text">
+                         <string>Date of Examination</string>
+                        </property>
+                       </item>
                        <item row="2" column="0">
                         <property name="text">
                          <string>%TIME%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="2" column="1">
+                        <property name="text">
+                         <string>Time of Examination</string>
                         </property>
                        </item>
                        <item row="3" column="0">
@@ -5281,12 +5198,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="3" column="1">
+                        <property name="text">
+                         <string>Standard used for examination</string>
+                        </property>
+                       </item>
                        <item row="4" column="0">
                         <property name="text">
                          <string>%USER%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="4" column="1">
+                        <property name="text">
+                         <string>User logged in to do the Examination</string>
                         </property>
                        </item>
                        <item row="5" column="0">
@@ -5297,12 +5224,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="5" column="1">
+                        <property name="text">
+                         <string>Average of all particles seen</string>
+                        </property>
+                       </item>
                        <item row="6" column="0">
                         <property name="text">
                          <string>%TOTAL_STD%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="6" column="1">
+                        <property name="text">
+                         <string>Standard deviation of all particles seen</string>
                         </property>
                        </item>
                        <item row="7" column="0">
@@ -5313,12 +5250,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="7" column="1">
+                        <property name="text">
+                         <string>Ranges Names Appear Vertically</string>
+                        </property>
+                       </item>
                        <item row="8" column="0">
                         <property name="text">
                          <string>%RANGE_NAME_HORIZONTAL%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="8" column="1">
+                        <property name="text">
+                         <string>Ranges Names Appear Horizentally</string>
                         </property>
                        </item>
                        <item row="9" column="0">
@@ -5329,12 +5276,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="9" column="1">
+                        <property name="text">
+                         <string>Ranges Percentages Appear Vertically</string>
+                        </property>
+                       </item>
                        <item row="10" column="0">
                         <property name="text">
                          <string>%RANGE_PERCENT_HORIZONTAL%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="10" column="1">
+                        <property name="text">
+                         <string>Ranges Percentages Appear Horizentally</string>
                         </property>
                        </item>
                        <item row="11" column="0">
@@ -5345,12 +5302,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="11" column="1">
+                        <property name="text">
+                         <string>Ranges Percentages Average Appear Vertically</string>
+                        </property>
+                       </item>
                        <item row="12" column="0">
                         <property name="text">
                          <string>%RANGE_AVRAGE_HORIZONTAL%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="12" column="1">
+                        <property name="text">
+                         <string>Ranges Percentages Average Appear Horizentally</string>
                         </property>
                        </item>
                        <item row="13" column="0">
@@ -5361,12 +5328,22 @@ QTableView::item{
                          <set>AlignCenter</set>
                         </property>
                        </item>
+                       <item row="13" column="1">
+                        <property name="text">
+                         <string>Ranges Percentages Standard deviation Appear Vertically</string>
+                        </property>
+                       </item>
                        <item row="14" column="0">
                         <property name="text">
                          <string>%RANGE_STD_HORIZONTAL%</string>
                         </property>
                         <property name="textAlignment">
                          <set>AlignCenter</set>
+                        </property>
+                       </item>
+                       <item row="14" column="1">
+                        <property name="text">
+                         <string>Ranges Percentages Standard deviation Appear Horizentally</string>
                         </property>
                        </item>
                       </widget>
@@ -6693,7 +6670,7 @@ background-color: rgb(48, 48, 48);
 }</string>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="cilbration">
               <attribute name="title">
@@ -7483,8 +7460,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1256</width>
-                    <height>691</height>
+                    <width>1264</width>
+                    <height>701</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -8477,8 +8454,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1236</width>
-                    <height>731</height>
+                    <width>1264</width>
+                    <height>699</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -8505,10 +8482,22 @@ color: rgb(6, 76, 130);</string>
                    </item>
                    <item>
                     <widget class="QTextBrowser" name="textBrowser">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
-                       <height>165</height>
+                       <height>80</height>
+                      </size>
+                     </property>
+                     <property name="sizeIncrement">
+                      <size>
+                       <width>0</width>
+                       <height>80</height>
                       </size>
                      </property>
                      <property name="styleSheet">
@@ -8518,12 +8507,12 @@ color: rgb(6, 76, 130);</string>
                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                     </widget>
                    </item>
-                   <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                   <item>
                     <widget class="QLabel" name="label_37">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -8533,8 +8522,8 @@ p, li { white-space: pre-wrap; }
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>690</width>
-                       <height>450</height>
+                       <width>400</width>
+                       <height>250</height>
                       </size>
                      </property>
                      <property name="styleSheet">
@@ -8575,7 +8564,7 @@ color: rgb(6, 76, 130);</string>
                       </font>
                      </property>
                      <property name="text">
-                      <string/>
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Dorsa Imaging Solutions is a cutting-edge technology company specializing in image processing solutions tailored for industrial applications. With a keen focus on enhancing efficiency and precision in manufacturing processes, Dorsa employs advanced computer vision algorithms and machine learning techniques to analyze and interpret visual data within industrial settings. The company's innovative image processing solutions are pivotal in quality control, defect detection, and automation, ensuring seamless production workflows and minimizing downtime. Leveraging state-of-the-art hardware and software, Dorsa Imaging Solutions collaborates with industrial clients to develop bespoke solutions that address specific challenges in sectors such as automotive, electronics, and pharmaceuticals. By harnessing the power of image processing, the company is at the forefront of revolutionizing how industrial companies optimize their operations, ensuring a higher level of accuracy, productivity, and overall operational excellence.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="wordWrap">
                       <bool>true</bool>
@@ -8594,11 +8583,6 @@ color: rgb(6, 76, 130);</string>
                 </widget>
                </item>
               </layout>
-             </widget>
-             <widget class="QWidget" name="helppages_document_tab">
-              <attribute name="title">
-               <string>Document</string>
-              </attribute>
              </widget>
             </widget>
            </item>
@@ -8799,9 +8783,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-2183</y>
-                <width>1258</width>
-                <height>3406</height>
+                <y>0</y>
+                <width>1262</width>
+                <height>3326</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -9364,7 +9348,7 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:13pt; color:#404040;&quot;&gt;The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="tabStopDistance">
@@ -9724,7 +9708,7 @@ margin: 5px 0px;</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#282828;&quot;&gt;The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="overwriteMode">
@@ -10017,7 +10001,7 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#282828;&quot;&gt;The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
@@ -10075,7 +10059,7 @@ p, li { white-space: pre-wrap; }
                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;The weight Percentage chart shows the weight percentage for each range of diameter in the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                      </widget>
@@ -10177,8 +10161,8 @@ p, li { white-space: pre-wrap; }
                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                      </widget>
                     </item>
@@ -10307,8 +10291,8 @@ p, li { white-space: pre-wrap; }
                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8.25pt;&quot;&gt;This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                       </property>
                      </widget>
                     </item>
@@ -10444,7 +10428,7 @@ padding: 10px 0px</string>
                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-size:12pt; color:#282828;&quot;&gt;In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
@@ -11447,8 +11431,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1257</width>
-                <height>1182</height>
+                <width>1265</width>
+                <height>1150</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -12164,10 +12148,6 @@ QPushButton{
   </widget>
  </widget>
  <tabstops>
-  <tabstop>settingpage_general_language_combobox</tabstop>
-  <tabstop>pushButton_12</tabstop>
-  <tabstop>pushButton_11</tabstop>
-  <tabstop>pushButton_10</tabstop>
   <tabstop>settingpage_sample_auto_name_groupbox</tabstop>
   <tabstop>settingpage_sample_text1_input</tabstop>
   <tabstop>settingpage_sample_spacer_code_btn</tabstop>

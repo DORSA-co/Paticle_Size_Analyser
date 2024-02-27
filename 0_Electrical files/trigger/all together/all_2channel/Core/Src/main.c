@@ -7,7 +7,7 @@ uint8_t UART1_tx_ok[3] = {"OK"};
 
 uint8_t data[2] = {'1','0'};
 
-int wanted_freq = 10;
+int wanted_freq = 19;
 int wanted_comp = 49999;
 
 
@@ -37,8 +37,20 @@ int main(void)
 	
 		HAL_UART_Receive_IT( & huart1, UART1_rxBuffer, 1);
 
-	__HAL_TIM_SET_COMPARE( & htim2, TIM_CHANNEL_1, 25000);
-	__HAL_TIM_SET_COMPARE( & htim2, TIM_CHANNEL_2, 25000);
+	
+	
+			wanted_comp=(500000 / wanted_freq)-1;
+////////////frequency
+		TIM2->ARR=wanted_comp;
+/////////////duty cycle
+		TIM2->CCR1 = (wanted_comp+1) * 0.01;
+		TIM2->CCR2 = (wanted_comp+1) * 0.01;
+
+	
+	
+	
+//	__HAL_TIM_SET_COMPARE( & htim2, TIM_CHANNEL_1, 25000);
+//	__HAL_TIM_SET_COMPARE( & htim2, TIM_CHANNEL_2, 25000);
 
 	
   HAL_TIM_PWM_Start( & htim2, TIM_CHANNEL_1);

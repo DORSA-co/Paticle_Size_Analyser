@@ -167,7 +167,7 @@ class main_API(QObject):
             self.cameras[camera_application].Operations.open()
 
             self.camera_workers[camera_application] = cameraWorker( self.cameras[camera_application] )
-            self.camera_threads[camera_application] = threading.Thread(target=self.camera_workers[camera_application].grabber)
+            self.camera_threads[camera_application] = threading.Thread(target=self.camera_workers[camera_application].grabber, daemon=True)
             self.camera_workers[camera_application].success_grab_signal.connect(self.grabbed_image_event)
             self.camera_workers[camera_application].grabb_image_error.connect(self.error_grab_image_event)
 

@@ -1724,7 +1724,7 @@ QPushButton:hover{
                <number>5</number>
               </property>
               <item>
-               <widget class="QFrame" name="frame">
+               <widget class="QFrame" name="frame101">
                 <layout class="QHBoxLayout" name="horizontalLayout_35">
                  <property name="topMargin">
                   <number>1</number>
@@ -2292,8 +2292,8 @@ color: rgb(6, 76, 130);
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>360</width>
-                   <height>1667</height>
+                   <width>309</width>
+                   <height>1705</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -4094,7 +4094,7 @@ QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>3</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -7460,8 +7460,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1264</width>
-                    <height>701</height>
+                    <width>63</width>
+                    <height>34</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -8454,8 +8454,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1264</width>
-                    <height>699</height>
+                    <width>517</width>
+                    <height>484</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -10505,7 +10505,7 @@ QLabel{
                        <number>15</number>
                       </property>
                       <item>
-                       <widget class="QFrame" name="horizontalFrame_2">
+                       <widget class="QFrame" name="horizontalFrame_211">
                         <property name="styleSheet">
                          <string notr="true">QPushButton{
 

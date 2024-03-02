@@ -142,7 +142,7 @@ class reportsPageUI(commonUI):
         #get status of all checkbox
         #set status to all checkboxes of samples
         for sample_checkbox in self.samples_table_checkbox.values():
-            GUIBackend.set_checkbox_value(sample_checkbox, status)
+            GUIBackend.set_checkbox_value(sample_checkbox, status, block_signal=True)
 
     def set_select_all_samples(self, flag):
         GUIBackend.set_checkbox_value(self.select_all_checkbox, flag )
@@ -413,14 +413,12 @@ class reportsPageUI(commonUI):
             j = self.samples_table_headers.index('-')
             GUIBackend.set_table_cell_widget(self.samples_table, (i,j), checkbox, True) 
             self.samples_table_checkbox[sample['name_id']] = checkbox
-            GUIBackend.checkbox_connector_with_arg(checkbox, 
+            GUIBackend.checkbox_connector_argument_pass(checkbox, 
                                                    self.external_checkbox_samples_event_func, 
                                                    args=(sample,))
             
             if sample in selected_samples:
-                GUIBackend.set_signal_connection(checkbox, False)
-                GUIBackend.set_checkbox_value(checkbox, True )
-                GUIBackend.set_signal_connection(checkbox, True)
+                GUIBackend.set_checkbox_value(checkbox, True, block_signal=True )
 
 
             report_btn = GUIComponents.reportButton()

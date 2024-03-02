@@ -56,14 +56,15 @@ class settingCameraDB(parentSettingDB):
                 ]
     
     TABLE_DEFAULT_DATAS= [ {
-                            'serial_number': '0815-0000',
+                            #'serial_number': '0815-0000',
+                            'serial_number': '',
                             'gain': 0,           
                             'exposure': 45,       
                             'width':  2440,          
                             'height': 2048,         
                             'fps': 19,
-                            'port': 'COM1',  
-                            'synchronize': 'software',     
+                            'port': 'COM5',  
+                            'synchronize': 'hardware',     
                             'application': 'standard',   
                         }   
                     ]
@@ -198,7 +199,7 @@ class settingAlgorithmDB(parentSettingDB):
     
     TABLE_DEFAULT_DATAS = [
                             {
-                            'threshold' : 60,
+                            'threshold' : 80,
                             'border': 10
                         }
                     ]

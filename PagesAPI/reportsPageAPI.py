@@ -112,6 +112,7 @@ class reportsPageAPI:
 
 
     def select_all_sample(self, state):
+        state = bool(state)
         if state:
             self.selected_samples = self.all_samples.copy()
         
@@ -119,6 +120,7 @@ class reportsPageAPI:
             self.selected_samples = []
 
         self.uiHandeler.select_all_samples(state)
+
 
 
 
@@ -364,15 +366,18 @@ class reportsPageAPI:
         rfh = reportFileHandler(sample)
         rfh.remove()
         self.database.reports_db.remove(sample)
-        self.all_samples.remove(sample)
-        self.selected_samples.remove(sample)
-        self.refresh_table()
+        if sample in self.all_samples:
+            self.all_samples.remove(sample)
 
-    def checked_sample(self, sample):
         if sample in self.selected_samples:
             self.selected_samples.remove(sample)
+        self.refresh_table()
+
+    def checked_sample(self,state, sample):
+        if state == False and sample in self.selected_samples:
+            self.selected_samples.remove(sample)
         
-        else:
+        if state==True and sample not in self.selected_samples:
             self.selected_samples.append(sample)
 
 
@@ -449,6 +454,7 @@ class removeSamplesWorkder(QObject):
         #for i,sample in enumerate(self.selection_samples):
         i=0
         while self.selection_samples:
+            print(i)
     
             if self.stop_flag:
                 break

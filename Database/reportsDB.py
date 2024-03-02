@@ -71,7 +71,7 @@ class reportsDB:
     def save(self, data):
         data = self.__pre_process_to_save__(data)
         if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-            self.update(self,data)
+            self.update(data)
 
         else:
             self.db_manager.add_record_dict(self.TABLE_NAME, data)

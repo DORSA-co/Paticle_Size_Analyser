@@ -250,8 +250,8 @@ class cameraSettingTabAPI:
                                                                                 None
                                                                                 )
                     
-                    trigger_delay = int( 1000000 / self.ui.get_fps() * 0.01 / 2)
-                    # trigger_delay = 2
+                    #trigger_delay = int( 1000000 / self.ui.get_fps() * 0.005 / 2)
+                    trigger_delay = 90
                     self.cameras[camera_application].Parms.set_trigger_delay(trigger_delay)
             
                 else:

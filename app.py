@@ -17,7 +17,6 @@ from appAPI import main_API
 from Constants import CONSTANTS
 
 
-
 main_ui_file = 'uiFiles/main_UI.ui'
 login_ui_file = 'uiFiles/login.ui'
 sample_info_ui_file = 'uiFiles/sample_info.ui'

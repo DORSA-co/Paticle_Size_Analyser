@@ -1,7 +1,7 @@
 import serial
 
 # Define the serial port and baud rate
-ser = serial.Serial('COM3', 115200)  # Change 'COM1' to the appropriate serial port on your system
+ser = serial.Serial('COM5', 115200)  # Change 'COM1' to the appropriate serial port on your system
 
 # Define your packets (replace these with your actual packet data)
 packets = [

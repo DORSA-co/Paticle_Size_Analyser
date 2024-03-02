@@ -63,7 +63,7 @@ class settingCameraDB(parentSettingDB):
                             'width':  2440,          
                             'height': 2048,         
                             'fps': 19,
-                            'port': 'COM1',  
+                            'port': 'COM5',  
                             'synchronize': 'hardware',     
                             'application': 'standard',   
                         }   
@@ -199,7 +199,7 @@ class settingAlgorithmDB(parentSettingDB):
     
     TABLE_DEFAULT_DATAS = [
                             {
-                            'threshold' : 60,
+                            'threshold' : 80,
                             'border': 10
                         }
                     ]

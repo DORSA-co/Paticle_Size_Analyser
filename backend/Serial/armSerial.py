@@ -18,7 +18,8 @@ class armSerial:
                 self.serial = serial.Serial(self.port, serialInfo.BAUD_RATE)
                 self.connection_status = True
 
-            except:
+            except Exception as e:
+                print(str(e))
                 self.connection_status = False
         else:
             print('ERROR:port is not defined')

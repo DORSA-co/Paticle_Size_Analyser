@@ -68,8 +68,8 @@ class reProcessApp:
 
 if __name__=="__main__":
 
-    rp = reProcessApp(thresh=80)
-    rp.load_report('20240228_1520_admin')
+    rp = reProcessApp(thresh=70)
+    rp.load_report('20240303_1459_admin')
 
     new_report = rp.reprocess()
     print(new_report.Grading.get_hist())

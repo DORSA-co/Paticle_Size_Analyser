@@ -215,6 +215,17 @@ class cameraSettingTabAPI:
     def startup(self):
         self.ui.reset()
 
+    def update_camera_event(self, cameras: dict[str, Camera]):
+        """
+        this event called when new camera build in appAPI
+        """
+        self.cameras = cameras
+        self.setup_camera_funcs()
+        self.set_allowed_values_camera_setting()
+        settings = self.ui.get_camera_settings()
+        camera_application = self.ui.get_selected_camera_application()
+        self.set_camera_setting(camera_application, settings)
+
     
         
 

@@ -8,12 +8,13 @@ import time
 
 class particlesDetector:
 
-    def __init__(self, thresh:int, px2mm_ratio:float, detection_border:int=10, ) -> None:
+    def __init__(self, thresh:int, px2mm_ratio:float, detection_border:int=10, min_size=0.15 ) -> None:
         self.thresh = thresh
         self.detection_border = detection_border
         self.px2mm_ratio = px2mm_ratio
         self.particle_id = 0
         self.img_id = 0
+        self.min_size = min_size
 
 
 
@@ -75,6 +76,8 @@ class particlesDetector:
         particles = []
         for cnt in cnts:
                 particle = Particle(cnt, self.px2mm_ratio, self.particle_id)
+                if particle.avg_diameter < self.min_size:
+                    continue
                 if report is not None:
                     report.append_particle(particle)
                 particles.append(particle)

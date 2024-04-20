@@ -187,6 +187,8 @@ class main_API(QObject):
         
         #self.camera_device_info = self.c
         self.creat_camera(camera_device_info)
+        self.settingPageAPI.cameraSetting.update_camera_event(self.cameras)
+
         if self.camera_workers.get(cam_application) is not None:
             self.camera_workers[cam_application].change_camera( self.cameras[cam_application] )
         else:

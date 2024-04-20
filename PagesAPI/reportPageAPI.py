@@ -85,6 +85,7 @@ class reportPageAPI:
         """
         self.startup()
         self.report = report
+        self.report.Buffer.total_buffer.sort(reverse=True)
         self.particles_count = self.report.get_particles_count()
         self.particle_maximum_page = (self.particles_count // self.PARTICLE_PER_PAGE)
         

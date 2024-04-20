@@ -69,6 +69,9 @@ class particlesBuffer:
         """
         return self.particels
     
+    def sort(self, reverse=False):
+        self.particels.sort(key=lambda x: x.avg_diameter, reverse=reverse)
+    
     def get_particel(self, idx) -> Particle:
         """returns list of particles
 

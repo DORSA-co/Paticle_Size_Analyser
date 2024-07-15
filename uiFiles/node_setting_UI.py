@@ -54,11 +54,11 @@ class Ui_NodeSetting(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.mainFrame = QFrame(NodeSetting)
         self.mainFrame.setObjectName(u"mainFrame")
-        self.mainFrame.setStyleSheet(u"#mainFrame{\n"
-"	background-color:#fff;\n"
-"	border: 2px solid #a0a0a0;\n"
-"	border-radius: 15px;\n"
-"\n"
+        self.mainFrame.setStyleSheet(u"\n"
+"#mainFrame{\n"
+"	background-color: #F7F8FA;\n"
+"	border-radius:15px;\n"
+"	border: 1px solid rgb(232, 233, 235);\n"
 "}")
         self.mainFrame.setFrameShape(QFrame.StyledPanel)
         self.mainFrame.setFrameShadow(QFrame.Raised)

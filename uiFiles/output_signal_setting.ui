@@ -48,9 +48,9 @@
      </property>
      <property name="styleSheet">
       <string notr="true">#main_frame{
-	background-color: #fff;
+	background-color: #F7F8FA;
 	border-radius:15px;
-	border: 2px solid #909090;
+	border: 1px solid rgb(232, 233, 235);
 }</string>
      </property>
      <property name="frameShape">
@@ -105,9 +105,15 @@
       </item>
       <item>
        <widget class="QDoubleSpinBox" name="value_numeric">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
-          <width>80</width>
+          <width>120</width>
           <height>16777215</height>
          </size>
         </property>
@@ -115,6 +121,12 @@
       </item>
       <item>
        <widget class="QComboBox" name="value_bool">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>100</width>

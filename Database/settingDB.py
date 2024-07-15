@@ -1,5 +1,7 @@
-from Database.databaseManager import databaseManager
+import os
 
+from Database.databaseManager import databaseManager
+from backend.Utils.StorageUtils import objectSaver
 
 class parentSettingDB:
     TABLE_NAME = ""
@@ -50,6 +52,7 @@ class settingDB:
         self.export_db = settingExportDB(self.db_manager)
         self.plc_db = settingPLCDB(self.db_manager)
         self.plc_nodes_db = settingPLCNodesDB(self.db_manager)
+        self.config_db = settingConfigDB()
 
         
 
@@ -408,3 +411,30 @@ class settingPLCNodesDB(parentSettingDB):
         records =  self.db_manager.get_all_content(self.TABLE_NAME)
         return  records
 
+
+
+
+class settingConfigDB:
+    path = 'config'
+    def __init__(self) -> None:
+        pass
+
+    def save_config(self,config: dict):
+        """saves report object
+
+        Args:
+            report (Report): report object
+        """
+        objectSaver.save(config, self.path)
+
+
+    def load_config(self,) -> dict:
+        """load report Object
+
+        Returns:
+            Report: loaded report object
+        """
+        
+        if os.path.exists(self.path):
+            return objectSaver.load(self.path)
+        return None

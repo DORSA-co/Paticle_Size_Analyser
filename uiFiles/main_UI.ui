@@ -1166,7 +1166,7 @@ Line{
 </string>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,0,1">
@@ -4116,7 +4116,7 @@ QLabel
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>6</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -6965,7 +6965,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                        <widget class="QWidget" name="scrollAreaConfigContents">
                         <property name="geometry">
                          <rect>
-                          <x>-1321</x>
+                          <x>0</x>
                           <y>0</y>
                           <width>5670</width>
                           <height>486</height>
@@ -7003,6 +7003,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <horstretch>0</horstretch>
                                 <verstretch>0</verstretch>
                                </sizepolicy>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
                               </property>
                               <property name="text">
                                <string>Start System</string>
@@ -7080,7 +7086,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                  <item>
                                   <widget class="QStackedWidget" name="config_start_system_settings_stackwidget">
                                    <property name="currentIndex">
-                                    <number>1</number>
+                                    <number>0</number>
                                    </property>
                                    <widget class="QWidget" name="config_start_timer_page">
                                     <property name="styleClass" stdset="0">
@@ -7098,6 +7104,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                        </item>
                                        <item>
                                         <widget class="QSpinBox" name="config_start_system_period_spinbox">
+                                         <property name="minimumSize">
+                                          <size>
+                                           <width>120</width>
+                                           <height>27</height>
+                                          </size>
+                                         </property>
                                          <property name="minimum">
                                           <number>5</number>
                                          </property>
@@ -7266,6 +7278,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <verstretch>0</verstretch>
                                </sizepolicy>
                               </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
                               <property name="text">
                                <string>Permisions</string>
                               </property>
@@ -7391,6 +7409,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <horstretch>0</horstretch>
                                 <verstretch>0</verstretch>
                                </sizepolicy>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
                               </property>
                               <property name="text">
                                <string>Output Signal</string>
@@ -7521,6 +7545,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <verstretch>0</verstretch>
                                </sizepolicy>
                               </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
                               <property name="text">
                                <string>Start Processing Latency</string>
                               </property>
@@ -7570,6 +7600,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                      <verstretch>0</verstretch>
                                     </sizepolicy>
                                    </property>
+                                   <property name="minimumSize">
+                                    <size>
+                                     <width>120</width>
+                                     <height>27</height>
+                                    </size>
+                                   </property>
                                   </widget>
                                  </item>
                                  <item>
@@ -7578,6 +7614,19 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <string>Seconds</string>
                                    </property>
                                   </widget>
+                                 </item>
+                                 <item>
+                                  <spacer name="horizontalSpacer_34">
+                                   <property name="orientation">
+                                    <enum>Qt::Horizontal</enum>
+                                   </property>
+                                   <property name="sizeHint" stdset="0">
+                                    <size>
+                                     <width>40</width>
+                                     <height>20</height>
+                                    </size>
+                                   </property>
+                                  </spacer>
                                  </item>
                                 </layout>
                                </item>
@@ -7641,6 +7690,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <horstretch>0</horstretch>
                                 <verstretch>0</verstretch>
                                </sizepolicy>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
                               </property>
                               <property name="text">
                                <string>Output Signal</string>
@@ -7765,6 +7820,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <verstretch>0</verstretch>
                                </sizepolicy>
                               </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
                               <property name="text">
                                <string>Stop Processing</string>
                               </property>
@@ -7843,7 +7904,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                  <item>
                                   <widget class="QStackedWidget" name="config_stop_system_settings_stackwidget">
                                    <property name="currentIndex">
-                                    <number>1</number>
+                                    <number>0</number>
                                    </property>
                                    <widget class="QWidget" name="config_stop_timer_page">
                                     <property name="styleClass" stdset="0">
@@ -7861,6 +7922,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                        </item>
                                        <item>
                                         <widget class="QSpinBox" name="config_stop_system_delay_spinbox">
+                                         <property name="minimumSize">
+                                          <size>
+                                           <width>120</width>
+                                           <height>27</height>
+                                          </size>
+                                         </property>
                                          <property name="minimum">
                                           <number>5</number>
                                          </property>
@@ -8025,6 +8092,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                 <verstretch>0</verstretch>
                                </sizepolicy>
                               </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>16777215</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
                               <property name="text">
                                <string>Output Signal</string>
                               </property>
@@ -8124,7 +8197,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                      <number>1</number>
                     </property>
                     <item>
-                     <widget class="QPushButton" name="settingpage_plc_save_btn_3">
+                     <widget class="QPushButton" name="settingpage_config_save_btn">
                       <property name="enabled">
                        <bool>true</bool>
                       </property>
@@ -8140,7 +8213,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="settingpage_plc_cancel_btn_3">
+                     <widget class="QPushButton" name="settingpage_config_cancel_btn">
                       <property name="styleSheet">
                        <string notr="true"/>
                       </property>

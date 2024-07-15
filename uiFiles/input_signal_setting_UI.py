@@ -38,9 +38,9 @@ class Ui_inputSignalSetting(object):
         self.main_frame.setMinimumSize(QSize(0, 0))
         self.main_frame.setMaximumSize(QSize(16777215, 16777215))
         self.main_frame.setStyleSheet(u"#main_frame{\n"
-"	background-color: #fff;\n"
+"	background-color: #F7F8FA;\n"
 "	border-radius:15px;\n"
-"	border: 2px solid #909090;\n"
+"	border: 1px solid rgb(232, 233, 235);\n"
 "}")
         self.main_frame.setFrameShape(QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QFrame.Raised)
@@ -75,7 +75,8 @@ class Ui_inputSignalSetting(object):
 
         self.signal_value = QDoubleSpinBox(self.main_frame)
         self.signal_value.setObjectName(u"signal_value")
-        self.signal_value.setMaximumSize(QSize(80, 16777215))
+        self.signal_value.setMinimumSize(QSize(120, 0))
+        self.signal_value.setMaximumSize(QSize(120, 16777215))
 
         self.horizontalLayout.addWidget(self.signal_value)
 

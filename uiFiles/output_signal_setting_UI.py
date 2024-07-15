@@ -38,9 +38,9 @@ class Ui_outputSignalSetting(object):
         self.main_frame.setMinimumSize(QSize(0, 0))
         self.main_frame.setMaximumSize(QSize(16777215, 16777215))
         self.main_frame.setStyleSheet(u"#main_frame{\n"
-"	background-color: #fff;\n"
+"	background-color: #F7F8FA;\n"
 "	border-radius:15px;\n"
-"	border: 2px solid #909090;\n"
+"	border: 1px solid rgb(232, 233, 235);\n"
 "}")
         self.main_frame.setFrameShape(QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QFrame.Raised)
@@ -72,7 +72,8 @@ class Ui_outputSignalSetting(object):
 
         self.value_numeric = QDoubleSpinBox(self.main_frame)
         self.value_numeric.setObjectName(u"value_numeric")
-        self.value_numeric.setMaximumSize(QSize(80, 16777215))
+        self.value_numeric.setMinimumSize(QSize(120, 0))
+        self.value_numeric.setMaximumSize(QSize(120, 16777215))
 
         self.horizontalLayout.addWidget(self.value_numeric)
 
@@ -80,6 +81,7 @@ class Ui_outputSignalSetting(object):
         self.value_bool.addItem("")
         self.value_bool.addItem("")
         self.value_bool.setObjectName(u"value_bool")
+        self.value_bool.setMinimumSize(QSize(100, 0))
         self.value_bool.setMaximumSize(QSize(100, 16777215))
 
         self.horizontalLayout.addWidget(self.value_bool)

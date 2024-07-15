@@ -800,53 +800,8 @@ class configSettingTabUI(commonSettingUI):
         super(configSettingTabUI, self).__init__(ui)
         self.ui = ui
        
-        self.save_btn = self.ui.settingpage_plc_save_btn
-        self.cancel_btn = self.ui.settingpage_plc_cancel_btn
-
-        self.signals_wgt = {
-            'start': {'add': self.ui.config_start_system_signals_add_btn,
-                      'scroll_content': self.ui.config_start_system_signals_scroll_contents,
-                      'scroll_area':    self.ui.config_start_system_signals_scroll_area,
-                      'type': 'input',
-                      'signals': [],
-                      },
-
-            'permisions': {'add': self.ui.config_permisions_signals_add_btn,
-                      'scroll_content': self.ui.config_permisions_signals_scroll_contents,
-                      'scroll_area':    self.ui.config_permisions_signals_scroll_area,
-                      'type': 'input',
-                      'signals': [],
-                      },
-
-            'stop': {'add': self.ui.config_stop_system_signals_add_btn,
-                      'scroll_content': self.ui.config_stop_system_signals_scroll_contents,
-                      'scroll_area':    self.ui.config_stop_system_signals_scroll_area,
-                      'type': 'input',
-                      'signals': [],
-                      },
-
-            'signal1': {'add': self.ui.config_output_signals1_add_btn,
-                      'scroll_content': self.ui.config_output_signals1_scroll_contents,
-                      'scroll_area':    self.ui.config_output_signals1_scroll_area,
-                      'type': 'output',
-                      'signals': [],
-                      },
-
-            'signal2': {'add': self.ui.config_output_signals2_add_btn,
-                      'scroll_content': self.ui.config_output_signals2_scroll_contents,
-                      'scroll_area':    self.ui.config_output_signals2_scroll_area,
-                      'type': 'output',
-                      'signals': [],
-                      },
-
-            'signal3': {'add': self.ui.config_output_signals3_add_btn,
-                      'scroll_content': self.ui.config_output_signals3_scroll_contents,
-                      'scroll_area':    self.ui.config_output_signals3_scroll_area,
-                      'type': 'output',
-                      'signals': [],
-                      },
-        }
-
+        self.save_btn = self.ui.settingpage_config_save_btn
+        self.cancel_btn = self.ui.settingpage_config_cancel_btn
 
         self.read_signals:list[str] = []
         self.write_signals:list[str] = []
@@ -864,6 +819,65 @@ class configSettingTabUI(commonSettingUI):
                                         }
                                     }
                                 )
+
+        self.signals_wgt = {
+            'start_signals': {'add': self.ui.config_start_system_signals_add_btn,
+                      'scroll_content': self.ui.config_start_system_signals_scroll_contents,
+                      'scroll_area':    self.ui.config_start_system_signals_scroll_area,
+                      'type': 'input',
+                      },
+
+            'permission_signals': {'add': self.ui.config_permisions_signals_add_btn,
+                      'scroll_content': self.ui.config_permisions_signals_scroll_contents,
+                      'scroll_area':    self.ui.config_permisions_signals_scroll_area,
+                      'type': 'input',
+                      },
+
+            'stop_signals': {'add': self.ui.config_stop_system_signals_add_btn,
+                      'scroll_content': self.ui.config_stop_system_signals_scroll_contents,
+                      'scroll_area':    self.ui.config_stop_system_signals_scroll_area,
+                      'type': 'input',
+                      },
+
+            'signals1': {'add': self.ui.config_output_signals1_add_btn,
+                      'scroll_content': self.ui.config_output_signals1_scroll_contents,
+                      'scroll_area':    self.ui.config_output_signals1_scroll_area,
+                      'type': 'output',
+                      },
+
+            'signals2': {'add': self.ui.config_output_signals2_add_btn,
+                      'scroll_content': self.ui.config_output_signals2_scroll_contents,
+                      'scroll_area':    self.ui.config_output_signals2_scroll_area,
+                      'type': 'output',
+                      },
+
+            'signals3': {'add': self.ui.config_output_signals3_add_btn,
+                      'scroll_content': self.ui.config_output_signals3_scroll_contents,
+                      'scroll_area':    self.ui.config_output_signals3_scroll_area,
+                      'type': 'output',
+                      },
+        }
+
+        self.signals_ui: dict[str, list[Union[outputSignalUI, inputSignalUI]]] = {
+            'start_signals':[],
+            'permission_signals': [],
+            'stop_signals': [],
+            'signals1': [],
+            'signals2': [],
+            'signals3': [],
+        }    
+
+        self.settings = {
+            'start_manual': self.ui.config_start_manual_checkbox,
+            'start_mode': self.ui.config_start_mode_comboBox,
+            'start_period_time': self.ui.config_start_system_period_spinbox,
+            'start_delay': self.ui.config_start_latency_spinbox,
+            'stop_manual': self.ui.config_stop_manual_checkbox,
+            'stop_mode': self.ui.config_stop_mode_comboBox,
+            'stop_delay': self.ui.config_stop_system_delay_spinbox,
+
+
+        }
 
         self.__add_btns_connector()
         GUIBackend.combobox_changeg_connector(self.ui.config_start_mode_comboBox, 
@@ -915,7 +929,7 @@ class configSettingTabUI(commonSettingUI):
                                                       args = (step_name,)
                                                       )
 
-    def add_signal_event(self, step_name:str):
+    def add_signal_event(self, step_name:str) -> Union[inputSignalUI, outputSignalUI]:
         scroll_content = self.signals_wgt[step_name]['scroll_content']
 
         if self.signals_wgt[step_name]['type'] == 'input':
@@ -927,8 +941,8 @@ class configSettingTabUI(commonSettingUI):
 
         signal_ui.remove_button_connector(self.remove_signal_event)
 
-        signals:list = self.signals_wgt[step_name]['signals']
-        signals.append( signal_ui )
+        
+        self.signals_ui[step_name].append( signal_ui )
 
         GUIBackend.insert_widget(scroll_content,
                                  signal_ui,
@@ -936,6 +950,8 @@ class configSettingTabUI(commonSettingUI):
                                  )
         
         GUIComponents.single_timer_runner(150, lambda: self.__scroll_to_bottom(step_name))
+
+        return signal_ui
 
     def __scroll_to_bottom(self, step_name:str):
         scroll_bar = self.signals_wgt[step_name]['scroll_area'].verticalScrollBar()
@@ -947,7 +963,7 @@ class configSettingTabUI(commonSettingUI):
 
         for step_name in self.signals_wgt:
             signal_ui: Union[inputSignalUI, outputSignalUI]
-            for signal_ui in self.signals_wgt[step_name]['signals']:
+            for signal_ui in self.signals_ui[step_name]:
 
                 if self.signals_wgt[step_name]['type'] == 'input':
                     signal_ui.set_signals_items(self.read_signals)
@@ -962,9 +978,41 @@ class configSettingTabUI(commonSettingUI):
         layout = scroll_content.layout()
         layout.removeWidget(signal)
 
-        self.signals_wgt[step_name]['signals'].remove(signal)
-        signal.deleteLater()
-
- 
+        self.signals_ui[step_name].remove(signal)
+        signal.deleteLater()        
 
 
+    def get_settings(self,) -> dict:
+        res = {}
+        for name, field in self.settings.items():
+            res[name] = GUIBackend.get_input(field)
+
+        res['start_mode'] = self.mapDict.value2key('start_mode', res['start_mode'])
+        res['stop_mode'] = self.mapDict.value2key('stop_mode', res['stop_mode'])
+
+        
+        for step_signal in self.signals_ui.keys():
+            res[step_signal] = []
+            for su in self.signals_ui[step_signal]:
+                res[step_signal].append( 
+                    su.get_settings()
+                )
+        
+        return res
+
+
+    def set_settings(self, data:dict) -> dict:
+        res = {}
+
+        data['start_mode'] = self.mapDict.key2value('start_mode', data['start_mode'])
+        data['stop_mode'] = self.mapDict.key2value('stop_mode', data['stop_mode'])
+
+        for name, field in self.settings.items():
+            res[name] = GUIBackend.set_input(field, data[name])
+
+        
+        for step_signal in self.signals_ui.keys():
+            for signal_setting in data[step_signal]:
+                node_ui = self.add_signal_event(step_signal)
+                node_ui.set_settings(signal_setting)
+        

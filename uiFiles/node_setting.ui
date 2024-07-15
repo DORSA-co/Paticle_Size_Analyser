@@ -55,11 +55,11 @@ QLabel[styleClass=&quot;title&quot;]{
    <item>
     <widget class="QFrame" name="mainFrame">
      <property name="styleSheet">
-      <string notr="true">#mainFrame{
-	background-color:#fff;
-	border: 2px solid #a0a0a0;
-	border-radius: 15px;
-
+      <string notr="true">
+#mainFrame{
+	background-color: #F7F8FA;
+	border-radius:15px;
+	border: 1px solid rgb(232, 233, 235);
 }</string>
      </property>
      <property name="frameShape">

@@ -4,7 +4,7 @@ import threading
 
 from backend.Camera.dorsaPylon import Collector, Camera
 from backend.Camera import PylonFlags
-from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB, settingPLCDB, settingPLCNodesDB
+from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB, settingPLCDB, settingPLCNodesDB, settingConfigDB
 from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI, plcSettingTabUI, configSettingTabUI
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
@@ -22,7 +22,8 @@ class settingPageAPI:
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
         self.exportSetting = exportSettingTabAPI(ui.exportSettingTab, database.export_db)
         self.plcSetting = plcSettingTabAPI(ui.plcSettingTab, database_nodes=database.plc_nodes_db, database_plc=database.plc_db)
-        self.configSetting = configSettingTabAPI(ui.configSettingTab)
+        self.configSetting = configSettingTabAPI(ui.configSettingTab, database.config_db)
+        
         # ui.cameraSettingTab.save_state(True)
         # ui.algorithmSettingTab.save_state(True)
         # ui.storageSettingTab.save_state(True)
@@ -606,8 +607,19 @@ class plcSettingTabAPI:
 class configSettingTabAPI:
     def __init__(self, 
                  ui:configSettingTabUI ,
-                 database=None, 
+                 database:settingConfigDB, 
                  ):
         
         self.ui = ui
+        self.database = database
 
+        self.ui.save_button_connector(self.save)
+        self.load()
+
+    def save(self,):
+        settings = self.ui.get_settings()
+        self.database.save_config(settings)
+
+    def load(self,):
+        settings = self.database.load_config()
+        self.ui.set_settings(settings)

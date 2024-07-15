@@ -342,6 +342,26 @@ class databaseManager:
             self.show_message(("Error In Remove Record ", e))
             return False
 
+    def clear_table(self, table_name ):
+        
+        try:
+            if self.check_connection():
+                mySql_delete_query = """DELETE FROM {};""".format(table_name,)
+
+                self.execute_quary(mySql_delete_query)
+                self.connection.commit()
+                self.cursor.close()
+                self.show_message((self.cursor.rowcount, "Clear {} table successfully ".format(table_name)))
+                return True
+            
+            else:
+                self.show_message('Error in SQL Connection')
+                return False
+            
+        except Exception as e:
+            self.show_message(("Error In Clear Table ", e))
+            return False
+
 
 
     def search(self, table_name, col_name, value):

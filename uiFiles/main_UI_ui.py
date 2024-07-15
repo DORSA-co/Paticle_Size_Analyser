@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main_UI.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.2
+## Created by: Qt User Interface Compiler version 6.2.4
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1482, 926)
+        MainWindow.resize(1644, 980)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -46,7 +46,6 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "\n"
-"\n"
 "QPushButton{\n"
 "	border: none;\n"
 "	font-weight: bold;\n"
@@ -54,7 +53,6 @@ class Ui_MainWindow(object):
 "	background-color:rgb(6, 76, 130);\n"
 "	min-height: 35px;\n"
 "	border-radius: 5px;\n"
-"	min-width:200px;\n"
 "	font-size:12px;\n"
 "	\n"
 "}\n"
@@ -95,10 +93,10 @@ class Ui_MainWindow(object):
 "{\n"
 "    border: 1px solid #fffff8;\n"
 "}\n"
-""
-                        "\n"
 "\n"
-"/*********************************************/\n"
+"\n"
+"/****************"
+                        "*****************************/\n"
 "\n"
 "\n"
 "\n"
@@ -108,7 +106,6 @@ class Ui_MainWindow(object):
 "	border:2px solid rgb(6, 76, 130);\n"
 "    border-radius: 3px;\n"
 "    padding: 1px 18px 1px 8px;\n"
-"    min-width: 6em;\n"
 "	min-height: 35px;\n"
 "	font-size: 14px;\n"
 "}\n"
@@ -135,21 +132,18 @@ class Ui_MainWindow(object):
 "QComboBox::drop-down\n"
 "{\n"
 "	 background-color: rgb(6, 76, 130);\n"
-"	 min-width: 30px;\n"
 "}\n"
 "\n"
 "QComboBox::drop-down:disabled \n"
 "{\n"
 "	 background-color: rgb(210, 210, 210);\n"
-"	 min-width: 30px;\n"
 "}\n"
 "\n"
 "QComboBox QAbstractItemView {\n"
 "    border: none;\n"
 "    selection-background-color: rgb(6, 76, 130);\n"
 "	selection-color: rgb(6, 76, 130);\n"
-""
-                        "\n"
+"\n"
 "\n"
 "}\n"
 "\n"
@@ -157,7 +151,8 @@ class Ui_MainWindow(object):
 "    border: none;\n"
 "}\n"
 "\n"
-"QComboBox QAbstractItemView::item {\n"
+"QComboBox"
+                        " QAbstractItemView::item {\n"
 "    border: none;\n"
 "	height:30px;\n"
 "}\n"
@@ -169,7 +164,6 @@ class Ui_MainWindow(object):
 "	border:2px solid rgb(6, 76, 130);\n"
 "    border-radius: 3px;\n"
 "    padding: 1px 18px 1px 8px;\n"
-"    min-width: 6em;\n"
 "	min-height: 35px;\n"
 "	font-size: 16px;\n"
 "}\n"
@@ -207,13 +201,13 @@ class Ui_MainWindow(object):
 "    width: 30px;\n"
 "}\n"
 "\n"
-""
-                        "\n"
+"\n"
 "QDateEdit::up-button:disabled ,\n"
 "QDateEdit::down-button:disabled\n"
 "    {\n"
 "    subcontrol-origin: border;\n"
-"	background-color:rgb(209, 209, 209);\n"
+""
+                        "	background-color:rgb(209, 209, 209);\n"
 "    width: 30px;\n"
 "}\n"
 "\n"
@@ -230,7 +224,6 @@ class Ui_MainWindow(object):
 "	border:2px solid rgb(6, 76, 130);\n"
 "    border-radius: 3px;\n"
 "    padding: 1px 18px 1px 8px;\n"
-"    min-width: 6em;\n"
 "	min-height: 35px;\n"
 "	font-size: 16px;\n"
 "}\n"
@@ -255,15 +248,15 @@ class Ui_MainWindow(object):
 "QSpinBox::up-arrow, QDoubleSpinBox::up-arrow\n"
 "{   \n"
 "	image: url(:/assets/icons/icons8-uptriangle-48.png);\n"
-"	wi"
-                        "dth: 10px;\n"
+"	width: 10px;\n"
 "    height: 10px;\n"
 "\n"
 "}\n"
 "\n"
 "QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow\n"
 "{   \n"
-"	image: url(:/assets/icons/icons8-downtriangle-48.png);\n"
+"	image: url(:/assets/icons/ic"
+                        "ons8-downtriangle-48.png);\n"
 "	width: 10px;\n"
 "    height: 10px;\n"
 "\n"
@@ -300,15 +293,15 @@ class Ui_MainWindow(object):
 "QCheckBox::indicator {\n"
 "    width: 25px;\n"
 "    height: 25px;\n"
-"	border:2px solid rgb(6, "
-                        "76, 130);\n"
+"	border:2px solid rgb(6, 76, 130);\n"
 "	border-radius: 3px;\n"
 "	\n"
 "}\n"
 "\n"
 "QCheckBox::indicator:checked {\n"
 "    image:url(:/assets/icons/icons8-check-50.png);\n"
-"	background-color:rgb(6, 76, 130);\n"
+""
+                        "	background-color:rgb(6, 76, 130);\n"
 "}\n"
 "\n"
 "/*******************************************/\n"
@@ -317,7 +310,6 @@ class Ui_MainWindow(object):
 "	border:2px solid rgb(6, 76, 130);\n"
 "    border-radius: 3px;\n"
 "    padding: 1px 18px 1px 8px;\n"
-"    min-width: 6em;\n"
 "	min-height: 35px;\n"
 "	font-size: 16px;\n"
 "}\n"
@@ -345,15 +337,15 @@ class Ui_MainWindow(object):
 "\n"
 "/*******************************************/\n"
 "\n"
-"QTabBar::tab:selected"
-                        " {\n"
+"QTabBar::tab:selected {\n"
 "    background: rgb(6, 76, 130);\n"
 "	font-weight: bold;\n"
 "	font-size: 20px;\n"
 "}\n"
 "\n"
 "QTabBar::tab:!selected {\n"
-"	border-left: 1px solid rgb(199, 199, 199);\n"
+"	border-left: 1px solid rgb(199, 199, 19"
+                        "9);\n"
 "	border-right: 1px solid rgb(199, 199, 199);\n"
 "}\n"
 "\n"
@@ -410,8 +402,7 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "\n"
-"QDoubleS"
-                        "pinBox:hover{\n"
+"QDoubleSpinBox:hover{\n"
 "	background: #e4f0fa;\n"
 "}\n"
 "\n"
@@ -422,13 +413,34 @@ class Ui_MainWindow(object):
 "\n"
 "QTimeEdit:focus {\n"
 "	color: white;\n"
-"	background: #0078D7;\n"
+"	background"
+                        ": #0078D7;\n"
 "	selection-background-color: black;\n"
 "}\n"
 "\n"
 "QListView::item{\n"
 "	height: 30px;\n"
 "}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton[styleClass=\"blueCircelAdd\"]{\n"
+"	background-color:rgb(6, 76, 130);\n"
+"	icon: url(:/assets/icons/icons8-add-30.png);\n"
+"	max-width:40px;\n"
+"	min-width:40px;\n"
+"	max-height:40px;\n"
+"	min-height:40px;\n"
+"	border-radius: 20px;\n"
+"}\n"
+"\n"
+"QPushButton[styleClass=\"blueCircelAdd\"]:hover{\n"
+"	border-radius: 0px;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
 "")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(0)
@@ -449,16 +461,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setSpacing(10)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(10, 5, 10, 5)
-        self.frame_5 = QFrame(self.header)
-        self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setMaximumSize(QSize(16777215, 16777215))
-        self.frame_5.setFrameShape(QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_5)
+        self.header_logo_frame = QFrame(self.header)
+        self.header_logo_frame.setObjectName(u"header_logo_frame")
+        self.header_logo_frame.setMaximumSize(QSize(16777215, 16777215))
+        self.header_logo_frame.setFrameShape(QFrame.StyledPanel)
+        self.header_logo_frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.header_logo_frame)
         self.horizontalLayout_3.setSpacing(10)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.dorsa_logo = QLabel(self.frame_5)
+        self.dorsa_logo = QLabel(self.header_logo_frame)
         self.dorsa_logo.setObjectName(u"dorsa_logo")
         self.dorsa_logo.setMaximumSize(QSize(110, 16777215))
         self.dorsa_logo.setPixmap(QPixmap(u":/assets/general/dorsa_white.png"))
@@ -466,7 +478,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.dorsa_logo)
 
-        self.line = QFrame(self.frame_5)
+        self.line = QFrame(self.header_logo_frame)
         self.line.setObjectName(u"line")
         self.line.setStyleSheet(u"background:white")
         self.line.setFrameShape(QFrame.VLine)
@@ -474,7 +486,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.line)
 
-        self.title = QLabel(self.frame_5)
+        self.title = QLabel(self.header_logo_frame)
         self.title.setObjectName(u"title")
         font = QFont()
         font.setFamilies([u"Arial"])
@@ -491,7 +503,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.title)
 
 
-        self.horizontalLayout_4.addWidget(self.frame_5)
+        self.horizontalLayout_4.addWidget(self.header_logo_frame)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -617,7 +629,7 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton{\n"
 "	color: #ffffff;\n"
-"	min-height: 40px;\n"
+"	min-height: 50px;\n"
 "	text-align: left;\n"
 "	icon-size:25px;\n"
 "	background-color:rgba(0,0,0,0);\n"
@@ -647,7 +659,7 @@ class Ui_MainWindow(object):
         self.sidebar_main_btn = QPushButton(self.sidebar)
         self.sidebar_main_btn.setObjectName(u"sidebar_main_btn")
         self.sidebar_main_btn.setEnabled(True)
-        self.sidebar_main_btn.setMinimumSize(QSize(0, 42))
+        self.sidebar_main_btn.setMinimumSize(QSize(0, 52))
         icon5 = QIcon()
         icon5.addFile(u":/assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_main_btn.setIcon(icon5)
@@ -656,7 +668,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_report_btn = QPushButton(self.sidebar)
         self.sidebar_report_btn.setObjectName(u"sidebar_report_btn")
-        self.sidebar_report_btn.setMinimumSize(QSize(0, 42))
+        self.sidebar_report_btn.setMinimumSize(QSize(0, 52))
         icon6 = QIcon()
         icon6.addFile(u":/assets/icons/report-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_report_btn.setIcon(icon6)
@@ -673,7 +685,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_settings_btn = QPushButton(self.sidebar)
         self.sidebar_settings_btn.setObjectName(u"sidebar_settings_btn")
-        self.sidebar_settings_btn.setMinimumSize(QSize(0, 42))
+        self.sidebar_settings_btn.setMinimumSize(QSize(0, 52))
         icon8 = QIcon()
         icon8.addFile(u":/assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_settings_btn.setIcon(icon8)
@@ -682,7 +694,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_calib_btn = QPushButton(self.sidebar)
         self.sidebar_calib_btn.setObjectName(u"sidebar_calib_btn")
-        self.sidebar_calib_btn.setMinimumSize(QSize(0, 42))
+        self.sidebar_calib_btn.setMinimumSize(QSize(0, 52))
         icon9 = QIcon()
         icon9.addFile(u":/assets/icons/icons8-ruler-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_calib_btn.setIcon(icon9)
@@ -691,7 +703,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_users_btn = QPushButton(self.sidebar)
         self.sidebar_users_btn.setObjectName(u"sidebar_users_btn")
-        self.sidebar_users_btn.setMinimumSize(QSize(0, 42))
+        self.sidebar_users_btn.setMinimumSize(QSize(0, 52))
         icon10 = QIcon()
         icon10.addFile(u":/assets/icons/icons8-users-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_users_btn.setIcon(icon10)
@@ -700,7 +712,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_help_btn = QPushButton(self.sidebar)
         self.sidebar_help_btn.setObjectName(u"sidebar_help_btn")
-        self.sidebar_help_btn.setMinimumSize(QSize(0, 42))
+        self.sidebar_help_btn.setMinimumSize(QSize(0, 52))
         icon11 = QIcon()
         icon11.addFile(u":/assets/icons/icons8-question-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_help_btn.setIcon(icon11)
@@ -862,8 +874,7 @@ class Ui_MainWindow(object):
         self.mainpage_error_lbl.setMaximumSize(QSize(16787, 60))
         self.mainpage_error_lbl.setStyleSheet(u"font-size: 16px;\n"
 "font-weight: bold;\n"
-"color: #ffffff;\n"
-"background-color: rgb(255, 95, 84);\n"
+"color: rgb(255, 95, 84);\n"
 "padding:5px;\n"
 "\n"
 "min-width: 300px;\n"
@@ -884,7 +895,7 @@ class Ui_MainWindow(object):
         self.horizontalFrame_8 = QFrame(self.mainpage_livebox_frame)
         self.horizontalFrame_8.setObjectName(u"horizontalFrame_8")
         self.horizontalFrame_8.setStyleSheet(u".QPushButton{\n"
-"	border-radius:3px;\n"
+"	border-radius:8px;\n"
 "	color: rgb(255, 255, 255);\n"
 "	background-color:rgb(22, 38, 76);\n"
 "	margin: 5px;\n"
@@ -1088,7 +1099,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.mainpage_right_frame.sizePolicy().hasHeightForWidth())
         self.mainpage_right_frame.setSizePolicy(sizePolicy3)
-        self.mainpage_right_frame.setMinimumSize(QSize(500, 0))
+        self.mainpage_right_frame.setMinimumSize(QSize(0, 0))
         self.mainpage_right_frame.setMaximumSize(QSize(700, 16777215))
         self.left_main_page_ = QVBoxLayout(self.mainpage_right_frame)
         self.left_main_page_.setSpacing(0)
@@ -1099,10 +1110,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_35 = QHBoxLayout(self.frame101)
         self.horizontalLayout_35.setObjectName(u"horizontalLayout_35")
         self.horizontalLayout_35.setContentsMargins(-1, 1, -1, -1)
-        self.horizontalSpacer_61 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_35.addItem(self.horizontalSpacer_61)
-
         self.mainpage_warnings_frame = QFrame(self.frame101)
         self.mainpage_warnings_frame.setObjectName(u"mainpage_warnings_frame")
         sizePolicy.setHeightForWidth(self.mainpage_warnings_frame.sizePolicy().hasHeightForWidth())
@@ -1282,10 +1289,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_35.addWidget(self.mainpage_warnings_frame)
 
-        self.horizontalSpacer_60 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_35.addItem(self.horizontalSpacer_60)
-
 
         self.left_main_page_.addWidget(self.frame101)
 
@@ -1319,6 +1322,8 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.mainpage_right_frame)
 
+        self.horizontalLayout_2.setStretch(0, 3)
+        self.horizontalLayout_2.setStretch(2, 1)
         self.main_pages_stackw.addWidget(self.main_page)
         self.report_page = QWidget()
         self.report_page.setObjectName(u"report_page")
@@ -1458,7 +1463,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 309, 1705))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 356, 1758))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2383,14 +2388,11 @@ class Ui_MainWindow(object):
 "{\n"
 "	font-size: 14px;\n"
 "	/*max-width:80px;*/\n"
-"	min-width:80px;\n"
 "	margin-left:10px;\n"
 "}\n"
 "\n"
 "QComboBox, QSpinBox, QDoubleSpinBox, QLineEdit\n"
 "{\n"
-"	max-width:280px;\n"
-"	min-width:200px;\n"
 "}\n"
 "\n"
 "#settingpage_camera_tab,\n"
@@ -2399,7 +2401,9 @@ class Ui_MainWindow(object):
 "#settingpage_pelletizing_tab,\n"
 "#settingpage_algorithm_tab,\n"
 "#settingpage_sample_tab,\n"
-"#settingpage_export_tab\n"
+"#settingpage_export_tab,\n"
+"#settingpage_config_tab,\n"
+"#settingpage_plc_tab\n"
 "{\n"
 "	background-color:rgb(255, 255, 255);\n"
 "}\n"
@@ -2775,7 +2779,7 @@ class Ui_MainWindow(object):
         self.settingpage_export_report_excel_path_input.setObjectName(u"settingpage_export_report_excel_path_input")
         self.settingpage_export_report_excel_path_input.setEnabled(False)
         self.settingpage_export_report_excel_path_input.setMinimumSize(QSize(730, 41))
-        self.settingpage_export_report_excel_path_input.setMaximumSize(QSize(310, 16777215))
+        self.settingpage_export_report_excel_path_input.setMaximumSize(QSize(16777215, 16777215))
         self.settingpage_export_report_excel_path_input.setStyleSheet(u"QLineEdit{\n"
 "min-width: 700px;\n"
 "\n"
@@ -2827,7 +2831,7 @@ class Ui_MainWindow(object):
         self.settingpage_export_compare_excel_path_input.setObjectName(u"settingpage_export_compare_excel_path_input")
         self.settingpage_export_compare_excel_path_input.setEnabled(False)
         self.settingpage_export_compare_excel_path_input.setMinimumSize(QSize(730, 41))
-        self.settingpage_export_compare_excel_path_input.setMaximumSize(QSize(310, 16777215))
+        self.settingpage_export_compare_excel_path_input.setMaximumSize(QSize(16777215, 16777215))
         self.settingpage_export_compare_excel_path_input.setStyleSheet(u"QLineEdit{\n"
 "min-width: 700px;\n"
 "\n"
@@ -3190,7 +3194,7 @@ class Ui_MainWindow(object):
         self.settingpage_storage_path_input.setObjectName(u"settingpage_storage_path_input")
         self.settingpage_storage_path_input.setEnabled(False)
         self.settingpage_storage_path_input.setMinimumSize(QSize(730, 41))
-        self.settingpage_storage_path_input.setMaximumSize(QSize(310, 16777215))
+        self.settingpage_storage_path_input.setMaximumSize(QSize(16777215, 16777215))
         self.settingpage_storage_path_input.setStyleSheet(u"QLineEdit{\n"
 "min-width: 700px;\n"
 "\n"
@@ -3237,7 +3241,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.settingpage_camera_left_side = QFrame(self.settingpage_camera_tab)
         self.settingpage_camera_left_side.setObjectName(u"settingpage_camera_left_side")
-        self.settingpage_camera_left_side.setMaximumSize(QSize(800, 16777215))
+        self.settingpage_camera_left_side.setMaximumSize(QSize(16777215, 16777215))
         self.settingpage_camera_left_side.setStyleSheet(u"")
         self.camera_setting_lef_side = QVBoxLayout(self.settingpage_camera_left_side)
         self.camera_setting_lef_side.setObjectName(u"camera_setting_lef_side")
@@ -3273,12 +3277,8 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.settingpage_camera_start_btn)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_18.addItem(self.horizontalSpacer_8)
-
-
-        self.camera_setting_lef_side.addWidget(self.settingpage_connection_buttons_frame)
+        self.camera_setting_lef_side.addWidget(self.settingpage_connection_buttons_frame, 0, Qt.AlignLeft)
 
         self.settingpage_camera_device_group = QGroupBox(self.settingpage_camera_left_side)
         self.settingpage_camera_device_group.setObjectName(u"settingpage_camera_device_group")
@@ -3286,6 +3286,47 @@ class Ui_MainWindow(object):
         self.settingpage_camera_device_group.setAutoFillBackground(False)
         self.gridLayout_7 = QGridLayout(self.settingpage_camera_device_group)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
+        self.settingpage_camera_serial_retry_btn = QPushButton(self.settingpage_camera_device_group)
+        self.settingpage_camera_serial_retry_btn.setObjectName(u"settingpage_camera_serial_retry_btn")
+        self.settingpage_camera_serial_retry_btn.setStyleSheet(u"max-width:50px;\n"
+"min-width:50px;")
+        icon25 = QIcon()
+        icon25.addFile(u":/assets/icons/icons8-retry-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingpage_camera_serial_retry_btn.setIcon(icon25)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_serial_retry_btn, 2, 6, 1, 1)
+
+        self.settingpage_camera_ports_combobox = QComboBox(self.settingpage_camera_device_group)
+        self.settingpage_camera_ports_combobox.setObjectName(u"settingpage_camera_ports_combobox")
+        self.settingpage_camera_ports_combobox.setStyleSheet(u"min-width:90px;\n"
+"max-width:90px;")
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_ports_combobox, 2, 4, 1, 1)
+
+        self.settingpage_camera_device_lbl_2 = QLabel(self.settingpage_camera_device_group)
+        self.settingpage_camera_device_lbl_2.setObjectName(u"settingpage_camera_device_lbl_2")
+        self.settingpage_camera_device_lbl_2.setStyleSheet(u"min-width:95px;\n"
+"")
+        self.settingpage_camera_device_lbl_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl_2, 1, 0, 1, 1)
+
+        self.horizontalSpacer_33 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_7.addItem(self.horizontalSpacer_33, 0, 1, 1, 1)
+
+        self.settingpage_camera_synchronizer_combobox = QComboBox(self.settingpage_camera_device_group)
+        self.settingpage_camera_synchronizer_combobox.setObjectName(u"settingpage_camera_synchronizer_combobox")
+        self.settingpage_camera_synchronizer_combobox.setEnabled(True)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_synchronizer_combobox, 1, 2, 1, 1)
+
+        self.settingpage_camera_fps_lbl = QLabel(self.settingpage_camera_device_group)
+        self.settingpage_camera_fps_lbl.setObjectName(u"settingpage_camera_fps_lbl")
+        self.settingpage_camera_fps_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_7.addWidget(self.settingpage_camera_fps_lbl, 2, 0, 1, 1)
+
         self.settingpage_camera_fps_spinbox = QSpinBox(self.settingpage_camera_device_group)
         self.settingpage_camera_fps_spinbox.setObjectName(u"settingpage_camera_fps_spinbox")
         self.settingpage_camera_fps_spinbox.setEnabled(True)
@@ -3300,13 +3341,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl, 0, 0, 1, 1)
 
-        self.horizontalSpacer_33 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_7.addItem(self.horizontalSpacer_33, 0, 1, 1, 1)
-
         self.settingpage_camera_ports_lbl = QLabel(self.settingpage_camera_device_group)
         self.settingpage_camera_ports_lbl.setObjectName(u"settingpage_camera_ports_lbl")
-        self.settingpage_camera_ports_lbl.setMinimumSize(QSize(90, 0))
+        self.settingpage_camera_ports_lbl.setMinimumSize(QSize(0, 0))
         self.settingpage_camera_ports_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_7.addWidget(self.settingpage_camera_ports_lbl, 2, 3, 1, 1)
@@ -3317,13 +3354,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.settingpage_camera_device_combobox, 0, 2, 1, 1)
 
-        self.settingpage_camera_ports_combobox = QComboBox(self.settingpage_camera_device_group)
-        self.settingpage_camera_ports_combobox.setObjectName(u"settingpage_camera_ports_combobox")
-        self.settingpage_camera_ports_combobox.setStyleSheet(u"min-width:90px;\n"
-"max-width:90px;")
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_ports_combobox, 2, 4, 1, 1)
-
         self.settingpage_camera_port_connection_lbl = QLabel(self.settingpage_camera_device_group)
         self.settingpage_camera_port_connection_lbl.setObjectName(u"settingpage_camera_port_connection_lbl")
         self.settingpage_camera_port_connection_lbl.setMinimumSize(QSize(50, 0))
@@ -3332,36 +3362,6 @@ class Ui_MainWindow(object):
 "margin:0px;")
 
         self.gridLayout_7.addWidget(self.settingpage_camera_port_connection_lbl, 2, 5, 1, 1, Qt.AlignHCenter|Qt.AlignVCenter)
-
-        self.settingpage_camera_fps_lbl = QLabel(self.settingpage_camera_device_group)
-        self.settingpage_camera_fps_lbl.setObjectName(u"settingpage_camera_fps_lbl")
-        self.settingpage_camera_fps_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_fps_lbl, 2, 0, 1, 1)
-
-        self.settingpage_camera_device_lbl_2 = QLabel(self.settingpage_camera_device_group)
-        self.settingpage_camera_device_lbl_2.setObjectName(u"settingpage_camera_device_lbl_2")
-        self.settingpage_camera_device_lbl_2.setStyleSheet(u"min-width:95px;\n"
-"")
-        self.settingpage_camera_device_lbl_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_device_lbl_2, 1, 0, 1, 1)
-
-        self.settingpage_camera_synchronizer_combobox = QComboBox(self.settingpage_camera_device_group)
-        self.settingpage_camera_synchronizer_combobox.setObjectName(u"settingpage_camera_synchronizer_combobox")
-        self.settingpage_camera_synchronizer_combobox.setEnabled(True)
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_synchronizer_combobox, 1, 2, 1, 1)
-
-        self.settingpage_camera_serial_retry_btn = QPushButton(self.settingpage_camera_device_group)
-        self.settingpage_camera_serial_retry_btn.setObjectName(u"settingpage_camera_serial_retry_btn")
-        self.settingpage_camera_serial_retry_btn.setStyleSheet(u"max-width:50px;\n"
-"min-width:50px;")
-        icon25 = QIcon()
-        icon25.addFile(u":/assets/icons/icons8-retry-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingpage_camera_serial_retry_btn.setIcon(icon25)
-
-        self.gridLayout_7.addWidget(self.settingpage_camera_serial_retry_btn, 2, 6, 1, 1)
 
 
         self.camera_setting_lef_side.addWidget(self.settingpage_camera_device_group)
@@ -3372,27 +3372,14 @@ class Ui_MainWindow(object):
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.settingpage_camera_exposure_lbl = QLabel(self.settingpage_camera_control_group)
         self.settingpage_camera_exposure_lbl.setObjectName(u"settingpage_camera_exposure_lbl")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.settingpage_camera_exposure_lbl.sizePolicy().hasHeightForWidth())
+        self.settingpage_camera_exposure_lbl.setSizePolicy(sizePolicy5)
         self.settingpage_camera_exposure_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_8.addWidget(self.settingpage_camera_exposure_lbl, 0, 0, 1, 1)
-
-        self.settingpage_camera_exposure_spinbox = QSpinBox(self.settingpage_camera_control_group)
-        self.settingpage_camera_exposure_spinbox.setObjectName(u"settingpage_camera_exposure_spinbox")
-        self.settingpage_camera_exposure_spinbox.setEnabled(True)
-        self.settingpage_camera_exposure_spinbox.setMaximum(20000)
-        self.settingpage_camera_exposure_spinbox.setValue(10000)
-
-        self.gridLayout_8.addWidget(self.settingpage_camera_exposure_spinbox, 0, 2, 1, 1)
-
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_8.addItem(self.horizontalSpacer_13, 0, 3, 1, 1)
-
-        self.settingpage_camera_gain_lbl = QLabel(self.settingpage_camera_control_group)
-        self.settingpage_camera_gain_lbl.setObjectName(u"settingpage_camera_gain_lbl")
-        self.settingpage_camera_gain_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-
-        self.gridLayout_8.addWidget(self.settingpage_camera_gain_lbl, 1, 0, 1, 1)
 
         self.settingpage_camera_gain_spinbox = QSpinBox(self.settingpage_camera_control_group)
         self.settingpage_camera_gain_spinbox.setObjectName(u"settingpage_camera_gain_spinbox")
@@ -3402,6 +3389,26 @@ class Ui_MainWindow(object):
         self.horizontalSpacer_34 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
 
         self.gridLayout_8.addItem(self.horizontalSpacer_34, 0, 1, 1, 1)
+
+        self.settingpage_camera_gain_lbl = QLabel(self.settingpage_camera_control_group)
+        self.settingpage_camera_gain_lbl.setObjectName(u"settingpage_camera_gain_lbl")
+        sizePolicy5.setHeightForWidth(self.settingpage_camera_gain_lbl.sizePolicy().hasHeightForWidth())
+        self.settingpage_camera_gain_lbl.setSizePolicy(sizePolicy5)
+        self.settingpage_camera_gain_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_8.addWidget(self.settingpage_camera_gain_lbl, 1, 0, 1, 1)
+
+        self.settingpage_camera_exposure_spinbox = QSpinBox(self.settingpage_camera_control_group)
+        self.settingpage_camera_exposure_spinbox.setObjectName(u"settingpage_camera_exposure_spinbox")
+        self.settingpage_camera_exposure_spinbox.setEnabled(True)
+        self.settingpage_camera_exposure_spinbox.setMaximum(20000)
+        self.settingpage_camera_exposure_spinbox.setValue(10000)
+
+        self.gridLayout_8.addWidget(self.settingpage_camera_exposure_spinbox, 0, 2, 1, 1)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_6, 0, 3, 1, 1)
 
 
         self.camera_setting_lef_side.addWidget(self.settingpage_camera_control_group)
@@ -3417,11 +3424,21 @@ class Ui_MainWindow(object):
         self.settingpage_camera_AOI_group.setObjectName(u"settingpage_camera_AOI_group")
         self.gridLayout_6 = QGridLayout(self.settingpage_camera_AOI_group)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.horizontalSpacer_35 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
+
+        self.gridLayout_6.addItem(self.horizontalSpacer_35, 1, 1, 1, 1)
+
         self.settingpage_camera_width_lbl = QLabel(self.settingpage_camera_AOI_group)
         self.settingpage_camera_width_lbl.setObjectName(u"settingpage_camera_width_lbl")
         self.settingpage_camera_width_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout_6.addWidget(self.settingpage_camera_width_lbl, 1, 0, 1, 1)
+
+        self.settingpage_camera_height_lbl = QLabel(self.settingpage_camera_AOI_group)
+        self.settingpage_camera_height_lbl.setObjectName(u"settingpage_camera_height_lbl")
+        self.settingpage_camera_height_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_6.addWidget(self.settingpage_camera_height_lbl, 2, 0, 1, 1)
 
         self.settingpage_camera_height_spinbox = QSpinBox(self.settingpage_camera_AOI_group)
         self.settingpage_camera_height_spinbox.setObjectName(u"settingpage_camera_height_spinbox")
@@ -3438,19 +3455,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.settingpage_camera_width_spinbox, 1, 2, 1, 1)
 
-        self.settingpage_camera_height_lbl = QLabel(self.settingpage_camera_AOI_group)
-        self.settingpage_camera_height_lbl.setObjectName(u"settingpage_camera_height_lbl")
-        self.settingpage_camera_height_lbl.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_6.addWidget(self.settingpage_camera_height_lbl, 2, 0, 1, 1)
-
-        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_6.addItem(self.horizontalSpacer_14, 1, 3, 1, 1)
-
-        self.horizontalSpacer_35 = QSpacerItem(25, 20, QSizePolicy.Maximum, QSizePolicy.Minimum)
-
-        self.gridLayout_6.addItem(self.horizontalSpacer_35, 1, 1, 1, 1)
+        self.gridLayout_6.addItem(self.horizontalSpacer_8, 1, 3, 1, 1)
 
 
         self.camera_setting_lef_side.addWidget(self.settingpage_camera_AOI_group)
@@ -3507,12 +3514,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_64.setContentsMargins(-1, 1, -1, -1)
         self.settingpage_camera_live_lbl = QLabel(self.verticalFrame64)
         self.settingpage_camera_live_lbl.setObjectName(u"settingpage_camera_live_lbl")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy5.setHorizontalStretch(1)
-        sizePolicy5.setVerticalStretch(1)
-        sizePolicy5.setHeightForWidth(self.settingpage_camera_live_lbl.sizePolicy().hasHeightForWidth())
-        self.settingpage_camera_live_lbl.setSizePolicy(sizePolicy5)
-        self.settingpage_camera_live_lbl.setMinimumSize(QSize(94, 500))
+        sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy6.setHorizontalStretch(1)
+        sizePolicy6.setVerticalStretch(1)
+        sizePolicy6.setHeightForWidth(self.settingpage_camera_live_lbl.sizePolicy().hasHeightForWidth())
+        self.settingpage_camera_live_lbl.setSizePolicy(sizePolicy6)
+        self.settingpage_camera_live_lbl.setMinimumSize(QSize(0, 500))
         self.settingpage_camera_live_lbl.setMaximumSize(QSize(814, 804))
         self.settingpage_camera_live_lbl.setStyleSheet(u"max-width : 800px;\n"
 "max-height : 800px;\n"
@@ -3562,11 +3569,11 @@ class Ui_MainWindow(object):
 
         self.settingpage_camera_color_img_lbl = QLabel(self.horizontalFrame_4)
         self.settingpage_camera_color_img_lbl.setObjectName(u"settingpage_camera_color_img_lbl")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.settingpage_camera_color_img_lbl.sizePolicy().hasHeightForWidth())
-        self.settingpage_camera_color_img_lbl.setSizePolicy(sizePolicy6)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.settingpage_camera_color_img_lbl.sizePolicy().hasHeightForWidth())
+        self.settingpage_camera_color_img_lbl.setSizePolicy(sizePolicy7)
         self.settingpage_camera_color_img_lbl.setMinimumSize(QSize(39, 32))
         self.settingpage_camera_color_img_lbl.setMaximumSize(QSize(32, 32))
         self.settingpage_camera_color_img_lbl.setStyleSheet(u"QLabel{\n"
@@ -3604,6 +3611,117 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.addLayout(self.settingpage_camera_right_side)
 
         self.settingpage_tabs.addTab(self.settingpage_camera_tab, "")
+        self.settingpage_plc_tab = QWidget()
+        self.settingpage_plc_tab.setObjectName(u"settingpage_plc_tab")
+        self.verticalLayout_66 = QVBoxLayout(self.settingpage_plc_tab)
+        self.verticalLayout_66.setObjectName(u"verticalLayout_66")
+        self.groupBox = QGroupBox(self.settingpage_plc_tab)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setMinimumSize(QSize(0, 150))
+        self.groupBox.setStyleSheet(u"QLineEdit{\n"
+"	max-width:50px;\n"
+"	min-width:50px;\n"
+"}\n"
+"\n"
+"QLabel[styleClass=\"dot\"]{\n"
+"	font-size:30px;\n"
+"	font-weight:bold;\n"
+"	min-width:10px;\n"
+"\n"
+"}")
+        self.gridLayout_4 = QGridLayout(self.groupBox)
+        self.gridLayout_4.setObjectName(u"gridLayout_4")
+        self.settingpage_plc_ip3_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip3_input.setObjectName(u"settingpage_plc_ip3_input")
+
+        self.gridLayout_4.addWidget(self.settingpage_plc_ip3_input, 0, 5, 1, 1)
+
+        self.label_23 = QLabel(self.groupBox)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setMinimumSize(QSize(20, 0))
+        self.label_23.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_4.addWidget(self.label_23, 0, 6, 1, 1)
+
+        self.label_15 = QLabel(self.groupBox)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setMinimumSize(QSize(20, 0))
+        self.label_15.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_4.addWidget(self.label_15, 0, 2, 1, 1, Qt.AlignHCenter)
+
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_4.addItem(self.horizontalSpacer_17, 0, 10, 1, 1)
+
+        self.label_21 = QLabel(self.groupBox)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setMinimumSize(QSize(20, 0))
+        self.label_21.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_4.addWidget(self.label_21, 0, 4, 1, 1)
+
+        self.settingpage_plc_ip2_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip2_input.setObjectName(u"settingpage_plc_ip2_input")
+
+        self.gridLayout_4.addWidget(self.settingpage_plc_ip2_input, 0, 3, 1, 1)
+
+        self.settingpage_plc_ip4_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip4_input.setObjectName(u"settingpage_plc_ip4_input")
+
+        self.gridLayout_4.addWidget(self.settingpage_plc_ip4_input, 0, 7, 1, 1)
+
+        self.settingpage_plc_ip1_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip1_input.setObjectName(u"settingpage_plc_ip1_input")
+
+        self.gridLayout_4.addWidget(self.settingpage_plc_ip1_input, 0, 1, 1, 1)
+
+        self.settingpage_connect_btn = QPushButton(self.groupBox)
+        self.settingpage_connect_btn.setObjectName(u"settingpage_connect_btn")
+
+        self.gridLayout_4.addWidget(self.settingpage_connect_btn, 0, 9, 1, 1)
+
+        self.label_3 = QLabel(self.groupBox)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout_4.addWidget(self.label_3, 0, 0, 1, 1)
+
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.gridLayout_4.addItem(self.horizontalSpacer_13, 0, 8, 1, 1)
+
+
+        self.verticalLayout_66.addWidget(self.groupBox)
+
+        self.nodesScrollArea = QScrollArea(self.settingpage_plc_tab)
+        self.nodesScrollArea.setObjectName(u"nodesScrollArea")
+        self.nodesScrollArea.setStyleSheet(u"#nodesScrollAreaContent{\n"
+"\n"
+"	background-color: #fff;\n"
+"}")
+        self.nodesScrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.nodesScrollArea.setWidgetResizable(True)
+        self.nodesScrollAreaContent = QWidget()
+        self.nodesScrollAreaContent.setObjectName(u"nodesScrollAreaContent")
+        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1399, 507))
+        self.verticalLayout_67 = QVBoxLayout(self.nodesScrollAreaContent)
+        self.verticalLayout_67.setObjectName(u"verticalLayout_67")
+        self.settingpage_plc_add_node_btn = QPushButton(self.nodesScrollAreaContent)
+        self.settingpage_plc_add_node_btn.setObjectName(u"settingpage_plc_add_node_btn")
+        self.settingpage_plc_add_node_btn.setMaximumSize(QSize(200, 16777215))
+
+        self.verticalLayout_67.addWidget(self.settingpage_plc_add_node_btn)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_67.addItem(self.verticalSpacer_7)
+
+        self.nodesScrollArea.setWidget(self.nodesScrollAreaContent)
+
+        self.verticalLayout_66.addWidget(self.nodesScrollArea)
+
+        self.settingpage_tabs.addTab(self.settingpage_plc_tab, "")
         self.settingpage_algorithm_tab = QWidget()
         self.settingpage_algorithm_tab.setObjectName(u"settingpage_algorithm_tab")
         self.verticalLayout_25 = QVBoxLayout(self.settingpage_algorithm_tab)
@@ -3674,8 +3792,701 @@ class Ui_MainWindow(object):
         self.verticalLayout_25.addItem(self.verticalSpacer_6)
 
         self.settingpage_tabs.addTab(self.settingpage_algorithm_tab, "")
+        self.settingpage_config_tab = QWidget()
+        self.settingpage_config_tab.setObjectName(u"settingpage_config_tab")
+        self.settingpage_config_tab.setStyleSheet(u"QLabel[styleClass=\"section_title\"]{\n"
+"\n"
+"font-size:20px;\n"
+"min-width:0px;\n"
+"max-width:500px;\n"
+"\n"
+"}\n"
+"\n"
+"#scrollAreaConfigContents{\n"
+"	background-color: #fff;\n"
+"\n"
+"}\n"
+"\n"
+"QFrame [styleClass=\"config_section_frame\"]{\n"
+"	border: 2px solid #606060;\n"
+"	border-radius: 10px;\n"
+"	min-width:700px;\n"
+"}\n"
+"")
+        self.verticalLayout_68 = QVBoxLayout(self.settingpage_config_tab)
+        self.verticalLayout_68.setObjectName(u"verticalLayout_68")
+        self.scrollArea_6 = QScrollArea(self.settingpage_config_tab)
+        self.scrollArea_6.setObjectName(u"scrollArea_6")
+        self.scrollArea_6.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 1420, 655))
+        self.verticalLayout_86 = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_86.setObjectName(u"verticalLayout_86")
+        self.label_136 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_136.setObjectName(u"label_136")
+
+        self.verticalLayout_86.addWidget(self.label_136)
+
+        self.label_137 = QLabel(self.scrollAreaWidgetContents_2)
+        self.label_137.setObjectName(u"label_137")
+
+        self.verticalLayout_86.addWidget(self.label_137)
+
+        self.scrollAreaConfig = QScrollArea(self.scrollAreaWidgetContents_2)
+        self.scrollAreaConfig.setObjectName(u"scrollAreaConfig")
+        self.scrollAreaConfig.setMinimumSize(QSize(500, 0))
+        self.scrollAreaConfig.setStyleSheet(u"")
+        self.scrollAreaConfig.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.scrollAreaConfig.setWidgetResizable(True)
+        self.scrollAreaConfigContents = QWidget()
+        self.scrollAreaConfigContents.setObjectName(u"scrollAreaConfigContents")
+        self.scrollAreaConfigContents.setGeometry(QRect(-4274, 0, 5670, 564))
+        self.horizontalLayout_72 = QHBoxLayout(self.scrollAreaConfigContents)
+        self.horizontalLayout_72.setObjectName(u"horizontalLayout_72")
+        self.frame_7 = QFrame(self.scrollAreaConfigContents)
+        self.frame_7.setObjectName(u"frame_7")
+        self.frame_7.setMinimumSize(QSize(704, 0))
+        self.frame_7.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_7.setFrameShape(QFrame.StyledPanel)
+        self.frame_7.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_69 = QVBoxLayout(self.frame_7)
+        self.verticalLayout_69.setObjectName(u"verticalLayout_69")
+        self.label_20 = QLabel(self.frame_7)
+        self.label_20.setObjectName(u"label_20")
+        sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
+        self.label_20.setSizePolicy(sizePolicy8)
+        self.label_20.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_69.addWidget(self.label_20)
+
+        self.frame_8 = QFrame(self.frame_7)
+        self.frame_8.setObjectName(u"frame_8")
+        self.frame_8.setFrameShape(QFrame.StyledPanel)
+        self.frame_8.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_70 = QVBoxLayout(self.frame_8)
+        self.verticalLayout_70.setObjectName(u"verticalLayout_70")
+        self.settingpage_config_start_manual_checkbox = QCheckBox(self.frame_8)
+        self.settingpage_config_start_manual_checkbox.setObjectName(u"settingpage_config_start_manual_checkbox")
+
+        self.verticalLayout_70.addWidget(self.settingpage_config_start_manual_checkbox)
+
+        self.horizontalLayout_73 = QHBoxLayout()
+        self.horizontalLayout_73.setObjectName(u"horizontalLayout_73")
+        self.horizontalLayout_73.setContentsMargins(-1, 5, -1, -1)
+        self.label_25 = QLabel(self.frame_8)
+        self.label_25.setObjectName(u"label_25")
+
+        self.horizontalLayout_73.addWidget(self.label_25)
+
+        self.settingpage_config_start_mode_comboBox = QComboBox(self.frame_8)
+        self.settingpage_config_start_mode_comboBox.addItem("")
+        self.settingpage_config_start_mode_comboBox.addItem("")
+        self.settingpage_config_start_mode_comboBox.setObjectName(u"settingpage_config_start_mode_comboBox")
+
+        self.horizontalLayout_73.addWidget(self.settingpage_config_start_mode_comboBox)
+
+        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_73.addItem(self.horizontalSpacer_26)
+
+
+        self.verticalLayout_70.addLayout(self.horizontalLayout_73)
+
+        self.verticalLayout_73 = QVBoxLayout()
+        self.verticalLayout_73.setSpacing(7)
+        self.verticalLayout_73.setObjectName(u"verticalLayout_73")
+        self.config_start_system_settings_stackwidget = QStackedWidget(self.frame_8)
+        self.config_start_system_settings_stackwidget.setObjectName(u"config_start_system_settings_stackwidget")
+        self.timer = QWidget()
+        self.timer.setObjectName(u"timer")
+        self.verticalLayout_71 = QVBoxLayout(self.timer)
+        self.verticalLayout_71.setObjectName(u"verticalLayout_71")
+        self.horizontalLayout_74 = QHBoxLayout()
+        self.horizontalLayout_74.setObjectName(u"horizontalLayout_74")
+        self.label_30 = QLabel(self.timer)
+        self.label_30.setObjectName(u"label_30")
+
+        self.horizontalLayout_74.addWidget(self.label_30)
+
+        self.config_start_system_period_spinbox = QSpinBox(self.timer)
+        self.config_start_system_period_spinbox.setObjectName(u"config_start_system_period_spinbox")
+        self.config_start_system_period_spinbox.setMinimum(5)
+        self.config_start_system_period_spinbox.setMaximum(3600)
+
+        self.horizontalLayout_74.addWidget(self.config_start_system_period_spinbox)
+
+        self.label_121 = QLabel(self.timer)
+        self.label_121.setObjectName(u"label_121")
+
+        self.horizontalLayout_74.addWidget(self.label_121)
+
+        self.horizontalSpacer_27 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_74.addItem(self.horizontalSpacer_27)
+
+
+        self.verticalLayout_71.addLayout(self.horizontalLayout_74)
+
+        self.verticalSpacer_29 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_71.addItem(self.verticalSpacer_29)
+
+        self.config_start_system_settings_stackwidget.addWidget(self.timer)
+        self.signal = QWidget()
+        self.signal.setObjectName(u"signal")
+        self.signal.setStyleSheet(u"")
+        self.verticalLayout_72 = QVBoxLayout(self.signal)
+        self.verticalLayout_72.setObjectName(u"verticalLayout_72")
+        self.label_122 = QLabel(self.signal)
+        self.label_122.setObjectName(u"label_122")
+
+        self.verticalLayout_72.addWidget(self.label_122)
+
+        self.config_start_system_signals_scroll_area = QScrollArea(self.signal)
+        self.config_start_system_signals_scroll_area.setObjectName(u"config_start_system_signals_scroll_area")
+        self.config_start_system_signals_scroll_area.setStyleSheet(u"")
+        self.config_start_system_signals_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_start_system_signals_scroll_area.setWidgetResizable(True)
+        self.config_start_system_signals_scroll_contents = QWidget()
+        self.config_start_system_signals_scroll_contents.setObjectName(u"config_start_system_signals_scroll_contents")
+        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 607, 323))
+        self.config_start_system_signals_scroll_contents.setStyleSheet(u"")
+        self.verticalLayout_77 = QVBoxLayout(self.config_start_system_signals_scroll_contents)
+        self.verticalLayout_77.setObjectName(u"verticalLayout_77")
+        self.config_start_system_signals_add_btn = QPushButton(self.config_start_system_signals_scroll_contents)
+        self.config_start_system_signals_add_btn.setObjectName(u"config_start_system_signals_add_btn")
+
+        self.verticalLayout_77.addWidget(self.config_start_system_signals_add_btn)
+
+        self.verticalSpacer_56 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_77.addItem(self.verticalSpacer_56)
+
+        self.config_start_system_signals_scroll_area.setWidget(self.config_start_system_signals_scroll_contents)
+
+        self.verticalLayout_72.addWidget(self.config_start_system_signals_scroll_area)
+
+        self.config_start_system_settings_stackwidget.addWidget(self.signal)
+
+        self.verticalLayout_73.addWidget(self.config_start_system_settings_stackwidget)
+
+
+        self.verticalLayout_70.addLayout(self.verticalLayout_73)
+
+
+        self.verticalLayout_69.addWidget(self.frame_8)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_7)
+
+        self.label_128 = QLabel(self.scrollAreaConfigContents)
+        self.label_128.setObjectName(u"label_128")
+        self.label_128.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
+
+        self.horizontalLayout_72.addWidget(self.label_128)
+
+        self.frame_9 = QFrame(self.scrollAreaConfigContents)
+        self.frame_9.setObjectName(u"frame_9")
+        self.frame_9.setMinimumSize(QSize(704, 0))
+        self.frame_9.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_9.setFrameShape(QFrame.StyledPanel)
+        self.frame_9.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_74 = QVBoxLayout(self.frame_9)
+        self.verticalLayout_74.setObjectName(u"verticalLayout_74")
+        self.label_123 = QLabel(self.frame_9)
+        self.label_123.setObjectName(u"label_123")
+        sizePolicy8.setHeightForWidth(self.label_123.sizePolicy().hasHeightForWidth())
+        self.label_123.setSizePolicy(sizePolicy8)
+        self.label_123.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_74.addWidget(self.label_123)
+
+        self.frame_10 = QFrame(self.frame_9)
+        self.frame_10.setObjectName(u"frame_10")
+        self.frame_10.setFrameShape(QFrame.StyledPanel)
+        self.frame_10.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_75 = QVBoxLayout(self.frame_10)
+        self.verticalLayout_75.setObjectName(u"verticalLayout_75")
+        self.label_124 = QLabel(self.frame_10)
+        self.label_124.setObjectName(u"label_124")
+
+        self.verticalLayout_75.addWidget(self.label_124)
+
+        self.config_permisions_signals_scroll_area = QScrollArea(self.frame_10)
+        self.config_permisions_signals_scroll_area.setObjectName(u"config_permisions_signals_scroll_area")
+        self.config_permisions_signals_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_permisions_signals_scroll_area.setWidgetResizable(True)
+        self.config_permisions_signals_scroll_contents = QWidget()
+        self.config_permisions_signals_scroll_contents.setObjectName(u"config_permisions_signals_scroll_contents")
+        self.config_permisions_signals_scroll_contents.setGeometry(QRect(0, 0, 631, 437))
+        self.verticalLayout_76 = QVBoxLayout(self.config_permisions_signals_scroll_contents)
+        self.verticalLayout_76.setObjectName(u"verticalLayout_76")
+        self.config_permisions_signals_add_btn = QPushButton(self.config_permisions_signals_scroll_contents)
+        self.config_permisions_signals_add_btn.setObjectName(u"config_permisions_signals_add_btn")
+        self.config_permisions_signals_add_btn.setStyleSheet(u"")
+
+        self.verticalLayout_76.addWidget(self.config_permisions_signals_add_btn)
+
+        self.verticalSpacer_55 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_76.addItem(self.verticalSpacer_55)
+
+        self.config_permisions_signals_scroll_area.setWidget(self.config_permisions_signals_scroll_contents)
+
+        self.verticalLayout_75.addWidget(self.config_permisions_signals_scroll_area)
+
+
+        self.verticalLayout_74.addWidget(self.frame_10)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_9)
+
+        self.label_129 = QLabel(self.scrollAreaConfigContents)
+        self.label_129.setObjectName(u"label_129")
+        self.label_129.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
+
+        self.horizontalLayout_72.addWidget(self.label_129)
+
+        self.frame_11 = QFrame(self.scrollAreaConfigContents)
+        self.frame_11.setObjectName(u"frame_11")
+        self.frame_11.setMinimumSize(QSize(704, 0))
+        self.frame_11.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_11.setFrameShape(QFrame.StyledPanel)
+        self.frame_11.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_78 = QVBoxLayout(self.frame_11)
+        self.verticalLayout_78.setObjectName(u"verticalLayout_78")
+        self.label_125 = QLabel(self.frame_11)
+        self.label_125.setObjectName(u"label_125")
+        sizePolicy8.setHeightForWidth(self.label_125.sizePolicy().hasHeightForWidth())
+        self.label_125.setSizePolicy(sizePolicy8)
+        self.label_125.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_78.addWidget(self.label_125)
+
+        self.frame_12 = QFrame(self.frame_11)
+        self.frame_12.setObjectName(u"frame_12")
+        self.frame_12.setFrameShape(QFrame.StyledPanel)
+        self.frame_12.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_79 = QVBoxLayout(self.frame_12)
+        self.verticalLayout_79.setObjectName(u"verticalLayout_79")
+        self.label_126 = QLabel(self.frame_12)
+        self.label_126.setObjectName(u"label_126")
+
+        self.verticalLayout_79.addWidget(self.label_126)
+
+        self.config_output_signals1_scroll_area = QScrollArea(self.frame_12)
+        self.config_output_signals1_scroll_area.setObjectName(u"config_output_signals1_scroll_area")
+        self.config_output_signals1_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_output_signals1_scroll_area.setWidgetResizable(True)
+        self.config_output_signals1_scroll_contents = QWidget()
+        self.config_output_signals1_scroll_contents.setObjectName(u"config_output_signals1_scroll_contents")
+        self.config_output_signals1_scroll_contents.setGeometry(QRect(0, 0, 631, 437))
+        self.verticalLayout_80 = QVBoxLayout(self.config_output_signals1_scroll_contents)
+        self.verticalLayout_80.setObjectName(u"verticalLayout_80")
+        self.config_output_signals1_add_btn = QPushButton(self.config_output_signals1_scroll_contents)
+        self.config_output_signals1_add_btn.setObjectName(u"config_output_signals1_add_btn")
+
+        self.verticalLayout_80.addWidget(self.config_output_signals1_add_btn)
+
+        self.verticalSpacer_54 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_80.addItem(self.verticalSpacer_54)
+
+        self.config_output_signals1_scroll_area.setWidget(self.config_output_signals1_scroll_contents)
+
+        self.verticalLayout_79.addWidget(self.config_output_signals1_scroll_area)
+
+
+        self.verticalLayout_78.addWidget(self.frame_12)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_11)
+
+        self.label_130 = QLabel(self.scrollAreaConfigContents)
+        self.label_130.setObjectName(u"label_130")
+        self.label_130.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
+
+        self.horizontalLayout_72.addWidget(self.label_130)
+
+        self.frame_13 = QFrame(self.scrollAreaConfigContents)
+        self.frame_13.setObjectName(u"frame_13")
+        sizePolicy3.setHeightForWidth(self.frame_13.sizePolicy().hasHeightForWidth())
+        self.frame_13.setSizePolicy(sizePolicy3)
+        self.frame_13.setMinimumSize(QSize(704, 0))
+        self.frame_13.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_13.setFrameShape(QFrame.StyledPanel)
+        self.frame_13.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_81 = QVBoxLayout(self.frame_13)
+        self.verticalLayout_81.setObjectName(u"verticalLayout_81")
+        self.label_127 = QLabel(self.frame_13)
+        self.label_127.setObjectName(u"label_127")
+        sizePolicy8.setHeightForWidth(self.label_127.sizePolicy().hasHeightForWidth())
+        self.label_127.setSizePolicy(sizePolicy8)
+        self.label_127.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_81.addWidget(self.label_127)
+
+        self.frame_14 = QFrame(self.frame_13)
+        self.frame_14.setObjectName(u"frame_14")
+        sizePolicy9 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
+        self.frame_14.setSizePolicy(sizePolicy9)
+        self.frame_14.setFrameShape(QFrame.StyledPanel)
+        self.frame_14.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_82 = QVBoxLayout(self.frame_14)
+        self.verticalLayout_82.setObjectName(u"verticalLayout_82")
+        self.horizontalLayout_75 = QHBoxLayout()
+        self.horizontalLayout_75.setObjectName(u"horizontalLayout_75")
+        self.label_131 = QLabel(self.frame_14)
+        self.label_131.setObjectName(u"label_131")
+        sizePolicy5.setHeightForWidth(self.label_131.sizePolicy().hasHeightForWidth())
+        self.label_131.setSizePolicy(sizePolicy5)
+
+        self.horizontalLayout_75.addWidget(self.label_131)
+
+        self.config_start_latency_spinbox = QSpinBox(self.frame_14)
+        self.config_start_latency_spinbox.setObjectName(u"config_start_latency_spinbox")
+        sizePolicy.setHeightForWidth(self.config_start_latency_spinbox.sizePolicy().hasHeightForWidth())
+        self.config_start_latency_spinbox.setSizePolicy(sizePolicy)
+
+        self.horizontalLayout_75.addWidget(self.config_start_latency_spinbox)
+
+        self.label_7 = QLabel(self.frame_14)
+        self.label_7.setObjectName(u"label_7")
+
+        self.horizontalLayout_75.addWidget(self.label_7)
+
+
+        self.verticalLayout_82.addLayout(self.horizontalLayout_75)
+
+        self.verticalSpacer_49 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_82.addItem(self.verticalSpacer_49)
+
+
+        self.verticalLayout_81.addWidget(self.frame_14)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_13)
+
+        self.label_132 = QLabel(self.scrollAreaConfigContents)
+        self.label_132.setObjectName(u"label_132")
+        self.label_132.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
+
+        self.horizontalLayout_72.addWidget(self.label_132)
+
+        self.frame_15 = QFrame(self.scrollAreaConfigContents)
+        self.frame_15.setObjectName(u"frame_15")
+        self.frame_15.setMinimumSize(QSize(704, 0))
+        self.frame_15.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_15.setFrameShape(QFrame.StyledPanel)
+        self.frame_15.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_83 = QVBoxLayout(self.frame_15)
+        self.verticalLayout_83.setObjectName(u"verticalLayout_83")
+        self.label_133 = QLabel(self.frame_15)
+        self.label_133.setObjectName(u"label_133")
+        sizePolicy8.setHeightForWidth(self.label_133.sizePolicy().hasHeightForWidth())
+        self.label_133.setSizePolicy(sizePolicy8)
+        self.label_133.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_83.addWidget(self.label_133)
+
+        self.frame_16 = QFrame(self.frame_15)
+        self.frame_16.setObjectName(u"frame_16")
+        self.frame_16.setFrameShape(QFrame.StyledPanel)
+        self.frame_16.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_84 = QVBoxLayout(self.frame_16)
+        self.verticalLayout_84.setObjectName(u"verticalLayout_84")
+        self.label_134 = QLabel(self.frame_16)
+        self.label_134.setObjectName(u"label_134")
+
+        self.verticalLayout_84.addWidget(self.label_134)
+
+        self.config_output_signals2_scroll_area = QScrollArea(self.frame_16)
+        self.config_output_signals2_scroll_area.setObjectName(u"config_output_signals2_scroll_area")
+        self.config_output_signals2_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_output_signals2_scroll_area.setWidgetResizable(True)
+        self.config_output_signals2_scroll_contents = QWidget()
+        self.config_output_signals2_scroll_contents.setObjectName(u"config_output_signals2_scroll_contents")
+        self.config_output_signals2_scroll_contents.setGeometry(QRect(0, 0, 631, 437))
+        self.verticalLayout_85 = QVBoxLayout(self.config_output_signals2_scroll_contents)
+        self.verticalLayout_85.setObjectName(u"verticalLayout_85")
+        self.config_output_signals2_add_btn = QPushButton(self.config_output_signals2_scroll_contents)
+        self.config_output_signals2_add_btn.setObjectName(u"config_output_signals2_add_btn")
+
+        self.verticalLayout_85.addWidget(self.config_output_signals2_add_btn)
+
+        self.verticalSpacer_53 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_85.addItem(self.verticalSpacer_53)
+
+        self.config_output_signals2_scroll_area.setWidget(self.config_output_signals2_scroll_contents)
+
+        self.verticalLayout_84.addWidget(self.config_output_signals2_scroll_area)
+
+
+        self.verticalLayout_83.addWidget(self.frame_16)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_15)
+
+        self.label_135 = QLabel(self.scrollAreaConfigContents)
+        self.label_135.setObjectName(u"label_135")
+        self.label_135.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
+
+        self.horizontalLayout_72.addWidget(self.label_135)
+
+        self.frame_19 = QFrame(self.scrollAreaConfigContents)
+        self.frame_19.setObjectName(u"frame_19")
+        self.frame_19.setMinimumSize(QSize(704, 0))
+        self.frame_19.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_19.setFrameShape(QFrame.StyledPanel)
+        self.frame_19.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_92 = QVBoxLayout(self.frame_19)
+        self.verticalLayout_92.setObjectName(u"verticalLayout_92")
+        self.label_141 = QLabel(self.frame_19)
+        self.label_141.setObjectName(u"label_141")
+        sizePolicy8.setHeightForWidth(self.label_141.sizePolicy().hasHeightForWidth())
+        self.label_141.setSizePolicy(sizePolicy8)
+        self.label_141.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_92.addWidget(self.label_141)
+
+        self.frame_20 = QFrame(self.frame_19)
+        self.frame_20.setObjectName(u"frame_20")
+        self.frame_20.setFrameShape(QFrame.StyledPanel)
+        self.frame_20.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_93 = QVBoxLayout(self.frame_20)
+        self.verticalLayout_93.setObjectName(u"verticalLayout_93")
+        self.settingpage_config_stop_manual_checkbox = QCheckBox(self.frame_20)
+        self.settingpage_config_stop_manual_checkbox.setObjectName(u"settingpage_config_stop_manual_checkbox")
+
+        self.verticalLayout_93.addWidget(self.settingpage_config_stop_manual_checkbox)
+
+        self.horizontalLayout_78 = QHBoxLayout()
+        self.horizontalLayout_78.setObjectName(u"horizontalLayout_78")
+        self.horizontalLayout_78.setContentsMargins(-1, 5, -1, -1)
+        self.label_142 = QLabel(self.frame_20)
+        self.label_142.setObjectName(u"label_142")
+
+        self.horizontalLayout_78.addWidget(self.label_142)
+
+        self.settingpage_config_stop_mode_comboBox = QComboBox(self.frame_20)
+        self.settingpage_config_stop_mode_comboBox.addItem("")
+        self.settingpage_config_stop_mode_comboBox.addItem("")
+        self.settingpage_config_stop_mode_comboBox.addItem("")
+        self.settingpage_config_stop_mode_comboBox.setObjectName(u"settingpage_config_stop_mode_comboBox")
+
+        self.horizontalLayout_78.addWidget(self.settingpage_config_stop_mode_comboBox)
+
+        self.horizontalSpacer_61 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_78.addItem(self.horizontalSpacer_61)
+
+
+        self.verticalLayout_93.addLayout(self.horizontalLayout_78)
+
+        self.verticalLayout_94 = QVBoxLayout()
+        self.verticalLayout_94.setObjectName(u"verticalLayout_94")
+        self.config_stop_system_settings_stackwidget = QStackedWidget(self.frame_20)
+        self.config_stop_system_settings_stackwidget.setObjectName(u"config_stop_system_settings_stackwidget")
+        self.page_5 = QWidget()
+        self.page_5.setObjectName(u"page_5")
+        self.verticalLayout_95 = QVBoxLayout(self.page_5)
+        self.verticalLayout_95.setObjectName(u"verticalLayout_95")
+        self.horizontalLayout_79 = QHBoxLayout()
+        self.horizontalLayout_79.setObjectName(u"horizontalLayout_79")
+        self.label_143 = QLabel(self.page_5)
+        self.label_143.setObjectName(u"label_143")
+
+        self.horizontalLayout_79.addWidget(self.label_143)
+
+        self.config_stop_system_delay_spinbox = QSpinBox(self.page_5)
+        self.config_stop_system_delay_spinbox.setObjectName(u"config_stop_system_delay_spinbox")
+        self.config_stop_system_delay_spinbox.setMinimum(5)
+        self.config_stop_system_delay_spinbox.setMaximum(3600)
+
+        self.horizontalLayout_79.addWidget(self.config_stop_system_delay_spinbox)
+
+        self.label_144 = QLabel(self.page_5)
+        self.label_144.setObjectName(u"label_144")
+
+        self.horizontalLayout_79.addWidget(self.label_144)
+
+        self.horizontalSpacer_110 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_79.addItem(self.horizontalSpacer_110)
+
+
+        self.verticalLayout_95.addLayout(self.horizontalLayout_79)
+
+        self.verticalSpacer_51 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_95.addItem(self.verticalSpacer_51)
+
+        self.config_stop_system_settings_stackwidget.addWidget(self.page_5)
+        self.page_6 = QWidget()
+        self.page_6.setObjectName(u"page_6")
+        self.verticalLayout_96 = QVBoxLayout(self.page_6)
+        self.verticalLayout_96.setObjectName(u"verticalLayout_96")
+        self.label_145 = QLabel(self.page_6)
+        self.label_145.setObjectName(u"label_145")
+
+        self.verticalLayout_96.addWidget(self.label_145)
+
+        self.config_stop_system_signals_scroll_area = QScrollArea(self.page_6)
+        self.config_stop_system_signals_scroll_area.setObjectName(u"config_stop_system_signals_scroll_area")
+        self.config_stop_system_signals_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_stop_system_signals_scroll_area.setWidgetResizable(True)
+        self.config_stop_system_signals_scroll_contents = QWidget()
+        self.config_stop_system_signals_scroll_contents.setObjectName(u"config_stop_system_signals_scroll_contents")
+        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 607, 323))
+        self.verticalLayout_97 = QVBoxLayout(self.config_stop_system_signals_scroll_contents)
+        self.verticalLayout_97.setObjectName(u"verticalLayout_97")
+        self.config_stop_system_signals_add_btn = QPushButton(self.config_stop_system_signals_scroll_contents)
+        self.config_stop_system_signals_add_btn.setObjectName(u"config_stop_system_signals_add_btn")
+
+        self.verticalLayout_97.addWidget(self.config_stop_system_signals_add_btn)
+
+        self.verticalSpacer_50 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_97.addItem(self.verticalSpacer_50)
+
+        self.config_stop_system_signals_scroll_area.setWidget(self.config_stop_system_signals_scroll_contents)
+
+        self.verticalLayout_96.addWidget(self.config_stop_system_signals_scroll_area)
+
+        self.config_stop_system_settings_stackwidget.addWidget(self.page_6)
+
+        self.verticalLayout_94.addWidget(self.config_stop_system_settings_stackwidget)
+
+
+        self.verticalLayout_93.addLayout(self.verticalLayout_94)
+
+
+        self.verticalLayout_92.addWidget(self.frame_20)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_19)
+
+        self.label_148 = QLabel(self.scrollAreaConfigContents)
+        self.label_148.setObjectName(u"label_148")
+        self.label_148.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
+
+        self.horizontalLayout_72.addWidget(self.label_148)
+
+        self.frame_21 = QFrame(self.scrollAreaConfigContents)
+        self.frame_21.setObjectName(u"frame_21")
+        self.frame_21.setMinimumSize(QSize(704, 0))
+        self.frame_21.setMaximumSize(QSize(16777215, 16777215))
+        self.frame_21.setFrameShape(QFrame.StyledPanel)
+        self.frame_21.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_98 = QVBoxLayout(self.frame_21)
+        self.verticalLayout_98.setObjectName(u"verticalLayout_98")
+        self.label_146 = QLabel(self.frame_21)
+        self.label_146.setObjectName(u"label_146")
+        sizePolicy8.setHeightForWidth(self.label_146.sizePolicy().hasHeightForWidth())
+        self.label_146.setSizePolicy(sizePolicy8)
+        self.label_146.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_98.addWidget(self.label_146)
+
+        self.frame_22 = QFrame(self.frame_21)
+        self.frame_22.setObjectName(u"frame_22")
+        self.frame_22.setFrameShape(QFrame.StyledPanel)
+        self.frame_22.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_99 = QVBoxLayout(self.frame_22)
+        self.verticalLayout_99.setObjectName(u"verticalLayout_99")
+        self.label_147 = QLabel(self.frame_22)
+        self.label_147.setObjectName(u"label_147")
+
+        self.verticalLayout_99.addWidget(self.label_147)
+
+        self.config_output_signals3_scroll_area = QScrollArea(self.frame_22)
+        self.config_output_signals3_scroll_area.setObjectName(u"config_output_signals3_scroll_area")
+        self.config_output_signals3_scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_output_signals3_scroll_area.setWidgetResizable(True)
+        self.config_output_signals3_scroll_contents = QWidget()
+        self.config_output_signals3_scroll_contents.setObjectName(u"config_output_signals3_scroll_contents")
+        self.config_output_signals3_scroll_contents.setGeometry(QRect(0, 0, 631, 437))
+        self.verticalLayout_100 = QVBoxLayout(self.config_output_signals3_scroll_contents)
+        self.verticalLayout_100.setObjectName(u"verticalLayout_100")
+        self.config_output_signals3_add_btn = QPushButton(self.config_output_signals3_scroll_contents)
+        self.config_output_signals3_add_btn.setObjectName(u"config_output_signals3_add_btn")
+
+        self.verticalLayout_100.addWidget(self.config_output_signals3_add_btn)
+
+        self.verticalSpacer_52 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_100.addItem(self.verticalSpacer_52)
+
+        self.config_output_signals3_scroll_area.setWidget(self.config_output_signals3_scroll_contents)
+
+        self.verticalLayout_99.addWidget(self.config_output_signals3_scroll_area)
+
+
+        self.verticalLayout_98.addWidget(self.frame_22)
+
+
+        self.horizontalLayout_72.addWidget(self.frame_21)
+
+        self.scrollAreaConfig.setWidget(self.scrollAreaConfigContents)
+
+        self.verticalLayout_86.addWidget(self.scrollAreaConfig)
+
+        self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.verticalLayout_68.addWidget(self.scrollArea_6)
+
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.frame_5 = QFrame(self.settingpage_config_tab)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_21.addWidget(self.frame_5)
+
+
+        self.verticalLayout_68.addLayout(self.horizontalLayout_21)
+
+        self.settingpage_tabs.addTab(self.settingpage_config_tab, "")
 
         self.verticalLayout_62.addWidget(self.settingpage_tabs)
+
+        self.horizontalFrame_9 = QFrame(self.settings_page)
+        self.horizontalFrame_9.setObjectName(u"horizontalFrame_9")
+        self.horizontalFrame_9.setStyleSheet(u"QPushButton{\n"
+"\n"
+"	color: #ffffff;\n"
+"\n"
+"}")
+        self.settingpage_camera_connect_groupe_3 = QHBoxLayout(self.horizontalFrame_9)
+        self.settingpage_camera_connect_groupe_3.setObjectName(u"settingpage_camera_connect_groupe_3")
+        self.settingpage_camera_connect_groupe_3.setContentsMargins(-1, 1, -1, -1)
+        self.settingpage_plc_save_btn = QPushButton(self.horizontalFrame_9)
+        self.settingpage_plc_save_btn.setObjectName(u"settingpage_plc_save_btn")
+        self.settingpage_plc_save_btn.setEnabled(True)
+
+        self.settingpage_camera_connect_groupe_3.addWidget(self.settingpage_plc_save_btn)
+
+        self.settingpage_plc_cancel_btn = QPushButton(self.horizontalFrame_9)
+        self.settingpage_plc_cancel_btn.setObjectName(u"settingpage_plc_cancel_btn")
+
+        self.settingpage_camera_connect_groupe_3.addWidget(self.settingpage_plc_cancel_btn)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.settingpage_camera_connect_groupe_3.addItem(self.horizontalSpacer_14)
+
+
+        self.verticalLayout_62.addWidget(self.horizontalFrame_9)
 
         self.horizontalSpacer_63 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -3773,11 +4584,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
         self.calibrationpage_left_side = QFrame(self.cilbration)
         self.calibrationpage_left_side.setObjectName(u"calibrationpage_left_side")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
-        self.calibrationpage_left_side.setSizePolicy(sizePolicy7)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
+        self.calibrationpage_left_side.setSizePolicy(sizePolicy10)
         self.calibrationpage_left_side.setMaximumSize(QSize(550, 16777215))
         self.calibrationpage_left_side.setStyleSheet(u"#calibrationpage_left_side{\n"
 "	padding: 10px;\n"
@@ -4230,7 +5041,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 63, 34))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1418, 745))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -4840,7 +5651,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 517, 484))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1418, 745))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -5057,7 +5868,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1262, 3326))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1420, 3416))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -5567,11 +6378,11 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem37)
         self.sreportpage_statictics_table.setObjectName(u"sreportpage_statictics_table")
         self.sreportpage_statictics_table.setEnabled(True)
-        sizePolicy8 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_statictics_table.setSizePolicy(sizePolicy8)
+        sizePolicy11 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy11.setHorizontalStretch(0)
+        sizePolicy11.setVerticalStretch(0)
+        sizePolicy11.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_statictics_table.setSizePolicy(sizePolicy11)
         self.sreportpage_statictics_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_statictics_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_statictics_table.setBaseSize(QSize(0, 0))
@@ -6157,8 +6968,8 @@ class Ui_MainWindow(object):
         self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem38)
         self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
         self.sreportpage_particels_table.setEnabled(True)
-        sizePolicy8.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_particels_table.setSizePolicy(sizePolicy8)
+        sizePolicy11.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_particels_table.setSizePolicy(sizePolicy11)
         self.sreportpage_particels_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_particels_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_particels_table.setBaseSize(QSize(0, 0))
@@ -6396,7 +7207,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1265, 1150))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 1419, 1182))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -6415,10 +7226,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_30 = QHBoxLayout()
         self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_30.addItem(self.horizontalSpacer_6)
-
         self.verticalLayout_57 = QVBoxLayout()
         self.verticalLayout_57.setObjectName(u"verticalLayout_57")
         self.verticalLayout_57.setContentsMargins(0, 0, -1, -1)
@@ -6445,8 +7252,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem40)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
-        sizePolicy8.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_table.setSizePolicy(sizePolicy8)
+        sizePolicy11.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_table.setSizePolicy(sizePolicy11)
         self.comparepage_compare_table.setMaximumSize(QSize(16777215, 16777215))
         self.comparepage_compare_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_table.setBaseSize(QSize(0, 0))
@@ -6506,14 +7313,10 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.verticalHeader().setDefaultSectionSize(40)
         self.comparepage_compare_table.verticalHeader().setHighlightSections(True)
 
-        self.verticalLayout_57.addWidget(self.comparepage_compare_table)
+        self.verticalLayout_57.addWidget(self.comparepage_compare_table, 0, Qt.AlignHCenter)
 
 
         self.horizontalLayout_30.addLayout(self.verticalLayout_57)
-
-        self.horizontalSpacer_110 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_30.addItem(self.horizontalSpacer_110)
 
 
         self.verticalLayout_40.addLayout(self.horizontalLayout_30)
@@ -6572,11 +7375,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_58.setContentsMargins(0, 0, -1, -1)
         self.label_112 = QLabel(self.compareScrollAreaWidget)
         self.label_112.setObjectName(u"label_112")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
-        self.label_112.setSizePolicy(sizePolicy9)
+        sizePolicy8.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
+        self.label_112.setSizePolicy(sizePolicy8)
         self.label_112.setFont(font5)
         self.label_112.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
@@ -6596,8 +7396,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem41)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
-        sizePolicy8.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy8)
+        sizePolicy11.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy11)
         self.comparepage_compare_mean_table.setMaximumSize(QSize(16777215, 100))
         self.comparepage_compare_mean_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_mean_table.setBaseSize(QSize(0, 0))
@@ -6714,30 +7514,30 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setSpacing(5)
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.horizontalLayout_17.setContentsMargins(10, 0, 10, 0)
-        self.label_7 = QLabel(self.footer)
-        self.label_7.setObjectName(u"label_7")
+        self.footer_label = QLabel(self.footer)
+        self.footer_label.setObjectName(u"footer_label")
         font6 = QFont()
         font6.setFamilies([u"Arial"])
         font6.setPointSize(9)
         font6.setBold(True)
         font6.setItalic(False)
-        self.label_7.setFont(font6)
+        self.footer_label.setFont(font6)
 
-        self.horizontalLayout_17.addWidget(self.label_7)
+        self.horizontalLayout_17.addWidget(self.footer_label)
 
-        self.line_15 = QFrame(self.footer)
-        self.line_15.setObjectName(u"line_15")
-        self.line_15.setMaximumSize(QSize(1, 15))
-        self.line_15.setStyleSheet(u"background: white;")
-        self.line_15.setFrameShadow(QFrame.Sunken)
-        self.line_15.setLineWidth(1)
-        self.line_15.setFrameShape(QFrame.VLine)
+        self.footer_line = QFrame(self.footer)
+        self.footer_line.setObjectName(u"footer_line")
+        self.footer_line.setMaximumSize(QSize(1, 15))
+        self.footer_line.setStyleSheet(u"background: white;")
+        self.footer_line.setFrameShadow(QFrame.Sunken)
+        self.footer_line.setLineWidth(1)
+        self.footer_line.setFrameShape(QFrame.VLine)
 
-        self.horizontalLayout_17.addWidget(self.line_15)
+        self.horizontalLayout_17.addWidget(self.footer_line)
 
-        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.footer_spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_17.addItem(self.horizontalSpacer_15)
+        self.horizontalLayout_17.addItem(self.footer_spacer)
 
 
         self.verticalLayout.addWidget(self.footer)
@@ -6888,11 +7688,13 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(0)
-        self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(3)
+        self.gradingranges_tabs.setCurrentIndex(1)
+        self.settingpage_tabs.setCurrentIndex(6)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.config_start_system_settings_stackwidget.setCurrentIndex(1)
+        self.config_stop_system_settings_stackwidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(2)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -7047,7 +7849,7 @@ class Ui_MainWindow(object):
         self.textEdit_8.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt;\">Each field, as shown below, will show the variable explained. Open the Excel file for the report template, and place each variable where it is preferred.</span></p></body></html>", None))
 
         __sortingEnabled2 = self.tableWidget.isSortingEnabled()
@@ -7136,12 +7938,12 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_storage_tab), QCoreApplication.translate("MainWindow", u"Storage", None))
         self.settingpage_camera_start_btn.setText("")
         self.settingpage_camera_device_group.setTitle(QCoreApplication.translate("MainWindow", u"Device Setting", None))
+        self.settingpage_camera_serial_retry_btn.setText("")
+        self.settingpage_camera_device_lbl_2.setText(QCoreApplication.translate("MainWindow", u"Hardware Sync", None))
+        self.settingpage_camera_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"FPS", None))
         self.settingpage_camera_device_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera", None))
         self.settingpage_camera_ports_lbl.setText(QCoreApplication.translate("MainWindow", u"PORT", None))
         self.settingpage_camera_port_connection_lbl.setText(QCoreApplication.translate("MainWindow", u"Not Ok", None))
-        self.settingpage_camera_fps_lbl.setText(QCoreApplication.translate("MainWindow", u"FPS", None))
-        self.settingpage_camera_device_lbl_2.setText(QCoreApplication.translate("MainWindow", u"Hardware Sync", None))
-        self.settingpage_camera_serial_retry_btn.setText("")
         self.settingpage_camera_control_group.setTitle(QCoreApplication.translate("MainWindow", u"Control And Analog Setting", None))
         self.settingpage_camera_exposure_lbl.setText(QCoreApplication.translate("MainWindow", u"Exposure", None))
         self.settingpage_camera_gain_lbl.setText(QCoreApplication.translate("MainWindow", u"Gain", None))
@@ -7157,6 +7959,17 @@ class Ui_MainWindow(object):
         self.settingpage_camera_color_value_lbl.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.settingpage_camera_color_img_lbl.setText(QCoreApplication.translate("MainWindow", u"red", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_camera_tab), QCoreApplication.translate("MainWindow", u"Camera", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"General Setting", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u".", None))
+        self.label_23.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u".", None))
+        self.label_15.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u".", None))
+        self.label_21.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
+        self.settingpage_connect_btn.setText(QCoreApplication.translate("MainWindow", u"Check Connection", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Ip: ", None))
+        self.settingpage_plc_add_node_btn.setText(QCoreApplication.translate("MainWindow", u"add", None))
+        self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_plc_tab), QCoreApplication.translate("MainWindow", u"PLC", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"border", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"Threshould", None))
         self.settingpage_algorithm_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
@@ -7166,6 +7979,74 @@ class Ui_MainWindow(object):
         self.settingpage_algorithm_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_algorithm_restor_default_btn.setText(QCoreApplication.translate("MainWindow", u"Restore Default", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_algorithm_tab), QCoreApplication.translate("MainWindow", u"Algorithm", None))
+        self.label_136.setText(QCoreApplication.translate("MainWindow", u"System Sycles", None))
+        self.label_137.setText(QCoreApplication.translate("MainWindow", u"Lens Type", None))
+        self.scrollAreaConfig.setProperty("styleClass", "")
+        self.frame_7.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Start System", None))
+        self.label_20.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.settingpage_config_start_manual_checkbox.setText(QCoreApplication.translate("MainWindow", u"Can Start manual", None))
+        self.label_25.setText(QCoreApplication.translate("MainWindow", u"Start By", None))
+        self.settingpage_config_start_mode_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Timer", None))
+        self.settingpage_config_start_mode_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Signal", None))
+
+        self.label_30.setText(QCoreApplication.translate("MainWindow", u"Start Evrey: ", None))
+        self.label_121.setText(QCoreApplication.translate("MainWindow", u"minute", None))
+        self.label_122.setText(QCoreApplication.translate("MainWindow", u"Signals", None))
+        self.config_start_system_signals_add_btn.setText("")
+        self.config_start_system_signals_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
+        self.label_128.setText("")
+        self.frame_9.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_123.setText(QCoreApplication.translate("MainWindow", u"Permisions", None))
+        self.label_123.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.label_124.setText(QCoreApplication.translate("MainWindow", u"Signals", None))
+        self.config_permisions_signals_add_btn.setText("")
+        self.config_permisions_signals_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
+        self.label_129.setText("")
+        self.frame_11.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_125.setText(QCoreApplication.translate("MainWindow", u"Output Signal", None))
+        self.label_125.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.label_126.setText(QCoreApplication.translate("MainWindow", u"Signals", None))
+        self.config_output_signals1_add_btn.setText("")
+        self.config_output_signals1_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
+        self.label_130.setText("")
+        self.frame_13.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_127.setText(QCoreApplication.translate("MainWindow", u"Start Processing Latency", None))
+        self.label_127.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.label_131.setText(QCoreApplication.translate("MainWindow", u"Delay: ", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Seconds", None))
+        self.label_132.setText("")
+        self.frame_15.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_133.setText(QCoreApplication.translate("MainWindow", u"Output Signal", None))
+        self.label_133.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.label_134.setText(QCoreApplication.translate("MainWindow", u"Signals", None))
+        self.config_output_signals2_add_btn.setText("")
+        self.config_output_signals2_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
+        self.label_135.setText("")
+        self.frame_19.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_141.setText(QCoreApplication.translate("MainWindow", u"Stop Processing", None))
+        self.label_141.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.settingpage_config_stop_manual_checkbox.setText(QCoreApplication.translate("MainWindow", u"Can Stop manual", None))
+        self.label_142.setText(QCoreApplication.translate("MainWindow", u"Start By", None))
+        self.settingpage_config_stop_mode_comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Timer", None))
+        self.settingpage_config_stop_mode_comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Image Processing", None))
+        self.settingpage_config_stop_mode_comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Signal", None))
+
+        self.label_143.setText(QCoreApplication.translate("MainWindow", u"Stop After: ", None))
+        self.label_144.setText(QCoreApplication.translate("MainWindow", u"minute", None))
+        self.label_145.setText(QCoreApplication.translate("MainWindow", u"Signals", None))
+        self.config_stop_system_signals_add_btn.setText("")
+        self.config_stop_system_signals_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
+        self.label_148.setText("")
+        self.frame_21.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.label_146.setText(QCoreApplication.translate("MainWindow", u"Output Signal", None))
+        self.label_146.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
+        self.label_147.setText(QCoreApplication.translate("MainWindow", u"Signals", None))
+        self.config_output_signals3_add_btn.setText("")
+        self.config_output_signals3_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
+        self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_config_tab), QCoreApplication.translate("MainWindow", u"Config", None))
+        self.settingpage_plc_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.settingpage_plc_cancel_btn.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.settingpage_save_massage_lbl.setText(QCoreApplication.translate("MainWindow", u"setting saved", None))
         self.settingpage_save_gif_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.calibrationpage_step1_lbl.setText(QCoreApplication.translate("MainWindow", u"Step 1", None))
@@ -7237,9 +8118,9 @@ class Ui_MainWindow(object):
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are"
-                        " then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:15px;\"><span style=\" font-size:10pt;\">Dorsa Particle Size Analyzer is a high-end device that is used to measure the diameter and other various parameters of particles including shape, ovality, and so on. Particle size analysis based on image processing is a technique that involves capturing and analyzing images of particles to determine their size distribution. This method is particularly useful when dealing with complex or irregularly shaped particles that may not be well-suited for traditional size measurement techniques.The collected size data are "
+                        "then used to generate a size distribution profile for the particle sample. This distribution can be presented as a histogram, cumulative distribution curve, or other graphical representations. CalibrationTo ensure accuracy, the image processing system may need calibration using known size standards. This allows for the conversion of pixel measurements to physical dimensions.</span></p></body></html>", None))
         self.label_37.setText("")
         self.label_85.setText(QCoreApplication.translate("MainWindow", u"Dorsa Company", None))
         self.label_87.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:10pt;\">Dorsa Imaging Solutions is a cutting-edge technology company specializing in image processing solutions tailored for industrial applications. With a keen focus on enhancing efficiency and precision in manufacturing processes, Dorsa employs advanced computer vision algorithms and machine learning techniques to analyze and interpret visual data within industrial settings. The company's innovative image processing solutions are pivotal in quality control, defect detection, and automation, ensuring seamless production workflows and minimizing downtime. Leveraging state-of-the-art hardware and software, Dorsa Imaging Solutions collaborates with industrial clients to develop bespoke solutions that address specific challenges in sectors such as automotive, electronics, and pharmaceuticals. By harnessing the power of image processing, the company is at the forefront of revolutionizing how industrial companies optimize their operations, ensuring a higher level of a"
@@ -7269,7 +8150,7 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:13pt; color:#404040;\">The summary shows the Average, Standard Deviation, and Mode for all diameters of particles in the sample.</span></p></body></html>", None))
         self.label_104.setText(QCoreApplication.translate("MainWindow", u"Table1 - average, Standard Deviation, and Mode of the diameters of all the Particles in the Sample", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Summary", None))
@@ -7285,7 +8166,7 @@ class Ui_MainWindow(object):
         self.textEdit_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The statistics of this experiment include Mean, Standard Deviation, Count of Particles, and Weight Percent of each range of diameter. Statistical results calculated for each range of particle diameters are in Table 1. The result of this experiment can be calculated for other Standards just by Re-Build button at the top of this page.</span></p></body></html>", None))
         self.label_105.setText(QCoreApplication.translate("MainWindow", u"Table2 - Statistics for each diameter range in the Sample ", None))
 
@@ -7297,31 +8178,31 @@ class Ui_MainWindow(object):
         self.textEdit_3.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">The results of this experiment will be shown in the charts below. The charts will show the Weight Percentage of each diameter range, their Cumulative Weight Percentage chart, and the Frequency Histogram of all the Particle diameters. </span></p></body></html>", None))
         self.textEdit_4.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">The weight Percentage chart shows the weight percentage for each range of diameter in the sample.</span></p></body></html>", None))
         self.label_107.setText(QCoreApplication.translate("MainWindow", u"Chart1 - Weight Percent Barchart", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">The Cumulative Weight Percentage chart shows the cumulative chart of the Weight Percentage barchart.</span></p></body></html>", None))
         self.label_108.setText(QCoreApplication.translate("MainWindow", u"Chart2 - Cumulative Weight Percent Chart", None))
         self.textEdit_6.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</p></body></html>", None))
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8.25pt;\">This chart shows the continuous frequency of all particle diameters in the sample. This chart is the diameter distribution of the sample.</span></p></body></html>", None))
         self.label_109.setText(QCoreApplication.translate("MainWindow", u"Chart3 - Frequency Histogram of All Particle Diameters", None))
         self.label_47.setText(QCoreApplication.translate("MainWindow", u"Particles", None))
         self.textEdit_7.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Arial'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"</style></head><body style=\" font-family:'Arial'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-size:12pt; color:#282828;\">In this section all the detected particles in the sample are available. The list on the right shows all the particle shapes. By clicking on any of them, picture of particle and all available data about the particle including Area, Volume, Average Radius and Maximum Radius will appear on the left side.</span></p></body></html>", None))
         self.sreportpage_darw_circle_btn.setText("")
         self.sreportpage_darw_cnt_btn.setText("")
@@ -7375,6 +8256,6 @@ class Ui_MainWindow(object):
         self.comparepage_compare_mean_table.setSortingEnabled(False)
         self.comparepage_compare_mean_table.setSortingEnabled(__sortingEnabled7)
 
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Designed and Developed by Dideh Rayan Sanati Esfahan (Dorsa)", None))
+        self.footer_label.setText(QCoreApplication.translate("MainWindow", u"Designed and Developed by Dideh Rayan Sanati Esfahan (Dorsa)", None))
     # retranslateUi
 

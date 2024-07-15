@@ -23,10 +23,41 @@ class GUIBackend:
             #window = uic.loadUi(path)
         return window
 
+
     @staticmethod
     def set_signal_connection(wgt:QtWidgets.QWidget, connection:bool):
         wgt.blockSignals(not(connection))
 
+    @staticmethod
+    def set_dynalic_property(wgt:QtWidgets.QWidget, name:str, value, repolish_style=False):
+        """set the value of a dynamic property
+
+        Args:
+            wgt (QtWidgets.QWidget): _description_
+            name (str): name of dynamic property you define in Qt Designer
+            value (_type_): value of property
+            repolish_style (bool, optional): if be true, the style of wgt regenerate,
+                if you style wgt base on dynamic property, you should set this argumnet True
+        """
+        
+        wgt.setProperty(name, value)
+        if repolish_style:
+            GUIBackend.repoblish_style(wgt)
+
+    @staticmethod
+    def repoblish_style( wgt:QtWidgets.QWidget):
+        """rebuild style of a widget, it is use when
+           style should be change after changing dynamic property
+
+        Args:
+            wgt (QtWidgets.QWidget): _description_
+        """
+        wgt.style().unpolish(wgt)
+        wgt.style().polish(wgt)
+
+    @staticmethod
+    def get_dynalic_property(wgt:QtWidgets.QWidget, name:str):
+        return wgt.property(name)
 
     @staticmethod
     def set_max_size(wgt:QtWidgets.QWidget, h=None, w=None):
@@ -119,6 +150,17 @@ class GUIBackend:
         ui.showMinimized()
 
     #----------------------------------------------------------------
+    @staticmethod
+    def __mouse_event_generator(func, args):
+        def _func(e):
+            func(*args)
+        return _func
+    
+    def widget_press_connector( wgt:QtWidgets.QWidget, func, args):
+        wgt.mousePressEvent = GUIBackend.__mouse_event_generator(func, args)
+
+    #----------------------------------------------------------------
+    
 
     @staticmethod
     def emit_signal(signal:QtCore.Signal):
@@ -210,6 +252,36 @@ class GUIBackend:
             parent.addWidget(widget)
         else:
             pass
+    
+    @staticmethod
+    def insert_widget(container:QtWidgets.QWidget, wgt:QtWidgets.QWidget, pos=None):
+        layout = container.layout()
+    
+        if pos is None:
+            layout.addWidget(wgt)
+        else:
+            if pos >= 0:
+                layout.insertWidget(pos, wgt)
+            else:
+                layout.insertWidget(layout.count() + pos, wgt)
+
+    @staticmethod
+    def set_layout_alignment(layout:QtWidgets.QVBoxLayout, alignment:str):
+        data = {
+            'r':QtCore.Qt.AlignRight,
+            'c':QtCore.Qt.AlignCenter,
+            'l':QtCore.Qt.AlignLeft,
+        }
+        layout.setAlignment(data[alignment.lower()])
+
+    @staticmethod
+    def set_layout_direction(wgt:QtWidgets.QWidget, direction:str):
+        data = {
+            'ltr':QtCore.Qt.LayoutDirection.LeftToRight,
+            'rtl':QtCore.Qt.LayoutDirection.RightToLeft,
+
+        }
+        wgt.setLayoutDirection(data[direction.lower()])
 
     @staticmethod
     def set_style( btn: QtWidgets.QPushButton, style:str):
@@ -241,12 +313,21 @@ class GUIBackend:
         
         elif isinstance(wgt, QtWidgets.QLineEdit):
             return GUIBackend.get_input_text(wgt)
+        
+        elif isinstance(wgt, QtWidgets.QTextEdit):
+            return GUIBackend.get_input_text_area(wgt)
 
-        elif isinstance(wgt, QtWidgets.QCheckBox):
+        elif isinstance(wgt, QtWidgets.QCheckBox) :
             return GUIBackend.get_checkbox_value(wgt)
+        
+        elif isinstance(wgt, QtWidgets.QRadioButton):
+            return GUIBackend.get_radio_value(wgt)
         
         elif isinstance(wgt, QtWidgets.QDateEdit):
             return GUIBackend.get_date_input(wgt)
+        
+        elif isinstance(wgt, QtWidgets.QLabel):
+            return wgt.get_status()
 
         else:
             assert False, f"get_input method doesn't support {wgt} object"
@@ -269,12 +350,24 @@ class GUIBackend:
         
         elif isinstance(wgt, QtWidgets.QLineEdit):
             GUIBackend.set_input_text(wgt, value, block_signal)
+
+        elif isinstance(wgt, QtWidgets.QTextEdit):
+            return GUIBackend.set_input_text_area(wgt, value, block_signal)
         
         elif isinstance(wgt, QtWidgets.QCheckBox):
             GUIBackend.set_checkbox_value(wgt, value, block_signal)
 
+        elif isinstance(wgt, QtWidgets.QRadioButton):
+            GUIBackend.set_radio_value(wgt, value, block_signal)
+
         elif isinstance(wgt, QtWidgets.QDateEdit):
             GUIBackend.set_date_input(wgt, value, block_signal)
+
+        elif isinstance(wgt, QtWidgets.QLabel):
+            if value:
+                wgt.set_on()
+            else:
+                wgt.set_off()
 
         else:
             assert False, f"set_input method doesn't support {wgt} object"
@@ -285,22 +378,51 @@ class GUIBackend:
         """
         """
         if isinstance(wgt, QtWidgets.QComboBox):
-            return GUIBackend.combobox_changeg_connector(wgt, func)
+            if args is None:
+                return GUIBackend.combobox_changeg_connector(wgt, func)
+            else:
+                return GUIBackend.combobox_changeg_connector_argument_pass(wgt, func, args)
         
         elif isinstance(wgt, QtWidgets.QSpinBox) or isinstance(wgt, QtWidgets.QDoubleSpinBox):
-            return GUIBackend.spinbox_connector(wgt, func)
+            if args is None:
+                return GUIBackend.spinbox_connector(wgt, func)
+            else:
+                return GUIBackend.spinbox_connector_argumant_pass(wgt, func, args)
+
         
         elif isinstance(wgt, QtWidgets.QLineEdit):
-            return GUIBackend.input_text_connector(wgt, func)
+            if args is None:
+                return GUIBackend.input_text_connector(wgt, func)
+            else:
+                GUIBackend.input_text_connector_argumant_pass(wgt, func, args)
+
+        elif isinstance(wgt, QtWidgets.QTextEdit):
+            if args is None:
+                return GUIBackend.input_text_connector(wgt, func)
+            else:
+                GUIBackend.input_text_connector_argumant_pass(wgt, func, args)
+
 
         elif isinstance(wgt, QtWidgets.QCheckBox):
             if args is None:
                 return GUIBackend.checkbox_connector(wgt, lambda x: func())
             else:
-                pass
+                return GUIBackend.checkbox_connector_argument_pass(wgt, func, args)
+            
+        
+        elif isinstance(wgt, QtWidgets.QRadioButton):
+            if args is None:
+                return GUIBackend.radio_connector(wgt, lambda x: func())
+            else:
+                return GUIBackend.radio_connector_argument_pass(wgt, func, args)
         
         elif isinstance(wgt, QtWidgets.QDateEdit):
-            return GUIBackend.date_input_connector(wgt, func)
+            if args is None:
+                return GUIBackend.date_input_connector(wgt, func)
+            else:
+                return GUIBackend.date_input_connector_argumant_pass(wgt, func, args)
+
+                
         
         else:
             assert False, f"connector method doesn't support {wgt} object"
@@ -322,9 +444,22 @@ class GUIBackend:
 
     #--------------------------------- GLOBAL BUTTON FUNCTIONs ---------------------------------
     @staticmethod
-    def event_argumant_passer(func, args):
+    def event_argumant_passer(func, args, field=None):
+        """generate an event function that pass args into func
+
+        Args:
+            func (_type_): event function
+            args (_type_): arguments
+            field (_type_, optional): if a Qt field pass into this function, the event
+            func got tha value of field as firts argument
+        """
         def event_func():
-            func(*args)
+            if field is None:
+                func(*args)
+            else:
+                value = GUIBackend.get_input(field)
+                func(value, *args)
+
         return event_func
     
     @staticmethod
@@ -391,7 +526,7 @@ class GUIBackend:
         btn.setText(txt)
 
     @staticmethod
-    def set_button_icon( btn: QtWidgets.QPushButton, path):
+    def set_button_icon( btn: QtWidgets.QPushButton, path: str, size: tuple=()):
         """sets icon of PyQt button
 
         Args:
@@ -406,6 +541,9 @@ class GUIBackend:
         else:
             pixmap = QtGui.QPixmap(path)
             icon = QtGui.QIcon( pixmap )
+
+        if size:
+            btn.setIconSize(QtCore.QSize(*size))
         
         btn.setIcon(icon)
     
@@ -423,17 +561,20 @@ class GUIBackend:
         return combo.currentText()
     
     @staticmethod
-    def set_combobox_items(combo: QtWidgets.QComboBox, items:list[str]):
+    def set_combobox_items(combo: QtWidgets.QComboBox, items:list[str], block_signal: bool=False):
         """clear and set items into combobox
 
         Args:
             combo (QtWidgets.QComboBox): Qt comboBox object
             items (list[str]): list of string items
         """
-        #GUIBackend.set_signal_connection(combo,False)
+        if block_signal:
+            GUIBackend.set_signal_connection(combo,False)
         combo.clear()
         combo.insertItems(0, items)
-        #GUIBackend.set_signal_connection(combo,True)
+
+        if block_signal:
+            GUIBackend.set_signal_connection(combo,True)
 
     @staticmethod
     def add_combobox_item( combo: QtWidgets.QComboBox, item: str):
@@ -470,6 +611,17 @@ class GUIBackend:
             func : python function
         """
         combo.currentTextChanged.connect(func)
+
+    @staticmethod
+    def combobox_changeg_connector_argument_pass( combo: QtWidgets.QComboBox, func, args):
+        """connect combobox change selected item selected event
+
+        Args:
+            combo (QtWidgets.QComboBox): Qt comboBox object
+            func : python function
+        """
+        efunc = GUIBackend.event_argumant_passer(func, args=args, field=combo)
+        combo.currentTextChanged.connect(efunc)
 
     #--------------------------------- GLOBAL CheckBox FUNCTIONs ---------------------------------
     @staticmethod
@@ -550,7 +702,7 @@ class GUIBackend:
 
         #resie image to fix in label
         img_h, img_w = image.shape[:2]
-        lbl_h, lbl_w = lbl.height(), lbl.width()
+        lbl_h, lbl_w = lbl.height()-10, lbl.width()-10
         
         scale = min(lbl_h/img_h, lbl_w/img_w)
         image = cv2.resize(image, None, fx= scale, fy=scale)
@@ -623,6 +775,10 @@ class GUIBackend:
     
     def set_label_scale(lbl: QtWidgets.QLabel, active:bool):
         lbl.setScaledContents(active)
+
+    def clear_label(lbl: QtWidgets.QLabel):
+        lbl.clear()
+
     #--------------------------------- GLOBAL Input FUNCTIONs ---------------------------------
     @staticmethod
     def get_input_spinbox_value( inpt: QtWidgets.QSpinBox)-> float:
@@ -636,6 +792,7 @@ class GUIBackend:
         """
         return inpt.value()
     
+    @staticmethod
     def set_spinbox_value(inpt: QtWidgets.QSpinBox, value, block_signal=False):
         """set a value into spinbox
 
@@ -651,6 +808,7 @@ class GUIBackend:
         if block_signal:
             GUIBackend.set_signal_connection(inpt, True)
 
+    @staticmethod
     def spinbox_connector(inpt: QtWidgets.QSpinBox, func):
         """connect a function to change value event
 
@@ -660,6 +818,20 @@ class GUIBackend:
         """
         inpt.valueChanged.connect(func)
 
+    @staticmethod
+    def spinbox_connector_argumant_pass(inpt: QtWidgets.QSpinBox, func, args):
+        """connect a function to change value event
+
+        Args:
+            inpt (QtWidgets.QSpinBox): Qt spinbox object
+            func (): 
+        """
+        efunc = GUIBackend.event_argumant_passer(func, args=args, field=inpt)
+        inpt.valueChanged.connect(efunc)
+
+    
+
+    @staticmethod
     def set_spinbox_range(inpt:QtWidgets.QSpinBox, value_range: tuple[int, int]):
         """set range of spinbox
 
@@ -674,15 +846,17 @@ class GUIBackend:
             inpt.setMaximum(high)
 
 
-
+    @staticmethod
     def get_textarea_text(inpt:QtWidgets.QTextEdit) -> str:
         return inpt.toPlainText()
     
+    @staticmethod
     def set_textarea_text(inpt:QtWidgets.QTextEdit, txt) -> str:
         return inpt.setPlainText(txt)
 
 
-    #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------    
+    #--------------------------------- GLOBAL QLine edit FUNCTIONs ---------------------------------
+    @staticmethod    
     def get_input_text(inpt:QtWidgets.QLineEdit)-> str:
         """returns text of an input box
 
@@ -694,6 +868,7 @@ class GUIBackend:
         """
         return inpt.text()
 
+    @staticmethod
     def set_input_text(inpt:QtWidgets.QLineEdit, txt:str, block_signal=False):
         """returns text of an input box
 
@@ -705,11 +880,12 @@ class GUIBackend:
         if block_signal:
             GUIBackend.set_signal_connection(inpt, False)
 
-        inpt.setText(txt)
+        inpt.setText(str(txt))
 
         if block_signal:
             GUIBackend.set_signal_connection(inpt, True)
 
+    @staticmethod
     def set_input_password(inpt:QtWidgets.QLineEdit):
         """make a input, password format that show charater by *
 
@@ -718,6 +894,7 @@ class GUIBackend:
         """
         inpt.setEchoMode(QtWidgets.QLineEdit.Password)
 
+    @staticmethod
     def set_input_normal(inpt:QtWidgets.QLineEdit):
         """make a input, normal format that show charaters normally
 
@@ -726,11 +903,63 @@ class GUIBackend:
         """
         inpt.setEchoMode(QtWidgets.QLineEdit.Normal)
 
-
+    @staticmethod
     def input_text_connector(inpt:QtWidgets.QLineEdit, func):
         inpt.textChanged.connect(func)
-    
 
+
+    @staticmethod
+    def input_text_connector_argumant_pass(inpt:QtWidgets.QLineEdit, func, args):
+
+        efunc = GUIBackend.event_argumant_passer(func, args=args, field=inpt)
+        inpt.textChanged.connect(efunc)
+
+        
+    
+    
+    #--------------------------------- GLOBAL Text edit FUNCTIONs ---------------------------------
+    @staticmethod    
+    def get_input_text_area(inpt:QtWidgets.QTextEdit)-> str:
+        """returns text of an input box
+
+        Args:
+            inpt (QtWidgets.QTextEdit): Qt Line edit object
+
+        Returns:
+            str: text of input
+        """
+        return inpt.toPlainText()
+
+    @staticmethod
+    def set_input_text_area(inpt:QtWidgets.QTextEdit, txt:str, block_signal=False):
+        """returns text of an input box
+
+        Args:
+            inpt (QtWidgets.QTextEdit): Qt Line edit object
+            txt (str): 
+
+        """
+        if block_signal:
+            GUIBackend.set_signal_connection(inpt, False)
+
+        inpt.setText(txt)
+
+        if block_signal:
+            GUIBackend.set_signal_connection(inpt, True)
+
+
+
+
+    @staticmethod
+    def input_text_area_connector(inpt:QtWidgets.QTextEdit, func):
+        inpt.textChanged.connect(func)
+
+
+    @staticmethod
+    def input_text_area_connector_argumant_pass(inpt:QtWidgets.QTextEdit, func, args):
+
+        efunc = GUIBackend.event_argumant_passer(func, args=args, field=inpt)
+        inpt.textChanged.connect(efunc)
     #--------------------------------- GLOBAL table FUNCTIONs ---------------------------------
     @staticmethod
     def set_table_dim(table: QtWidgets.QTableWidget, row:int , col:int):
@@ -755,7 +984,7 @@ class GUIBackend:
         """
         return table.rowCount(), table.columnCount()
         
-
+    @staticmethod
     def set_cell_width_content_adjust(table: QtWidgets.QTableWidget, indexes:list[int] = None):
         """adjust cell width based on its content
 
@@ -772,6 +1001,7 @@ class GUIBackend:
         for i in indexes:
             headers.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents )
     
+    @staticmethod
     def clear_table(table: QtWidgets.QTableWidget, clear_header=False):
         """_summary_
 
@@ -780,7 +1010,17 @@ class GUIBackend:
             clear_header (bool, optional): _description_. Defaults to False.
         """
         while (table.rowCount() > 0):
-            table.removeRow(table.rowCount()-1);
+            table.removeRow(table.rowCount()-1)
+
+    @staticmethod
+    def delete_table_row(table: QtWidgets.QTableWidget, row_position=None):
+        """delete a row in custom position into given Qt tabel
+
+        Args:
+            table (QtWidgets.QTableWidget): Qt tableWidget object
+            row_position (_type_, optional): position of new row. if None, row whould be added at the end. Defaults to None.
+        """
+        table.removeRow(row_position) 
 
     
     @staticmethod
@@ -791,7 +1031,7 @@ class GUIBackend:
             table (QtWidgets.QTableWidget): Qt tableWidget object
             row_position (_type_, optional): position of new row. if None, row whould be added at the end. Defaults to None.
         """
-        if not row_position:
+        if row_position is None:
             row_position = table.rowCount()
         table.insertRow(row_position)
 
@@ -805,6 +1045,24 @@ class GUIBackend:
             headers (list[str]): list of headers. like headers = ['title1', 'title2',...]
         """
         table.setHorizontalHeaderLabels(headers)
+
+    @staticmethod
+    def set_table_cheaders_visibality(table: QtWidgets.QTableWidget, visibality:bool):
+        """sets culomns headers visibality of given Qt table
+
+        Args:
+            table (QtWidgets.QTableWidget): Qt tableWidget object
+        """
+        table.horizontalHeader().setVisible(visibality)
+
+    @staticmethod
+    def set_table_rheaders_visibality(table: QtWidgets.QTableWidget, visibality:bool):
+        """sets rows headers visibality of given Qt table
+
+        Args:
+            table (QtWidgets.QTableWidget): Qt tableWidget object
+        """
+        table.verticalHeader().setVisible(visibality)
 
     @staticmethod
     def set_table_cwidth(table: QtWidgets.QTableWidget, column:int, width):
@@ -849,7 +1107,7 @@ class GUIBackend:
             layout_widget.setAlignment(Qt.AlignCenter)
             layout_widget.addWidget(widget)
             container.setLayout(layout_widget)
-            #layouth.setContentsMargins(2,2,2,2)
+            layout_widget.setContentsMargins(6,6,6,6)
             table.setCellWidget(*index, container)
         else:
             table.setCellWidget(*index, widget)
@@ -861,7 +1119,7 @@ class GUIBackend:
         #table.setItem(*index, item )
 
     @staticmethod
-    def set_table_cell_value(table: QtWidgets.QTableWidget,index:tuple, value):
+    def set_table_cell_value(table: QtWidgets.QTableWidget,index:tuple, value, align:bool = True):
         """sets a text or number into custom cell of given Qt table
 
         Args:
@@ -870,7 +1128,8 @@ class GUIBackend:
             value (_type_): a text or number  that you want set into cell of table
         """
         item = QtWidgets.QTableWidgetItem(str(value))
-        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        if align:
+            item.setTextAlignment(QtCore.Qt.AlignCenter)
         table.setItem(*index, item )
 
     
@@ -903,13 +1162,15 @@ class GUIBackend:
     def get_table_cell_value(table: QtWidgets.QTableWidget,index:tuple):
         """
         """
-        return table.itemAt(*index).text()
+        return table.item(*index).text()
     
     @staticmethod
-    def get_table_cell_widget(table: QtWidgets.QTableWidget,index:tuple):
+    def get_table_cell_widget(table: QtWidgets.QTableWidget, index:tuple):
         """
         """
-        return table.itemAt(*index).text()
+        return table.cellWidget(*index)
+
+
 
     #--------------------------------- GLOBAL StackWidget FUNCTIONs ---------------------------------
     @staticmethod
@@ -921,6 +1182,10 @@ class GUIBackend:
             idx (_type_): custom index to set as current index
         """
         stw.setCurrentIndex(idx)
+
+    @staticmethod
+    def set_stack_widget_page(stw: QtWidgets.QStackedWidget, page:QtWidgets.QWidget ):
+        stw.setCurrentWidget(page)
 
     @staticmethod
     def get_stack_widget_idx(stw: QtWidgets.QStackedWidget ) -> int:
@@ -971,11 +1236,69 @@ class GUIBackend:
         return gp.setChecked(state)
 
 
-    
+    @staticmethod
     def set_groupbox_title(gp: QtWidgets.QGroupBox, title):
-
         gp.setTitle(title)
 
+
+    #--------------------------------- GLOBAL RadioButton FUNCTIONs ---------------------------
+    @staticmethod
+    def get_radio_value(radio: QtWidgets.QRadioButton) -> bool:
+        """returns state of Qt checkbox
+
+        Args:
+            radio (QtWidgets.QRadioButton): Qt CheckBox object
+
+        Returns:
+            bool: return True if checked. else return False
+        """
+        return radio.isChecked()
+    
+    @staticmethod
+    def set_radio_value(radio: QtWidgets.QRadioButton, value: bool, block_signal=False):
+        """set state of Qt radio
+
+        Args:
+            radio (QtWidgets.QRadioButton): Qt CheckBox object
+            value (bool): checked if True
+
+        
+        """
+        if block_signal:
+            GUIBackend.set_signal_connection(radio, False)
+
+        radio.setChecked(value)
+    
+        if block_signal:
+            GUIBackend.set_signal_connection(radio, True)
+    
+    
+    @staticmethod
+    def radio_connector(radio: QtWidgets.QRadioButton, func):
+        """connects a function to event of Qt radio change state
+
+        Args:
+            radio (QtWidgets.QRadioButton): Qt radio object
+            func (_type_): name of funtion
+        """
+        radio.toggled.connect(partial( func ))
+
+    def radio_connector_argument_pass(radio: QtWidgets.QRadioButton, func, args):
+        """connects a function to event of Qt checkbox change state and pass args
+        into that function
+        Warning:In addition of args, state of checkbox pass to event function as first argument
+
+        Args:
+            radio (QtWidgets.QRadioButton): _description_
+            func (_type_): _description_
+            args (_type_): _description_
+        """
+        def event_func(x):
+            func(bool(x),*args)
+        radio.toggled.connect(partial(event_func))
+
+
+    
     #--------------------------------- GLOBAL Frame FUNCTIONs ---------------------------------
     @staticmethod
     def set_frame_max_size( frame: QtWidgets.QFrame, w:int, h:int):
@@ -1007,6 +1330,7 @@ class GUIBackend:
 
     
     #--------------------------------- GLOBAL DateEdit FUNCTIONs ---------------------------------
+    @staticmethod
     def get_date_input( obj: QtWidgets.QDateEdit) -> datetime:
         """returns date of QDateEdit
 
@@ -1019,7 +1343,7 @@ class GUIBackend:
         return obj.date().toPython()
         #return datetime.combine( obj.date().toPython(), datetime.min.time() )
 
-    
+    @staticmethod
     def set_date_input( obj: QtWidgets.QDateEdit, date:date, block_signal=False) -> datetime:
         """returns date of QDateEdit
         """
@@ -1032,13 +1356,21 @@ class GUIBackend:
         if block_signal:
             GUIBackend.set_signal_connection(obj, True)
     
+    @staticmethod
+    def date_input_connector( inpt: QtWidgets.QDateEdit, func):
+        inpt.dateChanged.connect(func)
 
-    def date_input_connector( obj: QtWidgets.QDateEdit, func):
-        obj.dateChanged.connect(lambda: func())
+    @staticmethod
+    def date_input_connector_argumant_pass( inpt: QtWidgets.QDateEdit, func, args):
+        efunc = GUIBackend.event_argumant_passer(func, args=args, field=inpt)
+        inpt.dateChanged.connect(efunc)
+
     
+    @staticmethod
     def get_date_input_range(obj: QtWidgets.QDateEdit)-> tuple[datetime]:
         return obj.minimumDate().toPython(), obj.maximumDate().toPython()
     
+    @staticmethod
     def set_date_input_range(obj: QtWidgets.QDateEdit,
                              date_range:tuple[datetime,datetime]):
         

@@ -4,13 +4,14 @@ import threading
 
 from backend.Camera.dorsaPylon import Collector, Camera
 from backend.Camera import PylonFlags
-from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB
-from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI
+from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB, settingPLCDB, settingPLCNodesDB
+from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI, plcSettingTabUI
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
 from uiUtils import GUIComponents
 from backend.Serial.armSerial import armSerial
 from uiUtils.IO.Mouse import MouseEvent
+
 
 
 
@@ -21,6 +22,7 @@ class settingPageAPI:
         self.storageSetting = storageSettingTabAPI(ui.storageSettingTab, database.storage_db)
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
         self.exportSetting = exportSettingTabAPI(ui.exportSettingTab, database.export_db)
+        self.plcSetting = plcSettingTabAPI(ui.plcSettingTab, database_nodes=database.plc_nodes_db, database_plc=database.plc_db)
         # ui.cameraSettingTab.save_state(True)
         # ui.algorithmSettingTab.save_state(True)
         # ui.storageSettingTab.save_state(True)
@@ -540,4 +542,55 @@ class exportSettingTabAPI:
 
 
     
+
+class plcSettingTabAPI:
+
+    def __init__(self, 
+                 ui:plcSettingTabUI ,
+                 database_plc:settingPLCDB, 
+                 database_nodes:settingPLCNodesDB):
+        
+        self.ui = ui
+        self.database_plc = database_plc
+        self.database_nodes = database_nodes
+
+
+        self.ui.save_button_connector(self.save)
+        self.ui.cancel_button_connector(self.cancel)
+
+        self.load_from_db()
+    
+    
+    def open_file(self, setting_name:str):
+        settings = self.ui.get_settings()
+        file_path = settings[setting_name]
+        if os.path.exists(file_path):
+            file_path = os.path.abspath(file_path)
+
+            open_file_thread = threading.Thread(target=os.startfile, args=(file_path,))
+            open_file_thread.start()
+            
+
+    def save(self,):
+        data_nodes = self.ui.get_nodes_settings()
+        self.database_nodes.save_all(data_nodes)
+
+        settigs = self.ui.get_settings()
+        self.database_plc.save(settigs)
+
+        self.ui.save_state(True)
+
+    def cancel(self,):
+        self.load_from_db()
+
+
+    def load_from_db(self,):        
+        data_plc = self.database_plc.load()
+        self.ui.set_settings(data_plc)
+
+        data_nodes = self.database_nodes.load_all()
+        self.ui.set_nodes_settings(data_nodes)
+
+        self.ui.save_state(True)
+        
 

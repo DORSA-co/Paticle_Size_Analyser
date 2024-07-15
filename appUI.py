@@ -109,13 +109,24 @@ class mainUI(QMainWindow):
 
 
         
-
+        self.all_style_repoblish()
         self.header_button_connector()
         self.sidebar_button_connector()
         GUIBackend.set_win_frameless(self)
         
 
         self.mouseHandeler.connect_all(self.ui.header, self.header_mouse_event)
+
+
+    def all_style_repoblish(self,):
+        #for widget in self.ui.
+        for atr_name in dir(self.ui):
+            atr = getattr(self.ui, atr_name)
+            try:
+                atr.style().unpolish(atr)
+                atr.style().polish(atr)
+            except:
+                pass
 
     def header_mouse_event(self,e:MouseEvent):
         if e.is_move():

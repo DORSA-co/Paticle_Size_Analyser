@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-restore-25.png</file>
+    <file>icons/icons8-arrow-96.png</file>
+    <file>icons/icons8-add-30.png</file>
     <file>icons/icons8-circle-50.png</file>
     <file>icons/icons8-pen-50.png</file>
     <file>icons/icons8-erase-50.png</file>

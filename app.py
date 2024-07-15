@@ -5,8 +5,15 @@ import os
 
 #----------------------Compile Resource File-----------------------
 #os.system('cmd /c "pyrcc5 -o Assets.py Assets.qrc"') #PyQt
+print('Start building UI...')
 os.system('CMD /C pyside6-rcc uiFiles/Assets/Assets.qrc -o uiFiles/Assets/Assets.py')#PySide
 os.system('CMD /C pyside6-uic uiFiles/main_UI.ui -o uiFiles/main_UI_ui.py')
+os.system('CMD /C pyside6-uic uiFiles/node_setting.ui -o uiFiles/node_setting_UI.py')
+os.system('CMD /C pyside6-uic uiFiles/input_signal_setting.ui -o uiFiles/input_signal_setting_UI.py')
+os.system('CMD /C pyside6-uic uiFiles/output_signal_setting.ui -o uiFiles/output_signal_setting_UI.py')
+print('finish building UI')
+
+
 os.environ['PYSIDE_DESIGNER_PLUGINS'] = "."
 sys.path.append('uiFiles//Assets')
 #----------------------Add Lib Files to path-----------------------

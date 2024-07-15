@@ -1,24 +1,35 @@
+from __future__ import annotations
+from typing import Union
+
 import numpy as np
+
+from PySide6.QtWidgets import QWidget
 
 from uiUtils import GUIComponents
 import Constants.CONSTANTS as CONSTANTS
 from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
 from uiUtils.IO.Mouse import mouseHandeler
+from uiFiles.main_UI_ui import Ui_MainWindow
+from uiFiles.node_setting_UI import Ui_NodeSetting
+from PagesUI.sectionsUI.signalUI import inputSignalUI, outputSignalUI
+from backend.Utils.mapDictionary import mapDictionary
 
 class settingPageUI:
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         self.cameraSettingTab = cameraSettingTabUI(ui)
         self.algorithmSettingTab = algorithmSettingTabUI(ui)
         self.storageSettingTab = storageSettingTabUI(ui)
         self.sampleSettingTab = sampleSettingTabUI(ui)
         self.exportSettingTab = exportSettingTabUI(ui)
+        self.plcSettingTab = plcSettingTabUI(ui)
+        self.configSettingTab = configSettingTabUI(ui)
 
 
 
 
 class commonSettingUI(commonUI):
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         super(commonSettingUI, self).__init__()
         self.ui = ui
         self.save_mgs = self.ui.settingpage_save_massage_lbl
@@ -27,6 +38,7 @@ class commonSettingUI(commonUI):
 
         self.save_btn = None
         self.cancel_btn = None
+        self.restore_btn = None
 
     def __show_saved_massage__(self, is_saved):
 
@@ -59,16 +71,19 @@ class commonSettingUI(commonUI):
             self.__show_saved_massage__(is_saved)
 
 
+    def save_button_connector(self, func):
+        GUIBackend.button_connector(self.save_btn, func)
 
-
-
-
-
+    def cancel_button_connector(self, func):
+        GUIBackend.button_connector(self.cancel_btn, func)
+    
+    def restor_button_connector(self, func):
+        GUIBackend.button_connector(self.restore_btn, func)
 
 
 class storageSettingTabUI(commonSettingUI):
 
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         super(storageSettingTabUI, self).__init__(ui)
         self.ui = ui
         self.select_dir_btn = self.ui.settingpage_storage_select_dir_btn
@@ -103,12 +118,6 @@ class storageSettingTabUI(commonSettingUI):
     def set_path(self, path):
         GUIBackend.set_input(self.settings['path'], path)
 
-    def save_button_connector(self, func):
-        GUIBackend.button_connector(self.save_btn, func)
-
-    def cancel_button_connector(self, func):
-        GUIBackend.button_connector(self.cancel_btn, func)
-
 
     def get_settings(self, ):
         data = {}
@@ -131,7 +140,7 @@ class storageSettingTabUI(commonSettingUI):
 
 class sampleSettingTabUI(commonSettingUI):
 
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         super(sampleSettingTabUI, self).__init__(ui)
         self.ui = ui
 
@@ -175,13 +184,6 @@ class sampleSettingTabUI(commonSettingUI):
         self.__setting_change_connector__()
 
 
-
-
-    def save_button_connector(self, func):
-        GUIBackend.button_connector(self.save_btn, func)
-
-    def cancel_button_connector(self, func):
-        GUIBackend.button_connector(self.cancel_btn, func)
 
     def clear_name_struct_button_connector(self, func):
         GUIBackend.button_connector(self.autoame_struct_clear_btn, func)
@@ -285,10 +287,9 @@ class sampleSettingTabUI(commonSettingUI):
 
 
 
-
 class cameraSettingTabUI(commonSettingUI):
 
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         super(cameraSettingTabUI, self).__init__(ui)
         self.ui = ui
         self.mouseHandeler = mouseHandeler()
@@ -298,7 +299,7 @@ class cameraSettingTabUI(commonSettingUI):
         self.camera_start_btn = self.ui.settingpage_camera_start_btn
         self.save_btn = self.ui.settingpage_camera_save_btn
         self.cancel_btn = self.ui.settingpage_camera_cancel_btn
-        self.restor_btn = self.ui.settingpage_camera_restore_btn
+        self.restore_btn = self.ui.settingpage_camera_restore_btn
         self.live_img_lbl = self.ui.settingpage_camera_live_lbl
         self.port_connection_lbl = self.ui.settingpage_camera_port_connection_lbl
         self.serial_retry_btn = self.ui.settingpage_camera_serial_retry_btn
@@ -387,15 +388,6 @@ class cameraSettingTabUI(commonSettingUI):
         (setting_group, self.camera_application, arg)
         """
         self.__change_setting_event_function__ = func
-
-    def save_button_connector(self, func):
-        GUIBackend.button_connector(self.save_btn, func)
-
-    def cancel_button_connector(self, func):
-        GUIBackend.button_connector(self.cancel_btn, func)
-
-    def restor_button_connector(self, func):
-        GUIBackend.button_connector(self.restor_btn, func)
     
     def serial_retry_button_connector(self, func):
         GUIBackend.button_connector(self.serial_retry_btn, func)
@@ -591,7 +583,7 @@ class cameraSettingTabUI(commonSettingUI):
 
 class algorithmSettingTabUI(commonSettingUI):
 
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         super().__init__(ui)
         self.ui = ui
         self.fields = {
@@ -601,7 +593,7 @@ class algorithmSettingTabUI(commonSettingUI):
 
         self.save_btn = self.ui.settingpage_algorithm_save_btn
         self.cancel_btn = self.ui.settingpage_algorithm_cancel_btn
-        self.restor_default_btn = self.ui.settingpage_algorithm_restor_default_btn
+        self.restore_btn = self.ui.settingpage_algorithm_restor_default_btn
         self.__change_state_connector__()
     
     def __change_state_connector__(self,):
@@ -609,16 +601,6 @@ class algorithmSettingTabUI(commonSettingUI):
         for name, field in self.fields.items():
             if GUIBackend.is_spinbox(field):
                 GUIBackend.spinbox_connector(field, lambda :self.save_state(False))
-
-    
-    def save_button_connector(self, func):
-        GUIBackend.button_connector(self.save_btn, func)
-
-    def cancel_button_connector(self, func):
-        GUIBackend.button_connector(self.cancel_btn, func)
-    
-    def restor_button_connector(self, func):
-        GUIBackend.button_connector(self.restor_default_btn, func)
 
 
     
@@ -635,10 +617,9 @@ class algorithmSettingTabUI(commonSettingUI):
 
 
 
-
 class exportSettingTabUI(commonSettingUI):
 
-    def __init__(self, ui) -> None:
+    def __init__(self, ui:Ui_MainWindow) -> None:
         super(exportSettingTabUI , self).__init__(ui)
         self.ui = ui
         self.select_dir_btn = self.ui.settingpage_storage_select_dir_btn
@@ -694,11 +675,268 @@ class exportSettingTabUI(commonSettingUI):
                 data[name] = GUIBackend.get_input(field_obj)
         return data
 
-    def save_button_connector(self, func):
-        GUIBackend.button_connector(self.save_btn, func)
-
-    def cancel_button_connector(self, func):
-        GUIBackend.button_connector(self.cancel_btn, func)
     
-    def restor_button_connector(self, func):
-        GUIBackend.button_connector(self.restore_btn, func)
+
+
+
+
+class plcSettingTabUI(commonSettingUI):
+
+    def __init__(self, ui:Ui_MainWindow) -> None:
+        super(plcSettingTabUI, self).__init__(ui)
+        self.ui = ui
+       
+        self.save_btn = self.ui.settingpage_plc_save_btn
+        self.cancel_btn = self.ui.settingpage_plc_cancel_btn
+        # self.restore_btn = self.ui.settingpage_export_restore_btn
+
+
+        self.ip_sections = {
+            'ip1': self.ui.settingpage_plc_ip1_input,
+            'ip2': self.ui.settingpage_plc_ip2_input,
+            'ip3': self.ui.settingpage_plc_ip3_input,
+            'ip4': self.ui.settingpage_plc_ip4_input,
+
+            }
+
+        self.nodes_ui: list[nodeSettinUI] = []
+        GUIBackend.button_connector(self.ui.settingpage_plc_add_node_btn, self.add_node)
+        self.__internal_change_setting_connector()
+        
+        
+    
+    def __internal_change_setting_connector(self,):
+        for ip_sec in self.ip_sections:
+            GUIBackend.connector(self.ip_sections[ip_sec], self.__internal_change_setting_event)
+
+    def __internal_change_setting_event(self,):
+        self.save_state(False)
+
+
+    def get_ip(self,) -> str:
+        ip = ""
+        for section in ['ip1', 'ip2', 'ip3', 'ip4']:
+            num = GUIBackend.get_input(self.ip_sections[section])
+            ip = ip + num + "."
+
+        #remove last .
+        ip = ip[:-1]
+        return ip
+    
+    def set_ip(self, ip:str):
+        nums = ip.split('.')
+        for i, section in enumerate(['ip1', 'ip2', 'ip3', 'ip4']):
+            GUIBackend.set_input(self.ip_sections[section], nums[i])
+
+    def add_node(self,):
+        node = nodeSettinUI()
+        self.nodes_ui.append(node)
+        node.remove_button_connector(self.remove_node_event)
+        node.change_setting_connector(self.change_node_settings_event)
+
+        # layout = self.ui.nodesScrollAreaContent.layout()
+        # #insert in bottom of layout but before of add button
+        # layout.insertWidget(layout.count() - 2, node)
+        GUIBackend.insert_widget(self.ui.nodesScrollAreaContent,
+                                 node,
+                                 pos=-2)
+
+        #scroll to bottom
+        GUIComponents.single_timer_runner(150,self.scroll_to_bottom)
+
+    def scroll_to_bottom(self,):
+        scroll_bar = self.ui.nodesScrollArea.verticalScrollBar()
+        scroll_bar.setValue(scroll_bar.maximum())
+
+
+        
+
+    def remove_node_event(self, node:nodeSettinUI):
+        
+        layout = self.ui.nodesScrollAreaContent.layout()
+        layout.removeWidget(node)
+
+        self.nodes_ui.remove(node)
+        node.deleteLater()
+
+    def change_node_settings_event(self,):
+        self.save_state(False)
+
+   
+    def set_settings(self, data:dict):
+        self.set_ip(data['ip'])
+    
+    def get_settings(self ) -> dict:
+        data = {}
+        data['ip'] = self.get_ip()
+        return data
+    
+    def set_nodes_settings(self, nodes_settings:list[dict]):
+        for i, setting in enumerate(nodes_settings):
+            if i >= len(self.nodes_ui):
+                self.add_node()
+        
+            self.nodes_ui[i].set_settings(setting)
+
+    def get_nodes_settings(self, ) -> list[dict]:
+        res = []
+        for nu in self.nodes_ui:
+            setting = nu.get_settings()
+            res.append(setting)
+        return res
+    
+    
+
+
+
+
+
+
+class configSettingTabUI(commonSettingUI):
+
+    def __init__(self, ui:Ui_MainWindow) -> None:
+        super(configSettingTabUI, self).__init__(ui)
+        self.ui = ui
+       
+        self.save_btn = self.ui.settingpage_plc_save_btn
+        self.cancel_btn = self.ui.settingpage_plc_cancel_btn
+
+        self.signals_wgt = {
+            'start': {'add': self.ui.config_start_system_signals_add_btn,
+                      'scroll_content': self.ui.config_start_system_signals_scroll_contents,
+                      'scroll_area':    self.ui.config_start_system_signals_scroll_area,
+                      'type': 'input',
+                      'signals': [],
+                      },
+
+            'permisions': {'add': self.ui.config_permisions_signals_add_btn,
+                      'scroll_content': self.ui.config_permisions_signals_scroll_contents,
+                      'scroll_area':    self.ui.config_permisions_signals_scroll_area,
+                      'type': 'input',
+                      'signals': [],
+                      },
+
+            'stop': {'add': self.ui.config_stop_system_signals_add_btn,
+                      'scroll_content': self.ui.config_stop_system_signals_scroll_contents,
+                      'scroll_area':    self.ui.config_stop_system_signals_scroll_area,
+                      'type': 'input',
+                      'signals': [],
+                      },
+
+            'signal1': {'add': self.ui.config_output_signals1_add_btn,
+                      'scroll_content': self.ui.config_output_signals1_scroll_contents,
+                      'scroll_area':    self.ui.config_output_signals1_scroll_area,
+                      'type': 'output',
+                      'signals': [],
+                      },
+
+            'signal2': {'add': self.ui.config_output_signals2_add_btn,
+                      'scroll_content': self.ui.config_output_signals2_scroll_contents,
+                      'scroll_area':    self.ui.config_output_signals2_scroll_area,
+                      'type': 'output',
+                      'signals': [],
+                      },
+
+            'signal3': {'add': self.ui.config_output_signals3_add_btn,
+                      'scroll_content': self.ui.config_output_signals3_scroll_contents,
+                      'scroll_area':    self.ui.config_output_signals3_scroll_area,
+                      'type': 'output',
+                      'signals': [],
+                      },
+        }
+
+        self.__add_btns_connector()
+
+    
+
+    def __add_btns_connector(self,):
+        for step_name in self.signals_wgt.keys():
+            GUIBackend.button_connector_argument_pass(self.signals_wgt[step_name]['add'],
+                                                      self.add_signal_event,
+                                                      args = (step_name,)
+                                                      )
+
+    def add_signal_event(self, step_name:str):
+        scroll_content = self.signals_wgt[step_name]['scroll_content']
+
+        if self.signals_wgt[step_name]['type'] == 'input':
+            signal_ui = inputSignalUI(step_name)
+        else:
+            signal_ui = outputSignalUI(step_name)
+
+        signal_ui.remove_button_connector(self.remove_signal_event)
+
+        signals:list = self.signals_wgt[step_name]['signals']
+        signals.append( signal_ui )
+
+        GUIBackend.insert_widget(scroll_content,
+                                 signal_ui,
+                                 pos=-2
+                                 )
+        
+        GUIComponents.single_timer_runner(150, lambda: self.__scroll_to_bottom(step_name))
+
+    def __scroll_to_bottom(self, step_name:str):
+        scroll_bar = self.signals_wgt[step_name]['scroll_area'].verticalScrollBar()
+        scroll_bar.setValue(scroll_bar.maximum())
+
+        
+    # def __internal_change_setting_connector(self,):
+    #     for ip_sec in self.ip_sections:
+    #         GUIBackend.connector(self.ip_sections[ip_sec], self.__internal_change_setting_event)
+
+    # def __internal_change_setting_event(self,):
+    #     self.save_state(False)
+
+
+        
+
+    def remove_signal_event(self, signal:Union[inputSignalUI, outputSignalUI]):
+        
+        step_name = signal.step_name
+        scroll_content = self.signals_wgt[step_name]['scroll_content']
+        layout = scroll_content.layout()
+        layout.removeWidget(signal)
+
+        self.signals_wgt[step_name]['signals'].remove(signal)
+        signal.deleteLater()
+
+ 
+
+
+class nodeSettinUI(QWidget):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.ui = Ui_NodeSetting()
+        self.ui.setupUi(self)
+        self.settings = {
+            'name': self.ui.node_name_input,
+            'type': self.ui.node_type_combobox,
+            'ns'  : self.ui.node_ns,
+            'i'   : self.ui.node_i,
+
+        }
+
+        
+
+    def remove_button_connector(self,func):
+        GUIBackend.button_connector_argument_pass(self.ui.close_node_btn, func, args=(self,) )
+
+    def change_setting_connector(self, func):
+        for setting_name in self.settings.keys():
+            GUIBackend.connector(self.settings[setting_name], 
+                                                      func, 
+                                                      )
+
+    def get_settings(self,) -> dict:
+        res = {}
+        for setting_name in self.settings.keys():
+            res[setting_name] = GUIBackend.get_input(self.settings[setting_name])
+        
+        return res
+    
+    def set_settings(self, data:dict):
+        for setting_name in self.settings.keys():
+            GUIBackend.set_input(self.settings[setting_name], data[setting_name])
+

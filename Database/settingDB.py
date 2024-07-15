@@ -5,6 +5,7 @@ class parentSettingDB:
     TABLE_NAME = ""
     TABLE_COLS = []
     TABLE_DEFAULT_DATAS = []
+    PRIMERY_KEY_COL_NAME = 'id'
 
     def __init__(self,db_manager):
         self.db_manager = db_manager
@@ -23,10 +24,19 @@ class parentSettingDB:
         for default_data in self.TABLE_DEFAULT_DATAS:
             self.save(default_data)
         
-    def save(self,record):
-        pass
+    def save(self,data:dict):
+        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
+            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
+        else:
+            self.db_manager.add_record_dict(self.TABLE_NAME, data)
         #Re Implement this method
 
+
+    def is_exist(self, id):
+        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
+        if len(founded_records)>0:
+            return True
+        return False
 
 
 class settingDB:
@@ -38,6 +48,9 @@ class settingDB:
         self.storage_db = settingStorageDB(self.db_manager)
         self.sample_db = settingSampleDB(self.db_manager)
         self.export_db = settingExportDB(self.db_manager)
+        self.plc_db = settingPLCDB(self.db_manager)
+        self.plc_nodes_db = settingPLCNodesDB(self.db_manager)
+
         
 
 
@@ -74,25 +87,10 @@ class settingCameraDB(parentSettingDB):
     def __init__(self, db_manager):
         super().__init__(db_manager)
         self.__create_table__()
-        
-
-    
-            
-
-
-    def is_exist(self, application):
-        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, application)
-        if len(founded_records)>0:
-            return True
-        return False
-
 
 
     def save(self, data):
-        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
-        else:
-            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+        super().save(data)
     
 
     def load(self, camera_application):
@@ -151,21 +149,15 @@ class settingSampleDB(parentSettingDB):
         self.__create_table__()
         
         
-    def is_exist(self, id):
-        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
-        if len(founded_records)>0:
-            return True
-        return False
+    
 
 
     def save(self, data):
         data['id'] = 1
         for col in self.BOOL_COLS:
             data[col] = int(data[col])
-        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
-        else:
-            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+        super().save(data)
+
     
 
     def load(self):
@@ -211,20 +203,12 @@ class settingAlgorithmDB(parentSettingDB):
         super().__init__(db_manager)
         self.__create_table__()
         
-        
-    def is_exist(self, id):
-        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
-        if len(founded_records)>0:
-            return True
-        return False
 
 
     def save(self, data):
         data['id'] = 1
-        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
-        else:
-            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+        super().save(data)
+
     
 
     def load(self):
@@ -265,12 +249,6 @@ class settingStorageDB(parentSettingDB):
         super().__init__(db_manager)
         self.__create_table__()
         
-        
-    def is_exist(self, id):
-        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
-        if len(founded_records)>0:
-            return True
-        return False
 
 
     def save(self, data):
@@ -279,10 +257,8 @@ class settingStorageDB(parentSettingDB):
         for col in self.BOOL_COLS:
             data[col] = int(data[col])
         data['path'] = data['path'].replace('\\','/')
-        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
-        else:
-            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+        super().save(data)
+
     
 
     def load(self):
@@ -326,20 +302,13 @@ class settingExportDB(parentSettingDB):
         super().__init__(db_manager)
         self.__create_table__()
         
-        
-    def is_exist(self, id):
-        founded_records = self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
-        if len(founded_records)>0:
-            return True
-        return False
+
 
 
     def save(self, data):
         data['id'] = 1
-        if self.is_exist(data[self.PRIMERY_KEY_COL_NAME]):
-            self.db_manager.update_record_dict(self.TABLE_NAME,data, self.PRIMERY_KEY_COL_NAME, data[self.PRIMERY_KEY_COL_NAME])
-        else:
-            self.db_manager.add_record_dict(self.TABLE_NAME, data)
+        super().save(data)
+
     
 
     def load(self):
@@ -350,3 +319,92 @@ class settingExportDB(parentSettingDB):
             record.pop('id')
             return record
         return {}
+    
+
+
+
+
+class settingPLCDB(parentSettingDB):
+    TABLE_NAME = 'plc_setting'
+    TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
+    TABLE_COLS = [ 
+                   {'col_name': 'ip',    'type':'VARCHAR(255)', 'len':200},
+                ]
+    
+    TABLE_DEFAULT_DATAS = [
+                            {
+                            'ip' : "0.0.0.0",
+                        }
+                    ]
+    
+    PRIMERY_KEY_COL_NAME = 'id'
+
+
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
+        self.__create_table__()
+        
+
+    def save(self, data):
+        data['id'] = 1
+        super().save(data)
+
+    
+
+    def load(self):
+        id = 1
+        record =  self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, id)
+        if len(record)>0:
+            record = record[0]
+            record.pop('id')
+            return record
+        return {}
+    
+
+
+class settingPLCNodesDB(parentSettingDB):
+    TABLE_NAME = 'plc_nodes_setting'
+    TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
+    TABLE_COLS = [ 
+                   {'col_name': 'name',    'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'type',    'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'ns',    'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'i',    'type':'VARCHAR(255)', 'len':200},
+
+
+
+                ]
+    
+    TABLE_DEFAULT_DATAS = [
+                    ]
+    
+    PRIMERY_KEY_COL_NAME = 'name'
+
+
+    def __init__(self, db_manager):
+        super().__init__(db_manager)
+        self.__create_table__()
+
+
+    def save(self, data:dict):
+        super().save(data)
+
+    def save_all(self, datas:list[dict]):
+        self.db_manager.clear_table(self.TABLE_NAME)
+        for d in datas:
+            self.save(d)
+
+    
+
+    def load(self, name):
+        record =  self.db_manager.search( self.TABLE_NAME, self.PRIMERY_KEY_COL_NAME, name)
+        if len(record)>0:
+            record = record[0]
+            record.pop('id')
+            return record
+        return {}
+    
+    def load_all(self,):
+        records =  self.db_manager.get_all_content(self.TABLE_NAME)
+        return  records
+

@@ -5,10 +5,9 @@ import threading
 from backend.Camera.dorsaPylon import Collector, Camera
 from backend.Camera import PylonFlags
 from Database.settingDB import settingDB, settingAlgorithmDB, settingCameraDB, settingStorageDB, settingSampleDB, settingExportDB, settingPLCDB, settingPLCNodesDB
-from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI, plcSettingTabUI
+from PagesUI.settingPageUI import settingPageUI, algorithmSettingTabUI, cameraSettingTabUI, storageSettingTabUI, sampleSettingTabUI, exportSettingTabUI, plcSettingTabUI, configSettingTabUI
 from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
-from uiUtils import GUIComponents
 from backend.Serial.armSerial import armSerial
 from uiUtils.IO.Mouse import MouseEvent
 
@@ -23,6 +22,7 @@ class settingPageAPI:
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
         self.exportSetting = exportSettingTabAPI(ui.exportSettingTab, database.export_db)
         self.plcSetting = plcSettingTabAPI(ui.plcSettingTab, database_nodes=database.plc_nodes_db, database_plc=database.plc_db)
+        self.configSetting = configSettingTabAPI(ui.configSettingTab)
         # ui.cameraSettingTab.save_state(True)
         # ui.algorithmSettingTab.save_state(True)
         # ui.storageSettingTab.save_state(True)
@@ -554,12 +554,16 @@ class plcSettingTabAPI:
         self.database_plc = database_plc
         self.database_nodes = database_nodes
 
+        self.external_plc_setting_change_event = None
+
 
         self.ui.save_button_connector(self.save)
         self.ui.cancel_button_connector(self.cancel)
 
         self.load_from_db()
-    
+
+    def set_external_plc_change_event(self, func):
+        self.external_plc_setting_change_event = func
     
     def open_file(self, setting_name:str):
         settings = self.ui.get_settings()
@@ -575,10 +579,15 @@ class plcSettingTabAPI:
         data_nodes = self.ui.get_nodes_settings()
         self.database_nodes.save_all(data_nodes)
 
-        settigs = self.ui.get_settings()
-        self.database_plc.save(settigs)
+        plc_settigs = self.ui.get_settings()
+        self.database_plc.save(plc_settigs)
 
         self.ui.save_state(True)
+
+        if self.external_plc_setting_change_event is not None:
+            self.external_plc_setting_change_event()
+
+        
 
     def cancel(self,):
         self.load_from_db()
@@ -593,4 +602,12 @@ class plcSettingTabAPI:
 
         self.ui.save_state(True)
         
+
+class configSettingTabAPI:
+    def __init__(self, 
+                 ui:configSettingTabUI ,
+                 database=None, 
+                 ):
+        
+        self.ui = ui
 

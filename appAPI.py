@@ -103,6 +103,7 @@ class main_API(QObject):
         self.gradingRangesPageAPI.set_new_standard_event_func( self.standard_event )
         self.gradingRangesPageAPI.set_remove_standard_event_func( self.standard_event )
         self.settingPageAPI.cameraSetting.set_camera_device_change_event(self.change_camera_device_event)
+        self.settingPageAPI.plcSetting.set_external_plc_change_event(self.plc_setting_change_event)
 
 
         
@@ -137,6 +138,7 @@ class main_API(QObject):
         #TEMP
         self.login_user_event()
         self.standard_event()
+        self.plc_setting_change_event()
         #---------------------------------------------------
         self.uiHandeler.show()
         self.uiHandeler.usersPage.loginUserBox.show_login()
@@ -297,6 +299,18 @@ class main_API(QObject):
 
     def standards_changed_event(self,):
         pass
+
+    def plc_setting_change_event(self,):
+        nodes_data = self.db.setting_db.plc_nodes_db.load_all()
+        read_nodes = []
+        write_nodes = []
+        for node in nodes_data:
+            if node['type'] == 'readable':
+                read_nodes.append(node['name'])
+            else:
+                write_nodes.append(node['name'])
+        
+        self.settingPageAPI.configSetting.ui.update_signals_event(read_nodes, write_nodes)
     
     def set_access(self, role):
         self.uiHandeler.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)

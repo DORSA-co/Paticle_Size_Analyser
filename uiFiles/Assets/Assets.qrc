@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-expand-arrow-24.png</file>
+    <file>icons/gray_plus-math-24.png</file>
+    <file>icons/gray-subtract-24.png</file>
+    <file>icons/icons8-subtract-24.png</file>
+    <file>icons/icons8-plus-24.png</file>
     <file>icons/icons8-restore-25.png</file>
     <file>icons/icons8-arrow-96.png</file>
     <file>icons/icons8-add-30.png</file>

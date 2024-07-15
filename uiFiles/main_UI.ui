@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1644</width>
-    <height>980</height>
+    <width>1635</width>
+    <height>957</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,10 +23,7 @@
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">*{
-	
 	font: auto &quot;Arial&quot;;
-	
-
 }
 
 
@@ -60,27 +57,54 @@ QPushButton:disabled{
 }
 
 /*********************************************/
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 10pt;
+QHeaderView{
+	background-color: transparent;
+	border: none;
+}
+
+QHeaderView::section:horizontal {
+    background-color: rgb(6, 76, 130,50);
+	color: #404040;
+	font-weight:bold;
     border-style: none;
     border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
+    padding: 5px;
 }
 
-QHeaderView::section:horizontal
+QHeaderView::section:horizontal:last 
 {
-    border-top: 1px solid #fffff8;
+   border-top-right-radius: 12px;
+	border-right: None;
 }
 
-QHeaderView::section:vertical
+QHeaderView::section:horizontal:first 
 {
-    border: 1px solid #fffff8;
+   border-top-left-radius: 12px;
+	border-right: None;
 }
 
+QTableWidget::item:selected 
+{
+    background-color: rgb(6, 76, 130,20);;
+	color: rgb(20, 20, 20);
+}
 
+/*
+
+
+
+
+
+QTableWidget::item:hover 
+{
+    background-color: #D7D7D9;
+}
+
+QTableWidget::item{
+	border-bottom: 1px solid #f0f0f0;
+	border-left: 1px solid #f0f0f0;
+}
+*/
 /*********************************************/
 
 
@@ -88,11 +112,19 @@ QHeaderView::section:vertical
 /*********************************************/
 QComboBox
 {
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 18px 1px 8px;
-	min-height: 35px;
+	border:2px solid rgba(6, 76, 130,200);
+    border-radius: 12px;
+    padding: 1px 8px 1px 8px;
+	min-height: 30px;
 	font-size: 14px;
+}
+
+QComboBox::drop-down
+{
+    background-color: transparent;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	min-width: 30px;
 }
 
 QComboBox:enabled{
@@ -101,45 +133,31 @@ color: rgb(50, 50, 50);
 
 QComboBox:disabled
 {
-	border:2px solid rgb(210, 210, 210);
-	color:(210, 210, 210);
+	border:2px solid rgb(200, 200, 200);
+	color:(200, 200, 200);
 
 }
 
 QComboBox::down-arrow
 {   
-	image: url(:/assets/icons/icons8-arrow-48.png);
+/*	image: url(:/assets/icons/icons8-arrow-48.png);*/
+	image: url(:/assets/icons/icons8-expand-arrow-24.png);
 	width: 15px;
     height: 15px;
-
 }
 
-QComboBox::drop-down
-{
-	 background-color: rgb(6, 76, 130);
-}
 
-QComboBox::drop-down:disabled 
-{
-	 background-color: rgb(210, 210, 210);
-}
 
 QComboBox QAbstractItemView {
     border: none;
-    selection-background-color: rgb(6, 76, 130);
+    selection-background-color: #fff;
 	selection-color: rgb(6, 76, 130);
-
-
 }
 
-QComboBox QAbstractItemView {
-    border: none;
+QListView::item {
+    height: 30px;
 }
 
-QComboBox QAbstractItemView::item {
-    border: none;
-	height:30px;
-}
 
 /*********************************************/
 
@@ -202,72 +220,98 @@ QDateEdit:focus
 
 /*********************************************/
 
-QSpinBox, QDoubleSpinBox  
+QSpinBox, QDoubleSpinBox
 {
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 18px 1px 8px;
-	min-height: 35px;
+	background-color: transparent;
+	border-bottom: 2px solid #D7D7D9;
+	border-radius: None;
 	font-size: 16px;
+	min-height: 25px;
+	qproperty-alignment: AlignCenter;
 }
-
-QSpinBox:enabled, QDoubleSpinBox:enabled{
-color: rgb(50, 50, 50);
-}
-
 
 QSpinBox:disabled ,
-QDoubleSpinBox:disabled 
+QDoubleSpinBox:disabled
 {
-	border:2px solid rgb(200, 200, 200);
-	color:(210, 210, 210);
+	border-bottom: 2px solid rgb(200,200,200);
+	color: rgb(200, 200, 200);
 }
 
-QSpinBox:focus , QDoubleSpinBox:focus
+QSpinBox::up-arrow, 
+QDoubleSpinBox::up-arrow
+{   
+	image: url(:/assets/icons/icons8-plus-24.png);
+	width: 18px;
+	height: 18px;
+}
+
+QSpinBox::down-arrow,  
+QDoubleSpinBox::down-arrow
+{   
+	image: url(:/assets/icons/icons8-subtract-24.png);
+	width: 18px;
+	height: 18px;
+}
+
+QSpinBox::up-arrow:disabled, 
+QDoubleSpinBox::up-arrow:disabled
+{   
+	image:url(:/assets/icons/gray_plus-math-24.png);
+	width: 18px;
+	height: 18px;
+}
+
+QSpinBox::down-arrow:disabled ,  
+QDoubleSpinBox::down-arrow:disabled
+{   
+	image: url(:/assets/icons/gray-subtract-24.png);
+	width: 18px;
+	height: 18px;
+}
+
+QSpinBox::up-button,
+QDoubleSpinBox::up-button
 {
-	background-color:red;
+	border:none;
+    min-width:30px;
+    min-height: 30px;
+    subcontrol-origin: margin;
+    subcontrol-position: right;
+    top: 0px;
+    right: 0px;
 }
 
-QSpinBox::up-arrow, QDoubleSpinBox::up-arrow
-{   
-	image: url(:/assets/icons/icons8-uptriangle-48.png);
-	width: 10px;
-    height: 10px;
-
-}
-
-QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
-{   
-	image: url(:/assets/icons/icons8-downtriangle-48.png);
-	width: 10px;
-    height: 10px;
-
+QSpinBox::down-button,
+QDoubleSpinBox::down-button
+{
+    min-width:30px;
+    min-height: 30px;
+    subcontrol-origin: margin;
+    subcontrol-position: left;
+    top: 0px;
+    right: 0px;
 }
 
 QSpinBox::up-button,
 QSpinBox::down-button,
 QDoubleSpinBox::up-button,
-QDoubleSpinBox::down-button   {
-    subcontrol-origin: border;
-	background-color:rgb(6, 76, 130);
-    width: 30px;
+QDoubleSpinBox::down-button
+{
+	background-color: transparent;
 }
-
 
 QSpinBox::up-button:disabled ,
 QSpinBox::down-button:disabled ,
 QDoubleSpinBox::up-button:disabled ,
-QDoubleSpinBox::down-button:disabled    {
+QDoubleSpinBox::down-button:disabled
+{
     subcontrol-origin: border;
-	background-color:rgb(209, 209, 209);
-    width: 30px;
 }
 
-QSpinBox:focus, QDoubleSpinBox:focus{
-	background: rgb(241, 241, 241);
-	/*selection-background-color: black;*/
+QSpinBox:focus, QDoubleSpinBox:focus
+{
+	border-bottom: 2px solid rgb(6,76,130);
 }
-
 
 /*******************************************/
 
@@ -288,11 +332,26 @@ QCheckBox::indicator:checked {
 /*******************************************/
 QLineEdit
 {
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 18px 1px 8px;
+	color: #404040;
+	background-color: #fff;
+	border-bottom:2px solid rgba(6, 76, 130,120);
+    border-radius: 0px;
+    padding: 1px 8px 1px 8px;
 	min-height: 35px;
 	font-size: 16px;
+	
+}
+
+QLineEdit:hover{
+	border:1px solid rgba(100, 100, 100,60);
+	border-bottom:2px solid rgb(100, 100, 100);
+}
+
+QLineEdit:focus {
+	selection-background-color: rgba(6, 76, 130,40);
+	selection-color: #404040;
+	border:1px solid rgba(6, 76, 130,60);
+	border-bottom:2px solid rgb(6, 76, 130);
 }
 
 /*******************************************/
@@ -318,34 +377,53 @@ QProgressBar::chunk {
 
 /*******************************************/
 
-QTabBar::tab:selected {
-    background: rgb(6, 76, 130);
+
+QTabWidget:pane{
+	background-color: transparent;
+	padding: 30px 10px;
+	border: 2px solid rgb(6,76,130);
+	border-radius: 14px;
+	background-color: #ffffff;
+}
+
+QWidget[styleClass=&quot;tabPage&quot;]
+{
+	background-color: #ffffff;
+}
+
+QTabBar::tab 
+{
+	color: #404040;
+	max-height: 30px;
+	padding: 10px 20px;
+	min-width: 100px;
+	font-size: 14px;
+	background-color: #f0f0f0;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
+QTabBar::tab:selected 
+{
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 15px;
+
+    background-color: #fff;
+
+    border: 2px solid rgb(6,76,130); 
+	border-bottom: none;
+/*	border-bottom: 2px solid #fff; */
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 
-QTabBar::tab:!selected {
-	border-left: 1px solid rgb(199, 199, 199);
-	border-right: 1px solid rgb(199, 199, 199);
+QTabBar::tab:hover 
+{
+	font-weight:bold;
+	/*border: 2px solid rgb(6,76,130, 50);*/
+	border-bottom: none;
 }
 
-QTabBar::tab{
-	height:40px;
-	width: 150px;
-	background-color: rgb(93, 93, 93);
-	color: rgb(255,255,255);
-	font-size: 16px;
-}
-
-
-QTabWidget::pane { /* The tab widget frame */
-    border-top: 2px solid rgb(6, 76, 130);
-
-
-}
-QTabWidget{
-background-color: rgb(48, 48, 48)
-}
 /*******************************************/
 
 
@@ -365,26 +443,7 @@ QGroupBox{
 	font-weight: bold;
 }
 
-QLineEdit:hover{
-	border: 1px solid black;
-	background: #e4f0fa;
-}
 
-QLineEdit:focus {
-	color: white;
-	background: #0078D7;
-	selection-background-color: black;
-}
-
-QSpinBox:hover{
-	background: #e4f0fa;
-}
-
-
-
-QDoubleSpinBox:hover{
-	background: #e4f0fa;
-}
 
 
 QTimeEdit:hover{
@@ -418,6 +477,27 @@ QPushButton[styleClass=&quot;blueCircelAdd&quot;]:hover{
 }
 
 
+QPushButton[styleClass=&quot;saveButton&quot;]{
+	background-color:rgb(6, 76, 130);
+	color: #fff;
+	min-width:90px;
+	max-width:90px;
+	min-height: 35px;
+	border: 2px solid rgb(6, 76, 130);
+	border-radius: 17px;
+
+}
+
+QPushButton[styleClass=&quot;saveButton&quot;]:disabled{
+	background-color:rgb(180, 180, 180);
+	border: 2px solid rgb(180, 180, 180);
+}
+
+QPushButton[styleClass=&quot;saveButton&quot;]:hover{
+	background-color:rgb(5, 50, 85);
+	border: 2px solid rgb(5, 50, 85);
+	font-size:13px;
+}
 
 QPushButton[styleClass=&quot;cancelButton&quot;]{
 	background-color: transparent;
@@ -430,16 +510,18 @@ QPushButton[styleClass=&quot;cancelButton&quot;]{
 	
 }
 
-QPushButton[styleClass=&quot;saveButton&quot;]{
-	background-color:rgb(6, 76, 130);
-	color: #fff;
-	min-width:90px;
-	max-width:90px;
-	min-height: 35px;
-	border: 2px solid rgb(6, 76, 130);
-	border-radius: 17px;
+QPushButton[styleClass=&quot;cancelButton&quot;]:disabled{
+	color:rgb(180, 180, 180);
+	border: 2px solid rgb(180, 180, 180);
 }
 
+QPushButton[styleClass=&quot;cancelButton&quot;]:hover{
+	color:rgb(5, 50, 85);
+	border: 2px solid rgb(5, 50, 85);
+	font-size:13px;
+
+	
+}
 
 QPushButton[styleClass=&quot;restoreButton&quot;]{
 	background-color:transparent;
@@ -451,6 +533,10 @@ QPushButton[styleClass=&quot;restoreButton&quot;]{
 	icon: url(:/assets/icons/icons8-restore-25.png);
 }
 
+QPushButton[styleClass=&quot;restoreButton&quot;]:hover{
+	border: 2px solid rgb(6, 76, 130);
+	font-size:13px;
+}
 </string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -1042,60 +1128,6 @@ Line{
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="horizontalFrame_10">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <layout class="QHBoxLayout" name="settingpage_camera_connect_groupe_4">
-             <property name="topMargin">
-              <number>1</number>
-             </property>
-             <item>
-              <widget class="QPushButton" name="settingpage_plc_save_btn_2">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="text">
-                <string>Save</string>
-               </property>
-               <property name="styleClass" stdset="0">
-                <string>saveButton</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="settingpage_plc_cancel_btn_2">
-               <property name="styleSheet">
-                <string notr="true"/>
-               </property>
-               <property name="text">
-                <string>Cancel</string>
-               </property>
-               <property name="styleClass" stdset="0">
-                <string>cancelButton</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_15">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -1134,7 +1166,7 @@ Line{
 </string>
          </property>
          <property name="currentIndex">
-          <number>5</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,0,1">
@@ -2362,9 +2394,9 @@ color: rgb(6, 76, 130);
                  <property name="geometry">
                   <rect>
                    <x>0</x>
-                   <y>0</y>
+                   <y>-1076</y>
                    <width>356</width>
-                   <height>1758</height>
+                   <height>1749</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2527,6 +2559,9 @@ color: rgb(6, 76, 130);
                      </item>
                      <item>
                       <widget class="QFrame" name="reportpage_filterdate_frame">
+                       <property name="enabled">
+                        <bool>true</bool>
+                       </property>
                        <layout class="QGridLayout" name="gridLayout_15">
                         <property name="topMargin">
                          <number>1</number>
@@ -2557,6 +2592,12 @@ color: rgb(6, 76, 130);
                         </item>
                         <item row="0" column="1">
                          <widget class="QDateEdit" name="reportpage_start_date_dateedit">
+                          <property name="enabled">
+                           <bool>true</bool>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
                           <property name="displayFormat">
                            <string>yyyy/M/d</string>
                           </property>
@@ -2921,6 +2962,12 @@ color: rgb(6, 76, 130);
                 </item>
                 <item>
                  <widget class="QPushButton" name="reportpage_apply_filters_btn">
+                  <property name="minimumSize">
+                   <size>
+                    <width>80</width>
+                    <height>35</height>
+                   </size>
+                  </property>
                   <property name="text">
                    <string>Update</string>
                   </property>
@@ -3181,6 +3228,15 @@ QPushButton:hover{
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>false</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
                  <property name="verticalScrollBarPolicy">
                   <enum>Qt::ScrollBarAlwaysOn</enum>
                  </property>
@@ -3196,6 +3252,18 @@ QPushButton:hover{
                  <property name="columnCount">
                   <number>5</number>
                  </property>
+                 <attribute name="horizontalHeaderCascadingSectionResizes">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderCascadingSectionResizes">
+                  <bool>true</bool>
+                 </attribute>
                  <attribute name="verticalHeaderDefaultSectionSize">
                   <number>45</number>
                  </attribute>
@@ -3281,19 +3349,7 @@ QPushButton:hover{
            <item>
             <widget class="QTabWidget" name="gradingranges_tabs">
              <property name="styleSheet">
-              <string notr="true">QTabBar::tab{
-	height:40px;
-	width: 300px;
-
-}
-
-
-#new_standard_tab,
-#all_standards_tab
-{
-	background-color:rgb(255, 255, 255);
-}
-</string>
+              <string notr="true"/>
              </property>
              <property name="currentIndex">
               <number>0</number>
@@ -3314,6 +3370,9 @@ QPushButton:hover{
               <bool>false</bool>
              </property>
              <widget class="QWidget" name="all_standards_tab">
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>All Standards</string>
               </attribute>
@@ -3338,39 +3397,7 @@ QPushButton:hover{
                     <item>
                      <widget class="QTableWidget" name="settingpage_grading_standards_table">
                       <property name="styleSheet">
-                       <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 16pt;
-	font-weight:bold;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;	
-}
-
-
-QTableWidget{
-	font-size: 16px;
-	color:rgb(50, 50, 50);
-}
-
-QTableWidget::item
-{
-   padding: 10px;
-}
-</string>
+                       <string notr="true"/>
                       </property>
                       <property name="horizontalScrollBarPolicy">
                        <enum>Qt::ScrollBarAlwaysOn</enum>
@@ -3447,6 +3474,9 @@ QTableWidget::item
               <property name="styleSheet">
                <string notr="true"/>
               </property>
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>New Standard</string>
               </attribute>
@@ -3496,7 +3526,7 @@ max-width: 16777px;
                     <item>
                      <layout class="QVBoxLayout" name="verticalLayout_31">
                       <property name="spacing">
-                       <number>6</number>
+                       <number>15</number>
                       </property>
                       <property name="leftMargin">
                        <number>0</number>
@@ -3567,22 +3597,6 @@ max-width: 16777px;
                        </layout>
                       </item>
                       <item>
-                       <widget class="Line" name="line_31">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>5</height>
-                         </size>
-                        </property>
-                        <property name="lineWidth">
-                         <number>1</number>
-                        </property>
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
                        <layout class="QHBoxLayout" name="horizontalLayout_24">
                         <item>
                          <widget class="QLabel" name="label_28">
@@ -3596,9 +3610,14 @@ max-width: 16777px;
                         </item>
                         <item>
                          <widget class="QDoubleSpinBox" name="settingpage_grading_low_limit_spinbox">
+                          <property name="minimumSize">
+                           <size>
+                            <width>120</width>
+                            <height>27</height>
+                           </size>
+                          </property>
                           <property name="styleSheet">
-                           <string notr="true">max-width:100px;
-min-width: 50px;</string>
+                           <string notr="true"/>
                           </property>
                           <property name="maximum">
                            <double>25.000000000000000</double>
@@ -3633,9 +3652,14 @@ min-width: 50px;</string>
                         </item>
                         <item>
                          <widget class="QDoubleSpinBox" name="settingpage_grading_up_limit_spinbox">
+                          <property name="minimumSize">
+                           <size>
+                            <width>120</width>
+                            <height>27</height>
+                           </size>
+                          </property>
                           <property name="styleSheet">
-                           <string notr="true">max-width:100px;
-min-width: 50px;</string>
+                           <string notr="true"/>
                           </property>
                           <property name="maximum">
                            <double>25.000000000000000</double>
@@ -3678,22 +3702,6 @@ min-width: 50px;</string>
                          </widget>
                         </item>
                        </layout>
-                      </item>
-                      <item>
-                       <widget class="Line" name="line_32">
-                        <property name="minimumSize">
-                         <size>
-                          <width>0</width>
-                          <height>5</height>
-                         </size>
-                        </property>
-                        <property name="lineWidth">
-                         <number>1</number>
-                        </property>
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                       </widget>
                       </item>
                       <item>
                        <widget class="QLabel" name="settingpage_grading_warning_lbl">
@@ -3756,38 +3764,7 @@ font-weight:bold;</string>
                          <cursorShape>PointingHandCursor</cursorShape>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 14pt;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;	
-}
-
-
-QTableWidget{
-	font-size: 16px;
-	color:rgb(50, 50, 50);
-}
-
-QTableWidget::item
-{
-   padding: 10px;
-}
-</string>
+                         <string notr="true"/>
                         </property>
                         <property name="frameShape">
                          <enum>QFrame::NoFrame</enum>
@@ -4129,19 +4106,6 @@ QLabel
 }
 
 
-#settingpage_camera_tab,
-#settingpage_general_tab, 
-#settingpage_storage_tab,
-#settingpage_pelletizing_tab,
-#settingpage_algorithm_tab,
-#settingpage_sample_tab,
-#settingpage_export_tab,
-#settingpage_config_tab,
-#settingpage_plc_tab
-{
-	background-color:rgb(255, 255, 255);
-}
-
 
 </string>
                </property>
@@ -4152,7 +4116,7 @@ QLabel
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>6</number>
+                <number>3</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4169,6 +4133,9 @@ QLabel
                <widget class="QWidget" name="settingpage_sample_tab">
                 <property name="styleSheet">
                  <string notr="true"/>
+                </property>
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
                 </property>
                 <attribute name="title">
                  <string>Sample</string>
@@ -4827,6 +4794,9 @@ QLabel
                 </layout>
                </widget>
                <widget class="QWidget" name="settingpage_export_tab">
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
+                </property>
                 <attribute name="title">
                  <string>Export</string>
                 </attribute>
@@ -4856,8 +4826,8 @@ QLabel
                      </property>
                      <property name="minimumSize">
                       <size>
-                       <width>730</width>
-                       <height>41</height>
+                       <width>716</width>
+                       <height>39</height>
                       </size>
                      </property>
                      <property name="maximumSize">
@@ -4952,8 +4922,8 @@ min-height: 40px;
                      </property>
                      <property name="minimumSize">
                       <size>
-                       <width>730</width>
-                       <height>41</height>
+                       <width>716</width>
+                       <height>39</height>
                       </size>
                      </property>
                      <property name="maximumSize">
@@ -5487,6 +5457,9 @@ QTableView::item{
                 </layout>
                </widget>
                <widget class="QWidget" name="settingpage_storage_tab">
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
+                </property>
                 <attribute name="title">
                  <string>Storage</string>
                 </attribute>
@@ -5576,6 +5549,12 @@ QTableView::item{
                     </item>
                     <item row="1" column="5">
                      <widget class="QSpinBox" name="settingpage_storage_life_time_spinbox">
+                      <property name="minimumSize">
+                       <size>
+                        <width>120</width>
+                        <height>27</height>
+                       </size>
+                      </property>
                       <property name="maximum">
                        <number>365</number>
                       </property>
@@ -5702,8 +5681,8 @@ min-height: 40px;
                       </property>
                       <property name="minimumSize">
                        <size>
-                        <width>730</width>
-                        <height>41</height>
+                        <width>716</width>
+                        <height>39</height>
                        </size>
                       </property>
                       <property name="maximumSize">
@@ -5795,6 +5774,9 @@ min-width: 700px;
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
+                </property>
                 <attribute name="title">
                  <string>Camera</string>
                 </attribute>
@@ -5811,6 +5793,9 @@ min-width: 700px;
                     <string notr="true"/>
                    </property>
                    <layout class="QVBoxLayout" name="camera_setting_lef_side">
+                    <property name="spacing">
+                     <number>20</number>
+                    </property>
                     <item alignment="Qt::AlignLeft">
                      <widget class="QFrame" name="settingpage_connection_buttons_frame">
                       <property name="styleSheet">
@@ -5827,7 +5812,7 @@ QPushButton:hover{
 
 #settingpage_connection_buttons_frame
 {
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 }
 
 QPushButton:disabled {
@@ -6019,7 +6004,7 @@ margin:0px;</string>
                        <string>Control And Analog Setting</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_8">
-                       <item row="0" column="0">
+                       <item row="0" column="0" alignment="Qt::AlignRight">
                         <widget class="QLabel" name="settingpage_camera_exposure_lbl">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -6035,26 +6020,20 @@ margin:0px;</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="1" column="2">
-                        <widget class="QSpinBox" name="settingpage_camera_gain_spinbox"/>
-                       </item>
-                       <item row="0" column="1">
-                        <spacer name="horizontalSpacer_34">
+                       <item row="0" column="2">
+                        <spacer name="horizontalSpacer_6">
                          <property name="orientation">
                           <enum>Qt::Horizontal</enum>
                          </property>
-                         <property name="sizeType">
-                          <enum>QSizePolicy::Maximum</enum>
-                         </property>
                          <property name="sizeHint" stdset="0">
                           <size>
-                           <width>25</width>
+                           <width>40</width>
                            <height>20</height>
                           </size>
                          </property>
                         </spacer>
                        </item>
-                       <item row="1" column="0">
+                       <item row="1" column="0" alignment="Qt::AlignRight">
                         <widget class="QLabel" name="settingpage_camera_gain_lbl">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -6070,10 +6049,16 @@ margin:0px;</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="2">
+                       <item row="0" column="1">
                         <widget class="QSpinBox" name="settingpage_camera_exposure_spinbox">
                          <property name="enabled">
-                          <bool>true</bool>
+                          <bool>false</bool>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>150</width>
+                           <height>27</height>
+                          </size>
                          </property>
                          <property name="maximum">
                           <number>20000</number>
@@ -6083,18 +6068,15 @@ margin:0px;</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="0" column="3">
-                        <spacer name="horizontalSpacer_6">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
+                       <item row="1" column="1">
+                        <widget class="QSpinBox" name="settingpage_camera_gain_spinbox">
+                         <property name="minimumSize">
                           <size>
-                           <width>40</width>
-                           <height>20</height>
+                           <width>150</width>
+                           <height>27</height>
                           </size>
                          </property>
-                        </spacer>
+                        </widget>
                        </item>
                       </layout>
                      </widget>
@@ -6116,54 +6098,14 @@ color: rgb(6, 76, 130);</string>
                        <string>AOI Setting</string>
                       </property>
                       <layout class="QGridLayout" name="gridLayout_6">
-                       <item row="1" column="1">
-                        <spacer name="horizontalSpacer_35">
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="sizeType">
-                          <enum>QSizePolicy::Maximum</enum>
-                         </property>
-                         <property name="sizeHint" stdset="0">
-                          <size>
-                           <width>25</width>
-                           <height>20</height>
-                          </size>
-                         </property>
-                        </spacer>
-                       </item>
-                       <item row="1" column="0">
-                        <widget class="QLabel" name="settingpage_camera_width_lbl">
-                         <property name="text">
-                          <string>Width</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="0">
-                        <widget class="QLabel" name="settingpage_camera_height_lbl">
-                         <property name="text">
-                          <string>Height</string>
-                         </property>
-                         <property name="alignment">
-                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="2" column="2">
-                        <widget class="QSpinBox" name="settingpage_camera_height_spinbox">
-                         <property name="maximum">
-                          <number>5000</number>
-                         </property>
-                         <property name="value">
-                          <number>2000</number>
-                         </property>
-                        </widget>
-                       </item>
                        <item row="1" column="2">
                         <widget class="QSpinBox" name="settingpage_camera_width_spinbox">
+                         <property name="minimumSize">
+                          <size>
+                           <width>150</width>
+                           <height>27</height>
+                          </size>
+                         </property>
                          <property name="maximum">
                           <number>5000</number>
                          </property>
@@ -6175,6 +6117,42 @@ color: rgb(6, 76, 130);</string>
                          </property>
                         </widget>
                        </item>
+                       <item row="2" column="1" alignment="Qt::AlignRight">
+                        <widget class="QLabel" name="settingpage_camera_height_lbl">
+                         <property name="text">
+                          <string>Height</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="2">
+                        <widget class="QSpinBox" name="settingpage_camera_height_spinbox">
+                         <property name="minimumSize">
+                          <size>
+                           <width>150</width>
+                           <height>27</height>
+                          </size>
+                         </property>
+                         <property name="maximum">
+                          <number>5000</number>
+                         </property>
+                         <property name="value">
+                          <number>2000</number>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1" alignment="Qt::AlignRight">
+                        <widget class="QLabel" name="settingpage_camera_width_lbl">
+                         <property name="text">
+                          <string>Width</string>
+                         </property>
+                         <property name="alignment">
+                          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="1" column="3">
                         <spacer name="horizontalSpacer_8">
                          <property name="orientation">
@@ -6183,6 +6161,22 @@ color: rgb(6, 76, 130);</string>
                          <property name="sizeHint" stdset="0">
                           <size>
                            <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item row="1" column="0">
+                        <spacer name="horizontalSpacer_15">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeType">
+                          <enum>QSizePolicy::Fixed</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>15</width>
                            <height>20</height>
                           </size>
                          </property>
@@ -6215,6 +6209,9 @@ color: rgb(6, 76, 130);</string>
                        </item>
                        <item>
                         <widget class="QPushButton" name="settingpage_camera_cancel_btn">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
                          <property name="text">
                           <string>Cancel</string>
                          </property>
@@ -6225,6 +6222,9 @@ color: rgb(6, 76, 130);</string>
                        </item>
                        <item>
                         <widget class="QPushButton" name="settingpage_camera_restore_btn">
+                         <property name="enabled">
+                          <bool>true</bool>
+                         </property>
                          <property name="text">
                           <string>Restore Default</string>
                          </property>
@@ -6466,6 +6466,9 @@ margin: 0px;
                 <property name="styleSheet">
                  <string notr="true"/>
                 </property>
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
+                </property>
                 <attribute name="title">
                  <string>PLC</string>
                 </attribute>
@@ -6632,8 +6635,8 @@ QLabel[styleClass=&quot;dot&quot;]{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>1399</width>
-                      <height>503</height>
+                      <width>1366</width>
+                      <height>420</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -6641,12 +6644,15 @@ QLabel[styleClass=&quot;dot&quot;]{
                       <widget class="QPushButton" name="settingpage_plc_add_node_btn">
                        <property name="maximumSize">
                         <size>
-                         <width>16777215</width>
-                         <height>16777215</height>
+                         <width>40</width>
+                         <height>40</height>
                         </size>
                        </property>
                        <property name="text">
-                        <string>add</string>
+                        <string/>
+                       </property>
+                       <property name="styleClass" stdset="0">
+                        <string>blueCircelAdd</string>
                        </property>
                       </widget>
                      </item>
@@ -6724,6 +6730,9 @@ QLabel[styleClass=&quot;dot&quot;]{
                 </layout>
                </widget>
                <widget class="QWidget" name="settingpage_algorithm_tab">
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
+                </property>
                 <attribute name="title">
                  <string>Algorithm</string>
                 </attribute>
@@ -6741,6 +6750,12 @@ QLabel[styleClass=&quot;dot&quot;]{
                    </property>
                    <item row="1" column="1">
                     <widget class="QSpinBox" name="settingpage_algorithm_border_spinbox">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>27</height>
+                      </size>
+                     </property>
                      <property name="maximum">
                       <number>1000</number>
                      </property>
@@ -6755,6 +6770,12 @@ QLabel[styleClass=&quot;dot&quot;]{
                    </item>
                    <item row="0" column="1">
                     <widget class="QSpinBox" name="settingpage_algorithm_threshould_spinbox">
+                     <property name="minimumSize">
+                      <size>
+                       <width>110</width>
+                       <height>27</height>
+                      </size>
+                     </property>
                      <property name="maximum">
                       <number>255</number>
                      </property>
@@ -6885,6 +6906,9 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
 }
 </string>
                 </property>
+                <property name="styleClass" stdset="0">
+                 <string>tabPage</string>
+                </property>
                 <attribute name="title">
                  <string>Config</string>
                 </attribute>
@@ -6899,8 +6923,8 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>1420</width>
-                      <height>660</height>
+                      <width>1387</width>
+                      <height>577</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_86">
@@ -6941,10 +6965,10 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                        <widget class="QWidget" name="scrollAreaConfigContents">
                         <property name="geometry">
                          <rect>
-                          <x>-106</x>
+                          <x>-1321</x>
                           <y>0</y>
                           <width>5670</width>
-                          <height>569</height>
+                          <height>486</height>
                          </rect>
                         </property>
                         <layout class="QHBoxLayout" name="horizontalLayout_72">
@@ -7001,7 +7025,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_70">
                                <item>
-                                <widget class="QCheckBox" name="settingpage_config_start_manual_checkbox">
+                                <widget class="QCheckBox" name="config_start_manual_checkbox">
                                  <property name="text">
                                   <string>Can Start manual</string>
                                  </property>
@@ -7020,7 +7044,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QComboBox" name="settingpage_config_start_mode_comboBox">
+                                  <widget class="QComboBox" name="config_start_mode_comboBox">
                                    <item>
                                     <property name="text">
                                      <string>Timer</string>
@@ -7058,7 +7082,10 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                    <property name="currentIndex">
                                     <number>1</number>
                                    </property>
-                                   <widget class="QWidget" name="timer">
+                                   <widget class="QWidget" name="config_start_timer_page">
+                                    <property name="styleClass" stdset="0">
+                                     <string>tabPage</string>
+                                    </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_71">
                                      <item>
                                       <layout class="QHBoxLayout" name="horizontalLayout_74">
@@ -7116,9 +7143,12 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                      </item>
                                     </layout>
                                    </widget>
-                                   <widget class="QWidget" name="signal">
+                                   <widget class="QWidget" name="config_start_signal_page">
                                     <property name="styleSheet">
                                      <string notr="true"/>
+                                    </property>
+                                    <property name="styleClass" stdset="0">
+                                     <string>tabPage</string>
                                     </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_72">
                                      <item>
@@ -7145,11 +7175,14 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                           <x>0</x>
                                           <y>0</y>
                                           <width>607</width>
-                                          <height>328</height>
+                                          <height>250</height>
                                          </rect>
                                         </property>
                                         <property name="styleSheet">
                                          <string notr="true"/>
+                                        </property>
+                                        <property name="styleClass" stdset="0">
+                                         <string>tabPage</string>
                                         </property>
                                         <layout class="QVBoxLayout" name="verticalLayout_77">
                                          <item>
@@ -7274,8 +7307,11 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>631</width>
-                                    <height>442</height>
+                                    <height>359</height>
                                    </rect>
+                                  </property>
+                                  <property name="styleClass" stdset="0">
+                                   <string>tabPage</string>
                                   </property>
                                   <layout class="QVBoxLayout" name="verticalLayout_76">
                                    <item>
@@ -7397,8 +7433,11 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>631</width>
-                                    <height>442</height>
+                                    <height>359</height>
                                    </rect>
+                                  </property>
+                                  <property name="styleClass" stdset="0">
+                                   <string>tabPage</string>
                                   </property>
                                   <layout class="QVBoxLayout" name="verticalLayout_80">
                                    <item>
@@ -7644,8 +7683,11 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>631</width>
-                                    <height>442</height>
+                                    <height>359</height>
                                    </rect>
+                                  </property>
+                                  <property name="styleClass" stdset="0">
+                                   <string>tabPage</string>
                                   </property>
                                   <layout class="QVBoxLayout" name="verticalLayout_85">
                                    <item>
@@ -7744,7 +7786,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                               </property>
                               <layout class="QVBoxLayout" name="verticalLayout_93">
                                <item>
-                                <widget class="QCheckBox" name="settingpage_config_stop_manual_checkbox">
+                                <widget class="QCheckBox" name="config_stop_manual_checkbox">
                                  <property name="text">
                                   <string>Can Stop manual</string>
                                  </property>
@@ -7763,7 +7805,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                   </widget>
                                  </item>
                                  <item>
-                                  <widget class="QComboBox" name="settingpage_config_stop_mode_comboBox">
+                                  <widget class="QComboBox" name="config_stop_mode_comboBox">
                                    <item>
                                     <property name="text">
                                      <string>Timer</string>
@@ -7803,7 +7845,10 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                    <property name="currentIndex">
                                     <number>1</number>
                                    </property>
-                                   <widget class="QWidget" name="page_5">
+                                   <widget class="QWidget" name="config_stop_timer_page">
+                                    <property name="styleClass" stdset="0">
+                                     <string>tabPage</string>
+                                    </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_95">
                                      <item>
                                       <layout class="QHBoxLayout" name="horizontalLayout_79">
@@ -7861,7 +7906,10 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                      </item>
                                     </layout>
                                    </widget>
-                                   <widget class="QWidget" name="page_6">
+                                   <widget class="QWidget" name="config_stop_signal_page">
+                                    <property name="styleClass" stdset="0">
+                                     <string>tabPage</string>
+                                    </property>
                                     <layout class="QVBoxLayout" name="verticalLayout_96">
                                      <item>
                                       <widget class="QLabel" name="label_145">
@@ -7884,8 +7932,11 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                           <x>0</x>
                                           <y>0</y>
                                           <width>607</width>
-                                          <height>328</height>
+                                          <height>250</height>
                                          </rect>
+                                        </property>
+                                        <property name="styleClass" stdset="0">
+                                         <string>tabPage</string>
                                         </property>
                                         <layout class="QVBoxLayout" name="verticalLayout_97">
                                          <item>
@@ -7916,6 +7967,11 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                       </widget>
                                      </item>
                                     </layout>
+                                   </widget>
+                                   <widget class="QWidget" name="config_stop_detection_page">
+                                    <property name="styleClass" stdset="0">
+                                     <string>tabPage</string>
+                                    </property>
                                    </widget>
                                   </widget>
                                  </item>
@@ -8010,8 +8066,11 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>631</width>
-                                    <height>442</height>
+                                    <height>359</height>
                                    </rect>
+                                  </property>
+                                  <property name="styleClass" stdset="0">
+                                   <string>tabPage</string>
                                   </property>
                                   <layout class="QVBoxLayout" name="verticalLayout_100">
                                    <item>
@@ -8244,39 +8303,15 @@ QLabel{
               <bool>false</bool>
              </property>
              <property name="styleSheet">
-              <string notr="true">QTabBar::tab:selected {
-    background: rgb(6, 76, 130);
-	font-weight: bold;
-	font-size: 20px;
-}
-
-QTabBar::tab:!selected {
-	border-left: 1px solid rgb(199, 199, 199);
-	border-right: 1px solid rgb(199, 199, 199);
-}
-
-QTabBar::tab{
-	height:40px;
-	width: 260px;
-	background-color: rgb(93, 93, 93);
-	color: rgb(255,255,255);
-	font-size: 16px;
-}
-
-
-QTabWidget::pane { /* The tab widget frame */
-    border-top: 2px solid rgb(6, 76, 130);
-
-
-}
-QTabWidget{
-background-color: rgb(48, 48, 48);
-}</string>
+              <string notr="true"/>
              </property>
              <property name="currentIndex">
               <number>1</number>
              </property>
              <widget class="QWidget" name="cilbration">
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>Calibration</string>
               </attribute>
@@ -8512,8 +8547,8 @@ margin-right:5px;</string>
                           <widget class="QSpinBox" name="calibrationpage_calib_itrs_spinbox">
                            <property name="minimumSize">
                             <size>
-                             <width>187</width>
-                             <height>41</height>
+                             <width>157</width>
+                             <height>27</height>
                             </size>
                            </property>
                           </widget>
@@ -8919,7 +8954,10 @@ border: 2px solid #404040;</string>
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="tab_7">
+             <widget class="QWidget" name="hypothes_tab">
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>Statistical hypothesis</string>
               </attribute>
@@ -8938,6 +8976,18 @@ border: 2px solid #404040;</string>
                  </item>
                  <item>
                   <widget class="QSpinBox" name="validationpage_hypotest_test_count_spinbox">
+                   <property name="minimumSize">
+                    <size>
+                     <width>100</width>
+                     <height>27</height>
+                    </size>
+                   </property>
+                   <property name="sizeIncrement">
+                    <size>
+                     <width>0</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="maximum">
                     <number>10</number>
                    </property>
@@ -8974,7 +9024,14 @@ border: 2px solid #404040;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="validationpage_hypotest_standards_combobox"/>
+                  <widget class="QComboBox" name="validationpage_hypotest_standards_combobox">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>36</height>
+                    </size>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_107">
@@ -9000,22 +9057,6 @@ border: 2px solid #404040;</string>
                   </widget>
                  </item>
                  <item>
-                  <spacer name="horizontalSpacer_103">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Maximum</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
                   <widget class="Line" name="line_28">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -9023,7 +9064,17 @@ border: 2px solid #404040;</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="validationpage_verify_type"/>
+                  <widget class="QComboBox" name="validationpage_verify_type">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>36</height>
+                    </size>
+                   </property>
+                  </widget>
                  </item>
                  <item>
                   <spacer name="horizontalSpacer_105">
@@ -9064,8 +9115,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1418</width>
-                    <height>745</height>
+                    <width>1385</width>
+                    <height>667</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -9124,19 +9175,17 @@ border: 2px solid #404040;</string>
            <item>
             <widget class="QTabWidget" name="user_tabs">
              <property name="styleSheet">
-              <string notr="true">#all_users_tab,
-#user_profile_tab,
-#user_register_tab
-{
-	
-	background-color: #ffffff;
+              <string notr="true">
 
-}</string>
+</string>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="user_register_tab">
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>register user</string>
               </attribute>
@@ -9164,9 +9213,22 @@ QLineEdit
                   </property>
                   <item row="6" column="1">
                    <widget class="QComboBox" name="userpage_user_role_combobox">
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
                     <item>
                      <property name="text">
                       <string>admin</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>dorsa</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>user</string>
                      </property>
                     </item>
                    </widget>
@@ -9313,6 +9375,9 @@ QLineEdit
                      <iconset>
                       <normaloff>:/assets/Assets/icons/icons8-plus-white-50.png</normaloff>:/assets/Assets/icons/icons8-plus-white-50.png</iconset>
                     </property>
+                    <property name="styleClass" stdset="0">
+                     <string>saveButton</string>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -9446,6 +9511,9 @@ color: #ffffff;
               </layout>
              </widget>
              <widget class="QWidget" name="user_profile_tab">
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>Edit Profile</string>
               </attribute>
@@ -9564,10 +9632,15 @@ max-width: 120px;
                        <item>
                         <widget class="QPushButton" name="userpage_editprofile_update_btn">
                          <property name="styleSheet">
-                          <string notr="true"/>
+                          <string notr="true">min-width: 100px;
+max-width: 100px;
+</string>
                          </property>
                          <property name="text">
                           <string>Update Profile</string>
+                         </property>
+                         <property name="styleClass" stdset="0">
+                          <string>saveButton</string>
                          </property>
                         </widget>
                        </item>
@@ -9575,6 +9648,9 @@ max-width: 120px;
                         <widget class="QPushButton" name="userpage_editprofile_cancel_btn">
                          <property name="text">
                           <string>Cancel</string>
+                         </property>
+                         <property name="styleClass" stdset="0">
+                          <string>cancelButton</string>
                          </property>
                         </widget>
                        </item>
@@ -9730,10 +9806,15 @@ max-height: 30px;
                       <item>
                        <widget class="QPushButton" name="userpage_editprofile_change_password_btn">
                         <property name="styleSheet">
-                         <string notr="true">max-width: 120px;</string>
+                         <string notr="true">min-width: 130px;
+max-width: 130px;
+</string>
                         </property>
                         <property name="text">
                          <string>Change Password</string>
+                        </property>
+                        <property name="styleClass" stdset="0">
+                         <string>saveButton</string>
                         </property>
                        </widget>
                       </item>
@@ -9845,6 +9926,9 @@ color: #ffffff;
               </layout>
              </widget>
              <widget class="QWidget" name="all_users_tab">
+              <property name="styleClass" stdset="0">
+               <string>tabPage</string>
+              </property>
               <attribute name="title">
                <string>All Users</string>
               </attribute>
@@ -9869,28 +9953,7 @@ max-height: 80px;</string>
                   <bool>false</bool>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 10pt;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border: 1px solid #fffff8;
-}
-
-</string>
+                  <string notr="true"/>
                  </property>
                  <property name="frameShape">
                   <enum>QFrame::StyledPanel</enum>
@@ -10058,8 +10121,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1418</width>
-                    <height>745</height>
+                    <width>1385</width>
+                    <height>662</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_29">
@@ -10387,9 +10450,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>1420</width>
-                <height>3416</height>
+                <y>-849</y>
+                <width>1411</width>
+                <height>3409</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -11422,7 +11485,6 @@ p, li { white-space: pre-wrap; }
                      <property name="font">
                       <font>
                        <family>Arial</family>
-                       <pointsize>-1</pointsize>
                        <weight>50</weight>
                        <italic>false</italic>
                        <bold>false</bold>
@@ -11432,38 +11494,7 @@ p, li { white-space: pre-wrap; }
                       <enum>Qt::NoFocus</enum>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 14pt;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;	
-}
-
-
-QTableWidget{
-	font-size: 16px;
-	color:rgb(50, 50, 50);
-}
-
-QTableWidget::item
-{
-   padding: 10px;
-}
-</string>
+                      <string notr="true"/>
                      </property>
                      <property name="frameShape">
                       <enum>QFrame::Box</enum>
@@ -13035,8 +13066,8 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1419</width>
-                <height>1182</height>
+                <width>1410</width>
+                <height>1175</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -13127,7 +13158,6 @@ max-height: 22px;</string>
                      <property name="font">
                       <font>
                        <family>Arial</family>
-                       <pointsize>-1</pointsize>
                        <weight>50</weight>
                        <italic>false</italic>
                        <bold>false</bold>
@@ -13137,38 +13167,7 @@ max-height: 22px;</string>
                       <enum>Qt::NoFocus</enum>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">
-QHeaderView::section {
-    background-color: rgb(6, 76, 130);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 14pt;
-    border-style: none;
-    border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
-}
-
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fffff8;
-}
-
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fffff8;	
-}
-
-
-QTableWidget{
-	font-size: 16px;
-	color:rgb(50, 50, 50);
-}
-
-QTableWidget::item
-{
-   padding: 10px;
-}
-</string>
+                      <string notr="true"/>
                      </property>
                      <property name="frameShape">
                       <enum>QFrame::NoFrame</enum>

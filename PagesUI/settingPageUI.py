@@ -3,7 +3,6 @@ from typing import Union
 
 import numpy as np
 
-from PySide6.QtWidgets import QWidget
 
 from uiUtils import GUIComponents
 import Constants.CONSTANTS as CONSTANTS
@@ -11,8 +10,9 @@ from uiUtils.guiBackend import GUIBackend
 from PagesUI.PageUI import commonUI
 from uiUtils.IO.Mouse import mouseHandeler
 from uiFiles.main_UI_ui import Ui_MainWindow
-from uiFiles.node_setting_UI import Ui_NodeSetting
+
 from PagesUI.sectionsUI.signalUI import inputSignalUI, outputSignalUI
+from PagesUI.sectionsUI.nodeSettingUI import nodeSettinUI
 from backend.Utils.mapDictionary import mapDictionary
 
 class settingPageUI:
@@ -758,6 +758,8 @@ class plcSettingTabUI(commonSettingUI):
 
         self.nodes_ui.remove(node)
         node.deleteLater()
+        self.save_state(False)
+
 
     def change_node_settings_event(self,):
         self.save_state(False)
@@ -845,9 +847,66 @@ class configSettingTabUI(commonSettingUI):
                       },
         }
 
-        self.__add_btns_connector()
 
+        self.read_signals:list[str] = []
+        self.write_signals:list[str] = []
+
+        self.mapDict = mapDictionary(
+                                    {   'start_mode': {
+                                            'timer':'Timer',
+                                            'signal': 'Signal',
+                                        },
+
+                                        'stop_mode': {
+                                            'timer':'Timer',
+                                            'signal': 'Signal',
+                                            'detection': 'Detection',
+                                        }
+                                    }
+                                )
+
+        self.__add_btns_connector()
+        GUIBackend.combobox_changeg_connector(self.ui.config_start_mode_comboBox, 
+                                              self.start_mode_change)
+        
+        GUIBackend.combobox_changeg_connector(self.ui.config_stop_mode_comboBox, 
+                                              self.stop_mode_change)
+        
+        self.__setup()
     
+    def __setup(self,):
+        items = self.mapDict.get_values('start_mode')
+        GUIBackend.set_combobox_items(self.ui.config_start_mode_comboBox, items)
+
+        items = self.mapDict.get_values('stop_mode')
+        GUIBackend.set_combobox_items(self.ui.config_stop_mode_comboBox, items)
+
+    def start_mode_change(self,):
+        mode_front = GUIBackend.get_input(self.ui.config_start_mode_comboBox)    
+        mode_backend = self.mapDict.value2key('start_mode', mode_front)
+        page = None
+        if mode_backend == 'timer':
+            page = self.ui.config_start_timer_page
+        elif mode_backend == 'signal':
+            page = self.ui.config_start_signal_page
+            
+        if page:
+            GUIBackend.set_stack_widget_page(self.ui.config_start_system_settings_stackwidget,page)
+
+    def stop_mode_change(self,):
+        mode_front = GUIBackend.get_input(self.ui.config_stop_mode_comboBox)    
+        mode_backend = self.mapDict.value2key('stop_mode', mode_front)
+        
+        page = None
+        if mode_backend == 'timer':
+            page = self.ui.config_stop_timer_page
+        elif mode_backend == 'signal':
+            page = self.ui.config_stop_signal_page
+        elif mode_backend == 'detection':
+            page = self.ui.config_stop_detection_page
+
+        if page:
+            GUIBackend.set_stack_widget_page(self.ui.config_stop_system_settings_stackwidget,page)
 
     def __add_btns_connector(self,):
         for step_name in self.signals_wgt.keys():
@@ -861,8 +920,10 @@ class configSettingTabUI(commonSettingUI):
 
         if self.signals_wgt[step_name]['type'] == 'input':
             signal_ui = inputSignalUI(step_name)
+            signal_ui.set_signals_items(self.read_signals)
         else:
             signal_ui = outputSignalUI(step_name)
+            signal_ui.set_signals_items(self.write_signals)
 
         signal_ui.remove_button_connector(self.remove_signal_event)
 
@@ -880,16 +941,19 @@ class configSettingTabUI(commonSettingUI):
         scroll_bar = self.signals_wgt[step_name]['scroll_area'].verticalScrollBar()
         scroll_bar.setValue(scroll_bar.maximum())
 
-        
-    # def __internal_change_setting_connector(self,):
-    #     for ip_sec in self.ip_sections:
-    #         GUIBackend.connector(self.ip_sections[ip_sec], self.__internal_change_setting_event)
+    def update_signals_event(self, read_signals:list[str], write_signals:list[str]):
+        self.read_signals = read_signals
+        self.write_signals = write_signals
 
-    # def __internal_change_setting_event(self,):
-    #     self.save_state(False)
+        for step_name in self.signals_wgt:
+            signal_ui: Union[inputSignalUI, outputSignalUI]
+            for signal_ui in self.signals_wgt[step_name]['signals']:
 
+                if self.signals_wgt[step_name]['type'] == 'input':
+                    signal_ui.set_signals_items(self.read_signals)
+                elif self.signals_wgt[step_name]['type'] == 'output':
+                    signal_ui.set_signals_items(self.write_signals)
 
-        
 
     def remove_signal_event(self, signal:Union[inputSignalUI, outputSignalUI]):
         
@@ -903,40 +967,4 @@ class configSettingTabUI(commonSettingUI):
 
  
 
-
-class nodeSettinUI(QWidget):
-
-    def __init__(self) -> None:
-        super().__init__()
-        self.ui = Ui_NodeSetting()
-        self.ui.setupUi(self)
-        self.settings = {
-            'name': self.ui.node_name_input,
-            'type': self.ui.node_type_combobox,
-            'ns'  : self.ui.node_ns,
-            'i'   : self.ui.node_i,
-
-        }
-
-        
-
-    def remove_button_connector(self,func):
-        GUIBackend.button_connector_argument_pass(self.ui.close_node_btn, func, args=(self,) )
-
-    def change_setting_connector(self, func):
-        for setting_name in self.settings.keys():
-            GUIBackend.connector(self.settings[setting_name], 
-                                                      func, 
-                                                      )
-
-    def get_settings(self,) -> dict:
-        res = {}
-        for setting_name in self.settings.keys():
-            res[setting_name] = GUIBackend.get_input(self.settings[setting_name])
-        
-        return res
-    
-    def set_settings(self, data:dict):
-        for setting_name in self.settings.keys():
-            GUIBackend.set_input(self.settings[setting_name], data[setting_name])
 

@@ -342,7 +342,7 @@ class reportsPageUI(commonUI):
 
             #define checkbox for each row
             cell_checkbox = GUIComponents.tabelCheckbox()
-            cell_checkbox.set_size(15,15)
+            cell_checkbox.set_size(10,10)
 
             #insert checkbox into table
             GUIBackend.set_table_cell_widget(self.standards_filter_table, (i,0), cell_checkbox)

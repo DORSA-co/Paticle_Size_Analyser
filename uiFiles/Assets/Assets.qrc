@@ -1,5 +1,11 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-compare-50 .png</file>
+    <file>icons/icons8-compare-hover-50.png</file>
+    <file>icons/icons8-rebuild-50.png</file>
+    <file>icons/icons8-rebuild-hover-50.png</file>
+    <file>icons/icons8-eye-50-green.png</file>
+    <file>icons/icons8-eye-50-green-hover.png</file>
     <file>icons/icons8-expand-arrow-24.png</file>
     <file>icons/gray_plus-math-24.png</file>
     <file>icons/gray-subtract-24.png</file>

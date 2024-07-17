@@ -101,9 +101,6 @@ class storageSettingTabUI(commonSettingUI):
             }
 
 
-        self.__setting_change_connector__()
-        GUIBackend.set_wgt_visible(self.ui.settingpage_storage_database_groupbox, False)
-
     def __setting_change_connector__(self,):
         for setting_name,  field_obj in self.settings.items():
                 GUIBackend.connector(field_obj,  lambda : self.save_state(False))

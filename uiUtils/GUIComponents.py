@@ -134,47 +134,22 @@ CONFIRMBOX_STYLESHEET = """
 COMPARE_COMBOBOXE = """
                     QComboBox
 {
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 1px;
-    padding: 3px;
 	min-width:0xp;
-	min-height: 0px;
+	min-height: 18px;
     max-height: 18px;
 	font-size: 14px;
-}
-
-QComboBox:enabled{
-color: rgb(50, 50, 50);
-}
-
-QComboBox::down-arrow
-{   
-	image: url(:/assets/icons/icons8-downtriangle-48.png);
-	width: 8px;
-    height: 8px;
-     background-color: rgb(6, 76, 130);
-	 min-width: 0px;
-     max-height: 17px;
-
+    border-color: rgb(150,150,150);
 }
         """
 
 TABLE_SPINBOX = """
 QSpinBox, QDoubleSpinBox  
 {
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 2px;
     min-width:0xp;
 	min-height: 0px;
     max-height: 20px;
 	font-size: 12px;
 }
-
-QSpinBox:enabled, QDoubleSpinBox:enabled{
-color: rgb(50, 50, 50);
-}
-
 
 QSpinBox::up-arrow, QDoubleSpinBox::up-arrow, QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
 {   
@@ -189,26 +164,19 @@ QSpinBox::up-button,
 QSpinBox::down-button,
 QDoubleSpinBox::up-button,
 QDoubleSpinBox::down-button   {
-    subcontrol-origin: border;
-	background-color:rgb(6, 76, 130);
-    width: 0px;
+    max-width: 0px;
+    min-width: 0px;
 }
+
+
 
 
 QSpinBox::up-button:disabled ,
 QSpinBox::down-button:disabled ,
 QDoubleSpinBox::up-button:disabled ,
 QDoubleSpinBox::down-button:disabled    {
-    subcontrol-origin: border;
-	background-color:rgb(209, 209, 209);
     width: 0px;
 }
-
-QSpinBox:focus, QDoubleSpinBox:focus{
-	background: rgb(241, 241, 241);
-	/*selection-background-color: black;*/
-}
-
 """
 
 class editButton(QtWidgets.QPushButton):
@@ -253,10 +221,18 @@ class reportButton(QtWidgets.QPushButton):
 
     def __init__(self, *a, **kw):
         super(reportButton, self).__init__(*a, **kw)
-        self._icon = QtGui.QIcon(':/assets/icons/icons8-eye-white-50.png')
-        self.setText("")
-        self.setStyleSheet(REPORT_BUTTON_STYLE)
-        self.setIcon(self._icon)
+        self._icon_normal = QtGui.QIcon(':/assets/icons/icons8-eye-50-green.png')
+        self._icon_over = QtGui.QIcon(':/assets/icons/icons8-eye-50-green-hover.png')
+        self.setStyleSheet(TABEL_BUTTON_STYLE)
+        self.setIcon(self._icon_normal)
+
+    def enterEvent(self, event):
+        self.setIcon(self._icon_over)
+        #return super(deleteButton, self).enterEvent(event)
+
+    def leaveEvent(self, event):
+        self.setIcon(self._icon_normal)
+        #return super(deleteButton, self).enterEvent(event)
 
 
 class tableButton(QtWidgets.QPushButton):

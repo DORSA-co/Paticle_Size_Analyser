@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1725, 1051)
+        MainWindow.resize(1725, 1046)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -221,7 +221,7 @@ class Ui_MainWindow(object):
 "QComboBox\n"
 "{\n"
 "	border:2px solid rgba(6, 76, 130,200);\n"
-"    border-radius: 12px;\n"
+"    border-radius: 17px;\n"
 "    padding: 1px 8px 1px 8px;\n"
 "	min-height: 30px;\n"
 "	font-size: 14px;\n"
@@ -691,7 +691,29 @@ class Ui_MainWindow(object):
 "\n"
 "color: rgb(200,200,200);\n"
 "border: 2px solid rgb(200,200,200);\n"
-"}")
+"}\n"
+"\n"
+"\n"
+"QLabel[styleClass=\"section_title\"]{\n"
+"\n"
+"font-size:20px;\n"
+"min-width:0px;\n"
+"max-width:500px;\n"
+"\n"
+"}\n"
+"\n"
+"#scrollAreaConfigContents{\n"
+"	background-color: #fff;\n"
+"\n"
+"}\n"
+"\n"
+"QFrame [styleClass=\"config_section_frame\"]{\n"
+"	background-color: #fff;\n"
+"	border: 1px solid #b0b0b0;\n"
+"	border-radius: 10px;\n"
+"	min-width:700px;\n"
+"}\n"
+"")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -777,7 +799,6 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-" border: 1 solid #ffffff;\n"
 "background-color: rgba(31, 32, 85, 100);\n"
 " }")
         self.win_buttons.setFrameShape(QFrame.StyledPanel)
@@ -788,6 +809,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.toolbar_login_logout_btn = QPushButton(self.win_buttons)
         self.toolbar_login_logout_btn.setObjectName(u"toolbar_login_logout_btn")
+        self.toolbar_login_logout_btn.setMaximumSize(QSize(40, 40))
         self.toolbar_login_logout_btn.setStyleSheet(u"")
         icon1 = QIcon()
         icon1.addFile(u":/assets/icons/icons8-user-50.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -844,7 +866,9 @@ class Ui_MainWindow(object):
         self.close_btn.setMinimumSize(QSize(20, 20))
         self.close_btn.setMaximumSize(QSize(16777215, 40))
         self.close_btn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.close_btn.setStyleSheet(u"")
+        self.close_btn.setStyleSheet(u"QPushButton:hover {\n"
+"background-color: rgba(197, 63, 59,200);\n"
+" }")
         icon4 = QIcon()
         icon4.addFile(u":/assets/general/close.png", QSize(), QIcon.Normal, QIcon.Off)
         self.close_btn.setIcon(icon4)
@@ -880,7 +904,7 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton{\n"
 "	color: #ffffff;\n"
-"	min-height: 50px;\n"
+"	min-height: 40px;\n"
 "	text-align: left;\n"
 "	icon-size:25px;\n"
 "	background-color:rgba(0,0,0,0);\n"
@@ -888,29 +912,28 @@ class Ui_MainWindow(object):
 "	border-bottom:2px solid rgba(255,255,255,100);\n"
 "	border-radius : 0px;\n"
 "	min-width:0px;\n"
+"	padding: 10px;\n"
 "    }\n"
 "\n"
 "QPushButton:hover{\n"
 "    font-size:14px; \n"
 "	font-weight:bold;\n"
+"	background-color: rgba(105, 129, 136,100)\n"
 "}\n"
 "\n"
 "QPushButton:disabled{\n"
 "	color: rgb(150, 150, 150);\n"
 "}\n"
 "\n"
-"Line{\n"
-"	max-width: 120px;\n"
-"	background-color:rgba(255, 255, 255, 50);\n"
-"	margin: 0 15px;\n"
-"}")
+"")
         self.verticalLayout_2 = QVBoxLayout(self.sidebar)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(20, 11, 20, -1)
+        self.verticalLayout_2.setContentsMargins(0, 11, 0, -1)
         self.sidebar_main_btn = QPushButton(self.sidebar)
         self.sidebar_main_btn.setObjectName(u"sidebar_main_btn")
         self.sidebar_main_btn.setEnabled(True)
-        self.sidebar_main_btn.setMinimumSize(QSize(0, 52))
+        self.sidebar_main_btn.setMinimumSize(QSize(20, 62))
         icon5 = QIcon()
         icon5.addFile(u":/assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_main_btn.setIcon(icon5)
@@ -919,7 +942,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_report_btn = QPushButton(self.sidebar)
         self.sidebar_report_btn.setObjectName(u"sidebar_report_btn")
-        self.sidebar_report_btn.setMinimumSize(QSize(0, 52))
+        self.sidebar_report_btn.setMinimumSize(QSize(20, 62))
         icon6 = QIcon()
         icon6.addFile(u":/assets/icons/report-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_report_btn.setIcon(icon6)
@@ -936,7 +959,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_settings_btn = QPushButton(self.sidebar)
         self.sidebar_settings_btn.setObjectName(u"sidebar_settings_btn")
-        self.sidebar_settings_btn.setMinimumSize(QSize(0, 52))
+        self.sidebar_settings_btn.setMinimumSize(QSize(20, 62))
         icon8 = QIcon()
         icon8.addFile(u":/assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_settings_btn.setIcon(icon8)
@@ -945,7 +968,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_calib_btn = QPushButton(self.sidebar)
         self.sidebar_calib_btn.setObjectName(u"sidebar_calib_btn")
-        self.sidebar_calib_btn.setMinimumSize(QSize(0, 52))
+        self.sidebar_calib_btn.setMinimumSize(QSize(20, 62))
         icon9 = QIcon()
         icon9.addFile(u":/assets/icons/icons8-ruler-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_calib_btn.setIcon(icon9)
@@ -954,7 +977,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_users_btn = QPushButton(self.sidebar)
         self.sidebar_users_btn.setObjectName(u"sidebar_users_btn")
-        self.sidebar_users_btn.setMinimumSize(QSize(0, 52))
+        self.sidebar_users_btn.setMinimumSize(QSize(20, 62))
         icon10 = QIcon()
         icon10.addFile(u":/assets/icons/icons8-users-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_users_btn.setIcon(icon10)
@@ -963,7 +986,7 @@ class Ui_MainWindow(object):
 
         self.sidebar_help_btn = QPushButton(self.sidebar)
         self.sidebar_help_btn.setObjectName(u"sidebar_help_btn")
-        self.sidebar_help_btn.setMinimumSize(QSize(0, 52))
+        self.sidebar_help_btn.setMinimumSize(QSize(20, 62))
         icon11 = QIcon()
         icon11.addFile(u":/assets/icons/icons8-question-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_help_btn.setIcon(icon11)
@@ -2759,6 +2782,7 @@ class Ui_MainWindow(object):
         self.gridLayout_14.setObjectName(u"gridLayout_14")
         self.settingpage_sample_default_standard_comboxos = QComboBox(self.groupBox_6)
         self.settingpage_sample_default_standard_comboxos.setObjectName(u"settingpage_sample_default_standard_comboxos")
+        self.settingpage_sample_default_standard_comboxos.setMinimumSize(QSize(150, 36))
 
         self.gridLayout_14.addWidget(self.settingpage_sample_default_standard_comboxos, 0, 1, 1, 1)
 
@@ -2788,6 +2812,7 @@ class Ui_MainWindow(object):
 
         self.settingpage_sample_default_grading_parm_comboxos = QComboBox(self.groupBox_6)
         self.settingpage_sample_default_grading_parm_comboxos.setObjectName(u"settingpage_sample_default_grading_parm_comboxos")
+        self.settingpage_sample_default_grading_parm_comboxos.setMinimumSize(QSize(150, 36))
 
         self.gridLayout_14.addWidget(self.settingpage_sample_default_grading_parm_comboxos, 1, 1, 1, 1)
 
@@ -3731,7 +3756,7 @@ class Ui_MainWindow(object):
         self.nodesScrollArea.setWidgetResizable(True)
         self.nodesScrollAreaContent = QWidget()
         self.nodesScrollAreaContent.setObjectName(u"nodesScrollAreaContent")
-        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1419, 514))
+        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1467, 509))
         self.verticalLayout_67 = QVBoxLayout(self.nodesScrollAreaContent)
         self.verticalLayout_67.setObjectName(u"verticalLayout_67")
         self.settingpage_plc_add_node_btn = QPushButton(self.nodesScrollAreaContent)
@@ -3849,59 +3874,119 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.addTab(self.settingpage_algorithm_tab, "")
         self.settingpage_config_tab = QWidget()
         self.settingpage_config_tab.setObjectName(u"settingpage_config_tab")
-        self.settingpage_config_tab.setStyleSheet(u"QLabel[styleClass=\"section_title\"]{\n"
-"\n"
-"font-size:20px;\n"
-"min-width:0px;\n"
-"max-width:500px;\n"
-"\n"
-"}\n"
-"\n"
-"#scrollAreaConfigContents{\n"
-"	background-color: #fff;\n"
-"\n"
-"}\n"
-"\n"
-"QFrame [styleClass=\"config_section_frame\"]{\n"
-"	border: 2px solid #606060;\n"
-"	border-radius: 10px;\n"
-"	min-width:700px;\n"
-"}\n"
-"")
+        self.settingpage_config_tab.setStyleSheet(u"")
         self.verticalLayout_68 = QVBoxLayout(self.settingpage_config_tab)
         self.verticalLayout_68.setObjectName(u"verticalLayout_68")
-        self.scrollArea_6 = QScrollArea(self.settingpage_config_tab)
-        self.scrollArea_6.setObjectName(u"scrollArea_6")
-        self.scrollArea_6.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 1429, 671))
-        self.verticalLayout_86 = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.config_tab_main_scrollBar = QScrollArea(self.settingpage_config_tab)
+        self.config_tab_main_scrollBar.setObjectName(u"config_tab_main_scrollBar")
+        self.config_tab_main_scrollBar.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.config_tab_main_scrollBar.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.config_tab_main_scrollBar.setWidgetResizable(True)
+        self.config_tab_main_scrollBarArea_contents = QWidget()
+        self.config_tab_main_scrollBarArea_contents.setObjectName(u"config_tab_main_scrollBarArea_contents")
+        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, -115, 1467, 798))
+        self.verticalLayout_86 = QVBoxLayout(self.config_tab_main_scrollBarArea_contents)
+        self.verticalLayout_86.setSpacing(15)
         self.verticalLayout_86.setObjectName(u"verticalLayout_86")
-        self.label_136 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_136.setObjectName(u"label_136")
+        self.label_149 = QLabel(self.config_tab_main_scrollBarArea_contents)
+        self.label_149.setObjectName(u"label_149")
+        self.label_149.setStyleSheet(u"font-size: 20px;\n"
+"font-weight: bold;")
 
-        self.verticalLayout_86.addWidget(self.label_136)
+        self.verticalLayout_86.addWidget(self.label_149)
 
-        self.label_137 = QLabel(self.scrollAreaWidgetContents_2)
+        self.horizontalLayout_18 = QHBoxLayout()
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.label_139 = QLabel(self.config_tab_main_scrollBarArea_contents)
+        self.label_139.setObjectName(u"label_139")
+
+        self.horizontalLayout_18.addWidget(self.label_139)
+
+        self.config_lens_type_combobox = QComboBox(self.config_tab_main_scrollBarArea_contents)
+        self.config_lens_type_combobox.addItem("")
+        self.config_lens_type_combobox.setObjectName(u"config_lens_type_combobox")
+        self.config_lens_type_combobox.setMinimumSize(QSize(130, 36))
+
+        self.horizontalLayout_18.addWidget(self.config_lens_type_combobox)
+
+        self.horizontalSpacer_65 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_18.addItem(self.horizontalSpacer_65)
+
+
+        self.verticalLayout_86.addLayout(self.horizontalLayout_18)
+
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.label_137 = QLabel(self.config_tab_main_scrollBarArea_contents)
         self.label_137.setObjectName(u"label_137")
 
-        self.verticalLayout_86.addWidget(self.label_137)
+        self.horizontalLayout_21.addWidget(self.label_137)
 
-        self.scrollAreaConfig = QScrollArea(self.scrollAreaWidgetContents_2)
-        self.scrollAreaConfig.setObjectName(u"scrollAreaConfig")
-        self.scrollAreaConfig.setMinimumSize(QSize(500, 0))
-        self.scrollAreaConfig.setStyleSheet(u"")
-        self.scrollAreaConfig.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        self.scrollAreaConfig.setWidgetResizable(True)
-        self.scrollAreaConfigContents = QWidget()
-        self.scrollAreaConfigContents.setObjectName(u"scrollAreaConfigContents")
-        self.scrollAreaConfigContents.setGeometry(QRect(-1405, 0, 5670, 591))
-        self.horizontalLayout_72 = QHBoxLayout(self.scrollAreaConfigContents)
+        self.config_fps_regulator_combobox = QComboBox(self.config_tab_main_scrollBarArea_contents)
+        self.config_fps_regulator_combobox.addItem("")
+        self.config_fps_regulator_combobox.addItem("")
+        self.config_fps_regulator_combobox.setObjectName(u"config_fps_regulator_combobox")
+
+        self.horizontalLayout_21.addWidget(self.config_fps_regulator_combobox)
+
+        self.horizontalSpacer_103 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_21.addItem(self.horizontalSpacer_103)
+
+
+        self.verticalLayout_86.addLayout(self.horizontalLayout_21)
+
+        self.horizontalLayout_28 = QHBoxLayout()
+        self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
+        self.config_plc_enable_checkbox = QCheckBox(self.config_tab_main_scrollBarArea_contents)
+        self.config_plc_enable_checkbox.setObjectName(u"config_plc_enable_checkbox")
+
+        self.horizontalLayout_28.addWidget(self.config_plc_enable_checkbox)
+
+
+        self.verticalLayout_86.addLayout(self.horizontalLayout_28)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_86.addItem(self.verticalSpacer_5)
+
+        self.label_140 = QLabel(self.config_tab_main_scrollBarArea_contents)
+        self.label_140.setObjectName(u"label_140")
+        self.label_140.setStyleSheet(u"font-size: 20px;\n"
+"font-weight: bold;")
+
+        self.verticalLayout_86.addWidget(self.label_140)
+
+        self.scrollAreaConfigPipeLine = QScrollArea(self.config_tab_main_scrollBarArea_contents)
+        self.scrollAreaConfigPipeLine.setObjectName(u"scrollAreaConfigPipeLine")
+        sizePolicy1.setHeightForWidth(self.scrollAreaConfigPipeLine.sizePolicy().hasHeightForWidth())
+        self.scrollAreaConfigPipeLine.setSizePolicy(sizePolicy1)
+        self.scrollAreaConfigPipeLine.setMinimumSize(QSize(0, 500))
+        self.scrollAreaConfigPipeLine.setStyleSheet(u"")
+        self.scrollAreaConfigPipeLine.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollAreaConfigPipeLine.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.scrollAreaConfigPipeLine.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
+        self.scrollAreaConfigPipeLine.setWidgetResizable(True)
+        self.scrollAreaConfigPipeLineContents = QWidget()
+        self.scrollAreaConfigPipeLineContents.setObjectName(u"scrollAreaConfigPipeLineContents")
+        self.scrollAreaConfigPipeLineContents.setGeometry(QRect(-3550, 0, 5656, 488))
+        sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.scrollAreaConfigPipeLineContents.sizePolicy().hasHeightForWidth())
+        self.scrollAreaConfigPipeLineContents.setSizePolicy(sizePolicy8)
+        self.scrollAreaConfigPipeLineContents.setMaximumSize(QSize(16777215, 550))
+        self.scrollAreaConfigPipeLineContents.setStyleSheet(u"#scrollAreaConfigPipeLineContents{\n"
+"	background-color: rgba(200, 200, 200,5);\n"
+"/*rgb(201, 229, 255,20);*/\n"
+"}")
+        self.horizontalLayout_72 = QHBoxLayout(self.scrollAreaConfigPipeLineContents)
         self.horizontalLayout_72.setObjectName(u"horizontalLayout_72")
-        self.frame_7 = QFrame(self.scrollAreaConfigContents)
+        self.horizontalLayout_72.setContentsMargins(11, 11, 11, 11)
+        self.frame_7 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_7.setObjectName(u"frame_7")
-        self.frame_7.setMinimumSize(QSize(704, 0))
+        self.frame_7.setMinimumSize(QSize(702, 0))
         self.frame_7.setMaximumSize(QSize(16777215, 16777215))
         self.frame_7.setFrameShape(QFrame.StyledPanel)
         self.frame_7.setFrameShadow(QFrame.Raised)
@@ -3909,11 +3994,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_69.setObjectName(u"verticalLayout_69")
         self.label_20 = QLabel(self.frame_7)
         self.label_20.setObjectName(u"label_20")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
-        self.label_20.setSizePolicy(sizePolicy8)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
+        self.label_20.setSizePolicy(sizePolicy9)
         self.label_20.setMaximumSize(QSize(510, 16777215))
         self.label_20.setAlignment(Qt.AlignCenter)
 
@@ -4010,7 +4095,7 @@ class Ui_MainWindow(object):
         self.config_start_system_signals_scroll_area.setWidgetResizable(True)
         self.config_start_system_signals_scroll_contents = QWidget()
         self.config_start_system_signals_scroll_contents.setObjectName(u"config_start_system_signals_scroll_contents")
-        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 66, 69))
+        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 618, 270))
         self.config_start_system_signals_scroll_contents.setStyleSheet(u"")
         self.verticalLayout_77 = QVBoxLayout(self.config_start_system_signals_scroll_contents)
         self.verticalLayout_77.setObjectName(u"verticalLayout_77")
@@ -4040,15 +4125,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.frame_7)
 
-        self.label_128 = QLabel(self.scrollAreaConfigContents)
+        self.label_128 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_128.setObjectName(u"label_128")
         self.label_128.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
 
         self.horizontalLayout_72.addWidget(self.label_128)
 
-        self.frame_9 = QFrame(self.scrollAreaConfigContents)
+        self.frame_9 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_9.setObjectName(u"frame_9")
-        self.frame_9.setMinimumSize(QSize(704, 0))
+        self.frame_9.setMinimumSize(QSize(702, 0))
         self.frame_9.setMaximumSize(QSize(16777215, 16777215))
         self.frame_9.setFrameShape(QFrame.StyledPanel)
         self.frame_9.setFrameShadow(QFrame.Raised)
@@ -4056,8 +4141,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_74.setObjectName(u"verticalLayout_74")
         self.label_123 = QLabel(self.frame_9)
         self.label_123.setObjectName(u"label_123")
-        sizePolicy8.setHeightForWidth(self.label_123.sizePolicy().hasHeightForWidth())
-        self.label_123.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_123.sizePolicy().hasHeightForWidth())
+        self.label_123.setSizePolicy(sizePolicy9)
         self.label_123.setMaximumSize(QSize(510, 16777215))
         self.label_123.setAlignment(Qt.AlignCenter)
 
@@ -4080,7 +4165,7 @@ class Ui_MainWindow(object):
         self.config_permisions_signals_scroll_area.setWidgetResizable(True)
         self.config_permisions_signals_scroll_contents = QWidget()
         self.config_permisions_signals_scroll_contents.setObjectName(u"config_permisions_signals_scroll_contents")
-        self.config_permisions_signals_scroll_contents.setGeometry(QRect(0, 0, 642, 453))
+        self.config_permisions_signals_scroll_contents.setGeometry(QRect(0, 0, 642, 370))
         self.verticalLayout_76 = QVBoxLayout(self.config_permisions_signals_scroll_contents)
         self.verticalLayout_76.setObjectName(u"verticalLayout_76")
         self.config_permisions_signals_add_btn = QPushButton(self.config_permisions_signals_scroll_contents)
@@ -4103,15 +4188,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.frame_9)
 
-        self.label_129 = QLabel(self.scrollAreaConfigContents)
+        self.label_129 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_129.setObjectName(u"label_129")
         self.label_129.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
 
         self.horizontalLayout_72.addWidget(self.label_129)
 
-        self.frame_11 = QFrame(self.scrollAreaConfigContents)
+        self.frame_11 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setMinimumSize(QSize(704, 0))
+        self.frame_11.setMinimumSize(QSize(702, 0))
         self.frame_11.setMaximumSize(QSize(16777215, 16777215))
         self.frame_11.setFrameShape(QFrame.StyledPanel)
         self.frame_11.setFrameShadow(QFrame.Raised)
@@ -4119,8 +4204,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_78.setObjectName(u"verticalLayout_78")
         self.label_125 = QLabel(self.frame_11)
         self.label_125.setObjectName(u"label_125")
-        sizePolicy8.setHeightForWidth(self.label_125.sizePolicy().hasHeightForWidth())
-        self.label_125.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_125.sizePolicy().hasHeightForWidth())
+        self.label_125.setSizePolicy(sizePolicy9)
         self.label_125.setMaximumSize(QSize(510, 16777215))
         self.label_125.setAlignment(Qt.AlignCenter)
 
@@ -4143,7 +4228,7 @@ class Ui_MainWindow(object):
         self.config_output_signals1_scroll_area.setWidgetResizable(True)
         self.config_output_signals1_scroll_contents = QWidget()
         self.config_output_signals1_scroll_contents.setObjectName(u"config_output_signals1_scroll_contents")
-        self.config_output_signals1_scroll_contents.setGeometry(QRect(0, 0, 642, 453))
+        self.config_output_signals1_scroll_contents.setGeometry(QRect(0, 0, 642, 370))
         self.verticalLayout_80 = QVBoxLayout(self.config_output_signals1_scroll_contents)
         self.verticalLayout_80.setObjectName(u"verticalLayout_80")
         self.config_output_signals1_add_btn = QPushButton(self.config_output_signals1_scroll_contents)
@@ -4165,17 +4250,17 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.frame_11)
 
-        self.label_130 = QLabel(self.scrollAreaConfigContents)
+        self.label_130 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_130.setObjectName(u"label_130")
         self.label_130.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
 
         self.horizontalLayout_72.addWidget(self.label_130)
 
-        self.frame_13 = QFrame(self.scrollAreaConfigContents)
+        self.frame_13 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_13.setObjectName(u"frame_13")
         sizePolicy3.setHeightForWidth(self.frame_13.sizePolicy().hasHeightForWidth())
         self.frame_13.setSizePolicy(sizePolicy3)
-        self.frame_13.setMinimumSize(QSize(704, 0))
+        self.frame_13.setMinimumSize(QSize(702, 0))
         self.frame_13.setMaximumSize(QSize(16777215, 16777215))
         self.frame_13.setFrameShape(QFrame.StyledPanel)
         self.frame_13.setFrameShadow(QFrame.Raised)
@@ -4183,8 +4268,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_81.setObjectName(u"verticalLayout_81")
         self.label_127 = QLabel(self.frame_13)
         self.label_127.setObjectName(u"label_127")
-        sizePolicy8.setHeightForWidth(self.label_127.sizePolicy().hasHeightForWidth())
-        self.label_127.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_127.sizePolicy().hasHeightForWidth())
+        self.label_127.setSizePolicy(sizePolicy9)
         self.label_127.setMaximumSize(QSize(510, 16777215))
         self.label_127.setAlignment(Qt.AlignCenter)
 
@@ -4192,11 +4277,11 @@ class Ui_MainWindow(object):
 
         self.frame_14 = QFrame(self.frame_13)
         self.frame_14.setObjectName(u"frame_14")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
-        self.frame_14.setSizePolicy(sizePolicy9)
+        sizePolicy10 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
+        self.frame_14.setSizePolicy(sizePolicy10)
         self.frame_14.setFrameShape(QFrame.StyledPanel)
         self.frame_14.setFrameShadow(QFrame.Raised)
         self.verticalLayout_82 = QVBoxLayout(self.frame_14)
@@ -4240,15 +4325,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.frame_13)
 
-        self.label_132 = QLabel(self.scrollAreaConfigContents)
+        self.label_132 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_132.setObjectName(u"label_132")
         self.label_132.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
 
         self.horizontalLayout_72.addWidget(self.label_132)
 
-        self.frame_15 = QFrame(self.scrollAreaConfigContents)
+        self.frame_15 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_15.setObjectName(u"frame_15")
-        self.frame_15.setMinimumSize(QSize(704, 0))
+        self.frame_15.setMinimumSize(QSize(702, 0))
         self.frame_15.setMaximumSize(QSize(16777215, 16777215))
         self.frame_15.setFrameShape(QFrame.StyledPanel)
         self.frame_15.setFrameShadow(QFrame.Raised)
@@ -4256,8 +4341,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_83.setObjectName(u"verticalLayout_83")
         self.label_133 = QLabel(self.frame_15)
         self.label_133.setObjectName(u"label_133")
-        sizePolicy8.setHeightForWidth(self.label_133.sizePolicy().hasHeightForWidth())
-        self.label_133.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_133.sizePolicy().hasHeightForWidth())
+        self.label_133.setSizePolicy(sizePolicy9)
         self.label_133.setMaximumSize(QSize(510, 16777215))
         self.label_133.setAlignment(Qt.AlignCenter)
 
@@ -4280,7 +4365,7 @@ class Ui_MainWindow(object):
         self.config_output_signals2_scroll_area.setWidgetResizable(True)
         self.config_output_signals2_scroll_contents = QWidget()
         self.config_output_signals2_scroll_contents.setObjectName(u"config_output_signals2_scroll_contents")
-        self.config_output_signals2_scroll_contents.setGeometry(QRect(0, 0, 642, 453))
+        self.config_output_signals2_scroll_contents.setGeometry(QRect(0, 0, 642, 370))
         self.verticalLayout_85 = QVBoxLayout(self.config_output_signals2_scroll_contents)
         self.verticalLayout_85.setObjectName(u"verticalLayout_85")
         self.config_output_signals2_add_btn = QPushButton(self.config_output_signals2_scroll_contents)
@@ -4302,15 +4387,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.frame_15)
 
-        self.label_135 = QLabel(self.scrollAreaConfigContents)
+        self.label_135 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_135.setObjectName(u"label_135")
         self.label_135.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
 
         self.horizontalLayout_72.addWidget(self.label_135)
 
-        self.frame_19 = QFrame(self.scrollAreaConfigContents)
+        self.frame_19 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_19.setObjectName(u"frame_19")
-        self.frame_19.setMinimumSize(QSize(704, 0))
+        self.frame_19.setMinimumSize(QSize(702, 0))
         self.frame_19.setMaximumSize(QSize(16777215, 16777215))
         self.frame_19.setFrameShape(QFrame.StyledPanel)
         self.frame_19.setFrameShadow(QFrame.Raised)
@@ -4318,8 +4403,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_92.setObjectName(u"verticalLayout_92")
         self.label_141 = QLabel(self.frame_19)
         self.label_141.setObjectName(u"label_141")
-        sizePolicy8.setHeightForWidth(self.label_141.sizePolicy().hasHeightForWidth())
-        self.label_141.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_141.sizePolicy().hasHeightForWidth())
+        self.label_141.setSizePolicy(sizePolicy9)
         self.label_141.setMaximumSize(QSize(510, 16777215))
         self.label_141.setAlignment(Qt.AlignCenter)
 
@@ -4414,7 +4499,7 @@ class Ui_MainWindow(object):
         self.config_stop_system_signals_scroll_area.setWidgetResizable(True)
         self.config_stop_system_signals_scroll_contents = QWidget()
         self.config_stop_system_signals_scroll_contents.setObjectName(u"config_stop_system_signals_scroll_contents")
-        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 66, 69))
+        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 618, 230))
         self.verticalLayout_97 = QVBoxLayout(self.config_stop_system_signals_scroll_contents)
         self.verticalLayout_97.setObjectName(u"verticalLayout_97")
         self.config_stop_system_signals_add_btn = QPushButton(self.config_stop_system_signals_scroll_contents)
@@ -4440,21 +4525,55 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_93.addLayout(self.verticalLayout_94)
 
+        self.config_stop_emergency_timer_frame = QFrame(self.frame_20)
+        self.config_stop_emergency_timer_frame.setObjectName(u"config_stop_emergency_timer_frame")
+        self.horizontalLayout_76 = QHBoxLayout(self.config_stop_emergency_timer_frame)
+        self.horizontalLayout_76.setObjectName(u"horizontalLayout_76")
+        self.horizontalLayout_76.setContentsMargins(-1, 5, -1, -1)
+        self.config_stop_emergency_timer_checkbox = QCheckBox(self.config_stop_emergency_timer_frame)
+        self.config_stop_emergency_timer_checkbox.setObjectName(u"config_stop_emergency_timer_checkbox")
+
+        self.horizontalLayout_76.addWidget(self.config_stop_emergency_timer_checkbox)
+
+        self.horizontalSpacer_117 = QSpacerItem(30, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+
+        self.horizontalLayout_76.addItem(self.horizontalSpacer_117)
+
+        self.config_stop_emergency_timer_spinbox = QSpinBox(self.config_stop_emergency_timer_frame)
+        self.config_stop_emergency_timer_spinbox.setObjectName(u"config_stop_emergency_timer_spinbox")
+        self.config_stop_emergency_timer_spinbox.setMinimumSize(QSize(150, 27))
+        self.config_stop_emergency_timer_spinbox.setMaximum(1800)
+        self.config_stop_emergency_timer_spinbox.setSingleStep(60)
+
+        self.horizontalLayout_76.addWidget(self.config_stop_emergency_timer_spinbox)
+
+        self.label_4 = QLabel(self.config_stop_emergency_timer_frame)
+        self.label_4.setObjectName(u"label_4")
+
+        self.horizontalLayout_76.addWidget(self.label_4)
+
+        self.horizontalSpacer_111 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_76.addItem(self.horizontalSpacer_111)
+
+
+        self.verticalLayout_93.addWidget(self.config_stop_emergency_timer_frame)
+
 
         self.verticalLayout_92.addWidget(self.frame_20)
 
 
         self.horizontalLayout_72.addWidget(self.frame_19)
 
-        self.label_148 = QLabel(self.scrollAreaConfigContents)
+        self.label_148 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_148.setObjectName(u"label_148")
         self.label_148.setPixmap(QPixmap(u":/assets/icons/icons8-arrow-96.png"))
 
         self.horizontalLayout_72.addWidget(self.label_148)
 
-        self.frame_21 = QFrame(self.scrollAreaConfigContents)
+        self.frame_21 = QFrame(self.scrollAreaConfigPipeLineContents)
         self.frame_21.setObjectName(u"frame_21")
-        self.frame_21.setMinimumSize(QSize(704, 0))
+        self.frame_21.setMinimumSize(QSize(702, 0))
         self.frame_21.setMaximumSize(QSize(16777215, 16777215))
         self.frame_21.setFrameShape(QFrame.StyledPanel)
         self.frame_21.setFrameShadow(QFrame.Raised)
@@ -4462,8 +4581,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_98.setObjectName(u"verticalLayout_98")
         self.label_146 = QLabel(self.frame_21)
         self.label_146.setObjectName(u"label_146")
-        sizePolicy8.setHeightForWidth(self.label_146.sizePolicy().hasHeightForWidth())
-        self.label_146.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_146.sizePolicy().hasHeightForWidth())
+        self.label_146.setSizePolicy(sizePolicy9)
         self.label_146.setMaximumSize(QSize(510, 16777215))
         self.label_146.setAlignment(Qt.AlignCenter)
 
@@ -4486,7 +4605,7 @@ class Ui_MainWindow(object):
         self.config_output_signals3_scroll_area.setWidgetResizable(True)
         self.config_output_signals3_scroll_contents = QWidget()
         self.config_output_signals3_scroll_contents.setObjectName(u"config_output_signals3_scroll_contents")
-        self.config_output_signals3_scroll_contents.setGeometry(QRect(0, 0, 642, 453))
+        self.config_output_signals3_scroll_contents.setGeometry(QRect(0, 0, 642, 370))
         self.verticalLayout_100 = QVBoxLayout(self.config_output_signals3_scroll_contents)
         self.verticalLayout_100.setObjectName(u"verticalLayout_100")
         self.config_output_signals3_add_btn = QPushButton(self.config_output_signals3_scroll_contents)
@@ -4508,13 +4627,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.frame_21)
 
-        self.scrollAreaConfig.setWidget(self.scrollAreaConfigContents)
+        self.scrollAreaConfigPipeLine.setWidget(self.scrollAreaConfigPipeLineContents)
 
-        self.verticalLayout_86.addWidget(self.scrollAreaConfig)
+        self.verticalLayout_86.addWidget(self.scrollAreaConfigPipeLine)
 
-        self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_2)
+        self.config_tab_main_scrollBar.setWidget(self.config_tab_main_scrollBarArea_contents)
 
-        self.verticalLayout_68.addWidget(self.scrollArea_6)
+        self.verticalLayout_68.addWidget(self.config_tab_main_scrollBar)
 
         self.horizontalFrame_11 = QFrame(self.settingpage_config_tab)
         self.horizontalFrame_11.setObjectName(u"horizontalFrame_11")
@@ -4615,11 +4734,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_52.setObjectName(u"horizontalLayout_52")
         self.calibrationpage_left_side = QFrame(self.cilbration)
         self.calibrationpage_left_side.setObjectName(u"calibrationpage_left_side")
-        sizePolicy10 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
-        sizePolicy10.setHorizontalStretch(0)
-        sizePolicy10.setVerticalStretch(0)
-        sizePolicy10.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
-        self.calibrationpage_left_side.setSizePolicy(sizePolicy10)
+        sizePolicy11 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Minimum)
+        sizePolicy11.setHorizontalStretch(0)
+        sizePolicy11.setVerticalStretch(0)
+        sizePolicy11.setHeightForWidth(self.calibrationpage_left_side.sizePolicy().hasHeightForWidth())
+        self.calibrationpage_left_side.setSizePolicy(sizePolicy11)
         self.calibrationpage_left_side.setMaximumSize(QSize(550, 16777215))
         self.calibrationpage_left_side.setStyleSheet(u"")
         self.calibrationpage_left_side.setFrameShape(QFrame.StyledPanel)
@@ -5549,76 +5668,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3 = QScrollArea(self.helppage_about_tab)
         self.scrollArea_3.setObjectName(u"scrollArea_3")
         self.scrollArea_3.setMaximumSize(QSize(16777215, 900))
-        self.scrollArea_3.setStyleSheet(u"#aboutScrollArea{\n"
-"background-color:#ffffff;\n"
-"\n"
-"}\n"
-"\n"
-"    QScrollBar:vertical\n"
-"    {\n"
-"        background-color: rgb(50, 50, 50);\n"
-"        width: 20px;\n"
-"        margin: 15px 3px 15px 3px;\n"
-"        border: 1px transparent #2A2929;\n"
-"        border-radius: 4px;\n"
-"    }\n"
-"\n"
-"    QScrollBar::handle:vertical\n"
-"    {\n"
-"        background-color:rgb(21, 142, 241);\n"
-"        min-height: 5px;\n"
-"        border-radius: 4px;\n"
-"    }\n"
-"\n"
-"    QScrollBar::sub-line:vertical\n"
-"    {\n"
-"        margin: 3px 0px 3px 0px;\n"
-"        border-image: url(:/qss_icons/rc/up_arrow_disabled.png);\n"
-"        height: 10px;\n"
-"        width: 10px;\n"
-"        subcontrol-position: top;\n"
-"        subcontrol-origin: margin;\n"
-"    }\n"
-"\n"
-"    QScrollBar::add-line:vertical\n"
-"    {\n"
-"        margin: 3px 0px 3px 0px;\n"
-"        border-image: url(:/qss_icons/rc/down_arrow_disabled.png);\n"
-"        height: 10px;\n"
-"        width: 10px;\n"
-"        subcontrol-position: bottom;\n"
-" "
-                        "       subcontrol-origin: margin;\n"
-"    }\n"
-"\n"
-"    QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on\n"
-"    {\n"
-"        border-image: url(:/qss_icons/rc/up_arrow.png);\n"
-"        height: 10px;\n"
-"        width: 10px;\n"
-"        subcontrol-position: top;\n"
-"        subcontrol-origin: margin;\n"
-"    }\n"
-"\n"
-"    QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on\n"
-"    {\n"
-"        border-image: url(:/qss_icons/rc/down_arrow.png);\n"
-"        height: 10px;\n"
-"        width: 10px;\n"
-"        subcontrol-position: bottom;\n"
-"        subcontrol-origin: margin;\n"
-"    }\n"
-"\n"
-"    QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical\n"
-"    {\n"
-"        background: none;\n"
-"    }\n"
-"\n"
-"    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical\n"
-"    {\n"
-"        background: none;\n"
-"    }\n"
-"")
+        self.scrollArea_3.setStyleSheet(u"")
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
@@ -6284,11 +6334,11 @@ class Ui_MainWindow(object):
         self.sreportpage_statictics_table.setItem(1, 1, __qtablewidgetitem37)
         self.sreportpage_statictics_table.setObjectName(u"sreportpage_statictics_table")
         self.sreportpage_statictics_table.setEnabled(True)
-        sizePolicy11 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
-        sizePolicy11.setHorizontalStretch(0)
-        sizePolicy11.setVerticalStretch(0)
-        sizePolicy11.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_statictics_table.setSizePolicy(sizePolicy11)
+        sizePolicy12 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy12.setHorizontalStretch(0)
+        sizePolicy12.setVerticalStretch(0)
+        sizePolicy12.setHeightForWidth(self.sreportpage_statictics_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_statictics_table.setSizePolicy(sizePolicy12)
         self.sreportpage_statictics_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_statictics_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_statictics_table.setBaseSize(QSize(0, 0))
@@ -6843,8 +6893,8 @@ class Ui_MainWindow(object):
         self.sreportpage_particels_table.setItem(0, 1, __qtablewidgetitem38)
         self.sreportpage_particels_table.setObjectName(u"sreportpage_particels_table")
         self.sreportpage_particels_table.setEnabled(True)
-        sizePolicy11.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
-        self.sreportpage_particels_table.setSizePolicy(sizePolicy11)
+        sizePolicy12.setHeightForWidth(self.sreportpage_particels_table.sizePolicy().hasHeightForWidth())
+        self.sreportpage_particels_table.setSizePolicy(sizePolicy12)
         self.sreportpage_particels_table.setMaximumSize(QSize(16777215, 16777215))
         self.sreportpage_particels_table.setSizeIncrement(QSize(0, 0))
         self.sreportpage_particels_table.setBaseSize(QSize(0, 0))
@@ -7127,8 +7177,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_table.setItem(1, 1, __qtablewidgetitem40)
         self.comparepage_compare_table.setObjectName(u"comparepage_compare_table")
         self.comparepage_compare_table.setEnabled(True)
-        sizePolicy11.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_table.setSizePolicy(sizePolicy11)
+        sizePolicy12.setHeightForWidth(self.comparepage_compare_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_table.setSizePolicy(sizePolicy12)
         self.comparepage_compare_table.setMaximumSize(QSize(16777215, 16777215))
         self.comparepage_compare_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_table.setBaseSize(QSize(0, 0))
@@ -7219,8 +7269,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_58.setContentsMargins(0, 0, -1, -1)
         self.label_112 = QLabel(self.compareScrollAreaWidget)
         self.label_112.setObjectName(u"label_112")
-        sizePolicy8.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
-        self.label_112.setSizePolicy(sizePolicy8)
+        sizePolicy9.setHeightForWidth(self.label_112.sizePolicy().hasHeightForWidth())
+        self.label_112.setSizePolicy(sizePolicy9)
         self.label_112.setFont(font5)
         self.label_112.setStyleSheet(u"QLabel{\n"
 "	color: #707070;\n"
@@ -7240,8 +7290,8 @@ class Ui_MainWindow(object):
         self.comparepage_compare_mean_table.setItem(0, 1, __qtablewidgetitem41)
         self.comparepage_compare_mean_table.setObjectName(u"comparepage_compare_mean_table")
         self.comparepage_compare_mean_table.setEnabled(True)
-        sizePolicy11.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
-        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy11)
+        sizePolicy12.setHeightForWidth(self.comparepage_compare_mean_table.sizePolicy().hasHeightForWidth())
+        self.comparepage_compare_mean_table.setSizePolicy(sizePolicy12)
         self.comparepage_compare_mean_table.setMaximumSize(QSize(16777215, 100))
         self.comparepage_compare_mean_table.setSizeIncrement(QSize(0, 0))
         self.comparepage_compare_mean_table.setBaseSize(QSize(0, 0))
@@ -7524,12 +7574,12 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(6)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(1)
-        self.settingpage_tabs.setCurrentIndex(3)
+        self.settingpage_tabs.setCurrentIndex(6)
         self.tabWidget_2.setCurrentIndex(0)
-        self.config_start_system_settings_stackwidget.setCurrentIndex(0)
-        self.config_stop_system_settings_stackwidget.setCurrentIndex(0)
+        self.config_start_system_settings_stackwidget.setCurrentIndex(1)
+        self.config_stop_system_settings_stackwidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
@@ -7848,9 +7898,18 @@ class Ui_MainWindow(object):
         self.settingpage_algorithm_restor_default_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"restoreButton", None))
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_algorithm_tab), QCoreApplication.translate("MainWindow", u"Algorithm", None))
         self.settingpage_config_tab.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
-        self.label_136.setText(QCoreApplication.translate("MainWindow", u"System Sycles", None))
-        self.label_137.setText(QCoreApplication.translate("MainWindow", u"Lens Type", None))
-        self.scrollAreaConfig.setProperty("styleClass", "")
+        self.config_tab_main_scrollBarArea_contents.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
+        self.label_149.setText(QCoreApplication.translate("MainWindow", u"General", None))
+        self.label_139.setText(QCoreApplication.translate("MainWindow", u"Lens Type", None))
+        self.config_lens_type_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Telecentric", None))
+
+        self.label_137.setText(QCoreApplication.translate("MainWindow", u"FPS Regulators", None))
+        self.config_fps_regulator_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"PLC", None))
+        self.config_fps_regulator_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"Micro", None))
+
+        self.config_plc_enable_checkbox.setText(QCoreApplication.translate("MainWindow", u"Support PLC", None))
+        self.label_140.setText(QCoreApplication.translate("MainWindow", u"PieLine", None))
+        self.scrollAreaConfigPipeLine.setProperty("styleClass", "")
         self.frame_7.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Start System", None))
         self.label_20.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
@@ -7916,6 +7975,8 @@ class Ui_MainWindow(object):
         self.config_stop_system_signals_add_btn.setText("")
         self.config_stop_system_signals_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
         self.config_stop_detection_page.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
+        self.config_stop_emergency_timer_checkbox.setText(QCoreApplication.translate("MainWindow", u"Emergency Timer", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Seconds", None))
         self.label_148.setText("")
         self.frame_21.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
         self.label_146.setText(QCoreApplication.translate("MainWindow", u"Output Signal", None))
@@ -8016,6 +8077,7 @@ class Ui_MainWindow(object):
         self.all_users_tab.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
         self.userspage_user_heading_lbl.setText(QCoreApplication.translate("MainWindow", u"Only Admin Can Access", None))
         self.user_tabs.setTabText(self.user_tabs.indexOf(self.all_users_tab), QCoreApplication.translate("MainWindow", u"All Users", None))
+        self.aboutScrollArea.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
         self.label_82.setText(QCoreApplication.translate("MainWindow", u"DPSA-Alpha (Dorsa Particle Size Analyzer - Alpha Version", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

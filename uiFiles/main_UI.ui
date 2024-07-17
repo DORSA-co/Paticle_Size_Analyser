@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1725</width>
-    <height>1051</height>
+    <height>1046</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -204,7 +204,7 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
 QComboBox
 {
 	border:2px solid rgba(6, 76, 130,200);
-    border-radius: 12px;
+    border-radius: 17px;
     padding: 1px 8px 1px 8px;
 	min-height: 30px;
 	font-size: 14px;
@@ -664,7 +664,29 @@ QPushButton[styleClass=&quot;blueBorderButton&quot;]:disabled{
 
 color: rgb(200,200,200);
 border: 2px solid rgb(200,200,200);
-}</string>
+}
+
+
+QLabel[styleClass=&quot;section_title&quot;]{
+
+font-size:20px;
+min-width:0px;
+max-width:500px;
+
+}
+
+#scrollAreaConfigContents{
+	background-color: #fff;
+
+}
+
+QFrame [styleClass=&quot;config_section_frame&quot;]{
+	background-color: #fff;
+	border: 1px solid #b0b0b0;
+	border-radius: 10px;
+	min-width:700px;
+}
+</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -848,7 +870,6 @@ border: 2px solid rgb(200,200,200);
 }
 
 QPushButton:hover {
- border: 1 solid #ffffff;
 background-color: rgba(31, 32, 85, 100);
  }</string>
          </property>
@@ -876,6 +897,12 @@ background-color: rgba(31, 32, 85, 100);
           </property>
           <item>
            <widget class="QPushButton" name="toolbar_login_logout_btn">
+            <property name="maximumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -1024,7 +1051,9 @@ background-color: rgba(31, 32, 85, 100);
              <string/>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">QPushButton:hover {
+background-color: rgba(197, 63, 59,200);
+ }</string>
             </property>
             <property name="text">
              <string/>
@@ -1103,7 +1132,7 @@ background-color:rgb(6, 76, 130);
 
 QPushButton{
 	color: #ffffff;
-	min-height: 50px;
+	min-height: 40px;
 	text-align: left;
 	icon-size:25px;
 	background-color:rgba(0,0,0,0);
@@ -1111,32 +1140,33 @@ QPushButton{
 	border-bottom:2px solid rgba(255,255,255,100);
 	border-radius : 0px;
 	min-width:0px;
+	padding: 10px;
     }
 
 QPushButton:hover{
     font-size:14px; 
 	font-weight:bold;
+	background-color: rgba(105, 129, 136,100)
 }
 
 QPushButton:disabled{
 	color: rgb(150, 150, 150);
 }
 
-Line{
-	max-width: 120px;
-	background-color:rgba(255, 255, 255, 50);
-	margin: 0 15px;
-}</string>
+</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <property name="leftMargin">
-           <number>20</number>
+           <number>0</number>
           </property>
           <property name="topMargin">
            <number>11</number>
           </property>
           <property name="rightMargin">
-           <number>20</number>
+           <number>0</number>
           </property>
           <item>
            <widget class="QPushButton" name="sidebar_main_btn">
@@ -1145,8 +1175,8 @@ Line{
             </property>
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>52</height>
+              <width>20</width>
+              <height>62</height>
              </size>
             </property>
             <property name="text">
@@ -1162,8 +1192,8 @@ Line{
            <widget class="QPushButton" name="sidebar_report_btn">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>52</height>
+              <width>20</width>
+              <height>62</height>
              </size>
             </property>
             <property name="text">
@@ -1190,8 +1220,8 @@ Line{
            <widget class="QPushButton" name="sidebar_settings_btn">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>52</height>
+              <width>20</width>
+              <height>62</height>
              </size>
             </property>
             <property name="text">
@@ -1207,8 +1237,8 @@ Line{
            <widget class="QPushButton" name="sidebar_calib_btn">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>52</height>
+              <width>20</width>
+              <height>62</height>
              </size>
             </property>
             <property name="text">
@@ -1224,8 +1254,8 @@ Line{
            <widget class="QPushButton" name="sidebar_users_btn">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>52</height>
+              <width>20</width>
+              <height>62</height>
              </size>
             </property>
             <property name="text">
@@ -1241,8 +1271,8 @@ Line{
            <widget class="QPushButton" name="sidebar_help_btn">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>52</height>
+              <width>20</width>
+              <height>62</height>
              </size>
             </property>
             <property name="text">
@@ -4259,7 +4289,7 @@ QLabel
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>6</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4822,7 +4852,14 @@ QLabel
                     <item>
                      <layout class="QGridLayout" name="gridLayout_14">
                       <item row="0" column="1">
-                       <widget class="QComboBox" name="settingpage_sample_default_standard_comboxos"/>
+                       <widget class="QComboBox" name="settingpage_sample_default_standard_comboxos">
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>36</height>
+                         </size>
+                        </property>
+                       </widget>
                       </item>
                       <item row="0" column="0">
                        <widget class="QLabel" name="label_66">
@@ -4866,7 +4903,14 @@ QLabel
                        </widget>
                       </item>
                       <item row="1" column="1">
-                       <widget class="QComboBox" name="settingpage_sample_default_grading_parm_comboxos"/>
+                       <widget class="QComboBox" name="settingpage_sample_default_grading_parm_comboxos">
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>36</height>
+                         </size>
+                        </property>
+                       </widget>
                       </item>
                      </layout>
                     </item>
@@ -6761,7 +6805,7 @@ QLabel[styleClass=&quot;dot&quot;]{
                       <x>0</x>
                       <y>0</y>
                       <width>1467</width>
-                      <height>514</height>
+                      <height>509</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7011,25 +7055,7 @@ QLabel[styleClass=&quot;dot&quot;]{
                </widget>
                <widget class="QWidget" name="settingpage_config_tab">
                 <property name="styleSheet">
-                 <string notr="true">QLabel[styleClass=&quot;section_title&quot;]{
-
-font-size:20px;
-min-width:0px;
-max-width:500px;
-
-}
-
-#scrollAreaConfigContents{
-	background-color: #fff;
-
-}
-
-QFrame [styleClass=&quot;config_section_frame&quot;]{
-	border: 2px solid #606060;
-	border-radius: 10px;
-	min-width:700px;
-}
-</string>
+                 <string notr="true"/>
                 </property>
                 <property name="styleClass" stdset="0">
                  <string>tabPage</string>
@@ -7039,47 +7065,189 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                 </attribute>
                 <layout class="QVBoxLayout" name="verticalLayout_68">
                  <item>
-                  <widget class="QScrollArea" name="scrollArea_6">
+                  <widget class="QScrollArea" name="config_tab_main_scrollBar">
+                   <property name="verticalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAlwaysOn</enum>
+                   </property>
+                   <property name="horizontalScrollBarPolicy">
+                    <enum>Qt::ScrollBarAlwaysOff</enum>
+                   </property>
                    <property name="widgetResizable">
                     <bool>true</bool>
                    </property>
-                   <widget class="QWidget" name="scrollAreaWidgetContents_2">
+                   <widget class="QWidget" name="config_tab_main_scrollBarArea_contents">
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>0</y>
-                      <width>1477</width>
-                      <height>671</height>
+                      <y>-115</y>
+                      <width>1467</width>
+                      <height>798</height>
                      </rect>
                     </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="styleClass" stdset="0">
+                     <string>tabPage</string>
+                    </property>
                     <layout class="QVBoxLayout" name="verticalLayout_86">
+                     <property name="spacing">
+                      <number>15</number>
+                     </property>
                      <item>
-                      <widget class="QLabel" name="label_136">
+                      <widget class="QLabel" name="label_149">
+                       <property name="styleSheet">
+                        <string notr="true">font-size: 20px;
+font-weight: bold;</string>
+                       </property>
                        <property name="text">
-                        <string>System Sycles</string>
+                        <string>General</string>
                        </property>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="label_137">
+                      <layout class="QHBoxLayout" name="horizontalLayout_18">
+                       <item>
+                        <widget class="QLabel" name="label_139">
+                         <property name="text">
+                          <string>Lens Type</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="config_lens_type_combobox">
+                         <property name="minimumSize">
+                          <size>
+                           <width>130</width>
+                           <height>36</height>
+                          </size>
+                         </property>
+                         <item>
+                          <property name="text">
+                           <string>Telecentric</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_65">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_21">
+                       <item>
+                        <widget class="QLabel" name="label_137">
+                         <property name="text">
+                          <string>FPS Regulators</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QComboBox" name="config_fps_regulator_combobox">
+                         <item>
+                          <property name="text">
+                           <string>PLC</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Micro</string>
+                          </property>
+                         </item>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_103">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>40</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_28">
+                       <item>
+                        <widget class="QCheckBox" name="config_plc_enable_checkbox">
+                         <property name="text">
+                          <string>Support PLC</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="verticalSpacer_5">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeType">
+                        <enum>QSizePolicy::Fixed</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="label_140">
+                       <property name="styleSheet">
+                        <string notr="true">font-size: 20px;
+font-weight: bold;</string>
+                       </property>
                        <property name="text">
-                        <string>Lens Type</string>
+                        <string>PieLine</string>
                        </property>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QScrollArea" name="scrollAreaConfig">
+                      <widget class="QScrollArea" name="scrollAreaConfigPipeLine">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
                        <property name="minimumSize">
                         <size>
-                         <width>500</width>
-                         <height>0</height>
+                         <width>0</width>
+                         <height>500</height>
                         </size>
                        </property>
                        <property name="styleSheet">
                         <string notr="true"/>
                        </property>
+                       <property name="verticalScrollBarPolicy">
+                        <enum>Qt::ScrollBarAlwaysOff</enum>
+                       </property>
                        <property name="horizontalScrollBarPolicy">
                         <enum>Qt::ScrollBarAlwaysOn</enum>
+                       </property>
+                       <property name="sizeAdjustPolicy">
+                        <enum>QAbstractScrollArea::AdjustIgnored</enum>
                        </property>
                        <property name="widgetResizable">
                         <bool>true</bool>
@@ -7087,21 +7255,51 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                        <property name="styleClass" stdset="0">
                         <string/>
                        </property>
-                       <widget class="QWidget" name="scrollAreaConfigContents">
+                       <widget class="QWidget" name="scrollAreaConfigPipeLineContents">
                         <property name="geometry">
                          <rect>
-                          <x>-1405</x>
+                          <x>-3550</x>
                           <y>0</y>
-                          <width>5670</width>
-                          <height>591</height>
+                          <width>5656</width>
+                          <height>488</height>
                          </rect>
                         </property>
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>550</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">#scrollAreaConfigPipeLineContents{
+	background-color: rgba(200, 200, 200,5);
+/*rgb(201, 229, 255,20);*/
+}</string>
+                        </property>
                         <layout class="QHBoxLayout" name="horizontalLayout_72">
+                         <property name="leftMargin">
+                          <number>11</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>11</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>11</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>11</number>
+                         </property>
                          <item>
                           <widget class="QFrame" name="frame_7">
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -7211,7 +7409,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                  <item>
                                   <widget class="QStackedWidget" name="config_start_system_settings_stackwidget">
                                    <property name="currentIndex">
-                                    <number>0</number>
+                                    <number>1</number>
                                    </property>
                                    <widget class="QWidget" name="config_start_timer_page">
                                     <property name="styleClass" stdset="0">
@@ -7311,8 +7509,8 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>66</width>
-                                          <height>69</height>
+                                          <width>618</width>
+                                          <height>270</height>
                                          </rect>
                                         </property>
                                         <property name="styleSheet">
@@ -7375,7 +7573,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                           <widget class="QFrame" name="frame_9">
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -7450,7 +7648,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>642</width>
-                                    <height>464</height>
+                                    <height>370</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -7507,7 +7705,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                           <widget class="QFrame" name="frame_11">
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -7582,7 +7780,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>642</width>
-                                    <height>464</height>
+                                    <height>370</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -7642,7 +7840,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                            </property>
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -7788,7 +7986,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                           <widget class="QFrame" name="frame_15">
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -7863,7 +8061,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>642</width>
-                                    <height>464</height>
+                                    <height>370</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -7917,7 +8115,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                           <widget class="QFrame" name="frame_19">
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -8029,7 +8227,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                  <item>
                                   <widget class="QStackedWidget" name="config_stop_system_settings_stackwidget">
                                    <property name="currentIndex">
-                                    <number>0</number>
+                                    <number>1</number>
                                    </property>
                                    <widget class="QWidget" name="config_stop_timer_page">
                                     <property name="styleClass" stdset="0">
@@ -8123,8 +8321,8 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>66</width>
-                                          <height>69</height>
+                                          <width>618</width>
+                                          <height>230</height>
                                          </rect>
                                         </property>
                                         <property name="styleClass" stdset="0">
@@ -8169,6 +8367,74 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                  </item>
                                 </layout>
                                </item>
+                               <item>
+                                <widget class="QFrame" name="config_stop_emergency_timer_frame">
+                                 <layout class="QHBoxLayout" name="horizontalLayout_76">
+                                  <property name="topMargin">
+                                   <number>5</number>
+                                  </property>
+                                  <item>
+                                   <widget class="QCheckBox" name="config_stop_emergency_timer_checkbox">
+                                    <property name="text">
+                                     <string>Emergency Timer</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <spacer name="horizontalSpacer_117">
+                                    <property name="orientation">
+                                     <enum>Qt::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeType">
+                                     <enum>QSizePolicy::Fixed</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>30</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item>
+                                   <widget class="QSpinBox" name="config_stop_emergency_timer_spinbox">
+                                    <property name="minimumSize">
+                                     <size>
+                                      <width>150</width>
+                                      <height>27</height>
+                                     </size>
+                                    </property>
+                                    <property name="maximum">
+                                     <number>1800</number>
+                                    </property>
+                                    <property name="singleStep">
+                                     <number>60</number>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <widget class="QLabel" name="label_4">
+                                    <property name="text">
+                                     <string>Seconds</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item>
+                                   <spacer name="horizontalSpacer_111">
+                                    <property name="orientation">
+                                     <enum>Qt::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>40</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                 </layout>
+                                </widget>
+                               </item>
                               </layout>
                              </widget>
                             </item>
@@ -8189,7 +8455,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                           <widget class="QFrame" name="frame_21">
                            <property name="minimumSize">
                             <size>
-                             <width>704</width>
+                             <width>702</width>
                              <height>0</height>
                             </size>
                            </property>
@@ -8264,7 +8530,7 @@ QFrame [styleClass=&quot;config_section_frame&quot;]{
                                     <x>0</x>
                                     <y>0</y>
                                     <width>642</width>
-                                    <height>464</height>
+                                    <height>370</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">

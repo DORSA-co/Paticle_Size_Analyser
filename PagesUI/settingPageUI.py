@@ -813,6 +813,16 @@ class configSettingTabUI(commonSettingUI):
                                             'timer':'Timer',
                                             'signal': 'Signal',
                                             'detection': 'Detection',
+                                        },
+
+                                        'lens_type': {
+                                            'tele':'Telecentric',
+                                            'standard': 'Standard',
+                                        },
+
+                                        'fps_regulator':{
+                                            'plc': 'PLC',
+                                            'micro': 'Microcotroller',
                                         }
                                     }
                                 )
@@ -865,6 +875,12 @@ class configSettingTabUI(commonSettingUI):
         }    
 
         self.settings = {
+            'lens_type': self.ui.config_lens_type_combobox,
+            'fps_regulator': self.ui.config_fps_regulator_combobox,
+            'plc_enable': self.ui.config_plc_enable_checkbox,
+            'stop_emergency_timer_enable': self.ui.config_stop_emergency_timer_checkbox,
+            'stop_emergency_timer_time': self.ui.config_stop_emergency_timer_spinbox,
+
             'start_manual': self.ui.config_start_manual_checkbox,
             'start_mode': self.ui.config_start_mode_comboBox,
             'start_period_time': self.ui.config_start_system_period_spinbox,
@@ -883,6 +899,10 @@ class configSettingTabUI(commonSettingUI):
         GUIBackend.combobox_changeg_connector(self.ui.config_stop_mode_comboBox, 
                                               self.stop_mode_change)
         
+        GUIBackend.checkbox_connector(self.ui.config_stop_emergency_timer_checkbox,
+                                                    self.stop_emergency_timer_visibility,
+                                    )
+        
         self.__setup()
     
     def __setup(self,):
@@ -892,17 +912,23 @@ class configSettingTabUI(commonSettingUI):
         items = self.mapDict.get_values('stop_mode')
         GUIBackend.set_combobox_items(self.ui.config_stop_mode_comboBox, items)
 
+        self.stop_emergency_timer_visibility(False)
+
     def start_mode_change(self,):
         mode_front = GUIBackend.get_input(self.ui.config_start_mode_comboBox)    
         mode_backend = self.mapDict.value2key('start_mode', mode_front)
         page = None
         if mode_backend == 'timer':
             page = self.ui.config_start_timer_page
+            
         elif mode_backend == 'signal':
             page = self.ui.config_start_signal_page
             
         if page:
             GUIBackend.set_stack_widget_page(self.ui.config_start_system_settings_stackwidget,page)
+    
+    def stop_emergency_timer_visibility(self, flag):
+        GUIBackend.set_wgt_visible(self.ui.config_stop_emergency_timer_spinbox, flag )
 
     def stop_mode_change(self,):
         mode_front = GUIBackend.get_input(self.ui.config_stop_mode_comboBox)    
@@ -911,10 +937,16 @@ class configSettingTabUI(commonSettingUI):
         page = None
         if mode_backend == 'timer':
             page = self.ui.config_stop_timer_page
+            GUIBackend.set_wgt_visible(self.ui.config_stop_emergency_timer_frame, False)
+
         elif mode_backend == 'signal':
             page = self.ui.config_stop_signal_page
+            GUIBackend.set_wgt_visible(self.ui.config_stop_emergency_timer_frame, True)
+
         elif mode_backend == 'detection':
             page = self.ui.config_stop_detection_page
+            GUIBackend.set_wgt_visible(self.ui.config_stop_emergency_timer_frame, True)
+
 
         if page:
             GUIBackend.set_stack_widget_page(self.ui.config_stop_system_settings_stackwidget,page)
@@ -984,8 +1016,12 @@ class configSettingTabUI(commonSettingUI):
         for name, field in self.settings.items():
             res[name] = GUIBackend.get_input(field)
 
+        res['lens_type'] = self.mapDict.value2key('lens_type', res['lens_type'])
         res['start_mode'] = self.mapDict.value2key('start_mode', res['start_mode'])
         res['stop_mode'] = self.mapDict.value2key('stop_mode', res['stop_mode'])
+        res['fps_regulator'] = self.mapDict.value2key('fps_regulator', res['fps_regulator'])
+
+
 
         
         for step_signal in self.signals_ui.keys():
@@ -1000,9 +1036,12 @@ class configSettingTabUI(commonSettingUI):
 
     def set_settings(self, data:dict) -> dict:
         res = {}
+        
 
         data['start_mode'] = self.mapDict.key2value('start_mode', data['start_mode'])
         data['stop_mode'] = self.mapDict.key2value('stop_mode', data['stop_mode'])
+        data['lens_type'] = self.mapDict.key2value('lens_type', data['lens_type'])
+
 
         for name, field in self.settings.items():
             res[name] = GUIBackend.set_input(field, data[name])

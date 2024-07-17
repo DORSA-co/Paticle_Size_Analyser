@@ -208,10 +208,18 @@ class mainUI(QMainWindow):
         #reset styles of all btns (actully for rest style of buttons of previous page)
         if new_page_name in self.sidebar_pages_buttons.keys():
             for btn in self.sidebar_pages_buttons.values():
-                btn.setStyleSheet(GUIComponents.SIDEBAR_BUTTON_STYLE)
+                btn.setProperty("activeStyle",False)
+                btn.style().unpolish(btn)
+                btn.style().polish(btn)
         
             #set style to button of new page to make it diffrent
-            self.sidebar_pages_buttons[new_page_name].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
+            # self.sidebar_pages_buttons[new_page_name].setStyleSheet(GUIComponents.SIDEBAR_BUTTON_SELECTED_STYLE)
+            btn = self.sidebar_pages_buttons[new_page_name]
+            btn.setProperty("activeStyle",True)
+            btn.style().unpolish(btn)
+            btn.style().polish(btn)
+
+
 
     def get_current_page(self,) -> tuple[str, int]:
         """returns current page's name and index

@@ -1133,24 +1133,32 @@ background-color:rgb(6, 76, 130);
 QPushButton{
 	color: #ffffff;
 	min-height: 40px;
+	border-radius : 0px;
+
 	text-align: left;
 	icon-size:25px;
-	background-color:rgba(0,0,0,0);
-
+	background-color:transparent;
 	border-bottom:2px solid rgba(255,255,255,100);
-	border-radius : 0px;
+
 	min-width:0px;
 	padding: 10px;
+	padding-left:18px;
     }
 
 QPushButton:hover{
     font-size:14px; 
 	font-weight:bold;
-	background-color: rgba(105, 129, 136,100)
+	background-color: rgba(105, 129, 136,100);
+
 }
 
 QPushButton:disabled{
 	color: rgb(150, 150, 150);
+}
+
+QPushButton[activeStyle=&quot;true&quot;]{
+	border-left: 8px solid rgb(40, 134, 128);
+	padding-left:10px;
 }
 
 </string>
@@ -1175,7 +1183,7 @@ QPushButton:disabled{
             </property>
             <property name="minimumSize">
              <size>
-              <width>20</width>
+              <width>28</width>
               <height>62</height>
              </size>
             </property>
@@ -1192,7 +1200,7 @@ QPushButton:disabled{
            <widget class="QPushButton" name="sidebar_report_btn">
             <property name="minimumSize">
              <size>
-              <width>20</width>
+              <width>28</width>
               <height>62</height>
              </size>
             </property>
@@ -1203,10 +1211,16 @@ QPushButton:disabled{
              <iconset resource="Assets/Assets.qrc">
               <normaloff>:/assets/icons/report-48.png</normaloff>:/assets/icons/report-48.png</iconset>
             </property>
+            <property name="activeStyle" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="sidebar_grading_ranges_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="text">
              <string>Standards</string>
             </property>
@@ -1214,13 +1228,19 @@ QPushButton:disabled{
              <iconset resource="Assets/Assets.qrc">
               <normaloff>:/assets/icons/icons8-bar-chart-white-50.png</normaloff>:/assets/icons/icons8-bar-chart-white-50.png</iconset>
             </property>
+            <property name="activeStyle" stdset="0">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="sidebar_settings_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>20</width>
+              <width>28</width>
               <height>62</height>
              </size>
             </property>
@@ -1231,13 +1251,19 @@ QPushButton:disabled{
              <iconset resource="Assets/Assets.qrc">
               <normaloff>:/assets/icons/icons8-settings-50.png</normaloff>:/assets/icons/icons8-settings-50.png</iconset>
             </property>
+            <property name="activeStyle" stdset="0">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="sidebar_calib_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>20</width>
+              <width>28</width>
               <height>62</height>
              </size>
             </property>
@@ -1248,13 +1274,19 @@ QPushButton:disabled{
              <iconset resource="Assets/Assets.qrc">
               <normaloff>:/assets/icons/icons8-ruler-50.png</normaloff>:/assets/icons/icons8-ruler-50.png</iconset>
             </property>
+            <property name="activeStyle" stdset="0">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="sidebar_users_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>20</width>
+              <width>28</width>
               <height>62</height>
              </size>
             </property>
@@ -1265,13 +1297,19 @@ QPushButton:disabled{
              <iconset resource="Assets/Assets.qrc">
               <normaloff>:/assets/icons/icons8-users-50.png</normaloff>:/assets/icons/icons8-users-50.png</iconset>
             </property>
+            <property name="activeStyle" stdset="0">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="sidebar_help_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>20</width>
+              <width>28</width>
               <height>62</height>
              </size>
             </property>
@@ -1281,6 +1319,9 @@ QPushButton:disabled{
             <property name="icon">
              <iconset resource="Assets/Assets.qrc">
               <normaloff>:/assets/icons/icons8-question-50.png</normaloff>:/assets/icons/icons8-question-50.png</iconset>
+            </property>
+            <property name="activeStyle" stdset="0">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -3752,6 +3793,9 @@ max-width: 16777px;
                           <property name="styleSheet">
                            <string notr="true"/>
                           </property>
+                          <property name="placeholderText">
+                           <string>input name of standard</string>
+                          </property>
                          </widget>
                         </item>
                         <item>
@@ -4289,7 +4333,7 @@ QLabel
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>6</number>
+                <number>0</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4338,7 +4382,11 @@ QLabel
                        <item>
                         <layout class="QGridLayout" name="gridLayout_9">
                          <item row="0" column="1">
-                          <widget class="QLineEdit" name="settingpage_sample_text1_input"/>
+                          <widget class="QLineEdit" name="settingpage_sample_text1_input">
+                           <property name="placeholderText">
+                            <string>input custom text </string>
+                           </property>
+                          </widget>
                          </item>
                          <item row="0" column="0">
                           <widget class="QLabel" name="label_68">
@@ -4373,7 +4421,7 @@ QLabel
                          <property name="sizeHint" stdset="0">
                           <size>
                            <width>20</width>
-                           <height>40</height>
+                           <height>30</height>
                           </size>
                          </property>
                         </spacer>
@@ -4411,6 +4459,16 @@ QLabel
                           <property name="bottomMargin">
                            <number>22</number>
                           </property>
+                          <item>
+                           <widget class="QLabel" name="label_96">
+                            <property name="styleSheet">
+                             <string notr="true">font-size:20px;</string>
+                            </property>
+                            <property name="text">
+                             <string>ShortCodes</string>
+                            </property>
+                           </widget>
+                          </item>
                           <item>
                            <widget class="QFrame" name="gridFrame_3">
                             <property name="styleSheet">
@@ -4581,16 +4639,6 @@ QLabel
                              <string notr="true"/>
                             </property>
                             <layout class="QGridLayout" name="gridLayout_3">
-                             <item row="0" column="0">
-                              <widget class="QLabel" name="label_96">
-                               <property name="styleSheet">
-                                <string notr="true">font-size:20px;</string>
-                               </property>
-                               <property name="text">
-                                <string>ShortCodes</string>
-                               </property>
-                              </widget>
-                             </item>
                              <item row="1" column="1">
                               <widget class="QLabel" name="label_76">
                                <property name="minimumSize">
@@ -10519,7 +10567,7 @@ background-color:#ffffff;
                     <x>0</x>
                     <y>0</y>
                     <width>1475</width>
-                    <height>756</height>
+                    <height>751</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">

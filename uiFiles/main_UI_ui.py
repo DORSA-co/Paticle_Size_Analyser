@@ -905,24 +905,32 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	color: #ffffff;\n"
 "	min-height: 40px;\n"
+"	border-radius : 0px;\n"
+"\n"
 "	text-align: left;\n"
 "	icon-size:25px;\n"
-"	background-color:rgba(0,0,0,0);\n"
-"\n"
+"	background-color:transparent;\n"
 "	border-bottom:2px solid rgba(255,255,255,100);\n"
-"	border-radius : 0px;\n"
+"\n"
 "	min-width:0px;\n"
 "	padding: 10px;\n"
+"	padding-left:18px;\n"
 "    }\n"
 "\n"
 "QPushButton:hover{\n"
 "    font-size:14px; \n"
 "	font-weight:bold;\n"
-"	background-color: rgba(105, 129, 136,100)\n"
+"	background-color: rgba(105, 129, 136,100);\n"
+"\n"
 "}\n"
 "\n"
 "QPushButton:disabled{\n"
 "	color: rgb(150, 150, 150);\n"
+"}\n"
+"\n"
+"QPushButton[activeStyle=\"true\"]{\n"
+"	border-left: 8px solid rgb(40, 134, 128);\n"
+"	padding-left:10px;\n"
 "}\n"
 "\n"
 "")
@@ -933,7 +941,7 @@ class Ui_MainWindow(object):
         self.sidebar_main_btn = QPushButton(self.sidebar)
         self.sidebar_main_btn.setObjectName(u"sidebar_main_btn")
         self.sidebar_main_btn.setEnabled(True)
-        self.sidebar_main_btn.setMinimumSize(QSize(20, 62))
+        self.sidebar_main_btn.setMinimumSize(QSize(28, 62))
         icon5 = QIcon()
         icon5.addFile(u":/assets/icons/icons8-home-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_main_btn.setIcon(icon5)
@@ -942,54 +950,65 @@ class Ui_MainWindow(object):
 
         self.sidebar_report_btn = QPushButton(self.sidebar)
         self.sidebar_report_btn.setObjectName(u"sidebar_report_btn")
-        self.sidebar_report_btn.setMinimumSize(QSize(20, 62))
+        self.sidebar_report_btn.setMinimumSize(QSize(28, 62))
         icon6 = QIcon()
         icon6.addFile(u":/assets/icons/report-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_report_btn.setIcon(icon6)
+        self.sidebar_report_btn.setProperty("activeStyle", True)
 
         self.verticalLayout_2.addWidget(self.sidebar_report_btn)
 
         self.sidebar_grading_ranges_btn = QPushButton(self.sidebar)
         self.sidebar_grading_ranges_btn.setObjectName(u"sidebar_grading_ranges_btn")
+        self.sidebar_grading_ranges_btn.setEnabled(True)
         icon7 = QIcon()
         icon7.addFile(u":/assets/icons/icons8-bar-chart-white-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_grading_ranges_btn.setIcon(icon7)
+        self.sidebar_grading_ranges_btn.setProperty("activeStyle", False)
 
         self.verticalLayout_2.addWidget(self.sidebar_grading_ranges_btn)
 
         self.sidebar_settings_btn = QPushButton(self.sidebar)
         self.sidebar_settings_btn.setObjectName(u"sidebar_settings_btn")
-        self.sidebar_settings_btn.setMinimumSize(QSize(20, 62))
+        self.sidebar_settings_btn.setEnabled(True)
+        self.sidebar_settings_btn.setMinimumSize(QSize(28, 62))
         icon8 = QIcon()
         icon8.addFile(u":/assets/icons/icons8-settings-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_settings_btn.setIcon(icon8)
+        self.sidebar_settings_btn.setProperty("activeStyle", False)
 
         self.verticalLayout_2.addWidget(self.sidebar_settings_btn)
 
         self.sidebar_calib_btn = QPushButton(self.sidebar)
         self.sidebar_calib_btn.setObjectName(u"sidebar_calib_btn")
-        self.sidebar_calib_btn.setMinimumSize(QSize(20, 62))
+        self.sidebar_calib_btn.setEnabled(True)
+        self.sidebar_calib_btn.setMinimumSize(QSize(28, 62))
         icon9 = QIcon()
         icon9.addFile(u":/assets/icons/icons8-ruler-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_calib_btn.setIcon(icon9)
+        self.sidebar_calib_btn.setProperty("activeStyle", False)
 
         self.verticalLayout_2.addWidget(self.sidebar_calib_btn)
 
         self.sidebar_users_btn = QPushButton(self.sidebar)
         self.sidebar_users_btn.setObjectName(u"sidebar_users_btn")
-        self.sidebar_users_btn.setMinimumSize(QSize(20, 62))
+        self.sidebar_users_btn.setEnabled(True)
+        self.sidebar_users_btn.setMinimumSize(QSize(28, 62))
         icon10 = QIcon()
         icon10.addFile(u":/assets/icons/icons8-users-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_users_btn.setIcon(icon10)
+        self.sidebar_users_btn.setProperty("activeStyle", False)
 
         self.verticalLayout_2.addWidget(self.sidebar_users_btn)
 
         self.sidebar_help_btn = QPushButton(self.sidebar)
         self.sidebar_help_btn.setObjectName(u"sidebar_help_btn")
-        self.sidebar_help_btn.setMinimumSize(QSize(20, 62))
+        self.sidebar_help_btn.setEnabled(True)
+        self.sidebar_help_btn.setMinimumSize(QSize(28, 62))
         icon11 = QIcon()
         icon11.addFile(u":/assets/icons/icons8-question-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.sidebar_help_btn.setIcon(icon11)
+        self.sidebar_help_btn.setProperty("activeStyle", False)
 
         self.verticalLayout_2.addWidget(self.sidebar_help_btn)
 
@@ -3885,6 +3904,8 @@ class Ui_MainWindow(object):
         self.config_tab_main_scrollBarArea_contents = QWidget()
         self.config_tab_main_scrollBarArea_contents.setObjectName(u"config_tab_main_scrollBarArea_contents")
         self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, -115, 1467, 798))
+        sizePolicy1.setHeightForWidth(self.config_tab_main_scrollBarArea_contents.sizePolicy().hasHeightForWidth())
+        self.config_tab_main_scrollBarArea_contents.setSizePolicy(sizePolicy1)
         self.verticalLayout_86 = QVBoxLayout(self.config_tab_main_scrollBarArea_contents)
         self.verticalLayout_86.setSpacing(15)
         self.verticalLayout_86.setObjectName(u"verticalLayout_86")
@@ -5672,7 +5693,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1475, 756))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1475, 751))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -7574,7 +7595,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(2)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(6)
         self.tabWidget_2.setCurrentIndex(0)
@@ -7692,6 +7713,7 @@ class Ui_MainWindow(object):
         self.settingpage_grading_new_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Define new Standard", None))
         self.settingpage_grading_editmode_lbl.setText(QCoreApplication.translate("MainWindow", u"Edit Standard", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.settingpage_grading_name_inpt.setPlaceholderText(QCoreApplication.translate("MainWindow", u"input name of standard", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Lower Limit(mm):", None))
         self.label_29.setText(QCoreApplication.translate("MainWindow", u"Upper Limit(mm):", None))
         self.settingpage_pelletizing_add_range_btn.setText("")

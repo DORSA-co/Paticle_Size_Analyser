@@ -41,35 +41,10 @@ TABEL_BUTTON_STYLE = """
         } 
     """
 
-SIDEBAR_BUTTON_SELECTED_STYLE = """
-QPushButton{
-	color:#ffffff;
-    border-color:rgb(255, 205, 5);
-	min-height: 40px;
-	text-align: left;
-	icon-size:25px;
-	background-color:rgba(0,0,0,0);
-    font-size:14px;
-    font-weight:bold;
-    }
-
-"""
 
 
-SIDEBAR_BUTTON_STYLE = """
-QPushButton{
-	color: #ffffff;
-	min-height: 40px;
-	text-align: left;
-	icon-size:25px;
-	background-color:rgba(0,0,0,0);
-    }
 
-    QPushButton:hover{
-    font-size:14px; 
-    font-weight:bold;
-}
-"""
+
 
 
 REPORT_BUTTON_STYLE = """

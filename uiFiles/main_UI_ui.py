@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1725, 1046)
+        MainWindow.resize(1725, 948)
         icon = QIcon()
         icon.addFile(u"../../../.designer/backup/Icons/app_logo.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -1754,13 +1754,13 @@ class Ui_MainWindow(object):
 
         self.reportpage_filterdate_frame = QFrame(self.reportpage_filterdate_groupbox)
         self.reportpage_filterdate_frame.setObjectName(u"reportpage_filterdate_frame")
-        self.reportpage_filterdate_frame.setEnabled(True)
+        self.reportpage_filterdate_frame.setEnabled(False)
         self.gridLayout_15 = QGridLayout(self.reportpage_filterdate_frame)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
         self.gridLayout_15.setContentsMargins(-1, 1, 1, -1)
         self.reportpage_end_date_dateedit = QDateEdit(self.reportpage_filterdate_frame)
         self.reportpage_end_date_dateedit.setObjectName(u"reportpage_end_date_dateedit")
-        self.reportpage_end_date_dateedit.setEnabled(True)
+        self.reportpage_end_date_dateedit.setEnabled(False)
 
         self.gridLayout_15.addWidget(self.reportpage_end_date_dateedit, 1, 1, 1, 1)
 
@@ -1776,7 +1776,7 @@ class Ui_MainWindow(object):
 
         self.reportpage_start_date_dateedit = QDateEdit(self.reportpage_filterdate_frame)
         self.reportpage_start_date_dateedit.setObjectName(u"reportpage_start_date_dateedit")
-        self.reportpage_start_date_dateedit.setEnabled(True)
+        self.reportpage_start_date_dateedit.setEnabled(False)
         self.reportpage_start_date_dateedit.setStyleSheet(u"")
 
         self.gridLayout_15.addWidget(self.reportpage_start_date_dateedit, 0, 1, 1, 1)
@@ -2561,7 +2561,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_44.addLayout(self.gridLayout_9)
 
-        self.verticalSpacer_42 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_42 = QSpacerItem(20, 30, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_44.addItem(self.verticalSpacer_42)
 
@@ -2592,6 +2592,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_46 = QVBoxLayout(self.verticalFrame)
         self.verticalLayout_46.setObjectName(u"verticalLayout_46")
         self.verticalLayout_46.setContentsMargins(-1, 12, -1, 22)
+        self.label_96 = QLabel(self.verticalFrame)
+        self.label_96.setObjectName(u"label_96")
+        self.label_96.setStyleSheet(u"font-size:20px;")
+
+        self.verticalLayout_46.addWidget(self.label_96)
+
         self.gridFrame_3 = QFrame(self.verticalFrame)
         self.gridFrame_3.setObjectName(u"gridFrame_3")
         self.gridFrame_3.setStyleSheet(u"")
@@ -2671,12 +2677,6 @@ class Ui_MainWindow(object):
         self.gridFrame1.setStyleSheet(u"")
         self.gridLayout_3 = QGridLayout(self.gridFrame1)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.label_96 = QLabel(self.gridFrame1)
-        self.label_96.setObjectName(u"label_96")
-        self.label_96.setStyleSheet(u"font-size:20px;")
-
-        self.gridLayout_3.addWidget(self.label_96, 0, 0, 1, 1)
-
         self.label_76 = QLabel(self.gridFrame1)
         self.label_76.setObjectName(u"label_76")
         self.label_76.setMinimumSize(QSize(110, 0))
@@ -3775,7 +3775,7 @@ class Ui_MainWindow(object):
         self.nodesScrollArea.setWidgetResizable(True)
         self.nodesScrollAreaContent = QWidget()
         self.nodesScrollAreaContent.setObjectName(u"nodesScrollAreaContent")
-        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1467, 509))
+        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1467, 411))
         self.verticalLayout_67 = QVBoxLayout(self.nodesScrollAreaContent)
         self.verticalLayout_67.setObjectName(u"verticalLayout_67")
         self.settingpage_plc_add_node_btn = QPushButton(self.nodesScrollAreaContent)
@@ -3903,7 +3903,7 @@ class Ui_MainWindow(object):
         self.config_tab_main_scrollBar.setWidgetResizable(True)
         self.config_tab_main_scrollBarArea_contents = QWidget()
         self.config_tab_main_scrollBarArea_contents.setObjectName(u"config_tab_main_scrollBarArea_contents")
-        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, -115, 1467, 798))
+        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, 0, 1467, 798))
         sizePolicy1.setHeightForWidth(self.config_tab_main_scrollBarArea_contents.sizePolicy().hasHeightForWidth())
         self.config_tab_main_scrollBarArea_contents.setSizePolicy(sizePolicy1)
         self.verticalLayout_86 = QVBoxLayout(self.config_tab_main_scrollBarArea_contents)
@@ -3926,7 +3926,7 @@ class Ui_MainWindow(object):
         self.config_lens_type_combobox = QComboBox(self.config_tab_main_scrollBarArea_contents)
         self.config_lens_type_combobox.addItem("")
         self.config_lens_type_combobox.setObjectName(u"config_lens_type_combobox")
-        self.config_lens_type_combobox.setMinimumSize(QSize(130, 36))
+        self.config_lens_type_combobox.setMinimumSize(QSize(160, 36))
 
         self.horizontalLayout_18.addWidget(self.config_lens_type_combobox)
 
@@ -3948,6 +3948,7 @@ class Ui_MainWindow(object):
         self.config_fps_regulator_combobox.addItem("")
         self.config_fps_regulator_combobox.addItem("")
         self.config_fps_regulator_combobox.setObjectName(u"config_fps_regulator_combobox")
+        self.config_fps_regulator_combobox.setMinimumSize(QSize(100, 36))
 
         self.horizontalLayout_21.addWidget(self.config_fps_regulator_combobox)
 
@@ -3991,7 +3992,7 @@ class Ui_MainWindow(object):
         self.scrollAreaConfigPipeLine.setWidgetResizable(True)
         self.scrollAreaConfigPipeLineContents = QWidget()
         self.scrollAreaConfigPipeLineContents.setObjectName(u"scrollAreaConfigPipeLineContents")
-        self.scrollAreaConfigPipeLineContents.setGeometry(QRect(-3550, 0, 5656, 488))
+        self.scrollAreaConfigPipeLineContents.setGeometry(QRect(0, 0, 5656, 488))
         sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         sizePolicy8.setHorizontalStretch(0)
         sizePolicy8.setVerticalStretch(0)
@@ -4520,7 +4521,7 @@ class Ui_MainWindow(object):
         self.config_stop_system_signals_scroll_area.setWidgetResizable(True)
         self.config_stop_system_signals_scroll_contents = QWidget()
         self.config_stop_system_signals_scroll_contents.setObjectName(u"config_stop_system_signals_scroll_contents")
-        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 618, 230))
+        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 618, 220))
         self.verticalLayout_97 = QVBoxLayout(self.config_stop_system_signals_scroll_contents)
         self.verticalLayout_97.setObjectName(u"verticalLayout_97")
         self.config_stop_system_signals_add_btn = QPushButton(self.config_stop_system_signals_scroll_contents)
@@ -5173,7 +5174,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1427, 761))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 66, 39))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -5693,7 +5694,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1475, 751))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1465, 654))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -7595,14 +7596,14 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(2)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(1)
         self.settingpage_tabs.setCurrentIndex(6)
         self.tabWidget_2.setCurrentIndex(0)
-        self.config_start_system_settings_stackwidget.setCurrentIndex(1)
+        self.config_start_system_settings_stackwidget.setCurrentIndex(0)
         self.config_stop_system_settings_stackwidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
-        self.user_tabs.setCurrentIndex(1)
+        self.user_tabs.setCurrentIndex(0)
         self.helppage_tabs.setCurrentIndex(0)
 
 
@@ -7729,7 +7730,9 @@ class Ui_MainWindow(object):
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
         self.settingpage_sample_tab.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
         self.settingpage_sample_auto_name_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Auto Sample Name", None))
+        self.settingpage_sample_text1_input.setPlaceholderText(QCoreApplication.translate("MainWindow", u"input custom text ", None))
         self.label_68.setText(QCoreApplication.translate("MainWindow", u"Custom Text 1", None))
+        self.label_96.setText(QCoreApplication.translate("MainWindow", u"ShortCodes", None))
         self.label_103.setText(QCoreApplication.translate("MainWindow", u"_", None))
         self.label_99.setText(QCoreApplication.translate("MainWindow", u"%TEXT1%", None))
         self.settingpage_sample_text1_code_btn.setText(QCoreApplication.translate("MainWindow", u"Text1", None))
@@ -7738,7 +7741,6 @@ class Ui_MainWindow(object):
         self.label_106.setText(QCoreApplication.translate("MainWindow", u"%USERNAME%", None))
         self.settingpage_sample_dash_code_btn.setText(QCoreApplication.translate("MainWindow", u"Dash", None))
         self.label_117.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.label_96.setText(QCoreApplication.translate("MainWindow", u"ShortCodes", None))
         self.label_76.setText(QCoreApplication.translate("MainWindow", u"%Month%", None))
         self.settingpage_sample_day_code_btn.setText(QCoreApplication.translate("MainWindow", u"Day", None))
         self.settingpage_sample_minute_code_btn.setText(QCoreApplication.translate("MainWindow", u"Minute", None))

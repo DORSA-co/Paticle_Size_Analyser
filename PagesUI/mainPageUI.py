@@ -310,7 +310,15 @@ class mainPageUI:
         pixmap = GUIBackend.set_label_image(self.live_img_lbl, img)
         #GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
     
-    
+    def hide_start_manual(self, hide:bool):
+        if hide:
+            GUIBackend.set_wgt_visible(self.player_btns['start'], False)
+            GUIBackend.set_wgt_visible(self.player_btns['fast_start'], False)
+
+    def hide_stop_manual(self, hide:bool):
+        if hide:
+            GUIBackend.set_wgt_visible(self.player_btns['stop'], False)
+
     
 
     def show_dialog_box(self, title, txt , buttons):

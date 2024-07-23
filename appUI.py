@@ -89,15 +89,17 @@ class mainUI(QMainWindow):
         
         }
 
-        self.tabs = {
-            'general_setting':   (self.ui.settingpage_tabs, 0),
-            'sample_setting':    (self.ui.settingpage_tabs, 1),
-            'storage_setting':   (self.ui.settingpage_tabs, 2),
-            'camera_setting':    (self.ui.settingpage_tabs, 3),
-            'algorithm_setting': (self.ui.settingpage_tabs, 4),
-            'register_user':     (self.ui.user_tabs, 0),
-            'edit_user':         (self.ui.user_tabs, 1),
-            'all_users':         (self.ui.user_tabs, 2),
+        self.tabs:dict[str, tuple] = {
+            'sample_setting':    (self.ui.settingpage_tabs, self.ui.settingpage_sample_tab),
+            'storage_setting':   (self.ui.settingpage_tabs, self.ui.settingpage_storage_tab),
+            'camera_setting':    (self.ui.settingpage_tabs, self.ui.settingpage_camera_tab),
+            'plc_setting':       (self.ui.settingpage_tabs, self.ui.settingpage_plc_tab),
+            'algorithm_setting': (self.ui.settingpage_tabs, self.ui.settingpage_algorithm_tab),
+            'config_setting':    (self.ui.settingpage_tabs, self.ui.settingpage_config_tab),
+
+            'register_user':     (self.ui.user_tabs, self.ui.user_register_tab),
+            'edit_user':         (self.ui.user_tabs, self.ui.user_profile_tab),
+            'all_users':         (self.ui.user_tabs, self.ui.all_users_tab),
         }
 
 
@@ -146,6 +148,8 @@ class mainUI(QMainWindow):
     #-------------------------------------------------------------------------------------------
     def change_page_connector(self,func):
         self.external_change_page_event = func
+
+    # def hide_tab(self,)
 
     def internal_change_page_event(self, current_page_name, new_page_name):
         """this event happend user clicked new page that is diffrent from current page
@@ -286,11 +290,18 @@ class mainUI(QMainWindow):
             if tabs == 'all':
                 tabs = self.tabs.keys()
         for tab_name in self.tabs:
-            obj, idx = self.tabs[tab_name]
+            tab_parent, tab = self.tabs[tab_name]
             if tab_name in tabs:
-                GUIBackend.set_visible_tab(obj, idx, flag)
+                GUIBackend.set_visible_tab(tab_parent, tab, True)
+
             else:
-                GUIBackend.set_visible_tab(obj, idx, not(flag))
+                GUIBackend.set_visible_tab(tab_parent, tab, False)
+
+
+    def hide_tab(self, tab_name:str):
+        tab_parent, tab = self.tabs[tab_name]
+        GUIBackend.set_visible_tab(tab_parent, tab, False)
+
 
     def show(self,):
         self.showMaximized()

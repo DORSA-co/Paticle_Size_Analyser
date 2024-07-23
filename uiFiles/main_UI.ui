@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1725</width>
-    <height>1046</height>
+    <height>948</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2723,7 +2723,7 @@ color: rgb(6, 76, 130);
                      <item>
                       <widget class="QFrame" name="reportpage_filterdate_frame">
                        <property name="enabled">
-                        <bool>true</bool>
+                        <bool>false</bool>
                        </property>
                        <layout class="QGridLayout" name="gridLayout_15">
                         <property name="topMargin">
@@ -2735,7 +2735,7 @@ color: rgb(6, 76, 130);
                         <item row="1" column="1">
                          <widget class="QDateEdit" name="reportpage_end_date_dateedit">
                           <property name="enabled">
-                           <bool>true</bool>
+                           <bool>false</bool>
                           </property>
                           <property name="displayFormat">
                            <string>yyyy/M/d</string>
@@ -2759,7 +2759,7 @@ color: rgb(6, 76, 130);
                         <item row="0" column="1">
                          <widget class="QDateEdit" name="reportpage_start_date_dateedit">
                           <property name="enabled">
-                           <bool>true</bool>
+                           <bool>false</bool>
                           </property>
                           <property name="styleSheet">
                            <string notr="true"/>
@@ -4333,7 +4333,7 @@ QLabel
                 <enum>QTabWidget::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>6</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -6853,7 +6853,7 @@ QLabel[styleClass=&quot;dot&quot;]{
                       <x>0</x>
                       <y>0</y>
                       <width>1467</width>
-                      <height>509</height>
+                      <height>411</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7127,7 +7127,7 @@ QLabel[styleClass=&quot;dot&quot;]{
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>-115</y>
+                      <y>0</y>
                       <width>1467</width>
                       <height>798</height>
                      </rect>
@@ -7169,7 +7169,7 @@ font-weight: bold;</string>
                         <widget class="QComboBox" name="config_lens_type_combobox">
                          <property name="minimumSize">
                           <size>
-                           <width>130</width>
+                           <width>160</width>
                            <height>36</height>
                           </size>
                          </property>
@@ -7206,6 +7206,12 @@ font-weight: bold;</string>
                        </item>
                        <item>
                         <widget class="QComboBox" name="config_fps_regulator_combobox">
+                         <property name="minimumSize">
+                          <size>
+                           <width>100</width>
+                           <height>36</height>
+                          </size>
+                         </property>
                          <item>
                           <property name="text">
                            <string>PLC</string>
@@ -7306,7 +7312,7 @@ font-weight: bold;</string>
                        <widget class="QWidget" name="scrollAreaConfigPipeLineContents">
                         <property name="geometry">
                          <rect>
-                          <x>-3550</x>
+                          <x>0</x>
                           <y>0</y>
                           <width>5656</width>
                           <height>488</height>
@@ -7457,7 +7463,7 @@ font-weight: bold;</string>
                                  <item>
                                   <widget class="QStackedWidget" name="config_start_system_settings_stackwidget">
                                    <property name="currentIndex">
-                                    <number>1</number>
+                                    <number>0</number>
                                    </property>
                                    <widget class="QWidget" name="config_start_timer_page">
                                     <property name="styleClass" stdset="0">
@@ -8370,7 +8376,7 @@ font-weight: bold;</string>
                                           <x>0</x>
                                           <y>0</y>
                                           <width>618</width>
-                                          <height>230</height>
+                                          <height>220</height>
                                          </rect>
                                         </property>
                                         <property name="styleClass" stdset="0">
@@ -9603,8 +9609,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1427</width>
-                    <height>761</height>
+                    <width>66</width>
+                    <height>39</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -9666,7 +9672,7 @@ border: 2px solid #404040;</string>
               <string notr="true"/>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="user_register_tab">
               <property name="styleClass" stdset="0">
@@ -10566,8 +10572,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1475</width>
-                    <height>751</height>
+                    <width>1465</width>
+                    <height>654</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">

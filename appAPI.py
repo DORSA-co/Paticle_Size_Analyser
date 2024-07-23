@@ -18,6 +18,7 @@ from PagesAPI.reportsPageAPI import reportsPageAPI
 from PagesAPI.comparePageAPI import comparePageAPI
 from PagesAPI.validationPageAPI import validationPageAPI
 from appUI import mainUI
+from backend.PLC.PLCHandler import PLCHandler
 #------------------------------------------------------------
 #from main_UI import mainUI
 #------------------------------------------------------------
@@ -31,7 +32,7 @@ from PagesUI.PageUI import commonUI
 from uiUtils import GUIComponents
 from subPrograms.dbInit.dbInitAPI import dbInitAPI
 from backend.Serial.armSerial import armSerial
-
+from backend.ConfigManager.configManager import configManager
 #cameras_serial_number = {'standard': '23804186'}
 class main_API(QObject):
     DEBUG_PROCESS_THREAD = False
@@ -48,12 +49,21 @@ class main_API(QObject):
         else:
             self.db.build()
 
+        self.configManager = configManager()
+
         self.checked_device_time = 0
         #------------------------------------------------------------------------------------------
         self.camera_device_info = {}
         self.cameras: dict[str, Camera] = {}
         self.camera_workers:dict[str, cameraWorker] = {}
         self.camera_threads:dict[str, threading.Thread]= {}
+        #------------------------------------------------------------------------------------------
+        plc_setting = self.db.setting_db.plc_db.load()
+        self.plc = PLCHandler(plc_setting['ip'])
+        # self.plc.set_connected_event(self.plc_connect_event)
+        # self.plc.set_disconnected_event(self.plc_disconnected_event)
+        # self.plc.connect_request()
+        self.define_nodes()
 
         self.collector = Collector()
         self.collector.enable_camera_emulation(1)
@@ -142,7 +152,34 @@ class main_API(QObject):
         #---------------------------------------------------
         self.uiHandeler.show()
         self.uiHandeler.usersPage.loginUserBox.show_login()
+
+        self.config_ui()
         print('__init__ appAPI finised')
+
+    def define_nodes(self,):
+        nodes_settings = self.db.setting_db.plc_nodes_db.load_all()
+        for node_stng in nodes_settings:
+            address = {'ns': node_stng['ns'],
+                       'i': node_stng['i']
+            }
+            try:
+                self.plc.nodesHandler.define_node(node_stng['name'], address=address)
+            except Exception as e:
+                print('Error define Node', address, e)
+
+
+    def config_ui(self,):
+        if not self.configManager.Config.can_start_manual():
+            self.mainPageAPI.uiHandeler.hide_start_manual(True)
+            
+        
+        if not self.configManager.Config.can_stop_manual():
+            self.mainPageAPI.uiHandeler.hide_stop_manual(True)
+
+        if not self.configManager.Config.has_plc():
+            self.uiHandeler.hide_tab('plc_setting')
+            
+
         
 
     def creat_camera(self, camera_device_info)-> Camera:

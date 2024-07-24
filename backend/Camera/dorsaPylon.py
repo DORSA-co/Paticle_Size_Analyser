@@ -17,27 +17,14 @@ Features:
 ########################################
 """
 from pypylon import pylon
-from PylonFlags import CamersClass, Trigger, PixelType
+from .PylonFlags import CamersClass, Trigger, PixelType, GammaMode, GetPictureErrors, GrabStrategy
 import cv2
 import time
 import numpy as np
 import threading
 import os
 from pypylon import genicam
-'''
-                         !تذکر
-از قرار دادن هرگونه اسد و پرینت اروووررررر جدا خودداری فرمایید
-            حتی شما مدیر پروژه عزیز اکسین
-'''
-# 
 
-
-
-'''
-bandwidth manager
-USB camera
-offset_x , offset_y
-'''
 
 DEBUG = False
 show_eror = False
@@ -47,10 +34,6 @@ class ErrorAndWarnings:
     @staticmethod
     def no_devices():
         return "ERROR: No Devices founded"
-    
-    @staticmethod
-    def not_grabbing():
-        return "ERROR: Camera is not Grabbing"
 
     @staticmethod
     def not_in_range(name, min_v, max_v):
@@ -72,29 +55,27 @@ class ErrorAndWarnings:
     def reset():
         return f"WARNING: camera reset! you should creat Camera Object again !!"
     
+    @staticmethod
     def not_grabbing():
         return "ERROR: camera isn't grabbing. Start Grabbing First!"
+    
+    @staticmethod
+    def not_open():
+        return "ERROR: camera isn't open. Open First!"
+    
+    @staticmethod
+    def physically_removed():
+        return "ERROR: camera physically removed"
 
 
+    
+    @staticmethod
+    def empty_buffer():
+        return "ERROR: camera buffer is empty"
 
-
-
-
-
-
-
-
-
-
-
-# class CameraOption:
-#     def __init__(self, camera_device):
-#         self.camera_device = camera_device
-
-
-
-
-
+    @staticmethod
+    def node_not_avaiable(name:str=''):
+        return f'predefine ({name}) node not available, please set node by its name'
 
 
 class Camera:
@@ -109,22 +90,63 @@ class Camera:
         self.Status = CameraStatus(self)
         self.Operations = CameraOperations(self)
         self.image_event_handler = CameraImageEventHandler(self)
+        
+        #if self.Infos.is_GigE():
+        self.StreamGrabber = CameraStreamGrabber(self)
 
         
         self.converter = self.build_converter(PixelType.BGR8)
         self.nodes_name = self.get_available_nodes()
+        
         self.timeout = 5000
+        self.grab_strategy = GrabStrategy.latest_image
         self.image = None
+        self.error_image = self.build_zero_image(480,640)
 
+        
+        self.fps={
+            'success_grab':{'fps':0, 'prev_update':0, 'moving_avg':5},
+            'running'     :{'fps':0, 'prev_update':0, 'moving_avg':5},
+        }
+        
+
+    def __update_fps(self, name:str):
+        current_fps = 1 / ( time.time() - self.fps[name]['prev_update'])
+
+        self.fps[name]['fps'] = ( 1 / self.fps[name]['moving_avg'] * current_fps 
+                                + (self.fps[name]['moving_avg'] - 1)/self.fps[name]['moving_avg'] * self.fps[name]['fps']
+                                )
+        self.fps[name]['prev_update'] = time.time()
+
+
+    def set_grab_timeout(self, timeout:int):
+        self.timeout = timeout
+
+    def get_grab_timeout(self, ) -> int:
+        return self.timeout
+    
+    def set_grab_strategy(self, strategy:str):
+        """set grab strategy
+
+        Args:
+            strategy (str): use pylonFlags.GrabStrategy
+        """
+        self.grab_strategy = strategy
+    
     def get_available_nodes(self,):
         nodeMap = self.camera_device.GetNodeMap()
         nodes = nodeMap.GetNodes()
         return list(map(lambda x:x.Node.Name, nodes))
+    
+
+    def set_error_image(self, img:np.ndarray):
+        self.error_image = img
 
 
     def is_node_available(self, node_name):
         return node_name in self.nodes_name
     
+
     def reset(self,):
         """Reset all camera settings
         """
@@ -160,9 +182,6 @@ class Camera:
         self.converter = converter
         return converter
 
-    
-
-
     def set_image_event(self, func):
         if self.Status.is_open():
             self.Operations.close()
@@ -177,49 +196,108 @@ class Camera:
         self.camera_device.TriggerSoftware()
     
 
-    def build_zero_image(self):
+    def build_zero_image(self, h,w):
         """return a zero image with the dimensions of the camera image"""
-        _,_,h,w = self.Parms.get_roi()
-        img = np.zeros((h, w, 3), dtype=np.uint8)
-        return img
+        if self.converter.OutputPixelFormat in [PixelType.GRAY10,
+                                                PixelType.GRAY8]:
+            return np.zeros((h, w), dtype=np.uint8)
+        else:
+            return np.zeros((h, w, 3), dtype=np.uint8)
+        
 
     
 
-    def getPictures(self, grabResult = None, img_when_error='zero') -> np.ndarray:
+    def getPictures(self, grabResult = None, check_buffer=False) -> tuple[bool, np.ndarray, int]:
         """return an image if camera caReturns an image if the camera has captured an image
 
         Args:
             grabResult (_type_, optional): grabResult of camera. generally used for event. Defaults to None.
             img_when_error (str, optional): determine what returns when the captured image got an error. Defaults to 'zero'.
+.
 
         Returns:
-            np.ndarray: captured image
+            tuple[bool, np.ndarray, int]: ret_flag, res_img, status
+            ret_flag: if be False the image was not captured correctly
+            res_img:  captured image
+            status: returns the error code,
+                no_error = 0
+                is_not_open = 1
+                is_not_grabbing = 2
+                phisically_remove = 3
+                buffer_empty = 4
+                grabresult_error = 5
+
+
         """
+        self.__update_fps('running')
+
         res_img = None
         ret = False
-        if self.Status.is_grabbing():
-            #-------------------------------------------------------------
-            if grabResult is None:
-                if self.Status.is_grabbing():
-                    grabResult = self.camera_device.RetrieveResult(self.timeout, pylon.TimeoutHandling_ThrowException)
-                else:
-                    print(ErrorAndWarnings.not_grabbing())
-            #-------------------------------------------------------------
-            if grabResult is not None and grabResult.GrabSucceeded():
-                image = self.converter.Convert(grabResult)
-                res_img = image.Array
-                ret = True
-            elif grabResult is not None:
-                print( ErrorAndWarnings.grab_error(grabResult.ErrorCode, grabResult.ErrorDescription))
+        status = 0
+
+        res_img = self.error_image.copy()
+
+        if self.Status.is_removed_physically():
+            print(ErrorAndWarnings.physically_removed())
+            status = GetPictureErrors.phisically_remove
+            return False, res_img, status
+        
+        if not self.Status.is_open():
+            print(ErrorAndWarnings.not_open())
+            status = GetPictureErrors.is_not_open
+            return False, res_img, status
+        
+        if not self.Status.is_grabbing():
+            print(ErrorAndWarnings.not_grabbing())
+            status = GetPictureErrors.is_not_grabbing
+            print(ErrorAndWarnings.not_open())
+            return False, res_img, status
+        
+        if check_buffer and self.Status.get_images_count_in_buffer() == 0:
+            print(ErrorAndWarnings.empty_buffer())
+            status = GetPictureErrors.buffer_empty
+            return False, res_img, status
+            
+
+
+        #-------------------------------------------------------------
+        if grabResult is None:
+            if self.Status.is_grabbing():
+                grabResult = self.camera_device.RetrieveResult(self.timeout, pylon.TimeoutHandling_ThrowException)
             else:
                 print(ErrorAndWarnings.not_grabbing())
-            #-------------------------------------------------------------
+                status = GetPictureErrors.is_not_grabbing
+        #-------------------------------------------------------------
+        if grabResult is not None and grabResult.GrabSucceeded():
+            image = self.converter.Convert(grabResult)
+            res_img = image.Array
+            ret = True
+            status = GetPictureErrors.no_error
+
+        elif grabResult is not None:
+            print( ErrorAndWarnings.grab_error(grabResult.ErrorCode, grabResult.ErrorDescription))
+            status = GetPictureErrors.grabresult_error
+            return False, res_img, status
+
+        else:
+            print( ErrorAndWarnings.grab_error(grabResult.ErrorCode, grabResult.ErrorDescription))
+            status = GetPictureErrors.grabresult_error
+            return False, res_img, status
+
+        #-------------------------------------------------------------
+
         if res_img is None:
-            if img_when_error == 'zero':
-                res_img = self.build_zero_image()
+            # if self.error_image is None:
+            #     if img_when_error == 'zero':
+            #         res_img = self.build_zero_image()
+            # else:
+            res_img = self.error_image.copy()
+        
+        if ret:
+            self.__update_fps('success_grab')
 
         self.image = res_img
-        return ret, res_img
+        return ret, res_img, status
     
 
 class CameraInfo:
@@ -236,7 +314,7 @@ class CameraInfo:
         return self.camera_object.camera_device.DeviceInfo.GetSerialNumber()
     
     def get_class(self) -> str:
-        """return calas of camera in `Str` type like BaslerGigE and BaslerUSB"""
+        """return class of camera as `Str` type like BaslerGigE and BaslerUSB"""
         return self.camera_object.camera_device.DeviceInfo.GetDeviceClass()
 
     def is_PRO(self,) -> bool:
@@ -250,10 +328,11 @@ class CameraInfo:
     def is_GigE(self,) -> bool :
          """ return True if camera is GigE class"""
          return self.camera_object.camera_device.IsGigE()
-
+    
     def is_Simulation(self,) -> bool :
          """ return True if camera is GigE class"""
          return self.get_class() == 'BaslerCamEmu'
+
 
 
 
@@ -274,6 +353,12 @@ class CameraStatus:
         """ return True if trigger be On"""
         return self.camera_object.Parms.__get_value__(self.camera_object.camera_device.TriggerMode).lower() == 'on'
     
+    def is_connect_physically(self,) -> bool:
+        return not(self.camera_object.camera_device.IsCameraDeviceRemoved())
+    
+    def is_removed_physically(self,):
+        return self.camera_object.camera_device.IsCameraDeviceRemoved()
+    
     def get_tempreture(self) -> float:
         """return device tempreture
 
@@ -285,6 +370,42 @@ class CameraStatus:
         elif self.camera_object.is_node_available('TemperatureAbs'):
             return self.camera_object.camera_device.TemperatureAbs.GetValue()
         
+    def get_images_count_in_buffer(self,) -> int:
+        """returns ready images count in buffer
+
+        Returns:
+            int: 
+        """
+        return self.camera_object.camera_device.NumReadyBuffers.GetValue()
+    
+
+    def get_camera_fps(self,) -> float:
+        """returns fps of camera. it shows number of image that
+           camera grab in one seconds. but it may be diffrent from
+           fps of getting image from camera in a application
+
+        Returns:
+            float: fps
+        """
+        self.camera_object.Parms.get_node('ResultingFrameRateAbs')
+
+    def get_success_fps(self,) ->float:
+        """returns fps of successed grabbed image. this parameters
+        shows real performance of an application and netword
+
+        Returns:
+            float: fps
+        """
+        return round(self.camera_object.fps['success_grab']['fps'],1)
+
+    def get_running_fps(self,) ->float:
+        """
+        shows how many time getPicture time call in one second.
+        Regardless of whether the capture is successful or not
+        Returns:
+            float: fps
+        """
+        return round(self.camera_object.fps['running']['fps'],1)
 
 
 class CameraOperations:
@@ -302,7 +423,7 @@ class CameraOperations:
         if self.camera_object.Status.is_open():
             self.camera_object.camera_device.Close()
 
-    def start_grabbing(self, strategy = pylon.GrabStrategy_LatestImageOnly ):
+    def start_grabbing(self,):
         """start grabbing. it is necessary for capture image.
         - If the camera is not open, this function will do it automatically
 
@@ -311,7 +432,10 @@ class CameraOperations:
         """
         self.open()
         if not self.camera_object.Status.is_grabbing():
-            self.camera_object.camera_device.StartGrabbing(strategy)
+            self.camera_object.camera_device.StartGrabbing(self.camera_object.grab_strategy)
+        
+        h,w,_,_ = self.camera_object.Parms.get_roi()
+        self.camera_object.error_image = self.camera_object.build_zero_image(h,w)
     
     def stop_grabbing(self):
         """stop grabbing"""
@@ -320,15 +444,70 @@ class CameraOperations:
 
 
 
-class CameraParms:
-    def __init__(self, camera_object: Camera):
+
+
+
+class CameraStreamGrabber:
+
+    def __init__(self, camera_object:Camera) -> None:
         self.camera_object = camera_object
+    
+    def __get_node(self, node_name:str):
+        return self.camera_object.camera_device.GetStreamGrabberNodeMap().GetNode(node_name)
+
 
     
 
+    def set_node_value(self, node_name:str, value):
+        node = self.__get_node(node_name=node_name)
+        self.camera_object.Parms.__set_value__(value, node)
+    
+    def get_node_value(self, node_name:str):
+        node = self.__get_node(node_name=node_name)
+        return self.camera_object.Parms.__get_value__(node)
+    
+    def get_node_range(self, node_name:str):
+        node = self.__get_node(node_name=node_name)
+        return self.camera_object.Parms.__get_value_range__(node)
+    #---------------------------------------------
+
+    def set_frame_retention(self, frame_retention):
+        self.set_node_value('FrameRetention', frame_retention)
+    
+    def get_frame_retention(self,)-> int:
+        return self.get_node_value('FrameRetention')
+    
+    def get_frame_retention_range(self,) -> tuple[int]:
+        return self.get_node_range('FrameRetention')
+    #---------------------------------------------
+    def set_packet_timout(self, timout:int):
+        self.set_node_value('PacketTimeout', timout)
+    
+    def get_packet_timout(self,) -> int:
+        return self.get_node_value('PacketTimeout')
+    
+    def get_packet_timout_range(self,) -> tuple[int]:
+        return self.get_node_range('PacketTimeout')
+    #---------------------------------------------
+    def set_max_num_buffer(self, n:int): 
+        self.set_node_value('MaxNumBuffer', n)
+
+    def get_max_num_buffer(self,): 
+        return self.get_node_value('MaxNumBuffer')
+    
+    def get_max_num_buffer_range(self,) -> tuple[int]:
+        return self.get_node_range('MaxNumBuffer')
+    #---------------------------------------------       
+
+
+class CameraParms:
+    def __init__(self, camera_object: Camera):
+        self.camera_object = camera_object
+   
+
     def __set_value__(self, value, parameter):
-        if not self.camera_object.Status.is_open():
-            self.camera_object.Operations.open()
+        # if not self.camera_object.Status.is_open():
+        #     self.camera_object.Operations.open()
         
         if value is not None:
             if type(value) == int or type(value) == float:
@@ -346,19 +525,22 @@ class CameraParms:
 
     
     def __get_value__(self, parameter):
-        if not self.camera_object.Status.is_open():
-            self.camera_object.Operations.open()
+        # if not self.camera_object.Status.is_open():
+        #     self.camera_object.Operations.open()
         return parameter.Value
     
     def __get_available_value__(self, parameter):
+
+        ######### here is the bug
+        # print(parameter)
         return parameter.Symbolics
 
     def __get_value_range__(self, parameter):
         #        print(parameter.Node.Name, )
         access = parameter.Node.GetAccessMode()
-        if access == 1:
-            if not self.camera_object.Status.is_open():
-                self.camera_object.Operations.open()
+        # if access == 1:
+        #     if not self.camera_object.Status.is_open():
+        #         self.camera_object.Operations.open()
         max_v = parameter.Max
         min_v = parameter.Min
         return min_v, max_v
@@ -376,7 +558,11 @@ class CameraParms:
                         offset_y=None,
                         trigger=None,
                         trigge_source=None,
-                        trigge_selector = None
+                        trigge_selector = None,
+                        gamma_enable = None,
+                        gamma_selector = None,
+                        gamma_value = None, 
+                        black_level = None
                         ):
         """Set commonly used parameters at once
         ** If any parameter is set to `None`, that parameter will not be set on the camera 
@@ -386,18 +572,23 @@ class CameraParms:
         self.set_exposureTime(exposure)
         self.set_trigger_option(trigge_source, trigge_selector)
         self.set_roi(height, width, offset_x, offset_y )
+
         if trigger:
             self.set_trigger_on()
         else:
             self.set_trigger_off()
-        #self.max_buffer = max_buffer
-        #self.cont_eror = 0
-        #self.trigger = trigger
-        #self.dp = delay_packet
-        #self.ps = packet_size
-        #self.ftd = frame_transmission_delay
-        #self.exitCode = 0
-        self.set_node()
+
+        self.set_gamma_enable(gamma_enable)
+
+        if gamma_enable:
+            self.set_gamma_selector(gamma_selector)
+            self.set_gamma(gamma_value)
+        else:
+            self.set_gamma_enable(gamma_enable)
+        
+        self.set_blackleve(black_level)
+
+
     def set_node(self, node_name:str, value ):
         """set value to specefic node by its name
         Examples: 
@@ -411,6 +602,8 @@ class CameraParms:
         node = self.camera_object.camera_device.NodeMap.GetNode(node_name)
         self.__set_value__(value, node)
     
+
+
     def get_node(self, node_name: str ):
         """get value of specefic node by its name
         Examples: 
@@ -426,6 +619,8 @@ class CameraParms:
         node = self.camera_object.camera_device.NodeMap.GetNode(node_name)
         return self.__get_value__(node)
     
+
+
     def availble_node_values(self, node_name:str):
         """returns list of available values for specific node by its name
         Examples: 
@@ -440,6 +635,8 @@ class CameraParms:
         """
         node = self.camera_object.camera_device.NodeMap.GetNode(node_name)
         return self.__get_available_value__(node)
+
+
 
     def get_node_range(self, node_name:str) -> tuple:
         """returns range of allowable values for specific numberical node by its name
@@ -457,19 +654,199 @@ class CameraParms:
         return self.__get_value_range__(node)
 
 
+    def set_gamma_enable(self, enable:bool):
+        """enable or disable gamma mode
+
+        Args:
+            enable (bool): enable of gamma mode
+        """
+        if self.camera_object.is_node_available('GammaEnable'):
+            self.__set_value__(enable, self.camera_object.camera_device.GammaEnable)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('GammaEnable'))
+
+    def get_gamma_enable(self) -> bool:
+    
+        if self.camera_object.is_node_available('GammaEnable'):
+            self.__get_value__(self.camera_object.camera_device.GammaEnable)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('GammaEnable'))
+
+
+    def set_gamma_selector(self, gamma_mode : str):
+        """set gamma mode
+
+        Args:
+            gamma_mode (str): name of mode in PylonFlags.GammaMode
+        """
+        if self.camera_object.is_node_available('GammaSelector'):
+            self.__set_value__(gamma_mode, self.camera_object.camera_device.GammaSelector)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gamma Selector'))
+
+
+    def get_gamma_selector(self,) -> str:
+        """set gamma mode
+
+        Args:
+            gamma_mode (str): name of mode in PylonFlags.GammaMode
+        """
+        if self.camera_object.is_node_available('GammaSelector'):
+            return self.__get_value__(self.camera_object.camera_device.GammaSelector)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gamma Selector'))
+    
+
+    def available_gamma_selector(self,) -> str:
+        """set gamma mode
+
+        Args:
+            gamma_mode (str): name of mode in PylonFlags.GammaMode
+        """
+        if self.camera_object.is_node_available('GammaSelector'):
+            return self.__get_available_value__(self.camera_object.camera_device.GammaSelector)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gamma Selector'))
+
+    
+
+    def set_gamma(self, gamma_value: float):
+        """set value for gamma user mode
+
+        Args:
+            gamma_value (float): value for gamma
+        """
+        # get available range for node
+        if self.camera_object.is_node_available('Gamma'):
+            self.__set_value__(gamma_value, self.camera_object.camera_device.Gamma)
+        else:
+            print( ErrorAndWarnings.node_not_avaiable('gamma'))
+
+
+    def get_gamma(self) -> float:
+        """returns gamma value
+
+        Returns:
+            float: gamma value
+        """
+        if self.camera_object.is_node_available('Gamma'):
+            return self.__get_value__(self.camera_object.camera_device.Gamma)
+    
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gamma'))
+        
+
+    def get_gamma_range(self, )-> tuple[float]:
+        if self.camera_object.is_node_available('Gamma'):
+            return self.__get_value_range__(self.camera_object.camera_device.Gamma)
+    
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gamma'))
+        
+    
+    
+
+    def set_blacklevel(self, value:int):
+        """set black level raw on camera
+
+        Args:
+            value (int): value of black level
+        """
+
+        if self.camera_object.is_node_available('BlackLevelRaw'):
+            self.__set_value__(value, self.camera_object.camera_device.BlackLevelRaw)
+        
+        elif self.camera_object.is_node_available('BlackLevel'):
+            self.__set_value__(value, self.camera_object.camera_device.BlackLevel)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('BlackLevelRaw'))
+
+
+    def get_blacklevel(self) -> int:
+        """get black level raw
+
+        Returns:
+            int: value of black level
+        """
+        if self.camera_object.is_node_available('BlackLevelRaw'):
+            return self.__get_value__(self.camera_object.camera_device.BlackLevelRaw)
+        
+        elif self.camera_object.is_node_available('BlackLevel'):
+            return self.__get_value__(self.camera_object.camera_device.BlackLevel)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('BlackLevel'))
+
+
+    def get_blacklevel_range(self) -> tuple[int]:
+        """get black level raw
+
+        Returns:
+            int: value of black level
+        """
+        if self.camera_object.is_node_available('BlackLevelRaw'):
+            return self.__get_value_range__(self.camera_object.camera_device.BlackLevelRaw)
+        
+        elif self.camera_object.is_node_available('BlackLevel'):
+            return self.__get_value_range__(self.camera_object.camera_device.BlackLevel)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('BlackLevel'))
+
+
+
+    def set_digital_shift(self, value: int) -> None:
+        """set digital_shift of camera"""
+        if self.camera_object.is_node_available('DigitalShift'):
+            self.__set_value__(value, self.camera_object.camera_device.DigitalShift)
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Digital Shift'))
+    
+
+    def get_digital_shift(self) -> int:
+        """get digital_shift of camera"""
+        if self.camera_object.is_node_available('DigitalShift'):
+            return self.__get_value__( self.camera_object.camera_device.DigitalShift)
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Digital Shift'))
+
+
+
+    def get_digital_shift_range(self) -> tuple[int, int]:
+        """get allowable range of digital_shift of camera"""
+        if self.camera_object.is_node_available('DigitalShift'):
+            return self.__get_value_range__( self.camera_object.camera_device.DigitalShift)
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Digital Shift'))
+
+
+
     def set_gain(self, gain: int) -> None:
         """set gain of camera"""
         if self.camera_object.is_node_available('Gain'):
             self.__set_value__(gain, self.camera_object.camera_device.Gain)
         elif self.camera_object.is_node_available('GainRaw'):
             self.__set_value__(gain, self.camera_object.camera_device.GainRaw)
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gain'))
     
+
     def get_gain(self) -> int:
         """get gain of camera"""
         if self.camera_object.is_node_available('Gain'):
             return self.__get_value__( self.camera_object.camera_device.Gain)
         elif self.camera_object.is_node_available('GainRaw'):
             return self.__get_value__( self.camera_object.camera_device.GainRaw)
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gain'))
+
+
 
     def get_gain_range(self) -> tuple[int, int]:
         """get allowable range of gain of camera"""
@@ -477,6 +854,12 @@ class CameraParms:
             return self.__get_value_range__( self.camera_object.camera_device.Gain)
         elif self.camera_object.is_node_available('GainRaw'):
             return self.__get_value_range__( self.camera_object.camera_device.GainRaw)
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('Gain'))
+
+
+
+
 
 
     def set_exposureTime(self, exposure: int) -> None:
@@ -486,7 +869,12 @@ class CameraParms:
 
         elif self.camera_object.is_node_available('ExposureTimeAbs'):
             self.__set_value__(exposure, self.camera_object.camera_device.ExposureTimeAbs)
+
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('ExposureTime'))
     
+
+
     def get_exposureTime(self) -> int:
         """get ExposureTime of camera"""
         if self.camera_object.is_node_available('ExposureTime'):
@@ -494,6 +882,12 @@ class CameraParms:
         
         elif self.camera_object.is_node_available('ExposureTimeAbs'):
             return self.__get_value__(self.camera_object.camera_device.ExposureTimeAbs)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('ExposureTime'))
+            
+
+
 
     def get_exposureTime_range(self) -> tuple [int, int]:
         """get allowable range of ExposureTime of camera"""
@@ -502,6 +896,49 @@ class CameraParms:
         
         elif self.camera_object.is_node_available('ExposureTimeAbs'):
             return self.__get_value_range__(self.camera_object.camera_device.ExposureTimeAbs)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('ExposureTime'))
+
+    def set_height(self, h:int):
+        self.__set_value__(h, self.camera_object.camera_device.Height)
+    
+    def get_height(self,) -> int:
+        return self.__get_value__( self.camera_object.camera_device.Height)
+    
+    def get_height_range(self,) -> tuple[int]:
+        return self.__get_value_range__(self.camera_object.camera_device.Height)
+
+
+
+    def set_width(self, w:int):
+        self.__set_value__(w, self.camera_object.camera_device.Width)
+    
+    def get_width(self,) -> int:
+        return self.__get_value__( self.camera_object.camera_device.Width)
+    
+    def get_width_range(self,) -> tuple[int]:
+        return self.__get_value_range__(self.camera_object.camera_device.Width)
+    
+
+    def set_offset_x(self, x:int):
+        self.__set_value__(x, self.camera_object.camera_device.OffsetX)
+    
+    def get_offset_x(self,) -> int:
+        return self.__get_value__( self.camera_object.camera_device.OffsetX)
+    
+    def get_offset_x_range(self,) -> tuple[int]:
+        return self.__get_value_range__(self.camera_object.camera_device.OffsetX)
+    
+
+    def set_offset_y(self, y:int):
+        self.__set_value__(y, self.camera_object.camera_device.OffsetY)
+    
+    def get_offset_y(self,) -> int:
+        return self.__get_value__( self.camera_object.camera_device.OffsetY)
+    
+    def get_offset_y_range(self,) -> tuple[int]:
+        return self.__get_value_range__(self.camera_object.camera_device.OffsetY)
 
 
     def set_roi(self, height: int, width: int, offset_x: int, offset_y: int) -> None:
@@ -551,12 +988,45 @@ class CameraParms:
         offset_y_range = self.__get_value_range__( self.camera_object.camera_device.OffsetY)
         return h_range, w_range, offset_x_range, offset_y_range 
     
-    def set_trigger_option(self, source: str, selector = Trigger.selector.frame_start) -> None:
+    def set_trigger_delay(self, delay:int):
+        if self.camera_object.is_node_available('TriggerDelayAbs'):
+            self.__set_value__(delay, self.camera_object.camera_device.TriggerDelayAbs)
+        
+        elif self.camera_object.is_node_available('TriggerDelay'):
+            self.__set_value__(delay, self.camera_object.camera_device.TriggerDelay)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('TriggerDelay'))
+
+
+    
+    def get_trigger_delay(self, )->int:
+        if self.camera_object.is_node_available('TriggerDelayAbs'):
+            return self.__get_value__(self.camera_object.camera_device.TriggerDelayAbs)
+        
+        elif self.camera_object.is_node_available('TriggerDelay'):
+            return self.__get_value__(self.camera_object.camera_device.TriggerDelay)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('TriggerDelay'))     
+
+
+    def get_trigger_delay_range(self, )-> tuple[int]:
+        if self.camera_object.is_node_available('TriggerDelayAbs'):
+            return self.__get_value_range__(self.camera_object.camera_device.TriggerDelayAbs)
+        
+        elif self.camera_object.is_node_available('TriggerDelay'):
+            return self.__get_value_range__(self.camera_object.camera_device.TriggerDelay)
+            
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('TriggerDelay'))
+
+    def set_trigger_option(self, source: str, 
+                           selector = Trigger.selector.frame_start,
+                           delay: int = 0) -> None:
         """setup trigger option ( trigger source and trigger selector) 
         Examples:
             >>> camera.Parms.set_trigger_option(Trigger.source.software, Trigger.selector.frame_start)
-
-
         Args:
             source (str): source of trigger 
                 Trigger.source.software
@@ -565,13 +1035,11 @@ class CameraParms:
             selector (_type_, optional): trigger selector. Defaults to Trigger.selector.frame_start.
         """
         self.set_trigger_on()
-        if source is not None:
-            self.__set_value__(source, self.camera_object.camera_device.TriggerSource)
-        
-        if selector is not None:
-            self.__set_value__(selector, self.camera_object.camera_device.TriggerSelector)
+        self.__set_value__(source, self.camera_object.camera_device.TriggerSource)
+        self.__set_value__(selector, self.camera_object.camera_device.TriggerSelector)
+        self.set_trigger_delay(delay)
 
-    def get_trigger_option(self) -> tuple[str, str]:
+    def get_trigger_option(self) -> tuple[str, str, int]:
         """return values of TriggerSource and TriggerSelector
 
         Returns:
@@ -579,8 +1047,10 @@ class CameraParms:
         """
         source = self.__get_value__(self.camera_object.camera_device.TriggerSource)
         selector = self.__get_value__(self.camera_object.camera_device.TriggerSelector)
-        return source, selector
-    
+        delay = self.get_trigger_delay()
+        return source, selector, delay
+
+
     
     def availble_triggersource_values(self) -> tuple[str]:
         """return avaible value for TriggerSource node of camera
@@ -589,7 +1059,9 @@ class CameraParms:
             tuple[str]: avaible value for TriggerSource node of camera
         """
         return self.__get_available_value__(self.camera_object.camera_device.TriggerSource)
-    
+
+
+
     def availble_triggerselector_values(self) -> tuple[str]:
         """return avaible value for TriggerSelector node of camera
 
@@ -604,32 +1076,225 @@ class CameraParms:
         self.__set_value__('On', self.camera_object.camera_device.TriggerMode)
         
 
+
     def set_trigger_off(self) -> None:
         """trun trigger `Off` """
         self.__set_value__('Off', self.camera_object.camera_device.TriggerMode)
 
-    def set_trigger_delay(self, delay:int):
-        self.__set_value__(delay, self.camera_object.camera_device.TriggerDelay)
 
     def get_trigger_mode(self) -> str:
         """return trigger mode value (`On` or `Off`)"""
         return self.__get_value__(self.camera_object.camera_device.TriggerMode)
 
-    def set_bandwith(self,):
-        #fps = bandwidth / payload_size
-        pass
 
-    def set_transportlayer(self,packet_delay: int, packet_size = None) -> None:
+
+
+    def set_inter_packet_delay(self, pd:int):
+        """set inter delay packet
+
+        Args:
+            pd (int): time of packet delay in us
+        """
+        self.__set_value__(pd, self.camera_object.camera_device.GevSCPD)
+    
+    def get_inter_packet_delay(self,) -> int:
+        return self.__get_value__(self.camera_object.camera_device.GevSCPD)
+
+    def get_inter_delay_packet_range(self,) -> tuple[int, int]:
+        return self.__get_value_range__(self.camera_object.camera_device.GevSCPD)
+
+    def set_packet_size(self, ps:int):
+        """set packet size. ps is bytes"""
+        self.__set_value__(ps, self.camera_object.camera_device.GevSCPSPacketSize)
+    
+    def get_packet_size(self,) -> int:
+        """return packet size in bytes"""
+        return self.__get_value__(self.camera_object.camera_device.GevSCPSPacketSize)
+
+    def get_packet_size_range(self,) -> tuple[int, int]:
+        """returns packet size range in bytes"""
+        return self.__get_value_range__(self.camera_object.camera_device.GevSCPSPacketSize)
+
+    def set_bandwidth_reserve(self, br:int):
+        """set band width reseve. it is percent between 0,100"""
+        self.__set_value__(br, self.camera_object.camera_device.GevSCBWR)
+    
+    def get_bandwidth_reserve(self,) -> int:
+        """returns bandwidth reseve. it is percent"""
+        return self.__get_value__(self.camera_object.camera_device.GevSCBWR)
+
+    def get_bandwidth_reserve_range(self,) -> tuple[int, int]:
+        """returns availavbe bandwidth reseve percent range"""
+        return self.__get_value_range__(self.camera_object.camera_device.GevSCBWR)
+    
+    def set_bandwidth_reserve_accumulation(self, br:int):
+        """set band width reseve accumulation"""
+        self.__set_value__(br, self.camera_object.camera_device.GevSCBWRA)
+    
+    def get_bandwidth_reserve_accumulation(self,) -> int:
+        """returns bandwidth reseve accumulation."""
+        return self.__get_value__(self.camera_object.camera_device.GevSCBWRA)
+
+    def get_bandwidth_reserve_accumulation_range(self,) -> tuple[int, int]:
+        """returns availavbe bandwidth reseve accumulation"""
+        return self.__get_value_range__(self.camera_object.camera_device.GevSCBWRA)
+    
+    def set_frame_transmission_delay(self, delay:int):
+        """set frame transmission delay in us"""
+        self.__set_value__(delay, self.camera_object.camera_device.GevSCFTD)
+    
+    def get_frame_transmission_delay(self,) -> int:
+        """returns bandwidth reseve accumulation."""
+        return self.__get_value__(self.camera_object.camera_device.GevSCFTD)
+
+    def get_frame_transmission_delay_range(self,) -> tuple[int, int]:
+        """returns availavbe bandwidth reseve accumulation"""
+        return self.__get_value_range__(self.camera_object.camera_device.GevSCFTD)
+
+    def set_transportlayer(self,
+                           inter_packet_delay: int, 
+                           packet_size: int,
+                           bandwidth_reserve:int,
+                           bandwidth_reserve_accumulation:int,
+                           frame_transmission_delay:int) -> None:
         """set packet_delay and packet_size of camera
 
         Args:
             packet_delay (int):
             packet_size (int, optional): Defaults to None.
         """
-        self.__set_value__(packet_size, self.camera_object.camera_device.GevSCPSPacketSize)
-        self.__set_value__(packet_delay, self.camera_object.camera_device.GevSCPD)
+        if bandwidth_reserve_accumulation is not None:
+            self.set_bandwidth_reserve_accumulation(bandwidth_reserve_accumulation)
+            
+        if bandwidth_reserve is not None:
+            self.set_bandwidth_reserve(bandwidth_reserve)
+
+        if packet_size is not None:
+            self.set_packet_size(packet_size)
+
+        if inter_packet_delay is not None:
+            self.set_inter_packet_delay(inter_packet_delay)
+        
+        if frame_transmission_delay is not None:
+            self.set_frame_transmission_delay(frame_transmission_delay)
+
+    
+
+    def get_transportlayer(self,)-> tuple[int]:
+        """returns transportlayer configs
+
+        Returns:
+            tuple[int]: packet_size, inter_packet_delay, bandwidth_reserve, bandwidth_reserve_accum
+        """
+        ps  = self.get_packet_size()
+        pd  = self.get_inter_packet_delay()
+        br  = self.get_bandwidth_reserve()
+        bra = self.get_bandwidth_reserve_accumulation()
+
+        return ps, pd, br, bra
+    
+    #------------------------------------------------------------------------------
+
+    def set_light_source_selector(self, value:str):
+        """set light source 
+
+        Args:
+            value (str): use pylonFlags.LightSource
+        """
+        if self.camera_object.is_node_available('LightSourceSelector'):
+            self.__set_value__(value, self.camera_object.camera_device.LightSourceSelector)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('LightSourceSelector'))
+
+    def get_light_source_selector(self,) -> str:
+        """returns selected light source"""
+        if self.camera_object.is_node_available('LightSourceSelector'):
+            return self.__get_value__(self.camera_object.camera_device.LightSourceSelector)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('LightSourceSelector'))
 
 
+    def available_light_source_selector(self,) -> str:
+        """returns avalaible light sources"""
+        if self.camera_object.is_node_available('LightSourceSelector'):
+            return self.__get_available_value__(self.camera_object.camera_device.LightSourceSelector)
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('LightSourceSelector'))
+
+
+    #------------------------------------------------------------------------------
+    def set_color_balance_ratio(self, color:str, ratio:int):
+        """set balance ratio of specific color
+
+        Args:
+            color (str): select color to set balance ratio. use pylonFlags.Color flags
+            ratio (int): balance ratio of given color
+        """
+        if self.camera_object.is_node_available('BalanceRatioSelector'):
+            self.__set_value__(color, self.camera_object.camera_device.BalanceRatioSelector)
+
+            if self.camera_object.is_node_available('BalanceRatioRaw'):
+                self.__set_value__(ratio, self.camera_object.camera_device.BalanceRatioRaw)
+            
+            elif self.camera_object.is_node_available('BalanceRatio'):
+                self.__set_value__(ratio, self.camera_object.camera_device.BalanceRatio)
+
+            else:
+                print(ErrorAndWarnings.node_not_avaiable('BalanceRatio'))
+
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('BalanceRatioSelector'))
+
+    def get_color_balance_ratio(self, color:str) -> int:
+        """set balance ratio of specific color
+
+        Args:
+            color (str): select color to set balance ratio. use pylonFlags.Color flags
+            ratio (int): balance ratio of given color
+        """
+        if self.camera_object.is_node_available('BalanceRatioSelector'):
+            self.__set_value__(color, self.camera_object.camera_device.BalanceRatioSelector)
+
+            if self.camera_object.is_node_available('BalanceRatioRaw'):
+                return self.__get_value__( self.camera_object.camera_device.BalanceRatioRaw)
+            
+            elif self.camera_object.is_node_available('BalanceRatio'):
+                return self.__get_value__( self.camera_object.camera_device.BalanceRatio)
+
+            else:
+                print(ErrorAndWarnings.node_not_avaiable('BalanceRatio'))
+
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('BalanceRatioSelector'))
+
+
+    def get_color_balance_ratio_range(self, color:str) -> tuple[int]:
+        """set balance ratio of specific color
+
+        Args:
+            color (str): select color to set balance ratio. use pylonFlags.Color flags
+            ratio (int): balance ratio of given color
+        """
+        if self.camera_object.is_node_available('BalanceRatioSelector'):
+            self.__set_value__(color, self.camera_object.camera_device.BalanceRatioSelector)
+
+            if self.camera_object.is_node_available('BalanceRatioRaw'):
+                return self.__get_value_range__( self.camera_object.camera_device.BalanceRatioRaw)
+            
+            elif self.camera_object.is_node_available('BalanceRatio'):
+                return self.__get_value_range__( self.camera_object.camera_device.BalanceRatio)
+
+            else:
+                print(ErrorAndWarnings.node_not_avaiable('BalanceRatio'))
+
+        
+        else:
+            print(ErrorAndWarnings.node_not_avaiable('BalanceRatioSelector'))
 
 class CameraImageEventHandler(pylon.ImageEventHandler):
     def __init__(self,camera : Camera, *args):
@@ -640,18 +1305,11 @@ class CameraImageEventHandler(pylon.ImageEventHandler):
     def set_func(self, func):
         self.event_func = func
 
-    def OnImageGrabbed(self, camera, grabResult):
+    def OnImageGrabbed(self, grabResult):
         print("CameraImageEventHandler.OnImageGrabbed called.")
         img = self.camera.getPictures(grabResult)
         if self.event_func is not None:
             self.event_func(img)
-
-
-
-
-
-
-
 
 
 
@@ -729,13 +1387,13 @@ class Collector:
         """
         self.devices = self.get_available_devices(None)
         for device in self.devices:
-            try:
-                camera = pylon.InstantCamera(self.__tl_factory.CreateDevice(device))
-                if camera.GetDeviceInfo().GetSerialNumber() == serial_number:
+            if device.GetSerialNumber() == serial_number:
+                try:
+                    camera = pylon.InstantCamera(self.__tl_factory.CreateDevice(device))
                     return Camera(camera)
-            except:
-                print('Build Camera Device Error')    
-            
+                except Exception as e:
+                    print(e)
+                    return None
         return None
 
     def get_all_cameras(self, camera_class=None) -> list[Camera]:
@@ -756,9 +1414,12 @@ class Collector:
         cameras = []
         for device in self.devices:
             if camera_class is None or device.GetDeviceClass() == camera_class:
-                cameras.append(
-                    Camera(pylon.InstantCamera(self.__tl_factory.CreateDevice(device)))
-                )
+                try:
+                    cameras.append(
+                        Camera(pylon.InstantCamera(self.__tl_factory.CreateDevice(device)))
+                    )
+                except Exception as e:
+                    print(e)
 
         return cameras
         
@@ -796,13 +1457,61 @@ class Collector:
 # if __name__ == "__main__":
 #     time.sleep(1)
 #     collector = Collector()
-#     collector.enable_camera_emulation(2)
-#     cameras = collector.get_all_cameras(camera_class=CamersClass.emulation)
+#     cameras = collector.get_all_cameras(camera_class=CamersClass.gige)
 #     cam1 = cameras[0]
-#     #-----------------------------------------------------------------
-#     cam1.Parms.set_gain(50000)
+
+#     #-----------------------------------------------------
+#     # Black level
+#     # cam1.search_in_nodes('black')
+
 #     cam1.Operations.start_grabbing()
-#     cam1.search_in_nodes('gain')
+
+#     cam1.Parms.set_all_parms(black_level_raw=500)
+
+#     # cam1.Parms.set_blacklevelraw(0)
+#     cv2.waitKey(100)
+#     res, img = cam1.getPictures()
+#     print(cam1.Parms.get_blacklevelraw())
+#     cv2.imshow('img', img)
+
+#     cv2.waitKey(0)
+
+    # cam1.Parms.set_blacklevelraw(100)
+    # cv2.waitKey(100)
+    # res, img = cam1.getPictures()
+    # print(cam1.Parms.get_blacklevelraw())
+    # cv2.imshow('img', img)
+
+    # cv2.waitKey(0)
+
+    # cam1.Parms.set_blacklevelraw(500)
+    # cv2.waitKey(100)
+    # res, img = cam1.getPictures()
+    # print(cam1.Parms.get_blacklevelraw())
+    # cv2.imshow('img', img)
+
+    # cv2.waitKey(0)
+
+    # cam1.Parms.set_blacklevelraw(600)
+    # cv2.waitKey(100)
+    # res, img = cam1.getPictures()
+    # print(cam1.Parms.get_blacklevelraw())
+    # cv2.imshow('img', img)
+
+    # cv2.waitKey(0)
+
+
+# #     #-----------------------------------------------------------------
+# #     cam1.Parms.set_gain(50000)
+#     cam1.Operations.start_grabbing()
+#     while True:
+#         try:
+#             res, img3 = cam1.getPictures()
+
+#             cv2.imshow('gamma dis', img3)
+#         except:
+#             pass
+    
 #     #cam1.set_image_event(func=test_event)
     
 #     #-----------------------------------------------------------------
@@ -846,3 +1555,59 @@ class Collector:
 #     pass
 #     #a = pylon.InstantCamera()
 #     #x = pylon.InstantCamera()
+    
+
+    # -------------------------------------------
+    # testing Gamma enable and disable
+    # cam1.search_in_nodes('gamma')
+    # # print(cam1.Parms.availble_node_values('Gamma'))
+    
+    # cam1.Operations.start_grabbing()
+    # res, img = cam1.getPictures()
+    # cv2.imshow('img', img)
+    # cv2.waitKey(0)
+
+    # cam1.Parms.set_all_parms(gamma_enable=True, gamma_mode='user', gamma_value=0.4)
+
+    # cam1.Parms.set_node('GammaEnable', True)
+    # cam1.Parms.set_node('GammaSelector', GammaMode.user)
+    # cam1.Parms.set_node('Gamma', 0.4)
+    # cv2.waitKey(500)
+    # res, img2 = cam1.getPictures()
+    # cv2.imshow('gamma enable', img2)
+    # cv2.waitKey(0)
+
+
+    # cam1.Parms.set_all_parms(gamma_enable=False)
+    # cv2.waitKey(500)
+    # res, img2 = cam1.getPictures()
+    # cv2.imshow('gamma enable', img2)
+    # cv2.waitKey(0)
+
+    # cam1.Parms.set_node('GammaEnable', False)
+    
+    #     cv2.waitKey(100)
+    # cam1.Operations.start_grabbing()
+    # cam1.Parms.set_gamma_enable(True)
+    # cam1.Parms.set_gamma_mode('srgb')
+    # print('Mode: ', cam1.Parms.get_gamma_mode())
+    # print('Value: ', cam1.Parms.get_gamma_value())
+    # print('Status: ', cam1.Parms.get_gamma_enable_status())
+    # # res, img2 = cam1.getPictures()
+    # # cv2.imshow('gamma enable', img2)
+    # # cv2.waitKey(5000)
+    # cam1.Parms.set_gamma_enable(False)
+    # print('Mode: ', cam1.Parms.get_gamma_mode())
+    # print('Value: ', cam1.Parms.get_gamma_value())
+    # print('Status: ', cam1.Parms.get_gamma_enable_status())
+    # # res, img2 = cam1.getPictures()
+    # # cv2.imshow('gamma enable', img2)
+    # # cv2.waitKey(5000)
+    # cam1.Parms.set_gamma_enable(True)
+    # cam1.Parms.set_gamma_mode('user', 0.2)
+    # print('Mode: ', cam1.Parms.get_gamma_mode())
+    # print('Value: ', cam1.Parms.get_gamma_value())
+    # print('Status: ', cam1.Parms.get_gamma_enable_status())
+    # res, img2 = cam1.getPictures()
+    # cv2.imshow('gamma enable', img2)
+    # cv2.waitKey(5000)

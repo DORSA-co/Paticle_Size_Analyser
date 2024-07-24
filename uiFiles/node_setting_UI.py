@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'node_setting.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.4
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -25,7 +25,7 @@ class Ui_NodeSetting(object):
         if not NodeSetting.objectName():
             NodeSetting.setObjectName(u"NodeSetting")
         NodeSetting.resize(823, 80)
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(NodeSetting.sizePolicy().hasHeightForWidth())
@@ -82,7 +82,7 @@ class Ui_NodeSetting(object):
 
         self.horizontalLayout_2.addWidget(self.node_name_input)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
 
@@ -93,7 +93,7 @@ class Ui_NodeSetting(object):
 
         self.horizontalLayout_2.addWidget(self.node_type_combobox)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
@@ -124,7 +124,7 @@ class Ui_NodeSetting(object):
 
         self.horizontalLayout_2.addWidget(self.node_i)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_3)
 
@@ -134,7 +134,7 @@ class Ui_NodeSetting(object):
 "min-width:30px;\n"
 "max-width:30px;")
         icon = QIcon()
-        icon.addFile(u":/assets/icons/icons8-close-black-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/assets/icons/icons8-close-black-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.remove_btn.setIcon(icon)
 
         self.horizontalLayout_2.addWidget(self.remove_btn)

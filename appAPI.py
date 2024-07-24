@@ -60,10 +60,12 @@ class main_API(QObject):
         #------------------------------------------------------------------------------------------
         plc_setting = self.db.setting_db.plc_db.load()
         self.plc = PLCHandler(plc_setting['ip'])
-        # self.plc.set_connected_event(self.plc_connect_event)
-        # self.plc.set_disconnected_event(self.plc_disconnected_event)
-        # self.plc.connect_request()
+        self.plc.set_connected_event(self.plc_connect_event)
+        self.plc.set_disconnected_event(self.plc_disconnected_event)
         self.define_nodes()
+        # self.plc.nodesHandler.set_change_value_event(self.node_change_value_event)
+        # self.plc.connect_request()
+        
 
         self.collector = Collector()
         self.collector.enable_camera_emulation(1)
@@ -148,7 +150,8 @@ class main_API(QObject):
         #TEMP
         self.login_user_event()
         self.standard_event()
-        self.plc_setting_change_event()
+        
+        
         #---------------------------------------------------
         self.uiHandeler.show()
         self.uiHandeler.usersPage.loginUserBox.show_login()
@@ -281,10 +284,15 @@ class main_API(QObject):
                 
             else:
                 self.mainPageAPI.set_system_status('camera_connection',status=True)
+
+
+    def plc_connect_event(self,):
+        pass
                 
-                
-    # def camera_disconnect_event(self,):
-    #     self.mainPageAPI.stop(ask=False)
+    def plc_disconnected_event(self,):
+        pass
+
+    # def node_change_value_event(self, data:dict):
 
 
     def page_change_event(self, current_page_name, new_page_name):
@@ -309,12 +317,12 @@ class main_API(QObject):
         
 
 
-    def grabbed_image_event(self,):
+    def grabbed_image_event(self, img):
         self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', True)
         current_page,_ = self.uiHandeler.get_current_page()
         
         if current_page == 'main':
-            self.mainPageAPI.process_image()
+            self.mainPageAPI.process_image(img)
 
         elif current_page == 'settings':
             self.settingPageAPI.cameraSetting.show_live_image()
@@ -338,16 +346,8 @@ class main_API(QObject):
         pass
 
     def plc_setting_change_event(self,):
-        nodes_data = self.db.setting_db.plc_nodes_db.load_all()
-        read_nodes = []
-        write_nodes = []
-        for node in nodes_data:
-            if node['type'] == 'readable':
-                read_nodes.append(node['name'])
-            else:
-                write_nodes.append(node['name'])
+        self.settingPageAPI.configSetting.load_singlas()
         
-        self.settingPageAPI.configSetting.ui.update_signals_event(read_nodes, write_nodes)
     
     def set_access(self, role):
         self.uiHandeler.set_access_pages( CONSTANTS.ACCESS[role]['pages'],)

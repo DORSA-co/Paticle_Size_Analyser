@@ -26,7 +26,7 @@ class inputSignalUI(QWidget):
         )
 
         self.settings = {
-            'signal': self.ui.signal_name_combobox,
+            'name': self.ui.signal_name_combobox,
             'condition': self.ui.condition_combobox,
             'value': self.ui.signal_value
         }
@@ -67,9 +67,9 @@ class inputSignalUI(QWidget):
             GUIBackend.set_input(self.settings[name], value)
 
     def set_signals_items(self, items:list[str]):
-        current = GUIBackend.get_combobox_selected(self.settings['signal'])
-        GUIBackend.set_combobox_items(self.settings['signal'], items)
-        GUIBackend.set_combobox_current_item(self.settings['signal'], current, block_signal=True)
+        current = GUIBackend.get_combobox_selected(self.settings['name'])
+        GUIBackend.set_combobox_items(self.settings['name'], items)
+        GUIBackend.set_combobox_current_item(self.settings['name'], current, block_signal=True)
 
 
 class outputSignalUI(QWidget):
@@ -94,7 +94,7 @@ class outputSignalUI(QWidget):
 
         self.step_name = step_name
         self.settings = {
-            'signal': self.ui.signal_name_combobox,
+            'name': self.ui.signal_name_combobox,
             'value': self.ui.value_bool,
             'type': self.ui.signal_type
         }
@@ -132,8 +132,8 @@ class outputSignalUI(QWidget):
 
     def get_settings(self,) ->dict:
         res = {}
-        value = GUIBackend.get_input(self.settings['signal'])
-        res['signal'] = value
+        value = GUIBackend.get_input(self.settings['name'])
+        res['name'] = value
 
         value = GUIBackend.get_input(self.settings['type'])
         value = self.mapDict.value2key('type', value)
@@ -149,20 +149,23 @@ class outputSignalUI(QWidget):
 
     def set_settings(self, data:dict):
         
-        GUIBackend.set_input(self.settings['signal'], data['signal'])
+        GUIBackend.set_input(self.settings['name'], data['name'])
+
+        value = data['type']
+        value = self.mapDict.key2value('type', value)
+        GUIBackend.set_input(self.settings['type'], value)
+        self.__type_change_event()
 
         value = data['value']
         if data['type'] == 'bool':
             value = self.mapDict.key2value('bool_value', value)
         GUIBackend.set_input(self.settings['value'], value)
 
-        value = data['type']
-        value = self.mapDict.key2value('type', value)
-        GUIBackend.set_input(self.settings['type'], value)
+        
         
 
 
     def set_signals_items(self, items:list[str]):
-        current = GUIBackend.get_combobox_selected(self.settings['signal'])
-        GUIBackend.set_combobox_items(self.settings['signal'], items)
-        GUIBackend.set_combobox_current_item(self.settings['signal'], current, block_signal=True)
+        current = GUIBackend.get_combobox_selected(self.settings['name'])
+        GUIBackend.set_combobox_items(self.settings['name'], items)
+        GUIBackend.set_combobox_current_item(self.settings['name'], current, block_signal=True)

@@ -1,14 +1,12 @@
 import logging
-from typing import Callable
+from typing import Callable, Union
 import time
 import threading
 
 from opcua import Client
 from opcua import ua
-from PySide6.QtCore import QObject, Signal
 from opcua.common.node import Node
-
-from typing import Union
+from PySide6.QtCore import QObject, Signal
 
 
 
@@ -54,7 +52,11 @@ class singleNodeHandler:
         except:
             self.__type = None
         
-        
+    def set_auto_read(self, auto_read,  read_change_event=None):
+        self.auto_read = auto_read
+
+        if read_change_event is not None:
+            self.read_change_event = read_change_event
     
     def change_node(self, node:Node):
         self.node = node
@@ -223,6 +225,8 @@ class nodesHandler:
             #plc not connect
             return None
     
+
+    
     
 
 
@@ -258,6 +262,9 @@ class PLCHandler:
         self.external_disconnected_event = None
 
         self.run_threads_after_connect = False
+        self.__connect_flag = False
+
+        self.__read_requests = {}
 
 
     def set_connected_event(self, func):
@@ -272,6 +279,9 @@ class PLCHandler:
         
     def __build_client(self,):
         self.client = Client(self.url)
+
+    def is_connect(self,) -> bool:
+        return self.__connect_flag
 
     def connect(self, url=None):
         if url is not None:
@@ -306,6 +316,8 @@ class PLCHandler:
     
     def connected_event(self,):
         self.nodesHandler.rebuild(self.client)
+        self.__connect_flag = True
+
         if self.run_threads_after_connect:
             self.run_threads()
         if self.external_connected_event:
@@ -321,7 +333,7 @@ class PLCHandler:
             return False
         
     
-    def disconnect_event(self,):
+    def __disconnect_event(self,):
         print('PLC disconnected')
         self.kill_threads()
         self.connect_request()
@@ -339,10 +351,10 @@ class PLCHandler:
                 self.write_worker.stop()
     
     def run_threads(self,):
-
         self.read_worker = PLCReadWoker(self.nodesHandler, loop_time=10)
-        self.read_worker.change_value_signal.connect(self.change_data_event)
-        self.read_worker.disconnected_singal.connect(self.disconnect_event)
+        self.read_worker.change_value_signal.connect(self.__change_data_event)
+        self.read_worker.disconnected_singal.connect(self.__disconnect_event)
+        self.read_worker.request_value_signal.connect(self.__request_answer_event)
         self.read_thread = threading.Thread(target=self.read_worker.run)
         self.read_thread.start()
 
@@ -350,7 +362,33 @@ class PLCHandler:
         self.write_thread = threading.Thread(target=self.write_worker.run)
         self.write_thread.start()
 
-    def change_data_event(self, data:dict):
+    def send_read_request(self,request_id:str, node_names:list, answer_func:Callable):
+        """get values on thread
+        """
+        if not self.read_thread.is_alive():
+            print(f"ERROR: read request {request_id} send befor running_threads!")
+            return
+        
+        self.__read_requests[request_id] = {
+            'func': answer_func
+        }
+
+        self.read_worker.read_requests(request_id, node_names)
+
+    def send_write_request(self, values:dict):
+        """write node on thread
+
+        Args:
+            values (dict): dictionary that keys are node's name and it's values are node's value
+        """
+        if not self.write_thread.is_alive():
+            print(f"ERROR: write request send befor running_threads!")
+            return
+        
+        self.write_worker.write_request(values)
+
+
+    def __change_data_event(self, data:dict):
         name = data['name']
         single_node_handler = self.nodesHandler.get_by_name(name)
         if single_node_handler.read_change_event is not None:
@@ -361,6 +399,16 @@ class PLCHandler:
 
         else:
             print("WARNING: PLC node change but no event found for it", data)
+
+
+    def __request_answer_event(self, req:dict):
+        req_id = req['id']
+        values = req['values']
+        func = self.__read_requests[req_id]['func']
+        func(values )
+        self.__read_requests.pop(req_id)
+
+
 
 
 class PLCConnectorWorker(QObject):
@@ -446,6 +494,7 @@ class PLCWriteWorker(QObject):
 
 class PLCReadWoker(QObject):
     change_value_signal = Signal(dict)
+    request_value_signal = Signal(dict)
     disconnected_singal = Signal()
 
     def __init__(self, nodes_handler:nodesHandler, loop_time:int, max_failed=3):
@@ -458,9 +507,20 @@ class PLCReadWoker(QObject):
         self.new_values = {}
         self.old_values = {}
         self.__running = True
+        self.requsts = []
+
+    def read_requests(self,request_id:str, nodes_names:list[str]):
+        self.requsts.append(
+            {'id': request_id,
+             'nodes_names': nodes_names
+             }
+        )
 
         
-    def get_nodes_for_read(self,):
+
+
+        
+    def get_nodes_for_atuo_read(self,) -> list[str]:
         node_names = []
         for name in self.nodesHandler.get_names():
             snode_handler = self.nodesHandler.get_by_name(name)
@@ -471,7 +531,14 @@ class PLCReadWoker(QObject):
 
             if snode_handler.is_time_to_read():
                 node_names.append(name)
+    
+    def get_nodes_for_request_reads(self,) -> list[str]:
+        node_names = []
+        for req in self.requsts:
+            node_names = node_names + req['nodes_names']
         
+        node_names = list(set(node_names))
+      
         return node_names
     
     def call_event_for_changes(self):
@@ -484,15 +551,51 @@ class PLCReadWoker(QObject):
                     'value':value}
                 )
 
+
+    def call_event_for_request(self, node_values:dict):
+        complete_reqs = []
+
+        for req in self.requsts:
+            names = req['nodes_names']
+            answer = {'id': req['id'],
+                      'values':{}
+                      }
+            for name in names:
+                value = node_values.get(name)
+                if value is not None:
+                    answer['values'][name] = value
+                else:
+                    break
+            else:
+                self.request_value_signal.emit(answer)
+                complete_reqs.append(req)
+
+        
+        for req in complete_reqs:
+            self.requsts.remove(req)
+                
+                
+
         
 
     def run(self):        
         
         while self.__running:
-            node_names = self.get_nodes_for_read()
+            auto_node_names = self.get_nodes_for_atuo_read()
+            request_nodes_names = self.get_nodes_for_request_reads()
+            node_names = list( set(auto_node_names + request_nodes_names) )
+
             if len(node_names):
                 #t = time.time()
-                self.new_values = self.nodesHandler.get_values(node_names)
+                node_values = self.nodesHandler.get_values(node_names)
+
+                self.new_values = {}
+                #seprate auto read node
+                for name, value in node_values.items():
+                    if name in auto_node_names:
+                        self.new_values[name] = value
+                        
+                
                 if self.new_values is None:
                     self.faild_counter+=1
                 else:

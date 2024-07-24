@@ -986,7 +986,7 @@ class configSettingTabUI(commonSettingUI):
         scroll_bar = self.signals_wgt[step_name]['scroll_area'].verticalScrollBar()
         scroll_bar.setValue(scroll_bar.maximum())
 
-    def update_signals_event(self, read_signals:list[str], write_signals:list[str]):
+    def update_signals_items(self, read_signals:list[str], write_signals:list[str]):
         self.read_signals = read_signals
         self.write_signals = write_signals
 

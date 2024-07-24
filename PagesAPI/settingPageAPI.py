@@ -22,7 +22,7 @@ class settingPageAPI:
         self.sampleSetting = sampleSettingTabAPI(ui.sampleSettingTab, database.sample_db)
         self.exportSetting = exportSettingTabAPI(ui.exportSettingTab, database.export_db)
         self.plcSetting = plcSettingTabAPI(ui.plcSettingTab, database_nodes=database.plc_nodes_db, database_plc=database.plc_db)
-        self.configSetting = configSettingTabAPI(ui.configSettingTab, database.config_db)
+        self.configSetting = configSettingTabAPI(ui.configSettingTab, database.config_db, database_nodes=database.plc_nodes_db)
         
         # ui.cameraSettingTab.save_state(True)
         # ui.algorithmSettingTab.save_state(True)
@@ -410,9 +410,9 @@ class cameraSettingTabAPI:
             if cam is not None:
                 cam.Operations.stop_grabbing()
     
-    def show_live_image(self,):
-        camera_application = self.ui.get_selected_camera_application()
-        self.img = self.cameras[camera_application].image
+    def show_live_image(self, img):
+        # camera_application = self.ui.get_selected_camera_application()
+        self.img = img
         if self.is_playing:
             self.ui.show_live_image(self.img)
 
@@ -608,10 +608,13 @@ class configSettingTabAPI:
     def __init__(self, 
                  ui:configSettingTabUI ,
                  database:settingConfigDB, 
+                 database_nodes = settingPLCNodesDB
                  ):
         
         self.ui = ui
         self.database = database
+        self.database_nodes = database_nodes
+        
 
         self.ui.save_button_connector(self.save)
         self.load()
@@ -621,5 +624,19 @@ class configSettingTabAPI:
         self.database.save_config(settings)
 
     def load(self,):
+        self.load_singlas()
         settings = self.database.load_config()
         self.ui.set_settings(settings)
+
+
+    def load_singlas(self,):
+        nodes_data = self.database_nodes.load_all()
+        read_nodes = []
+        write_nodes = []
+        for node in nodes_data:
+            if node['type'] == 'readable':
+                read_nodes.append(node['name'])
+            else:
+                write_nodes.append(node['name'])
+        
+        self.ui.update_signals_items(read_nodes, write_nodes)

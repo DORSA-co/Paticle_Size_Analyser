@@ -99,9 +99,9 @@ class calibrationTab:
         return func
     
 
-    def camera_image_event(self,):
+    def camera_image_event(self, image):
         cam_application = 'standard'
-        image = self.cameras[cam_application].image
+        #image = self.cameras[cam_application].image
 
         if image is not None:
 

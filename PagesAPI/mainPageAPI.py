@@ -127,27 +127,14 @@ class mainPageAPI:
 
 
 
-    def process_image(self):
-        #print('process_image')
+    def process_image(self, img:np.ndarray):
+
         if self.is_running:
             if not self.during_processing:
                 
                 self.during_processing = True
                 self.calc_fps()
-                #self.uiHandeler.set_information({"fps": self.calc_fps()})
-                #________________________________ONLY FOR TEST________________________________________________
-                img = None
-                if self.cameras['standard'].Infos.is_Simulation():
-                    fname = "{}.jpg".format(self.test_img_idx)
-                    path = os.path.join(CONSTANTS.Files.DEMO_IMGS_DIR, fname)
-                    img = cv2.imread(path, 0)
-
-                
-                    self.test_img_idx+=1
-                    if self.test_img_idx>=len(os.listdir(CONSTANTS.Files.DEMO_IMGS_DIR)):
-                        self.test_img_idx = 0
-                else:
-                    img = self.cameras['standard'].image
+              
                 
                 if img is None:
                     self.during_processing = False
@@ -187,7 +174,7 @@ class mainPageAPI:
     def show_live_info(self):
         t = time.time()
         
-        if 1/(t - self.refresh_time) < self.max_fps and self.is_running:
+        if 1/((t - self.refresh_time) + 1e-5) < self.max_fps and self.is_running:
             self.refresh_time = time.time()
 
             particles = self.worker.get_particles()

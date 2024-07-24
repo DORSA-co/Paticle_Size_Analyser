@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'output_signal_setting.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.2.4
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -48,7 +48,7 @@ class Ui_outputSignalSetting(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(self.main_frame)
         self.label.setObjectName(u"label")
-        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -92,7 +92,7 @@ class Ui_outputSignalSetting(object):
 "min-width:30px;\n"
 "max-width:30px;")
         icon = QIcon()
-        icon.addFile(u":/assets/icons/icons8-close-black-50.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/assets/icons/icons8-close-black-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.remove_btn.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.remove_btn)

@@ -107,7 +107,7 @@ class Particle:
         info['min_diameter'] = np.round(self.min_diameter, CONSTANTS.DECIMAL_ROUND )
         info['max_radius'] =  np.round(self.max_radius, CONSTANTS.DECIMAL_ROUND )
         info['avg_radius'] =  np.round(self.avg_radius, CONSTANTS.DECIMAL_ROUND )
-        info['min_dradius'] = np.round(self.min_raduis, CONSTANTS.DECIMAL_ROUND )
+        info['min_radius'] = np.round(self.min_raduis, CONSTANTS.DECIMAL_ROUND )
         info['area'] = np.round(self.area, CONSTANTS.DECIMAL_ROUND ** 2 )
         info['volume'] = np.round(self.avg_volume, CONSTANTS.DECIMAL_ROUND ** 3 )
         info['circularity'] = np.round(self.circularity, CONSTANTS.DECIMAL_ROUND )

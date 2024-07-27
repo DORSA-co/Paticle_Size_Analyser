@@ -7,12 +7,13 @@ from PagesUI.dialogWindows.proggressDialogUI import proggressDialogUI
 from PagesUI.PageUI import commonUI
 from dialogWindows.autoRebuildDialogUI import autoRebuildDialogUI
 
+from uiFiles.main_UI_ui import Ui_MainWindow
 
 
 
 class reportsPageUI(commonUI):
 
-    def __init__(self, ui):
+    def __init__(self, ui:Ui_MainWindow):
         self.ui = ui
         self.autoRebuildDialog = autoRebuildDialogUI()
         self.deleteSamplesDialog = proggressDialogUI()
@@ -53,12 +54,12 @@ class reportsPageUI(commonUI):
             'prev': self.ui.reportpage_previouse_btn,
         }
 
-        self.filters_groupbox = {
-            'name': self.ui.reportpage_filtername_groupbox,
-            'username': self.ui.reportpage_filterusername_groupbox,
-            'date': self.ui.reportpage_filterdate_groupbox,
-            'standards': self.ui.reportpage_filterstandards_groupbox,
-            'ranges': self.ui.reportpage_filterranges_groupbox,
+        self.filters_checkbox = {
+            'name': self.ui.reportpage_filtername_checkbox,
+            'username': self.ui.reportpage_filterusername_checkbox,
+            'date': self.ui.reportpage_filterdate_checkbox,
+            'standards': self.ui.reportpage_filterstandards_checkbox,
+            'ranges': self.ui.reportpage_filterranges_checkbox,
         
         }
 
@@ -70,6 +71,16 @@ class reportsPageUI(commonUI):
             'ranges': self.ui.reportpage_filterranges_frame,
         
         }
+
+        self.filters_animation = {
+            'name': GUIComponents.singleAnimation(self.filters_frame['name'], b'maximumHeight', 400, 0, 100),
+            'username': GUIComponents.singleAnimation(self.filters_frame['username'], b'maximumHeight', 400, 0, 100),
+            'date': GUIComponents.singleAnimation(self.filters_frame['date'], b'maximumHeight', 400, 0, 200),
+            'standards': GUIComponents.singleAnimation(self.filters_frame['standards'], b'maximumHeight', 800, 0, 600),
+            'ranges': GUIComponents.singleAnimation(self.filters_frame['ranges'], b'maximumHeight', 800, 0, 600),
+        }
+
+
 
         self.standards_filter_checkbox = {}
         self.samples_table_checkbox = {}
@@ -167,27 +178,26 @@ class reportsPageUI(commonUI):
     def __groupbox_filter_event_connector__(self, ):
         """connect event of groupbox chechbox into an internal functions
         """
-        for name in self.filters_groupbox.keys():
-            GUIBackend.groupbox_checkbox_connector(
-                self.filters_groupbox[name],
-                self.__filter_activation_event__(name) )
+        for name in self.filters_checkbox.keys():
+            GUIBackend.checkbox_connector_argument_pass(
+                self.filters_checkbox[name],
+                self.__filter_activation_event__,
+                args = (name,) )
 
-    def __filter_activation_event__(self,name: str):
+    def __filter_activation_event__(self,checked:bool, name: str):
         """unvisible a filter when it be unchecked.
 
         Args:
             name (str): name of filter
         """
-
-        def func():
-            if GUIBackend.is_groupbox_checked(self.filters_groupbox[name]):
-                self.show_filter(name, True)
+        if checked:
+            self.show_filter(name, True)
                 
             
-            else:
-                self.show_filter(name, False)
+        else:
+            self.show_filter(name, False)
 
-        return func
+        
     
 
 
@@ -202,8 +212,8 @@ class reportsPageUI(commonUI):
         GUIBackend.set_wgt_visible(self.ranges_filter_warning_lbl, need_rebuild)
         GUIBackend.set_wgt_visible(self.standards_filter_warning_lbl, need_rebuild)
         
-        GUIBackend.set_disable_enable(self.filters_groupbox['ranges'], not(need_rebuild))
-        GUIBackend.set_disable_enable(self.filters_groupbox['standards'], not(need_rebuild))
+        GUIBackend.set_disable_enable(self.filters_checkbox['ranges'], not(need_rebuild))
+        GUIBackend.set_disable_enable(self.filters_checkbox['standards'], not(need_rebuild))
 
         GUIBackend.set_disable_enable(self.rebuild_btn, need_rebuild)
                 
@@ -253,17 +263,22 @@ class reportsPageUI(commonUI):
     
 
     def show_filter(self, name, flag):
+
         if flag:
-            GUIBackend.set_frame_max_size( self.filters_frame[name], w=None, h=16000 )
+            
+            self.filters_animation[name].forward()
+            
+            # GUIBackend.set_frame_max_size( self.filters_frame[name], w=None, h=16000 )
         else:
-            GUIBackend.set_frame_max_size( self.filters_frame[name], w=None, h=0 )
+            # GUIBackend.set_frame_max_size( self.filters_frame[name], w=None, h=0 )
+            self.filters_animation[name].backward()
 
         
 
     def get_active_filters(self,):
         res = []
-        for key in self.filters_groupbox.keys():
-            if GUIBackend.is_groupbox_checked(self.filters_groupbox[key]):
+        for key in self.filters_checkbox.keys():
+            if GUIBackend.get_checkbox_value(self.filters_checkbox[key]):
                 res.append(key)
 
         return res

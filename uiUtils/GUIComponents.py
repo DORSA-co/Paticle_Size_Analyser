@@ -120,37 +120,11 @@ COMPARE_COMBOBOXE = """
 TABLE_SPINBOX = """
 QSpinBox, QDoubleSpinBox  
 {
-    min-width:0xp;
+    min-width:50xp;
+    max-width:50px;
 	min-height: 0px;
     max-height: 20px;
 	font-size: 12px;
-}
-
-QSpinBox::up-arrow, QDoubleSpinBox::up-arrow, QSpinBox::down-arrow ,  QDoubleSpinBox::down-arrow
-{   
-	image: url(noimg);
-	width: 0px;
-    height: 0px;
-
-}
-
-
-QSpinBox::up-button,
-QSpinBox::down-button,
-QDoubleSpinBox::up-button,
-QDoubleSpinBox::down-button   {
-    max-width: 0px;
-    min-width: 0px;
-}
-
-
-
-
-QSpinBox::up-button:disabled ,
-QSpinBox::down-button:disabled ,
-QDoubleSpinBox::up-button:disabled ,
-QDoubleSpinBox::down-button:disabled    {
-    width: 0px;
 }
 """
 
@@ -275,6 +249,7 @@ class doubleSpinBoxTable(QtWidgets.QDoubleSpinBox):
     def __init__(self, *a, **kw):
         super(doubleSpinBoxTable, self).__init__(*a, **kw)
         self.setStyleSheet(TABLE_SPINBOX)
+        self.setButtonSymbols(QtWidgets.QSpinBox.NoButtons)
         
 
 class LabelTable(QtWidgets.QLabel):

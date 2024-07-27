@@ -10,6 +10,7 @@ from backend.Utils.StorageUtils import storageManager
 import Constants.CONSTANTS as CONSTANTS
 from backend.Serial.armSerial import armSerial
 from uiUtils.IO.Mouse import MouseEvent
+from backend.Utils.threadTimer import timerThread
 
 
 
@@ -614,10 +615,33 @@ class configSettingTabAPI:
         self.ui = ui
         self.database = database
         self.database_nodes = database_nodes
-        
+        self.__is_live_flag = False
 
+        self.go_live_buffer = []
+
+        
+        
+        self.ui.go_live_btn_connector(self.go_live)
         self.ui.save_button_connector(self.save)
         self.load()
+
+    def go_live(self,):
+        self.__is_live_flag = not(self.__is_live_flag)
+        self.ui.set_playing_button_state(self.__is_live_flag)
+
+        if self.__is_live_flag:
+            self.ui.enable_congig_setting(False)
+            for step_name, res in self.go_live_buffer:
+                if res:
+                    self.ui.set_step_state(step_name, 'active')
+                else:
+                    self.ui.set_step_state(step_name, 'not_active')
+
+                
+        else:
+            self.ui.enable_congig_setting(True)
+            self.ui.set_step_state('all', 'off')
+            
 
     def save(self,):
         settings = self.ui.get_settings()
@@ -640,3 +664,34 @@ class configSettingTabAPI:
                 write_nodes.append(node['name'])
         
         self.ui.update_signals_items(read_nodes, write_nodes)
+
+    
+    def recsive_node_log(self, name:str, log:list[dict]):
+        print(name, log)
+
+    def recsive_start_timer(self, t):
+        if self.__is_live_flag:
+            self.ui.set_start_timer_indicator('start', t)
+
+    def recsive_delay_timer(self, t):
+        if self.__is_live_flag:
+            self.ui.set_start_timer_indicator('delay', t)
+
+
+    def recsive_step_done(self, name:str, res:bool):
+        self.go_live_buffer.append( [name, res])
+        if self.__is_live_flag:
+            if res:
+                self.ui.set_step_state(name, state='active')
+            else:
+                self.ui.set_step_state(name, state='not_active')
+        
+
+    def recsive_failed_pipline(self,):
+        #clear after 5 second for better UX
+        self.go_live_buffer = []
+        timer = timerThread(5)
+        timer.finish_signal.connect( lambda: self.ui.set_step_state('all', 'off'))
+        threading.Thread(target=timer.run_single).start()
+
+        

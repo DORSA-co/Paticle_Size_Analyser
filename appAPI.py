@@ -27,7 +27,7 @@ from backend.Processing.Compare import Compare
 #------------------------------------------------------------
 from backend.miniApps.storageCleaner import storageCleaner
 import Constants.CONSTANTS as CONSTANTS
-from PagesUI.PageUI import commonUI
+from Mediator.mainMediator import Mediator
 #from appUI import mainUI
 from uiUtils import GUIComponents
 from subPrograms.dbInit.dbInitAPI import dbInitAPI
@@ -48,6 +48,9 @@ class main_API(QObject):
             
         else:
             self.db.build()
+
+        self.mediator = Mediator()
+        self.mediator.set_main_api(self)
 
         self.configManager = configManager()
 

@@ -800,6 +800,8 @@ class configSettingTabUI(commonSettingUI):
         self.save_btn = self.ui.settingpage_config_save_btn
         self.cancel_btn = self.ui.settingpage_config_cancel_btn
 
+        
+
         self.read_signals:list[str] = []
         self.write_signals:list[str] = []
 
@@ -865,6 +867,12 @@ class configSettingTabUI(commonSettingUI):
                       },
         }
 
+        self.timer_indicators = {
+            'start': self.ui.config_start_timer_indicator_label,
+            'delay': self.ui.config_delay_timer_indicator_label,
+
+        }
+
         self.signals_ui: dict[str, list[Union[outputSignalUI, inputSignalUI]]] = {
             'start_signals':[],
             'permission_signals': [],
@@ -892,6 +900,12 @@ class configSettingTabUI(commonSettingUI):
 
         }
 
+        self.step_containers = {
+            'start': self.ui.config_start_frame,
+            'permission': self.ui.config_permissions_frame,
+            'delay': self.ui.config_delay_frame
+        }
+
         self.__add_btns_connector()
         GUIBackend.combobox_changeg_connector(self.ui.config_start_mode_comboBox, 
                                               self.start_mode_change)
@@ -913,6 +927,10 @@ class configSettingTabUI(commonSettingUI):
         GUIBackend.set_combobox_items(self.ui.config_stop_mode_comboBox, items)
 
         self.stop_emergency_timer_visibility(False)
+
+    
+    def go_live_btn_connector(self, func):
+        GUIBackend.button_connector(self.ui.config_go_live_btn, func)
 
     def start_mode_change(self,):
         mode_front = GUIBackend.get_input(self.ui.config_start_mode_comboBox)    
@@ -1052,3 +1070,33 @@ class configSettingTabUI(commonSettingUI):
                 node_ui = self.add_signal_event(step_signal)
                 node_ui.set_settings(signal_setting)
         
+
+    def set_start_timer_indicator(self, name:str, t: int):
+        h = t//3600
+        t = t - h * 3600
+        m = t//60
+        s = t - m * 60
+
+        str_time = f"{h:02}:{m:02}:{s:02}"
+        
+        GUIBackend.set_label_text(self.timer_indicators[name],
+                                  str_time)
+
+    def enable_congig_setting(self, flag):
+        for frame in self.step_containers.values():
+            GUIBackend.set_disable_enable(frame, flag)
+
+    def set_step_state(self, step_name:str,state:str):
+        if step_name == 'all':
+            for frame in self.step_containers.values():
+                GUIBackend.set_dynalic_property(frame, 'state', state)
+                GUIBackend.repoblish_style(frame)
+        
+        else:
+            GUIBackend.set_dynalic_property(self.step_containers[step_name], 'state', state)
+            GUIBackend.repoblish_style(self.step_containers[step_name])
+
+    
+    def set_playing_button_state(self, playing:bool):
+        GUIBackend.set_dynalic_property(self.ui.config_go_live_btn, 'playingStyle', playing)
+        GUIBackend.repoblish_style(self.ui.config_go_live_btn)

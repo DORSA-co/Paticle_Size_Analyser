@@ -74,24 +74,35 @@ QPushButton:disabled{
 }
 
 /*********************************************/
-QHeaderView::section {
-    background-color: rgb(90, 117, 127);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 10pt;
+QHeaderView{
+	border: none;
+}
+
+QHeaderView::section:horizontal {
+    background-color: rgba(6, 76, 130,60);
+	color: #404040;
+	font-weight:bold;
     border-style: none;
     border-bottom: 1px solid #fffff8;
-    border-right: 1px solid #fffff8;
+    padding: 5px;
 }
 
-QHeaderView::section:horizontal
+QHeaderView::section:horizontal:last 
 {
-    border-top: 1px solid #fffff8;
+   border-top-right-radius: 12px;
+	border-right: None;
 }
 
-QHeaderView::section:vertical
+QHeaderView::section:horizontal:first 
 {
-    border: 1px solid #fffff8;
+   border-top-left-radius: 12px;
+	border-right: None;
+}
+
+QTableWidget::item:selected 
+{
+    background-color: rgb(6, 76, 130,20);
+	color: rgb(20, 20, 20);
 }
 
 
@@ -236,12 +247,14 @@ QListView::item{
        <property name="styleSheet">
         <string notr="true">
 QPushButton{
-	background-color:rgb(90, 117, 127);
+	background-color:  rgb(6, 76, 130);
+	border-radius:15px;
+
 }
 
 
 QPushButton::hover{
-background-color:rgb(76, 99, 107);
+background-color:rgb(4, 48, 81);
 }
 
 
@@ -328,13 +341,13 @@ font-weight:bold;</string>
       <string notr="true">color: #a0a0a0;</string>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
+      <enum>QFrame::Shadow::Plain</enum>
      </property>
      <property name="lineWidth">
       <number>2</number>
      </property>
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
     </widget>
    </item>
@@ -361,10 +374,10 @@ font-weight:bold;</string>
         </size>
        </property>
        <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
+        <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
        </property>
        <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustToContents</enum>
+        <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
        </property>
        <property name="rowCount">
         <number>2</number>
@@ -451,7 +464,7 @@ font-weight:bold;</string>
           <string>0</string>
          </property>
          <property name="textFormat">
-          <enum>Qt::RichText</enum>
+          <enum>Qt::TextFormat::RichText</enum>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
@@ -461,10 +474,10 @@ font-weight:bold;</string>
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
+          <enum>QSizePolicy::Policy::Fixed</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -487,7 +500,7 @@ font-weight:bold;</string>
        <item>
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>

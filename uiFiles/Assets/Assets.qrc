@@ -1,5 +1,12 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-connect-30.png</file>
+    <file>icons/icons8-connect-hover-30.png</file>
+    <file>icons/icons8-excel-48.png</file>
+    <file>icons/icons8-excel-hover.png</file>
+    <file>icons/icons8-folder-blue-hover-48.png</file>
+    <file>icons/icons8-folder-org-48.png</file>
+    <file>icons/icons8-folder-org-hover-48.png</file>
     <file>icons/icons8-expand-arrow-gray-24.png</file>
     <file>icons/icons8-compare-50 .png</file>
     <file>icons/icons8-compare-hover-50.png</file>

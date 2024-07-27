@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import Union
 
 import numpy as np
+from PySide6 import QtWidgets
 
 
 from uiUtils import GUIComponents
@@ -905,6 +906,7 @@ class configSettingTabUI(commonSettingUI):
             'start': self.ui.config_start_frame,
             'permission': self.ui.config_permissions_frame,
             'delay': self.ui.config_delay_frame
+            
         }
 
         self.__add_btns_connector()
@@ -1067,6 +1069,12 @@ class configSettingTabUI(commonSettingUI):
 
         
         for step_signal in self.signals_ui.keys():
+            #-----------------------------------------------------
+            # remove prev signals
+            for i in range(self.signals_ui[step_signal].count()):
+                su = self.signals_ui[step_signal][0]
+                self.remove_signal_event(su)
+            #-----------------------------------------------------
             for signal_setting in data[step_signal]:
                 node_ui = self.add_signal_event(step_signal)
                 old_id = node_ui.id
@@ -1112,7 +1120,36 @@ class configSettingTabUI(commonSettingUI):
 
     def enable_congig_setting(self, flag):
         for frame in self.step_containers.values():
-            GUIBackend.set_disable_enable(frame, flag)
+            self.__disabled_singular_widgets(frame, flag)
+            # GUIBackend.set_disable_enable(frame, flag)
+    
+    def __disabled_singular_widgets(self, widget, state:bool):
+        
+        if isinstance(widget, (QtWidgets.QSpinBox, 
+                                QtWidgets.QDoubleSpinBox,
+                                QtWidgets.QLabel, 
+                                QtWidgets.QDateEdit,
+                                QtWidgets.QPushButton,
+                                QtWidgets.QLineEdit,
+                                QtWidgets.QComboBox,
+                                QtWidgets.QCheckBox)):
+            GUIBackend.set_disable_enable(widget, state)
+            return
+            
+        else:
+            childrens = widget.children()
+        
+            for ch in childrens:
+                self.__disabled_singular_widgets(ch, state)
+
+
+                
+                
+
+
+
+
+
 
     def set_step_state(self, step_name:str,state:str):
         if step_name == 'all':

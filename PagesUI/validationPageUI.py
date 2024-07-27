@@ -287,7 +287,7 @@ class testSectionUI:
         #setup row headers. this setup is fix
         for row, text in enumerate(self.table_rows_header):
             GUIBackend.set_table_cell_value(self.table,(row,0), text )
-            GUIBackend.set_table_cell_color( self.table,(row,0), color=(255,255,255), bg_color=(90, 117, 127))
+            # GUIBackend.set_table_cell_color( self.table,(row,0), color=(255,255,255), bg_color=(90, 117, 127))
 
         self.write_error(None)
 

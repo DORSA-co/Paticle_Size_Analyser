@@ -508,9 +508,10 @@ class exportSettingTabAPI:
             setting_name (str): shows button of which one of 'report_excel' or 'compare_excel' clicked
         """
         path = self.ui.open_select_file_dialog()
-        data = {}
-        data[setting_name] = path
-        self.ui.set_setting(data)
+        if path:
+            data = {}
+            data[setting_name] = path
+            self.ui.set_setting(data)
     
     def open_file(self, setting_name:str):
         settings = self.ui.get_settings()
@@ -623,6 +624,7 @@ class configSettingTabAPI:
         
         self.ui.go_live_btn_connector(self.go_live)
         self.ui.save_button_connector(self.save)
+        self.ui.cancel_button_connector(self.cancel)
         self.load()
 
     def go_live(self,):
@@ -630,6 +632,7 @@ class configSettingTabAPI:
         self.ui.set_playing_button_state(self.__is_live_flag)
 
         if self.__is_live_flag:
+            self.cancel()
             self.ui.enable_congig_setting(False)
             for step_name, res in self.go_live_buffer:
                 if res:
@@ -646,6 +649,9 @@ class configSettingTabAPI:
     def save(self,):
         settings = self.ui.get_settings()
         self.database.save_config(settings)
+
+    def cancel(self,):
+        self.load()
 
     def load(self,):
         self.load_singlas()

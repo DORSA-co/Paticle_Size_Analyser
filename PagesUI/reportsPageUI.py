@@ -76,8 +76,8 @@ class reportsPageUI(commonUI):
             'name': GUIComponents.singleAnimation(self.filters_frame['name'], b'maximumHeight', 400, 0, 100),
             'username': GUIComponents.singleAnimation(self.filters_frame['username'], b'maximumHeight', 400, 0, 100),
             'date': GUIComponents.singleAnimation(self.filters_frame['date'], b'maximumHeight', 400, 0, 200),
-            'standards': GUIComponents.singleAnimation(self.filters_frame['standards'], b'maximumHeight', 800, 0, 600),
-            'ranges': GUIComponents.singleAnimation(self.filters_frame['ranges'], b'maximumHeight', 800, 0, 600),
+            'standards': GUIComponents.singleAnimation(self.filters_frame['standards'], b'maximumHeight', 800, 0, 500),
+            'ranges': GUIComponents.singleAnimation(self.filters_frame['ranges'], b'maximumHeight', 800, 0, 500),
         }
 
 

@@ -64,12 +64,11 @@ QPushButton:disabled{
 
 /*********************************************/
 QHeaderView{
-	background-color: transparent;
 	border: none;
 }
 
 QHeaderView::section:horizontal {
-    background-color: rgb(6, 76, 130,50);
+    background-color: rgba(6, 76, 130,50);
 	color: #404040;
 	font-weight:bold;
     border-style: none;
@@ -95,22 +94,7 @@ QTableWidget::item:selected
 	color: rgb(20, 20, 20);
 }
 
-/*
 
-
-
-
-
-QTableWidget::item:hover 
-{
-    background-color: #D7D7D9;
-}
-
-QTableWidget::item{
-	border-bottom: 1px solid #f0f0f0;
-	border-left: 1px solid #f0f0f0;
-}
-*/
 /*********************************************/
 
 QScrollBar:vertical 
@@ -617,8 +601,11 @@ QPushButton[styleClass=&quot;blueCircelAdd&quot;]{
 }
 
 QPushButton[styleClass=&quot;blueCircelAdd&quot;]:hover{
-
 	background-color:rgb(5, 50, 85);
+}
+
+QPushButton[styleClass=&quot;blueCircelAdd&quot;]:disabled{
+	background-color:rgb(200, 200, 200);
 }
 
 
@@ -705,6 +692,21 @@ border: 2px solid rgb(200,200,200);
 }
 
 
+QPushButton[styleClass=&quot;blueIconButton&quot;]{
+		icon: url(:/assets/icons/icons8-connect-30.png);
+		color:rgb(12, 80, 139);
+		border:none;
+		background-color:transparent;
+}
+
+QPushButton[styleClass=&quot;blueIconButton&quot;]:hover{
+		icon: url(:/assets/icons/icons8-connect-hover-30.png);
+		color: rgb(7, 48, 81);
+		background-color:transparent;
+
+}
+
+
 QLabel[styleClass=&quot;section_title&quot;]{
 
 font-size:20px;
@@ -737,13 +739,16 @@ QFrame[styleClass=&quot;config_section_frame&quot; ][state=&quot;not_active&quot
 }
 
 
+QLineEdit[styleClass=&quot;pathInput&quot;]{
+font-weight: normal;
+font-size: 13px;
+color: #606060;
+}
 
 
 QLabel[styleClass=&quot;h5&quot;]{
 	font-size: 14px;
 	color: rgb(52, 52, 52);
-	
-	
 }</string>
    </property>
    <property name="styleClass" stdset="0">
@@ -1424,7 +1429,7 @@ QPushButton[activeStyle=&quot;true&quot;]{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2630,8 +2635,8 @@ color: rgb(6, 76, 130);
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-635</y>
-                    <width>288</width>
+                    <y>0</y>
+                    <width>286</width>
                     <height>1505</height>
                    </rect>
                   </property>
@@ -2930,6 +2935,12 @@ color: rgb(6, 76, 130);
                    </item>
                    <item>
                     <widget class="QFrame" name="reportspage_filterstandards_containter">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <layout class="QVBoxLayout" name="verticalLayout_91">
                       <property name="topMargin">
                        <number>5</number>
@@ -2973,6 +2984,12 @@ color: rgb(6, 76, 130);
                       </item>
                       <item>
                        <widget class="QFrame" name="reportpage_filterstandards_frame">
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
                         <property name="maximumSize">
                          <size>
                           <width>16777215</width>
@@ -3647,6 +3664,21 @@ QPushButton:hover{
                    <property name="editTriggers">
                     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                    </property>
+                   <property name="alternatingRowColors">
+                    <bool>false</bool>
+                   </property>
+                   <property name="selectionBehavior">
+                    <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+                   </property>
+                   <property name="showGrid">
+                    <bool>true</bool>
+                   </property>
+                   <property name="sortingEnabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="cornerButtonEnabled">
+                    <bool>true</bool>
+                   </property>
                    <property name="rowCount">
                     <number>11</number>
                    </property>
@@ -3667,6 +3699,9 @@ QPushButton:hover{
                    </attribute>
                    <attribute name="verticalHeaderDefaultSectionSize">
                     <number>45</number>
+                   </attribute>
+                   <attribute name="verticalHeaderStretchLastSection">
+                    <bool>false</bool>
                    </attribute>
                    <row/>
                    <row/>
@@ -3755,7 +3790,7 @@ QPushButton:hover{
               <string notr="true"/>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <property name="usesScrollButtons">
               <bool>true</bool>
@@ -4468,7 +4503,7 @@ color: #ffffff;
                 <enum>QTabWidget::TabShape::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>5</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4503,7 +4538,7 @@ color: #ffffff;
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>700</width>
+                      <width>1136</width>
                       <height>625</height>
                      </rect>
                     </property>
@@ -5176,6 +5211,12 @@ QLabel
                   <layout class="QHBoxLayout" name="horizontalLayout_67">
                    <item>
                     <widget class="QLabel" name="label_113">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>100</width>
@@ -5195,61 +5236,101 @@ QLabel
                      <property name="enabled">
                       <bool>false</bool>
                      </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
-                       <width>718</width>
+                       <width>400</width>
                        <height>40</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>16777215</width>
+                       <width>800</width>
                        <height>16777215</height>
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">QLineEdit{
-min-width: 700px;
-
-}</string>
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string>ddfdsfdsf</string>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>pathInput</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="settingpage_export_load_report_excel_btn">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>40</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>select file</string>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QPushButton{
-min-width:40px;
-min-height: 40px;
+	background-color:transparent;
+	image: url(:/assets/icons/icons8-folder-org-48.png);
+}
 
+QPushButton:hover{
+	image: url(:/assets/icons/icons8-folder-org-hover-48.png);
 }</string>
                      </property>
                      <property name="text">
                       <string/>
                      </property>
-                     <property name="icon">
-                      <iconset resource="Assets/Assets.qrc">
-                       <normaloff>:/assets/icons/icons8-folder-50.png</normaloff>:/assets/icons/icons8-folder-50.png</iconset>
-                     </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="settingpage_export_open_report_excel_btn">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="maximumSize">
                       <size>
-                       <width>16777215</width>
+                       <width>40</width>
                        <height>40</height>
                       </size>
                      </property>
+                     <property name="toolTip">
+                      <string>Open excel file</string>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QPushButton{
-min-width:40px;
-min-height: 40px;
+	image: url(:/assets/icons/icons8-excel-48.png);
+	background-color:transparent;
+}
 
-}</string>
+
+QPushButton:hover{
+	image: url(:/assets/icons/icons8-excel-hover.png);
+}
+</string>
                      </property>
                      <property name="text">
-                      <string>Open</string>
+                      <string/>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>seeButton</string>
                      </property>
                     </widget>
                    </item>
@@ -5257,6 +5338,9 @@ min-height: 40px;
                     <spacer name="horizontalSpacer_66">
                      <property name="orientation">
                       <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Policy::Expanding</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -5272,6 +5356,12 @@ min-height: 40px;
                   <layout class="QHBoxLayout" name="horizontalLayout_68">
                    <item>
                     <widget class="QLabel" name="label_114">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>100</width>
@@ -5291,61 +5381,98 @@ min-height: 40px;
                      <property name="enabled">
                       <bool>false</bool>
                      </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
-                       <width>718</width>
+                       <width>400</width>
                        <height>40</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>16777215</width>
+                       <width>800</width>
                        <height>16777215</height>
                       </size>
                      </property>
                      <property name="styleSheet">
-                      <string notr="true">QLineEdit{
-min-width: 700px;
-
-}</string>
+                      <string notr="true"/>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>pathInput</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="settingpage_export_load_compare_excel_btn">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>40</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>select file</string>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QPushButton{
-min-width:40px;
-min-height: 40px;
+	background-color:transparent;
+	image: url(:/assets/icons/icons8-folder-org-48.png);
+}
 
+QPushButton:hover{
+	image: url(:/assets/icons/icons8-folder-org-hover-48.png);
 }</string>
                      </property>
                      <property name="text">
                       <string/>
                      </property>
-                     <property name="icon">
-                      <iconset resource="Assets/Assets.qrc">
-                       <normaloff>:/assets/icons/icons8-folder-50.png</normaloff>:/assets/icons/icons8-folder-50.png</iconset>
-                     </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="settingpage_export_open_compare_excel_btn">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="maximumSize">
                       <size>
-                       <width>16777215</width>
+                       <width>40</width>
                        <height>40</height>
                       </size>
                      </property>
+                     <property name="toolTip">
+                      <string>Open excel file</string>
+                     </property>
                      <property name="styleSheet">
                       <string notr="true">QPushButton{
-min-width:40px;
-min-height: 40px;
+	image: url(:/assets/icons/icons8-excel-48.png);
+	background-color:transparent;
+}
 
-}</string>
+
+QPushButton:hover{
+	image: url(:/assets/icons/icons8-excel-hover.png);
+}
+</string>
                      </property>
                      <property name="text">
-                      <string>Open</string>
+                      <string/>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>seeButton</string>
                      </property>
                     </widget>
                    </item>
@@ -5353,6 +5480,9 @@ min-height: 40px;
                     <spacer name="horizontalSpacer_112">
                      <property name="orientation">
                       <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Policy::Expanding</enum>
                      </property>
                      <property name="sizeHint" stdset="0">
                       <size>
@@ -5415,35 +5545,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QTabWidget" name="tabWidget_2">
                    <property name="styleSheet">
-                    <string notr="true">#tab,
-#tab1{
-	background-color:rgb(90, 117, 127);
-
-
-}
-QTabBar::tab:selected {
-    background:rgb(90, 117, 127);
-	font-weight: bold;
-	font-size: 20px;
-}
-
-QTabBar::tab:!selected {
-	border-left: 1px solid rgb(199, 199, 199);
-	border-right: 1px solid rgb(199, 199, 199);
-}
-
-QTabBar::tab{
-	height:40px;
-	width: 250px;
-	background-color: rgb(200, 200, 200);
-	color: rgb(255,255,255);
-	font-size: 16px;
-}
-
-
-QTabWidget::pane { /* The tab widget frame */
-    border: none
-}</string>
+                    <string notr="true"/>
                    </property>
                    <property name="currentIndex">
                     <number>0</number>
@@ -5472,20 +5574,7 @@ QTabWidget::pane { /* The tab widget frame */
                      <item>
                       <widget class="QTableWidget" name="tableWidget">
                        <property name="styleSheet">
-                        <string notr="true">QHeaderView::section {
-    background-color: rgb(255, 255, 255);
-	color: #ffffff;
-    padding: 4px;
-    font-size: 10pt;
-	border: 1px solid rgb(12, 80, 139);
-
-}
-
-
-QTableView::item{
-	border: 1px solid rgb(12, 80, 139);
-
-}</string>
+                        <string notr="true"/>
                        </property>
                        <property name="editTriggers">
                         <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
@@ -6209,7 +6298,7 @@ border-radius: 20px;
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>467</width>
+                          <width>567</width>
                           <height>706</height>
                          </rect>
                         </property>
@@ -6984,7 +7073,7 @@ QLabel[styleClass=&quot;dot&quot;]{
                       <property name="minimumSize">
                        <size>
                         <width>200</width>
-                        <height>39</height>
+                        <height>35</height>
                        </size>
                       </property>
                       <property name="maximumSize">
@@ -6994,13 +7083,27 @@ QLabel[styleClass=&quot;dot&quot;]{
                        </size>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true"/>
+                       <string notr="true">QPushButton{
+		icon: url(:/assets/icons/icons8-connect-30.png);
+
+}
+
+QPushButton:hover{
+		icon: url(:/assets/icons/icons8-connect-hover-30.png);
+
+}</string>
                       </property>
                       <property name="text">
                        <string>Check Connection</string>
                       </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
                       <property name="styleClass" stdset="0">
-                       <string>blueBorderButton</string>
+                       <string>blueIconButton</string>
                       </property>
                      </widget>
                     </item>
@@ -7026,8 +7129,8 @@ QLabel[styleClass=&quot;dot&quot;]{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>70</width>
-                      <height>64</height>
+                      <width>1136</width>
+                      <height>350</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7158,8 +7261,8 @@ QLabel[styleClass=&quot;dot&quot;]{
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>0</y>
-                      <width>522</width>
+                      <y>-279</y>
+                      <width>1134</width>
                       <height>792</height>
                      </rect>
                     </property>
@@ -7697,7 +7800,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>88</width>
+                                          <width>70</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -7838,8 +7941,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -7848,6 +7951,9 @@ QPushButton:hover{
                                   <layout class="QVBoxLayout" name="verticalLayout_76">
                                    <item>
                                     <widget class="QPushButton" name="config_permisions_signals_add_btn">
+                                     <property name="enabled">
+                                      <bool>true</bool>
+                                     </property>
                                      <property name="styleSheet">
                                       <string notr="true"/>
                                      </property>
@@ -7970,8 +8076,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -8300,8 +8406,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -8561,8 +8667,8 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>70</width>
-                                          <height>64</height>
+                                          <width>630</width>
+                                          <height>184</height>
                                          </rect>
                                         </property>
                                         <property name="styleClass" stdset="0">
@@ -8769,8 +8875,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -10357,8 +10463,8 @@ color: #ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>734</width>
-                    <height>471</height>
+                    <width>1148</width>
+                    <height>595</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -10875,8 +10981,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>512</width>
-                    <height>721</height>
+                    <width>1138</width>
+                    <height>616</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -11144,7 +11250,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>557</width>
+                <width>1170</width>
                 <height>3251</height>
                </rect>
               </property>
@@ -13774,7 +13880,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>180</width>
+                <width>1170</width>
                 <height>1109</height>
                </rect>
               </property>
@@ -14568,7 +14674,6 @@ QPushButton{
  </tabstops>
  <resources>
   <include location="Assets/Assets.qrc"/>
-  <include location="../../../.designer/backup/Assets/Assets.qrc"/>
  </resources>
  <connections>
   <connection>

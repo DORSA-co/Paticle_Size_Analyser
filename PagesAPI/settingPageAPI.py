@@ -667,7 +667,8 @@ class configSettingTabAPI:
 
     
     def recsive_node_log(self, name:str, log:list[dict]):
-        print(name, log)
+        if self.__is_live_flag:
+            self.ui.set_nodes_online_state(name, log)
 
     def recsive_start_timer(self, t):
         if self.__is_live_flag:
@@ -689,9 +690,13 @@ class configSettingTabAPI:
 
     def recsive_failed_pipline(self,):
         #clear after 5 second for better UX
+        def func():
+            self.ui.set_step_state('all', 'off')
+            self.ui.set_nodes_onile_reset()
         self.go_live_buffer = []
-        timer = timerThread(5)
-        timer.finish_signal.connect( lambda: self.ui.set_step_state('all', 'off'))
+
+        timer = timerThread(30)
+        timer.finish_signal.connect( func )
         threading.Thread(target=timer.run_single).start()
 
         

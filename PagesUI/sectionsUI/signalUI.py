@@ -11,6 +11,8 @@ class inputSignalUI(QWidget):
         super().__init__()
         self.ui = Ui_inputSignalSetting()
         self.ui.setupUi(self)
+        
+        self.id = id(self)
 
         self.step_name = step_name
 
@@ -58,9 +60,16 @@ class inputSignalUI(QWidget):
             if name == 'condition':
                 value = self.mapDict.value2key('cond', value)
             res[name] = value
+
+        res['id'] = self.id
+
         return res
 
     def set_settings(self, data:dict):
+        if data.get('id') is not None:
+            self.id = data.pop('id')
+            
+
         for name, value in data.items():
             if name == 'condition':
                 value = self.mapDict.key2value('cond', value)
@@ -72,12 +81,24 @@ class inputSignalUI(QWidget):
         GUIBackend.set_combobox_current_item(self.settings['name'], current, block_signal=True)
 
 
+    def set_indicator_value(self, value):
+        value = f'Value: {value}'
+        GUIBackend.set_label_text(self.ui.value_indicator, str(value))
+
+    def set_online_state(self, state:str):
+        GUIBackend.set_dynalic_property(self.ui.main_frame, 'state', state , repolish_style=True)
+
+
+
+
 class outputSignalUI(QWidget):
 
     def __init__(self, step_name: str) -> None:
         super().__init__()
         self.ui = Ui_outputSignalSetting()
         self.ui.setupUi(self)
+
+        self.id = id(self)
 
         self.mapDict = mapDictionary(
             {"bool_value": {
@@ -144,10 +165,16 @@ class outputSignalUI(QWidget):
             value = self.mapDict.value2key('bool_value', value)
         res['value'] = value
 
+        res['id'] = self.id
+        
+
         return res
 
 
     def set_settings(self, data:dict):
+
+        if data.get('id') is not None:
+            self.id = data.pop('id')
         
         GUIBackend.set_input(self.settings['name'], data['name'])
 

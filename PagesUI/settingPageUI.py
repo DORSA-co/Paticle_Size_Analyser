@@ -14,6 +14,7 @@ from uiFiles.main_UI_ui import Ui_MainWindow
 from PagesUI.sectionsUI.signalUI import inputSignalUI, outputSignalUI
 from PagesUI.sectionsUI.nodeSettingUI import nodeSettinUI
 from backend.Utils.mapDictionary import mapDictionary
+from backend.Utils.idList import idList
 
 class settingPageUI:
     def __init__(self, ui:Ui_MainWindow) -> None:
@@ -873,15 +874,15 @@ class configSettingTabUI(commonSettingUI):
 
         }
 
-        self.signals_ui: dict[str, list[Union[outputSignalUI, inputSignalUI]]] = {
-            'start_signals':[],
-            'permission_signals': [],
-            'stop_signals': [],
-            'signals1': [],
-            'signals2': [],
-            'signals3': [],
+        self.signals_ui: dict[str, idList[Union[outputSignalUI, inputSignalUI]]] = {
+            'start_signals':idList(),
+            'permission_signals': idList(),
+            'stop_signals': idList(),
+            'signals1': idList(),
+            'signals2': idList(),
+            'signals3': idList(),
         }    
-
+        
         self.settings = {
             'lens_type': self.ui.config_lens_type_combobox,
             'fps_regulator': self.ui.config_fps_regulator_combobox,
@@ -989,7 +990,7 @@ class configSettingTabUI(commonSettingUI):
         signal_ui.remove_button_connector(self.remove_signal_event)
 
         
-        self.signals_ui[step_name].append( signal_ui )
+        self.signals_ui[step_name].append( signal_ui, signal_ui.id  )
 
         GUIBackend.insert_widget(scroll_content,
                                  signal_ui,
@@ -1010,7 +1011,7 @@ class configSettingTabUI(commonSettingUI):
 
         for step_name in self.signals_wgt:
             signal_ui: Union[inputSignalUI, outputSignalUI]
-            for signal_ui in self.signals_ui[step_name]:
+            for signal_ui in self.signals_ui[step_name].values():
 
                 if self.signals_wgt[step_name]['type'] == 'input':
                     signal_ui.set_signals_items(self.read_signals)
@@ -1025,7 +1026,7 @@ class configSettingTabUI(commonSettingUI):
         layout = scroll_content.layout()
         layout.removeWidget(signal)
 
-        self.signals_ui[step_name].remove(signal)
+        self.signals_ui[step_name].remove_by_id(signal.id)
         signal.deleteLater()        
 
 
@@ -1068,7 +1069,10 @@ class configSettingTabUI(commonSettingUI):
         for step_signal in self.signals_ui.keys():
             for signal_setting in data[step_signal]:
                 node_ui = self.add_signal_event(step_signal)
+                old_id = node_ui.id
                 node_ui.set_settings(signal_setting)
+                new_id = node_ui.id
+                self.signals_ui[step_signal].change_id(old_id, new_id)
         
 
     def set_start_timer_indicator(self, name:str, t: int):
@@ -1081,6 +1085,30 @@ class configSettingTabUI(commonSettingUI):
         
         GUIBackend.set_label_text(self.timer_indicators[name],
                                   str_time)
+        
+    def set_nodes_online_state(self, name:str, log:list[dict]):
+        converter = {
+            'start': 'start_signals',
+            'permission': 'permission_signals'
+        }
+
+        name = converter[name]
+        signal_ui:Union[inputSignalUI, outputSignalUI]
+        for lg in log:
+            signal_ui = self.signals_ui[name].get_by_id(lg['id'])
+            signal_ui.set_indicator_value(lg['value'])
+            if lg['result']:
+                signal_ui.set_online_state('active')
+            else:
+                signal_ui.set_online_state('not_active')
+            
+    def set_nodes_onile_reset(self,):
+        su:Union[inputSignalUI, outputSignalUI]
+        for signals in self.signals_ui.values():
+            for su in signals.values():
+                if isinstance(su, inputSignalUI):
+                    su.set_online_state('off')
+                    
 
     def enable_congig_setting(self, flag):
         for frame in self.step_containers.values():
@@ -1089,14 +1117,11 @@ class configSettingTabUI(commonSettingUI):
     def set_step_state(self, step_name:str,state:str):
         if step_name == 'all':
             for frame in self.step_containers.values():
-                GUIBackend.set_dynalic_property(frame, 'state', state)
-                GUIBackend.repoblish_style(frame)
+                GUIBackend.set_dynalic_property(frame, 'state', state, repolish_style=True)
         
         else:
-            GUIBackend.set_dynalic_property(self.step_containers[step_name], 'state', state)
-            GUIBackend.repoblish_style(self.step_containers[step_name])
+            GUIBackend.set_dynalic_property(self.step_containers[step_name], 'state', state, repolish_style=True)
 
     
     def set_playing_button_state(self, playing:bool):
-        GUIBackend.set_dynalic_property(self.ui.config_go_live_btn, 'playingStyle', playing)
-        GUIBackend.repoblish_style(self.ui.config_go_live_btn)
+        GUIBackend.set_dynalic_property(self.ui.config_go_live_btn, 'playingStyle', playing, repolish_style=True)

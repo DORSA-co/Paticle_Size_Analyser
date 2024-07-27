@@ -24,7 +24,7 @@ class Mediator:
     #     self.__settingAPI = api
 
     def send_nodes_log(self, name:str, log:list[dict]):
-        self.__mainAPI.settingPageAPI.configSetting.recsive_node_log(name, )
+        self.__mainAPI.settingPageAPI.configSetting.recsive_node_log(name, log )
     
     def send_start_timer(self, t:int):
         #t is second

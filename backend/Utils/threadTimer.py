@@ -18,7 +18,7 @@ class timerThread(QObject):
         while  pass_time < self.time:
             time.sleep(self.sleep_time)
             pass_time = time.time() - start_time
-            pass_time*=10
+            # pass_time*=10
             self.counter_signal.emit( pass_time )
 
         self.finish_signal.emit()

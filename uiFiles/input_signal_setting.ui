@@ -51,104 +51,160 @@
 	background-color: #F7F8FA;
 	border-radius:15px;
 	border: 1px solid rgb(232, 233, 235);
-}</string>
+}
+
+#main_frame[state=&quot;active&quot;]{
+	border: 2px solid rgb(63, 206, 73);
+}
+
+#main_frame[state=&quot;off&quot;]{
+	border: 1px solid rgb(232, 233, 235);
+}
+
+#main_frame[state=&quot;not_active&quot;]{
+	border: 2px solid rgb(213, 63, 65);
+}
+</string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="state" stdset="0">
+      <string>off</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Signal: </string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="signal_name_combobox">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="condition_combobox">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <property name="text">
-          <string>be True</string>
-         </property>
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Signal: </string>
+          </property>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>be False</string>
-         </property>
+         <widget class="QComboBox" name="signal_name_combobox">
+          <property name="minimumSize">
+           <size>
+            <width>200</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>&gt;</string>
-         </property>
+         <widget class="QComboBox" name="condition_combobox">
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>be True</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>be False</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>=</string>
+           </property>
+          </item>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>&lt;</string>
-         </property>
+         <widget class="QDoubleSpinBox" name="signal_value">
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>120</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item>
-         <property name="text">
-          <string>=</string>
-         </property>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDoubleSpinBox" name="signal_value">
-        <property name="minimumSize">
-         <size>
-          <width>120</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>120</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="remove_btn">
-        <property name="styleSheet">
-         <string notr="true">background-color:transparent;
+        <item alignment="Qt::AlignmentFlag::AlignRight">
+         <widget class="QLabel" name="value_indicator">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:#808080;
+font-weight:bold;</string>
+          </property>
+          <property name="text">
+           <string>value: -</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignmentFlag::AlignRight">
+         <widget class="QPushButton" name="remove_btn">
+          <property name="styleSheet">
+           <string notr="true">background-color:transparent;
 min-width:30px;
 max-width:30px;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset resource="Assets/Assets.qrc">
-          <normaloff>:/assets/icons/icons8-close-black-50.png</normaloff>:/assets/icons/icons8-close-black-50.png</iconset>
-        </property>
-       </widget>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="Assets/Assets.qrc">
+            <normaloff>:/assets/icons/icons8-close-black-50.png</normaloff>:/assets/icons/icons8-close-black-50.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

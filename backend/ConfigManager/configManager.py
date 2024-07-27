@@ -10,6 +10,9 @@ from backend.PLC.PLCHandler import PLCHandler
 from Mediator.mainMediator import Mediator
 from backend.ConfigManager.configUtils import configUtils
 # from backend.ConfigManager.pipeLineSteps import startPipeline
+DEBUG = True
+
+
 
 class configManager:
 
@@ -113,11 +116,21 @@ class configManager:
                                         node_names=names, 
                                         answer_func=self.permisions_signals_event
                                         )
+        #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
+        self.permisions_signals_event(
+                {
+                    'r1': True,
+                    'r2': 49
+                }
+        )
+        #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
+        
 
 
     def permisions_signals_event(self, values:dict):
         signals_info = self.Config.get_permission_signals()
         res, log = configUtils.check_signals(signals_info, values)
+        self.mediator.send_nodes_log('permission', log)
         if res:
             # if not self.plc.is_connect():
                # return

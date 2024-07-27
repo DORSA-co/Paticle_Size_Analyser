@@ -3,7 +3,7 @@ from backend.ConfigManager import configFlags
 class configUtils:
 
     @staticmethod
-    def check_signals(self, conds:list[dict], values:dict ) -> bool:
+    def check_signals( conds:list[dict], values:dict ) -> bool:
         #{'name': 'r1', 'condition': 'true', 'value': 0.0},
         final_res = True
         log = []
@@ -11,6 +11,8 @@ class configUtils:
         for signal_cond in conds:
 
             name = signal_cond['name']
+            _id = signal_cond['id']
+
             value = values.get(name)    
             res = True
             status = configFlags.signalStatus.ok
@@ -75,7 +77,9 @@ class configUtils:
                     {'name':name,
                      'result': res, 
                      'status':status,
-                     'value': value}
+                     'value': value,
+                     'id': _id
+                     }
                 )
         
         
@@ -84,7 +88,7 @@ class configUtils:
 
 
 
-    def get_write_signal_dict(self, signals:list[dict]) -> dict:
+    def get_write_signal_dict( signals:list[dict]) -> dict:
         res = {}
         for signal in signals:
             name = signal['name']

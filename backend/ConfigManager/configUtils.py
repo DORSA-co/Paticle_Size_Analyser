@@ -104,3 +104,12 @@ class configUtils:
 
             res[name] = value
         return res
+    
+
+
+    @staticmethod
+    def print_function_name(func):
+        def wrapper(*args, **kwargs):
+            print(f"Function name: {func.__name__}")
+            return func(*args, **kwargs)
+        return wrapper

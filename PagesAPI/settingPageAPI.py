@@ -684,8 +684,14 @@ class configSettingTabAPI:
         if self.__is_live_flag:
             self.ui.set_start_timer_indicator('delay', t)
 
+    def recsive_stop_timer(self,t):
+        pass
+
 
     def recsive_step_done(self, name:str, res:bool):
+        if name == 'start':
+            self.clear_online_view()
+            
         self.go_live_buffer.append( [name, res])
         if self.__is_live_flag:
             if res:
@@ -696,13 +702,15 @@ class configSettingTabAPI:
 
     def recsive_failed_pipline(self,):
         #clear after 5 second for better UX
-        def func():
-            self.ui.set_step_state('all', 'off')
-            self.ui.set_nodes_onile_reset()
+        pass
+    
+    def clear_online_view(self,):
+        self.ui.set_step_state('all', 'off')
+        self.ui.set_nodes_onile_reset()
         self.go_live_buffer = []
 
-        timer = timerThread(30)
-        timer.finish_signal.connect( func )
-        threading.Thread(target=timer.run_single).start()
+        #timer = timerThread(30)
+        #timer.finish_signal.connect( func )
+        #threading.Thread(target=timer.run_single).start()
 
         

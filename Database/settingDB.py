@@ -331,12 +331,18 @@ class settingPLCDB(parentSettingDB):
     TABLE_NAME = 'plc_setting'
     TABLE_NAME_DEFAULT = TABLE_NAME + '_default'
     TABLE_COLS = [ 
-                   {'col_name': 'ip',    'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'ip',                 'type':'VARCHAR(255)', 'len':200},
+                   {'col_name':'check_connection_ns', 'type':'VARCHAR(255)', 'len':200},
+                   {'col_name':'check_connection_i',  'type':'VARCHAR(255)', 'len':200},
+
                 ]
     
     TABLE_DEFAULT_DATAS = [
                             {
                             'ip' : "0.0.0.0",
+                            'check_connection_ns': 2,
+                            'check_connection_i' : 1,
+
                         }
                     ]
     

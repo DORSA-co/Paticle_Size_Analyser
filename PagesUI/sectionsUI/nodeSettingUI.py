@@ -34,7 +34,6 @@ class nodeSettinUI(QWidget):
         for setting_name in self.settings.keys():
             res[setting_name] = GUIBackend.get_input(self.settings[setting_name])
         
-        res['id'] = self.id
         return res
     
     def set_settings(self, data:dict):

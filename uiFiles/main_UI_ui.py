@@ -1253,16 +1253,47 @@ class Ui_MainWindow(object):
         self.horizontalFrame_8.setObjectName(u"horizontalFrame_8")
         self.horizontalFrame_8.setStyleSheet(u"")
         self.horizontalLayout_5 = QHBoxLayout(self.horizontalFrame_8)
-        self.horizontalLayout_5.setSpacing(30)
+        self.horizontalLayout_5.setSpacing(10)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalSpacer_35 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.mainpage_run_auto_btn = QPushButton(self.horizontalFrame_8)
+        self.mainpage_run_auto_btn.setObjectName(u"mainpage_run_auto_btn")
+        self.mainpage_run_auto_btn.setMinimumSize(QSize(97, 35))
+        self.mainpage_run_auto_btn.setStyleSheet(u"QPushButton{\n"
+"	border:none;\n"
+"	background-color:transparent;\n"
+"	color: #202020;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	color: rgb(12, 80, 139);\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton[stylePlaying=\"false\"]{\n"
+"	icon: url(:/assets/icons/play-48.png);\n"
+"}\n"
+"\n"
+"\n"
+"QPushButton[stylePlaying=\"true\"]{\n"
+"\n"
+"	icon: url(:/assets/icons/stop50.png);\n"
+"}\n"
+"\n"
+"\n"
+"")
+        self.mainpage_run_auto_btn.setIconSize(QSize(20, 20))
+        self.mainpage_run_auto_btn.setProperty("stylePlaying", False)
 
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_35)
+        self.horizontalLayout_5.addWidget(self.mainpage_run_auto_btn)
+
+        self.horizontalSpacer_119 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_119)
 
         self.mainpage_start_btn = QPushButton(self.horizontalFrame_8)
         self.mainpage_start_btn.setObjectName(u"mainpage_start_btn")
         self.mainpage_start_btn.setEnabled(True)
-        self.mainpage_start_btn.setMinimumSize(QSize(150, 39))
+        self.mainpage_start_btn.setMinimumSize(QSize(100, 39))
         self.mainpage_start_btn.setMaximumSize(QSize(200, 16777215))
         self.mainpage_start_btn.setStyleSheet(u"")
         icon14 = QIcon()
@@ -1274,7 +1305,7 @@ class Ui_MainWindow(object):
         self.mainpage_faststart_btn = QPushButton(self.horizontalFrame_8)
         self.mainpage_faststart_btn.setObjectName(u"mainpage_faststart_btn")
         self.mainpage_faststart_btn.setEnabled(False)
-        self.mainpage_faststart_btn.setMinimumSize(QSize(150, 39))
+        self.mainpage_faststart_btn.setMinimumSize(QSize(100, 39))
         self.mainpage_faststart_btn.setMaximumSize(QSize(200, 16777215))
         self.mainpage_faststart_btn.setStyleSheet(u"")
         icon15 = QIcon()
@@ -1286,7 +1317,7 @@ class Ui_MainWindow(object):
         self.mainpage_stop_btn = QPushButton(self.horizontalFrame_8)
         self.mainpage_stop_btn.setObjectName(u"mainpage_stop_btn")
         self.mainpage_stop_btn.setEnabled(False)
-        self.mainpage_stop_btn.setMinimumSize(QSize(150, 39))
+        self.mainpage_stop_btn.setMinimumSize(QSize(100, 39))
         self.mainpage_stop_btn.setMaximumSize(QSize(200, 16777215))
         self.mainpage_stop_btn.setStyleSheet(u"")
         icon16 = QIcon()
@@ -1294,10 +1325,6 @@ class Ui_MainWindow(object):
         self.mainpage_stop_btn.setIcon(icon16)
 
         self.horizontalLayout_5.addWidget(self.mainpage_stop_btn)
-
-        self.horizontalSpacer_60 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_60)
 
 
         self.verticalLayout_5.addWidget(self.horizontalFrame_8)
@@ -1520,6 +1547,12 @@ class Ui_MainWindow(object):
         self.gridFrame.setObjectName(u"gridFrame")
         self.gridLayout_10 = QGridLayout(self.gridFrame)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.mainpage_camera_connection_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_camera_connection_warning_lbl.setObjectName(u"mainpage_camera_connection_warning_lbl")
+        self.mainpage_camera_connection_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_10.addWidget(self.mainpage_camera_connection_warning_lbl, 1, 3, 1, 1)
+
         self.mainpage_camera_connection_warning_btn = QPushButton(self.gridFrame)
         self.mainpage_camera_connection_warning_btn.setObjectName(u"mainpage_camera_connection_warning_btn")
         self.mainpage_camera_connection_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -1528,64 +1561,72 @@ class Ui_MainWindow(object):
         self.mainpage_camera_connection_warning_btn.setIcon(icon17)
         self.mainpage_camera_connection_warning_btn.setIconSize(QSize(35, 35))
 
-        self.gridLayout_10.addWidget(self.mainpage_camera_connection_warning_btn, 0, 2, 1, 1)
+        self.gridLayout_10.addWidget(self.mainpage_camera_connection_warning_btn, 0, 3, 1, 1)
 
-        self.temp_error_label = QLabel(self.gridFrame)
-        self.temp_error_label.setObjectName(u"temp_error_label")
-        self.temp_error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.mainpage_illumination_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_illumination_warning_btn.setObjectName(u"mainpage_illumination_warning_btn")
+        self.mainpage_illumination_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        icon18 = QIcon()
+        icon18.addFile(u":/assets/icons/icons8-headlight-green-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.mainpage_illumination_warning_btn.setIcon(icon18)
+        self.mainpage_illumination_warning_btn.setIconSize(QSize(35, 35))
 
-        self.gridLayout_10.addWidget(self.temp_error_label, 1, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.mainpage_illumination_warning_btn, 0, 2, 1, 1)
+
+        self.mainpage_camera_grabbing_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_camera_grabbing_warning_btn.setObjectName(u"mainpage_camera_grabbing_warning_btn")
+        self.mainpage_camera_grabbing_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.mainpage_camera_grabbing_warning_btn.setStyleSheet(u"")
+        icon19 = QIcon()
+        icon19.addFile(u":/assets/icons/icons8-camera-green-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.mainpage_camera_grabbing_warning_btn.setIcon(icon19)
+        self.mainpage_camera_grabbing_warning_btn.setIconSize(QSize(35, 35))
+
+        self.gridLayout_10.addWidget(self.mainpage_camera_grabbing_warning_btn, 0, 4, 1, 1)
+
+        self.mainpage_illumination_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_illumination_warning_lbl.setObjectName(u"mainpage_illumination_warning_lbl")
+        self.mainpage_illumination_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_10.addWidget(self.mainpage_illumination_warning_lbl, 1, 2, 1, 1)
+
+        self.mainpage_camera_grabbing_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_camera_grabbing_warning_lbl.setObjectName(u"mainpage_camera_grabbing_warning_lbl")
+        self.mainpage_camera_grabbing_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_10.addWidget(self.mainpage_camera_grabbing_warning_lbl, 1, 4, 1, 1)
+
+        self.mainpage_tempreture_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_tempreture_warning_lbl.setObjectName(u"mainpage_tempreture_warning_lbl")
+        self.mainpage_tempreture_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_10.addWidget(self.mainpage_tempreture_warning_lbl, 1, 1, 1, 1)
 
         self.mainpage_tempreture_warning_btn = QPushButton(self.gridFrame)
         self.mainpage_tempreture_warning_btn.setObjectName(u"mainpage_tempreture_warning_btn")
         self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(114, 40))
         self.mainpage_tempreture_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mainpage_tempreture_warning_btn.setStyleSheet(u"")
-        icon18 = QIcon()
-        icon18.addFile(u":/assets/icons/icons8-thermometer-red-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.mainpage_tempreture_warning_btn.setIcon(icon18)
+        icon20 = QIcon()
+        icon20.addFile(u":/assets/icons/icons8-thermometer-red-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.mainpage_tempreture_warning_btn.setIcon(icon20)
         self.mainpage_tempreture_warning_btn.setIconSize(QSize(35, 35))
 
-        self.gridLayout_10.addWidget(self.mainpage_tempreture_warning_btn, 0, 0, 1, 1)
+        self.gridLayout_10.addWidget(self.mainpage_tempreture_warning_btn, 0, 1, 1, 1)
 
-        self.illimination_error_label = QLabel(self.gridFrame)
-        self.illimination_error_label.setObjectName(u"illimination_error_label")
-        self.illimination_error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.mainpage_plc_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_plc_warning_btn.setObjectName(u"mainpage_plc_warning_btn")
+        self.mainpage_plc_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.mainpage_plc_warning_btn.setIcon(icon18)
+        self.mainpage_plc_warning_btn.setIconSize(QSize(35, 35))
 
-        self.gridLayout_10.addWidget(self.illimination_error_label, 1, 1, 1, 1)
+        self.gridLayout_10.addWidget(self.mainpage_plc_warning_btn, 0, 0, 1, 1)
 
-        self.mainpage_illumination_warning_btn = QPushButton(self.gridFrame)
-        self.mainpage_illumination_warning_btn.setObjectName(u"mainpage_illumination_warning_btn")
-        self.mainpage_illumination_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        icon19 = QIcon()
-        icon19.addFile(u":/assets/icons/icons8-headlight-green-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.mainpage_illumination_warning_btn.setIcon(icon19)
-        self.mainpage_illumination_warning_btn.setIconSize(QSize(35, 35))
+        self.mainpage_plc_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_plc_warning_lbl.setObjectName(u"mainpage_plc_warning_lbl")
+        self.mainpage_plc_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.gridLayout_10.addWidget(self.mainpage_illumination_warning_btn, 0, 1, 1, 1)
-
-        self.camera_connection__error_label = QLabel(self.gridFrame)
-        self.camera_connection__error_label.setObjectName(u"camera_connection__error_label")
-        self.camera_connection__error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout_10.addWidget(self.camera_connection__error_label, 1, 2, 1, 1)
-
-        self.mainpage_camera_grabbing_warning_btn = QPushButton(self.gridFrame)
-        self.mainpage_camera_grabbing_warning_btn.setObjectName(u"mainpage_camera_grabbing_warning_btn")
-        self.mainpage_camera_grabbing_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.mainpage_camera_grabbing_warning_btn.setStyleSheet(u"")
-        icon20 = QIcon()
-        icon20.addFile(u":/assets/icons/icons8-camera-green-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.mainpage_camera_grabbing_warning_btn.setIcon(icon20)
-        self.mainpage_camera_grabbing_warning_btn.setIconSize(QSize(35, 35))
-
-        self.gridLayout_10.addWidget(self.mainpage_camera_grabbing_warning_btn, 0, 3, 1, 1)
-
-        self.camera_grabbing_error_label = QLabel(self.gridFrame)
-        self.camera_grabbing_error_label.setObjectName(u"camera_grabbing_error_label")
-        self.camera_grabbing_error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.gridLayout_10.addWidget(self.camera_grabbing_error_label, 1, 3, 1, 1)
+        self.gridLayout_10.addWidget(self.mainpage_plc_warning_lbl, 1, 0, 1, 1)
 
 
         self.verticalLayout_7.addWidget(self.gridFrame, 0, Qt.AlignmentFlag.AlignTop)
@@ -3880,62 +3921,57 @@ class Ui_MainWindow(object):
 "	min-width:10px;\n"
 "\n"
 "}")
-        self.gridLayout_4 = QGridLayout(self.groupBox)
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.settingpage_plc_ip3_input = QLineEdit(self.groupBox)
-        self.settingpage_plc_ip3_input.setObjectName(u"settingpage_plc_ip3_input")
+        self.verticalLayout_19 = QVBoxLayout(self.groupBox)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.horizontalLayout_27 = QHBoxLayout()
+        self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
+        self.horizontalLayout_27.setContentsMargins(-1, 22, -1, -1)
+        self.label_3 = QLabel(self.groupBox)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.gridLayout_4.addWidget(self.settingpage_plc_ip3_input, 0, 5, 1, 1)
+        self.horizontalLayout_27.addWidget(self.label_3)
 
-        self.label_23 = QLabel(self.groupBox)
-        self.label_23.setObjectName(u"label_23")
-        self.label_23.setMinimumSize(QSize(10, 0))
-        self.label_23.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.settingpage_plc_ip1_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip1_input.setObjectName(u"settingpage_plc_ip1_input")
 
-        self.gridLayout_4.addWidget(self.label_23, 0, 6, 1, 1)
+        self.horizontalLayout_27.addWidget(self.settingpage_plc_ip1_input)
 
         self.label_15 = QLabel(self.groupBox)
         self.label_15.setObjectName(u"label_15")
         self.label_15.setMinimumSize(QSize(10, 0))
         self.label_15.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.gridLayout_4.addWidget(self.label_15, 0, 2, 1, 1, Qt.AlignmentFlag.AlignHCenter)
+        self.horizontalLayout_27.addWidget(self.label_15)
 
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.settingpage_plc_ip2_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip2_input.setObjectName(u"settingpage_plc_ip2_input")
 
-        self.gridLayout_4.addItem(self.horizontalSpacer_17, 0, 10, 1, 1)
+        self.horizontalLayout_27.addWidget(self.settingpage_plc_ip2_input)
 
         self.label_21 = QLabel(self.groupBox)
         self.label_21.setObjectName(u"label_21")
         self.label_21.setMinimumSize(QSize(10, 0))
         self.label_21.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.gridLayout_4.addWidget(self.label_21, 0, 4, 1, 1)
+        self.horizontalLayout_27.addWidget(self.label_21)
 
-        self.settingpage_plc_ip2_input = QLineEdit(self.groupBox)
-        self.settingpage_plc_ip2_input.setObjectName(u"settingpage_plc_ip2_input")
+        self.settingpage_plc_ip3_input = QLineEdit(self.groupBox)
+        self.settingpage_plc_ip3_input.setObjectName(u"settingpage_plc_ip3_input")
 
-        self.gridLayout_4.addWidget(self.settingpage_plc_ip2_input, 0, 3, 1, 1)
+        self.horizontalLayout_27.addWidget(self.settingpage_plc_ip3_input)
+
+        self.label_23 = QLabel(self.groupBox)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setMinimumSize(QSize(10, 0))
+        self.label_23.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_27.addWidget(self.label_23)
 
         self.settingpage_plc_ip4_input = QLineEdit(self.groupBox)
         self.settingpage_plc_ip4_input.setObjectName(u"settingpage_plc_ip4_input")
 
-        self.gridLayout_4.addWidget(self.settingpage_plc_ip4_input, 0, 7, 1, 1)
-
-        self.settingpage_plc_ip1_input = QLineEdit(self.groupBox)
-        self.settingpage_plc_ip1_input.setObjectName(u"settingpage_plc_ip1_input")
-
-        self.gridLayout_4.addWidget(self.settingpage_plc_ip1_input, 0, 1, 1, 1)
-
-        self.label_3 = QLabel(self.groupBox)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-
-        self.gridLayout_4.addWidget(self.label_3, 0, 0, 1, 1)
-
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_4.addItem(self.horizontalSpacer_13, 0, 8, 1, 1)
+        self.horizontalLayout_27.addWidget(self.settingpage_plc_ip4_input)
 
         self.settingpage_connect_btn = QPushButton(self.groupBox)
         self.settingpage_connect_btn.setObjectName(u"settingpage_connect_btn")
@@ -3952,7 +3988,54 @@ class Ui_MainWindow(object):
 "}")
         self.settingpage_connect_btn.setIconSize(QSize(20, 20))
 
-        self.gridLayout_4.addWidget(self.settingpage_connect_btn, 0, 9, 1, 1)
+        self.horizontalLayout_27.addWidget(self.settingpage_connect_btn)
+
+        self.horizontalSpacer_35 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_27.addItem(self.horizontalSpacer_35)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_27)
+
+        self.horizontalLayout_81 = QHBoxLayout()
+        self.horizontalLayout_81.setObjectName(u"horizontalLayout_81")
+        self.horizontalLayout_81.setContentsMargins(-1, 24, -1, -1)
+        self.label_35 = QLabel(self.groupBox)
+        self.label_35.setObjectName(u"label_35")
+        self.label_35.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.horizontalLayout_81.addWidget(self.label_35)
+
+        self.label_98 = QLabel(self.groupBox)
+        self.label_98.setObjectName(u"label_98")
+        self.label_98.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.horizontalLayout_81.addWidget(self.label_98)
+
+        self.settingpage_plc_ns_check_connection_inpt = QLineEdit(self.groupBox)
+        self.settingpage_plc_ns_check_connection_inpt.setObjectName(u"settingpage_plc_ns_check_connection_inpt")
+        self.settingpage_plc_ns_check_connection_inpt.setMinimumSize(QSize(20, 40))
+
+        self.horizontalLayout_81.addWidget(self.settingpage_plc_ns_check_connection_inpt)
+
+        self.label_102 = QLabel(self.groupBox)
+        self.label_102.setObjectName(u"label_102")
+        self.label_102.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
+
+        self.horizontalLayout_81.addWidget(self.label_102)
+
+        self.settingpage_plc_i_check_connection_inpt = QLineEdit(self.groupBox)
+        self.settingpage_plc_i_check_connection_inpt.setObjectName(u"settingpage_plc_i_check_connection_inpt")
+        self.settingpage_plc_i_check_connection_inpt.setMinimumSize(QSize(20, 40))
+
+        self.horizontalLayout_81.addWidget(self.settingpage_plc_i_check_connection_inpt)
+
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_81.addItem(self.horizontalSpacer_13)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_81)
 
 
         self.verticalLayout_66.addWidget(self.groupBox)
@@ -3967,7 +4050,7 @@ class Ui_MainWindow(object):
         self.nodesScrollArea.setWidgetResizable(True)
         self.nodesScrollAreaContent = QWidget()
         self.nodesScrollAreaContent.setObjectName(u"nodesScrollAreaContent")
-        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1136, 350))
+        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1136, 304))
         self.verticalLayout_67 = QVBoxLayout(self.nodesScrollAreaContent)
         self.verticalLayout_67.setObjectName(u"verticalLayout_67")
         self.settingpage_plc_add_node_btn = QPushButton(self.nodesScrollAreaContent)
@@ -4027,7 +4110,7 @@ class Ui_MainWindow(object):
         self.config_tab_main_scrollBar.setWidgetResizable(True)
         self.config_tab_main_scrollBarArea_contents = QWidget()
         self.config_tab_main_scrollBarArea_contents.setObjectName(u"config_tab_main_scrollBarArea_contents")
-        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, -279, 1134, 792))
+        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, 0, 1134, 827))
         sizePolicy2.setHeightForWidth(self.config_tab_main_scrollBarArea_contents.sizePolicy().hasHeightForWidth())
         self.config_tab_main_scrollBarArea_contents.setSizePolicy(sizePolicy2)
         self.verticalLayout_86 = QVBoxLayout(self.config_tab_main_scrollBarArea_contents)
@@ -4092,6 +4175,11 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_86.addLayout(self.horizontalLayout_28)
+
+        self.config_auto_run_checkbox = QCheckBox(self.config_tab_main_scrollBarArea_contents)
+        self.config_auto_run_checkbox.setObjectName(u"config_auto_run_checkbox")
+
+        self.verticalLayout_86.addWidget(self.config_auto_run_checkbox)
 
         self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
@@ -4391,15 +4479,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_72.addWidget(self.label_129)
 
-        self.frame_11 = QFrame(self.scrollAreaConfigPipeLineContents)
-        self.frame_11.setObjectName(u"frame_11")
-        self.frame_11.setMinimumSize(QSize(702, 0))
-        self.frame_11.setMaximumSize(QSize(16777215, 16777215))
-        self.frame_11.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_11.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_78 = QVBoxLayout(self.frame_11)
+        self.config_signal1_frame = QFrame(self.scrollAreaConfigPipeLineContents)
+        self.config_signal1_frame.setObjectName(u"config_signal1_frame")
+        self.config_signal1_frame.setMinimumSize(QSize(702, 0))
+        self.config_signal1_frame.setMaximumSize(QSize(16777215, 16777215))
+        self.config_signal1_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.config_signal1_frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_78 = QVBoxLayout(self.config_signal1_frame)
         self.verticalLayout_78.setObjectName(u"verticalLayout_78")
-        self.label_125 = QLabel(self.frame_11)
+        self.label_125 = QLabel(self.config_signal1_frame)
         self.label_125.setObjectName(u"label_125")
         sizePolicy12.setHeightForWidth(self.label_125.sizePolicy().hasHeightForWidth())
         self.label_125.setSizePolicy(sizePolicy12)
@@ -4408,7 +4496,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_78.addWidget(self.label_125, 0, Qt.AlignmentFlag.AlignHCenter)
 
-        self.frame_12 = QFrame(self.frame_11)
+        self.frame_12 = QFrame(self.config_signal1_frame)
         self.frame_12.setObjectName(u"frame_12")
         self.frame_12.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_12.setFrameShadow(QFrame.Shadow.Raised)
@@ -4445,7 +4533,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_78.addWidget(self.frame_12)
 
 
-        self.horizontalLayout_72.addWidget(self.frame_11)
+        self.horizontalLayout_72.addWidget(self.config_signal1_frame)
 
         self.label_130 = QLabel(self.scrollAreaConfigPipeLineContents)
         self.label_130.setObjectName(u"label_130")
@@ -4683,7 +4771,7 @@ class Ui_MainWindow(object):
         self.config_stop_system_delay_spinbox = QSpinBox(self.config_stop_timer_page)
         self.config_stop_system_delay_spinbox.setObjectName(u"config_stop_system_delay_spinbox")
         self.config_stop_system_delay_spinbox.setMinimumSize(QSize(120, 27))
-        self.config_stop_system_delay_spinbox.setMinimum(5)
+        self.config_stop_system_delay_spinbox.setMinimum(1)
         self.config_stop_system_delay_spinbox.setMaximum(3600)
 
         self.horizontalLayout_79.addWidget(self.config_stop_system_delay_spinbox)
@@ -4720,7 +4808,7 @@ class Ui_MainWindow(object):
         self.config_stop_system_signals_scroll_area.setWidgetResizable(True)
         self.config_stop_system_signals_scroll_contents = QWidget()
         self.config_stop_system_signals_scroll_contents.setObjectName(u"config_stop_system_signals_scroll_contents")
-        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 630, 184))
+        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 70, 64))
         self.verticalLayout_97 = QVBoxLayout(self.config_stop_system_signals_scroll_contents)
         self.verticalLayout_97.setObjectName(u"verticalLayout_97")
         self.config_stop_system_signals_add_btn = QPushButton(self.config_stop_system_signals_scroll_contents)
@@ -7844,10 +7932,10 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(5)
+        self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.config_start_system_settings_stackwidget.setCurrentIndex(0)
-        self.config_stop_system_settings_stackwidget.setCurrentIndex(1)
+        self.config_stop_system_settings_stackwidget.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
@@ -7889,6 +7977,8 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(accessibility)
         self.mainpage_live_image_lbl.setText("")
         self.mainpage_error_lbl.setText(QCoreApplication.translate("MainWindow", u"Error", None))
+        self.mainpage_run_auto_btn.setText(QCoreApplication.translate("MainWindow", u"run Auto", None))
+        self.mainpage_run_auto_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"noBorderButton", None))
         self.mainpage_start_btn.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.mainpage_start_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueBorderButton", None))
         self.mainpage_faststart_btn.setText(QCoreApplication.translate("MainWindow", u"Fast Start", None))
@@ -7908,14 +7998,16 @@ class Ui_MainWindow(object):
         self.mainpage_tempreture_lbl.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.mainpage_report_button.setText(QCoreApplication.translate("MainWindow", u"Report", None))
         self.label_138.setText(QCoreApplication.translate("MainWindow", u"System Status And Warnings", None))
+        self.mainpage_camera_connection_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera Connection", None))
         self.mainpage_camera_connection_warning_btn.setText("")
-        self.temp_error_label.setText(QCoreApplication.translate("MainWindow", u"Tempreture", None))
-        self.mainpage_tempreture_warning_btn.setText("")
-        self.illimination_error_label.setText(QCoreApplication.translate("MainWindow", u"Ilumination", None))
         self.mainpage_illumination_warning_btn.setText("")
-        self.camera_connection__error_label.setText(QCoreApplication.translate("MainWindow", u"Camera Connection", None))
         self.mainpage_camera_grabbing_warning_btn.setText("")
-        self.camera_grabbing_error_label.setText(QCoreApplication.translate("MainWindow", u"Camera Grabbing", None))
+        self.mainpage_illumination_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Ilumination", None))
+        self.mainpage_camera_grabbing_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Camera Grabbing", None))
+        self.mainpage_tempreture_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"Tempreture", None))
+        self.mainpage_tempreture_warning_btn.setText("")
+        self.mainpage_plc_warning_btn.setText("")
+        self.mainpage_plc_warning_lbl.setText(QCoreApplication.translate("MainWindow", u"PLC", None))
         self.mainpage_warning_massage_lbl.setText(QCoreApplication.translate("MainWindow", u"!", None))
         self.mainpage_close_error_btn.setText("")
         self.label_70.setText(QCoreApplication.translate("MainWindow", u"Filter Results", None))
@@ -8166,15 +8258,18 @@ class Ui_MainWindow(object):
         self.settingpage_tabs.setTabText(self.settingpage_tabs.indexOf(self.settingpage_camera_tab), QCoreApplication.translate("MainWindow", u"Camera", None))
         self.settingpage_plc_tab.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"General Setting", None))
-        self.label_23.setText(QCoreApplication.translate("MainWindow", u".", None))
-        self.label_23.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Ip: ", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u".", None))
         self.label_15.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
         self.label_21.setText(QCoreApplication.translate("MainWindow", u".", None))
         self.label_21.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Ip: ", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u".", None))
+        self.label_23.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"dot", None))
         self.settingpage_connect_btn.setText(QCoreApplication.translate("MainWindow", u"Check Connection", None))
         self.settingpage_connect_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueIconButton", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Check Connection Node:", None))
+        self.label_98.setText(QCoreApplication.translate("MainWindow", u"ns", None))
+        self.label_102.setText(QCoreApplication.translate("MainWindow", u"i", None))
         self.settingpage_plc_add_node_btn.setText("")
         self.settingpage_plc_add_node_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
         self.settingpage_plc_save_btn.setText(QCoreApplication.translate("MainWindow", u"Save", None))
@@ -8193,6 +8288,7 @@ class Ui_MainWindow(object):
         self.config_fps_regulator_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"Micro", None))
 
         self.config_plc_enable_checkbox.setText(QCoreApplication.translate("MainWindow", u"Support PLC", None))
+        self.config_auto_run_checkbox.setText(QCoreApplication.translate("MainWindow", u"Automative PipeLine", None))
         self.label_140.setText(QCoreApplication.translate("MainWindow", u"PieLine", None))
         self.config_go_live_btn.setText(QCoreApplication.translate("MainWindow", u"Go Live", None))
         self.scrollAreaConfigPipeLine.setProperty("styleClass", "")
@@ -8225,7 +8321,7 @@ class Ui_MainWindow(object):
         self.config_permisions_signals_add_btn.setText("")
         self.config_permisions_signals_add_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueCircelAdd", None))
         self.label_129.setText("")
-        self.frame_11.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
+        self.config_signal1_frame.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"config_section_frame", None))
         self.label_125.setText(QCoreApplication.translate("MainWindow", u"Output Signal", None))
         self.label_125.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
         self.label_126.setText(QCoreApplication.translate("MainWindow", u"Signals", None))

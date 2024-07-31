@@ -18,6 +18,9 @@ class Config:
     def has_plc(self, ) -> bool:
         return bool(self.__config['plc_enable'])
     
+    def is_auto_run_enable(self,) -> bool:
+        return bool(self.__config['auto_run_enable'])
+    
     def get_start_mode(self,) -> str:
         return self.__config['start_mode']
     
@@ -30,6 +33,11 @@ class Config:
     def get_start_time_cycle(self,) -> int:
         t =  self.__config['start_period_time']
         t = t * 60
+        return t
+    
+    def get_stop_time(self,) -> int:
+        t = self.__config['stop_delay']
+        t *= 60
         return t
     
     def get_start_delay(self, ):

@@ -1,12 +1,11 @@
 from datetime import datetime
 import copy
 import time
-import os
+import threading
 
-import cv2
 import numpy as np
 
-from PySide6.QtCore import QThread, QObject, Signal, QMutex
+from PySide6.QtCore import QObject, Signal
 
 
 import Constants.CONSTANTS as CONSTANTS
@@ -18,7 +17,8 @@ from backend.Camera import dorsaPylon
 from backend.Processing import particlesDetector
 from backend.Processing.Report import Report
 from backend.Utils.datetimeUtils import timerCounter
-import threading
+from Mediator.mainMediator import Mediator
+
 
 # class myThread(QThread):
 #     def quit(self) -> None:
@@ -35,6 +35,7 @@ class mainPageAPI:
         self.uiHandeler = uiHandeler
         self.database = database
         self.cameras = cameras
+        self.Mediator = Mediator()
         self.default_camera_status = False
 
         self.t_frame = 0
@@ -45,12 +46,14 @@ class mainPageAPI:
         self.is_running = False
         self.during_processing = False
         self.processing_time = 0
+        self.auto_run_flag = False
 
         self.warnings_and_status = {
-            'camera_connection': True,
-            'camera_grabbing': True,
+            'camera_connection': False,
+            'camera_grabbing': False,
             'illumination': True,
-            'tempreture': True
+            'tempreture': False,
+            'plc': False
 
         }
         
@@ -62,7 +65,7 @@ class mainPageAPI:
         self.system_timer_thread.start()
         self.running_timer = timerCounter()
 
-
+        self.uiHandeler.run_auto_button_connector(self.run_auto)
         self.uiHandeler.player_buttons_connect('fast_start', self.fast_start)
         self.uiHandeler.player_buttons_connect('start', self.start)
         self.uiHandeler.player_buttons_connect('stop', self.stop)
@@ -73,6 +76,7 @@ class mainPageAPI:
         self.test_img_idx = 0
         self.report:Report = None
         self.detector = None
+        self.Mediator = Mediator()
         self.startup()
     
     def startup(self,):
@@ -81,6 +85,11 @@ class mainPageAPI:
         if not self.is_running:
             self.uiHandeler.set_live_img(CONSTANTS.IMAGES.NO_IMAGE)
         self.uiHandeler.startup()
+
+    def run_auto(self,):
+        self.auto_run_flag = not(self.auto_run_flag)
+        self.uiHandeler.set_auto_run_status(self.auto_run_flag)
+        self.Mediator.send('auto_run_changed', self.auto_run_flag)
 
     def set_logined_user(self, username:str):
         """this function calls from main_API when a login or logout event happend and gets logined username
@@ -308,10 +317,13 @@ class mainPageAPI:
         ######## check camera status
         if not self.warnings_and_status['camera_connection']:
             self.uiHandeler.write_error_msg("chosen camera in settings is not connected")
+            self.Mediator.send_start_processing_status(False)
             return
         
         if not self.handle_standard_error(standards):
+            self.Mediator.send_start_processing_status(False)
             return
+
            
         #---------------------------------------------------------------------------
         sample_setting = self.database.setting_db.sample_db.load()
@@ -324,10 +336,12 @@ class mainPageAPI:
         default_standard = sample_setting.get('default_standard')
         if default_standard == None or default_standard == '-':
             self.uiHandeler.write_error_msg("No default standard selected. go to 'Settings >> sample Setting' and choose a default standard")
+            self.Mediator.send_start_processing_status(False)
             return
         
         if default_standard not in standards_name:
             self.uiHandeler.write_error_msg("Couldn't find default standard. go to 'Settings >> sample Setting' and choose a default standard")
+            self.Mediator.send_start_processing_status(False)
             return
 
         self.uiHandeler.sampleInfoDialog.set_current_standard( sample_setting['default_standard'])
@@ -336,6 +350,7 @@ class mainPageAPI:
 
         if not sample_setting['autoname_enable']:
             self.uiHandeler.write_error_msg("You Should enable 'Auto name' to use fast start. go to Settings >> sample Setting and setup 'Auto Sample Name'")
+            self.Mediator.send_start_processing_status(False)
             return
         
             
@@ -343,7 +358,9 @@ class mainPageAPI:
         self.uiHandeler.sampleInfoDialog.set_sample_name(name)
         self.uiHandeler.sampleInfoDialog.disable_sample_name(False)
 
-        self.run_start()
+        res = self.run_start()
+        self.Mediator.send_start_processing_status(res)
+
 
 
     def stop(self,ask=True):
@@ -400,7 +417,7 @@ class mainPageAPI:
 
         if info['name'] == "":
             self.uiHandeler.sampleInfoDialog.write_error_massage("Name field cann't be empty")
-            return
+            return False
         #clear error from sample info window box
         self.uiHandeler.sampleInfoDialog.write_error_massage(None)
 
@@ -418,6 +435,7 @@ class mainPageAPI:
             camera.Operations.start_grabbing()
         
         self.running_timer = timerCounter()
+        return True
         #self.running_timer.set_external_event(self.running_one_second_event)
         #self.running_timer.run()
 

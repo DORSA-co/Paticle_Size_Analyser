@@ -297,7 +297,7 @@ class PLCHandler:
             return False
         
     def connect_request(self, url=None, run_threads_after_connect=True):
-        """the diffrence if this method and connect method is
+        """the diffrence of this method and connect method is
            that this method run on thread
         """
         self.run_threads_after_connect = run_threads_after_connect
@@ -405,8 +405,9 @@ class PLCHandler:
         req_id = req['id']
         values = req['values']
         func = self.__read_requests[req_id]['func']
-        func(values )
         self.__read_requests.pop(req_id)
+        func(values )
+
 
 
 
@@ -515,6 +516,7 @@ class PLCReadWoker(QObject):
              'nodes_names': nodes_names
              }
         )
+        pass
 
         
 
@@ -531,6 +533,7 @@ class PLCReadWoker(QObject):
 
             if snode_handler.is_time_to_read():
                 node_names.append(name)
+        return node_names
     
     def get_nodes_for_request_reads(self,) -> list[str]:
         node_names = []
@@ -587,20 +590,21 @@ class PLCReadWoker(QObject):
 
             if len(node_names):
                 #t = time.time()
-                node_values = self.nodesHandler.get_values(node_names)
-
-                self.new_values = {}
-                #seprate auto read node
-                for name, value in node_values.items():
-                    if name in auto_node_names:
-                        self.new_values[name] = value
-                        
+                node_values = self.nodesHandler.get_values(node_names)        
                 
-                if self.new_values is None:
+                if node_values is None:
                     self.faild_counter+=1
                 else:
+                    self.new_values = {}
+                    #seprate auto read node
+                    for name, value in node_values.items():
+                        if name in auto_node_names:
+                            self.new_values[name] = value
+                    
+
                     self.faild_counter=0
                     self.call_event_for_changes()
+                    self.call_event_for_request(node_values)
 
                 #print(time.time() - t)
                 

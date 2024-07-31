@@ -102,6 +102,8 @@ class mainUI(QMainWindow):
             'all_users':         (self.ui.user_tabs, self.ui.all_users_tab),
         }
 
+        self.__not_activa_tabs = []
+
 
         self.headrs_button = {
             'minimize': self.ui.minimize_btn,
@@ -291,6 +293,10 @@ class mainUI(QMainWindow):
                 tabs = self.tabs.keys()
         for tab_name in self.tabs:
             tab_parent, tab = self.tabs[tab_name]
+            
+            if tab_name in self.__not_activa_tabs:
+                continue
+
             if tab_name in tabs:
                 GUIBackend.set_visible_tab(tab_parent, tab, True)
 
@@ -298,7 +304,8 @@ class mainUI(QMainWindow):
                 GUIBackend.set_visible_tab(tab_parent, tab, False)
 
 
-    def hide_tab(self, tab_name:str):
+    def deactive_tab(self, tab_name:str):
+        self.__not_activa_tabs.append(tab_name)
         tab_parent, tab = self.tabs[tab_name]
         GUIBackend.set_visible_tab(tab_parent, tab, False)
 

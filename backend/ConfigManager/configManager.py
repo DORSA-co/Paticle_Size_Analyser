@@ -3,7 +3,7 @@ import threading
 
 from PySide6.QtCore import QObject, Signal
 
-from backend.Utils.threadTimer import timerThread
+from backend.Utils.threadTimer import timerThread, timoutTimerWorker
 from backend.ConfigManager import configFlags
 from backend.ConfigManager.Config import Config
 from backend.PLC.PLCHandler import PLCHandler
@@ -16,27 +16,61 @@ DEBUG = True
 
 class configManager:
 
-    def __init__(self) -> None:
+    def __init__(self,) -> None:
         self.Config = Config()
-        self.plc : PLCHandler = None
+        self.plc:PLCHandler = None
         self.mediator = Mediator()
 
         self.start_timer = None
         self.delay_timer = None
         self.stop_timer  = None
 
+        self.__run_flag = False
+
+        self.timeoutWorker = None
+
         self.start_signals_values = {}
-        self.run_start_pipeline()
         # self.startPipline = startPipeline.startPipeline(self.Config, self.plc)
         # self.startPipline.run()
 
+    def run_pipeline(self,):
+        self.__run_flag = True
+        self.run_start_pipeline()
+
+
+    def stop_pipeline(self,):
+        self.__run_flag = False
+
+    def set_plc(self, plc:PLCHandler):
+        self.plc = plc
+
+    @configUtils.print_function_name
     def uncompleted_pipeline(self,):
-        self.run_start_timer()
+        self.stop_timeout()
+        self.run_start_pipeline()
         self.mediator.send_failed_pipline()
 
 
-        
+    def start_timeout(self, timeout):
+        self.timeoutWorker = timoutTimerWorker(timeout)
+        self.timeoutWorker.timeout_signal.connect(self.uncompleted_pipeline)
+        threading.Thread( target=self.timeoutWorker.run).start()
+    
+    def stop_timeout(self,):
+        if self.timeoutWorker is not None:
+            self.timeoutWorker.stop()
+
+    #----------------------------------------------------------------------------------------------------
+    
+ 
+    #----------------------------------------------------------------------------------------------------
+
+
+    @configUtils.print_function_name    
     def run_start_pipeline(self,):
+        if not self.__run_flag:
+            return
+        
         start_mode = self.Config.get_start_mode()
 
         if start_mode == configFlags.startMode.timer:
@@ -46,57 +80,88 @@ class configManager:
             self.run_reading_start_signals()
 
 
-    
+    @configUtils.print_function_name
     def run_start_timer(self, ):
+        if not self.__run_flag:
+            return
+        
         t = self.Config.get_start_time_cycle()
-        self.start_timer = timerThread(t)
+        self.start_timer = timerThread(t, name='start_timer')
         self.start_timer.finish_signal.connect(self.start_timer_finish_event)
         self.start_timer.counter_signal.connect(self.start_timer_counter)
         threading.Thread(target=self.start_timer.run_single).start()
 
-
+    @configUtils.print_function_name
     def run_reading_start_signals(self, ):
+        if not self.__run_flag:
+            return
+        
         signals = self.Config.get_start_signals()
         if len(signals):
-            node_names = list(map(lambda x:x['name', signals]))
-            self.plc.send_read_request('start_signals', 
-                                        node_names,
-                                        self.start_signals_update_event)
+            node_names = list(map(lambda x:x['name'], signals))
 
-    
+            if self.plc is None or not self.plc.is_connect():
+                #uncomplete pipline after 3000 ms
+                self.start_timeout(3000)
+            else:
+                self.start_timeout(5000)
+                self.plc.send_read_request('start_signals', 
+                                            node_names,
+                                            self.start_signals_update_event)
+
+    @configUtils.print_function_name
     def start_signals_update_event(self, values:dict):
+        if not self.__run_flag:
+            return
+        
+        self.stop_timeout()
+
         signals_info = self.Config.get_start_signals()
         res, log = configUtils.check_signals(signals_info, values)
 
         #read agin signal if conditions not ok
         if not res:
             # self.send_read_permisions_request()
-            timer = timerThread(5)
-            timer.finish_signal.connect(self.run_reading_start_signals)
-            threading.Thread(target=timer.run_single).start()
+            self.start_done(False)
+            
+            # timer = timerThread(5, name='reading start_signals')
+            # timer.finish_signal.connect(self.run_reading_start_signals)
+            # threading.Thread(target=timer.run_single).start()
         
         else:
-            self.mediator.send_nodes_log('start', log)
-            self.start_done()
+            self.start_done(True)
+
+        self.mediator.send_nodes_log('start', log)
 
 
     def start_timer_counter(self, t):
         self.mediator.send_start_timer(t)
 
+    @configUtils.print_function_name
     def start_timer_finish_event(self,):
-        self.start_done()
+        self.start_done(True)
     
 
-
-    def start_done(self,):
-        self.mediator.send_config_start_done()
-        self.run_permission_pipline()
+    @configUtils.print_function_name
+    def start_done(self, flag:bool):
+        if not self.__run_flag:
+            return
+        
+        self.mediator.send_step_done('start', flag)
+        if flag:
+            self.run_permission_pipline()
+        else:
+            self.uncompleted_pipeline()
 
 
     #-------------------------------------------------------------------------------------------------
     #                                       permission
     #-------------------------------------------------------------------------------------------------
+    @configUtils.print_function_name
     def run_permission_pipline(self,):
+        if not self.__run_flag:
+            return
+        
         permisions_signals = self.Config.get_permission_signals()
         if len(permisions_signals):
             self.run_reading_permisions_signals(permisions_signals)
@@ -106,28 +171,44 @@ class configManager:
 
 
 
-
+    @configUtils.print_function_name
     def run_reading_permisions_signals(self,permisions_signals: list[dict]):
+        if not self.__run_flag:
+            return
 
         names = list(map( lambda x:x['name'], permisions_signals))
-        if self.Config.has_plc() and self.plc is not None and self.plc.is_connect():
-
+        
+        if self.plc is None or not self.plc.is_connect():
+            self.uncompleted_pipeline()
+        
+        else:
+            self.start_timeout(5000)
+            
             self.plc.send_read_request( request_id='permistions', 
                                         node_names=names, 
                                         answer_func=self.permisions_signals_event
                                         )
-        #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
-        self.permisions_signals_event(
-                {
-                    'r1': True,
-                    'r2': 49
-                }
-        )
-        #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
+            
+        
         
 
+        # #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
+        # self.permisions_signals_event(
+        #         {
+        #             'r1': True,
+        #             'r2': 80
+        #         }
+        # )
+        # #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
+        
 
+    @configUtils.print_function_name
     def permisions_signals_event(self, values:dict):
+        if not self.__run_flag:
+            return
+
+        self.stop_timeout()
+
         signals_info = self.Config.get_permission_signals()
         res, log = configUtils.check_signals(signals_info, values)
         self.mediator.send_nodes_log('permission', log)
@@ -139,9 +220,10 @@ class configManager:
         else:
             self.permisions_done(False)
             
-    
+
+    @configUtils.print_function_name
     def permisions_done(self, res):
-        self.mediator.send_config_permision_done(res)
+        self.mediator.send_step_done('permission', res)
 
         if res:
             self.write_output_signal('signals1')
@@ -153,16 +235,24 @@ class configManager:
     #-------------------------------------------------------------------------------------------------
     #                                       delay
     #-------------------------------------------------------------------------------------------------
-
+    @configUtils.print_function_name
     def run_delay_pipline(self,):
+        if not self.__run_flag:
+            return
+        
         t = self.Config.get_start_delay()
         if t == 0:
             self.delay_done()
         else:
             self.start_delay_timer(t)
 
+
+    @configUtils.print_function_name
     def start_delay_timer(self, t):
-        self.delay_timer = timerThread(t)
+        if not self.__run_flag:
+            return
+        
+        self.delay_timer = timerThread(t, name='delay_timer')
         self.delay_timer.finish_signal.connect(self.delay_done)
         self.delay_timer.counter_signal.connect(self.delay_timer_counter)
         threading.Thread(target=self.delay_timer.run_single).start()
@@ -170,38 +260,87 @@ class configManager:
     def delay_timer_counter(self, t):
         self.mediator.send_delay_timer(t)
 
-
+    @configUtils.print_function_name
     def delay_done(self,):  
-        self.mediator.send_config_delay_done()
-        self.write_output_signal('signals2')
+        if not self.__run_flag:
+            return
+        
+        self.run_processing()
+        # #only for test
+        # self.uncompleted_pipeline()
+    #-------------------------------------------------------------------------------------------------
+    #                                       run processing
+    #-------------------------------------------------------------------------------------------------
+    @configUtils.print_function_name
+    def run_processing(self,):
+        if not self.__run_flag:
+            return
+        
+        self.mediator.send_start_processing_request()
 
-        #only for test
-        self.uncompleted_pipeline()
 
-    def stop(self, ):
+    @configUtils.print_function_name
+    def rescive_run_pocessing_status(self, flag):
+        if not self.__run_flag:
+            return
+        
+        self.mediator.send_step_done('delay', flag)
+
+        if flag:
+            self.write_output_signal('signals2')
+            self.run_stop_pipline()
+        else:
+            self.uncompleted_pipeline()
+        
+        
+    #-------------------------------------------------------------------------------------------------
+    #                                       delay
+    #-------------------------------------------------------------------------------------------------
+    @configUtils.print_function_name
+    def run_stop_pipline(self, ):
+        if not self.__run_flag:
+            return
+        
         stop_mode = self.Config.get_stop_mode()
-
         if stop_mode == configFlags.stopMode.timer:
             self.run_stop_timer()
 
 
-
-    def run_stop_timer(self, t ):
-        self.stop_timer = timerThread(t)
+    @configUtils.print_function_name
+    def run_stop_timer(self,):
+        if not self.__run_flag:
+            return
+        
+        t = self.Config.get_stop_time()
+        self.stop_timer = timerThread(t, name='stop_timer')
         self.stop_timer.finish_signal.connect(self.stop_timer_finish_event)
+        self.stop_timer.counter_signal.connect(self.stop_timer_counter)
         threading.Thread(target=self.stop_timer.run_single).start()
 
     
 
-    
+    def stop_timer_counter(self,t):
+        self.mediator.send_stop_timer(t)
         
 
    
-
+    @configUtils.print_function_name
     def stop_timer_finish_event(self,):
-        pass
+        self.stop_done()
 
 
+    @configUtils.print_function_name
+    def stop_done(self,):
+        self.stop_processing()
+
+
+    def stop_processing(self,):
+        self.mediator.send_stop_processing_request()
+        self.finish_pipline()
+
+
+    def finish_pipline(self,):
+        self.run_start_pipeline()
 
 
     

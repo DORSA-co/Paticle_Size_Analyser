@@ -7,25 +7,20 @@ from uiUtils.Charts.barChart import BarChart
 from uiUtils.Charts.chartUtils import Font
 from uiUtils.Charts.lineChart import LineChart, Trend
 from dialogWindows.sampleInfoDialogUI import sampleInfoDialogUI
-
+from uiFiles.main_UI_ui import Ui_MainWindow
 
 
 class mainPageUI:
-    def __init__(self, ui):
+    def __init__(self, ui:Ui_MainWindow):
         self.ui = ui
         self.sampleInfoDialog = sampleInfoDialogUI()
 
         self.current_status = 'stop'
-        self.warning_msg_lbl = self.ui.mainpage_warning_massage_lbl
-        self.close_warning_msg_btn = self.ui.mainpage_close_error_btn
-        self.warning_msg_frame = self.ui.mainpage_error_msg_frame
-        self.live_img_lbl = self.ui.mainpage_live_image_lbl
-        self.report_btn = self.ui.mainpage_report_button
         
 
         self.external_warning_button_event_func = None
 
-        self.error_slide_animation = GUIComponents.singleAnimation(self.warning_msg_frame, b'maximumHeight', 400, 0, 120)
+        self.error_slide_animation = GUIComponents.singleAnimation(self.ui.mainpage_error_msg_frame, b'maximumHeight', 400, 0, 120)
         
         self.warning_btns = {
             'camera_connection': {
@@ -33,14 +28,16 @@ class mainPageUI:
                 'ok-icon':':/assets/icons/icons8-connection-green-50.png',
                 'warning-icon':':/assets/icons/icons8-connection-red-50.png',
                 'status': True,
-                'massage': 'Please make sure the camaera cable is connected correctly, otherwise disconnect and reconnect camera cable again'
+                'massage': 'Please make sure the camaera cable is connected correctly, otherwise disconnect and reconnect camera cable again',
+                'label': self.ui.mainpage_plc_warning_lbl,
                 },
             'camera_grabbing': {
                 'btn': self.ui.mainpage_camera_grabbing_warning_btn,
                 'ok-icon':':/assets/icons/icons8-camera-green-50.png',
                 'warning-icon':':/assets/icons/icons8-camera-red-50.png',
                 'status': True,
-                'massage': 'Grab image Failed, please check trigger connection if synchronizer is hardware'
+                'massage': 'Grab image Failed, please check trigger connection if synchronizer is hardware',
+                'label': self.ui.mainpage_plc_warning_lbl,
                 },
 
             'illumination': {
@@ -48,7 +45,8 @@ class mainPageUI:
                 'ok-icon':':/assets/icons/icons8-headlight-green-50.png',
                 'warning-icon':':/assets/icons/icons8-headlight-red-50.png',
                 'status': True,
-                'massage': 'Error'
+                'massage': 'Error',
+                'label': self.ui.mainpage_plc_warning_lbl,
             },
                              
             'tempreture': {
@@ -56,8 +54,18 @@ class mainPageUI:
                 'ok-icon':':/assets/icons/icons8-thermometer-green-50.png',
                 'warning-icon':':/assets/icons/icons8-thermometer-red-50.png',
                 'status': True,
-                'massage': 'The temperature of the camera is very high, please turn off the camera for a while'
-            }
+                'massage': 'The temperature of the camera is very high, please turn off the camera for a while',
+                'label': self.ui.mainpage_plc_warning_lbl,
+            },
+
+            'plc': {
+                'btn': self.ui.mainpage_plc_warning_btn,
+                'ok-icon':':/assets/icons/icons8-headlight-green-50.png',
+                'warning-icon':':/assets/icons/icons8-headlight-red-50.png',
+                'status': True,
+                'massage': 'PLC Disconnected, Please check the connection',
+                'label': self.ui.mainpage_plc_warning_lbl,
+            },
         }
         
         self.informations = {
@@ -119,8 +127,8 @@ class mainPageUI:
         GUIBackend.add_widget( self.ui.mainpage_second_chart_frame, self.cumulative_chart )
         for name in self.warning_btns.keys():
             GUIBackend.button_connector(self.warning_btns[name]['btn'], self.internal_warning_button_event(name))
-        GUIBackend.button_connector(self.close_warning_msg_btn, self.close_warning_msg)
-        #GUIBackend.set_relation_size(self.live_img_lbl, 0.45, 0.5)
+        GUIBackend.button_connector(self.ui.mainpage_close_error_btn, self.close_warning_msg)
+        #GUIBackend.set_relation_size(self.ui.mainpage_live_image_lbl, 0.45, 0.5)
         #Startup operations-----------------
         #-----------------------------------------------------------
         #self.startup()
@@ -140,6 +148,27 @@ class mainPageUI:
     def warning_buttons_connector(self, func):
         self.external_warning_button_event_func = func
 
+    
+    def hide_warning_indicator(self, name:str):
+        GUIBackend.set_wgt_visible(self.warning_btns[name]['btn'], False)
+        GUIBackend.set_wgt_visible(self.warning_btns[name]['label'], False)
+
+
+
+    def run_auto_button_connector(self, func):
+        GUIBackend.button_connector(self.ui.mainpage_run_auto_btn, func)
+
+    def set_auto_run_status(self, isplaying):
+        GUIBackend.set_dynalic_property(self.ui.mainpage_run_auto_btn,
+                                        'stylePlaying', 
+                                        isplaying,
+                                        repolish_style=True)
+        
+        for btn in self.player_btns.values():
+            GUIBackend.set_disable_enable(btn, not(isplaying))
+    
+    def hide_auto_run(self,):
+        GUIBackend.set_wgt_visible(self.ui.mainpage_run_auto_btn, False)
 
     def internal_warning_button_event(self, name:str):
         """this function execute when each of error button clicked
@@ -226,7 +255,7 @@ class mainPageUI:
         Args:
             func (_type_): function
         """
-        GUIBackend.button_connector(self.report_btn, func)
+        GUIBackend.button_connector(self.ui.mainpage_report_button, func)
 
     # def toolbox_connector(self, func):
     #     """connect a function to change event of toolbox checkboxes of main page
@@ -301,14 +330,14 @@ class mainPageUI:
     def set_warning_massage(self, text, is_error):
         if not is_error:
             text = "Warning: " + text
-        self.warning_msg_lbl.setText(text)
-        GUIBackend.set_wgt_visible(self.warning_msg_lbl, True)
+        self.ui.mainpage_warning_massage_lbl.setText(text)
+        GUIBackend.set_wgt_visible(self.ui.mainpage_warning_massage_lbl, True)
 
 
     
     def set_live_img(self, img):
-        pixmap = GUIBackend.set_label_image(self.live_img_lbl, img)
-        #GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
+        pixmap = GUIBackend.set_label_image(self.ui.mainpage_live_image_lbl, img)
+        #GUIBackend.fit_label_to_pixmap(self.ui.mainpage_live_image_lbl, pixmap)
     
     def hide_start_manual(self, hide:bool):
         if hide:
@@ -345,7 +374,7 @@ class mainPageUI:
 
 
     def enable_report(self,flag):
-        GUIBackend.set_disable_enable(self.report_btn, flag)
+        GUIBackend.set_disable_enable(self.ui.mainpage_report_button, flag)
     
     
 

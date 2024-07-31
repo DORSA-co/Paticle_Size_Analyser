@@ -1742,10 +1742,60 @@ max-width: 16777px;
                     </property>
                     <layout class="QHBoxLayout" name="horizontalLayout_5">
                      <property name="spacing">
-                      <number>30</number>
+                      <number>10</number>
                      </property>
                      <item>
-                      <spacer name="horizontalSpacer_35">
+                      <widget class="QPushButton" name="mainpage_run_auto_btn">
+                       <property name="minimumSize">
+                        <size>
+                         <width>97</width>
+                         <height>35</height>
+                        </size>
+                       </property>
+                       <property name="styleSheet">
+                        <string notr="true">QPushButton{
+	border:none;
+	background-color:transparent;
+	color: #202020;
+}
+
+QPushButton:hover{
+	color: rgb(12, 80, 139);
+
+}
+
+QPushButton[stylePlaying=&quot;false&quot;]{
+	icon: url(:/assets/icons/play-48.png);
+}
+
+
+QPushButton[stylePlaying=&quot;true&quot;]{
+
+	icon: url(:/assets/icons/stop50.png);
+}
+
+
+</string>
+                       </property>
+                       <property name="text">
+                        <string>run Auto</string>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>20</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                       <property name="styleClass" stdset="0">
+                        <string>noBorderButton</string>
+                       </property>
+                       <property name="stylePlaying" stdset="0">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_119">
                        <property name="orientation">
                         <enum>Qt::Orientation::Horizontal</enum>
                        </property>
@@ -1764,7 +1814,7 @@ max-width: 16777px;
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>150</width>
+                         <width>100</width>
                          <height>39</height>
                         </size>
                        </property>
@@ -1796,7 +1846,7 @@ max-width: 16777px;
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>150</width>
+                         <width>100</width>
                          <height>39</height>
                         </size>
                        </property>
@@ -1828,7 +1878,7 @@ max-width: 16777px;
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>150</width>
+                         <width>100</width>
                          <height>39</height>
                         </size>
                        </property>
@@ -1852,19 +1902,6 @@ max-width: 16777px;
                         <string>blueBorderButton</string>
                        </property>
                       </widget>
-                     </item>
-                     <item>
-                      <spacer name="horizontalSpacer_60">
-                       <property name="orientation">
-                        <enum>Qt::Orientation::Horizontal</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>40</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
                      </item>
                     </layout>
                    </widget>
@@ -2252,7 +2289,17 @@ font-size: 17px;</string>
                      <item alignment="Qt::AlignmentFlag::AlignTop">
                       <widget class="QFrame" name="gridFrame">
                        <layout class="QGridLayout" name="gridLayout_10">
-                        <item row="0" column="2">
+                        <item row="1" column="3">
+                         <widget class="QLabel" name="mainpage_camera_connection_warning_lbl">
+                          <property name="text">
+                           <string>Camera Connection</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
                          <widget class="QPushButton" name="mainpage_camera_connection_warning_btn">
                           <property name="cursor">
                            <cursorShape>PointingHandCursor</cursorShape>
@@ -2272,8 +2319,71 @@ font-size: 17px;</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="1" column="0">
-                         <widget class="QLabel" name="temp_error_label">
+                        <item row="0" column="2">
+                         <widget class="QPushButton" name="mainpage_illumination_warning_btn">
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="Assets/Assets.qrc">
+                            <normaloff>:/assets/icons/icons8-headlight-green-50.png</normaloff>:/assets/icons/icons8-headlight-green-50.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>35</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="4">
+                         <widget class="QPushButton" name="mainpage_camera_grabbing_warning_btn">
+                          <property name="cursor">
+                           <cursorShape>PointingHandCursor</cursorShape>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true"/>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="Assets/Assets.qrc">
+                            <normaloff>:/assets/icons/icons8-camera-green-50.png</normaloff>:/assets/icons/icons8-camera-green-50.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>35</width>
+                            <height>35</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QLabel" name="mainpage_illumination_warning_lbl">
+                          <property name="text">
+                           <string>Ilumination</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="4">
+                         <widget class="QLabel" name="mainpage_camera_grabbing_warning_lbl">
+                          <property name="text">
+                           <string>Camera Grabbing</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLabel" name="mainpage_tempreture_warning_lbl">
                           <property name="text">
                            <string>Tempreture</string>
                           </property>
@@ -2282,7 +2392,7 @@ font-size: 17px;</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="0" column="0">
+                        <item row="0" column="1">
                          <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
                           <property name="minimumSize">
                            <size>
@@ -2311,18 +2421,8 @@ font-size: 17px;</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="1" column="1">
-                         <widget class="QLabel" name="illimination_error_label">
-                          <property name="text">
-                           <string>Ilumination</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignmentFlag::AlignCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="1">
-                         <widget class="QPushButton" name="mainpage_illumination_warning_btn">
+                        <item row="0" column="0">
+                         <widget class="QPushButton" name="mainpage_plc_warning_btn">
                           <property name="cursor">
                            <cursorShape>PointingHandCursor</cursorShape>
                           </property>
@@ -2341,43 +2441,10 @@ font-size: 17px;</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="1" column="2">
-                         <widget class="QLabel" name="camera_connection__error_label">
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="mainpage_plc_warning_lbl">
                           <property name="text">
-                           <string>Camera Connection</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignmentFlag::AlignCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="3">
-                         <widget class="QPushButton" name="mainpage_camera_grabbing_warning_btn">
-                          <property name="cursor">
-                           <cursorShape>PointingHandCursor</cursorShape>
-                          </property>
-                          <property name="styleSheet">
-                           <string notr="true"/>
-                          </property>
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="icon">
-                           <iconset resource="Assets/Assets.qrc">
-                            <normaloff>:/assets/icons/icons8-camera-green-50.png</normaloff>:/assets/icons/icons8-camera-green-50.png</iconset>
-                          </property>
-                          <property name="iconSize">
-                           <size>
-                            <width>35</width>
-                            <height>35</height>
-                           </size>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="3">
-                         <widget class="QLabel" name="camera_grabbing_error_label">
-                          <property name="text">
-                           <string>Camera Grabbing</string>
+                           <string>PLC</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -4503,7 +4570,7 @@ color: #ffffff;
                 <enum>QTabWidget::TabShape::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>5</number>
+                <number>4</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -6959,131 +7026,107 @@ QLabel[styleClass=&quot;dot&quot;]{
                    <property name="title">
                     <string>General Setting</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout_4">
-                    <item row="0" column="5">
-                     <widget class="QLineEdit" name="settingpage_plc_ip3_input"/>
-                    </item>
-                    <item row="0" column="6">
-                     <widget class="QLabel" name="label_23">
-                      <property name="minimumSize">
-                       <size>
-                        <width>10</width>
-                        <height>0</height>
-                       </size>
+                   <layout class="QVBoxLayout" name="verticalLayout_19">
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_27">
+                      <property name="topMargin">
+                       <number>22</number>
                       </property>
-                      <property name="text">
-                       <string>.</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignmentFlag::AlignCenter</set>
-                      </property>
-                      <property name="styleClass" stdset="0">
-                       <string>dot</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="2" alignment="Qt::AlignmentFlag::AlignHCenter">
-                     <widget class="QLabel" name="label_15">
-                      <property name="minimumSize">
-                       <size>
-                        <width>10</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>.</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignmentFlag::AlignCenter</set>
-                      </property>
-                      <property name="styleClass" stdset="0">
-                       <string>dot</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="10">
-                     <spacer name="horizontalSpacer_17">
-                      <property name="orientation">
-                       <enum>Qt::Orientation::Horizontal</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="0" column="4">
-                     <widget class="QLabel" name="label_21">
-                      <property name="minimumSize">
-                       <size>
-                        <width>10</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string>.</string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignmentFlag::AlignCenter</set>
-                      </property>
-                      <property name="styleClass" stdset="0">
-                       <string>dot</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="3">
-                     <widget class="QLineEdit" name="settingpage_plc_ip2_input"/>
-                    </item>
-                    <item row="0" column="7">
-                     <widget class="QLineEdit" name="settingpage_plc_ip4_input"/>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QLineEdit" name="settingpage_plc_ip1_input"/>
-                    </item>
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="label_3">
-                      <property name="text">
-                       <string>Ip: </string>
-                      </property>
-                      <property name="alignment">
-                       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="8">
-                     <spacer name="horizontalSpacer_13">
-                      <property name="orientation">
-                       <enum>Qt::Orientation::Horizontal</enum>
-                      </property>
-                      <property name="sizeType">
-                       <enum>QSizePolicy::Policy::Fixed</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>40</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item row="0" column="9">
-                     <widget class="QPushButton" name="settingpage_connect_btn">
-                      <property name="minimumSize">
-                       <size>
-                        <width>200</width>
-                        <height>35</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>16777215</width>
-                        <height>16777215</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">QPushButton{
+                      <item>
+                       <widget class="QLabel" name="label_3">
+                        <property name="text">
+                         <string>Ip: </string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="settingpage_plc_ip1_input"/>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_15">
+                        <property name="minimumSize">
+                         <size>
+                          <width>10</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>.</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignCenter</set>
+                        </property>
+                        <property name="styleClass" stdset="0">
+                         <string>dot</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="settingpage_plc_ip2_input"/>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_21">
+                        <property name="minimumSize">
+                         <size>
+                          <width>10</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>.</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignCenter</set>
+                        </property>
+                        <property name="styleClass" stdset="0">
+                         <string>dot</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="settingpage_plc_ip3_input"/>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_23">
+                        <property name="minimumSize">
+                         <size>
+                          <width>10</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="text">
+                         <string>.</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignCenter</set>
+                        </property>
+                        <property name="styleClass" stdset="0">
+                         <string>dot</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="settingpage_plc_ip4_input"/>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="settingpage_connect_btn">
+                        <property name="minimumSize">
+                         <size>
+                          <width>200</width>
+                          <height>35</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QPushButton{
 		icon: url(:/assets/icons/icons8-connect-30.png);
 
 }
@@ -7092,20 +7135,105 @@ QPushButton:hover{
 		icon: url(:/assets/icons/icons8-connect-hover-30.png);
 
 }</string>
+                        </property>
+                        <property name="text">
+                         <string>Check Connection</string>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>20</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                        <property name="styleClass" stdset="0">
+                         <string>blueIconButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_35">
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="horizontalLayout_81">
+                      <property name="topMargin">
+                       <number>24</number>
                       </property>
-                      <property name="text">
-                       <string>Check Connection</string>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>20</width>
-                        <height>20</height>
-                       </size>
-                      </property>
-                      <property name="styleClass" stdset="0">
-                       <string>blueIconButton</string>
-                      </property>
-                     </widget>
+                      <item>
+                       <widget class="QLabel" name="label_35">
+                        <property name="text">
+                         <string>Check Connection Node:</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_98">
+                        <property name="text">
+                         <string>ns</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="settingpage_plc_ns_check_connection_inpt">
+                        <property name="minimumSize">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_102">
+                        <property name="text">
+                         <string>i</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLineEdit" name="settingpage_plc_i_check_connection_inpt">
+                        <property name="minimumSize">
+                         <size>
+                          <width>20</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <spacer name="horizontalSpacer_13">
+                        <property name="orientation">
+                         <enum>Qt::Orientation::Horizontal</enum>
+                        </property>
+                        <property name="sizeHint" stdset="0">
+                         <size>
+                          <width>40</width>
+                          <height>20</height>
+                         </size>
+                        </property>
+                       </spacer>
+                      </item>
+                     </layout>
                     </item>
                    </layout>
                   </widget>
@@ -7130,7 +7258,7 @@ QPushButton:hover{
                       <x>0</x>
                       <y>0</y>
                       <width>1136</width>
-                      <height>350</height>
+                      <height>304</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7261,9 +7389,9 @@ QPushButton:hover{
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>-279</y>
+                      <y>0</y>
                       <width>1134</width>
-                      <height>792</height>
+                      <height>827</height>
                      </rect>
                     </property>
                     <property name="sizePolicy">
@@ -7383,6 +7511,13 @@ font-weight: bold;</string>
                         </widget>
                        </item>
                       </layout>
+                     </item>
+                     <item>
+                      <widget class="QCheckBox" name="config_auto_run_checkbox">
+                       <property name="text">
+                        <string>Automative PipeLine</string>
+                       </property>
+                      </widget>
                      </item>
                      <item>
                       <spacer name="verticalSpacer_5">
@@ -7999,7 +8134,7 @@ QPushButton:hover{
                           </widget>
                          </item>
                          <item>
-                          <widget class="QFrame" name="frame_11">
+                          <widget class="QFrame" name="config_signal1_frame">
                            <property name="minimumSize">
                             <size>
                              <width>702</width>
@@ -8573,7 +8708,7 @@ QPushButton:hover{
                                  <item>
                                   <widget class="QStackedWidget" name="config_stop_system_settings_stackwidget">
                                    <property name="currentIndex">
-                                    <number>1</number>
+                                    <number>0</number>
                                    </property>
                                    <widget class="QWidget" name="config_stop_timer_page">
                                     <property name="styleClass" stdset="0">
@@ -8598,7 +8733,7 @@ QPushButton:hover{
                                           </size>
                                          </property>
                                          <property name="minimum">
-                                          <number>5</number>
+                                          <number>1</number>
                                          </property>
                                          <property name="maximum">
                                           <number>3600</number>
@@ -8667,8 +8802,8 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>630</width>
-                                          <height>184</height>
+                                          <width>70</width>
+                                          <height>64</height>
                                          </rect>
                                         </property>
                                         <property name="styleClass" stdset="0">

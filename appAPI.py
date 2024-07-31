@@ -62,10 +62,15 @@ class main_API(QObject):
         self.camera_threads:dict[str, threading.Thread]= {}
         #------------------------------------------------------------------------------------------
         plc_setting = self.db.setting_db.plc_db.load()
-        self.plc = PLCHandler(plc_setting['ip'])
-        self.plc.set_connected_event(self.plc_connect_event)
-        self.plc.set_disconnected_event(self.plc_disconnected_event)
-        self.define_nodes()
+        #self.plc = PLCHandler(plc_setting['ip'])
+        self.plc = None
+        if self.configManager.Config.has_plc():
+            self.plc = PLCHandler("opc.tcp://localhost:4840/freeopcua/server/")
+            self.plc.set_connected_event(self.plc_connect_event)
+            self.plc.set_disconnected_event(self.plc_disconnected_event)
+            self.plc.connect_request()
+            self.define_nodes()
+            self.configManager.set_plc(self.plc)
         # self.plc.nodesHandler.set_change_value_event(self.node_change_value_event)
         # self.plc.connect_request()
         
@@ -173,6 +178,19 @@ class main_API(QObject):
             except Exception as e:
                 print('Error define Node', address, e)
 
+        #---------------------------------------------
+        #define node for check connection. this node should be auto_read
+        settigs = self.db.setting_db.plc_db.load()
+        addrers = {
+            'ns': settigs['check_connection_ns'],
+            'i': settigs['check_connection_i'],
+        }
+        self.plc.nodesHandler.define_node('check_connection',
+                                          addrers,
+                                          auto_read=True,
+                                          read_refresh_time=1000
+                                          )
+
 
     def config_ui(self,):
         if not self.configManager.Config.can_start_manual():
@@ -183,7 +201,11 @@ class main_API(QObject):
             self.mainPageAPI.uiHandeler.hide_stop_manual(True)
 
         if not self.configManager.Config.has_plc():
-            self.uiHandeler.hide_tab('plc_setting')
+            self.uiHandeler.deactive_tab('plc_setting')
+            self.mainPageAPI.uiHandeler.hide_warning_indicator('plc')
+        
+        if not self.configManager.Config.is_auto_run_enable():
+            self.mainPageAPI.uiHandeler.hide_auto_run()
             
 
         
@@ -272,6 +294,8 @@ class main_API(QObject):
         self.settingPageAPI.cameraSetting.set_devices(cameras_sn)
         if len(self.cameras) == 0:
             self.mainPageAPI.set_system_status('camera_connection', False)
+            self.mainPageAPI.set_system_status('camera_grabbing', False)
+
 
         for device_info in self.camera_device_info:
             application = device_info['application']
@@ -283,17 +307,26 @@ class main_API(QObject):
         for cam_aplication, camera in self.cameras.items():
             if camera.Infos.get_serialnumber() not in cameras_sn:
                 self.mainPageAPI.set_system_status('camera_connection', status=False)
+                self.mainPageAPI.set_system_status('camera_grabbing', False)
+
                 #self.camera_disconnect_event()
                 
             else:
                 self.mainPageAPI.set_system_status('camera_connection',status=True)
+            self.mainPageAPI.set_system_status('camera_grabbing', True)
+
 
 
     def plc_connect_event(self,):
-        pass
+        print("PLC connected")
+        self.mainPageAPI.set_system_status('plc', status=True)
+
                 
     def plc_disconnected_event(self,):
-        pass
+        print("PLC disconnected!!") 
+        self.mainPageAPI.set_system_status('plc', status=False)
+
+
 
     # def node_change_value_event(self, data:dict):
 
@@ -324,14 +357,14 @@ class main_API(QObject):
         self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', True)
         current_page,_ = self.uiHandeler.get_current_page()
         
-        if current_page == 'main':
+        if current_page == 'main' or self.mainPageAPI.is_running:
             self.mainPageAPI.process_image(img)
 
         elif current_page == 'settings':
-            self.settingPageAPI.cameraSetting.show_live_image()
+            self.settingPageAPI.cameraSetting.show_live_image(img)
         
         elif current_page == 'calibration':
-            self.validationPageAPI.calibrationTab.camera_image_event()
+            self.validationPageAPI.calibrationTab.camera_image_event(img)
     
     def error_grab_image_event(self,):
         self.mainPageAPI.set_system_status('camera_grabbing', False)
@@ -388,3 +421,8 @@ class main_API(QObject):
         standars_name = list(map( lambda x:x['name'], standars))
         self.settingPageAPI.sampleSetting.set_standards_event(standars_name)
 
+    def auto_run_changed(self, auto_run_flag:bool):
+        if auto_run_flag:
+            self.configManager.run_pipeline()
+        else:
+            self.configManager.stop_pipeline()

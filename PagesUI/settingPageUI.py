@@ -697,6 +697,12 @@ class plcSettingTabUI(commonSettingUI):
             'ip4': self.ui.settingpage_plc_ip4_input,
 
             }
+        
+        self.settings = {
+            'check_connection_ns': self.ui.settingpage_plc_ns_check_connection_inpt,
+            'check_connection_i': self.ui.settingpage_plc_i_check_connection_inpt
+
+        }
 
         self.nodes_ui: list[nodeSettinUI] = []
         GUIBackend.button_connector(self.ui.settingpage_plc_add_node_btn, self.add_node)
@@ -707,6 +713,9 @@ class plcSettingTabUI(commonSettingUI):
     def __internal_change_setting_connector(self,):
         for ip_sec in self.ip_sections:
             GUIBackend.connector(self.ip_sections[ip_sec], self.__internal_change_setting_event)
+        for field in self.settings.values():
+            GUIBackend.connector(self.ip_sections[ip_sec], self.__internal_change_setting_event)
+
 
     def __internal_change_setting_event(self,):
         self.save_state(False)
@@ -765,11 +774,19 @@ class plcSettingTabUI(commonSettingUI):
 
    
     def set_settings(self, data:dict):
-        self.set_ip(data['ip'])
+        ip = data.pop('ip')
+        self.set_ip(ip)
+
+        for name, value in data.items():
+            GUIBackend.set_input(self.settings[name], value)
     
     def get_settings(self ) -> dict:
         data = {}
         data['ip'] = self.get_ip()
+        
+        for name, field in self.settings.items():
+            value = GUIBackend.set_input(field)
+            data[name] = value
         return data
     
     def set_nodes_settings(self, nodes_settings:list[dict]):
@@ -888,6 +905,8 @@ class configSettingTabUI(commonSettingUI):
             'lens_type': self.ui.config_lens_type_combobox,
             'fps_regulator': self.ui.config_fps_regulator_combobox,
             'plc_enable': self.ui.config_plc_enable_checkbox,
+            'auto_run_enable': self.ui.config_auto_run_checkbox,
+
             'stop_emergency_timer_enable': self.ui.config_stop_emergency_timer_checkbox,
             'stop_emergency_timer_time': self.ui.config_stop_emergency_timer_spinbox,
 
@@ -1065,7 +1084,8 @@ class configSettingTabUI(commonSettingUI):
 
 
         for name, field in self.settings.items():
-            res[name] = GUIBackend.set_input(field, data[name])
+            if data.get(name):
+                res[name] = GUIBackend.set_input(field, data[name])
 
         
         for step_signal in self.signals_ui.keys():

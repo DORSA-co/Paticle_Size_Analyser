@@ -50,6 +50,7 @@ class sampleInfoDialogUI:
             GUIBackend.get_combobox_selected(self.ui.grading_parm_combobox)
                     ]
         info['description'] = GUIBackend.get_textarea_text(self.ui.description_inpt)
+        self.write_error_massage(None)
         return info
     
 

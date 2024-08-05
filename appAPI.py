@@ -360,10 +360,10 @@ class main_API(QObject):
         self.mainPageAPI.uiHandeler.set_warning_buttons_status('camera_grabbing', True)
         current_page,_ = self.uiHandeler.get_current_page()
         
-        if current_page == 'main' or self.mainPageAPI.is_running:
-            self.mainPageAPI.process_image(img)
+        # if current_page == 'main' or self.mainPageAPI.is_running:
+        self.mainPageAPI.process_image(img)
 
-        elif current_page == 'settings':
+        if current_page == 'settings':
             self.settingPageAPI.cameraSetting.show_live_image(img)
         
         elif current_page == 'calibration':

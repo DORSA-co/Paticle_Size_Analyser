@@ -11,7 +11,7 @@ import Constants.CONSTANTS as CONSTANTS
 from backend.Serial.armSerial import armSerial
 from uiUtils.IO.Mouse import MouseEvent
 from backend.Utils.threadTimer import timerThread
-
+from backend.Utils.idList import idList
 
 
 
@@ -661,13 +661,13 @@ class configSettingTabAPI:
 
     def load_singlas(self,):
         nodes_data = self.database_nodes.load_all()
-        read_nodes = []
-        write_nodes = []
+        read_nodes = idList()
+        write_nodes = idList()
         for node in nodes_data:
             if node['type'] == 'readable':
-                read_nodes.append(node['name'])
+                read_nodes.append(node, node['name'])
             else:
-                write_nodes.append(node['name'])
+                write_nodes.append(node, node['name'])
         
         self.ui.update_signals_items(read_nodes, write_nodes)
 
@@ -676,22 +676,20 @@ class configSettingTabAPI:
         if self.__is_live_flag:
             self.ui.set_nodes_online_state(name, log)
 
-    def recsive_start_timer(self, t):
+
+    def recsive_live_timer(self,name,t):
         if self.__is_live_flag:
-            self.ui.set_start_timer_indicator('start', t)
+            self.ui.set_timer_indicator(name, t)
 
-    def recsive_delay_timer(self, t):
-        if self.__is_live_flag:
-            self.ui.set_start_timer_indicator('delay', t)
-
-    def recsive_stop_timer(self,t):
-        pass
-
-
-    def recsive_step_done(self, name:str, res:bool):
-        if name == 'start':
-            self.clear_online_view()
             
+    def recsive_restart_pipline(self,):
+        # self.clear_online_view()
+        tm = timerThread(15, 1,)
+        tm.finish_signal.connect(self.clear_online_view)
+        threading.Thread(target=tm.run_single).start()
+
+
+    def recsive_step_done(self, name:str, res:bool):            
         self.go_live_buffer.append( [name, res])
         if self.__is_live_flag:
             if res:

@@ -54,10 +54,10 @@
 }</string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -77,30 +77,10 @@
        <widget class="QComboBox" name="signal_name_combobox">
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>250</width>
           <height>16777215</height>
          </size>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="signal_type">
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <item>
-         <property name="text">
-          <string>boolean</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>numberic</string>
-         </property>
-        </item>
        </widget>
       </item>
       <item>

@@ -169,6 +169,8 @@ class main_API(QObject):
 
     def define_nodes(self,):
         nodes_settings = self.db.setting_db.plc_nodes_db.load_all()
+        self.plc.nodesHandler.clear_all()
+
         for node_stng in nodes_settings:
             address = {'ns': node_stng['ns'],
                        'i': node_stng['i']
@@ -319,6 +321,7 @@ class main_API(QObject):
 
     def plc_connect_event(self,):
         print("PLC connected")
+        self.configManager.set_plc(self.plc)
         self.mainPageAPI.set_system_status('plc', status=True)
 
                 
@@ -382,6 +385,7 @@ class main_API(QObject):
         pass
 
     def plc_setting_change_event(self,):
+        self.define_nodes()
         self.settingPageAPI.configSetting.load_singlas()
         
     

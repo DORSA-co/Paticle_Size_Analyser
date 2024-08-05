@@ -190,6 +190,10 @@ class nodesHandler:
         self.names2node[name] = snode_handler
         self.address2node[address] = snode_handler
 
+    def clear_all(self,):
+        self.names2node:dict[str, singleNodeHandler] = {}
+        self.address2node:dict[str, singleNodeHandler] = {}
+
     def get_names(self,) -> list[str]:
         return list(self.names2node.keys())
 
@@ -241,6 +245,7 @@ class nodesHandler:
 
 
 class PLCHandler:
+    log = 0
 
     def __init__(self, url:str) -> None:
         self.url = url
@@ -293,7 +298,8 @@ class PLCHandler:
             self.client.connect()
             return True
         except Exception as e:
-            print('PLC connect:', e)
+            if self.log>0:
+                print('PLC connect:', e)
             return False
         
     def connect_request(self, url=None, run_threads_after_connect=True):
@@ -310,11 +316,11 @@ class PLCHandler:
                 self.connector_worker.stop()
 
         self.connector_worker = PLCConnectorWorker(self.client)
-        self.connector_worker.plc_connected_signal.connect(self.connected_event)
+        self.connector_worker.plc_connected_signal.connect(self.__connected_event)
         self.connector_thread = threading.Thread( target= self.connector_worker.run)
         self.connector_thread.start()
     
-    def connected_event(self,):
+    def __connected_event(self,):
         self.nodesHandler.rebuild(self.client)
         self.__connect_flag = True
 
@@ -334,7 +340,9 @@ class PLCHandler:
         
     
     def __disconnect_event(self,):
-        print('PLC disconnected')
+        self.__connect_flag = False
+        if self.log>1:
+            print('PLC disconnected')
         self.kill_threads()
         self.connect_request()
         if self.external_disconnected_event:
@@ -366,7 +374,8 @@ class PLCHandler:
         """get values on thread
         """
         if not self.read_thread.is_alive():
-            print(f"ERROR: read request {request_id} send befor running_threads!")
+            if self.log > 0:
+                print(f"ERROR: read request {request_id} send befor running_threads!")
             return
         
         self.__read_requests[request_id] = {
@@ -381,8 +390,9 @@ class PLCHandler:
         Args:
             values (dict): dictionary that keys are node's name and it's values are node's value
         """
-        if not self.write_thread.is_alive():
-            print(f"ERROR: write request send befor running_threads!")
+        if self.write_thread is None or not self.write_thread.is_alive():
+            if self.log > 0:
+                print(f"ERROR: write request send befor running_threads!")
             return
         
         self.write_worker.write_request(values)
@@ -398,7 +408,8 @@ class PLCHandler:
             self.nodesHandler.external_change_data_event(data)
 
         else:
-            print("WARNING: PLC node change but no event found for it", data)
+            if self.log > 1:
+                print("WARNING: PLC node change but no event found for it", data)
 
 
     def __request_answer_event(self, req:dict):
@@ -548,7 +559,6 @@ class PLCReadWoker(QObject):
         for name, value in self.new_values.items():
             if self.old_values.get(name) is None or self.old_values[name] != self.new_values[name]:
                 self.old_values[name] = self.new_values[name]
-                print(name, value)
                 self.change_value_signal.emit(
                     {'name':name,
                     'value':value}
@@ -565,10 +575,10 @@ class PLCReadWoker(QObject):
                       }
             for name in names:
                 value = node_values.get(name)
-                if value is not None:
-                    answer['values'][name] = value
-                else:
-                    break
+                #if value is not None:
+                answer['values'][name] = value
+                #else:
+                #    break
             else:
                 self.request_value_signal.emit(answer)
                 complete_reqs.append(req)

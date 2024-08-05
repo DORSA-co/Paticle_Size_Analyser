@@ -377,6 +377,7 @@ class settingPLCNodesDB(parentSettingDB):
     TABLE_COLS = [ 
                    {'col_name': 'name',    'type':'VARCHAR(255)', 'len':200},
                    {'col_name': 'type',    'type':'VARCHAR(255)', 'len':200},
+                   {'col_name': 'data_type',    'type':'VARCHAR(255)', 'len':200},
                    {'col_name': 'ns',    'type':'VARCHAR(255)', 'len':200},
                    {'col_name': 'i',    'type':'VARCHAR(255)', 'len':200},
 

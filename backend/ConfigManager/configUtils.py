@@ -93,7 +93,7 @@ class configUtils:
         for signal in signals:
             name = signal['name']
             value = signal['value']
-            stype = signal['type']
+            stype = signal['dtype']
             if stype == 'bool':
                 if value =='true':
                     value = True

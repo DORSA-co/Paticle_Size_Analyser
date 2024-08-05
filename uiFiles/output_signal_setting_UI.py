@@ -42,8 +42,8 @@ class Ui_outputSignalSetting(object):
 "	border-radius:15px;\n"
 "	border: 1px solid rgb(232, 233, 235);\n"
 "}")
-        self.main_frame.setFrameShape(QFrame.StyledPanel)
-        self.main_frame.setFrameShadow(QFrame.Raised)
+        self.main_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.main_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout = QHBoxLayout(self.main_frame)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(self.main_frame)
@@ -58,17 +58,9 @@ class Ui_outputSignalSetting(object):
 
         self.signal_name_combobox = QComboBox(self.main_frame)
         self.signal_name_combobox.setObjectName(u"signal_name_combobox")
-        self.signal_name_combobox.setMaximumSize(QSize(16777215, 16777215))
+        self.signal_name_combobox.setMaximumSize(QSize(250, 16777215))
 
         self.horizontalLayout.addWidget(self.signal_name_combobox)
-
-        self.signal_type = QComboBox(self.main_frame)
-        self.signal_type.addItem("")
-        self.signal_type.addItem("")
-        self.signal_type.setObjectName(u"signal_type")
-        self.signal_type.setMaximumSize(QSize(100, 16777215))
-
-        self.horizontalLayout.addWidget(self.signal_type)
 
         self.value_numeric = QDoubleSpinBox(self.main_frame)
         self.value_numeric.setObjectName(u"value_numeric")
@@ -109,9 +101,6 @@ class Ui_outputSignalSetting(object):
     def retranslateUi(self, outputSignalSetting):
         outputSignalSetting.setWindowTitle(QCoreApplication.translate("outputSignalSetting", u"Form", None))
         self.label.setText(QCoreApplication.translate("outputSignalSetting", u"Signal: ", None))
-        self.signal_type.setItemText(0, QCoreApplication.translate("outputSignalSetting", u"boolean", None))
-        self.signal_type.setItemText(1, QCoreApplication.translate("outputSignalSetting", u"numberic", None))
-
         self.value_bool.setItemText(0, QCoreApplication.translate("outputSignalSetting", u"True", None))
         self.value_bool.setItemText(1, QCoreApplication.translate("outputSignalSetting", u"False", None))
 

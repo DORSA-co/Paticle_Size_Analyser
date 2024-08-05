@@ -21,6 +21,12 @@ class Config:
     def is_auto_run_enable(self,) -> bool:
         return bool(self.__config['auto_run_enable'])
     
+    def is_stop_emergency_timer_anable(self,) -> bool:
+        return bool(self.__config['stop_emergency_timer_enable'])
+    
+    def get_stop_emergency_time(self,) -> int:
+        return int(self.__config['stop_emergency_timer_time']) * 60
+    
     def get_start_mode(self,) -> str:
         return self.__config['start_mode']
     
@@ -47,10 +53,22 @@ class Config:
         return self.__config['permission_signals']
 
     def get_output_signals(self, name:str) -> list[dict]:
-        if name == 'signals1':
-            return self.__config['signals1']
+        return self.__config[name]
+        
         
         return []
     
     def get_start_signals(self,) -> list[dict]:
         return self.__config['start_signals']
+    
+    def get_stop_signals(self,) -> list[dict]:
+        return self.__config['stop_signals']
+    
+    def get_stop_algo_min_time(self,) -> int:
+        return self.__config['stop_algo_min_time']
+    
+    def get_stop_algo_thresh_size(self,) -> float:
+        return self.__config['stop_algo_thresh_size']
+    
+    def get_stop_algo_timout(self,):
+        return self.__config['stop_algo_timout']

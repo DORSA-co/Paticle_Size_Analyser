@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from appAPI import main_API
 from PagesAPI.settingPageAPI import settingPageAPI
+from backend.Processing.Particel import Particle
 
 
 class Mediator:
@@ -25,6 +26,9 @@ class Mediator:
     def send(self, event:str, *args, **kwargs):
         if event =='auto_run_changed':
             self.send_auto_run_changed(*args, **kwargs)
+        
+        if event == 'particels_founded':
+            self.send_particels_founded(*args, **kwargs)
 
     
     def send_auto_run_changed(self,*args, **kwards):
@@ -41,8 +45,8 @@ class Mediator:
         #t is second
         self.__mainAPI.settingPageAPI.configSetting.recsive_delay_timer(t)
 
-    def send_stop_timer(self, t:int):
-        self.__mainAPI.settingPageAPI.configSetting.recsive_stop_timer(t)
+    def send_config_timer(self, name, t:int):
+        self.__mainAPI.settingPageAPI.configSetting.recsive_live_timer(name, t)
 
 
     def send_step_done(self, name:str,  flag:bool):
@@ -66,3 +70,9 @@ class Mediator:
     
     def send_start_processing_status(self, flag:bool):
         self.__mainAPI.configManager.rescive_run_pocessing_status(flag)
+
+    def send_particels_founded(self, particels:list[Particle]):
+        self.__mainAPI.configManager.rescive_particels_founded(particels)
+
+    def send_pipline_restart(self,):
+        self.__mainAPI.settingPageAPI.configSetting.recsive_restart_pipline()

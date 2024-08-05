@@ -3,12 +3,14 @@ import threading
 
 from PySide6.QtCore import QObject, Signal
 
-from backend.Utils.threadTimer import timerThread, timoutTimerWorker
+from backend.Utils.threadTimer import timerThread, recurringThreadTimer #timoutTimerWorker
 from backend.ConfigManager import configFlags
 from backend.ConfigManager.Config import Config
 from backend.PLC.PLCHandler import PLCHandler
 from Mediator.mainMediator import Mediator
 from backend.ConfigManager.configUtils import configUtils
+from backend.Processing.Particel import Particle
+
 # from backend.ConfigManager.pipeLineSteps import startPipeline
 DEBUG = True
 
@@ -24,6 +26,9 @@ class configManager:
         self.start_timer = None
         self.delay_timer = None
         self.stop_timer  = None
+        self.stop_algo_timer = None
+
+        self.start_timer_thread:threading.Thread = None
 
         self.__run_flag = False
 
@@ -46,15 +51,17 @@ class configManager:
 
     @configUtils.print_function_name
     def uncompleted_pipeline(self,):
+        self.mediator.send_pipline_restart()
+
         self.stop_timeout()
         self.run_start_pipeline()
         self.mediator.send_failed_pipline()
 
 
     def start_timeout(self, timeout):
-        self.timeoutWorker = timoutTimerWorker(timeout)
-        self.timeoutWorker.timeout_signal.connect(self.uncompleted_pipeline)
-        threading.Thread( target=self.timeoutWorker.run).start()
+        self.timeoutWorker = timerThread(timeout/1000, sleep_time=0.1)
+        self.timeoutWorker.finish_signal.connect(self.uncompleted_pipeline)
+        threading.Thread( target=self.timeoutWorker.run_single).start()
     
     def stop_timeout(self,):
         if self.timeoutWorker is not None:
@@ -85,11 +92,17 @@ class configManager:
         if not self.__run_flag:
             return
         
+        if self.start_timer_thread is not None and self.start_timer_thread.is_alive():
+            self.start_done(False)
+            self.uncompleted_pipeline()
+        
         t = self.Config.get_start_time_cycle()
         self.start_timer = timerThread(t, name='start_timer')
         self.start_timer.finish_signal.connect(self.start_timer_finish_event)
         self.start_timer.counter_signal.connect(self.start_timer_counter)
-        threading.Thread(target=self.start_timer.run_single).start()
+
+        self.start_timer_thread = threading.Thread(target=self.start_timer.run_single, daemon=True)
+        self.start_timer_thread.start()
 
     @configUtils.print_function_name
     def run_reading_start_signals(self, ):
@@ -135,7 +148,7 @@ class configManager:
 
 
     def start_timer_counter(self, t):
-        self.mediator.send_start_timer(t)
+        self.mediator.send_config_timer('start', t)
 
     @configUtils.print_function_name
     def start_timer_finish_event(self,):
@@ -179,7 +192,9 @@ class configManager:
         names = list(map( lambda x:x['name'], permisions_signals))
         
         if self.plc is None or not self.plc.is_connect():
+            self.permisions_done(False)
             self.uncompleted_pipeline()
+
         
         else:
             self.start_timeout(5000)
@@ -258,7 +273,7 @@ class configManager:
         threading.Thread(target=self.delay_timer.run_single).start()
 
     def delay_timer_counter(self, t):
-        self.mediator.send_delay_timer(t)
+        self.mediator.send_config_timer('delay', t)
 
     @configUtils.print_function_name
     def delay_done(self,):  
@@ -291,7 +306,9 @@ class configManager:
             self.run_stop_pipline()
         else:
             self.uncompleted_pipeline()
-        
+    
+
+    
         
     #-------------------------------------------------------------------------------------------------
     #                                       delay
@@ -305,12 +322,19 @@ class configManager:
         if stop_mode == configFlags.stopMode.timer:
             self.run_stop_timer()
 
+        elif stop_mode == configFlags.stopMode.signal_event:
+            self.run_reading_stop_signals()
+            self.run_stop_timer()
+
+
+        elif stop_mode == configFlags.stopMode.image_detection:
+            self.run_image_detection_stop()
+
 
     @configUtils.print_function_name
     def run_stop_timer(self,):
         if not self.__run_flag:
-            return
-        
+            return 
         t = self.Config.get_stop_time()
         self.stop_timer = timerThread(t, name='stop_timer')
         self.stop_timer.finish_signal.connect(self.stop_timer_finish_event)
@@ -320,7 +344,7 @@ class configManager:
     
 
     def stop_timer_counter(self,t):
-        self.mediator.send_stop_timer(t)
+        self.mediator.send_config_timer('stop', t)
         
 
    
@@ -328,10 +352,85 @@ class configManager:
     def stop_timer_finish_event(self,):
         self.stop_done()
 
+    @configUtils.print_function_name
+    def run_reading_stop_signals(self,):
+        if not self.__run_flag:
+            return
+        
+        signals = self.Config.get_stop_signals()
+        if len(signals):
+            node_names = list(map(lambda x:x['name'], signals))
+
+            if self.plc is None or not self.plc.is_connect():
+                #uncomplete pipline after 3000 ms
+                self.start_timeout(3000)
+            else:
+                self.start_timeout(5000)
+                self.plc.send_read_request('stop_signals', 
+                                            node_names,
+                                            self.stop_signals_update_event)
+
+    def stop_signals_update_event(self, values:dict):
+        if not self.__run_flag:
+            return
+        
+        self.stop_timeout()
+
+        signals_info = self.Config.get_start_signals()
+        res, log = configUtils.check_signals(signals_info, values)
+
+        #read agin signal if conditions not ok
+        if not res:
+            self.stop_done(False)
+        
+        else:
+            self.stop_done(True)
+
+        self.mediator.send_nodes_log('stop', log)
+    
+
+
+    @configUtils.print_function_name
+    def run_image_detection_stop(self):
+        t = self.Config.get_stop_algo_timout()
+        emergency_time = 0
+
+        if self.Config.is_stop_emergency_timer_anable():
+            emergency_time = self.Config.get_stop_emergency_time()
+        
+        self.stop_algo_timer = recurringThreadTimer(recurring_timer=t, limit_timer=emergency_time, name='stop_algo')
+        # self.stop_algo_timer = timerThread(t, name='stop_algo_timout')
+        self.stop_algo_timer.finish_signal.connect(self.stop_algo_timout)
+        threading.Thread(target=self.stop_algo_timer.run_single).start()
+
+    #@configUtils.print_function_name
+    def rescive_particels_founded(self, particels: list[Particle]):
+        if not self.Config.get_stop_mode() == configFlags.stopMode.image_detection:
+            return
+        
+        if self.stop_algo_timer is None:
+            return
+        
+        thresh_size = self.Config.get_stop_algo_thresh_size()
+        for particel in particels:
+            if particel.avg_diameter > thresh_size:
+                self.stop_algo_timer.recurring()
+                break
+        
+    
+    @configUtils.print_function_name 
+    def stop_algo_timout(self,):
+        self.stop_done()
+
+
 
     @configUtils.print_function_name
     def stop_done(self,):
+        self.mediator.send_step_done('stop', True)
+        self.write_output_signal('signals3')
+
         self.stop_processing()
+        
 
 
     def stop_processing(self,):
@@ -340,7 +439,10 @@ class configManager:
 
 
     def finish_pipline(self,):
+        self.mediator.send_pipline_restart()
         self.run_start_pipeline()
+
+
 
 
     
@@ -351,6 +453,9 @@ class configManager:
             if self.Config.has_plc() and self.plc is not None:
                 nodes_value = configUtils.get_write_signal_dict(signals)
                 self.plc.send_write_request(nodes_value)
+        
+
+        self.mediator.send_step_done(name, True)
         
 
 

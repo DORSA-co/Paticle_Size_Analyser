@@ -60,8 +60,8 @@ class Ui_NodeSetting(object):
 "	border-radius:15px;\n"
 "	border: 1px solid rgb(232, 233, 235);\n"
 "}")
-        self.mainFrame.setFrameShape(QFrame.StyledPanel)
-        self.mainFrame.setFrameShadow(QFrame.Raised)
+        self.mainFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.mainFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.mainFrame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.horizontalFrame_2 = QFrame(self.mainFrame)
@@ -93,6 +93,22 @@ class Ui_NodeSetting(object):
 
         self.horizontalLayout_2.addWidget(self.node_type_combobox)
 
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_6)
+
+        self.label_5 = QLabel(self.horizontalFrame_2)
+        self.label_5.setObjectName(u"label_5")
+
+        self.horizontalLayout_2.addWidget(self.label_5)
+
+        self.node_datatype_combobox = QComboBox(self.horizontalFrame_2)
+        self.node_datatype_combobox.addItem("")
+        self.node_datatype_combobox.addItem("")
+        self.node_datatype_combobox.setObjectName(u"node_datatype_combobox")
+
+        self.horizontalLayout_2.addWidget(self.node_datatype_combobox)
+
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
@@ -101,6 +117,10 @@ class Ui_NodeSetting(object):
         self.label_2.setObjectName(u"label_2")
 
         self.horizontalLayout_2.addWidget(self.label_2)
+
+        self.horizontalSpacer_5 = QSpacerItem(20, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_5)
 
         self.label_3 = QLabel(self.horizontalFrame_2)
         self.label_3.setObjectName(u"label_3")
@@ -113,8 +133,13 @@ class Ui_NodeSetting(object):
 
         self.horizontalLayout_2.addWidget(self.node_ns)
 
+        self.horizontalSpacer_4 = QSpacerItem(20, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_4)
+
         self.label_4 = QLabel(self.horizontalFrame_2)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setMinimumSize(QSize(15, 0))
 
         self.horizontalLayout_2.addWidget(self.label_4)
 
@@ -158,10 +183,15 @@ class Ui_NodeSetting(object):
         self.node_type_combobox.setItemText(0, QCoreApplication.translate("NodeSetting", u"writable", None))
         self.node_type_combobox.setItemText(1, QCoreApplication.translate("NodeSetting", u"readable", None))
 
+        self.label_5.setText(QCoreApplication.translate("NodeSetting", u"Data Type: ", None))
+        self.label_5.setProperty("styleClass", QCoreApplication.translate("NodeSetting", u"title", None))
+        self.node_datatype_combobox.setItemText(0, QCoreApplication.translate("NodeSetting", u"Numberic", None))
+        self.node_datatype_combobox.setItemText(1, QCoreApplication.translate("NodeSetting", u"Boolean", None))
+
         self.label_2.setText(QCoreApplication.translate("NodeSetting", u"Node Address:", None))
         self.label_2.setProperty("styleClass", QCoreApplication.translate("NodeSetting", u"title", None))
         self.label_3.setText(QCoreApplication.translate("NodeSetting", u"ns", None))
-        self.node_ns.setText(QCoreApplication.translate("NodeSetting", u"555", None))
+        self.node_ns.setText("")
         self.label_4.setText(QCoreApplication.translate("NodeSetting", u"i:", None))
         self.remove_btn.setText("")
     # retranslateUi

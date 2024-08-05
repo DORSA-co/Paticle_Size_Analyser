@@ -785,7 +785,7 @@ class plcSettingTabUI(commonSettingUI):
         data['ip'] = self.get_ip()
         
         for name, field in self.settings.items():
-            value = GUIBackend.set_input(field)
+            value = GUIBackend.get_input(field)
             data[name] = value
         return data
     
@@ -821,8 +821,8 @@ class configSettingTabUI(commonSettingUI):
 
         
 
-        self.read_signals:list[str] = []
-        self.write_signals:list[str] = []
+        self.read_signals:idList= []
+        self.write_signals:idList = []
 
         self.mapDict = mapDictionary(
                                     {   'start_mode': {
@@ -889,6 +889,7 @@ class configSettingTabUI(commonSettingUI):
         self.timer_indicators = {
             'start': self.ui.config_start_timer_indicator_label,
             'delay': self.ui.config_delay_timer_indicator_label,
+            'stop':  self.ui.config_stop_timer_indicator_label,
 
         }
 
@@ -918,14 +919,19 @@ class configSettingTabUI(commonSettingUI):
             'stop_mode': self.ui.config_stop_mode_comboBox,
             'stop_delay': self.ui.config_stop_system_delay_spinbox,
 
-
+            'stop_algo_min_time': self.ui.confog_stop_algo_minimum_run_time,
+            'stop_algo_thresh_size': self.ui.confog_stop_algo_thresh_size,
+            'stop_algo_timout': self.ui.confog_stop_algo_timout,
         }
 
         self.step_containers = {
             'start': self.ui.config_start_frame,
             'permission': self.ui.config_permissions_frame,
-            'delay': self.ui.config_delay_frame
-            
+            'delay': self.ui.config_delay_frame,
+            'signals1': self.ui.config_signal1_frame,
+            'signals2': self.ui.config_signal2_frame,
+            'signals3': self.ui.config_signal3_frame,
+            'stop': self.ui.config_stop_frame,
         }
 
         self.__add_btns_connector()
@@ -1001,15 +1007,23 @@ class configSettingTabUI(commonSettingUI):
     def add_signal_event(self, step_name:str) -> Union[inputSignalUI, outputSignalUI]:
         scroll_content = self.signals_wgt[step_name]['scroll_content']
 
+        
+
         if self.signals_wgt[step_name]['type'] == 'input':
             signal_ui = inputSignalUI(step_name)
-            signal_ui.set_signals_items(self.read_signals)
+            signal_ui.signal_name_connector(self.__signal_name_changed_event)
+            #set names of signals into signal name combobox
+            signal_ui.set_signals_items(self.read_signals.ids())
         else:
             signal_ui = outputSignalUI(step_name)
-            signal_ui.set_signals_items(self.write_signals)
+            #first connect name combobox changed event
+            signal_ui.signal_name_connector(self.__signal_name_changed_event)
+            #set names of signals into signal name combobox
+            signal_ui.set_signals_items(self.write_signals.ids())
 
         signal_ui.remove_button_connector(self.remove_signal_event)
 
+        
         
         self.signals_ui[step_name].append( signal_ui, signal_ui.id  )
 
@@ -1021,23 +1035,38 @@ class configSettingTabUI(commonSettingUI):
         GUIComponents.single_timer_runner(150, lambda: self.__scroll_to_bottom(step_name))
 
         return signal_ui
+    
+    def __signal_name_changed_event(self,node_name, signal_ui: Union[outputSignalUI, inputSignalUI]):
+        #node_name = signal_ui.get_settings()['name']
+        print(node_name, 'changed')
+        node_setting = {}
+        if isinstance(signal_ui, outputSignalUI):
+            node_setting = self.write_signals.get_by_id(node_name)
+
+        elif isinstance(signal_ui, inputSignalUI):
+            node_setting = self.read_signals.get_by_id(node_name)
+        
+        signal_ui.set_data_type(node_setting['data_type'])
+
+
 
     def __scroll_to_bottom(self, step_name:str):
         scroll_bar = self.signals_wgt[step_name]['scroll_area'].verticalScrollBar()
         scroll_bar.setValue(scroll_bar.maximum())
 
-    def update_signals_items(self, read_signals:list[str], write_signals:list[str]):
+    def update_signals_items(self, read_signals:idList, write_signals:idList):
+        #read and write signals are idList that the id are signals names and values are dictionary of signals setting
         self.read_signals = read_signals
         self.write_signals = write_signals
 
-        for step_name in self.signals_wgt:
+        for step_name in self.signals_wgt.keys():
             signal_ui: Union[inputSignalUI, outputSignalUI]
             for signal_ui in self.signals_ui[step_name].values():
 
                 if self.signals_wgt[step_name]['type'] == 'input':
-                    signal_ui.set_signals_items(self.read_signals)
+                    signal_ui.set_signals_items(self.read_signals.ids())
                 elif self.signals_wgt[step_name]['type'] == 'output':
-                    signal_ui.set_signals_items(self.write_signals)
+                    signal_ui.set_signals_items(self.write_signals.ids())
 
 
     def remove_signal_event(self, signal:Union[inputSignalUI, outputSignalUI]):
@@ -1066,6 +1095,7 @@ class configSettingTabUI(commonSettingUI):
         
         for step_signal in self.signals_ui.keys():
             res[step_signal] = []
+            su: Union[inputSignalUI, outputSignalUI]
             for su in self.signals_ui[step_signal]:
                 res[step_signal].append( 
                     su.get_settings()
@@ -1077,11 +1107,9 @@ class configSettingTabUI(commonSettingUI):
     def set_settings(self, data:dict) -> dict:
         res = {}
         
-
         data['start_mode'] = self.mapDict.key2value('start_mode', data['start_mode'])
         data['stop_mode'] = self.mapDict.key2value('stop_mode', data['stop_mode'])
         data['lens_type'] = self.mapDict.key2value('lens_type', data['lens_type'])
-
 
         for name, field in self.settings.items():
             if data.get(name):
@@ -1103,7 +1131,7 @@ class configSettingTabUI(commonSettingUI):
                 self.signals_ui[step_signal].change_id(old_id, new_id)
         
 
-    def set_start_timer_indicator(self, name:str, t: int):
+    def set_timer_indicator(self, name:str, t: int):
         h = t//3600
         t = t - h * 3600
         m = t//60

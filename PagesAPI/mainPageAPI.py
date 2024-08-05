@@ -18,6 +18,7 @@ from backend.Processing import particlesDetector
 from backend.Processing.Report import Report
 from backend.Utils.datetimeUtils import timerCounter
 from Mediator.mainMediator import Mediator
+from backend.Processing.Particel import Particle
 
 
 # class myThread(QThread):
@@ -154,7 +155,7 @@ class mainPageAPI:
                 
                 self.worker = ProcessingWorker(img, self.detector, self.report, self.report_saver)
                 self.thread = threading.Thread(target=self.worker.run_process)
-
+                self.worker.founded_particels.connect(self.particales_found_evet)
                 self.worker.finished_processing.connect(self.show_live_info)
                 self.worker.finished.connect(self.__set_processing_finish__)
                 
@@ -170,7 +171,8 @@ class mainPageAPI:
                     self.during_processing = False
                     self.refresh_time = time.time()
 
-    
+    def particales_found_evet(self, particels:list[Particle]):
+        self.Mediator.send('particels_founded', particels)
 
     def __set_processing_finish__(self,):
         #print('__set_processing_finish__')
@@ -505,6 +507,7 @@ class mainPageAPI:
 
 class ProcessingWorker(QObject):
     finished = Signal()
+    founded_particels = Signal(list)
     finished_processing = Signal()
     def __init__(self, 
                  img:np.ndarray,
@@ -529,6 +532,8 @@ class ProcessingWorker(QObject):
         for i in range(1):
             try:
                 self.current_particles = self.detector.detect(self.img, self.report)
+                if len(self.current_particles):
+                    self.founded_particels.emit(self.current_particles)
 
                 self.finished_processing.emit()
             

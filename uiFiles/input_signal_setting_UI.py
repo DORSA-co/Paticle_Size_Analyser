@@ -78,6 +78,10 @@ class Ui_inputSignalSetting(object):
 
         self.horizontalLayout_2.addWidget(self.signal_name_combobox)
 
+        self.horizontalSpacer_2 = QSpacerItem(15, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
         self.condition_combobox = QComboBox(self.main_frame)
         self.condition_combobox.addItem("")
         self.condition_combobox.addItem("")
@@ -89,12 +93,12 @@ class Ui_inputSignalSetting(object):
 
         self.horizontalLayout_2.addWidget(self.condition_combobox)
 
-        self.signal_value = QDoubleSpinBox(self.main_frame)
-        self.signal_value.setObjectName(u"signal_value")
-        self.signal_value.setMinimumSize(QSize(120, 0))
-        self.signal_value.setMaximumSize(QSize(120, 16777215))
+        self.value_numeric = QDoubleSpinBox(self.main_frame)
+        self.value_numeric.setObjectName(u"value_numeric")
+        self.value_numeric.setMinimumSize(QSize(120, 0))
+        self.value_numeric.setMaximumSize(QSize(120, 16777215))
 
-        self.horizontalLayout_2.addWidget(self.signal_value)
+        self.horizontalLayout_2.addWidget(self.value_numeric)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 

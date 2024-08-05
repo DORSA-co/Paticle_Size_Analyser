@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="assets">
+    <file>icons/icons8-next-circel-48.png</file>
+    <file>icons/icons8-next-circel-hover-48.png</file>
+    <file>icons/icons8-prev-circel-48.png</file>
+    <file>icons/icons8-prev-circel-hover-48.png</file>
     <file>icons/icons8-connect-30.png</file>
     <file>icons/icons8-connect-hover-30.png</file>
     <file>icons/icons8-excel-48.png</file>

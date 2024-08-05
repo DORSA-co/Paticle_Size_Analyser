@@ -42,6 +42,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setEnabled(True)
         self.centralwidget.setStyleSheet(u"*{\n"
 "	font: auto \"Arial\";\n"
 "}\n"
@@ -274,67 +275,92 @@ class Ui_MainWindow(object):
 "\n"
 "QDateEdit\n"
 "{\n"
-"	border:2px solid rgb(6, 76, 130);\n"
-"    border-radius: 3px;\n"
-"    padding: 1px 8px 1px 8px;\n"
-"	min-height: 35px;\n"
+"	background-color: transparent;\n"
+"	border-bottom: 2px solid #D7D7D9;\n"
+"	border-radius: none;\n"
 "	font-size: 16px;\n"
+"	min-height: 25px;\n"
+"	qproperty-alignment: AlignCenter;\n"
 "}\n"
 "\n"
 "\n"
 "QDateEdit:disabled ,\n"
 "QDateEdit:disabled \n"
 "{\n"
-"	border:2px solid rgb(200, 200, 200);\n"
+"	border-bottom: 2px solid rgb(200,200,200);\n"
+"	color: rgb(200, 200, 200);\n"
 "}\n"
 "\n"
 "\n"
 "\n"
 "QDateEdit::up-arrow\n"
 "{   \n"
-"	image: url(:/assets/icons/icons8-uptriangle-48.png);\n"
-"	width: 10px;\n"
-"    height: 10px;\n"
+"	image: url(:/assets/icons/icons8-plus-24.png);\n"
+"	width: 18px;\n"
+"	height: 18px;\n"
 "\n"
 "}\n"
 "\n"
 "QDateEdit::down-arrow \n"
 "{   \n"
-"	image: url(:/assets/icons/icons8-downtriangle-48.png);\n"
-"	width: 10px;\n"
-"    height: 10px;\n"
+"	image: url(:/assets/icons/icons8-subtract-24.png);\n"
+"	width: 18px;\n"
+"	heig"
+                        "ht: 18px;\n"
 "\n"
 "}\n"
 "\n"
-"QDateEdit::up-button,\n"
-"QDate"
-                        "Edit::down-button\n"
-"{\n"
-"    subcontrol-origin: border;\n"
-"	background-color:rgb(6, 76, 130);\n"
-"    width: 30px;\n"
+"QDateEdit::down-arrow:disabled\n"
+"{   \n"
+"	image: url(:/assets/icons/gray-subtract-24.png);\n"
+"	width: 18px;\n"
+"	height: 18px;\n"
+"}\n"
+"\n"
+"QDateEdit::up-arrow:disabled\n"
+"{   \n"
+"	image:url(:/assets/icons/gray_plus-math-24.png);\n"
+"	width: 18px;\n"
+"	height: 18px;\n"
+"}\n"
+"\n"
+"QDateEdit::up-button{\n"
+"	border:none;\n"
+"    min-width:30px;\n"
+"    min-height: 30px;\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: right;\n"
+"    top: 0px;\n"
+"    right: 0px;\n"
+"}\n"
+"\n"
+"QDateEdit::down-button{\n"
+"	min-width:30px;\n"
+"    min-height: 30px;\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: left;\n"
+"    top: 0px;\n"
+"    right: 0px;\n"
 "}\n"
 "\n"
 "\n"
 "QDateEdit::up-button:disabled ,\n"
 "QDateEdit::down-button:disabled\n"
 "    {\n"
-"    subcontrol-origin: border;\n"
-"	background-color:rgb(209, 209, 209);\n"
-"    width: 30px;\n"
+"\n"
 "}\n"
 "\n"
 "QDateEdit:focus\n"
 "{\n"
-"	background: rgb(241, 241, 241);\n"
-"	/*selection-background-color: black;*/\n"
+"border-bottom: 2px solid rgb(6,76,130);\n"
 "}\n"
 "\n"
 "/*********************************************/\n"
 "\n"
 "QSpinBox, QDoubleSpinBox\n"
 "{\n"
-"	background-color: transparent;\n"
+"	background-color: tr"
+                        "ansparent;\n"
 "	border-bottom: 2px solid #D7D7D9;\n"
 "	border-radius: none;\n"
 "	font-size: 16px;\n"
@@ -354,8 +380,7 @@ class Ui_MainWindow(object):
 "{   \n"
 "	image: url(:/assets/icons/icons8-plus-24.png);\n"
 "	width: 18px;\n"
-"	height"
-                        ": 18px;\n"
+"	height: 18px;\n"
 "}\n"
 "\n"
 "QSpinBox::down-arrow,  \n"
@@ -381,7 +406,8 @@ class Ui_MainWindow(object):
 "	width: 18px;\n"
 "	height: 18px;\n"
 "}\n"
-"\n"
+""
+                        "\n"
 "QSpinBox::up-button,\n"
 "QDoubleSpinBox::up-button\n"
 "{\n"
@@ -402,8 +428,7 @@ class Ui_MainWindow(object):
 "    subcontrol-origin: margin;\n"
 "    subcontrol-position: left;\n"
 "    top: 0px;\n"
-"    ri"
-                        "ght: 0px;\n"
+"    right: 0px;\n"
 "}\n"
 "\n"
 "QSpinBox::up-button,\n"
@@ -429,7 +454,8 @@ class Ui_MainWindow(object):
 "\n"
 "/*******************************************/\n"
 "\n"
-"QGroupBox::indicator,\n"
+"QGrou"
+                        "pBox::indicator,\n"
 "QCheckBox::indicator {\n"
 "    width: 16px;\n"
 "    height: 16px;\n"
@@ -447,8 +473,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QGroupBox::indicator:disabled,\n"
-"QCheckBox::indicator:di"
-                        "sabled {\n"
+"QCheckBox::indicator:disabled {\n"
 "	border:2px solid rgb(200,200,200);\n"
 "}\n"
 "\n"
@@ -468,7 +493,8 @@ class Ui_MainWindow(object):
 "	border:1px solid rgba(100, 100, 100,60);\n"
 "	border-bottom:2px solid rgb(100, 100, 100);\n"
 "    padding: 1px 8px 1px 8px;\n"
-"	min-height: 35px;\n"
+"	min-he"
+                        "ight: 35px;\n"
 "	font-size: 16px;\n"
 "	\n"
 "}\n"
@@ -488,8 +514,7 @@ class Ui_MainWindow(object):
 "/*******************************************/\n"
 "\n"
 "QProgressBar {\n"
-""
-                        "    border: none;\n"
+"    border: none;\n"
 "    border-radius: 5px;\n"
 "    text-align: center;\n"
 "	background-color:rgb(43, 43, 43);\n"
@@ -512,7 +537,8 @@ class Ui_MainWindow(object):
 "\n"
 "QTabWidget:pane{\n"
 "	background-color: transparent;\n"
-"	padding: 5px 5px;\n"
+"	padding: 5px 5px;"
+                        "\n"
 "	border: 2px solid rgb(6,76,130);\n"
 "	border-radius: 14px;\n"
 "	background-color: #ffffff;\n"
@@ -538,8 +564,7 @@ class Ui_MainWindow(object):
 "	min-width: 100px;\n"
 "	font-size: 14px;\n"
 "	background-color: #f0f0f0;\n"
-""
-                        "	border-top-right-radius: 10px;\n"
+"	border-top-right-radius: 10px;\n"
 "	border-top-left-radius: 10px;\n"
 "}\n"
 "\n"
@@ -564,7 +589,8 @@ class Ui_MainWindow(object):
 "	border-bottom: none;\n"
 "}\n"
 "\n"
-"/*******************************************/\n"
+"/****************************"
+                        "***************/\n"
 "\n"
 "\n"
 "\n"
@@ -593,8 +619,7 @@ class Ui_MainWindow(object):
 "    subcontrol-position: top center; /* position at the top center */\n"
 "    padding: 0 5px;\n"
 "    color: #404040;\n"
-""
-                        "}\n"
+"}\n"
 "\n"
 "\n"
 "\n"
@@ -625,7 +650,8 @@ class Ui_MainWindow(object):
 "	border-radius: 20px;\n"
 "}\n"
 "\n"
-"QPushButton[styleClass=\"blueCircelAdd\"]:hover{\n"
+"QPushButton[styleClass=\"blueCirc"
+                        "elAdd\"]:hover{\n"
 "	background-color:rgb(5, 50, 85);\n"
 "}\n"
 "\n"
@@ -645,8 +671,7 @@ class Ui_MainWindow(object):
 "\n"
 "}\n"
 "\n"
-"QPushButton[styleClass=\"saveButton\"]:"
-                        "disabled{\n"
+"QPushButton[styleClass=\"saveButton\"]:disabled{\n"
 "	background-color:rgb(180, 180, 180);\n"
 "	border: 2px solid rgb(180, 180, 180);\n"
 "}\n"
@@ -668,7 +693,8 @@ class Ui_MainWindow(object):
 "	\n"
 "}\n"
 "\n"
-"QPushButton[styleClass=\"cancelButton\"]:disabled{\n"
+"QPushButton[styleClass=\"can"
+                        "celButton\"]:disabled{\n"
 "	color:rgb(180, 180, 180);\n"
 "	border: 2px solid rgb(180, 180, 180);\n"
 "}\n"
@@ -687,8 +713,7 @@ class Ui_MainWindow(object):
 "	min-width:150px;\n"
 "	max-width:150px;\n"
 "	min-height: 35px;\n"
-"	border-radius: 17p"
-                        "x;\n"
+"	border-radius: 17px;\n"
 "	icon: url(:/assets/icons/icons8-restore-25.png);\n"
 "}\n"
 "\n"
@@ -712,7 +737,8 @@ class Ui_MainWindow(object):
 "border: 2px solid rgb(6,76,130);\n"
 "}\n"
 "\n"
-"QPushButton[styleClass=\"blueBorderButton\"]:disabled{\n"
+""
+                        "QPushButton[styleClass=\"blueBorderButton\"]:disabled{\n"
 "\n"
 "color: rgb(200,200,200);\n"
 "border: 2px solid rgb(200,200,200);\n"
@@ -720,16 +746,13 @@ class Ui_MainWindow(object):
 "\n"
 "\n"
 "QPushButton[styleClass=\"blueIconButton\"]{\n"
-"		icon: url(:/assets/icons/icons8-connect-30.png);\n"
 "		color:rgb(12, 80, 139);\n"
 "		border:none;\n"
 "		background-color:transparent;\n"
 "}\n"
 "\n"
 "QPushButton[styleClass=\"blueIconButton\"]:hover{\n"
-"		icon: url(:/assets/icons/icons8-connect-hover-30.png);\n"
-"		col"
-                        "or: rgb(7, 48, 81);\n"
+"		color: rgb(7, 48, 81);\n"
 "		background-color:transparent;\n"
 "\n"
 "}\n"
@@ -762,7 +785,8 @@ class Ui_MainWindow(object):
 "	border: 1px solid #b0b0b0\n"
 "}\n"
 "\n"
-"QFrame[styleClass=\"config_section_frame\" ][state=\"not_active\"]{\n"
+"Q"
+                        "Frame[styleClass=\"config_section_frame\" ][state=\"not_active\"]{\n"
 "	border: 2px solid rgb(213, 63, 65);\n"
 "}\n"
 "\n"
@@ -777,6 +801,39 @@ class Ui_MainWindow(object):
 "QLabel[styleClass=\"h5\"]{\n"
 "	font-size: 14px;\n"
 "	color: rgb(52, 52, 52);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton[styleClass=\"circelNextBtn\"]{\n"
+"	\n"
+"background-color:transparent;\n"
+"border:none;\n"
+"icon: url(:/assets/icons/icons8-next-circel-48.png);\n"
+"}\n"
+"\n"
+"QPushButton[styleClass=\"circelNextBtn\"]:hover{\n"
+"	\n"
+"background-color:transparent;\n"
+"border:none;\n"
+"icon: url(:/assets/icons/icons8-next-circel-hover-48.png);\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"QPushButton[styleClass=\"circelPrevBtn\"]{\n"
+"	\n"
+"background-color:transparent;\n"
+"border:none;\n"
+"icon: url(:/assets/icons/icons8-prev-circel-48.png);\n"
+"}\n"
+"\n"
+"QPushButton[styleClass=\"circelPrevBtn\"]:hover{\n"
+"	\n"
+"background-color:transparent;\n"
+"border:none;\n"
+"icon: url(:/assets/icon"
+                        "s/icons8-prev-circel-hover-48.png);\n"
 "}")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setSpacing(0)
@@ -1085,6 +1142,8 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw = QStackedWidget(self.middle)
         self.main_pages_stackw.setObjectName(u"main_pages_stackw")
+        self.main_pages_stackw.setMinimumSize(QSize(130, 0))
+        self.main_pages_stackw.setMaximumSize(QSize(16777215, 16777215))
         self.main_pages_stackw.setMouseTracking(False)
         self.main_pages_stackw.setStyleSheet(u"#main_page,\n"
 "#report_page,\n"
@@ -1552,17 +1611,17 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.label_138, 0, Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
-        self.gridFrame = QFrame(self.mainpage_warnings_frame)
-        self.gridFrame.setObjectName(u"gridFrame")
-        self.gridLayout_10 = QGridLayout(self.gridFrame)
+        self.gridFrame1111 = QFrame(self.mainpage_warnings_frame)
+        self.gridFrame1111.setObjectName(u"gridFrame1111")
+        self.gridLayout_10 = QGridLayout(self.gridFrame1111)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.mainpage_camera_connection_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_camera_connection_warning_lbl = QLabel(self.gridFrame1111)
         self.mainpage_camera_connection_warning_lbl.setObjectName(u"mainpage_camera_connection_warning_lbl")
         self.mainpage_camera_connection_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_10.addWidget(self.mainpage_camera_connection_warning_lbl, 1, 3, 1, 1)
 
-        self.mainpage_camera_connection_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_camera_connection_warning_btn = QPushButton(self.gridFrame1111)
         self.mainpage_camera_connection_warning_btn.setObjectName(u"mainpage_camera_connection_warning_btn")
         self.mainpage_camera_connection_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon17 = QIcon()
@@ -1572,7 +1631,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.mainpage_camera_connection_warning_btn, 0, 3, 1, 1)
 
-        self.mainpage_illumination_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_illumination_warning_btn = QPushButton(self.gridFrame1111)
         self.mainpage_illumination_warning_btn.setObjectName(u"mainpage_illumination_warning_btn")
         self.mainpage_illumination_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon18 = QIcon()
@@ -1582,7 +1641,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.mainpage_illumination_warning_btn, 0, 2, 1, 1)
 
-        self.mainpage_camera_grabbing_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_camera_grabbing_warning_btn = QPushButton(self.gridFrame1111)
         self.mainpage_camera_grabbing_warning_btn.setObjectName(u"mainpage_camera_grabbing_warning_btn")
         self.mainpage_camera_grabbing_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mainpage_camera_grabbing_warning_btn.setStyleSheet(u"")
@@ -1593,25 +1652,25 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.mainpage_camera_grabbing_warning_btn, 0, 4, 1, 1)
 
-        self.mainpage_illumination_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_illumination_warning_lbl = QLabel(self.gridFrame1111)
         self.mainpage_illumination_warning_lbl.setObjectName(u"mainpage_illumination_warning_lbl")
         self.mainpage_illumination_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_10.addWidget(self.mainpage_illumination_warning_lbl, 1, 2, 1, 1)
 
-        self.mainpage_camera_grabbing_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_camera_grabbing_warning_lbl = QLabel(self.gridFrame1111)
         self.mainpage_camera_grabbing_warning_lbl.setObjectName(u"mainpage_camera_grabbing_warning_lbl")
         self.mainpage_camera_grabbing_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_10.addWidget(self.mainpage_camera_grabbing_warning_lbl, 1, 4, 1, 1)
 
-        self.mainpage_tempreture_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_tempreture_warning_lbl = QLabel(self.gridFrame1111)
         self.mainpage_tempreture_warning_lbl.setObjectName(u"mainpage_tempreture_warning_lbl")
         self.mainpage_tempreture_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_10.addWidget(self.mainpage_tempreture_warning_lbl, 1, 1, 1, 1)
 
-        self.mainpage_tempreture_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_tempreture_warning_btn = QPushButton(self.gridFrame1111)
         self.mainpage_tempreture_warning_btn.setObjectName(u"mainpage_tempreture_warning_btn")
         self.mainpage_tempreture_warning_btn.setMinimumSize(QSize(114, 40))
         self.mainpage_tempreture_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
@@ -1623,7 +1682,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.mainpage_tempreture_warning_btn, 0, 1, 1, 1)
 
-        self.mainpage_plc_warning_btn = QPushButton(self.gridFrame)
+        self.mainpage_plc_warning_btn = QPushButton(self.gridFrame1111)
         self.mainpage_plc_warning_btn.setObjectName(u"mainpage_plc_warning_btn")
         self.mainpage_plc_warning_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.mainpage_plc_warning_btn.setIcon(icon18)
@@ -1631,14 +1690,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.mainpage_plc_warning_btn, 0, 0, 1, 1)
 
-        self.mainpage_plc_warning_lbl = QLabel(self.gridFrame)
+        self.mainpage_plc_warning_lbl = QLabel(self.gridFrame1111)
         self.mainpage_plc_warning_lbl.setObjectName(u"mainpage_plc_warning_lbl")
         self.mainpage_plc_warning_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout_10.addWidget(self.mainpage_plc_warning_lbl, 1, 0, 1, 1)
 
 
-        self.verticalLayout_7.addWidget(self.gridFrame, 0, Qt.AlignmentFlag.AlignTop)
+        self.verticalLayout_7.addWidget(self.gridFrame1111, 0, Qt.AlignmentFlag.AlignTop)
 
         self.mainpage_error_msg_frame = QFrame(self.mainpage_warnings_frame)
         self.mainpage_error_msg_frame.setObjectName(u"mainpage_error_msg_frame")
@@ -1787,7 +1846,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 252, 1505))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -185, 339, 1441))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -1935,6 +1994,7 @@ class Ui_MainWindow(object):
         self.reportpage_end_date_dateedit = QDateEdit(self.reportpage_filterdate_frame)
         self.reportpage_end_date_dateedit.setObjectName(u"reportpage_end_date_dateedit")
         self.reportpage_end_date_dateedit.setEnabled(False)
+        self.reportpage_end_date_dateedit.setMinimumSize(QSize(165, 27))
 
         self.gridLayout_15.addWidget(self.reportpage_end_date_dateedit, 1, 1, 1, 1)
 
@@ -1951,6 +2011,7 @@ class Ui_MainWindow(object):
         self.reportpage_start_date_dateedit = QDateEdit(self.reportpage_filterdate_frame)
         self.reportpage_start_date_dateedit.setObjectName(u"reportpage_start_date_dateedit")
         self.reportpage_start_date_dateedit.setEnabled(False)
+        self.reportpage_start_date_dateedit.setMinimumSize(QSize(165, 27))
         self.reportpage_start_date_dateedit.setStyleSheet(u"")
 
         self.gridLayout_15.addWidget(self.reportpage_start_date_dateedit, 0, 1, 1, 1)
@@ -2172,7 +2233,7 @@ class Ui_MainWindow(object):
 
         self.reportpage_apply_filters_btn = QPushButton(self.reportspage_filters_frame)
         self.reportpage_apply_filters_btn.setObjectName(u"reportpage_apply_filters_btn")
-        self.reportpage_apply_filters_btn.setMinimumSize(QSize(0, 39))
+        self.reportpage_apply_filters_btn.setMinimumSize(QSize(165, 39))
         self.reportpage_apply_filters_btn.setSizeIncrement(QSize(0, 0))
 
         self.horizontalLayout_31.addWidget(self.reportpage_apply_filters_btn)
@@ -2379,11 +2440,15 @@ class Ui_MainWindow(object):
 
         self.reportpage_previouse_btn = QPushButton(self.reportPages_contents)
         self.reportpage_previouse_btn.setObjectName(u"reportpage_previouse_btn")
+        self.reportpage_previouse_btn.setStyleSheet(u"")
+        self.reportpage_previouse_btn.setIconSize(QSize(36, 36))
 
         self.horizontalLayout_61.addWidget(self.reportpage_previouse_btn)
 
         self.reportpage_next_btn = QPushButton(self.reportPages_contents)
         self.reportpage_next_btn.setObjectName(u"reportpage_next_btn")
+        self.reportpage_next_btn.setStyleSheet(u"")
+        self.reportpage_next_btn.setIconSize(QSize(36, 36))
 
         self.horizontalLayout_61.addWidget(self.reportpage_next_btn)
 
@@ -2758,7 +2823,7 @@ class Ui_MainWindow(object):
         self.scrollArea_6.setWidgetResizable(True)
         self.SampleSettingScrollAreaWidgetContents = QWidget()
         self.SampleSettingScrollAreaWidgetContents.setObjectName(u"SampleSettingScrollAreaWidgetContents")
-        self.SampleSettingScrollAreaWidgetContents.setGeometry(QRect(0, 0, 700, 625))
+        self.SampleSettingScrollAreaWidgetContents.setGeometry(QRect(0, 0, 1211, 625))
         self.verticalLayout_87 = QVBoxLayout(self.SampleSettingScrollAreaWidgetContents)
         self.verticalLayout_87.setObjectName(u"verticalLayout_87")
         self.settingpage_sample_auto_name_groupbox = QGroupBox(self.SampleSettingScrollAreaWidgetContents)
@@ -2907,12 +2972,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_46.addWidget(self.gridFrame_3)
 
-        self.gridFrame1 = QFrame(self.verticalFrame)
-        self.gridFrame1.setObjectName(u"gridFrame1")
-        self.gridFrame1.setStyleSheet(u"")
-        self.gridLayout_3 = QGridLayout(self.gridFrame1)
+        self.gridFrame = QFrame(self.verticalFrame)
+        self.gridFrame.setObjectName(u"gridFrame")
+        self.gridFrame.setStyleSheet(u"")
+        self.gridLayout_3 = QGridLayout(self.gridFrame)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.settingpage_sample_minute_code_btn = QPushButton(self.gridFrame1)
+        self.settingpage_sample_minute_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_minute_code_btn.setObjectName(u"settingpage_sample_minute_code_btn")
 
         self.gridLayout_3.addWidget(self.settingpage_sample_minute_code_btn, 2, 5, 1, 1)
@@ -2921,12 +2986,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addItem(self.horizontalSpacer_93, 2, 3, 1, 1)
 
-        self.settingpage_sample_day_code_btn = QPushButton(self.gridFrame1)
+        self.settingpage_sample_day_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_day_code_btn.setObjectName(u"settingpage_sample_day_code_btn")
 
         self.gridLayout_3.addWidget(self.settingpage_sample_day_code_btn, 2, 2, 1, 1)
 
-        self.label_91 = QLabel(self.gridFrame1)
+        self.label_91 = QLabel(self.gridFrame)
         self.label_91.setObjectName(u"label_91")
         self.label_91.setMinimumSize(QSize(110, 0))
         self.label_91.setMaximumSize(QSize(210, 16777215))
@@ -2934,7 +2999,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_91, 1, 4, 1, 1)
 
-        self.label_76 = QLabel(self.gridFrame1)
+        self.label_76 = QLabel(self.gridFrame)
         self.label_76.setObjectName(u"label_76")
         self.label_76.setMinimumSize(QSize(110, 0))
         self.label_76.setMaximumSize(QSize(210, 16777215))
@@ -2942,7 +3007,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_76, 1, 1, 1, 1)
 
-        self.label_75 = QLabel(self.gridFrame1)
+        self.label_75 = QLabel(self.gridFrame)
         self.label_75.setObjectName(u"label_75")
         self.label_75.setMinimumSize(QSize(110, 0))
         self.label_75.setMaximumSize(QSize(210, 16777215))
@@ -2950,12 +3015,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_75, 1, 0, 1, 1)
 
-        self.settingpage_sample_houre_code_btn = QPushButton(self.gridFrame1)
+        self.settingpage_sample_houre_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_houre_code_btn.setObjectName(u"settingpage_sample_houre_code_btn")
 
         self.gridLayout_3.addWidget(self.settingpage_sample_houre_code_btn, 2, 4, 1, 1)
 
-        self.label_92 = QLabel(self.gridFrame1)
+        self.label_92 = QLabel(self.gridFrame)
         self.label_92.setObjectName(u"label_92")
         self.label_92.setMinimumSize(QSize(110, 0))
         self.label_92.setMaximumSize(QSize(210, 16777215))
@@ -2963,12 +3028,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_92, 1, 5, 1, 1)
 
-        self.settingpage_sample_month_code_btn = QPushButton(self.gridFrame1)
+        self.settingpage_sample_month_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_month_code_btn.setObjectName(u"settingpage_sample_month_code_btn")
 
         self.gridLayout_3.addWidget(self.settingpage_sample_month_code_btn, 2, 1, 1, 1)
 
-        self.label_77 = QLabel(self.gridFrame1)
+        self.label_77 = QLabel(self.gridFrame)
         self.label_77.setObjectName(u"label_77")
         self.label_77.setMinimumSize(QSize(110, 0))
         self.label_77.setMaximumSize(QSize(210, 16777215))
@@ -2976,7 +3041,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_77, 1, 2, 1, 1)
 
-        self.settingpage_sample_year_code_btn = QPushButton(self.gridFrame1)
+        self.settingpage_sample_year_code_btn = QPushButton(self.gridFrame)
         self.settingpage_sample_year_code_btn.setObjectName(u"settingpage_sample_year_code_btn")
 
         self.gridLayout_3.addWidget(self.settingpage_sample_year_code_btn, 2, 0, 1, 1)
@@ -2986,7 +3051,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addItem(self.horizontalSpacer_96, 2, 6, 1, 1)
 
 
-        self.verticalLayout_46.addWidget(self.gridFrame1)
+        self.verticalLayout_46.addWidget(self.gridFrame)
 
 
         self.verticalLayout_44.addWidget(self.verticalFrame)
@@ -3576,7 +3641,7 @@ class Ui_MainWindow(object):
         self.cameraSettingScrollArea.setWidgetResizable(True)
         self.cameraSettingScrollAreaWidgetContents = QWidget()
         self.cameraSettingScrollAreaWidgetContents.setObjectName(u"cameraSettingScrollAreaWidgetContents")
-        self.cameraSettingScrollAreaWidgetContents.setGeometry(QRect(0, 0, 467, 706))
+        self.cameraSettingScrollAreaWidgetContents.setGeometry(QRect(0, 0, 567, 706))
         self.verticalLayout_33 = QVBoxLayout(self.cameraSettingScrollAreaWidgetContents)
         self.verticalLayout_33.setSpacing(30)
         self.verticalLayout_33.setObjectName(u"verticalLayout_33")
@@ -4056,7 +4121,7 @@ class Ui_MainWindow(object):
         self.nodesScrollArea.setWidgetResizable(True)
         self.nodesScrollAreaContent = QWidget()
         self.nodesScrollAreaContent.setObjectName(u"nodesScrollAreaContent")
-        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 86, 64))
+        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 1211, 304))
         self.verticalLayout_67 = QVBoxLayout(self.nodesScrollAreaContent)
         self.verticalLayout_67.setObjectName(u"verticalLayout_67")
         self.settingpage_plc_add_node_btn = QPushButton(self.nodesScrollAreaContent)
@@ -4385,7 +4450,7 @@ class Ui_MainWindow(object):
         self.config_start_system_signals_scroll_area.setWidgetResizable(True)
         self.config_start_system_signals_scroll_contents = QWidget()
         self.config_start_system_signals_scroll_contents.setObjectName(u"config_start_system_signals_scroll_contents")
-        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 86, 64))
+        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 88, 64))
         self.config_start_system_signals_scroll_contents.setStyleSheet(u"")
         self.verticalLayout_77 = QVBoxLayout(self.config_start_system_signals_scroll_contents)
         self.verticalLayout_77.setObjectName(u"verticalLayout_77")
@@ -4838,7 +4903,7 @@ class Ui_MainWindow(object):
         self.config_stop_system_signals_scroll_area.setWidgetResizable(True)
         self.config_stop_system_signals_scroll_contents = QWidget()
         self.config_stop_system_signals_scroll_contents.setObjectName(u"config_stop_system_signals_scroll_contents")
-        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 86, 64))
+        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 88, 64))
         self.verticalLayout_97 = QVBoxLayout(self.config_stop_system_signals_scroll_contents)
         self.verticalLayout_97.setObjectName(u"verticalLayout_97")
         self.config_stop_system_signals_add_btn = QPushButton(self.config_stop_system_signals_scroll_contents)
@@ -5241,7 +5306,7 @@ class Ui_MainWindow(object):
         self.calibrationpage_check_btn = QPushButton(self.calibration_step1_frame)
         self.calibrationpage_check_btn.setObjectName(u"calibrationpage_check_btn")
         self.calibrationpage_check_btn.setEnabled(True)
-        self.calibrationpage_check_btn.setMinimumSize(QSize(0, 39))
+        self.calibrationpage_check_btn.setMinimumSize(QSize(165, 39))
         icon25 = QIcon()
         icon25.addFile(u":/assets/icons/icons8-eye-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.calibrationpage_check_btn.setIcon(icon25)
@@ -5369,7 +5434,7 @@ class Ui_MainWindow(object):
 
         self.calibrationpage_calib_btn = QPushButton(self.calibrationpage_left_side)
         self.calibrationpage_calib_btn.setObjectName(u"calibrationpage_calib_btn")
-        self.calibrationpage_calib_btn.setMinimumSize(QSize(0, 39))
+        self.calibrationpage_calib_btn.setMinimumSize(QSize(165, 39))
         self.calibrationpage_calib_btn.setIcon(icon14)
 
         self.horizontalLayout_11.addWidget(self.calibrationpage_calib_btn)
@@ -5611,6 +5676,19 @@ class Ui_MainWindow(object):
 
         self.validationpage_hypotest_calculate_btn = QPushButton(self.hypothes_tab)
         self.validationpage_hypotest_calculate_btn.setObjectName(u"validationpage_hypotest_calculate_btn")
+        self.validationpage_hypotest_calculate_btn.setMinimumSize(QSize(130, 39))
+        self.validationpage_hypotest_calculate_btn.setMaximumSize(QSize(16777215, 16777215))
+        self.validationpage_hypotest_calculate_btn.setStyleSheet(u"QPushButton{\n"
+"\n"
+"	background-color: rgb(12, 80, 139);\n"
+"	color: #fff;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"\n"
+"	background-color: rgb(6, 41, 70);\n"
+"	color: #fff;\n"
+"}")
 
         self.horizontalLayout_62.addWidget(self.validationpage_hypotest_calculate_btn)
 
@@ -5629,7 +5707,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 86, 34))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1223, 539))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -5837,7 +5915,7 @@ class Ui_MainWindow(object):
         self.scrollArea_9.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 734, 471))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1223, 595))
         self.verticalLayout_89 = QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_89.setObjectName(u"verticalLayout_89")
         self.horizontalLayout_77 = QHBoxLayout()
@@ -6128,7 +6206,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 512, 721))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 1213, 616))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -6279,7 +6357,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 557, 3251))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2652, 1245, 3261))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -7448,20 +7526,14 @@ class Ui_MainWindow(object):
         self.sreportpage_prev_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_prev_particle_btn.setObjectName(u"sreportpage_prev_particle_btn")
         self.sreportpage_prev_particle_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        icon33 = QIcon()
-        icon33.addFile(u":/assets/icons/icons8-previous-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.sreportpage_prev_particle_btn.setIcon(icon33)
-        self.sreportpage_prev_particle_btn.setIconSize(QSize(35, 35))
+        self.sreportpage_prev_particle_btn.setIconSize(QSize(36, 36))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_prev_particle_btn)
 
         self.sreportpage_next_particle_btn = QPushButton(self.scrollAreaWidgetContents)
         self.sreportpage_next_particle_btn.setObjectName(u"sreportpage_next_particle_btn")
         self.sreportpage_next_particle_btn.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        icon34 = QIcon()
-        icon34.addFile(u":/assets/icons/icons8-next-50.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.sreportpage_next_particle_btn.setIcon(icon34)
-        self.sreportpage_next_particle_btn.setIconSize(QSize(35, 35))
+        self.sreportpage_next_particle_btn.setIconSize(QSize(36, 36))
 
         self.horizontalLayout_64.addWidget(self.sreportpage_next_particle_btn)
 
@@ -7588,7 +7660,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 180, 1109))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, -609, 1245, 1109))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -8030,13 +8102,13 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(3)
+        self.main_pages_stackw.setCurrentIndex(1)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(5)
+        self.settingpage_tabs.setCurrentIndex(4)
         self.tabWidget_2.setCurrentIndex(0)
         self.config_start_system_settings_stackwidget.setCurrentIndex(0)
         self.config_stop_system_settings_stackwidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.user_tabs.setCurrentIndex(1)
         self.helppage_tabs.setCurrentIndex(0)
 
@@ -8070,6 +8142,7 @@ class Ui_MainWindow(object):
         self.sidebar_calib_btn.setText(QCoreApplication.translate("MainWindow", u"Calibration", None))
         self.sidebar_users_btn.setText(QCoreApplication.translate("MainWindow", u"Users", None))
         self.sidebar_help_btn.setText(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.main_pages_stackw.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueBorderButton", None))
         self.mainpage_liveview_checkbox.setText("")
         self.mainpage_drawing_checkbox.setText("")
 #if QT_CONFIG(accessibility)
@@ -8144,8 +8217,10 @@ class Ui_MainWindow(object):
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Standard for compare:", None))
         self.reportpage_compare_btn.setText(QCoreApplication.translate("MainWindow", u"Compare", None))
         self.reportpage_compare_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueBorderButton", None))
-        self.reportpage_previouse_btn.setText(QCoreApplication.translate("MainWindow", u"Previouse", None))
-        self.reportpage_next_btn.setText(QCoreApplication.translate("MainWindow", u"Next", None))
+        self.reportpage_previouse_btn.setText("")
+        self.reportpage_previouse_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"circelPrevBtn", None))
+        self.reportpage_next_btn.setText("")
+        self.reportpage_next_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"circelNextBtn", None))
         self.all_standards_tab.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
         self.settingpage_grading_standards_groupbox.setTitle(QCoreApplication.translate("MainWindow", u"Standards", None))
 
@@ -8543,6 +8618,7 @@ class Ui_MainWindow(object):
         self.label_94.setText(QCoreApplication.translate("MainWindow", u"Standard", None))
         self.label_110.setText(QCoreApplication.translate("MainWindow", u"Verification Type", None))
         self.validationpage_hypotest_calculate_btn.setText(QCoreApplication.translate("MainWindow", u"See Result", None))
+        self.validationpage_hypotest_calculate_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"blueBorderButton", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.hypothes_tab), QCoreApplication.translate("MainWindow", u"Statistical hypothesis", None))
         self.user_register_tab.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
         self.userpage_user_role_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"admin", None))
@@ -8746,7 +8822,9 @@ class Ui_MainWindow(object):
         self.label_101.setText(QCoreApplication.translate("MainWindow", u"of", None))
         self.sreportpage_end_page.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.sreportpage_prev_particle_btn.setText("")
+        self.sreportpage_prev_particle_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"circelPrevBtn", None))
         self.sreportpage_next_particle_btn.setText("")
+        self.sreportpage_next_particle_btn.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"circelNextBtn", None))
         self.alaki_btn.setText(QCoreApplication.translate("MainWindow", u"alaki", None))
         self.comparepage_back_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.comparepage_export_btn.setText(QCoreApplication.translate("MainWindow", u"Export", None))

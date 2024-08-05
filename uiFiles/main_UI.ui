@@ -27,6 +27,9 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="styleSheet">
     <string notr="true">*{
 	font: auto &quot;Arial&quot;;
@@ -256,59 +259,83 @@ QListView::item {
 
 QDateEdit
 {
-	border:2px solid rgb(6, 76, 130);
-    border-radius: 3px;
-    padding: 1px 8px 1px 8px;
-	min-height: 35px;
+	background-color: transparent;
+	border-bottom: 2px solid #D7D7D9;
+	border-radius: none;
 	font-size: 16px;
+	min-height: 25px;
+	qproperty-alignment: AlignCenter;
 }
 
 
 QDateEdit:disabled ,
 QDateEdit:disabled 
 {
-	border:2px solid rgb(200, 200, 200);
+	border-bottom: 2px solid rgb(200,200,200);
+	color: rgb(200, 200, 200);
 }
 
 
 
 QDateEdit::up-arrow
 {   
-	image: url(:/assets/icons/icons8-uptriangle-48.png);
-	width: 10px;
-    height: 10px;
+	image: url(:/assets/icons/icons8-plus-24.png);
+	width: 18px;
+	height: 18px;
 
 }
 
 QDateEdit::down-arrow 
 {   
-	image: url(:/assets/icons/icons8-downtriangle-48.png);
-	width: 10px;
-    height: 10px;
+	image: url(:/assets/icons/icons8-subtract-24.png);
+	width: 18px;
+	height: 18px;
 
 }
 
-QDateEdit::up-button,
-QDateEdit::down-button
-{
-    subcontrol-origin: border;
-	background-color:rgb(6, 76, 130);
-    width: 30px;
+QDateEdit::down-arrow:disabled
+{   
+	image: url(:/assets/icons/gray-subtract-24.png);
+	width: 18px;
+	height: 18px;
+}
+
+QDateEdit::up-arrow:disabled
+{   
+	image:url(:/assets/icons/gray_plus-math-24.png);
+	width: 18px;
+	height: 18px;
+}
+
+QDateEdit::up-button{
+	border:none;
+    min-width:30px;
+    min-height: 30px;
+    subcontrol-origin: margin;
+    subcontrol-position: right;
+    top: 0px;
+    right: 0px;
+}
+
+QDateEdit::down-button{
+	min-width:30px;
+    min-height: 30px;
+    subcontrol-origin: margin;
+    subcontrol-position: left;
+    top: 0px;
+    right: 0px;
 }
 
 
 QDateEdit::up-button:disabled ,
 QDateEdit::down-button:disabled
     {
-    subcontrol-origin: border;
-	background-color:rgb(209, 209, 209);
-    width: 30px;
+
 }
 
 QDateEdit:focus
 {
-	background: rgb(241, 241, 241);
-	/*selection-background-color: black;*/
+border-bottom: 2px solid rgb(6,76,130);
 }
 
 /*********************************************/
@@ -693,14 +720,12 @@ border: 2px solid rgb(200,200,200);
 
 
 QPushButton[styleClass=&quot;blueIconButton&quot;]{
-		icon: url(:/assets/icons/icons8-connect-30.png);
 		color:rgb(12, 80, 139);
 		border:none;
 		background-color:transparent;
 }
 
 QPushButton[styleClass=&quot;blueIconButton&quot;]:hover{
-		icon: url(:/assets/icons/icons8-connect-hover-30.png);
 		color: rgb(7, 48, 81);
 		background-color:transparent;
 
@@ -749,6 +774,38 @@ color: #606060;
 QLabel[styleClass=&quot;h5&quot;]{
 	font-size: 14px;
 	color: rgb(52, 52, 52);
+}
+
+
+
+QPushButton[styleClass=&quot;circelNextBtn&quot;]{
+	
+background-color:transparent;
+border:none;
+icon: url(:/assets/icons/icons8-next-circel-48.png);
+}
+
+QPushButton[styleClass=&quot;circelNextBtn&quot;]:hover{
+	
+background-color:transparent;
+border:none;
+icon: url(:/assets/icons/icons8-next-circel-hover-48.png);
+}
+
+
+
+QPushButton[styleClass=&quot;circelPrevBtn&quot;]{
+	
+background-color:transparent;
+border:none;
+icon: url(:/assets/icons/icons8-prev-circel-48.png);
+}
+
+QPushButton[styleClass=&quot;circelPrevBtn&quot;]:hover{
+	
+background-color:transparent;
+border:none;
+icon: url(:/assets/icons/icons8-prev-circel-hover-48.png);
 }</string>
    </property>
    <property name="styleClass" stdset="0">
@@ -1408,6 +1465,18 @@ QPushButton[activeStyle=&quot;true&quot;]{
        </item>
        <item>
         <widget class="QStackedWidget" name="main_pages_stackw">
+         <property name="minimumSize">
+          <size>
+           <width>130</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
@@ -1429,7 +1498,10 @@ QPushButton[activeStyle=&quot;true&quot;]{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>1</number>
+         </property>
+         <property name="styleClass" stdset="0">
+          <string>blueBorderButton</string>
          </property>
          <widget class="QWidget" name="main_page">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -2305,7 +2377,7 @@ font-size: 17px;</string>
                       </widget>
                      </item>
                      <item alignment="Qt::AlignmentFlag::AlignTop">
-                      <widget class="QFrame" name="gridFrame">
+                      <widget class="QFrame" name="gridFrame1111">
                        <layout class="QGridLayout" name="gridLayout_10">
                         <item row="1" column="3">
                          <widget class="QLabel" name="mainpage_camera_connection_warning_lbl">
@@ -2720,9 +2792,9 @@ color: rgb(6, 76, 130);
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>0</y>
-                    <width>252</width>
-                    <height>1505</height>
+                    <y>-185</y>
+                    <width>339</width>
+                    <height>1441</height>
                    </rect>
                   </property>
                   <property name="styleSheet">
@@ -2947,6 +3019,12 @@ color: rgb(6, 76, 130);
                            <property name="enabled">
                             <bool>false</bool>
                            </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>165</width>
+                             <height>27</height>
+                            </size>
+                           </property>
                            <property name="displayFormat">
                             <string>yyyy/M/d</string>
                            </property>
@@ -2970,6 +3048,12 @@ color: rgb(6, 76, 130);
                           <widget class="QDateEdit" name="reportpage_start_date_dateedit">
                            <property name="enabled">
                             <bool>false</bool>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>165</width>
+                             <height>27</height>
+                            </size>
                            </property>
                            <property name="styleSheet">
                             <string notr="true"/>
@@ -3412,7 +3496,7 @@ color: rgb(6, 76, 130);
                   <widget class="QPushButton" name="reportpage_apply_filters_btn">
                    <property name="minimumSize">
                     <size>
-                     <width>0</width>
+                     <width>165</width>
                      <height>39</height>
                     </size>
                    </property>
@@ -3829,15 +3913,39 @@ QPushButton:hover{
                    </item>
                    <item>
                     <widget class="QPushButton" name="reportpage_previouse_btn">
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
                      <property name="text">
-                      <string>Previouse</string>
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>36</width>
+                       <height>36</height>
+                      </size>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>circelPrevBtn</string>
                      </property>
                     </widget>
                    </item>
                    <item>
                     <widget class="QPushButton" name="reportpage_next_btn">
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
                      <property name="text">
-                      <string>Next</string>
+                      <string/>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>36</width>
+                       <height>36</height>
+                      </size>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>circelNextBtn</string>
                      </property>
                     </widget>
                    </item>
@@ -4588,7 +4696,7 @@ color: #ffffff;
                 <enum>QTabWidget::TabShape::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>5</number>
+                <number>4</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4623,7 +4731,7 @@ color: #ffffff;
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>700</width>
+                      <width>1211</width>
                       <height>625</height>
                      </rect>
                     </property>
@@ -6383,7 +6491,7 @@ border-radius: 20px;
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>467</width>
+                          <width>567</width>
                           <height>706</height>
                          </rect>
                         </property>
@@ -7275,8 +7383,8 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>86</width>
-                      <height>64</height>
+                      <width>1211</width>
+                      <height>304</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7953,7 +8061,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>86</width>
+                                          <width>88</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -8881,7 +8989,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>86</width>
+                                          <width>88</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -9598,7 +9706,7 @@ QLabel{
               <string notr="true"/>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <widget class="QWidget" name="cilbration">
               <property name="styleClass" stdset="0">
@@ -9660,7 +9768,7 @@ QLabel{
                        </property>
                        <property name="minimumSize">
                         <size>
-                         <width>0</width>
+                         <width>165</width>
                          <height>39</height>
                         </size>
                        </property>
@@ -9859,7 +9967,7 @@ margin-right:5px;</string>
                      <widget class="QPushButton" name="calibrationpage_calib_btn">
                       <property name="minimumSize">
                        <size>
-                        <width>0</width>
+                        <width>165</width>
                         <height>39</height>
                        </size>
                       </property>
@@ -10357,8 +10465,36 @@ border: 2px solid #404040;</string>
                  </item>
                  <item>
                   <widget class="QPushButton" name="validationpage_hypotest_calculate_btn">
+                   <property name="minimumSize">
+                    <size>
+                     <width>130</width>
+                     <height>39</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+
+	background-color: rgb(12, 80, 139);
+	color: #fff;
+}
+
+QPushButton:hover{
+
+	background-color: rgb(6, 41, 70);
+	color: #fff;
+}</string>
+                   </property>
                    <property name="text">
                     <string>See Result</string>
+                   </property>
+                   <property name="styleClass" stdset="0">
+                    <string>blueBorderButton</string>
                    </property>
                   </widget>
                  </item>
@@ -10381,8 +10517,8 @@ border: 2px solid #404040;</string>
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>86</width>
-                    <height>34</height>
+                    <width>1223</width>
+                    <height>539</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -10803,8 +10939,8 @@ color: #ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>734</width>
-                    <height>471</height>
+                    <width>1223</width>
+                    <height>595</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -11321,8 +11457,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>512</width>
-                    <height>721</height>
+                    <width>1213</width>
+                    <height>616</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -11589,9 +11725,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>557</width>
-                <height>3251</height>
+                <y>-2652</y>
+                <width>1245</width>
+                <height>3261</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -13982,15 +14118,14 @@ QTableWidget::item
                        <property name="text">
                         <string/>
                        </property>
-                       <property name="icon">
-                        <iconset resource="Assets/Assets.qrc">
-                         <normaloff>:/assets/icons/icons8-previous-50.png</normaloff>:/assets/icons/icons8-previous-50.png</iconset>
-                       </property>
                        <property name="iconSize">
                         <size>
-                         <width>35</width>
-                         <height>35</height>
+                         <width>36</width>
+                         <height>36</height>
                         </size>
+                       </property>
+                       <property name="styleClass" stdset="0">
+                        <string>circelPrevBtn</string>
                        </property>
                       </widget>
                      </item>
@@ -14002,15 +14137,14 @@ QTableWidget::item
                        <property name="text">
                         <string/>
                        </property>
-                       <property name="icon">
-                        <iconset resource="Assets/Assets.qrc">
-                         <normaloff>:/assets/icons/icons8-next-50.png</normaloff>:/assets/icons/icons8-next-50.png</iconset>
-                       </property>
                        <property name="iconSize">
                         <size>
-                         <width>35</width>
-                         <height>35</height>
+                         <width>36</width>
+                         <height>36</height>
                         </size>
+                       </property>
+                       <property name="styleClass" stdset="0">
+                        <string>circelNextBtn</string>
                        </property>
                       </widget>
                      </item>
@@ -14219,8 +14353,8 @@ QFrame{
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>180</width>
+                <y>-609</y>
+                <width>1245</width>
                 <height>1109</height>
                </rect>
               </property>

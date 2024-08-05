@@ -1038,7 +1038,9 @@ class configSettingTabUI(commonSettingUI):
     
     def __signal_name_changed_event(self,node_name, signal_ui: Union[outputSignalUI, inputSignalUI]):
         #node_name = signal_ui.get_settings()['name']
-        print(node_name, 'changed')
+        if not node_name:
+            return
+        
         node_setting = {}
         if isinstance(signal_ui, outputSignalUI):
             node_setting = self.write_signals.get_by_id(node_name)

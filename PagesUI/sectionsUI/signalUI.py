@@ -19,8 +19,10 @@ class signalUIParent:
 
     def set_signals_items(self, items:list[str]):
         current = GUIBackend.get_combobox_selected(self.settings['name'])
-        GUIBackend.set_combobox_items(self.settings['name'], items)
+        GUIBackend.set_combobox_items(self.settings['name'], items, block_signal=False)
         GUIBackend.set_combobox_current_item(self.settings['name'], current, block_signal=False)
+
+
     
 
 

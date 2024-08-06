@@ -46,6 +46,16 @@ class configManager:
 
     def stop_pipeline(self,):
         self.__run_flag = False
+        thread_timers:list[timerThread] = [
+            self.delay_timer,
+            self.start_timer,
+            self.stop_timer,
+            self.stop_algo_timer,
+            ]
+        
+        for tht in thread_timers:
+            if tht is not None:
+                tht.stop()
 
     def set_plc(self, plc:PLCHandler):
         self.plc = plc

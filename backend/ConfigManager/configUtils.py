@@ -1,4 +1,8 @@
+import threading
+
 from backend.ConfigManager import configFlags
+from backend.Utils.threadTimer import timerThread
+
 
 class configUtils:
 
@@ -113,3 +117,19 @@ class configUtils:
             print(f"Function name: {func.__name__}")
             return func(*args, **kwargs)
         return wrapper
+    
+    @staticmethod
+    def callback_on_error(error_callback):
+        def decorator(func):
+            def wrapper(self, *args, **kwargs):
+                try:
+                    return func(self, *args, **kwargs)
+                except Exception as e:
+                    print(f"Error occurred in pipeline: {e}.")
+                    fallback_func = getattr(self, error_callback)
+                    timer = timerThread(20)
+                    timer.finish_signal.connect(fallback_func)
+                    threading.Thread(target=timer.run_single).start()
+                    
+            return wrapper
+        return decorator

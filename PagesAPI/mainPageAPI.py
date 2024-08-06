@@ -276,6 +276,11 @@ class mainPageAPI:
             self.uiHandeler.write_error_msg("chosen camera in settings is not connected")
             return False
         
+        if not self.database.calib_db.is_exist():
+            self.uiHandeler.write_error_msg("Your device is not calibrated. Please calibrate it first")
+            return False
+
+        
         return True
     
 
@@ -463,9 +468,11 @@ class mainPageAPI:
         #-----------------------------------------------------------------------------------------
         #load algorithm parms from database
         algorithm_data = self.database.setting_db.algorithm_db.load()
+        px2mm = self.database.calib_db.get_px2mm()
         #build detector
         self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 
-                                                            CONSTANTS.Calibration.PX2MM, 
+                                                            #CONSTANTS.Calibration.PX2MM, 
+                                                            px2mm,
                                                             algorithm_data['border'])
         #-----------------------------------------------------------------------------------------
         #load selected standard from databasr

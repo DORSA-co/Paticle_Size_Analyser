@@ -1498,7 +1498,7 @@ QPushButton[activeStyle=&quot;true&quot;]{
 </string>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <property name="styleClass" stdset="0">
           <string>blueBorderButton</string>
@@ -2792,8 +2792,8 @@ color: rgb(6, 76, 130);
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-185</y>
-                    <width>339</width>
+                    <y>0</y>
+                    <width>345</width>
                     <height>1441</height>
                    </rect>
                   </property>
@@ -4696,7 +4696,7 @@ color: #ffffff;
                 <enum>QTabWidget::TabShape::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>4</number>
+                <number>5</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -7517,7 +7517,7 @@ QPushButton:hover{
                       <x>0</x>
                       <y>0</y>
                       <width>1209</width>
-                      <height>827</height>
+                      <height>838</height>
                      </rect>
                     </property>
                     <property name="sizePolicy">
@@ -7566,6 +7566,105 @@ font-weight: bold;</string>
                            <string>Telecentric</string>
                           </property>
                          </item>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="horizontalSpacer_120">
+                         <property name="orientation">
+                          <enum>Qt::Orientation::Horizontal</enum>
+                         </property>
+                         <property name="sizeType">
+                          <enum>QSizePolicy::Policy::Fixed</enum>
+                         </property>
+                         <property name="sizeHint" stdset="0">
+                          <size>
+                           <width>38</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="config_tele_lens_setting_frame">
+                         <property name="minimumSize">
+                          <size>
+                           <width>40</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::Shape::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Shadow::Raised</enum>
+                         </property>
+                         <layout class="QHBoxLayout" name="horizontalLayout_85">
+                          <item>
+                           <widget class="QLabel" name="label_158">
+                            <property name="text">
+                             <string>Pixel Size(um)</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QDoubleSpinBox" name="config_pixel_size">
+                            <property name="minimumSize">
+                             <size>
+                              <width>120</width>
+                              <height>27</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_126">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                             <enum>QSizePolicy::Policy::Fixed</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>38</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QLabel" name="label_160">
+                            <property name="text">
+                             <string>Magnification</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QDoubleSpinBox" name="config_lens_magnification">
+                            <property name="minimumSize">
+                             <size>
+                              <width>120</width>
+                              <height>27</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777215</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="decimals">
+                             <number>3</number>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                        <item>
@@ -8061,7 +8160,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>88</width>
+                                          <width>70</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -8989,7 +9088,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>88</width>
+                                          <width>70</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -10517,8 +10616,8 @@ QPushButton:hover{
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1223</width>
-                    <height>539</height>
+                    <width>70</width>
+                    <height>34</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -10939,8 +11038,8 @@ color: #ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1223</width>
-                    <height>595</height>
+                    <width>734</width>
+                    <height>471</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -11457,8 +11556,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>1213</width>
-                    <height>616</height>
+                    <width>512</width>
+                    <height>721</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -11725,9 +11824,9 @@ border: 2px solid rgb(25, 68, 105);
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-2652</y>
-                <width>1245</width>
-                <height>3261</height>
+                <y>0</y>
+                <width>557</width>
+                <height>3251</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -14353,8 +14452,8 @@ QFrame{
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-609</y>
-                <width>1245</width>
+                <y>0</y>
+                <width>180</width>
                 <height>1109</height>
                </rect>
               </property>

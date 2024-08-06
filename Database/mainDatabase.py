@@ -8,6 +8,7 @@ else:
     from Database.standardsDB import standardsDB
     from Database.reportsDB import reportsDB
     from Database.metaDatabase import metaDatabase
+    from Database.calibDB import calibDB
 
 class mainDatabase:
     # username = 'root'
@@ -25,7 +26,8 @@ class mainDatabase:
         self.users_db = usersDB(self.dbManager)
         self.standards_db = standardsDB(self.dbManager)
         self.reports_db = reportsDB(self.dbManager)
-    
+        self.calib_db = calibDB(self.dbManager)
+        
     def connect(self,):
         mtb = metaDatabase()
         if mtb.is_exist():

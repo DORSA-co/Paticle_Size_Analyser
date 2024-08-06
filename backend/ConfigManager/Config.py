@@ -1,4 +1,6 @@
 from Database.settingDB import settingConfigDB
+from backend.ConfigManager import configFlags
+
 
 class Config:
     
@@ -72,3 +74,16 @@ class Config:
     
     def get_stop_algo_timout(self,):
         return self.__config['stop_algo_timout']
+
+
+    def is_telecentric_lens(self,) -> bool:
+        return self.__config['lens_type'] == configFlags.lensType.telecentric
+    
+    def is_standard_lens(self,) -> bool:
+        return self.__config['lens_type'] == configFlags.lensType.standard
+    
+    def get_magnification(self,) -> float:
+        return self.__config['lens_magnification']
+    
+    def get_pixel_size(self,) -> float:
+        return self.__config['pixel_size']

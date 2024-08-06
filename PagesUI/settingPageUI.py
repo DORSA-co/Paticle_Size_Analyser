@@ -904,6 +904,8 @@ class configSettingTabUI(commonSettingUI):
         
         self.settings = {
             'lens_type': self.ui.config_lens_type_combobox,
+            'pixel_size': self.ui.config_pixel_size,
+            'lens_magnification': self.ui.config_lens_magnification,
             'fps_regulator': self.ui.config_fps_regulator_combobox,
             'plc_enable': self.ui.config_plc_enable_checkbox,
             'auto_run_enable': self.ui.config_auto_run_checkbox,
@@ -941,6 +943,9 @@ class configSettingTabUI(commonSettingUI):
         GUIBackend.combobox_changeg_connector(self.ui.config_stop_mode_comboBox, 
                                               self.stop_mode_change)
         
+        GUIBackend.combobox_changeg_connector(self.ui.config_lens_type_combobox, 
+                                              self.lens_type_change)
+        
         GUIBackend.checkbox_connector(self.ui.config_stop_emergency_timer_checkbox,
                                                     self.stop_emergency_timer_visibility,
                                     )
@@ -953,6 +958,9 @@ class configSettingTabUI(commonSettingUI):
 
         items = self.mapDict.get_values('stop_mode')
         GUIBackend.set_combobox_items(self.ui.config_stop_mode_comboBox, items)
+
+        items = self.mapDict.get_values('lens_type')
+        GUIBackend.set_combobox_items(self.ui.config_lens_type_combobox, items)
 
         self.stop_emergency_timer_visibility(False)
 
@@ -996,6 +1004,19 @@ class configSettingTabUI(commonSettingUI):
 
         if page:
             GUIBackend.set_stack_widget_page(self.ui.config_stop_system_settings_stackwidget,page)
+
+
+    def lens_type_change(self,):
+        lens_type = GUIBackend.get_input(self.ui.config_lens_type_combobox)    
+        lens_type = self.mapDict.value2key('lens_type', lens_type)
+
+
+        if lens_type == 'tele':
+            GUIBackend.set_wgt_visible(self.ui.config_tele_lens_setting_frame, True)
+        else:
+            GUIBackend.set_wgt_visible(self.ui.config_tele_lens_setting_frame, False)
+
+        
 
     def __add_btns_connector(self,):
         for step_name in self.signals_wgt.keys():

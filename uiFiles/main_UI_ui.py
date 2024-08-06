@@ -1846,7 +1846,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -185, 339, 1441))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 345, 1441))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -4181,7 +4181,7 @@ class Ui_MainWindow(object):
         self.config_tab_main_scrollBar.setWidgetResizable(True)
         self.config_tab_main_scrollBarArea_contents = QWidget()
         self.config_tab_main_scrollBarArea_contents.setObjectName(u"config_tab_main_scrollBarArea_contents")
-        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, 0, 1209, 827))
+        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, 0, 1209, 838))
         sizePolicy2.setHeightForWidth(self.config_tab_main_scrollBarArea_contents.sizePolicy().hasHeightForWidth())
         self.config_tab_main_scrollBarArea_contents.setSizePolicy(sizePolicy2)
         self.verticalLayout_86 = QVBoxLayout(self.config_tab_main_scrollBarArea_contents)
@@ -4207,6 +4207,49 @@ class Ui_MainWindow(object):
         self.config_lens_type_combobox.setMinimumSize(QSize(160, 36))
 
         self.horizontalLayout_18.addWidget(self.config_lens_type_combobox)
+
+        self.horizontalSpacer_120 = QSpacerItem(38, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_18.addItem(self.horizontalSpacer_120)
+
+        self.config_tele_lens_setting_frame = QFrame(self.config_tab_main_scrollBarArea_contents)
+        self.config_tele_lens_setting_frame.setObjectName(u"config_tele_lens_setting_frame")
+        self.config_tele_lens_setting_frame.setMinimumSize(QSize(40, 0))
+        self.config_tele_lens_setting_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.config_tele_lens_setting_frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_85 = QHBoxLayout(self.config_tele_lens_setting_frame)
+        self.horizontalLayout_85.setObjectName(u"horizontalLayout_85")
+        self.label_158 = QLabel(self.config_tele_lens_setting_frame)
+        self.label_158.setObjectName(u"label_158")
+
+        self.horizontalLayout_85.addWidget(self.label_158)
+
+        self.config_pixel_size = QDoubleSpinBox(self.config_tele_lens_setting_frame)
+        self.config_pixel_size.setObjectName(u"config_pixel_size")
+        self.config_pixel_size.setMinimumSize(QSize(120, 27))
+        self.config_pixel_size.setMaximumSize(QSize(16777215, 16777215))
+
+        self.horizontalLayout_85.addWidget(self.config_pixel_size)
+
+        self.horizontalSpacer_126 = QSpacerItem(38, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_85.addItem(self.horizontalSpacer_126)
+
+        self.label_160 = QLabel(self.config_tele_lens_setting_frame)
+        self.label_160.setObjectName(u"label_160")
+
+        self.horizontalLayout_85.addWidget(self.label_160)
+
+        self.config_lens_magnification = QDoubleSpinBox(self.config_tele_lens_setting_frame)
+        self.config_lens_magnification.setObjectName(u"config_lens_magnification")
+        self.config_lens_magnification.setMinimumSize(QSize(120, 27))
+        self.config_lens_magnification.setMaximumSize(QSize(16777215, 16777215))
+        self.config_lens_magnification.setDecimals(3)
+
+        self.horizontalLayout_85.addWidget(self.config_lens_magnification)
+
+
+        self.horizontalLayout_18.addWidget(self.config_tele_lens_setting_frame)
 
         self.horizontalSpacer_65 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -4450,7 +4493,7 @@ class Ui_MainWindow(object):
         self.config_start_system_signals_scroll_area.setWidgetResizable(True)
         self.config_start_system_signals_scroll_contents = QWidget()
         self.config_start_system_signals_scroll_contents.setObjectName(u"config_start_system_signals_scroll_contents")
-        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 88, 64))
+        self.config_start_system_signals_scroll_contents.setGeometry(QRect(0, 0, 70, 64))
         self.config_start_system_signals_scroll_contents.setStyleSheet(u"")
         self.verticalLayout_77 = QVBoxLayout(self.config_start_system_signals_scroll_contents)
         self.verticalLayout_77.setObjectName(u"verticalLayout_77")
@@ -4903,7 +4946,7 @@ class Ui_MainWindow(object):
         self.config_stop_system_signals_scroll_area.setWidgetResizable(True)
         self.config_stop_system_signals_scroll_contents = QWidget()
         self.config_stop_system_signals_scroll_contents.setObjectName(u"config_stop_system_signals_scroll_contents")
-        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 88, 64))
+        self.config_stop_system_signals_scroll_contents.setGeometry(QRect(0, 0, 70, 64))
         self.verticalLayout_97 = QVBoxLayout(self.config_stop_system_signals_scroll_contents)
         self.verticalLayout_97.setObjectName(u"verticalLayout_97")
         self.config_stop_system_signals_add_btn = QPushButton(self.config_stop_system_signals_scroll_contents)
@@ -5707,7 +5750,7 @@ class Ui_MainWindow(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.sticalhyp_scroll_area = QWidget()
         self.sticalhyp_scroll_area.setObjectName(u"sticalhyp_scroll_area")
-        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 1223, 539))
+        self.sticalhyp_scroll_area.setGeometry(QRect(0, 0, 70, 34))
         self.verticalLayout_49 = QVBoxLayout(self.sticalhyp_scroll_area)
         self.verticalLayout_49.setObjectName(u"verticalLayout_49")
         self.validationpage_hypotest_sections_layout = QVBoxLayout()
@@ -5915,7 +5958,7 @@ class Ui_MainWindow(object):
         self.scrollArea_9.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1223, 595))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 734, 471))
         self.verticalLayout_89 = QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_89.setObjectName(u"verticalLayout_89")
         self.horizontalLayout_77 = QHBoxLayout()
@@ -6206,7 +6249,7 @@ class Ui_MainWindow(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.aboutScrollArea = QWidget()
         self.aboutScrollArea.setObjectName(u"aboutScrollArea")
-        self.aboutScrollArea.setGeometry(QRect(0, 0, 1213, 616))
+        self.aboutScrollArea.setGeometry(QRect(0, 0, 512, 721))
         self.verticalLayout_29 = QVBoxLayout(self.aboutScrollArea)
         self.verticalLayout_29.setObjectName(u"verticalLayout_29")
         self.label_82 = QLabel(self.aboutScrollArea)
@@ -6357,7 +6400,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, -2652, 1245, 3261))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 557, 3251))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -7660,7 +7703,7 @@ class Ui_MainWindow(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.compareScrollAreaWidget = QWidget()
         self.compareScrollAreaWidget.setObjectName(u"compareScrollAreaWidget")
-        self.compareScrollAreaWidget.setGeometry(QRect(0, -609, 1245, 1109))
+        self.compareScrollAreaWidget.setGeometry(QRect(0, 0, 180, 1109))
         self.compareScrollAreaWidget.setStyleSheet(u"#compareScrollAreaWidget\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -8102,9 +8145,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         MainWindow.destroyed.connect(self.calibrationpage_last_calib_tabel.clearSelection)
 
-        self.main_pages_stackw.setCurrentIndex(1)
+        self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(4)
+        self.settingpage_tabs.setCurrentIndex(5)
         self.tabWidget_2.setCurrentIndex(0)
         self.config_start_system_settings_stackwidget.setCurrentIndex(0)
         self.config_stop_system_settings_stackwidget.setCurrentIndex(0)
@@ -8458,6 +8501,8 @@ class Ui_MainWindow(object):
         self.label_139.setText(QCoreApplication.translate("MainWindow", u"Lens Type", None))
         self.config_lens_type_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"Telecentric", None))
 
+        self.label_158.setText(QCoreApplication.translate("MainWindow", u"Pixel Size(um)", None))
+        self.label_160.setText(QCoreApplication.translate("MainWindow", u"Magnification", None))
         self.label_137.setText(QCoreApplication.translate("MainWindow", u"FPS Regulators", None))
         self.config_fps_regulator_combobox.setItemText(0, QCoreApplication.translate("MainWindow", u"PLC", None))
         self.config_fps_regulator_combobox.setItemText(1, QCoreApplication.translate("MainWindow", u"Micro", None))

@@ -24,6 +24,7 @@ class reProcessApp:
         self.db.build()
         self.db = self.db.reports_db
         self.all_samples = self.db.load_all()
+        raise "not support new px2mm"
 
         self.detector = particlesDetector.particlesDetector(thresh, 
                                                             CONSTANTS.Calibration.PX2MM, 

@@ -49,12 +49,17 @@ class main_API(QObject):
         else:
             self.db.build()
 
+
         self.mediator = Mediator()
         self.mediator.set_main_api(self)
 
         self.configManager = configManager()
 
         self.checked_device_time = 0
+        #------------------------------------------------------------------------------------------
+        if self.configManager.Config.is_telecentric_lens():
+            self.load_tele_lens_parms()
+        
         #------------------------------------------------------------------------------------------
         self.camera_device_info = {}
         self.cameras: dict[str, Camera] = {}
@@ -166,6 +171,18 @@ class main_API(QObject):
 
         self.config_ui()
         print('__init__ appAPI finised')
+
+    def load_tele_lens_parms(self,):
+        mag = self.configManager.Config.get_magnification()
+        px_size = self.configManager.Config.get_pixel_size()
+        px2mm = (px_size / 1000) / mag
+        self.db.calib_db.save(
+            { 'date': datetime.now().strftime("%Y/%m/%d"),
+              'px2mm': px2mm
+            }
+        )
+        
+
 
     def define_nodes(self,):
         nodes_settings = self.db.setting_db.plc_nodes_db.load_all()

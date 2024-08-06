@@ -31,6 +31,7 @@ class configManager:
         self.start_timer_thread:threading.Thread = None
 
         self.__run_flag = False
+        self.__restart = False
 
         self.timeoutWorker = None
 
@@ -49,10 +50,12 @@ class configManager:
     def set_plc(self, plc:PLCHandler):
         self.plc = plc
 
+
+    # @configUtils.callback_on_error('uncompleted_pipeline')
+    
     @configUtils.print_function_name
     def uncompleted_pipeline(self,):
         self.mediator.send_pipline_restart()
-
         self.stop_timeout()
         self.run_start_pipeline()
         self.mediator.send_failed_pipline()
@@ -72,7 +75,7 @@ class configManager:
  
     #----------------------------------------------------------------------------------------------------
 
-
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name    
     def run_start_pipeline(self,):
         if not self.__run_flag:
@@ -87,23 +90,25 @@ class configManager:
             self.run_reading_start_signals()
 
 
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_start_timer(self, ):
         if not self.__run_flag:
             return
         
+        
         if self.start_timer_thread is not None and self.start_timer_thread.is_alive():
             self.start_done(False)
-            self.uncompleted_pipeline()
         
         t = self.Config.get_start_time_cycle()
         self.start_timer = timerThread(t, name='start_timer')
         self.start_timer.finish_signal.connect(self.start_timer_finish_event)
         self.start_timer.counter_signal.connect(self.start_timer_counter)
 
-        self.start_timer_thread = threading.Thread(target=self.start_timer.run_single, daemon=True)
+        self.start_timer_thread = threading.Thread(target=self.start_timer.run_single, daemon=False)
         self.start_timer_thread.start()
 
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_reading_start_signals(self, ):
         if not self.__run_flag:
@@ -122,6 +127,9 @@ class configManager:
                                             node_names,
                                             self.start_signals_update_event)
 
+
+
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def start_signals_update_event(self, values:dict):
         if not self.__run_flag:
@@ -150,16 +158,19 @@ class configManager:
     def start_timer_counter(self, t):
         self.mediator.send_config_timer('start', t)
 
+
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def start_timer_finish_event(self,):
         self.start_done(True)
-    
+        
 
+    
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def start_done(self, flag:bool):
         if not self.__run_flag:
             return
-        
         self.mediator.send_step_done('start', flag)
         if flag:
             self.run_permission_pipline()
@@ -170,6 +181,7 @@ class configManager:
     #-------------------------------------------------------------------------------------------------
     #                                       permission
     #-------------------------------------------------------------------------------------------------
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_permission_pipline(self,):
         if not self.__run_flag:
@@ -183,7 +195,7 @@ class configManager:
             self.permisions_done(True)
 
 
-
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_reading_permisions_signals(self,permisions_signals: list[dict]):
         if not self.__run_flag:
@@ -193,7 +205,6 @@ class configManager:
         
         if self.plc is None or not self.plc.is_connect():
             self.permisions_done(False)
-            self.uncompleted_pipeline()
 
         
         else:
@@ -216,7 +227,7 @@ class configManager:
         # )
         # #****************************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%****************************************
         
-
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def permisions_signals_event(self, values:dict):
         if not self.__run_flag:
@@ -236,6 +247,8 @@ class configManager:
             self.permisions_done(False)
             
 
+
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def permisions_done(self, res):
         self.mediator.send_step_done('permission', res)
@@ -250,6 +263,7 @@ class configManager:
     #-------------------------------------------------------------------------------------------------
     #                                       delay
     #-------------------------------------------------------------------------------------------------
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_delay_pipline(self,):
         if not self.__run_flag:
@@ -262,6 +276,7 @@ class configManager:
             self.start_delay_timer(t)
 
 
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def start_delay_timer(self, t):
         if not self.__run_flag:
@@ -286,6 +301,7 @@ class configManager:
     #-------------------------------------------------------------------------------------------------
     #                                       run processing
     #-------------------------------------------------------------------------------------------------
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_processing(self,):
         if not self.__run_flag:
@@ -294,6 +310,7 @@ class configManager:
         self.mediator.send_start_processing_request()
 
 
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def rescive_run_pocessing_status(self, flag):
         if not self.__run_flag:
@@ -313,6 +330,7 @@ class configManager:
     #-------------------------------------------------------------------------------------------------
     #                                       delay
     #-------------------------------------------------------------------------------------------------
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_stop_pipline(self, ):
         if not self.__run_flag:
@@ -331,6 +349,7 @@ class configManager:
             self.run_image_detection_stop()
 
 
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_stop_timer(self,):
         if not self.__run_flag:
@@ -347,11 +366,13 @@ class configManager:
         self.mediator.send_config_timer('stop', t)
         
 
-   
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def stop_timer_finish_event(self,):
         self.stop_done()
 
+
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_reading_stop_signals(self,):
         if not self.__run_flag:
@@ -389,7 +410,7 @@ class configManager:
         self.mediator.send_nodes_log('stop', log)
     
 
-
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def run_image_detection_stop(self):
         t = self.Config.get_stop_algo_timout()
@@ -416,14 +437,15 @@ class configManager:
             if particel.avg_diameter > thresh_size:
                 self.stop_algo_timer.recurring()
                 break
+            
         
-    
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name 
     def stop_algo_timout(self,):
         self.stop_done()
 
 
-
+    @configUtils.callback_on_error('uncompleted_pipeline')
     @configUtils.print_function_name
     def stop_done(self,):
         self.mediator.send_step_done('stop', True)
@@ -432,12 +454,13 @@ class configManager:
         self.stop_processing()
         
 
-
+    @configUtils.callback_on_error('uncompleted_pipeline')
     def stop_processing(self,):
         self.mediator.send_stop_processing_request()
         self.finish_pipline()
 
 
+    @configUtils.callback_on_error('uncompleted_pipeline')
     def finish_pipline(self,):
         self.mediator.send_pipline_restart()
         self.run_start_pipeline()
@@ -445,7 +468,7 @@ class configManager:
 
 
 
-    
+    @configUtils.callback_on_error('uncompleted_pipeline')
     def write_output_signal(self, name):
         signals = self.Config.get_output_signals(name)
 

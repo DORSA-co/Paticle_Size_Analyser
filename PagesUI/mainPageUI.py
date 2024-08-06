@@ -29,7 +29,7 @@ class mainPageUI:
                 'warning-icon':':/assets/icons/icons8-connection-red-50.png',
                 'status': True,
                 'massage': 'Please make sure the camaera cable is connected correctly, otherwise disconnect and reconnect camera cable again',
-                'label': self.ui.mainpage_plc_warning_lbl,
+                #'label': self.ui.mainpage_plc_warning_lbl,
                 },
             'camera_grabbing': {
                 'btn': self.ui.mainpage_camera_grabbing_warning_btn,
@@ -37,7 +37,7 @@ class mainPageUI:
                 'warning-icon':':/assets/icons/icons8-camera-red-50.png',
                 'status': True,
                 'massage': 'Grab image Failed, please check trigger connection if synchronizer is hardware',
-                'label': self.ui.mainpage_plc_warning_lbl,
+                #'label': self.ui.mainpage_plc_warning_lbl,
                 },
 
             'illumination': {
@@ -46,7 +46,7 @@ class mainPageUI:
                 'warning-icon':':/assets/icons/icons8-headlight-red-50.png',
                 'status': True,
                 'massage': 'Error',
-                'label': self.ui.mainpage_plc_warning_lbl,
+                #'label': self.ui.mainpage_plc_warning_lbl,
             },
                              
             'tempreture': {
@@ -55,7 +55,7 @@ class mainPageUI:
                 'warning-icon':':/assets/icons/icons8-thermometer-red-50.png',
                 'status': True,
                 'massage': 'The temperature of the camera is very high, please turn off the camera for a while',
-                'label': self.ui.mainpage_plc_warning_lbl,
+                #'label': self.ui.mainpage_plc_warning_lbl,
             },
 
             'plc': {
@@ -64,7 +64,7 @@ class mainPageUI:
                 'warning-icon':':/assets/icons/icons8-headlight-red-50.png',
                 'status': True,
                 'massage': 'PLC Disconnected, Please check the connection',
-                'label': self.ui.mainpage_plc_warning_lbl,
+                #'label': self.ui.mainpage_plc_warning_lbl,
             },
         }
         
@@ -151,7 +151,7 @@ class mainPageUI:
     
     def hide_warning_indicator(self, name:str):
         GUIBackend.set_wgt_visible(self.warning_btns[name]['btn'], False)
-        GUIBackend.set_wgt_visible(self.warning_btns[name]['label'], False)
+        #GUIBackend.set_wgt_visible(self.warning_btns[name]['label'], False)
 
 
 
@@ -164,8 +164,11 @@ class mainPageUI:
                                         isplaying,
                                         repolish_style=True)
         
-        for btn in self.player_btns.values():
-            GUIBackend.set_disable_enable(btn, not(isplaying))
+        if isplaying:
+            for btn in self.player_btns.values():
+                GUIBackend.set_disable_enable(btn, False)
+        else:
+            self.set_player_buttons_status('stop')
     
     def hide_auto_run(self,):
         GUIBackend.set_wgt_visible(self.ui.mainpage_run_auto_btn, False)

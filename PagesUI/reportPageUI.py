@@ -11,13 +11,14 @@ from Constants import CONSTANTS
 from dialogWindows.manualRebuildDialogUI import manualRebuildDialogUI
 from dialogWindows.PointDialogUI import Point2D
 from uiUtils.IO import Mouse
+from uiFiles.main_UI_ui import Ui_MainWindow
 
 import numpy as np
 
 class reportPageUI(commonUI):
     
 
-    def __init__(self, ui):
+    def __init__(self, ui:Ui_MainWindow):
         super().__init__()
         self.ui = ui
         self.rebuildDialog = manualRebuildDialogUI()
@@ -279,8 +280,8 @@ class reportPageUI(commonUI):
                 if name == 'range':
                     GUIBackend.set_table_cell_color(self.statictics_table, 
                                                     index=(row_idx, col_idx),
-                                                     bg_color=(6, 76, 130), 
-                                                     color=(255,255,255))
+                                                     bg_color=None, 
+                                                     color=(20,20,20))
             
 
 

@@ -2,7 +2,7 @@ import time
 
 from PySide6 import QtWidgets, QtCore, QtGui
 import PySide6.QtWidgets 
-from guiBackend import GUIBackend
+from uiUtils.guiBackend import GUIBackend
 
 CODE_NAME_BUTTON_STYLE ={
     'normal': """ QPushButton{
@@ -118,15 +118,39 @@ COMPARE_COMBOBOXE = """
         """
 
 TABLE_SPINBOX = """
-QSpinBox, QDoubleSpinBox  
+QSpinBox, 
+QDoubleSpinBox  
 {
-    min-width:50xp;
-    max-width:50px;
-	min-height: 0px;
+    min-width:70px;
+    max-width:70px;
+	min-height: 20px;
     max-height: 20px;
 	font-size: 12px;
 }
 """
+
+
+class CustomTabWidget(QtWidgets.QTabWidget):
+    def __init__(self, parent=None):
+        if parent is None:
+            super().__init__()
+        else:
+            super().__init__(parent=parent)
+    def paintEvent(self, event):
+        super().paintEvent(event)
+
+        
+        painter = QtGui.QPainter(self)
+        size = 5
+        pen = QtGui.QPen(QtCore.Qt.white, size)
+        painter.setPen(pen)
+        selected_index = self.currentIndex()
+        selected_rect = self.tabBar().tabRect(selected_index)
+        painter.drawLine(selected_rect.x()+size, selected_rect.y()+selected_rect.height(), selected_rect.x()+selected_rect.width()-size, selected_rect.y()+selected_rect.height())
+
+        
+
+
 
 class editButton(QtWidgets.QPushButton):
 
@@ -208,7 +232,15 @@ class tabelCheckbox(QtWidgets.QCheckBox):
                                 {{
                                width :{w}px;
                                height :{h}px;
-                               }}""")
+                               }}
+                            
+                            QCheckBox::indicator:checked
+                                {{
+                               width :{w+4}px;
+                               height :{h+4}px;
+                               }}
+
+                               """ )
 
         #self.setMaximumWidth(h+5)
         #self.setMaximumWidth(w+5)

@@ -57,6 +57,9 @@ class configManager:
             if tht is not None:
                 tht.stop()
 
+        self.mediator.send_stop_processing_request()
+
+
     def set_plc(self, plc:PLCHandler):
         self.plc = plc
 
@@ -107,8 +110,8 @@ class configManager:
             return
         
         
-        if self.start_timer_thread is not None and self.start_timer_thread.is_alive():
-            self.start_done(False)
+        #if self.start_timer_thread is not None and self.start_timer_thread.is_alive():
+        #    self.start_done(False)
         
         t = self.Config.get_start_time_cycle()
         self.start_timer = timerThread(t, name='start_timer')

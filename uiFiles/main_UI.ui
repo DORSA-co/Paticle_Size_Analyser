@@ -4732,52 +4732,116 @@ color: #ffffff;
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_104">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_89" stretch="1,1">
-             <item>
-              <widget class="QFrame" name="hmi_input_section_frame">
-               <property name="frameShape">
-                <enum>QFrame::Shape::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Shadow::Raised</enum>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_105">
-                <item alignment="Qt::AlignmentFlag::AlignHCenter">
-                 <widget class="QLabel" name="label_161">
-                  <property name="text">
-                   <string>Input Signals</string>
-                  </property>
-                  <property name="styleClass" stdset="0">
-                   <string>section_title</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QFrame" name="hmi_output_section_frame">
-               <property name="frameShape">
-                <enum>QFrame::Shape::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Shadow::Raised</enum>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_106">
-                <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
-                 <widget class="QLabel" name="label_162">
-                  <property name="text">
-                   <string>Output Signals</string>
-                  </property>
-                  <property name="styleClass" stdset="0">
-                   <string>section_title</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QLabel" name="hmi_page_error_label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>31</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel[styleClass=&quot;errorText&quot;]{
+	font-size: 14px;
+	font-weight: bold;
+	color: rgb(255, 95, 84);
+	padding:5px;
+}</string>
+             </property>
+             <property name="text">
+              <string>Error</string>
+             </property>
+             <property name="styleClass" stdset="0">
+              <string>errorText</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="hmi_nodes_frame">
+             <layout class="QHBoxLayout" name="horizontalLayout_89" stretch="0,0,0,0">
+              <item>
+               <spacer name="horizontalSpacer_128">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QFrame" name="hmi_input_section_frame">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_105">
+                 <item alignment="Qt::AlignmentFlag::AlignHCenter">
+                  <widget class="QLabel" name="label_161">
+                   <property name="text">
+                    <string>Input Signals</string>
+                   </property>
+                   <property name="styleClass" stdset="0">
+                    <string>section_title</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="hmi_output_section_frame">
+                <property name="frameShape">
+                 <enum>QFrame::Shape::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Shadow::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_106">
+                 <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+                  <widget class="QLabel" name="label_162">
+                   <property name="text">
+                    <string>Output Signals</string>
+                   </property>
+                   <property name="styleClass" stdset="0">
+                    <string>section_title</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_129">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </widget>

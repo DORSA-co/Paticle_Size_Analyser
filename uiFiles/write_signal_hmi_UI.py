@@ -26,9 +26,9 @@ class Ui_writeSignalHMI(object):
     def setupUi(self, writeSignalHMI):
         if not writeSignalHMI.objectName():
             writeSignalHMI.setObjectName(u"writeSignalHMI")
-        writeSignalHMI.resize(400, 90)
-        writeSignalHMI.setMinimumSize(QSize(250, 90))
-        writeSignalHMI.setMaximumSize(QSize(400, 90))
+        writeSignalHMI.resize(300, 56)
+        writeSignalHMI.setMinimumSize(QSize(300, 50))
+        writeSignalHMI.setMaximumSize(QSize(300, 56))
         writeSignalHMI.setStyleSheet(u"#SignalSetting{\n"
 "\n"
 "}\n"
@@ -39,6 +39,7 @@ class Ui_writeSignalHMI(object):
 "}")
         self.verticalLayout = QVBoxLayout(writeSignalHMI)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.main_frame = QFrame(writeSignalHMI)
         self.main_frame.setObjectName(u"main_frame")
         self.main_frame.setMinimumSize(QSize(0, 0))
@@ -65,6 +66,7 @@ class Ui_writeSignalHMI(object):
         self.main_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.main_frame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(9, 9, 9, 9)
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.name_label = QLabel(self.main_frame)
@@ -74,6 +76,7 @@ class Ui_writeSignalHMI(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.name_label.sizePolicy().hasHeightForWidth())
         self.name_label.setSizePolicy(sizePolicy)
+        self.name_label.setMinimumSize(QSize(100, 0))
         self.name_label.setStyleSheet(u"font-weight:bold;")
 
         self.horizontalLayout_2.addWidget(self.name_label)
@@ -82,15 +85,15 @@ class Ui_writeSignalHMI(object):
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
 
-        self.doubleSpinBox = QDoubleSpinBox(self.main_frame)
-        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
-        self.doubleSpinBox.setMinimumSize(QSize(120, 0))
+        self.numeric_value_input = QDoubleSpinBox(self.main_frame)
+        self.numeric_value_input.setObjectName(u"numeric_value_input")
+        self.numeric_value_input.setMinimumSize(QSize(120, 0))
 
-        self.horizontalLayout_2.addWidget(self.doubleSpinBox)
+        self.horizontalLayout_2.addWidget(self.numeric_value_input)
 
         self.write_bool_value_frame = QFrame(self.main_frame)
         self.write_bool_value_frame.setObjectName(u"write_bool_value_frame")
-        self.write_bool_value_frame.setMinimumSize(QSize(20, 0))
+        self.write_bool_value_frame.setMinimumSize(QSize(100, 0))
         self.write_bool_value_frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.write_bool_value_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout = QHBoxLayout(self.write_bool_value_frame)
@@ -103,11 +106,11 @@ class Ui_writeSignalHMI(object):
 
         self.horizontalLayout.addWidget(self.label_2)
 
-        self.checkBox = SwitchControl(self.write_bool_value_frame)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setStyleSheet(u"")
+        self.bool_value_input = SwitchControl(self.write_bool_value_frame)
+        self.bool_value_input.setObjectName(u"bool_value_input")
+        self.bool_value_input.setStyleSheet(u"")
 
-        self.horizontalLayout.addWidget(self.checkBox)
+        self.horizontalLayout.addWidget(self.bool_value_input)
 
         self.label_3 = QLabel(self.write_bool_value_frame)
         self.label_3.setObjectName(u"label_3")
@@ -141,7 +144,7 @@ class Ui_writeSignalHMI(object):
         self.main_frame.setProperty("state", QCoreApplication.translate("writeSignalHMI", u"off", None))
         self.name_label.setText(QCoreApplication.translate("writeSignalHMI", u"name", None))
         self.label_2.setText(QCoreApplication.translate("writeSignalHMI", u"off", None))
-        self.checkBox.setText("")
+        self.bool_value_input.setText("")
         self.label_3.setText(QCoreApplication.translate("writeSignalHMI", u"on", None))
     # retranslateUi
 

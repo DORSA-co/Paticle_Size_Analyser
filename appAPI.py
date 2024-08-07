@@ -17,6 +17,8 @@ from PagesAPI.reportPageAPI import reportPageAPI
 from PagesAPI.reportsPageAPI import reportsPageAPI
 from PagesAPI.comparePageAPI import comparePageAPI
 from PagesAPI.validationPageAPI import validationPageAPI
+from PagesAPI.hmiPageAPI import hmiPageAPI
+
 from appUI import mainUI
 from backend.PLC.PLCHandler import PLCHandler
 #------------------------------------------------------------
@@ -73,7 +75,8 @@ class main_API(QObject):
             self.plc = PLCHandler("opc.tcp://localhost:4840/freeopcua/server/")
             self.plc.set_connected_event(self.plc_connect_event)
             self.plc.set_disconnected_event(self.plc_disconnected_event)
-            self.plc.connect_request()
+            #connect request at the end of api
+            self.plc.connect_request() 
             self.define_nodes()
             self.configManager.set_plc(self.plc)
         # self.plc.nodesHandler.set_change_value_event(self.node_change_value_event)
@@ -112,6 +115,7 @@ class main_API(QObject):
         self.reportsPageAPI = reportsPageAPI(uiHandeler=self.uiHandeler.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.uiHandeler.comparePage, database=self.db)
         self.validationPageAPI = validationPageAPI(ui=self.uiHandeler.validationPage, database=self.db, cameras=self.cameras)
+        self.hmiPageAPI = hmiPageAPI(self.uiHandeler.hmiPage, self.db.setting_db.plc_nodes_db, None)
 
         #for cam_device_info in cameras_serial_numbers:
             #self.creat_camera(cam_device_info)
@@ -138,7 +142,7 @@ class main_API(QObject):
             'main': self.mainPageAPI,
             'reports': self.reportsPageAPI,
             'grading_ranges': None,
-            'hmi': None,
+            'hmi': self.hmiPageAPI,
             'calibration': self.validationPageAPI,
             'settings': self.settingPageAPI,
             'user': None,
@@ -152,7 +156,7 @@ class main_API(QObject):
             'main': self.mainPageAPI,
             'reports': None,
             'grading_ranges': self.gradingRangesPageAPI,
-            'hmi': None,
+            'hmi': self.hmiPageAPI,
             'calibration': None,
             'settings': self.settingPageAPI,
             'user': None,
@@ -342,11 +346,13 @@ class main_API(QObject):
         print("PLC connected")
         self.configManager.set_plc(self.plc)
         self.mainPageAPI.set_system_status('plc', status=True)
+        self.hmiPageAPI.set_plc(self.plc)
 
                 
     def plc_disconnected_event(self,):
         print("PLC disconnected!!") 
         self.mainPageAPI.set_system_status('plc', status=False)
+        self.hmiPageAPI.plc_disconnected_event()
 
 
 

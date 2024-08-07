@@ -2807,9 +2807,30 @@ class Ui_MainWindow(object):
         self.hmi_page.setObjectName(u"hmi_page")
         self.verticalLayout_104 = QVBoxLayout(self.hmi_page)
         self.verticalLayout_104.setObjectName(u"verticalLayout_104")
-        self.horizontalLayout_89 = QHBoxLayout()
+        self.hmi_page_error_label = QLabel(self.hmi_page)
+        self.hmi_page_error_label.setObjectName(u"hmi_page_error_label")
+        sizePolicy3.setHeightForWidth(self.hmi_page_error_label.sizePolicy().hasHeightForWidth())
+        self.hmi_page_error_label.setSizePolicy(sizePolicy3)
+        self.hmi_page_error_label.setMinimumSize(QSize(0, 0))
+        self.hmi_page_error_label.setMaximumSize(QSize(16777215, 31))
+        self.hmi_page_error_label.setStyleSheet(u"QLabel[styleClass=\"errorText\"]{\n"
+"	font-size: 14px;\n"
+"	font-weight: bold;\n"
+"	color: rgb(255, 95, 84);\n"
+"	padding:5px;\n"
+"}")
+
+        self.verticalLayout_104.addWidget(self.hmi_page_error_label)
+
+        self.hmi_nodes_frame = QFrame(self.hmi_page)
+        self.hmi_nodes_frame.setObjectName(u"hmi_nodes_frame")
+        self.horizontalLayout_89 = QHBoxLayout(self.hmi_nodes_frame)
         self.horizontalLayout_89.setObjectName(u"horizontalLayout_89")
-        self.hmi_input_section_frame = QFrame(self.hmi_page)
+        self.horizontalSpacer_128 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_89.addItem(self.horizontalSpacer_128)
+
+        self.hmi_input_section_frame = QFrame(self.hmi_nodes_frame)
         self.hmi_input_section_frame.setObjectName(u"hmi_input_section_frame")
         self.hmi_input_section_frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.hmi_input_section_frame.setFrameShadow(QFrame.Shadow.Raised)
@@ -2823,7 +2844,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_89.addWidget(self.hmi_input_section_frame)
 
-        self.hmi_output_section_frame = QFrame(self.hmi_page)
+        self.hmi_output_section_frame = QFrame(self.hmi_nodes_frame)
         self.hmi_output_section_frame.setObjectName(u"hmi_output_section_frame")
         self.hmi_output_section_frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.hmi_output_section_frame.setFrameShadow(QFrame.Shadow.Raised)
@@ -2837,10 +2858,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_89.addWidget(self.hmi_output_section_frame)
 
-        self.horizontalLayout_89.setStretch(0, 1)
-        self.horizontalLayout_89.setStretch(1, 1)
+        self.horizontalSpacer_129 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_104.addLayout(self.horizontalLayout_89)
+        self.horizontalLayout_89.addItem(self.horizontalSpacer_129)
+
+
+        self.verticalLayout_104.addWidget(self.hmi_nodes_frame)
 
         self.main_pages_stackw.addWidget(self.hmi_page)
         self.settings_page = QWidget()
@@ -8417,6 +8440,8 @@ class Ui_MainWindow(object):
         self.gradingranges_new_standard_success_lbl.setText(QCoreApplication.translate("MainWindow", u"Success", None))
         self.gradingranges_tabs.setTabText(self.gradingranges_tabs.indexOf(self.new_standard_tab), QCoreApplication.translate("MainWindow", u"New Standard", None))
         self.hmi_page.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"tabPage", None))
+        self.hmi_page_error_label.setText(QCoreApplication.translate("MainWindow", u"Error", None))
+        self.hmi_page_error_label.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"errorText", None))
         self.label_161.setText(QCoreApplication.translate("MainWindow", u"Input Signals", None))
         self.label_161.setProperty("styleClass", QCoreApplication.translate("MainWindow", u"section_title", None))
         self.label_162.setText(QCoreApplication.translate("MainWindow", u"Output Signals", None))

@@ -626,10 +626,14 @@ class SwitchCircle(QtWidgets.QWidget):
         self.move(self.new_x, self.y())
         self.oldX = event.globalX()
         return super().mouseMoveEvent(event)
+    
+    def take_closest(self, num, collection):
+        return min(collection, key=lambda x: abs(x - num))
+
 
     def mouseReleaseEvent(self, event):
         try:
-            go_to = take_closest(self.new_x, self.move_range)
+            go_to = self.take_closest(self.new_x, self.move_range)
             if go_to == self.move_range[0]:
                 self.animation.setStartValue(self.pos())
                 self.animation.setEndValue(QtCore.QPoint(go_to, self.y()))
@@ -776,7 +780,6 @@ class SwitchControl(QtWidgets.QCheckBox):
 
 
 
-
 class DraggableWidget(QtWidgets.QFrame):
     def __init__(self, image_path=None, parent=None):
         super().__init__(parent)
@@ -795,7 +798,7 @@ class DraggableWidget(QtWidgets.QFrame):
         self.image_path = image_path
 
     def addWidget(self, widget):
-        self.layout.addWidget(widget)
+        self.layout.insertWidget(self.layout.count() - 1, widget)
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
@@ -823,20 +826,58 @@ class DragableScrollAreaWidgetContents(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._layout = QtWidgets.QVBoxLayout(self)
+        self._layout.setContentsMargins(5, 5, 5, 5)
+        self._layout.setSpacing(10)
         self.setLayout(self._layout)
 
+        # Add a vertical spacer to the end
+        self.spacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self._layout.addItem(self.spacer)
+
     def addWidget(self, widget):
-        self._layout.addWidget(widget)
+        # Create a horizontal layout to center the widget
+        h_layout = QtWidgets.QHBoxLayout()
+        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        h_layout.addWidget(widget)
+        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        h_layout.setContentsMargins(0, 0, 0, 0)
+        h_layout.setSpacing(0)
+        
+        container = QtWidgets.QWidget()
+        container.setLayout(h_layout)
+        
+        self._layout.insertWidget(self._layout.count() - 1, container)
 
     def insertWidget(self, index, widget):
-        self._layout.insertWidget(index, widget)
+        # Create a horizontal layout to center the widget
+        h_layout = QtWidgets.QHBoxLayout()
+        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        h_layout.addWidget(widget)
+        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        h_layout.setContentsMargins(0, 0, 0, 0)
+        h_layout.setSpacing(0)
+        
+        container = QtWidgets.QWidget()
+        container.setLayout(h_layout)
+        
+        self._layout.insertWidget(index, container)
 
     def removeWidget(self, widget):
-        self._layout.removeWidget(widget)
+        for i in range(self._layout.count()):
+            item = self._layout.itemAt(i)
+            if item.widget() and item.widget().layout() and item.widget().layout().indexOf(widget) != -1:
+                container = item.widget()
+                self._layout.removeWidget(container)
+                container.deleteLater()
+                break
         widget.setParent(None)
 
     def indexOf(self, widget):
-        return self._layout.indexOf(widget)
+        for i in range(self._layout.count()):
+            item = self._layout.itemAt(i)
+            if item.widget() and item.widget().layout() and item.widget().layout().indexOf(widget) != -1:
+                return i
+        return -1
 
     def getLayout(self):
         return self._layout
@@ -867,19 +908,21 @@ class DragableScrollArea(QtWidgets.QScrollArea):
             source_widget = self.findChild(QtWidgets.QWidget, source_name)
             if source_widget:
                 position = event.pos()
-                target_index = self.content_widget.layout().count()
+                target_index = -1
 
-                for i in range(self.content_widget.layout().count()):
+                for i in range(self.content_widget.layout().count() - 1):  # Exclude the spacer
                     widget = self.content_widget.layout().itemAt(i).widget()
                     if widget is not source_widget:
-                        widget_pos = widget.mapToGlobal(QtCore.QPoint(0, 0))
-                        container_pos = self.content_widget.mapFromGlobal(widget_pos)
-                        if position.y() < container_pos.y() + widget.height() // 2:
+                        widget_pos = widget.mapTo(self.content_widget, QtCore.QPoint(0, 0))
+                        if position.y() < widget_pos.y() + widget.height() // 2:
                             target_index = i
                             break
 
-                self.content_widget.layout().removeWidget(source_widget)
-                self.content_widget.layout().insertWidget(target_index, source_widget)
+                self.content_widget.removeWidget(source_widget)
+                if target_index == -1:
+                    self.content_widget.addWidget(source_widget)
+                else:
+                    self.content_widget.insertWidget(target_index, source_widget)
                 event.acceptProposedAction()
             else:
                 event.ignore()

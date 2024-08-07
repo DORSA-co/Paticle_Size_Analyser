@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>90</height>
+    <width>300</width>
+    <height>52</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>250</width>
-    <height>90</height>
+    <width>300</width>
+    <height>50</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>400</width>
-    <height>90</height>
+    <width>300</width>
+    <height>52</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -32,6 +32,18 @@
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QFrame" name="main_frame">
      <property name="minimumSize">
@@ -86,6 +98,12 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true">font-weight:bold;</string>
           </property>
@@ -110,23 +128,6 @@
           </property>
          </spacer>
         </item>
-        <item>
-         <widget class="QLabel" name="label_value">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color:#808080;
-font-weight:bold;</string>
-          </property>
-          <property name="text">
-           <string>Value</string>
-          </property>
-         </widget>
-        </item>
         <item alignment="Qt::AlignmentFlag::AlignRight">
          <widget class="QLabel" name="numeric_value_indicator">
           <property name="sizePolicy">
@@ -145,7 +146,10 @@ font-weight:bold;</string>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="bool_value_indicator_2">
+         <widget class="QLabel" name="bool_value_indicator">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -178,6 +182,11 @@ QLabel[state=&quot;true&quot;]{
 QLabel[state=&quot;false&quot;]{
 	
 	background-color: rgb(170, 51, 51);
+}
+
+
+QLabel:disabled{
+	background-color: rgb(200,200,200);
 }</string>
           </property>
           <property name="text">

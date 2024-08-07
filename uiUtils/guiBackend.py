@@ -250,8 +250,10 @@ class GUIBackend:
         """
         if isinstance(parent, QtWidgets.QVBoxLayout) or isinstance(parent, QtWidgets.QHBoxLayout)  :
             parent.addWidget(widget)
-        else:
-            pass
+        elif isinstance(parent, QtWidgets.QFrame):
+            layout = parent.layout()
+            layout.addWidget(widget)
+
     
     @staticmethod
     def insert_widget(container:QtWidgets.QWidget, wgt:QtWidgets.QWidget, pos=None):
@@ -1377,7 +1379,7 @@ class GUIBackend:
         min_date , max_date = date_range
         if min_date is not None:
             min_date = QtCore.QDate(min_date.year, min_date.month, min_date.day)
-            obj.setMinimumDate(date_range)
+            obj.setMinimumDate(min_date)
         
         if max_date is not None:
             max_date = QtCore.QDate(max_date.year, max_date.month, max_date.day)

@@ -49,6 +49,12 @@
 
 
 
+QLabel:disabled{
+	color: rgb(150,150,150);
+}
+
+
+
 
 QPushButton{
 	border: none;
@@ -753,13 +759,17 @@ QPushButton[styleClass=&quot;blueIconButton&quot;]:hover{
 }
 
 
+
+
+
 QLabel[styleClass=&quot;section_title&quot;]{
 
 font-size:20px;
 min-width:0px;
 max-width:500px;
-
 }
+
+
 
 #scrollAreaConfigContents{
 	background-color: #fff;
@@ -1366,6 +1376,23 @@ QPushButton[activeStyle=&quot;true&quot;]{
             </property>
             <property name="text">
              <string>Standards</string>
+            </property>
+            <property name="icon">
+             <iconset resource="Assets/Assets.qrc">
+              <normaloff>:/assets/icons/icons8-bar-chart-white-50.png</normaloff>:/assets/icons/icons8-bar-chart-white-50.png</iconset>
+            </property>
+            <property name="activeStyle" stdset="0">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="sidebar_hmi_btn">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>HMI</string>
             </property>
             <property name="icon">
              <iconset resource="Assets/Assets.qrc">
@@ -2387,7 +2414,7 @@ font-size: 17px;</string>
                          <widget class="QPushButton" name="mainpage_tempreture_warning_btn">
                           <property name="minimumSize">
                            <size>
-                            <width>50</width>
+                            <width>120</width>
                             <height>46</height>
                            </size>
                           </property>
@@ -2419,13 +2446,13 @@ font-size: 17px;</string>
                          <widget class="QPushButton" name="mainpage_camera_grabbing_warning_btn">
                           <property name="minimumSize">
                            <size>
-                            <width>50</width>
+                            <width>120</width>
                             <height>46</height>
                            </size>
                           </property>
                           <property name="maximumSize">
                            <size>
-                            <width>50</width>
+                            <width>120</width>
                             <height>46</height>
                            </size>
                           </property>
@@ -2457,7 +2484,7 @@ font-size: 17px;</string>
                          <widget class="QPushButton" name="mainpage_camera_connection_warning_btn">
                           <property name="minimumSize">
                            <size>
-                            <width>50</width>
+                            <width>120</width>
                             <height>46</height>
                            </size>
                           </property>
@@ -2486,7 +2513,7 @@ font-size: 17px;</string>
                          <widget class="QPushButton" name="mainpage_illumination_warning_btn">
                           <property name="minimumSize">
                            <size>
-                            <width>50</width>
+                            <width>120</width>
                             <height>46</height>
                            </size>
                           </property>
@@ -2515,7 +2542,7 @@ font-size: 17px;</string>
                          <widget class="QPushButton" name="mainpage_plc_warning_btn">
                           <property name="minimumSize">
                            <size>
-                            <width>50</width>
+                            <width>120</width>
                             <height>46</height>
                            </size>
                           </property>
@@ -2791,7 +2818,7 @@ color: rgb(6, 76, 130);
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-454</y>
+                    <y>-275</y>
                     <width>279</width>
                     <height>1472</height>
                    </rect>
@@ -3004,7 +3031,7 @@ color: rgb(6, 76, 130);
                       <item>
                        <widget class="QFrame" name="reportpage_filterdate_frame">
                         <property name="enabled">
-                         <bool>false</bool>
+                         <bool>true</bool>
                         </property>
                         <layout class="QGridLayout" name="gridLayout_15">
                          <property name="topMargin">
@@ -3016,7 +3043,7 @@ color: rgb(6, 76, 130);
                          <item row="1" column="1">
                           <widget class="QDateEdit" name="reportpage_end_date_dateedit">
                            <property name="enabled">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </property>
                            <property name="minimumSize">
                             <size>
@@ -3046,7 +3073,7 @@ color: rgb(6, 76, 130);
                          <item row="0" column="1">
                           <widget class="QDateEdit" name="reportpage_start_date_dateedit">
                            <property name="enabled">
-                            <bool>false</bool>
+                            <bool>true</bool>
                            </property>
                            <property name="minimumSize">
                             <size>
@@ -3686,6 +3713,9 @@ QPushButton:disabled{
                  </item>
                  <item>
                   <widget class="QLabel" name="label_48">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
                    <property name="text">
                     <string>Standard for compare:</string>
                    </property>
@@ -4696,6 +4726,61 @@ color: #ffffff;
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="hmi_page">
+          <property name="styleClass" stdset="0">
+           <string>tabPage</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_104">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_89" stretch="1,1">
+             <item>
+              <widget class="QFrame" name="hmi_input_section_frame">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_105">
+                <item alignment="Qt::AlignmentFlag::AlignHCenter">
+                 <widget class="QLabel" name="label_161">
+                  <property name="text">
+                   <string>Input Signals</string>
+                  </property>
+                  <property name="styleClass" stdset="0">
+                   <string>section_title</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="hmi_output_section_frame">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_106">
+                <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+                 <widget class="QLabel" name="label_162">
+                  <property name="text">
+                   <string>Output Signals</string>
+                  </property>
+                  <property name="styleClass" stdset="0">
+                   <string>section_title</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="settings_page">
           <property name="styleSheet">
            <string notr="true"/>
@@ -4779,7 +4864,7 @@ color: #ffffff;
                     <property name="geometry">
                      <rect>
                       <x>0</x>
-                      <y>-4</y>
+                      <y>0</y>
                       <width>954</width>
                       <height>643</height>
                      </rect>
@@ -5463,7 +5548,7 @@ QLabel
                       <x>0</x>
                       <y>0</y>
                       <width>608</width>
-                      <height>386</height>
+                      <height>347</height>
                      </rect>
                     </property>
                     <property name="styleClass" stdset="0">
@@ -6208,7 +6293,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <x>0</x>
                       <y>0</y>
                       <width>936</width>
-                      <height>433</height>
+                      <height>277</height>
                      </rect>
                     </property>
                     <property name="styleClass" stdset="0">
@@ -6591,8 +6676,8 @@ border-radius:0px;
                         <property name="geometry">
                          <rect>
                           <x>0</x>
-                          <y>-504</y>
-                          <width>656</width>
+                          <y>0</y>
+                          <width>484</width>
                           <height>830</height>
                          </rect>
                         </property>
@@ -7550,8 +7635,8 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>556</width>
-                      <height>186</height>
+                      <width>70</width>
+                      <height>64</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7683,7 +7768,7 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>554</width>
+                      <width>522</width>
                       <height>833</height>
                      </rect>
                     </property>
@@ -9972,7 +10057,7 @@ QLabel{
               <string notr="true"/>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="cilbration">
               <property name="styleClass" stdset="0">
@@ -9998,7 +10083,7 @@ QLabel{
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>405</width>
+                    <width>492</width>
                     <height>559</height>
                    </rect>
                   </property>
@@ -10808,8 +10893,8 @@ QPushButton:hover{
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>966</width>
-                    <height>423</height>
+                    <width>70</width>
+                    <height>34</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -12030,7 +12115,7 @@ border: 2px solid rgb(25, 68, 105);
                 <x>0</x>
                 <y>0</y>
                 <width>988</width>
-                <height>3251</height>
+                <height>3261</height>
                </rect>
               </property>
               <property name="styleSheet">

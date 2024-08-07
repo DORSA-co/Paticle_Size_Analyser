@@ -24,6 +24,8 @@ from PagesUI.reportsPageUI import reportsPageUI
 from PagesUI.standardsPageUI import standardsPageUI
 from PagesUI.reportPageUI import reportPageUI
 from PagesUI.comparePageUI import comparePageUI
+from PagesUI.hmiPageUI import hmiPageUI
+
 #---------------------------------------------------------
 from uiUtils import GUIComponents
 from uiUtils.guiBackend import GUIBackend
@@ -58,6 +60,9 @@ class mainUI(QMainWindow):
         self.usersPage = usersPageUI(self.ui, login_ui, edit_user)
         self.comparePage = comparePageUI(self.ui)
         self.validationPage = validationPageUI(self.ui)
+        self.validationPage = validationPageUI(self.ui)
+        self.hmiPage = hmiPageUI(self.ui)
+
 
         #self.router = routerUI(ui)
 
@@ -70,18 +75,20 @@ class mainUI(QMainWindow):
             'main'              : 0,
             'reports'           : 1,
             'grading_ranges'    : 2,
-            'settings'          : 3,
-            'calibration'       : 4,
-            'user'              : 5,
-            'help'              : 6,
-            'report'            : 7,
-            'compare'           : 8,
+            'hmi'               : 3,
+            'settings'          : 4,
+            'calibration'       : 5,
+            'user'              : 6,
+            'help'              : 7,
+            'report'            : 8,
+            'compare'           : 9,
         }
         
         self.sidebar_pages_buttons = {
             'main': self.ui.sidebar_main_btn,
             'reports': self.ui.sidebar_report_btn,
             'grading_ranges': self.ui.sidebar_grading_ranges_btn,
+            'hmi': self.ui.sidebar_hmi_btn,
             'settings': self.ui.sidebar_settings_btn,
             'calibration': self.ui.sidebar_calib_btn,
             'user': self.ui.sidebar_users_btn,

@@ -11,6 +11,10 @@ os.system('CMD /C pyside6-uic uiFiles/main_UI.ui -o uiFiles/main_UI_ui.py')
 os.system('CMD /C pyside6-uic uiFiles/node_setting.ui -o uiFiles/node_setting_UI.py')
 os.system('CMD /C pyside6-uic uiFiles/input_signal_setting.ui -o uiFiles/input_signal_setting_UI.py')
 os.system('CMD /C pyside6-uic uiFiles/output_signal_setting.ui -o uiFiles/output_signal_setting_UI.py')
+os.system('CMD /C pyside6-uic uiFiles/write_signal_hmi.ui -o uiFiles/write_signal_hmi_UI.py')
+os.system('CMD /C pyside6-uic uiFiles/read_signal_hmi.ui -o uiFiles/read_signal_hmi_UI.py')
+
+
 print('finish building UI')
 
 

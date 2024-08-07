@@ -96,8 +96,8 @@ class reportsPageUI(commonUI):
         
         GUIBackend.set_date_input(self.end_date_filter, datetime.now())
         GUIBackend.set_date_input(self.start_date_filter, datetime.now())
-        GUIBackend.date_input_connector(self.start_date_filter, self.__internal_date_change_event__)
-        GUIBackend.date_input_connector(self.end_date_filter, self.__internal_date_change_event__)
+        GUIBackend.date_input_connector_argumant_pass(self.start_date_filter, self.__internal_date_change_event__, args=('start',))
+        GUIBackend.date_input_connector_argumant_pass(self.end_date_filter, self.__internal_date_change_event__, args=('end',))
 
         self.__groupbox_filter_event_connector__()
         GUIBackend.set_cell_width_content_adjust(self.standards_filter_table, None)
@@ -131,14 +131,17 @@ class reportsPageUI(commonUI):
         else:
             GUIBackend.set_disable_enable(self.navigation_btns['next'], True )
     
-    def __internal_date_change_event__(self,):
+    def __internal_date_change_event__(self, date, changed_name:str):
         """set input date ranges to prevent start_date be bigger than end date
         and end_date be lower than start_date.
         this function call when coresponds input change
         """
         from_date,to_date = self.get_date_filter()
-        GUIBackend.set_date_input_range(self.start_date_filter, max_date=to_date)
-        GUIBackend.set_date_input_range(self.end_date_filter, min_date=from_date)
+        if changed_name == 'start' and from_date > to_date:
+            GUIBackend.set_date_input(self.end_date_filter, from_date, block_signal=True)
+        elif changed_name == 'end' and  to_date < from_date:
+            GUIBackend.set_date_input(self.start_date_filter, to_date, block_signal=True)
+        
 
     def select_all_checkbox_connector(self, func):
         GUIBackend.checkbox_connector(self.select_all_checkbox, func)
@@ -192,6 +195,7 @@ class reportsPageUI(commonUI):
         """
         if checked:
             self.show_filter(name, True)
+            
                 
             
         else:
@@ -267,11 +271,11 @@ class reportsPageUI(commonUI):
         if flag:
             
             self.filters_animation[name].forward()
-            
-            # GUIBackend.set_frame_max_size( self.filters_frame[name], w=None, h=16000 )
+            GUIBackend.set_disable_enable(self.filters_frame[name], True)            
         else:
-            # GUIBackend.set_frame_max_size( self.filters_frame[name], w=None, h=0 )
             self.filters_animation[name].backward()
+            GUIBackend.set_disable_enable(self.filters_frame[name], False)
+
 
         
 

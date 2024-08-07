@@ -587,3 +587,301 @@ class overlayMassage(QtWidgets.QWidget):
         self.showMaximized()
 
 
+
+
+class SwitchCircle(QtWidgets.QWidget):
+    def __init__(self, parent, move_range: tuple, color, animation_curve, animation_duration):
+        super().__init__(parent=parent)
+        self.color = color
+        self.move_range = move_range
+        self.animation = QtCore.QPropertyAnimation(self, b"pos")
+        self.animation.setEasingCurve(animation_curve)
+        self.animation.setDuration(animation_duration)
+
+    def paintEvent(self, event):
+        painter = QtGui.QPainter()
+        painter.begin(self)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        painter.setPen(QtCore.Qt.NoPen)
+        painter.setBrush(QtGui.QColor(self.color))
+        painter.drawEllipse(0, 0, 22, 22)
+        painter.end()
+
+    def set_color(self, value):
+        self.color = value
+        self.update()
+
+    def mousePressEvent(self, event):
+        self.animation.stop()
+        self.oldX = event.globalX()
+        return super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event):
+        delta = event.globalX() - self.oldX
+        self.new_x = delta + self.x()
+        if self.new_x < self.move_range[0]:
+            self.new_x += (self.move_range[0] - self.new_x)
+        if self.new_x > self.move_range[1]:
+            self.new_x -= (self.new_x - self.move_range[1])
+        self.move(self.new_x, self.y())
+        self.oldX = event.globalX()
+        return super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        try:
+            go_to = take_closest(self.new_x, self.move_range)
+            if go_to == self.move_range[0]:
+                self.animation.setStartValue(self.pos())
+                self.animation.setEndValue(QtCore.QPoint(go_to, self.y()))
+                self.animation.start()
+                self.parent().setChecked(False)
+            elif go_to == self.move_range[1]:
+                self.animation.setStartValue(self.pos())
+                self.animation.setEndValue(QtCore.QPoint(go_to, self.y()))
+                self.animation.start()
+                self.parent().setChecked(True)
+        except AttributeError:
+            pass
+        return super().mouseReleaseEvent(event)
+
+
+
+class SwitchControl(QtWidgets.QCheckBox):
+    def __init__(self, parent=None, bg_color="#BF0000", circle_color="#E0E4EC", active_color="#00BF40",
+                 animation_curve=QtCore.QEasingCurve.OutBounce, animation_duration=500, checked: bool = False,
+                 change_cursor=True):
+        if parent is None:
+            super().__init__()
+        else:
+            super().__init__(parent=parent)
+        self.setFixedSize(60, 28)
+        if change_cursor:
+            self.setCursor(QtCore.Qt.PointingHandCursor)
+        self.bg_color = bg_color
+        self.circle_color = circle_color
+        self.animation_curve = animation_curve
+        self.animation_duration = animation_duration
+        self.__circle = SwitchCircle(self, (3, self.width() - 26), self.circle_color, self.animation_curve,
+                                     self.animation_duration)
+        self.__circle_position = 3
+        self.active_color = active_color
+        self.auto = False
+        self.pos_on_press = None
+        self.setChecked(checked)
+        self.animation = QtCore.QPropertyAnimation(self.__circle, b"pos")
+        self.animation.setEasingCurve(animation_curve)
+        self.animation.setDuration(animation_duration)
+        self.disabled_bg_color = "#BDBDBF"
+        self.disabled_circle_color = "#D7D7D9"
+
+    def get_bg_color(self):
+        return self.bg_color
+    
+    def setChecked(self, state):
+        if state:
+            self.__circle.move(self.width() - 26, 3)
+            super().setChecked(True)
+        elif not state:
+            self.__circle.move(3, 3)
+            super().setChecked(False)
+
+    @QtCore.Slot(str)
+    def set_bg_color(self, value):
+        self.bg_color = value
+        self.update()
+
+    backgroundColor = QtCore.Property(str, get_bg_color, set_bg_color)
+
+    def get_circle_color(self):
+        return self.circle_color
+
+    @QtCore.Slot(str)
+    def set_circle_color(self, value):
+        self.circle_color = value
+        self.__circle.set_color(self.circle_color)
+        self.update()
+
+    circleBackgroundColor = QtCore.Property(str, get_circle_color, set_circle_color)
+
+    def get_animation_duration(self):
+        return self.animation_duration
+
+    @QtCore.Slot(int)
+    def set_animation_duration(self, value):
+        self.animation_duration = value
+        self.animation.setDuration(value)
+
+    animationDuration = QtCore.Property(int, get_animation_duration, set_animation_duration)
+
+    def get_active_color(self):
+        return self.active_color
+
+    @QtCore.Slot(str)
+    def set_active_color(self, value):
+        self.active_color = value
+        self.update()
+
+    activeColor = QtCore.Property(str, get_active_color, set_active_color)
+
+    def start_animation(self, checked):
+        self.animation.stop()
+        self.animation.setStartValue(self.__circle.pos())
+        if checked:
+            self.animation.setEndValue(QtCore.QPoint(self.width() - 26, self.__circle.y()))
+            self.setChecked(True)
+        if not checked:
+            self.animation.setEndValue(QtCore.QPoint(3, self.__circle.y()))
+            self.setChecked(False)
+        self.animation.start()
+
+    def paintEvent(self, event):
+        painter = QtGui.QPainter()
+        painter.begin(self)
+        painter.setRenderHint(QtGui.QPainter.Antialiasing)
+        painter.setPen(QtCore.Qt.NoPen)
+        if not self.isEnabled():
+            painter.setBrush(QtGui.QColor(self.disabled_bg_color))
+        elif not self.isChecked():
+            painter.setBrush(QtGui.QColor(self.bg_color))
+        else:
+            painter.setBrush(QtGui.QColor(self.active_color))
+        painter.drawRoundedRect(0, 0, self.width(), self.height(), self.height() / 2, self.height() / 2)
+
+    def hitButton(self, pos):
+        return self.contentsRect().contains(pos)
+
+    def mousePressEvent(self, event):
+        self.auto = True
+        self.pos_on_press = event.globalPos()
+        return super().mousePressEvent(event)
+
+    def mouseMoveEvent(self, event):
+        if event.globalPos() != self.pos_on_press:
+            self.auto = False
+        return super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        if self.auto:
+            self.auto = False
+            self.start_animation(not self.isChecked())
+
+    def setEnabled(self, enabled):
+        super().setEnabled(enabled)
+        if enabled:
+            self.__circle.set_color(self.circle_color)
+        else:
+            self.__circle.set_color(self.disabled_circle_color)
+        self.update()
+
+
+
+
+
+class DraggableWidget(QtWidgets.QFrame):
+    def __init__(self, image_path=None, parent=None):
+        super().__init__(parent)
+        self.setAcceptDrops(True)
+        self.setFrameShape(QtWidgets.QFrame.NoFrame)
+        
+        # Set a vertical layout with no margins or spacing
+        self.layout = QtWidgets.QVBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(0)
+        self.setLayout(self.layout)
+        
+        # Apply style sheet to remove background, border, padding, and margin
+        self.setStyleSheet("background: none; border: none; padding: 0px; margin: 0px;")
+
+        self.image_path = image_path
+
+    def addWidget(self, widget):
+        self.layout.addWidget(widget)
+
+    def mousePressEvent(self, event):
+        if event.button() == QtCore.Qt.LeftButton:
+            drag = QtGui.QDrag(self)
+            mime_data = QtCore.QMimeData()
+            mime_data.setText(self.objectName())
+            drag.setMimeData(mime_data)
+            drag.setHotSpot(event.pos())
+
+            # Determine which pixmap to use
+            if self.image_path:
+                # Load the pixmap from the provided image path
+                pixmap = QtGui.QPixmap(self.image_path)
+                if pixmap.isNull():
+                    # Fallback to widget's pixmap if loading failed
+                    pixmap = self.grab()
+            else:
+                # Use the widget's pixmap if no image path is provided
+                pixmap = self.grab()
+                
+            drag.setPixmap(pixmap)
+            drag.exec_(QtCore.Qt.MoveAction)
+
+class DragableScrollAreaWidgetContents(QtWidgets.QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._layout = QtWidgets.QVBoxLayout(self)
+        self.setLayout(self._layout)
+
+    def addWidget(self, widget):
+        self._layout.addWidget(widget)
+
+    def insertWidget(self, index, widget):
+        self._layout.insertWidget(index, widget)
+
+    def removeWidget(self, widget):
+        self._layout.removeWidget(widget)
+        widget.setParent(None)
+
+    def indexOf(self, widget):
+        return self._layout.indexOf(widget)
+
+    def getLayout(self):
+        return self._layout
+
+class DragableScrollArea(QtWidgets.QScrollArea):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWidgetResizable(True)
+        self.setAcceptDrops(True)
+        self.content_widget = DragableScrollAreaWidgetContents(self)
+        self.setWidget(self.content_widget)
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasText():
+            event.acceptProposedAction()
+        else:
+            event.ignore()
+
+    def dragMoveEvent(self, event):
+        if event.mimeData().hasText():
+            event.acceptProposedAction()
+        else:
+            event.ignore()
+
+    def dropEvent(self, event):
+        if event.mimeData().hasText():
+            source_name = event.mimeData().text()
+            source_widget = self.findChild(QtWidgets.QWidget, source_name)
+            if source_widget:
+                position = event.pos()
+                target_index = self.content_widget.layout().count()
+
+                for i in range(self.content_widget.layout().count()):
+                    widget = self.content_widget.layout().itemAt(i).widget()
+                    if widget is not source_widget:
+                        widget_pos = widget.mapToGlobal(QtCore.QPoint(0, 0))
+                        container_pos = self.content_widget.mapFromGlobal(widget_pos)
+                        if position.y() < container_pos.y() + widget.height() // 2:
+                            target_index = i
+                            break
+
+                self.content_widget.layout().removeWidget(source_widget)
+                self.content_widget.layout().insertWidget(target_index, source_widget)
+                event.acceptProposedAction()
+            else:
+                event.ignore()
+        else:
+            event.ignore()

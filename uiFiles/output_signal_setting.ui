@@ -97,6 +97,12 @@
           <height>16777215</height>
          </size>
         </property>
+        <property name="minimum">
+         <double>-1000000000.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>100000000000.000000000000000</double>
+        </property>
        </widget>
       </item>
       <item>

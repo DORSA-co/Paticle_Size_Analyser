@@ -115,7 +115,11 @@ class main_API(QObject):
         self.reportsPageAPI = reportsPageAPI(uiHandeler=self.uiHandeler.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.uiHandeler.comparePage, database=self.db)
         self.validationPageAPI = validationPageAPI(ui=self.uiHandeler.validationPage, database=self.db, cameras=self.cameras)
-        self.hmiPageAPI = hmiPageAPI(self.uiHandeler.hmiPage, self.db.setting_db.plc_nodes_db, None)
+        if self.configManager.Config.has_plc():
+            self.hmiPageAPI = hmiPageAPI(self.uiHandeler.hmiPage, self.db.setting_db.plc_nodes_db, None)
+        else:
+            self.hmiPageAPI = None
+
 
         #for cam_device_info in cameras_serial_numbers:
             #self.creat_camera(cam_device_info)
@@ -227,6 +231,7 @@ class main_API(QObject):
 
         if not self.configManager.Config.has_plc():
             self.uiHandeler.deactive_tab('plc_setting')
+            self.uiHandeler.deactive_page('hmi')
             self.mainPageAPI.uiHandeler.hide_warning_indicator('plc')
         
         if not self.configManager.Config.is_auto_run_enable():

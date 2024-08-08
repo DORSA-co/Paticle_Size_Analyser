@@ -1839,7 +1839,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.filters_scrollAreaWidgetContents = QWidget()
         self.filters_scrollAreaWidgetContents.setObjectName(u"filters_scrollAreaWidgetContents")
-        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, -275, 279, 1472))
+        self.filters_scrollAreaWidgetContents.setGeometry(QRect(0, 0, 279, 1472))
         self.filters_scrollAreaWidgetContents.setStyleSheet(u"#filters_scrollAreaWidgetContents{\n"
 "	background-color: #ffffff;\n"
 "}")
@@ -2850,10 +2850,16 @@ class Ui_MainWindow(object):
         self.hmi_output_section_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_106 = QVBoxLayout(self.hmi_output_section_frame)
         self.verticalLayout_106.setObjectName(u"verticalLayout_106")
+        self.horizontalLayout_90 = QHBoxLayout()
+        self.horizontalLayout_90.setObjectName(u"horizontalLayout_90")
+        self.horizontalLayout_90.setContentsMargins(-1, -1, 0, -1)
         self.label_162 = QLabel(self.hmi_output_section_frame)
         self.label_162.setObjectName(u"label_162")
 
-        self.verticalLayout_106.addWidget(self.label_162, 0, Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignVCenter)
+        self.horizontalLayout_90.addWidget(self.label_162, 0, Qt.AlignmentFlag.AlignHCenter)
+
+
+        self.verticalLayout_106.addLayout(self.horizontalLayout_90)
 
 
         self.horizontalLayout_89.addWidget(self.hmi_output_section_frame)
@@ -3563,7 +3569,7 @@ class Ui_MainWindow(object):
         self.scrollArea_10.setWidgetResizable(True)
         self.scrollAreaWidgetContents_3 = QWidget()
         self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 936, 277))
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 964, 443))
         self.verticalLayout_47 = QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_47.setObjectName(u"verticalLayout_47")
         self.groupBox_5 = QGroupBox(self.scrollAreaWidgetContents_3)
@@ -3744,7 +3750,7 @@ class Ui_MainWindow(object):
         self.cameraSettingScrollArea.setWidgetResizable(True)
         self.cameraSettingScrollAreaWidgetContents = QWidget()
         self.cameraSettingScrollAreaWidgetContents.setObjectName(u"cameraSettingScrollAreaWidgetContents")
-        self.cameraSettingScrollAreaWidgetContents.setGeometry(QRect(0, 0, 484, 830))
+        self.cameraSettingScrollAreaWidgetContents.setGeometry(QRect(0, 0, 664, 830))
         self.verticalLayout_33 = QVBoxLayout(self.cameraSettingScrollAreaWidgetContents)
         self.verticalLayout_33.setSpacing(30)
         self.verticalLayout_33.setObjectName(u"verticalLayout_33")
@@ -4242,7 +4248,7 @@ class Ui_MainWindow(object):
         self.nodesScrollArea.setWidgetResizable(True)
         self.nodesScrollAreaContent = QWidget()
         self.nodesScrollAreaContent.setObjectName(u"nodesScrollAreaContent")
-        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 70, 64))
+        self.nodesScrollAreaContent.setGeometry(QRect(0, 0, 954, 186))
         self.verticalLayout_67 = QVBoxLayout(self.nodesScrollAreaContent)
         self.verticalLayout_67.setObjectName(u"verticalLayout_67")
         self.settingpage_plc_add_node_btn = QPushButton(self.nodesScrollAreaContent)
@@ -4302,7 +4308,7 @@ class Ui_MainWindow(object):
         self.config_tab_main_scrollBar.setWidgetResizable(True)
         self.config_tab_main_scrollBarArea_contents = QWidget()
         self.config_tab_main_scrollBarArea_contents.setObjectName(u"config_tab_main_scrollBarArea_contents")
-        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, 0, 522, 833))
+        self.config_tab_main_scrollBarArea_contents.setGeometry(QRect(0, 0, 952, 833))
         sizePolicy2.setHeightForWidth(self.config_tab_main_scrollBarArea_contents.sizePolicy().hasHeightForWidth())
         self.config_tab_main_scrollBarArea_contents.setSizePolicy(sizePolicy2)
         self.verticalLayout_86 = QVBoxLayout(self.config_tab_main_scrollBarArea_contents)
@@ -6536,7 +6542,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 988, 3261))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 988, 3251))
         self.scrollAreaWidgetContents.setStyleSheet(u"#scrollAreaWidgetContents\n"
 "{\n"
 "background-color:#ffffff;\n"
@@ -8282,7 +8288,7 @@ class Ui_MainWindow(object):
 
         self.main_pages_stackw.setCurrentIndex(3)
         self.gradingranges_tabs.setCurrentIndex(0)
-        self.settingpage_tabs.setCurrentIndex(0)
+        self.settingpage_tabs.setCurrentIndex(2)
         self.tabWidget_2.setCurrentIndex(0)
         self.config_start_system_settings_stackwidget.setCurrentIndex(0)
         self.config_stop_system_settings_stackwidget.setCurrentIndex(0)

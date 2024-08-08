@@ -66,6 +66,8 @@ class Ui_outputSignalSetting(object):
         self.value_numeric.setObjectName(u"value_numeric")
         self.value_numeric.setMinimumSize(QSize(120, 0))
         self.value_numeric.setMaximumSize(QSize(120, 16777215))
+        self.value_numeric.setMinimum(-1000000000.000000000000000)
+        self.value_numeric.setMaximum(100000000000.000000000000000)
 
         self.horizontalLayout.addWidget(self.value_numeric)
 

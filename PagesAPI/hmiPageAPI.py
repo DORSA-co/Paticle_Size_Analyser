@@ -21,7 +21,7 @@ class hmiPageAPI:
     def startup(self,):
         self.__updating = True
         self.handle_error()
-        self.send_read_input_requset()
+        self.send_read_requset()
 
         
 
@@ -45,14 +45,14 @@ class hmiPageAPI:
     def set_plc(self, plc:PLCHandler):
         self.plc = plc
         self.handle_error()
-        self.send_read_input_requset()
+        self.send_read_requset()
 
 
     def plc_disconnected_event(self,):
         self.handle_error()
 
 
-    def send_read_input_requset(self,):
+    def send_read_requset(self,):
         nodes_names = list(map(lambda x:x['name'], self.nodes))
         if self.plc is not None and self.plc.is_connect():
             self.plc.send_read_request('hmi_read_nodes', nodes_names, self.update_nodes_values_event)
@@ -60,16 +60,17 @@ class hmiPageAPI:
     def update_nodes_values_event(self, values:dict):
         for name, value in values.items():
             self.uiHandler.set_input_node_value(name, value)
+            self.uiHandler.set_output_node_value(name, value)
+
 
         if self.__updating:
             self.timer_reader = timerThread(1, 0.1, 'hmi_plc_read')
-            self.timer_reader.finish_signal.connect(self.send_read_input_requset)
+            self.timer_reader.finish_signal.connect(self.send_read_requset)
             threading.Thread(target=self.timer_reader.run_single, daemon=False).start()
 
 
     
     def load_nodes(self,):
-        
         self.nodes = self.database.load_all()
         for node in self.nodes:
             self.uiHandler.add_node(node)

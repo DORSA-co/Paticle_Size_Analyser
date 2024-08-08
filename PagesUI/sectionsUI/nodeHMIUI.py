@@ -98,6 +98,17 @@ class outputNodeHMI(DraggableWidget):
             return GUIBackend.get_input(self.ui.numeric_value_input)
         
     
+    def set_value(self, value):
+        if value is None:
+            return
+        
+        if self.dtype == 'bool':
+            return GUIBackend.set_input(self.ui.bool_value_input, value, block_signal=True)
+        
+        else:
+            return GUIBackend.set_input(self.ui.numeric_value_input, value, block_signal=True)
+        
+    
     def change_connector(self, func):
         if self.dtype == 'bool':
             GUIBackend.checkbox_connector_argument_pass(self.ui.bool_value_input, func, args=(self.name,))

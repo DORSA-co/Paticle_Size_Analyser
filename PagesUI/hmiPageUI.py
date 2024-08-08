@@ -95,3 +95,8 @@ class hmiPageUI:
         su:InputNodeHMI = self.input_nodes.get_by_id(name)
         if su is not None:
             su.set_value(value)
+
+    def set_output_node_value(self, name:str, value):
+        su:outputNodeHMI = self.output_nodes.get_by_id(name)
+        if su is not None:
+            su.set_value(value)

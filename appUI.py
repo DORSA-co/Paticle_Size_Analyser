@@ -109,7 +109,8 @@ class mainUI(QMainWindow):
             'all_users':         (self.ui.user_tabs, self.ui.all_users_tab),
         }
 
-        self.__not_activa_tabs = []
+        self.__not_active_tabs = []
+        self.__not_active_pages = []
 
 
         self.headrs_button = {
@@ -277,7 +278,7 @@ class mainUI(QMainWindow):
 
         for page_name in self.sidebar_pages_buttons.keys():
             btn = self.sidebar_pages_buttons[page_name]
-            if page_name in pages:
+            if page_name in pages and page_name not in self.__not_active_pages:
                 GUIBackend.set_wgt_visible( btn, flag )
             else:
                 GUIBackend.set_wgt_visible(btn , not(flag))
@@ -301,7 +302,7 @@ class mainUI(QMainWindow):
         for tab_name in self.tabs:
             tab_parent, tab = self.tabs[tab_name]
             
-            if tab_name in self.__not_activa_tabs:
+            if tab_name in self.__not_active_tabs:
                 continue
 
             if tab_name in tabs:
@@ -312,9 +313,14 @@ class mainUI(QMainWindow):
 
 
     def deactive_tab(self, tab_name:str):
-        self.__not_activa_tabs.append(tab_name)
+        self.__not_active_tabs.append(tab_name)
         tab_parent, tab = self.tabs[tab_name]
         GUIBackend.set_visible_tab(tab_parent, tab, False)
+
+    def deactive_page(self, page_name:str):
+        self.__not_active_pages.append(page_name)
+
+        GUIBackend.set_wgt_visible(self.sidebar_pages_buttons[page_name], False)
 
 
     def show(self,):

@@ -88,6 +88,8 @@ class Ui_writeSignalHMI(object):
         self.numeric_value_input = QDoubleSpinBox(self.main_frame)
         self.numeric_value_input.setObjectName(u"numeric_value_input")
         self.numeric_value_input.setMinimumSize(QSize(120, 0))
+        self.numeric_value_input.setMinimum(-10000000.000000000000000)
+        self.numeric_value_input.setMaximum(10000000.000000000000000)
 
         self.horizontalLayout_2.addWidget(self.numeric_value_input)
 

@@ -2818,7 +2818,7 @@ color: rgb(6, 76, 130);
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-275</y>
+                    <y>0</y>
                     <width>279</width>
                     <height>1472</height>
                    </rect>
@@ -4814,15 +4814,22 @@ color: #ffffff;
                  <enum>QFrame::Shadow::Raised</enum>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_106">
-                 <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
-                  <widget class="QLabel" name="label_162">
-                   <property name="text">
-                    <string>Output Signals</string>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_90">
+                   <property name="rightMargin">
+                    <number>0</number>
                    </property>
-                   <property name="styleClass" stdset="0">
-                    <string>section_title</string>
-                   </property>
-                  </widget>
+                   <item alignment="Qt::AlignmentFlag::AlignHCenter">
+                    <widget class="QLabel" name="label_162">
+                     <property name="text">
+                      <string>Output Signals</string>
+                     </property>
+                     <property name="styleClass" stdset="0">
+                      <string>section_title</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                 </layout>
                </widget>
@@ -4894,7 +4901,7 @@ color: #ffffff;
                 <enum>QTabWidget::TabShape::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>2</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -6356,8 +6363,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>936</width>
-                      <height>277</height>
+                      <width>964</width>
+                      <height>443</height>
                      </rect>
                     </property>
                     <property name="styleClass" stdset="0">
@@ -6741,7 +6748,7 @@ border-radius:0px;
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>484</width>
+                          <width>664</width>
                           <height>830</height>
                          </rect>
                         </property>
@@ -7699,8 +7706,8 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>70</width>
-                      <height>64</height>
+                      <width>954</width>
+                      <height>186</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7832,7 +7839,7 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>522</width>
+                      <width>952</width>
                       <height>833</height>
                      </rect>
                     </property>
@@ -12179,7 +12186,7 @@ border: 2px solid rgb(25, 68, 105);
                 <x>0</x>
                 <y>0</y>
                 <width>988</width>
-                <height>3261</height>
+                <height>3251</height>
                </rect>
               </property>
               <property name="styleSheet">

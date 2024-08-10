@@ -23,9 +23,14 @@ class Ui_readSignalHMI(object):
     def setupUi(self, readSignalHMI):
         if not readSignalHMI.objectName():
             readSignalHMI.setObjectName(u"readSignalHMI")
-        readSignalHMI.resize(300, 52)
-        readSignalHMI.setMinimumSize(QSize(300, 50))
-        readSignalHMI.setMaximumSize(QSize(300, 52))
+        readSignalHMI.resize(606, 60)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(readSignalHMI.sizePolicy().hasHeightForWidth())
+        readSignalHMI.setSizePolicy(sizePolicy)
+        readSignalHMI.setMinimumSize(QSize(300, 60))
+        readSignalHMI.setMaximumSize(QSize(16777215, 60))
         readSignalHMI.setStyleSheet(u"#SignalSetting{\n"
 "\n"
 "	background-color: transparent;\n"
@@ -63,11 +68,11 @@ class Ui_readSignalHMI(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.name_label = QLabel(self.main_frame)
         self.name_label.setObjectName(u"name_label")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.name_label.sizePolicy().hasHeightForWidth())
-        self.name_label.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.name_label.sizePolicy().hasHeightForWidth())
+        self.name_label.setSizePolicy(sizePolicy1)
         self.name_label.setMinimumSize(QSize(100, 0))
         self.name_label.setStyleSheet(u"font-weight:bold;")
 
@@ -79,8 +84,8 @@ class Ui_readSignalHMI(object):
 
         self.numeric_value_indicator = QLabel(self.main_frame)
         self.numeric_value_indicator.setObjectName(u"numeric_value_indicator")
-        sizePolicy.setHeightForWidth(self.numeric_value_indicator.sizePolicy().hasHeightForWidth())
-        self.numeric_value_indicator.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.numeric_value_indicator.sizePolicy().hasHeightForWidth())
+        self.numeric_value_indicator.setSizePolicy(sizePolicy1)
         self.numeric_value_indicator.setStyleSheet(u"color:#808080;\n"
 "font-weight:bold;")
 
@@ -89,8 +94,8 @@ class Ui_readSignalHMI(object):
         self.bool_value_indicator = QLabel(self.main_frame)
         self.bool_value_indicator.setObjectName(u"bool_value_indicator")
         self.bool_value_indicator.setEnabled(True)
-        sizePolicy.setHeightForWidth(self.bool_value_indicator.sizePolicy().hasHeightForWidth())
-        self.bool_value_indicator.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.bool_value_indicator.sizePolicy().hasHeightForWidth())
+        self.bool_value_indicator.setSizePolicy(sizePolicy1)
         self.bool_value_indicator.setMinimumSize(QSize(30, 30))
         self.bool_value_indicator.setMaximumSize(QSize(30, 30))
         self.bool_value_indicator.setStyleSheet(u"QLabel{\n"

@@ -160,7 +160,7 @@ class nodesHandler:
 
     
     def get_by_name(self, name:str) -> singleNodeHandler:
-        return self.names2node[name] 
+        return self.names2node.get(name)
     
     def set_change_value_event(self, func:Callable):
         self.external_change_data_event  = func
@@ -203,6 +203,8 @@ class nodesHandler:
         data_values = []
         for name, value in dict_values.items():
             snode_handler = self.get_by_name(name)
+            if snode_handler is None:
+                continue
             nodes.append(snode_handler.node)
             data_values.append( snode_handler.make_data_value(value) )
 
@@ -218,6 +220,8 @@ class nodesHandler:
         nodes = []
         for name in names:
             snode_handler = self.get_by_name(name)
+            if snode_handler is None:
+                continue
             nodes.append(snode_handler.node)
         try:
             values = self.client.get_values(nodes)
@@ -401,6 +405,9 @@ class PLCHandler:
     def __change_data_event(self, data:dict):
         name = data['name']
         single_node_handler = self.nodesHandler.get_by_name(name)
+        if single_node_handler is None:
+            return
+        
         if single_node_handler.read_change_event is not None:
             single_node_handler.read_change_event(data)
         
@@ -469,6 +476,8 @@ class PLCWriteWorker(QObject):
     def hanle_auto_write_values(self,):
         for name in self.nodesHandler.get_names():
             snode_handler = self.nodesHandler.get_by_name(name)
+            if snode_handler is None:
+                continue
 
             #check if node is not auto write
             if not snode_handler.is_auto_write():

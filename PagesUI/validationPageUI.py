@@ -150,7 +150,7 @@ class calibrationTabUI(commonUI):
     
     def show_live(self,img):
         pixmap = GUIBackend.set_label_image(self.liveimage_lbl, img)
-        GUIBackend.fit_label_to_pixmap(self.liveimage_lbl, pixmap)
+        #GUIBackend.fit_label_to_pixmap(self.liveimage_lbl, pixmap)
         self.mouseHandeler.connect_all(self.liveimage_lbl, self.image_mouse_evnt_func)
 
 

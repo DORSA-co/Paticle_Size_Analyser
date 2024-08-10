@@ -30,6 +30,11 @@ class hmiPageAPI:
         return True
     
 
+    def nodes_update_event(self,):
+        self.uiHandler.remove_all_nodes()
+        self.load_nodes()
+    
+
     def handle_error(self,):
         if self.plc is None or not self.plc.is_connect():
             self.uiHandler.write_message("PLC is disconnected!")

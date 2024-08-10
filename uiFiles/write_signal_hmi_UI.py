@@ -26,9 +26,14 @@ class Ui_writeSignalHMI(object):
     def setupUi(self, writeSignalHMI):
         if not writeSignalHMI.objectName():
             writeSignalHMI.setObjectName(u"writeSignalHMI")
-        writeSignalHMI.resize(300, 56)
-        writeSignalHMI.setMinimumSize(QSize(300, 50))
-        writeSignalHMI.setMaximumSize(QSize(300, 56))
+        writeSignalHMI.resize(628, 60)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(writeSignalHMI.sizePolicy().hasHeightForWidth())
+        writeSignalHMI.setSizePolicy(sizePolicy)
+        writeSignalHMI.setMinimumSize(QSize(0, 60))
+        writeSignalHMI.setMaximumSize(QSize(16777215, 60))
         writeSignalHMI.setStyleSheet(u"#SignalSetting{\n"
 "\n"
 "}\n"
@@ -42,6 +47,8 @@ class Ui_writeSignalHMI(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.main_frame = QFrame(writeSignalHMI)
         self.main_frame.setObjectName(u"main_frame")
+        sizePolicy.setHeightForWidth(self.main_frame.sizePolicy().hasHeightForWidth())
+        self.main_frame.setSizePolicy(sizePolicy)
         self.main_frame.setMinimumSize(QSize(0, 0))
         self.main_frame.setMaximumSize(QSize(16777215, 16777215))
         self.main_frame.setStyleSheet(u"#main_frame{\n"
@@ -71,11 +78,11 @@ class Ui_writeSignalHMI(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.name_label = QLabel(self.main_frame)
         self.name_label.setObjectName(u"name_label")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.name_label.sizePolicy().hasHeightForWidth())
-        self.name_label.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.name_label.sizePolicy().hasHeightForWidth())
+        self.name_label.setSizePolicy(sizePolicy1)
         self.name_label.setMinimumSize(QSize(100, 0))
         self.name_label.setStyleSheet(u"font-weight:bold;")
 
@@ -102,8 +109,8 @@ class Ui_writeSignalHMI(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label_2 = QLabel(self.write_bool_value_frame)
         self.label_2.setObjectName(u"label_2")
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy1)
         self.label_2.setStyleSheet(u"font-weight:bold;")
 
         self.horizontalLayout.addWidget(self.label_2)
@@ -116,8 +123,8 @@ class Ui_writeSignalHMI(object):
 
         self.label_3 = QLabel(self.write_bool_value_frame)
         self.label_3.setObjectName(u"label_3")
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy1)
         self.label_3.setStyleSheet(u"font-weight:bold;")
 
         self.horizontalLayout.addWidget(self.label_3)

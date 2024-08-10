@@ -557,7 +557,7 @@ class cameraSettingTabUI(commonSettingUI):
     def show_live_image(self, img):
         if img is not None:
             pixmap = GUIBackend.set_label_image( self.live_img_lbl, img )
-            GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
+            #GUIBackend.fit_label_to_pixmap(self.live_img_lbl, pixmap)
             self.mouseHandeler.connect_all(self.live_img_lbl, self.image_mouse_event_func)
 
 

@@ -417,6 +417,7 @@ class main_API(QObject):
     def plc_setting_change_event(self,):
         self.define_nodes()
         self.settingPageAPI.configSetting.load_singlas()
+        self.hmiPageAPI.nodes_update_event()
         
     
     def set_access(self, role):

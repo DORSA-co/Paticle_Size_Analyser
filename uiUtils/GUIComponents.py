@@ -785,6 +785,9 @@ class DraggableWidget(QtWidgets.QFrame):
         super().__init__(parent)
         self.setAcceptDrops(True)
         self.setFrameShape(QtWidgets.QFrame.NoFrame)
+
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.setSizePolicy(size_policy)
         
         # Set a vertical layout with no margins or spacing
         self.layout = QtWidgets.QVBoxLayout(self)
@@ -834,26 +837,30 @@ class DragableScrollAreaWidgetContents(QtWidgets.QWidget):
         self.spacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self._layout.addItem(self.spacer)
 
-    def addWidget(self, widget):
+    def addWidget(self, widget, center = False):
         # Create a horizontal layout to center the widget
         h_layout = QtWidgets.QHBoxLayout()
-        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        if center:
+            h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
         h_layout.addWidget(widget)
-        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        if center:
+            h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
         h_layout.setContentsMargins(0, 0, 0, 0)
         h_layout.setSpacing(0)
         
         container = QtWidgets.QWidget()
         container.setLayout(h_layout)
         
-        self._layout.insertWidget(self._layout.count() - 1, container)
+        self._layout.insertWidget(self._layout.count() - 1, container, center)
 
-    def insertWidget(self, index, widget):
+    def insertWidget(self, index, widget, center=False):
         # Create a horizontal layout to center the widget
         h_layout = QtWidgets.QHBoxLayout()
-        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        if center:
+            h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
         h_layout.addWidget(widget)
-        h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
+        if center:
+            h_layout.addItem(QtWidgets.QSpacerItem(20, 0, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum))
         h_layout.setContentsMargins(0, 0, 0, 0)
         h_layout.setSpacing(0)
         

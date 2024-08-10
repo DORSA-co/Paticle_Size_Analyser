@@ -702,16 +702,16 @@ class GUIBackend:
         if isinstance(image_array, str):
             image_array = cv2.imread(image_array)
 
-        # تعریف رویداد تغییر سایز برای بازتنظیم تصویر
+
         def resize_event(event):
-            scaled_pixmap = label.pixmap().scaled(label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+            # بازسازی QPixmap اصلی و مقیاس‌بندی آن با استفاده از QLabel جدید
+            scaled_pixmap = label.original_pixmap.scaled(label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
             label.setPixmap(scaled_pixmap)
             event.accept()
 
         height, width = image_array.shape[:2]
 
         if len(image_array.shape) == 3:
-            # بررسی تصویر با کانال آلفا
             if image_array.shape[2] == 4:
                 qformat = QtGui.QImage.Format_RGBA8888
                 bytes_per_line = 4 * width
@@ -719,7 +719,6 @@ class GUIBackend:
                 qformat = QtGui.QImage.Format_RGB888
                 bytes_per_line = 3 * width
         elif len(image_array.shape) == 2:
-            # تصویر خاکستری
             qformat = QtGui.QImage.Format_Grayscale8
             bytes_per_line = 1 * width
         else:
@@ -727,61 +726,29 @@ class GUIBackend:
 
         q_image = QtGui.QImage(image_array.data, width, height, bytes_per_line, qformat)
 
-        # تبدیل QImage به QPixmap
         pixmap = QtGui.QPixmap.fromImage(q_image)
 
+        # ذخیره‌ی QPixmap اصلی
+        label.original_pixmap = pixmap
+
+        # مقیاس‌بندی اولیه به اندازه‌ی QLabel
+        scaled_pixmap = pixmap.scaled(label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+
         # تنظیم QPixmap به QLabel
-        label.setPixmap(pixmap)
+        label.setPixmap(scaled_pixmap)
 
         # تنظیمات QLabel برای مقیاس‌بندی با حفظ نسبت تصویر
-        label.setScaledContents(False)  # تنظیم به False برای حفظ نسبت تصویر
+        label.setScaledContents(False)
         label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
 
-        # مقیاس‌بندی تصویر به اندازه QLabel با حفظ نسبت
-        scaled_pixmap = pixmap.scaled(label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
-        label.setPixmap(scaled_pixmap)
+        # تنظیم یک حداقل اندازه برای امکان کوچک کردن QLabel در QSplitter
+        label.setMinimumSize(100, 100)
 
         # اتصال رویداد resizeEvent برای مقیاس‌بندی مجدد هنگام تغییر سایز QLabel
         label.resizeEvent = resize_event
 
-        return pixmap
-        
-    @staticmethod
-    def set_label_image_no_scale(lbl: QtWidgets.QLabel, image) -> QtGui.QPixmap:
-
-        if isinstance(image, str):
-            image = cv2.imread(image)        
-
-        # #resie image to fix in label
-        # img_h, img_w = image.shape[:2]
-        # lbl_h, lbl_w = lbl.height()-10, lbl.width()-10
-        
-        # scale = min(lbl_h/img_h, lbl_w/img_w)
-        # image = cv2.resize(image, None, fx= scale, fy=scale)
-
-        #color image
-        if len(image.shape)==3:
-            #alpha channel image
-            if image.shape[2] ==4:
-                qformat=QtGui.QImage.Format_RGBA8888
-            else:
-                qformat=QtGui.QImage.Format_RGB888          
-
-        #grayscale image
-        if len(image.shape) == 2:
-            qformat=QtGui.QImage.Format_Grayscale8
-
-        img = QtGui.QImage(image.data,
-            image.shape[1],
-            image.shape[0], 
-            image.strides[0], # <--- +++
-            qformat)
-        
-        img = img.rgbSwapped()
-        pixmap = QtGui.QPixmap.fromImage(img)
-        lbl.setPixmap(pixmap)
-        lbl.setAlignment(QtCore.Qt.AlignCenter)
-        return pixmap
+        return scaled_pixmap
+    
     
     @staticmethod
     def fit_label_to_pixmap(lbl: QtWidgets.QLabel, pixmap:QtGui.QPixmap):

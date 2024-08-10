@@ -60,6 +60,26 @@ class hmiPageUI:
             GUIBackend.set_wgt_visible(self.ui.hmi_page_error_label, True)
             GUIBackend.set_label_text(self.ui.hmi_page_error_label, str(txt))
 
+    
+    def remove_all_nodes(self,):
+        su: InputNodeHMI
+        for su in self.input_nodes:
+            print(su.name)
+            self.singals_scroll_area['input'].content_widget.removeWidget(su)
+            #self.input_nodes.remove_by_id(su.name)
+            su.deleteLater()
+        
+
+
+        su: outputNodeHMI
+        for su in self.output_nodes:
+            self.singals_scroll_area['output'].content_widget.removeWidget(su)
+            # self.output_nodes.remove_by_id(su.name)
+            su.deleteLater()
+
+        self.input_nodes = idList()
+        self.output_nodes = idList()
+
 
     def add_node(self, node_info:dict):
         assert self.__external_changed_node_event_func is not None, "connect_change_output_node first then call add_node"

@@ -232,6 +232,8 @@ class sampleSettingTabUI(commonSettingUI):
         GUIBackend.combobox_changeg_connector(self.standards_name_combobox, lambda :self.save_state(False) )
         GUIBackend.combobox_changeg_connector(self.grading_parms_combobox, lambda :self.save_state(False) )
         GUIBackend.checkbox_connector(self.save_image_checkbox, lambda x:self.save_state(False) )
+        GUIBackend.spinbox_connector(self.ui.settingpage_sample_min_size_spinbox, lambda x:self.save_state(False) )
+
         
         
 
@@ -250,6 +252,9 @@ class sampleSettingTabUI(commonSettingUI):
             elif setting_name == 'save_image':
                 GUIBackend.set_checkbox_value(self.save_image_checkbox, setting_value)
 
+            elif setting_name == 'min_diameter':
+                GUIBackend.set_input(self.ui.settingpage_sample_min_size_spinbox, setting_value)
+
             elif setting_name == 'default_grading_parm':
                 for key, value in CONSTANTS.Sample.GRADING_PARMS.items():
                     if value == setting_value:
@@ -267,6 +272,8 @@ class sampleSettingTabUI(commonSettingUI):
         data['default_grading_parm'] = CONSTANTS.Sample.GRADING_PARMS[
                     GUIBackend.get_combobox_selected(self.grading_parms_combobox)
                     ]
+        
+        data['min_diameter'] = GUIBackend.get_input(self.ui.settingpage_sample_min_size_spinbox)
         
         data['save_image'] = GUIBackend.get_checkbox_value(self.save_image_checkbox)
         for custom_text in self.custom_texts_inputs.keys():

@@ -61,7 +61,7 @@ class main_API(QObject):
         #------------------------------------------------------------------------------------------
         if self.configManager.Config.is_telecentric_lens():
             self.load_tele_lens_parms()
-        
+        self.lens_type = self.configManager.Config.get_lens_type()
         #------------------------------------------------------------------------------------------
         self.camera_device_info = {}
         self.cameras: dict[str, Camera] = {}
@@ -114,7 +114,7 @@ class main_API(QObject):
         self.reportPageAPI = reportPageAPI(uiHandeler = self.uiHandeler.reportPage, database=self.db)
         self.reportsPageAPI = reportsPageAPI(uiHandeler=self.uiHandeler.reportsPage, database=self.db)
         self.comparePageAPI = comparePageAPI(ui=self.uiHandeler.comparePage, database=self.db)
-        self.validationPageAPI = validationPageAPI(ui=self.uiHandeler.validationPage, database=self.db, cameras=self.cameras)
+        self.validationPageAPI = validationPageAPI(ui=self.uiHandeler.validationPage, lens_type=self.lens_type, database=self.db, cameras=self.cameras)
         if self.configManager.Config.has_plc():
             self.hmiPageAPI = hmiPageAPI(self.uiHandeler.hmiPage, self.db.setting_db.plc_nodes_db, None)
         else:

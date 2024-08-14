@@ -140,6 +140,7 @@ class configManager:
                                             node_names,
                                             self.start_signals_update_event)
 
+        self.mediator.send_pipline_log( "Check Start Signals")
 
 
     @configUtils.callback_on_error('uncompleted_pipeline')
@@ -157,6 +158,8 @@ class configManager:
         if not res:
             # self.send_read_permisions_request()
             self.start_done(False)
+            self.mediator.send_pipline_log( " Start Signals faild")
+
             
             # timer = timerThread(5, name='reading start_signals')
             # timer.finish_signal.connect(self.run_reading_start_signals)
@@ -170,6 +173,8 @@ class configManager:
 
     def start_timer_counter(self, t):
         self.mediator.send_config_timer('start', t)
+        self.mediator.send_pipline_log( f" Start Timer: {t} sec")
+
 
 
     @configUtils.callback_on_error('uncompleted_pipeline')
@@ -187,6 +192,8 @@ class configManager:
         self.mediator.send_step_done('start', flag)
         if flag:
             self.run_permission_pipline()
+            self.mediator.send_pipline_log( "Start Done")
+
         else:
             self.uncompleted_pipeline()
 
@@ -202,7 +209,9 @@ class configManager:
         
         permisions_signals = self.Config.get_permission_signals()
         if len(permisions_signals):
+            self.mediator.send_pipline_log( "Check permissions")
             self.run_reading_permisions_signals(permisions_signals)
+
 
         else:
             self.permisions_done(True)
@@ -217,6 +226,7 @@ class configManager:
         names = list(map( lambda x:x['name'], permisions_signals))
         
         if self.plc is None or not self.plc.is_connect():
+            self.mediator.send_pipline_log( f"PLC Disconnected")
             self.permisions_done(False)
 
         
@@ -258,6 +268,8 @@ class configManager:
 
         else:
             self.permisions_done(False)
+            self.mediator.send_pipline_log( f"Permissions signals failed")
+
             
 
 
@@ -269,6 +281,8 @@ class configManager:
         if res:
             self.write_output_signal('signals1')
             self.run_delay_pipline()
+            self.mediator.send_pipline_log( f"Permissions done")
+
 
         else:
             self.uncompleted_pipeline()
@@ -302,6 +316,9 @@ class configManager:
 
     def delay_timer_counter(self, t):
         self.mediator.send_config_timer('delay', t)
+        self.mediator.send_pipline_log( f" Delay Timer: {t} sec")
+
+        
 
     @configUtils.print_function_name
     def delay_done(self,):  
@@ -320,6 +337,7 @@ class configManager:
         if not self.__run_flag:
             return
         
+        self.mediator.send_pipline_log( f"Run System")
         self.mediator.send_start_processing_request()
 
 
@@ -377,6 +395,8 @@ class configManager:
 
     def stop_timer_counter(self,t):
         self.mediator.send_config_timer('stop', t)
+        self.mediator.send_pipline_log( f" Stop Timer: {t} sec")
+
         
 
     @configUtils.callback_on_error('uncompleted_pipeline')
@@ -398,6 +418,7 @@ class configManager:
             if self.plc is None or not self.plc.is_connect():
                 #uncomplete pipline after 3000 ms
                 self.start_timeout(3000)
+
             else:
                 self.start_timeout(5000)
                 self.plc.send_read_request('stop_signals', 
@@ -419,6 +440,8 @@ class configManager:
         
         else:
             self.stop_done(True)
+            self.mediator.send_pipline_log( f"Stop Singlas event")
+
 
         self.mediator.send_nodes_log('stop', log)
     

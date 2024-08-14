@@ -28,6 +28,11 @@ class Particle:
         self.max_diameter = self.max_radius * 2
         self.avg_diameter = self.avg_radius * 2
     
+    def change_px2mm(self, px2mm):
+        self = Particle(self.cnt, px2mm=px2mm, img_id=self.img_id)
+        return self
+        
+
 
     def calc_cirvularity(self,):
         self.circularity = self.area / (np.pi * self.max_radius **2) 

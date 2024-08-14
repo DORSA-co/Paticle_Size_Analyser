@@ -1,5 +1,6 @@
 import copy
 import time
+from datetime import datetime
 import threading
 
 import numpy as np
@@ -15,15 +16,17 @@ from backend.Processing.Report import Report
 from backend.Calibration.testsValidation import weightDifferenceValidation, tTestValidation
 from backend.Camera.dorsaPylon import Collector, Camera
 from uiUtils.IO.Mouse import MouseEvent
-from backend.Processing.Calibration import Calibration
+from backend.Calibration.Calibration import TelecentricCalibration, StandardCalibration, CalibrateIterator
+from backend.Processing.Particel import Particle
 
+from backend.ConfigManager.configFlags import lensType
 
 
 class validationPageAPI:
 
-    def __init__(self, ui:validationPageUI, database:mainDatabase, cameras: dict[str, Camera]):
+    def __init__(self, ui:validationPageUI, lens_type:str, database:mainDatabase, cameras: dict[str, Camera]):
         self.statisticalHypothesisTab = statisticalHypothesisTabAPI(ui.statisticalHypothesisTab, database)
-        self.calibrationTab = calibrationTab(ui.calibrationTab, database=database, cameras=cameras)
+        self.calibrationTab = calibrationTab(ui.calibrationTab, database=database, lens_type=lens_type, cameras=cameras)
     
     def startup(self,):
         self.statisticalHypothesisTab.startup()
@@ -33,24 +36,46 @@ class validationPageAPI:
 class calibrationTab:
     DEBUG_PROCESS_THREAD = False
 
-    def __init__(self, ui:calibrationTabUI, database: mainDatabase, cameras: dict[str, Camera]) -> None:
+    def __init__(self, ui:calibrationTabUI, database: mainDatabase, lens_type:str, cameras: dict[str, Camera]) -> None:
         self.ui = ui
         self.database = database
         self.cameras = cameras
-        
-        self.during_processing = False
+        self.lens_type = lens_type
+
+
         self.particles = []
         self.calib_image = None
         self.calibration_step = 'none'
         self.iteration = 0 
         self.total_iteration = CONSTANTS.Calibration.ITERATIONS
+        self.thread = None
+        self.calibration_worker = None
         #self.detector: particlesDetector.particlesDetector = None
 
         algorithm_data = self.database.setting_db.algorithm_db.load()
-        self.calibration = Calibration(thresh=CONSTANTS.Calibration.THRESH,
-                                       border=algorithm_data['border'],
-                                       circularity=0.7,
-                                       min_diameter_mm=0.8)
+        if self.lens_type == lensType.telecentric:
+            px2mm = self.database.calib_db.get_px2mm()
+            self.calibration = TelecentricCalibration(thresh=CONSTANTS.Calibration.THRESH,
+                                                      border=algorithm_data['border'],
+                                                      circularity=CONSTANTS.Calibration.CIRCULARITY,
+                                                      min_diameter_mm=CONSTANTS.Calibration.MIN_DIAMETER_MM,
+                                                      px2mm=px2mm)
+
+        elif self.lens_type == lensType.standard:
+            self.calibration = StandardCalibration(thresh=CONSTANTS.Calibration.THRESH,
+                                                   border=algorithm_data['border'],
+                                                   circularity=CONSTANTS.Calibration.CIRCULARITY,
+                                                   min_diameter_mm=CONSTANTS.Calibration.MIN_DIAMETER_PX)
+
+        else:
+            raise "Error lens not exists"
+        
+
+        self.calibrator_iterator = CalibrateIterator(calibrator=self.calibration)
+        # self.calibration = Calibration(thresh=CONSTANTS.Calibration.THRESH,
+        #                                border=algorithm_data['border'],
+        #                                circularity=0.7,
+        #                                min_diameter_mm=0.8)
         
         
         self.ui.check_button_connector(self.set_step('check'))
@@ -92,6 +117,7 @@ class calibrationTab:
                 self.calibration.reset()
                 self.iteration = 0
                 self.ui.set_progress_bar(0)
+                self.calibrator_iterator.reset()
 
             for camera in self.cameras.values():
                 camera.Operations.start_grabbing()
@@ -135,32 +161,25 @@ class calibrationTab:
             camera.Operations.stop_grabbing()
 
     def calibration_proccess(self, image):
-        if not self.during_processing:
-            self.during_processing = True
+        if self.thread is None or not self.thread.is_alive():
             if image is None:
-                self.during_processing = False
                 return
             #________________________________ONLY FOR TEST________________________________________________
             self.processing_time = time.time()
             self.calibration_worker = calibrationWorker(image,
-                                            calibration=self.calibration,
+                                            calibration=self.calibrator_iterator,
                                             total_steps= self.total_iteration
                                             )
             
             self.thread = threading.Thread(target=self.calibration_worker.run_process)
             self.calibration_worker.finished_processing.connect(self.update_calibration)
-            self.calibration_worker.finished.connect(self.__set_processing_finish__)
             
             if self.DEBUG_PROCESS_THREAD:
                 self.calibration_worker.run_process()
             else:
                 self.thread.start()
 
-        else:
-            if ( time.time() - self.processing_time ) >=1:
-                print('TimeOut')
-                self.during_processing = False
-                self.processing_time = time.time()
+
 
     
 
@@ -174,21 +193,19 @@ class calibrationTab:
         self.calibration.reset()
 
 
-    
+        
 
-    def __set_processing_finish__(self,):
-        self.during_processing = False
+    
+    def update_calibration(self, particels:list[Particle] | None, px2mm:float):
         self.processing_time = time.time() - self.processing_time
 
-    
-    def update_calibration(self,):
+
         self.iteration+=1
         percent = int((self.iteration / self.total_iteration) * 100)
-        particles = self.calibration_worker.get_particles()
         self.ui.set_progress_bar(percent)
         
-        if particles is not None:
-            self.particles = particles
+        if particels is not None:
+            self.particles = particels
             self.calib_image = self.calibration_worker.img.copy()
             image = particlesDetector.draw_particles(self.calibration_worker.img, self.particles )
             self.ui.show_live(image)
@@ -201,13 +218,19 @@ class calibrationTab:
                                      buttons=['ok'])
 
             self.ui.set_progress_bar(0)
+            return
             
         
         if self.iteration == self.total_iteration:
-            result = self.calibration.get_result()
+            result = self.calibrator_iterator.get_result()
             self.ui.show_calib_result(result)
             self.stop_calibration()
-            
+            if self.lens_type == lensType.standard:
+                self.database.calib_db.save({ 
+                    'date': datetime.now().strftime("%Y/%m/%d"),
+                    'px2mm': self.calibrator_iterator.get_px2mm()
+            })
+
        
 
 
@@ -355,11 +378,10 @@ class statisticalHypothesisTabAPI:
 
 
 class calibrationWorker(QObject):
-    finished = Signal()
-    finished_processing = Signal()
+    finished_processing = Signal(list, float)
     def __init__(self, 
                  img:np.ndarray,
-                 calibration:Calibration,
+                 calibration:CalibrateIterator,
                  total_steps = 10
                  ) -> None:
         super(calibrationWorker,self).__init__()
@@ -371,15 +393,9 @@ class calibrationWorker(QObject):
     
     def run_process(self,):
 
-        for i in range(1):
-            try:
-                self.particles = self.calibration.calibration(self.img)
-                self.finished_processing.emit()
-       
-            except Exception as e:
-                print(e)
+        try:
+            particles , px2mm= self.calibration.calibration(self.img)
+            self.finished_processing.emit(particles,float(px2mm) )
 
-        self.finished.emit()
-
-    def get_particles(self, ):
-        return copy.copy(self.particles)
+        except Exception as e:
+            print(e)

@@ -49,6 +49,9 @@ class mainPageAPI:
         self.processing_time = 0
         self.auto_run_flag = False
 
+        self.thread = None
+        self.worker = None
+
         self.warnings_and_status = {
             'camera_connection': False,
             'camera_grabbing': False,
@@ -73,6 +76,8 @@ class mainPageAPI:
         self.uiHandeler.sampleInfoDialog.button_connector('run', self.render_sample_settings)
         self.uiHandeler.report_button_connector(self.report_button_event)
         self.uiHandeler.sampleInfoDialog.set_grading_parm_items(list(CONSTANTS.Sample.GRADING_PARMS.keys()))
+        self.uiHandeler.set_pipeline_msg_lbl(None)
+
 
         self.test_img_idx = 0
         self.report:Report = None
@@ -143,14 +148,14 @@ class mainPageAPI:
     def process_image(self, img:np.ndarray):
 
         if self.is_running:
-            if not self.during_processing:
+            if self.thread is None or not self.thread.is_alive():
                 
-                self.during_processing = True
+                #self.during_processing = True
                 self.calc_fps()
               
                 
                 if img is None:
-                    self.during_processing = False
+                    #self.during_processing = False
                     return
                 #________________________________ONLY FOR TEST________________________________________________
                 self.processing_time = time.time()
@@ -167,32 +172,28 @@ class mainPageAPI:
                 else:
                     self.thread.start()
 
-            else:
-                if ( time.time() - self.refresh_time ) >=1:
-                    print('TimeOut')
-                    #self.thread.quit()
-                    self.during_processing = False
-                    self.refresh_time = time.time()
+            # else:
+            #     if ( time.time() - self.refresh_time ) >=1:
+            #         print('TimeOut')
+            #         #self.thread.quit()
+            #         self.during_processing = False
+            #         self.refresh_time = time.time()
 
     def particales_found_evet(self, particels:list[Particle]):
         self.Mediator.send('particels_founded', particels)
 
     def __set_processing_finish__(self,):
-        #print('__set_processing_finish__')
-        self.during_processing = False
+        # self.during_processing = False
         self.processing_time = time.time() - self.processing_time
-        #print('processing_time = ', self.processing_time)
 
 
 
-    def show_live_info(self):
+    def show_live_info(self, img:np.ndarray, particles:list[Particle]):
         t = time.time()
         
         if 1/((t - self.refresh_time) + 1e-5) < self.max_fps and self.is_running:
             self.refresh_time = time.time()
 
-            particles = self.worker.get_particles()
-            img = self.worker.img
 
             infos = self.report.get_global_statistics()
             self.uiHandeler.set_information(infos)
@@ -326,6 +327,7 @@ class mainPageAPI:
 
 
     def render_sample_settings(self,):
+        self.uiHandeler.set_pipeline_msg_lbl(None)
         info = self.uiHandeler.sampleInfoDialog.get_info()
         if info['name'] == "":
             self.uiHandeler.sampleInfoDialog.write_error_massage("Name field cann't be empty")
@@ -389,6 +391,9 @@ class mainPageAPI:
 
 
 
+    def recsive_stop_request(self,):
+        self.stop(False)
+
 
 
     def stop(self,ask=True):
@@ -404,7 +409,7 @@ class mainPageAPI:
                 return
 
         self.is_running = False
-        self.during_processing = False
+        # self.during_processing = False
         
 
         for camera in self.cameras.values():
@@ -435,6 +440,10 @@ class mainPageAPI:
         #print('stop FINISH')
 
     
+
+    def recsive_pipline_msg(self, msg:str):
+        self.uiHandeler.set_pipeline_msg_lbl(msg)
+
     
     
 
@@ -468,12 +477,14 @@ class mainPageAPI:
         #-----------------------------------------------------------------------------------------
         #load algorithm parms from database
         algorithm_data = self.database.setting_db.algorithm_db.load()
+        sample_data = self.database.setting_db.sample_db.load()
+
         px2mm = self.database.calib_db.get_px2mm()
         #build detector
         self.detector = particlesDetector.particlesDetector(algorithm_data['threshold'], 
-                                                            #CONSTANTS.Calibration.PX2MM, 
                                                             px2mm,
-                                                            algorithm_data['border'])
+                                                            algorithm_data['border'],
+                                                            min_size= sample_data['min_diameter'])
         #-----------------------------------------------------------------------------------------
         #load selected standard from databasr
         standard = self.database.standards_db.load(info['standard'])
@@ -527,7 +538,7 @@ class mainPageAPI:
 class ProcessingWorker(QObject):
     finished = Signal()
     founded_particels = Signal(list)
-    finished_processing = Signal()
+    finished_processing = Signal(np.ndarray, list)
     def __init__(self, 
                  img:np.ndarray,
                  detector:particlesDetector.particlesDetector,
@@ -548,21 +559,20 @@ class ProcessingWorker(QObject):
     
     def run_process(self,):
 
-        for i in range(1):
-            try:
-                self.current_particles = self.detector.detect(self.img, self.report)
-                if len(self.current_particles):
-                    self.founded_particels.emit(self.current_particles)
+        try:
+            self.current_particles = self.detector.detect(self.img, self.report)
+            if len(self.current_particles):
+                self.founded_particels.emit(self.current_particles)
 
-                self.finished_processing.emit()
-            
-                if self.report.settings['save_image']:
-                    for particle in self.current_particles:
-                        p_img = particle.get_roi_image(self.img)
-                        img_id = particle.get_id()
-                        self.report_saver.save_image(p_img, img_id)
-            except Exception as e:
-                print('ERROR in ProcessingWorker', e)
+            self.finished_processing.emit(self.img, self.current_particles)
+        
+            if self.report.settings['save_image']:
+                for particle in self.current_particles:
+                    p_img = particle.get_roi_image(self.img)
+                    img_id = particle.get_id()
+                    self.report_saver.save_image(p_img, img_id)
+        except Exception as e:
+            print('ERROR in ProcessingWorker', e)
 
         #print('FINISH signal--')
         self.finished.emit()

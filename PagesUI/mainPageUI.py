@@ -154,6 +154,14 @@ class mainPageUI:
         #GUIBackend.set_wgt_visible(self.warning_btns[name]['label'], False)
 
 
+    def set_pipeline_msg_lbl(self, msg:str):
+        if msg is None:
+            GUIBackend.set_wgt_visible(self.ui.mainpage_pipeline_msg_lbl, False)
+        else:
+            GUIBackend.set_wgt_visible(self.ui.mainpage_pipeline_msg_lbl, True)
+            GUIBackend.set_label_text(self.ui.mainpage_pipeline_msg_lbl, msg)
+
+
 
     def run_auto_button_connector(self, func):
         GUIBackend.button_connector(self.ui.mainpage_run_auto_btn, func)
@@ -172,6 +180,8 @@ class mainPageUI:
     
     def hide_auto_run(self,):
         GUIBackend.set_wgt_visible(self.ui.mainpage_run_auto_btn, False)
+        GUIBackend.set_wgt_visible(self.ui.mainpage_pipeline_msg_lbl, False)
+
 
     def internal_warning_button_event(self, name:str):
         """this function execute when each of error button clicked

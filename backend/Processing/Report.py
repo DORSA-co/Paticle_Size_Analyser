@@ -65,8 +65,11 @@ class Report:
     #     self.Buffer.extend(buffer)
     
     def append_particle(self, particle:Particle):        
+        #Checks which range the particle belongs to and append partice to calculate grading
         sieve_idx = self.Grading.append_particle(particle, self.grading_parm)
+        #append particle to calculate cumulative grading
         _ = self.cumGrading.append_particle(particle, self.grading_parm)
+        #append partice
         self.Buffer.append_particle(particle, sieve_idx)
 
    

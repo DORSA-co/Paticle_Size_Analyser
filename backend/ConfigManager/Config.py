@@ -82,6 +82,9 @@ class Config:
     def is_standard_lens(self,) -> bool:
         return self.__config['lens_type'] == configFlags.lensType.standard
     
+    def get_lens_type(self,) -> str:
+        return self.__config['lens_type']
+    
     def get_magnification(self,) -> float:
         return self.__config['lens_magnification']
     

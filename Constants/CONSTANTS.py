@@ -62,6 +62,9 @@ class Calibration:
     THRESH = 30
     #CALIBRATOR_CIRCLES_COUNT = 32
     ITERATIONS = 20
+    CIRCULARITY=0.7
+    MIN_DIAMETER_MM=0.8
+    MIN_DIAMETER_PX=5
     
     PARTICLES_DIAMETERS_MM = [
         1,

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>991</width>
-    <height>655</height>
+    <width>1200</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,7 +18,7 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>800</width>
+    <width>1200</width>
     <height>0</height>
    </size>
   </property>
@@ -565,6 +565,7 @@ QTabBar::tab
 	max-height: 30px;
 	padding: 10px 20px;
 	min-width: 100px;
+	min-height: 25px;
 	font-size: 14px;
 	background-color: #f0f0f0;
 	border-top-right-radius: 10px;
@@ -1546,7 +1547,7 @@ QPushButton[activeStyle=&quot;true&quot;]{
 </string>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>4</number>
          </property>
          <property name="styleClass" stdset="0">
           <string>blueBorderButton</string>
@@ -2034,6 +2035,16 @@ QPushButton[stylePlaying=&quot;true&quot;]{
                       </widget>
                      </item>
                     </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="mainpage_pipeline_msg_lbl">
+                    <property name="styleSheet">
+                     <string notr="true">color: rgb(100,100,100);</string>
+                    </property>
+                    <property name="text">
+                     <string>Message</string>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -4042,7 +4053,7 @@ QPushButton:hover{
               <string notr="true"/>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>1</number>
              </property>
              <property name="usesScrollButtons">
               <bool>true</bool>
@@ -4184,7 +4195,7 @@ QPushButton:hover{
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>596</width>
+                    <width>958</width>
                     <height>548</height>
                    </rect>
                   </property>
@@ -4880,7 +4891,7 @@ color: #ffffff;
                 <enum>QTabWidget::TabShape::Rounded</enum>
                </property>
                <property name="currentIndex">
-                <number>3</number>
+                <number>0</number>
                </property>
                <property name="documentMode">
                 <bool>false</bool>
@@ -4915,8 +4926,8 @@ color: #ffffff;
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>700</width>
-                      <height>643</height>
+                      <width>956</width>
+                      <height>690</height>
                      </rect>
                     </property>
                     <property name="styleClass" stdset="0">
@@ -4934,20 +4945,10 @@ color: #ffffff;
                           <property name="verticalSpacing">
                            <number>20</number>
                           </property>
-                          <item row="0" column="1">
-                           <widget class="QComboBox" name="settingpage_sample_default_standard_comboxos">
-                            <property name="minimumSize">
-                             <size>
-                              <width>150</width>
-                              <height>31</height>
-                             </size>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="0">
-                           <widget class="QLabel" name="label_66">
+                          <item row="2" column="1">
+                           <widget class="QCheckBox" name="settingpage_sample_save_image_checkbox">
                             <property name="text">
-                             <string>Default Standard </string>
+                             <string/>
                             </property>
                            </widget>
                           </item>
@@ -4964,17 +4965,23 @@ color: #ffffff;
                             </property>
                            </spacer>
                           </item>
-                          <item row="2" column="0">
-                           <widget class="QLabel" name="label_93">
-                            <property name="text">
-                             <string>Save Particels Image: </string>
+                          <item row="1" column="1">
+                           <widget class="QComboBox" name="settingpage_sample_default_grading_parm_comboxos">
+                            <property name="minimumSize">
+                             <size>
+                              <width>150</width>
+                              <height>31</height>
+                             </size>
                             </property>
                            </widget>
                           </item>
-                          <item row="2" column="1">
-                           <widget class="QCheckBox" name="settingpage_sample_save_image_checkbox">
-                            <property name="text">
-                             <string/>
+                          <item row="0" column="1">
+                           <widget class="QComboBox" name="settingpage_sample_default_standard_comboxos">
+                            <property name="minimumSize">
+                             <size>
+                              <width>150</width>
+                              <height>31</height>
+                             </size>
                             </property>
                            </widget>
                           </item>
@@ -4985,15 +4992,29 @@ color: #ffffff;
                             </property>
                            </widget>
                           </item>
-                          <item row="1" column="1">
-                           <widget class="QComboBox" name="settingpage_sample_default_grading_parm_comboxos">
-                            <property name="minimumSize">
-                             <size>
-                              <width>150</width>
-                              <height>31</height>
-                             </size>
+                          <item row="2" column="0">
+                           <widget class="QLabel" name="label_93">
+                            <property name="text">
+                             <string>Save Particels Image: </string>
                             </property>
                            </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_66">
+                            <property name="text">
+                             <string>Default Standard </string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="0">
+                           <widget class="QLabel" name="label_163">
+                            <property name="text">
+                             <string>minimum particel diameter (mm)</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="1">
+                           <widget class="QDoubleSpinBox" name="settingpage_sample_min_size_spinbox"/>
                           </item>
                          </layout>
                         </item>
@@ -5597,8 +5618,8 @@ QLabel
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>608</width>
-                      <height>347</height>
+                      <width>966</width>
+                      <height>396</height>
                      </rect>
                     </property>
                     <property name="styleClass" stdset="0">
@@ -6342,8 +6363,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>936</width>
-                      <height>277</height>
+                      <width>966</width>
+                      <height>443</height>
                      </rect>
                     </property>
                     <property name="styleClass" stdset="0">
@@ -6727,7 +6748,7 @@ border-radius:0px;
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>513</width>
+                          <width>666</width>
                           <height>830</height>
                          </rect>
                         </property>
@@ -7676,8 +7697,8 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>70</width>
-                      <height>64</height>
+                      <width>956</width>
+                      <height>186</height>
                      </rect>
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_67">
@@ -7809,7 +7830,7 @@ QPushButton:hover{
                      <rect>
                       <x>0</x>
                       <y>0</y>
-                      <width>522</width>
+                      <width>954</width>
                       <height>833</height>
                      </rect>
                     </property>
@@ -8143,7 +8164,7 @@ QPushButton:hover{
                          <rect>
                           <x>0</x>
                           <y>0</y>
-                          <width>5134</width>
+                          <width>5584</width>
                           <height>438</height>
                          </rect>
                         </property>
@@ -8453,7 +8474,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>88</width>
+                                          <width>70</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -8594,8 +8615,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -8732,8 +8753,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -9068,8 +9089,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -9381,7 +9402,7 @@ QPushButton:hover{
                                          <rect>
                                           <x>0</x>
                                           <y>0</y>
-                                          <width>88</width>
+                                          <width>70</width>
                                           <height>64</height>
                                          </rect>
                                         </property>
@@ -9715,8 +9736,8 @@ QPushButton:hover{
                                    <rect>
                                     <x>0</x>
                                     <y>0</y>
-                                    <width>88</width>
-                                    <height>64</height>
+                                    <width>650</width>
+                                    <height>325</height>
                                    </rect>
                                   </property>
                                   <property name="styleClass" stdset="0">
@@ -10934,8 +10955,8 @@ QPushButton:hover{
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>759</width>
-                    <height>421</height>
+                    <width>70</width>
+                    <height>34</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_49">
@@ -11886,8 +11907,8 @@ background-color:#ffffff;
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>749</width>
-                    <height>661</height>
+                    <width>512</width>
+                    <height>721</height>
                    </rect>
                   </property>
                   <property name="styleClass" stdset="0">
@@ -12155,7 +12176,7 @@ border: 2px solid rgb(25, 68, 105);
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>781</width>
+                <width>557</width>
                 <height>3251</height>
                </rect>
               </property>
@@ -14783,7 +14804,7 @@ QFrame{
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>781</width>
+                <width>180</width>
                 <height>1109</height>
                </rect>
               </property>
@@ -15419,7 +15440,7 @@ QPushButton{
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>288</width>
+            <width>393</width>
             <height>19</height>
            </rect>
           </property>

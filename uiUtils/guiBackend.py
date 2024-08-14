@@ -702,6 +702,7 @@ class GUIBackend:
         if isinstance(image_array, str):
             image_array = cv2.imread(image_array)
 
+        image_array = cv2.cvtColor(image_array, cv2.COLOR_BGR2RGB)
 
         def resize_event(event):
             # بازسازی QPixmap اصلی و مقیاس‌بندی آن با استفاده از QLabel جدید

@@ -48,6 +48,9 @@ class Mediator:
     def send_config_timer(self, name, t:int):
         self.__mainAPI.settingPageAPI.configSetting.recsive_live_timer(name, t)
 
+    def send_pipline_log(self, log:str):
+        self.__mainAPI.mainPageAPI.recsive_pipline_msg(log)
+
 
     def send_step_done(self, name:str,  flag:bool):
         self.__mainAPI.settingPageAPI.configSetting.recsive_step_done(name, flag)
@@ -66,7 +69,7 @@ class Mediator:
 
     def send_stop_processing_request(self,):
 
-        self.__mainAPI.mainPageAPI.stop(ask=False)
+        self.__mainAPI.mainPageAPI.recsive_stop_request()
     
     def send_start_processing_status(self, flag:bool):
         self.__mainAPI.configManager.rescive_run_pocessing_status(flag)

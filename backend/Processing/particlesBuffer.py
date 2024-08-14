@@ -128,7 +128,7 @@ class sieveParticlesBuffer:
             self.sieve_particles_membership.append(np.array([], dtype='bool'))
 
     def append_particle(self, particle:Particle, sieve_idx:int, sive_only=False):
-        
+
         #if sieve_idx >= 0:
         for i in range(len(self.ranges)):
             #append True in the range idx that is sieve idx
@@ -141,6 +141,9 @@ class sieveParticlesBuffer:
         
         if not sive_only:
             self.total_buffer.append(particle)
+
+
+
 
     def get_feature(self, name: str, decimals=2, sive_idx = None) -> np.ndarray:
         """returns a 1d numpy array that shows a specific feature for all particles

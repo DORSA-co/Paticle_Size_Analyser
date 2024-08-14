@@ -130,6 +130,8 @@ class settingSampleDB(parentSettingDB):
                    {'col_name': 'application',          'type':'VARCHAR(255)', 'len':20},
                    {'col_name': 'text1',                'type':'VARCHAR(255)', 'len':300},
                    {'col_name': 'save_image',           'type':'INT', },
+                   {'col_name': 'min_diameter',          'type':'FLOAT', },
+
                 ]
     
     TABLE_DEFAULT_DATAS= [{  
@@ -139,6 +141,7 @@ class settingSampleDB(parentSettingDB):
                             'default_grading_parm': 'min_radius',
                             'text1': '',
                             'save_image': 1,
+                            'min_diameter' : 0.5,
                             }
                         ]
     
